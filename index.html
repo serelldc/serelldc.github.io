@@ -341,29 +341,50 @@
   /* ===== ADDITIONAL PROJECTS ===== */
   .more-projects{
     border-top:1px solid var(--line);
-    padding-top:34px;
+    padding-top:40px;
   }
   .more-projects .more-label{
     font-family:'Helvetica Neue', Arial, sans-serif;
     font-size:12px; letter-spacing:.22em; text-transform:uppercase;
-    color: var(--gold); margin-bottom:20px;
+    color: var(--gold); margin-bottom:24px;
   }
-  .more-row{
-    display:flex; align-items:center; justify-content:space-between; gap:24px;
-    flex-wrap:wrap;
-    padding:18px 0;
-    border-top:1px solid var(--line);
+  .client-grid{
+    display:grid; grid-template-columns: repeat(auto-fit, minmax(260px,1fr));
+    gap:24px;
   }
-  .more-row:last-child{ border-bottom:1px solid var(--line); }
-  .more-row .title{ font-size:18px; }
-  .more-row .title span{ color: var(--muted); font-size:14px; font-family:'Helvetica Neue', Arial, sans-serif; display:block; margin-top:4px; }
-  .more-row a{
+  .client-card{
+    background: linear-gradient(160deg, rgba(212,162,78,0.10), rgba(255,255,255,0.03));
+    border:1px solid rgba(212,162,78,0.35);
+    border-radius:10px;
+    padding:26px 26px 24px;
+    display:flex; flex-direction:column; gap:12px;
+    transition: transform .25s ease, border-color .25s ease;
+  }
+  .client-card:hover{ transform: translateY(-5px); border-color: var(--gold); }
+  .client-card .badge{
+    font-family:'Helvetica Neue', Arial, sans-serif;
+    font-size:11px; letter-spacing:.18em; text-transform:uppercase;
+    color: var(--gold);
+    display:inline-flex; align-items:center; gap:6px;
+    width:fit-content;
+  }
+  .client-card .badge::before{
+    content:""; width:6px; height:6px; border-radius:50%;
+    background: var(--gold); display:inline-block;
+  }
+  .client-card h4{ font-size:19px; font-weight:400; line-height:1.3; }
+  .client-card p{ color: var(--muted); font-size:14px; flex:1; }
+  .client-card a{
     font-family:'Helvetica Neue', Arial, sans-serif; font-size:13px;
     color: var(--paper); text-decoration:none;
     border:1px solid var(--line); padding:10px 18px; border-radius:4px;
     transition: all .2s; white-space:nowrap;
+    display:inline-flex; align-items:center; gap:8px;
+    align-self:flex-start; margin-top:4px;
   }
-  .more-row a:hover{ border-color: var(--gold); color: var(--gold); }
+  .client-card a:hover{ border-color: var(--gold); color: var(--gold); background: rgba(212,162,78,0.08); }
+  .client-card a svg{ width:14px; height:14px; transition: transform .2s; }
+  .client-card a:hover svg{ transform: translateX(3px); }
 
   /* ===== FLOATING MESSENGER BUTTON ===== */
   .float-msg{
@@ -474,7 +495,7 @@
     .hero{ padding:70px 6vw 50px; }
     .featured-banner{ min-height:280px; }
     .featured-content{ padding:28px 24px; }
-    .more-row{ flex-direction:column; align-items:flex-start; gap:12px; }
+    .client-grid{ grid-template-columns:1fr; }
   }
 </style>
 </head>
@@ -653,29 +674,34 @@
   <!-- ADDITIONAL PROJECTS -->
   <div class="more-projects">
     <div class="more-label sans">Client Projects</div>
-    <div class="more-row">
-      <div class="title">Trustories — Sunglasses Landing Page
-        <span>Client landing page build — live and viewable online.</span>
+    <div class="client-grid">
+      <div class="client-card">
+        <div class="badge">Landing Page</div>
+        <h4>Trustories — Sunglasses Landing Page</h4>
+        <p>Client landing page build — live and viewable online.</p>
+        <a href="https://trustoriessunglandingpage.systeme.io/landingpage" target="_blank">
+          View Page
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 5l7 7-7 7"/></svg>
+        </a>
       </div>
-      <a href="https://trustoriessunglandingpage.systeme.io/landingpage" target="_blank">
-        View Page
-      </a>
-    </div>
-    <div class="more-row">
-      <div class="title">Atty. Khalil Law Firm — Website
-        <span>Client site build for a legal practice — live and viewable online.</span>
+      <div class="client-card">
+        <div class="badge">Professional Services</div>
+        <h4>Atty. Khalil Law Firm — Website</h4>
+        <p>Client site build for a legal practice — live and viewable online.</p>
+        <a href="https://attykhalillawfirm.systeme.io/attykhalil_lawfirm" target="_blank">
+          View Page
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 5l7 7-7 7"/></svg>
+        </a>
       </div>
-      <a href="https://attykhalillawfirm.systeme.io/attykhalil_lawfirm" target="_blank">
-        View Page
-      </a>
-    </div>
-    <div class="more-row">
-      <div class="title">Dear OFW, Don't Forget Yourself — Author Funnel
-        <span>Landing page for Delia Muhr's memoir, built to turn readers into buyers.</span>
+      <div class="client-card">
+        <div class="badge">Author Funnel</div>
+        <h4>Dear OFW, Don't Forget Yourself</h4>
+        <p>Landing page for Delia Muhr's memoir, built to turn readers into buyers.</p>
+        <a href="https://srdc.systeme.io/deliahmuhr" target="_blank">
+          View Page
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 5l7 7-7 7"/></svg>
+        </a>
       </div>
-      <a href="https://srdc.systeme.io/deliahmuhr" target="_blank">
-        View Page
-      </a>
     </div>
   </div>
 </section>
