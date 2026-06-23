@@ -184,38 +184,45 @@ text-transform:uppercase;
 .hero-portrait{ order:-1; max-width:240px; margin:0 auto 20px; }
 }
 
-/* ===== MOTTO STRIP ===== */
+/* ===== MOTTO STRIP (marquee ticker) ===== */
 .motto-strip{
 background: var(--ink);
 color: var(--paper);
-text-align:center;
-padding: 56px 8vw;
+padding: 48px 0;
 border-bottom:1px solid var(--line);
 position:relative;
 overflow:hidden;
+white-space:nowrap;
 }
-.motto-strip::before, .motto-strip::after{
-content:"";
-position:absolute;
-width:1px; height:60%; top:20%;
-background: var(--line);
+.motto-track{
+display:inline-flex;
+align-items:center;
+animation: marquee 16s linear infinite;
+will-change: transform;
 }
-.motto-strip::before{ left:6vw; }
-.motto-strip::after{ right:6vw; }
-.motto-strip p{
+.motto-strip:hover .motto-track{
+animation-play-state: paused;
+}
+.motto-track p{
 font-size: clamp(20px, 3.2vw, 38px);
 font-style: italic;
 line-height:1.4;
 letter-spacing:.01em;
+white-space:nowrap;
+padding: 0 3vw;
+flex-shrink:0;
 }
-.motto-strip p .accent{
+.motto-track p .accent{
 color: var(--gold);
 font-style:normal;
 font-weight:600;
 }
+@keyframes marquee{
+0%{ transform: translateX(0); }
+100%{ transform: translateX(-50%); }
+}
 @media (max-width: 760px){
-.motto-strip::before, .motto-strip::after{ display:none; }
-.motto-strip{ padding:42px 6vw; }
+.motto-strip{ padding:36px 0; }
 }
 
 /* ===== SECTION WRAP ===== */
@@ -630,7 +637,10 @@ Message on Messenger
 
 <!-- MOTTO -->
 <div class="motto-strip">
+<div class="motto-track">
 <p>"I don't just run ads. <span class="accent">I run results.</span>"</p>
+<p>"I don't just run ads. <span class="accent">I run results.</span>"</p>
+</div>
 </div>
 
 <!-- ABOUT + STATS -->
