@@ -3,794 +3,890 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<script>(function(){try{var t=localStorage.getItem('theme');if(t==='dark'){document.documentElement.setAttribute('data-theme','dark');}}catch(e){}})();</script>
 <title>Relly Se — Facebook Media Buyer</title>
 <style>
-  :root{
-    --navy: #0B1E36;
-    --navy-deep: #07142A;
-    --ink: #142C4A;
-    --gold: #D4A24E;
-    --paper: #F6F4EF;
-    --paper-dim: #E7E2D8;
-    --muted: #8AA0BD;
-    --line: rgba(255,255,255,0.08);
-  }
-  *{box-sizing:border-box; margin:0; padding:0;}
-  html{scroll-behavior:smooth;}
-  body{
-    font-family: 'Georgia', 'Times New Roman', serif;
-    background: var(--paper);
-    color: var(--navy-deep);
-    line-height:1.6;
-  }
-  .sans{ font-family: 'Helvetica Neue', Arial, sans-serif; }
+:root{
+--navy: #0B1E36;
+--navy-deep: #07142A;
+--ink: #142C4A;
+--gold: #D4A24E;
+--paper: #F6F4EF;
+--paper-dim: #E7E2D8;
+--muted: #8AA0BD;
+--line: rgba(255,255,255,0.08);
+}
+*{box-sizing:border-box; margin:0; padding:0;}
+html{scroll-behavior:smooth;}
+body{
+font-family: 'Georgia', 'Times New Roman', serif;
+background: var(--paper);
+color: var(--navy-deep);
+line-height:1.6;
+transition: background .3s ease, color .3s ease;
+}
+.sans{ font-family: 'Helvetica Neue', Arial, sans-serif; }
 
-  /* ===== TOP NAV ===== */
-  .topnav{
-    position:fixed; top:0; left:0; right:0; z-index:100;
-    display:flex; align-items:center; justify-content:space-between;
-    padding: 18px 8vw;
-    background: rgba(7,20,42,0.78);
-    backdrop-filter: blur(10px);
-    border-bottom:1px solid var(--line);
-  }
-  .topnav img{ height:46px; display:block; }
-  .topnav .nav-links{
-    display:flex; gap:34px;
-    font-family:'Helvetica Neue', Arial, sans-serif;
-    font-size:13px; letter-spacing:.08em; text-transform:uppercase;
-  }
-  .topnav .nav-links a{ color: var(--muted); text-decoration:none; transition: color .2s; margin-left:34px; }
-  .topnav .nav-links a:first-child{ margin-left:0; }
-  .topnav .nav-links a:hover{ color: var(--paper); }
-  .topnav .nav-cta{
-    font-family:'Helvetica Neue', Arial, sans-serif;
-    font-size:13px; color: var(--paper); text-decoration:none;
-    border:1px solid var(--gold); color: var(--gold);
-    padding:9px 20px; border-radius:30px;
-    transition: all .2s;
-    display:flex; align-items:center; gap:8px;
-    white-space:nowrap;
-  }
-  .topnav .nav-cta svg{ width:14px; height:14px; }
-  .topnav .nav-cta:hover{ background: var(--gold); color: var(--navy-deep); }
-  @media (max-width: 760px){
-    .topnav .nav-links{ display:none; }
-  }
+/* ===== TOP NAV ===== */
+.topnav{
+position:fixed; top:0; left:0; right:0; z-index:100;
+display:flex; align-items:center; justify-content:space-between;
+padding: 18px 8vw;
+background: rgba(7,20,42,0.78);
+backdrop-filter: blur(10px);
+border-bottom:1px solid var(--line);
+}
+.topnav img{ height:46px; display:block; }
+.topnav .nav-right{ display:flex; align-items:center; gap:18px; }
+.topnav .nav-links{
+display:flex; gap:34px;
+font-family:'Helvetica Neue', Arial, sans-serif;
+font-size:13px; letter-spacing:.08em; text-transform:uppercase;
+}
+.topnav .nav-links a{ color: var(--muted); text-decoration:none; transition: color .2s; margin-left:34px; }
+.topnav .nav-links a:first-child{ margin-left:0; }
+.topnav .nav-links a:hover{ color: var(--paper); }
+.topnav .nav-cta{
+font-family:'Helvetica Neue', Arial, sans-serif;
+font-size:13px; color: var(--paper); text-decoration:none;
+border:1px solid var(--gold); color: var(--gold);
+padding:9px 20px; border-radius:30px;
+transition: all .2s;
+display:flex; align-items:center; gap:8px;
+white-space:nowrap;
+}
+.topnav .nav-cta svg{ width:14px; height:14px; }
+.topnav .nav-cta:hover{ background: var(--gold); color: var(--navy-deep); }
 
-  section, .hero, .contact{ scroll-margin-top: 78px; }
+/* THEME TOGGLE BUTTON */
+.theme-toggle{
+background:transparent; border:1px solid var(--line); color:var(--paper);
+width:38px; height:38px; border-radius:50%;
+display:flex; align-items:center; justify-content:center;
+cursor:pointer; transition: all .2s ease; flex-shrink:0;
+}
+.theme-toggle:hover{ border-color: var(--gold); color: var(--gold); }
+.theme-toggle svg{ width:18px; height:18px; }
+.theme-toggle .icon-moon{ display:none; }
+html[data-theme="dark"] .theme-toggle .icon-sun{ display:none; }
+html[data-theme="dark"] .theme-toggle .icon-moon{ display:block; }
 
-  /* ===== HERO ===== */
-  .hero{
-    background:
-      linear-gradient(160deg, rgba(7,20,42,0.92) 0%, rgba(11,30,54,0.88) 55%, rgba(16,40,69,0.85) 100%),
-      url('assets/hero-bg.jpg');
-    background-size: cover;
-    background-position: center;
-    color: var(--paper);
-    padding: 150px 8vw 90px;
-    position:relative;
-    overflow:hidden;
-    display:grid;
-    grid-template-columns: 1.4fr 1fr;
-    gap:50px;
-    align-items:center;
-  }
-  .hero::after{
-    content:"";
-    position:absolute;
-    right:-10%; top:-30%;
-    width:600px; height:600px;
-    border:1px solid var(--line);
-    border-radius:50%;
-    pointer-events:none;
-  }
-  .hero::before{
-    content:"";
-    position:absolute;
-    right:5%; top:10%;
-    width:420px; height:420px;
-    border:1px solid var(--line);
-    border-radius:50%;
-    pointer-events:none;
-  }
-  .eyebrow{
-    font-family:'Helvetica Neue', Arial, sans-serif;
-    letter-spacing:.28em;
-    font-size:12px;
-    color: var(--gold);
-    text-transform:uppercase;
-    margin-bottom:18px;
-  }
-  .hero h1{
-    font-size: clamp(42px, 6vw, 78px);
-    font-weight:400;
-    letter-spacing:.01em;
-    line-height:1.05;
-    max-width:14ch;
-  }
-  .hero .role{
-    font-family:'Helvetica Neue', Arial, sans-serif;
-    font-size: clamp(15px, 1.6vw, 19px);
-    color: var(--muted);
-    margin-top:18px;
-    max-width: 40ch;
-  }
-  .hero .role strong{ color: var(--paper); font-weight:600; }
-  .hero-meta{
-    display:flex; gap:24px; flex-wrap:wrap;
-    margin-top:42px;
-    font-family:'Helvetica Neue', Arial, sans-serif;
-    font-size:13px;
-    color: var(--muted);
-  }
-  .hero-meta span, .hero-meta a{ margin-right:24px; display:inline-block; }
-  .hero-meta a{ color: var(--paper); text-decoration:none; border-bottom:1px solid var(--gold); padding-bottom:2px; }
-  .hero-meta a:hover{ color: var(--gold); }
-  .hero-cta{
-    margin-top:38px; display:flex; gap:16px; flex-wrap:wrap;
-    font-family:'Helvetica Neue', Arial, sans-serif;
-  }
-  .hero-cta a{
-    text-decoration:none; padding:15px 30px; border-radius:4px; font-size:14px;
-    transition: all .2s; display:inline-flex; align-items:center; gap:10px;
-  }
-  .hero-cta a.primary{ background: var(--gold); color: var(--navy-deep); font-weight:700; }
-  .hero-cta a.primary:hover{ background:transparent; color: var(--gold); border:1px solid var(--gold); }
-  .hero-cta a.secondary{ border:1px solid var(--line); color: var(--paper); }
-  .hero-cta a.secondary:hover{ border-color: var(--gold); color: var(--gold); }
-  .hero-cta a svg{ width:16px; height:16px; }
+@media (max-width: 760px){
+.topnav .nav-links{ display:none; }
+}
 
-  .hero-portrait{
-    position:relative;
-    z-index:2;
-  }
-  .hero-portrait img{
-    width:100%; max-width:340px;
-    border-radius:8px;
-    border:1px solid var(--line);
-    box-shadow: 0 30px 60px -20px rgba(0,0,0,0.6);
-    display:block;
-    margin: 0 auto;
-  }
-  .hero-portrait .frame-label{
-    position:absolute; bottom:-16px; left:50%; transform:translateX(-50%);
-    background: var(--gold); color: var(--navy-deep);
-    font-family:'Helvetica Neue', Arial, sans-serif;
-    font-size:11px; letter-spacing:.18em; font-weight:700;
-    padding:8px 18px; border-radius:30px; white-space:nowrap;
-    text-transform:uppercase;
-  }
+section, .hero, .contact{ scroll-margin-top: 78px; }
 
-  @media (max-width: 900px){
-    .hero{ grid-template-columns:1fr; padding-top:120px; text-align:center; }
-    .hero .role{ margin-left:auto; margin-right:auto; }
-    .hero-meta, .hero-cta{ justify-content:center; }
-    .hero-portrait{ order:-1; max-width:240px; margin:0 auto 20px; }
-  }
+/* ===== HERO ===== */
+.hero{
+background:
+linear-gradient(160deg, rgba(7,20,42,0.92) 0%, rgba(11,30,54,0.88) 55%, rgba(16,40,69,0.85) 100%),
+url('assets/hero-bg.jpg');
+background-size: cover;
+background-position: center;
+color: var(--paper);
+padding: 150px 8vw 90px;
+position:relative;
+overflow:hidden;
+display:grid;
+grid-template-columns: 1.4fr 1fr;
+gap:50px;
+align-items:center;
+}
+.hero::after{
+content:"";
+position:absolute;
+right:-10%; top:-30%;
+width:600px; height:600px;
+border:1px solid var(--line);
+border-radius:50%;
+pointer-events:none;
+}
+.hero::before{
+content:"";
+position:absolute;
+right:5%; top:10%;
+width:420px; height:420px;
+border:1px solid var(--line);
+border-radius:50%;
+pointer-events:none;
+}
+.eyebrow{
+font-family:'Helvetica Neue', Arial, sans-serif;
+letter-spacing:.28em;
+font-size:12px;
+color: var(--gold);
+text-transform:uppercase;
+margin-bottom:18px;
+}
+.hero h1{
+font-size: clamp(42px, 6vw, 78px);
+font-weight:400;
+letter-spacing:.01em;
+line-height:1.05;
+max-width:14ch;
+}
+.hero .role{
+font-family:'Helvetica Neue', Arial, sans-serif;
+font-size: clamp(15px, 1.6vw, 19px);
+color: var(--muted);
+margin-top:18px;
+max-width: 40ch;
+}
+.hero .role strong{ color: var(--paper); font-weight:600; }
+.hero-meta{
+display:flex; gap:24px; flex-wrap:wrap;
+margin-top:42px;
+font-family:'Helvetica Neue', Arial, sans-serif;
+font-size:13px;
+color: var(--muted);
+}
+.hero-meta span, .hero-meta a{ margin-right:24px; display:inline-block; }
+.hero-meta a{ color: var(--paper); text-decoration:none; border-bottom:1px solid var(--gold); padding-bottom:2px; }
+.hero-meta a:hover{ color: var(--gold); }
+.hero-cta{
+margin-top:38px; display:flex; gap:16px; flex-wrap:wrap;
+font-family:'Helvetica Neue', Arial, sans-serif;
+}
+.hero-cta a{
+text-decoration:none; padding:15px 30px; border-radius:4px; font-size:14px;
+transition: all .2s; display:inline-flex; align-items:center; gap:10px;
+}
+.hero-cta a.primary{ background: var(--gold); color: var(--navy-deep); font-weight:700; }
+.hero-cta a.primary:hover{ background:transparent; color: var(--gold); border:1px solid var(--gold); }
+.hero-cta a.secondary{ border:1px solid var(--line); color: var(--paper); }
+.hero-cta a.secondary:hover{ border-color: var(--gold); color: var(--gold); }
+.hero-cta a svg{ width:16px; height:16px; }
+.hero-portrait{
+position:relative;
+z-index:2;
+}
+.hero-portrait img{
+width:100%; max-width:340px;
+border-radius:8px;
+border:1px solid var(--line);
+box-shadow: 0 30px 60px -20px rgba(0,0,0,0.6);
+display:block;
+margin: 0 auto;
+}
+.hero-portrait .frame-label{
+position:absolute; bottom:-16px; left:50%; transform:translateX(-50%);
+background: var(--gold); color: var(--navy-deep);
+font-family:'Helvetica Neue', Arial, sans-serif;
+font-size:11px; letter-spacing:.18em; font-weight:700;
+padding:8px 18px; border-radius:30px; white-space:nowrap;
+text-transform:uppercase;
+}
+@media (max-width: 900px){
+.hero{ grid-template-columns:1fr; padding-top:120px; text-align:center; }
+.hero .role{ margin-left:auto; margin-right:auto; }
+.hero-meta, .hero-cta{ justify-content:center; }
+.hero-portrait{ order:-1; max-width:240px; margin:0 auto 20px; }
+}
 
-  /* ===== MOTTO STRIP ===== */
-  .motto-strip{
-    background: var(--ink);
-    color: var(--paper);
-    text-align:center;
-    padding: 56px 8vw;
-    border-bottom:1px solid var(--line);
-    position:relative;
-    overflow:hidden;
-  }
-  .motto-strip::before, .motto-strip::after{
-    content:"";
-    position:absolute;
-    width:1px; height:60%; top:20%;
-    background: var(--line);
-  }
-  .motto-strip::before{ left:6vw; }
-  .motto-strip::after{ right:6vw; }
-  .motto-strip p{
-    font-size: clamp(20px, 3.2vw, 38px);
-    font-style: italic;
-    line-height:1.4;
-    letter-spacing:.01em;
-  }
-  .motto-strip p .accent{
-    color: var(--gold);
-    font-style:normal;
-    font-weight:600;
-  }
-  @media (max-width: 760px){
-    .motto-strip::before, .motto-strip::after{ display:none; }
-    .motto-strip{ padding:42px 6vw; }
-  }
+/* ===== MOTTO STRIP ===== */
+.motto-strip{
+background: var(--ink);
+color: var(--paper);
+text-align:center;
+padding: 56px 8vw;
+border-bottom:1px solid var(--line);
+position:relative;
+overflow:hidden;
+}
+.motto-strip::before, .motto-strip::after{
+content:"";
+position:absolute;
+width:1px; height:60%; top:20%;
+background: var(--line);
+}
+.motto-strip::before{ left:6vw; }
+.motto-strip::after{ right:6vw; }
+.motto-strip p{
+font-size: clamp(20px, 3.2vw, 38px);
+font-style: italic;
+line-height:1.4;
+letter-spacing:.01em;
+}
+.motto-strip p .accent{
+color: var(--gold);
+font-style:normal;
+font-weight:600;
+}
+@media (max-width: 760px){
+.motto-strip::before, .motto-strip::after{ display:none; }
+.motto-strip{ padding:42px 6vw; }
+}
 
-  /* ===== SECTION WRAP ===== */
-  section{ padding: 70px 8vw; }
-  .section-head{
-    display:flex; align-items:baseline; gap:18px;
-    margin-bottom:40px;
-  }
-  .section-head .num{
-    font-family:'Helvetica Neue', Arial, sans-serif;
-    font-size:13px; letter-spacing:.2em; color: var(--gold);
-  }
-  .section-head h2{
-    font-size: clamp(26px, 3vw, 38px);
-    font-weight:400;
-    color: var(--ink);
-  }
-  .rule{
-    flex:1; height:1px; background: var(--paper-dim);
-    margin-top:14px;
-  }
+/* ===== SECTION WRAP ===== */
+section{ padding: 70px 8vw; }
+.section-head{
+display:flex; align-items:baseline; gap:18px;
+margin-bottom:40px;
+}
+.section-head .num{
+font-family:'Helvetica Neue', Arial, sans-serif;
+font-size:13px; letter-spacing:.2em; color: var(--gold);
+}
+.section-head h2{
+font-size: clamp(26px, 3vw, 38px);
+font-weight:400;
+color: var(--ink);
+transition: color .3s ease;
+}
+.rule{
+flex:1; height:1px; background: var(--paper-dim);
+margin-top:14px;
+transition: background .3s ease;
+}
 
-  /* ===== ABOUT ===== */
-  .about{ background: var(--paper); }
-  .about-grid{
-    display:grid; grid-template-columns: 1.3fr 1fr; gap:60px;
-  }
-  .about p{ font-size:18px; color:#33425C; max-width:60ch; }
-  .about p + p{ margin-top:18px; }
+/* ===== ABOUT ===== */
+.about{ background: var(--paper); transition: background .3s ease; }
+.about-grid{
+display:grid; grid-template-columns: 1.3fr 1fr; gap:60px;
+}
+.about p{ font-size:18px; color:#33425C; max-width:60ch; transition: color .3s ease; }
+.about p + p{ margin-top:18px; }
+.stat-card{
+background:#fff;
+border:1px solid var(--paper-dim);
+border-radius:6px;
+padding:22px 24px;
+margin-bottom:14px;
+transition: background .3s ease, border-color .3s ease;
+}
+.stat-card .num{
+font-family:'Helvetica Neue', Arial, sans-serif;
+font-size:34px; font-weight:700; color: var(--navy);
+transition: color .3s ease;
+}
+.stat-card .label{
+font-family:'Helvetica Neue', Arial, sans-serif;
+font-size:13px; color:#6E7E96; letter-spacing:.04em; margin-top:4px;
+transition: color .3s ease;
+}
+.about-portrait{
+margin-bottom:24px;
+border-radius:8px;
+overflow:hidden;
+border:1px solid var(--paper-dim);
+height: 360px;
+transition: border-color .3s ease;
+}
+.about-portrait img{ width:100%; height:100%; object-fit:cover; object-position: center 20%; display:block; }
 
-  .stat-card{
-    background:#fff;
-    border:1px solid var(--paper-dim);
-    border-radius:6px;
-    padding:22px 24px;
-    margin-bottom:14px;
-  }
-  .stat-card .num{
-    font-family:'Helvetica Neue', Arial, sans-serif;
-    font-size:34px; font-weight:700; color: var(--navy);
-  }
-  .stat-card .label{
-    font-family:'Helvetica Neue', Arial, sans-serif;
-    font-size:13px; color:#6E7E96; letter-spacing:.04em; margin-top:4px;
-  }
+/* Shared sizing for arrow icons inside link buttons */
+.work a.link svg, .more-row a svg{
+width:14px; height:14px; flex-shrink:0;
+}
 
-  .about-portrait{
-    margin-bottom:24px;
-    border-radius:8px;
-    overflow:hidden;
-    border:1px solid var(--paper-dim);
-    height: 360px;
-  }
-  .about-portrait img{ width:100%; height:100%; object-fit:cover; object-position: center 20%; display:block; }
+/* ===== CASE STUDY CARDS ===== */
+.work-grid{
+display:grid; grid-template-columns: repeat(auto-fit, minmax(290px,1fr));
+gap:30px; margin-bottom:60px;
+}
+.case-card{
+background: rgba(255,255,255,0.03);
+border:1px solid var(--line);
+border-radius:10px;
+overflow:hidden;
+display:flex; flex-direction:column;
+transition: transform .28s ease, border-color .28s ease;
+}
+.case-card:hover{ transform: translateY(-6px); border-color: var(--gold); }
+.case-card .thumb-wrap{ overflow:hidden; height:190px; background:#0c1626; }
+.case-card .thumb-wrap img{
+width:100%; height:100%; object-fit:cover; display:block;
+transition: transform .5s ease;
+}
+.case-card:hover .thumb-wrap img{ transform: scale(1.06); }
+.case-card .body{ padding:26px 26px 30px; display:flex; flex-direction:column; gap:12px; flex:1; }
+.case-card .tag{
+font-family:'Helvetica Neue', Arial, sans-serif;
+font-size:11px; letter-spacing:.22em; color: var(--gold); text-transform:uppercase;
+}
+.case-card h3{ font-size:21px; font-weight:400; line-height:1.3; }
+.case-card p{ color: var(--muted); font-size:14.5px; flex:1; }
+.case-card .link{
+font-family:'Helvetica Neue', Arial, sans-serif;
+font-size:13px;
+display:inline-flex; align-items:center; gap:8px;
+color: var(--paper); text-decoration:none;
+border:1px solid var(--line);
+padding:11px 18px; border-radius:4px;
+transition: all .2s;
+white-space:nowrap;
+align-self:flex-start;
+margin-top:6px;
+}
+.case-card .link:hover{ border-color: var(--gold); color: var(--gold); }
+.case-card .link svg{ width:14px; height:14px; transition: transform .2s; }
+.case-card .link:hover svg{ transform: translateX(3px); }
 
-  /* Shared sizing for arrow icons inside link buttons */
-  .work a.link svg, .more-row a svg{
-    width:14px; height:14px; flex-shrink:0;
-  }
+/* ===== FEATURED PRODUCTS BANNER ===== */
+.featured-banner{
+position:relative;
+border-radius:10px;
+overflow:hidden;
+border:1px solid var(--line);
+min-height:340px;
+display:flex; align-items:flex-end;
+margin-bottom:60px;
+}
+.featured-banner img{
+position:absolute; inset:0; width:100%; height:100%;
+object-fit:cover; object-position: 50% 22%;
+filter: saturate(1.05) brightness(0.95);
+}
+.featured-banner::before{
+content:""; position:absolute; inset:0;
+background: linear-gradient(180deg, rgba(7,20,42,0.15) 0%, rgba(7,20,42,0.55) 100%);
+}
+.featured-content{
+position:relative; z-index:2;
+margin: 28px;
+padding:32px 36px;
+max-width:480px;
+background: rgba(7,20,42,0.88);
+backdrop-filter: blur(8px);
+-webkit-backdrop-filter: blur(8px);
+border-radius:8px;
+border:1px solid rgba(255,255,255,0.1);
+}
+.featured-content .eyebrow{ margin-bottom:12px; }
+.featured-content h3{ font-size: clamp(22px,2.6vw,30px); font-weight:400; margin-bottom:14px; line-height:1.3; }
+.featured-content p{ color: var(--muted); font-size:15px; margin-bottom:20px; max-width:46ch; }
 
-  /* ===== CASE STUDY CARDS ===== */
-  .work-grid{
-    display:grid; grid-template-columns: repeat(auto-fit, minmax(290px,1fr));
-    gap:30px; margin-bottom:60px;
-  }
-  .case-card{
-    background: rgba(255,255,255,0.03);
-    border:1px solid var(--line);
-    border-radius:10px;
-    overflow:hidden;
-    display:flex; flex-direction:column;
-    transition: transform .28s ease, border-color .28s ease;
-  }
-  .case-card:hover{ transform: translateY(-6px); border-color: var(--gold); }
-  .case-card .thumb-wrap{ overflow:hidden; height:190px; }
-  .case-card .thumb-wrap img{
-    width:100%; height:100%; object-fit:cover; display:block;
-    transition: transform .5s ease;
-  }
-  .case-card:hover .thumb-wrap img{ transform: scale(1.06); }
-  .case-card .body{ padding:26px 26px 30px; display:flex; flex-direction:column; gap:12px; flex:1; }
-  .case-card .tag{
-    font-family:'Helvetica Neue', Arial, sans-serif;
-    font-size:11px; letter-spacing:.22em; color: var(--gold); text-transform:uppercase;
-  }
-  .case-card h3{ font-size:21px; font-weight:400; line-height:1.3; }
-  .case-card p{ color: var(--muted); font-size:14.5px; flex:1; }
-  .case-card .link{
-    font-family:'Helvetica Neue', Arial, sans-serif;
-    font-size:13px;
-    display:inline-flex; align-items:center; gap:8px;
-    color: var(--paper); text-decoration:none;
-    border:1px solid var(--line);
-    padding:11px 18px; border-radius:4px;
-    transition: all .2s;
-    white-space:nowrap;
-    align-self:flex-start;
-    margin-top:6px;
-  }
-  .case-card .link:hover{ border-color: var(--gold); color: var(--gold); }
-  .case-card .link svg{ width:14px; height:14px; transition: transform .2s; }
-  .case-card .link:hover svg{ transform: translateX(3px); }
+/* ===== ADDITIONAL PROJECTS ===== */
+.more-projects{
+border-top:1px solid var(--line);
+padding-top:40px;
+}
+.more-projects .more-label{
+font-family:'Helvetica Neue', Arial, sans-serif;
+font-size:12px; letter-spacing:.22em; text-transform:uppercase;
+color: var(--gold); margin-bottom:24px;
+}
+.client-grid{
+display:grid; grid-template-columns: repeat(auto-fit, minmax(260px,1fr));
+gap:24px;
+}
+.client-card{
+background: linear-gradient(160deg, rgba(212,162,78,0.10), rgba(255,255,255,0.03));
+border:1px solid rgba(212,162,78,0.35);
+border-radius:10px;
+padding:26px 26px 24px;
+display:flex; flex-direction:column; gap:12px;
+transition: transform .25s ease, border-color .25s ease;
+}
+.client-card:hover{ transform: translateY(-5px); border-color: var(--gold); }
+.client-card .badge{
+font-family:'Helvetica Neue', Arial, sans-serif;
+font-size:11px; letter-spacing:.18em; text-transform:uppercase;
+color: var(--gold);
+display:inline-flex; align-items:center; gap:6px;
+width:fit-content;
+}
+.client-card .badge::before{
+content:""; width:6px; height:6px; border-radius:50%;
+background: var(--gold); display:inline-block;
+}
+.client-card h4{ font-size:19px; font-weight:400; line-height:1.3; }
+.client-card p{ color: var(--muted); font-size:14px; flex:1; }
+.client-card a{
+font-family:'Helvetica Neue', Arial, sans-serif; font-size:13px;
+color: var(--paper); text-decoration:none;
+border:1px solid var(--line); padding:10px 18px; border-radius:4px;
+transition: all .2s; white-space:nowrap;
+display:inline-flex; align-items:center; gap:8px;
+align-self:flex-start; margin-top:4px;
+}
+.client-card a:hover{ border-color: var(--gold); color: var(--gold); background: rgba(212,162,78,0.08); }
+.client-card a svg{ width:14px; height:14px; transition: transform .2s; }
+.client-card a:hover svg{ transform: translateX(3px); }
 
-  /* ===== FEATURED PRODUCTS BANNER ===== */
-  .featured-banner{
-    position:relative;
-    border-radius:10px;
-    overflow:hidden;
-    border:1px solid var(--line);
-    min-height:340px;
-    display:flex; align-items:flex-end;
-    margin-bottom:60px;
-  }
-  .featured-banner img{
-    position:absolute; inset:0; width:100%; height:100%;
-    object-fit:cover; object-position: 50% 22%;
-    filter: saturate(1.05) brightness(0.95);
-  }
-  .featured-banner::before{
-    content:""; position:absolute; inset:0;
-    background: linear-gradient(180deg, rgba(7,20,42,0.15) 0%, rgba(7,20,42,0.55) 100%);
-  }
-  .featured-content{
-    position:relative; z-index:2;
-    margin: 28px;
-    padding:32px 36px;
-    max-width:480px;
-    background: rgba(7,20,42,0.88);
-    backdrop-filter: blur(8px);
-    -webkit-backdrop-filter: blur(8px);
-    border-radius:8px;
-    border:1px solid rgba(255,255,255,0.1);
-  }
-  .featured-content .eyebrow{ margin-bottom:12px; }
-  .featured-content h3{ font-size: clamp(22px,2.6vw,30px); font-weight:400; margin-bottom:14px; line-height:1.3; }
-  .featured-content p{ color: var(--muted); font-size:15px; margin-bottom:20px; max-width:46ch; }
+/* ===== FLOATING MESSENGER BUTTON ===== */
+.float-msg{
+position:fixed; bottom:28px; right:28px; z-index:200;
+width:60px; height:60px; border-radius:50%;
+background: var(--gold); color: var(--navy-deep);
+display:flex; align-items:center; justify-content:center;
+box-shadow: 0 12px 30px -8px rgba(0,0,0,0.5);
+transition: transform .2s ease, box-shadow .2s ease;
+text-decoration:none;
+}
+.float-msg:hover{ transform: scale(1.08); box-shadow: 0 16px 36px -8px rgba(0,0,0,0.6); }
+.float-msg svg{ width:28px; height:28px; }
+.float-msg .ping{
+position:absolute; inset:0; border-radius:50%;
+border:2px solid var(--gold);
+animation: pingring 2.4s ease-out infinite;
+}
+@keyframes pingring{
+0%{ transform:scale(1); opacity:.7; }
+100%{ transform:scale(1.6); opacity:0; }
+}
+@media (max-width: 760px){
+.float-msg{ width:52px; height:52px; bottom:18px; right:18px; }
+.float-msg svg{ width:24px; height:24px; }
+}
 
-  /* ===== ADDITIONAL PROJECTS ===== */
-  .more-projects{
-    border-top:1px solid var(--line);
-    padding-top:40px;
-  }
-  .more-projects .more-label{
-    font-family:'Helvetica Neue', Arial, sans-serif;
-    font-size:12px; letter-spacing:.22em; text-transform:uppercase;
-    color: var(--gold); margin-bottom:24px;
-  }
-  .client-grid{
-    display:grid; grid-template-columns: repeat(auto-fit, minmax(260px,1fr));
-    gap:24px;
-  }
-  .client-card{
-    background: linear-gradient(160deg, rgba(212,162,78,0.10), rgba(255,255,255,0.03));
-    border:1px solid rgba(212,162,78,0.35);
-    border-radius:10px;
-    padding:26px 26px 24px;
-    display:flex; flex-direction:column; gap:12px;
-    transition: transform .25s ease, border-color .25s ease;
-  }
-  .client-card:hover{ transform: translateY(-5px); border-color: var(--gold); }
-  .client-card .badge{
-    font-family:'Helvetica Neue', Arial, sans-serif;
-    font-size:11px; letter-spacing:.18em; text-transform:uppercase;
-    color: var(--gold);
-    display:inline-flex; align-items:center; gap:6px;
-    width:fit-content;
-  }
-  .client-card .badge::before{
-    content:""; width:6px; height:6px; border-radius:50%;
-    background: var(--gold); display:inline-block;
-  }
-  .client-card h4{ font-size:19px; font-weight:400; line-height:1.3; }
-  .client-card p{ color: var(--muted); font-size:14px; flex:1; }
-  .client-card a{
-    font-family:'Helvetica Neue', Arial, sans-serif; font-size:13px;
-    color: var(--paper); text-decoration:none;
-    border:1px solid var(--line); padding:10px 18px; border-radius:4px;
-    transition: all .2s; white-space:nowrap;
-    display:inline-flex; align-items:center; gap:8px;
-    align-self:flex-start; margin-top:4px;
-  }
-  .client-card a:hover{ border-color: var(--gold); color: var(--gold); background: rgba(212,162,78,0.08); }
-  .client-card a svg{ width:14px; height:14px; transition: transform .2s; }
-  .client-card a:hover svg{ transform: translateX(3px); }
+/* ===== CASE STUDIES ===== */
+.work{ background: var(--ink); color: var(--paper); }
+.work .section-head h2, .work .section-head .num{ color: var(--paper); }
+.work .rule{ background: rgba(255,255,255,0.12); }
 
-  /* ===== FLOATING MESSENGER BUTTON ===== */
-  .float-msg{
-    position:fixed; bottom:28px; right:28px; z-index:200;
-    width:60px; height:60px; border-radius:50%;
-    background: var(--gold); color: var(--navy-deep);
-    display:flex; align-items:center; justify-content:center;
-    box-shadow: 0 12px 30px -8px rgba(0,0,0,0.5);
-    transition: transform .2s ease, box-shadow .2s ease;
-    text-decoration:none;
-  }
-  .float-msg:hover{ transform: scale(1.08); box-shadow: 0 16px 36px -8px rgba(0,0,0,0.6); }
-  .float-msg svg{ width:28px; height:28px; }
-  .float-msg .ping{
-    position:absolute; inset:0; border-radius:50%;
-    border:2px solid var(--gold);
-    animation: pingring 2.4s ease-out infinite;
-  }
-  @keyframes pingring{
-    0%{ transform:scale(1); opacity:.7; }
-    100%{ transform:scale(1.6); opacity:0; }
-  }
-  @media (max-width: 760px){
-    .float-msg{ width:52px; height:52px; bottom:18px; right:18px; }
-    .float-msg svg{ width:24px; height:24px; }
-  }
+/* ===== SKILLS ===== */
+.skills{ background: var(--paper); transition: background .3s ease; }
+.skills-grid{
+display:grid; grid-template-columns: repeat(auto-fit, minmax(240px,1fr));
+gap: 28px 50px;
+}
+.skill-group h3{
+font-family:'Helvetica Neue', Arial, sans-serif;
+font-size:13px; letter-spacing:.18em; text-transform:uppercase;
+color: var(--gold); margin-bottom:12px;
+}
+.skill-group p{ color:#33425C; font-size:15.5px; transition: color .3s ease; }
 
-  /* ===== CASE STUDIES ===== */
-  .work{ background: var(--ink); color: var(--paper); }
-  .work .section-head h2, .work .section-head .num{ color: var(--paper); }
-  .work .rule{ background: rgba(255,255,255,0.12); }
+/* ===== EDUCATION ===== */
+.creds{ background:#fff; border-top:1px solid var(--paper-dim); border-bottom:1px solid var(--paper-dim); transition: background .3s ease, border-color .3s ease; }
+.creds-grid{ display:grid; grid-template-columns: repeat(auto-fit, minmax(280px,1fr)); gap:36px; }
+.cred{
+border-left:3px solid var(--gold);
+padding-left:22px;
+}
+.cred .pct{
+font-family:'Helvetica Neue', Arial, sans-serif;
+font-size:13px; color: var(--navy); font-weight:700; letter-spacing:.1em;
+transition: color .3s ease;
+}
+.cred h3{ font-size:21px; font-weight:400; color: var(--ink); margin:6px 0 8px; transition: color .3s ease; }
+.cred p{ font-size:14.5px; color:#6E7E96; transition: color .3s ease; }
+.cred-link{
+display:inline-block; margin-top:12px;
+font-family:'Helvetica Neue', Arial, sans-serif;
+font-size:13px; color: var(--navy); text-decoration:none;
+border-bottom:1px solid var(--gold); padding-bottom:2px;
+transition: color .2s;
+}
+.cred-link:hover{ color: var(--gold); }
 
-  /* ===== SKILLS ===== */
-  .skills{ background: var(--paper); }
-  .skills-grid{
-    display:grid; grid-template-columns: repeat(auto-fit, minmax(240px,1fr));
-    gap: 28px 50px;
-  }
-  .skill-group h3{
-    font-family:'Helvetica Neue', Arial, sans-serif;
-    font-size:13px; letter-spacing:.18em; text-transform:uppercase;
-    color: var(--gold); margin-bottom:12px;
-  }
-  .skill-group p{ color:#33425C; font-size:15.5px; }
+/* ===== CONTACT ===== */
+.contact{
+background: linear-gradient(160deg, var(--navy-deep) 0%, var(--navy) 100%);
+color: var(--paper);
+text-align:center;
+padding: 90px 8vw 80px;
+}
+.contact .eyebrow{ justify-content:center; display:flex; }
+.contact h2{
+font-size: clamp(32px, 5vw, 56px);
+font-weight:400; margin-bottom:22px;
+}
+.contact p{ color: var(--muted); max-width:48ch; margin:0 auto 36px; font-size:17px; }
+.contact-links{
+display:flex; justify-content:center; gap:18px; flex-wrap:wrap;
+font-family:'Helvetica Neue', Arial, sans-serif;
+}
+.contact-links a{
+color: var(--paper); text-decoration:none;
+border:1px solid var(--line);
+padding:14px 28px; border-radius:4px; font-size:14px;
+transition: all .2s;
+}
+.contact-links a.primary{
+background: var(--gold); color: var(--navy-deep); border-color: var(--gold); font-weight:600;
+}
+.contact-links a:hover{ border-color: var(--gold); color: var(--gold); }
+.contact-links a.primary:hover{ background: transparent; color: var(--gold); }
+footer{
+text-align:center; padding:36px 26px; font-size:11px; color:#9FB0C6;
+background: var(--navy-deep); font-family:'Helvetica Neue', Arial, sans-serif;
+letter-spacing:.1em;
+}
+footer img{ display:block; margin:0 auto 12px; }
 
-  /* ===== EDUCATION ===== */
-  .creds{ background:#fff; border-top:1px solid var(--paper-dim); border-bottom:1px solid var(--paper-dim); }
-  .creds-grid{ display:grid; grid-template-columns: repeat(auto-fit, minmax(280px,1fr)); gap:36px; }
-  .cred{
-    border-left:3px solid var(--gold);
-    padding-left:22px;
-  }
-  .cred .pct{
-    font-family:'Helvetica Neue', Arial, sans-serif;
-    font-size:13px; color: var(--navy); font-weight:700; letter-spacing:.1em;
-  }
-  .cred h3{ font-size:21px; font-weight:400; color: var(--ink); margin:6px 0 8px; }
-  .cred p{ font-size:14.5px; color:#6E7E96; }
-  .cred-link{
-    display:inline-block; margin-top:12px;
-    font-family:'Helvetica Neue', Arial, sans-serif;
-    font-size:13px; color: var(--navy); text-decoration:none;
-    border-bottom:1px solid var(--gold); padding-bottom:2px;
-    transition: color .2s;
-  }
-  .cred-link:hover{ color: var(--gold); }
+/* ===== RESPONSIVE ===== */
+@media (max-width: 820px){
+.about-grid{ grid-template-columns:1fr; gap:36px; }
+section{ padding:54px 6vw; }
+.hero{ padding:70px 6vw 50px; }
+.featured-banner{ min-height:280px; }
+.featured-content{ padding:28px 24px; }
+.client-grid{ grid-template-columns:1fr; }
+}
 
-  /* ===== CONTACT ===== */
-  .contact{
-    background: linear-gradient(160deg, var(--navy-deep) 0%, var(--navy) 100%);
-    color: var(--paper);
-    text-align:center;
-    padding: 90px 8vw 80px;
-  }
-  .contact .eyebrow{ justify-content:center; display:flex; }
-  .contact h2{
-    font-size: clamp(32px, 5vw, 56px);
-    font-weight:400; margin-bottom:22px;
-  }
-  .contact p{ color: var(--muted); max-width:48ch; margin:0 auto 36px; font-size:17px; }
-  .contact-links{
-    display:flex; justify-content:center; gap:18px; flex-wrap:wrap;
-    font-family:'Helvetica Neue', Arial, sans-serif;
-  }
-  .contact-links a{
-    color: var(--paper); text-decoration:none;
-    border:1px solid var(--line);
-    padding:14px 28px; border-radius:4px; font-size:14px;
-    transition: all .2s;
-  }
-  .contact-links a.primary{
-    background: var(--gold); color: var(--navy-deep); border-color: var(--gold); font-weight:600;
-  }
-  .contact-links a:hover{ border-color: var(--gold); color: var(--gold); }
-  .contact-links a.primary:hover{ background: transparent; color: var(--gold); }
-
-  footer{
-    text-align:center; padding:36px 26px; font-size:11px; color:#9FB0C6;
-    background: var(--navy-deep); font-family:'Helvetica Neue', Arial, sans-serif;
-    letter-spacing:.1em;
-  }
-  footer img{ display:block; margin:0 auto 12px; }
-
-  /* ===== RESPONSIVE ===== */
-  @media (max-width: 820px){
-    .about-grid{ grid-template-columns:1fr; gap:36px; }
-    section{ padding:54px 6vw; }
-    .hero{ padding:70px 6vw 50px; }
-    .featured-banner{ min-height:280px; }
-    .featured-content{ padding:28px 24px; }
-    .client-grid{ grid-template-columns:1fr; }
-  }
+/* =====================================================
+   DARK MODE OVERRIDES
+   (hero / motto / work / featured / client-card / contact / footer
+   are already dark-navy-with-light-text, so they stay as-is)
+   ===================================================== */
+html[data-theme="dark"] body{
+background:#0A1320;
+color:#E9E5DC;
+}
+html[data-theme="dark"] .about,
+html[data-theme="dark"] .skills{
+background:#0A1320;
+}
+html[data-theme="dark"] .about p,
+html[data-theme="dark"] .skill-group p{
+color:#C7D2E0;
+}
+html[data-theme="dark"] .section-head h2{
+color:#F1EEE6;
+}
+html[data-theme="dark"] .rule{
+background: rgba(255,255,255,0.14);
+}
+html[data-theme="dark"] .stat-card{
+background:#121C2C;
+border-color: rgba(255,255,255,0.14);
+}
+html[data-theme="dark"] .stat-card .num{
+color:#E9C97A;
+}
+html[data-theme="dark"] .stat-card .label{
+color:#A9B8CC;
+}
+html[data-theme="dark"] .about-portrait{
+border-color: rgba(255,255,255,0.14);
+}
+html[data-theme="dark"] .creds{
+background:#101A2A;
+border-color: rgba(255,255,255,0.12);
+}
+html[data-theme="dark"] .cred .pct{
+color:#E9C97A;
+}
+html[data-theme="dark"] .cred h3{
+color:#F1EEE6;
+}
+html[data-theme="dark"] .cred p{
+color:#A9B8CC;
+}
+html[data-theme="dark"] .cred-link{
+color:#E9E5DC;
+}
+html[data-theme="dark"] .case-card .thumb-wrap{
+background:#0A1320;
+}
+html[data-theme="dark"] .float-msg{
+box-shadow: 0 12px 30px -8px rgba(0,0,0,0.7);
+}
 </style>
 </head>
 <body>
 
 <!-- TOP NAV -->
 <nav class="topnav">
-  <a href="#top"><img src="srdc-logo-mark-new.png" alt="SRDC — Strategic Resource Digital Creators"></a>
-  <div class="nav-links">
-    <a href="#work">Work</a>
-    <a href="#about">About</a>
-    <a href="#contact">Contact</a>
-  </div>
-  <a class="nav-cta" href="https://m.me/imserell" target="_blank">
-    <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.477 2 2 6.145 2 11.243c0 2.9 1.456 5.484 3.736 7.17V22l3.41-1.873c.91.252 1.873.388 2.854.388 5.523 0 10-4.145 10-9.243C22 6.145 17.523 2 12 2zm1.008 12.45-2.563-2.736-5.004 2.736 5.51-5.85 2.626 2.736 4.94-2.736-5.509 5.85z"/></svg>
-    Message Me
-  </a>
+<a href="#top"><img src="srdc-logo-mark-new.png" alt="SRDC — Strategic Resource Digital Creators"></a>
+<div class="nav-links">
+<a href="#work">Work</a>
+<a href="#about">About</a>
+<a href="#contact">Contact</a>
+</div>
+<div class="nav-right">
+<button class="theme-toggle" id="themeToggle" type="button" aria-label="Toggle dark mode">
+<svg class="icon-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="5"/><path d="M12 1v2M12 21v2M4.22 4.22l1.42 1.42M18.36 18.36l1.42 1.42M1 12h2M21 12h2M4.22 19.78l1.42-1.42M18.36 5.64l1.42-1.42"/></svg>
+<svg class="icon-moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 12.79A9 9 0 1111.21 3a7 7 0 109.79 9.79z"/></svg>
+</button>
+<a class="nav-cta" href="https://m.me/imserell" target="_blank">
+<svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.477 2 2 6.145 2 11.243c0 2.9 1.456 5.484 3.736 7.17V22l3.41-1.873c.91.252 1.873.388 2.854.388 5.523 0 10-4.145 10-9.243C22 6.145 17.523 2 12 2zm1.008 12.45-2.563-2.736-5.004 2.736 5.51-5.85 2.626 2.736 4.94-2.736-5.509 5.85z"/></svg>
+Message Me
+</a>
+</div>
 </nav>
 
 <!-- HERO -->
 <div class="hero" id="top">
-  <div>
-    <div class="eyebrow sans">Facebook Media Buyer · Founder, SRDC</div>
-    <h1>Relly&nbsp;Se</h1>
-    <p class="role">Built a self-funded digital brand from zero to <strong>verified paying customers in 3 countries</strong> — bringing a business owner's mindset to every ad dollar spent.</p>
-    <div class="hero-cta">
-      <a class="primary" href="mailto:strategicresource.dc@gmail.com">
-        Email Me
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16v16H4z" opacity="0"/><path d="M3 6l9 7 9-7M3 6v12h18V6"/></svg>
-      </a>
-      <a class="secondary" href="https://m.me/imserell" target="_blank">
-        Message on Messenger
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 5l7 7-7 7"/></svg>
-      </a>
-    </div>
-    <div class="hero-meta">
-      <span>Sharjah, UAE — Open to Remote &amp; US Clients</span>
-      <a href="mailto:strategicresource.dc@gmail.com">strategicresource.dc@gmail.com</a>
-      <a href="https://linkedin.com/in/rell-se" target="_blank">LinkedIn</a>
-      <a href="https://payhip.com/SRDC" target="_blank">Payhip Store</a>
-    </div>
-  </div>
-  <div class="hero-portrait">
-    <img src="assets/profile3.jpg" alt="Relly Se — Founder, SRDC">
-    <div class="frame-label">Founder &amp; Media Buyer — SRDC</div>
-  </div>
+<div>
+<div class="eyebrow sans">Facebook Media Buyer · Founder, SRDC</div>
+<h1>Relly&nbsp;Se</h1>
+<p class="role">Built a self-funded digital brand from zero to <strong>verified paying customers in 3 countries</strong> — bringing a business owner's mindset to every ad dollar spent.</p>
+<div class="hero-cta">
+<a class="primary" href="mailto:strategicresource.dc@gmail.com">
+Email Me
+<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16v16H4z" opacity="0"/><path d="M3 6l9 7 9-7M3 6v12h18V6"/></svg>
+</a>
+<a class="secondary" href="https://m.me/imserell" target="_blank">
+Message on Messenger
+<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 5l7 7-7 7"/></svg>
+</a>
+</div>
+<div class="hero-meta">
+<span>Sharjah, UAE — Open to Remote &amp; US Clients</span>
+<a href="mailto:strategicresource.dc@gmail.com">strategicresource.dc@gmail.com</a>
+<a href="https://linkedin.com/in/rell-se" target="_blank">LinkedIn</a>
+<a href="https://payhip.com/SRDC" target="_blank">Payhip Store</a>
+</div>
+</div>
+<div class="hero-portrait">
+<img src="assets/profile3.jpg" alt="Relly Se — Founder, SRDC">
+<div class="frame-label">Founder &amp; Media Buyer — SRDC</div>
+</div>
 </div>
 
 <!-- MOTTO -->
 <div class="motto-strip">
-  <p>"I don't just run ads. <span class="accent">I run results.</span>"</p>
+<p>"I don't just run ads. <span class="accent">I run results.</span>"</p>
 </div>
 
 <!-- ABOUT + STATS -->
 <section class="about" id="about">
-  <div class="section-head">
-    <span class="num sans">01</span>
-    <h2>About</h2>
-    <div class="rule"></div>
-  </div>
-  <div class="about-grid">
-    <div>
-      <p>Most media buyers learn on someone else's ad budget. I learned on mine. I founded and scaled <strong>KetoMuna (SRDC)</strong> from zero — built the funnels, wrote the copy, set up the pixel, and managed every dollar of ad spend myself. That self-funded brand now has <strong>verified paying customers in the USA, South Korea, and Dubai</strong>, proof the system works before I ever touch a client's budget.</p>
-      <p>That's the difference I bring: I don't just "run ads" — I think like the business owner footing the bill, because I've been one. Every campaign is built around one question: is this making money, not just generating clicks.</p>
-      <p>I'm 100% certified in <strong>FMBM Version 4</strong> by Dearly Plinky (94/94 lessons) — covering full Meta Ads strategy, pixel tracking, audience targeting, and campaign scaling — plus the <strong>Media Buyer Roadmap 2026</strong> for professional client onboarding, reporting, and delivery.</p>
-      <p><strong>If you're looking for someone to manage your ad spend like it's their own money — that's exactly what I do.</strong></p>
-    </div>
-    <div>
-      <div class="about-portrait">
-        <img src="assets/profile.jpg" alt="Relly Se portrait">
-      </div>
-      <div class="stat-card">
-        <div class="num">12+</div>
-        <div class="label sans">DIGITAL PRODUCTS LAUNCHED &amp; SOLD</div>
-      </div>
-      <div class="stat-card">
-        <div class="num">3</div>
-        <div class="label sans">COUNTRIES WITH VERIFIED PAYING CUSTOMERS</div>
-      </div>
-      <div class="stat-card">
-        <div class="num">94/94</div>
-        <div class="label sans">FMBM V4 LESSONS — 100% COMPLETE</div>
-      </div>
-    </div>
-  </div>
+<div class="section-head">
+<span class="num sans">01</span>
+<h2>About</h2>
+<div class="rule"></div>
+</div>
+<div class="about-grid">
+<div>
+<p>Most media buyers learn on someone else's ad budget. I learned on mine. I founded and scaled <strong>KetoMuna (SRDC)</strong> from zero — built the funnels, wrote the copy, set up the pixel, and managed every dollar of ad spend myself. That self-funded brand now has <strong>verified paying customers in the USA, South Korea, and Dubai</strong>, proof the system works before I ever touch a client's budget.</p>
+<p>That's the difference I bring: I don't just "run ads" — I think like the business owner footing the bill, because I've been one. Every campaign is built around one question: is this making money, not just generating clicks.</p>
+<p>I'm 100% certified in <strong>FMBM Version 4</strong> by Dearly Plinky (94/94 lessons) — covering full Meta Ads strategy, pixel tracking, audience targeting, and campaign scaling — plus the <strong>Media Buyer Roadmap 2026</strong> for professional client onboarding, reporting, and delivery.</p>
+<p><strong>If you're looking for someone to manage your ad spend like it's their own money — that's exactly what I do.</strong></p>
+</div>
+<div>
+<div class="about-portrait">
+<img src="assets/profile.jpg" alt="Relly Se portrait">
+</div>
+<div class="stat-card">
+<div class="num">12+</div>
+<div class="label sans">DIGITAL PRODUCTS LAUNCHED &amp; SOLD</div>
+</div>
+<div class="stat-card">
+<div class="num">3</div>
+<div class="label sans">COUNTRIES WITH VERIFIED PAYING CUSTOMERS</div>
+</div>
+<div class="stat-card">
+<div class="num">94/94</div>
+<div class="label sans">FMBM V4 LESSONS — 100% COMPLETE</div>
+</div>
+</div>
+</div>
 </section>
-
 
 <!-- CASE STUDIES -->
 <section class="work" id="work">
-  <div class="section-head">
-    <span class="num sans">02</span>
-    <h2>Case Studies &amp; Live Work</h2>
-    <div class="rule"></div>
-  </div>
+<div class="section-head">
+<span class="num sans">02</span>
+<h2>Case Studies &amp; Live Work</h2>
+<div class="rule"></div>
+</div>
+<div class="work-grid">
+<div class="case-card">
+<div class="thumb-wrap"><img src="lazy%20keto%20kitchen.jpg" alt="The Lazy Keto Kitchen ebook"></div>
+<div class="body">
+<div class="tag sans">Funnel · PAS Copy</div>
+<h3>Lazy Keto Kitchen — Sales Funnel</h3>
+<p>Full direct-response funnel using the PAS framework — squeeze page, sales page, order form, bonus stack, and FAQ with urgency pricing. Live and converting.</p>
+<a class="link" href="https://ketomuna.systeme.io/lazyketo" target="_blank">
+View Funnel
+<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 5l7 7-7 7"/></svg>
+</a>
+</div>
+</div>
+<div class="case-card">
+<div class="thumb-wrap"><img src="keto%20para%20sa%20matataba.jpg" alt="Keto Para sa Matataba ebook"></div>
+<div class="body">
+<div class="tag sans">Bilingual · Diaspora</div>
+<h3>Keto Para sa Matataba — Diaspora Funnel</h3>
+<p>Bilingual (Tagalog/English) sales page targeting the Filipino diaspora across 3 continents — paired with a 160+ page ebook of 101 Pinoy keto recipes. Verified buyers from multiple countries.</p>
+<a class="link" href="https://ketomuna.systeme.io/ketomuna" target="_blank">
+View Funnel
+<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 5l7 7-7 7"/></svg>
+</a>
+</div>
+</div>
+<div class="case-card">
+<div class="thumb-wrap"><img src="The%20Lazy%20Wedding%20Countdown%20Plan.jpg" alt="The Lazy Wedding Countdown Plan ebook" style="object-position:60% 22%;"></div>
+<div class="body">
+<div class="tag sans">Niche Funnel · Lifestyle</div>
+<h3>The Lazy Wedding Countdown Plan — Funnel</h3>
+<p>Niche planner funnel built on the same proven structure — landing page, offer stack, and checkout flow designed for a busy, time-pressed audience.</p>
+<a class="link" href="https://ketomuna.systeme.io/wedding" target="_blank">
+View Funnel
+<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 5l7 7-7 7"/></svg>
+</a>
+</div>
+</div>
+<div class="case-card">
+<div class="thumb-wrap"><img src="Keto%20Bliss.jpg" alt="Keto Bliss ebook" style="object-position:50% 40%;"></div>
+<div class="body">
+<div class="tag sans">Funnel · Beginner Keto</div>
+<h3>Keto Bliss — Melt Fat &amp; Feel Amazing</h3>
+<p>Sales funnel for a beginner-friendly keto guide — 60+ easy, foolproof recipes — built with direct-response copy, urgency pricing, and a conversion-optimized checkout flow.</p>
+<a class="link" href="https://srdc.systeme.io/ketobliss" target="_blank">
+View Funnel
+<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 5l7 7-7 7"/></svg>
+</a>
+</div>
+</div>
+<div class="case-card">
+<div class="thumb-wrap"><img src="KetoMuna%20Digital%20Store%20%E2%80%94%2012%2B%20Products.jpg" alt="KetoMuna Digital Store — Featured Author" style="object-position:50% 70%;"></div>
+<div class="body">
+<div class="tag sans">Ecosystem · Payhip</div>
+<h3>KetoMuna Digital Store — 12+ Products</h3>
+<p>Full product ecosystem of paid ebooks, planners, and checklists alongside free lead magnets — each piece designed to feed into the funnel and drive conversions.</p>
+<a class="link" href="https://payhip.com/SRDC" target="_blank">
+View Store
+<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 5l7 7-7 7"/></svg>
+</a>
+</div>
+</div>
+</div>
 
-  <div class="work-grid">
-    <div class="case-card">
-      <div class="thumb-wrap"><img src="lazy%20keto%20kitchen.jpg" alt="The Lazy Keto Kitchen ebook"></div>
-      <div class="body">
-        <div class="tag sans">Funnel · PAS Copy</div>
-        <h3>Lazy Keto Kitchen — Sales Funnel</h3>
-        <p>Full direct-response funnel using the PAS framework — squeeze page, sales page, order form, bonus stack, and FAQ with urgency pricing. Live and converting.</p>
-        <a class="link" href="https://ketomuna.systeme.io/lazyketo" target="_blank">
-          View Funnel
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 5l7 7-7 7"/></svg>
-        </a>
-      </div>
-    </div>
+<div class="featured-banner">
+<img src="fb-bg-banner.png" alt="SRDC — Facebook Ads Performance">
+<div class="featured-content">
+<div class="eyebrow sans">SRDC Digital Products</div>
+<h3>12+ ebooks, planners &amp; checklists — built, launched, and selling live on Payhip.</h3>
+<p>Every product is part of a complete funnel: lead magnet → tripwire → core offer → bonus stack — built and tracked end to end.</p>
+<a class="link" href="https://payhip.com/SRDC" target="_blank">
+Browse the Store
+<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 5l7 7-7 7"/></svg>
+</a>
+</div>
+</div>
 
-    <div class="case-card">
-      <div class="thumb-wrap"><img src="keto%20para%20sa%20matataba.jpg" alt="Keto Para sa Matataba ebook"></div>
-      <div class="body">
-        <div class="tag sans">Bilingual · Diaspora</div>
-        <h3>Keto Para sa Matataba — Diaspora Funnel</h3>
-        <p>Bilingual (Tagalog/English) sales page targeting the Filipino diaspora across 3 continents — paired with a 160+ page ebook of 101 Pinoy keto recipes. Verified buyers from multiple countries.</p>
-        <a class="link" href="https://ketomuna.systeme.io/ketomuna" target="_blank">
-          View Funnel
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 5l7 7-7 7"/></svg>
-        </a>
-      </div>
-    </div>
-
-    <div class="case-card">
-      <div class="thumb-wrap"><img src="The%20Lazy%20Wedding%20Countdown%20Plan.jpg" alt="The Lazy Wedding Countdown Plan ebook" style="object-position:60% 22%;"></div>
-      <div class="body">
-        <div class="tag sans">Niche Funnel · Lifestyle</div>
-        <h3>The Lazy Wedding Countdown Plan — Funnel</h3>
-        <p>Niche planner funnel built on the same proven structure — landing page, offer stack, and checkout flow designed for a busy, time-pressed audience.</p>
-        <a class="link" href="https://ketomuna.systeme.io/wedding" target="_blank">
-          View Funnel
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 5l7 7-7 7"/></svg>
-        </a>
-      </div>
-    </div>
-
-    <div class="case-card">
-      <div class="thumb-wrap"><img src="Keto%20Bliss.jpg" alt="Keto Bliss ebook" style="object-position:50% 40%;"></div>
-      <div class="body">
-        <div class="tag sans">Funnel · Beginner Keto</div>
-        <h3>Keto Bliss — Melt Fat &amp; Feel Amazing</h3>
-        <p>Sales funnel for a beginner-friendly keto guide — 60+ easy, foolproof recipes — built with direct-response copy, urgency pricing, and a conversion-optimized checkout flow.</p>
-        <a class="link" href="https://srdc.systeme.io/ketobliss" target="_blank">
-          View Funnel
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 5l7 7-7 7"/></svg>
-        </a>
-      </div>
-    </div>
-
-    <div class="case-card">
-      <div class="thumb-wrap"><img src="KetoMuna%20Digital%20Store%20%E2%80%94%2012%2B%20Products.jpg" alt="KetoMuna Digital Store — Featured Author" style="object-position:50% 70%;"></div>
-      <div class="body">
-        <div class="tag sans">Ecosystem · Payhip</div>
-        <h3>KetoMuna Digital Store — 12+ Products</h3>
-        <p>Full product ecosystem of paid ebooks, planners, and checklists alongside free lead magnets — each piece designed to feed into the funnel and drive conversions.</p>
-        <a class="link" href="https://payhip.com/SRDC" target="_blank">
-          View Store
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 5l7 7-7 7"/></svg>
-        </a>
-      </div>
-    </div>
-  </div>
-  <div class="featured-banner">
-    <img src="fb-bg-banner.png" alt="SRDC — Facebook Ads Performance">
-    <div class="featured-content">
-      <div class="eyebrow sans">SRDC Digital Products</div>
-      <h3>12+ ebooks, planners &amp; checklists — built, launched, and selling live on Payhip.</h3>
-      <p>Every product is part of a complete funnel: lead magnet → tripwire → core offer → bonus stack — built and tracked end to end.</p>
-      <a class="link" href="https://payhip.com/SRDC" target="_blank">
-        Browse the Store
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 5l7 7-7 7"/></svg>
-      </a>
-    </div>
-  </div>
-
-  <!-- ADDITIONAL PROJECTS -->
-  <div class="more-projects">
-    <div class="more-label sans">Client Projects</div>
-    <div class="client-grid">
-      <div class="client-card">
-        <div class="badge">Landing Page</div>
-        <h4>Trustories — Landing Page</h4>
-        <p>Client landing page build — live and viewable online.</p>
-        <a href="https://trustoriessunglandingpage.systeme.io/landingpage" target="_blank">
-          View Page
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 5l7 7-7 7"/></svg>
-        </a>
-      </div>
-      <div class="client-card">
-        <div class="badge">Professional Services</div>
-        <h4>Atty. Khalil Law Firm — Website</h4>
-        <p>Client site build for a legal practice — live and viewable online.</p>
-        <a href="https://attykhalillawfirm.systeme.io/attykhalil_lawfirm" target="_blank">
-          View Page
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 5l7 7-7 7"/></svg>
-        </a>
-      </div>
-      <div class="client-card">
-        <div class="badge">Author Funnel</div>
-        <h4>Dear OFW, Don't Forget Yourself</h4>
-        <p>Landing page for Delia Muhr's memoir, built to turn readers into buyers.</p>
-        <a href="https://srdc.systeme.io/deliahmuhr" target="_blank">
-          View Page
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 5l7 7-7 7"/></svg>
-        </a>
-      </div>
-    </div>
-  </div>
+<!-- ADDITIONAL PROJECTS -->
+<div class="more-projects">
+<div class="more-label sans">Client Projects</div>
+<div class="client-grid">
+<div class="client-card">
+<div class="badge">Landing Page</div>
+<h4>Trustories — Landing Page</h4>
+<p>Client landing page build — live and viewable online.</p>
+<a href="https://trustoriessunglandingpage.systeme.io/landingpage" target="_blank">
+View Page
+<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 5l7 7-7 7"/></svg>
+</a>
+</div>
+<div class="client-card">
+<div class="badge">Professional Services</div>
+<h4>Atty. Khalil Law Firm — Website</h4>
+<p>Client site build for a legal practice — live and viewable online.</p>
+<a href="https://attykhalillawfirm.systeme.io/attykhalil_lawfirm" target="_blank">
+View Page
+<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 5l7 7-7 7"/></svg>
+</a>
+</div>
+<div class="client-card">
+<div class="badge">Author Funnel</div>
+<h4>Dear OFW, Don't Forget Yourself</h4>
+<p>Landing page for Delia Muhr's memoir, built to turn readers into buyers.</p>
+<a href="https://srdc.systeme.io/deliahmuhr" target="_blank">
+View Page
+<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 5l7 7-7 7"/></svg>
+</a>
+</div>
+</div>
+</div>
 </section>
 
 <!-- SKILLS -->
 <section class="skills">
-  <div class="section-head">
-    <span class="num sans">03</span>
-    <h2>Skills</h2>
-    <div class="rule"></div>
-  </div>
-  <div class="skills-grid">
-    <div class="skill-group">
-      <h3>Paid Advertising</h3>
-      <p>Meta Ads Manager, campaign structure, audience targeting, A/B testing, budget optimization</p>
-    </div>
-    <div class="skill-group">
-      <h3>Tracking &amp; Analytics</h3>
-      <p>Facebook Pixel, custom conversion events, attribution</p>
-    </div>
-    <div class="skill-group">
-      <h3>Funnel Building</h3>
-      <p>Systeme.io, squeeze pages, sales pages, order forms, email automation</p>
-    </div>
-    <div class="skill-group">
-      <h3>Copywriting</h3>
-      <p>Direct response, PAS framework, long-form sales pages, objection handling, urgency CTAs</p>
-    </div>
-    <div class="skill-group">
-      <h3>Creative Tools</h3>
-      <p>Canva (ad creatives, ebook design), Buffer (content scheduling)</p>
-    </div>
-    <div class="skill-group">
-      <h3>Niche Expertise</h3>
-      <p>Health &amp; Wellness (Keto/Weight Loss), Digital Products, Filipino Diaspora Market</p>
-    </div>
-  </div>
+<div class="section-head">
+<span class="num sans">03</span>
+<h2>Skills</h2>
+<div class="rule"></div>
+</div>
+<div class="skills-grid">
+<div class="skill-group">
+<h3>Paid Advertising</h3>
+<p>Meta Ads Manager, campaign structure, audience targeting, A/B testing, budget optimization</p>
+</div>
+<div class="skill-group">
+<h3>Tracking &amp; Analytics</h3>
+<p>Facebook Pixel, custom conversion events, attribution</p>
+</div>
+<div class="skill-group">
+<h3>Funnel Building</h3>
+<p>Systeme.io, squeeze pages, sales pages, order forms, email automation</p>
+</div>
+<div class="skill-group">
+<h3>Copywriting</h3>
+<p>Direct response, PAS framework, long-form sales pages, objection handling, urgency CTAs</p>
+</div>
+<div class="skill-group">
+<h3>Creative Tools</h3>
+<p>Canva (ad creatives, ebook design), Buffer (content scheduling)</p>
+</div>
+<div class="skill-group">
+<h3>Niche Expertise</h3>
+<p>Health &amp; Wellness (Keto/Weight Loss), Digital Products, Filipino Diaspora Market</p>
+</div>
+</div>
 </section>
 
 <!-- EDUCATION / CREDENTIALS -->
 <section class="creds">
-  <div class="section-head">
-    <span class="num sans">04</span>
-    <h2>Certifications</h2>
-    <div class="rule"></div>
-  </div>
-  <div class="creds-grid">
-    <div class="cred">
-      <div class="pct sans">100% COMPLETE</div>
-      <h3>FMBM Version 4 — Facebook Media Buying Mastery</h3>
-      <p>Dearly Plinky · 94/94 lessons covering campaign structure, pixel setup, audience targeting, creative testing, and scaling — plus live bi-weekly coaching replays with real client walkthroughs.</p>
-    </div>
-    <div class="cred">
-      <div class="pct sans">100% COMPLETE</div>
-      <h3>Media Buyer Roadmap 2026</h3>
-      <p>Dearly Plinky · Freelance media buyer workflow — client onboarding, reporting, pricing, and campaign delivery.</p>
-    </div>
-    <div class="cred">
-      <div class="pct sans">CERTIFIED</div>
-      <h3>Systeme.io Certification</h3>
-      <p>Awarded by Aurelien Amacker, Founder of Systeme.io · Full certification covering funnel building, landing pages, email automation, and sales pipelines on the Systeme.io platform.</p>
-      <a class="cred-link" href="assets/cert-systeme.jpg" target="_blank">View Certificate →</a>
-    </div>
-  </div>
+<div class="section-head">
+<span class="num sans">04</span>
+<h2>Certifications</h2>
+<div class="rule"></div>
+</div>
+<div class="creds-grid">
+<div class="cred">
+<div class="pct sans">100% COMPLETE</div>
+<h3>FMBM Version 4 — Facebook Media Buying Mastery</h3>
+<p>Dearly Plinky · 94/94 lessons covering campaign structure, pixel setup, audience targeting, creative testing, and scaling — plus live bi-weekly coaching replays with real client walkthroughs.</p>
+</div>
+<div class="cred">
+<div class="pct sans">100% COMPLETE</div>
+<h3>Media Buyer Roadmap 2026</h3>
+<p>Dearly Plinky · Freelance media buyer workflow — client onboarding, reporting, pricing, and campaign delivery.</p>
+</div>
+<div class="cred">
+<div class="pct sans">CERTIFIED</div>
+<h3>Systeme.io Certification</h3>
+<p>Awarded by Aurelien Amacker, Founder of Systeme.io · Full certification covering funnel building, landing pages, email automation, and sales pipelines on the Systeme.io platform.</p>
+<a class="cred-link" href="assets/cert-systeme.jpg" target="_blank">View Certificate →</a>
+</div>
+</div>
 </section>
 
 <!-- CONTACT -->
 <div class="contact" id="contact">
-  <div class="eyebrow sans">Let's Work Together</div>
-  <h2>Ready to scale your campaigns?</h2>
-  <p>I bring real-money campaign experience, full-funnel know-how, and a results-first mindset to every client account.</p>
-  <div class="contact-links">
-    <a class="primary" href="mailto:strategicresource.dc@gmail.com">Email Me</a>
-    <a href="https://m.me/imserell" target="_blank">Message on Messenger</a>
-    <a href="https://linkedin.com/in/rell-se" target="_blank">LinkedIn</a>
-    <a href="https://payhip.com/SRDC" target="_blank">Payhip Store</a>
-  </div>
+<div class="eyebrow sans">Let's Work Together</div>
+<h2>Ready to scale your campaigns?</h2>
+<p>I bring real-money campaign experience, full-funnel know-how, and a results-first mindset to every client account.</p>
+<div class="contact-links">
+<a class="primary" href="mailto:strategicresource.dc@gmail.com">Email Me</a>
+<a href="https://m.me/imserell" target="_blank">Message on Messenger</a>
+<a href="https://linkedin.com/in/rell-se" target="_blank">LinkedIn</a>
+<a href="https://payhip.com/SRDC" target="_blank">Payhip Store</a>
+</div>
 </div>
 
 <footer>
-  <img src="srdc-logo-transparent.png" alt="SRDC logo" style="height:64px; opacity:.95; margin-bottom:14px;">
-  <div>© SRDC — STRATEGIC RESOURCE DIGITAL CREATORS · RELLY SE, FACEBOOK MEDIA BUYER · SHARJAH, UAE</div>
+<img src="srdc-logo-transparent.png" alt="SRDC logo" style="height:64px; opacity:.95; margin-bottom:14px;">
+<div>© SRDC — STRATEGIC RESOURCE DIGITAL CREATORS · RELLY SE, FACEBOOK MEDIA BUYER · SHARJAH, UAE</div>
 </footer>
 
 <!-- FLOATING MESSENGER BUTTON -->
 <a class="float-msg" href="https://m.me/imserell" target="_blank" aria-label="Message on Facebook Messenger">
-  <span class="ping"></span>
-  <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.477 2 2 6.145 2 11.243c0 2.9 1.456 5.484 3.736 7.17V22l3.41-1.873c.91.252 1.873.388 2.854.388 5.523 0 10-4.145 10-9.243C22 6.145 17.523 2 12 2zm1.008 12.45-2.563-2.736-5.004 2.736 5.51-5.85 2.626 2.736 4.94-2.736-5.509 5.85z"/></svg>
+<span class="ping"></span>
+<svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.477 2 2 6.145 2 11.243c0 2.9 1.456 5.484 3.736 7.17V22l3.41-1.873c.91.252 1.873.388 2.854.388 5.523 0 10-4.145 10-9.243C22 6.145 17.523 2 12 2zm1.008 12.45-2.563-2.736-5.004 2.736 5.51-5.85 2.626 2.736 4.94-2.736-5.509 5.85z"/></svg>
 </a>
+
+<script>
+(function(){
+var root = document.documentElement;
+var btn = document.getElementById('themeToggle');
+btn.addEventListener('click', function(){
+var isDark = root.getAttribute('data-theme') === 'dark';
+if(isDark){
+root.removeAttribute('data-theme');
+localStorage.setItem('theme','light');
+}else{
+root.setAttribute('data-theme','dark');
+localStorage.setItem('theme','dark');
+}
+});
+})();
+</script>
 
 </body>
 </html>
