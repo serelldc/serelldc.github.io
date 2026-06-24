@@ -73,6 +73,17 @@ html[data-theme="dark"] .theme-toggle .icon-moon{ display:block; }
 
 @media (max-width: 760px){
 .topnav .nav-links{ display:none; }
+.topnav{ padding: 14px 4vw; }
+.topnav img{ height:36px; }
+.topnav .nav-right{ gap:10px; }
+.topnav .nav-cta{ padding:8px 14px; font-size:12px; gap:6px; }
+.topnav .nav-cta svg{ width:13px; height:13px; }
+.theme-toggle{ width:34px; height:34px; }
+.theme-toggle svg{ width:16px; height:16px; }
+}
+@media (max-width: 400px){
+.topnav .nav-cta span.cta-label{ display:none; }
+.topnav .nav-cta{ padding:9px; border-radius:50%; width:34px; height:34px; }
 }
 
 section, .hero, .contact{ scroll-margin-top: 78px; }
@@ -601,7 +612,7 @@ box-shadow: 0 12px 30px -8px rgba(0,0,0,0.7);
 </button>
 <a class="nav-cta" href="https://m.me/imserell" target="_blank">
 <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.477 2 2 6.145 2 11.243c0 2.9 1.456 5.484 3.736 7.17V22l3.41-1.873c.91.252 1.873.388 2.854.388 5.523 0 10-4.145 10-9.243C22 6.145 17.523 2 12 2zm1.008 12.45-2.563-2.736-5.004 2.736 5.51-5.85 2.626 2.736 4.94-2.736-5.509 5.85z"/></svg>
-Message Me
+<span class="cta-label">Message Me</span>
 </a>
 </div>
 </nav>
