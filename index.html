@@ -387,12 +387,13 @@ color: var(--gold); margin-bottom:24px;
 }
 .carousel-wrap{
 position:relative;
+overflow:hidden;
 }
 .client-grid{
 display:flex;
 gap:24px;
-overflow:hidden;
-scroll-behavior:smooth;
+overflow:visible;
+transition: transform .4s cubic-bezier(.4,0,.2,1);
 }
 .client-card{
 flex: 0 0 calc(33.333% - 16px);
@@ -995,56 +996,58 @@ var nextBtn = document.getElementById('carouselNext');
 var dotsWrap = document.getElementById('carouselDots');
 if(!track) return;
 
-var cards = track.querySelectorAll('.client-card');
+var cards = Array.from(track.querySelectorAll('.client-card'));
 var current = 0;
 
-function getVisible(){
-var w = track.offsetWidth;
-var gap = 24;
-var cardW = cards[0].offsetWidth;
-return Math.round(w / (cardW + gap));
+function getCardW(){
+return cards[0].getBoundingClientRect().width;
 }
 
-function totalSlides(){
-return cards.length - getVisible() + 1;
+function getVisible(){
+var wrapW = track.parentElement.offsetWidth;
+var cw = getCardW() + 24;
+return Math.max(1, Math.floor(wrapW / cw));
+}
+
+function maxSlide(){
+return Math.max(0, cards.length - getVisible());
 }
 
 function buildDots(){
 dotsWrap.innerHTML = '';
-var n = totalSlides();
+var n = maxSlide() + 1;
 for(var i = 0; i < n; i++){
 var d = document.createElement('button');
-d.className = 'carousel-dot' + (i===current?' active':'');
-d.setAttribute('aria-label','Slide '+(i+1));
+d.className = 'carousel-dot' + (i === current ? ' active' : '');
+d.setAttribute('aria-label', 'Slide ' + (i+1));
 (function(idx){ d.addEventListener('click', function(){ goTo(idx); }); })(i);
 dotsWrap.appendChild(d);
 }
 }
 
 function goTo(idx){
-var n = totalSlides();
-current = Math.max(0, Math.min(idx, n-1));
-var cardW = cards[0].offsetWidth + 24;
-track.scrollLeft = current * cardW;
-buildDots();
+current = Math.max(0, Math.min(idx, maxSlide()));
+var offset = current * (getCardW() + 24);
+track.style.transform = 'translateX(-' + offset + 'px)';
 prevBtn.disabled = current === 0;
-nextBtn.disabled = current >= n-1;
+nextBtn.disabled = current >= maxSlide();
+buildDots();
 }
 
 prevBtn.addEventListener('click', function(){ goTo(current - 1); });
 nextBtn.addEventListener('click', function(){ goTo(current + 1); });
 
-// touch/swipe support
 var startX = 0;
 track.addEventListener('touchstart', function(e){ startX = e.touches[0].clientX; }, {passive:true});
 track.addEventListener('touchend', function(e){
 var diff = startX - e.changedTouches[0].clientX;
-if(Math.abs(diff) > 50){ goTo(current + (diff > 0 ? 1 : -1)); }
+if(Math.abs(diff) > 40){ goTo(current + (diff > 0 ? 1 : -1)); }
 }, {passive:true});
 
-window.addEventListener('resize', function(){ buildDots(); goTo(current); });
-buildDots();
+window.addEventListener('resize', function(){ goTo(current); });
+setTimeout(function(){ goTo(0); }, 50);
 })();
+
 </script>
 
 </body>
