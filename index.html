@@ -375,7 +375,7 @@ border:1px solid rgba(255,255,255,0.1);
 .featured-content h3{ font-size: clamp(22px,2.6vw,30px); font-weight:400; margin-bottom:14px; line-height:1.3; }
 .featured-content p{ color: var(--muted); font-size:15px; margin-bottom:20px; max-width:46ch; }
 
-/* ===== ADDITIONAL PROJECTS ===== */
+/* ===== CLIENT PROJECTS CAROUSEL ===== */
 .more-projects{
 border-top:1px solid var(--line);
 padding-top:40px;
@@ -385,12 +385,18 @@ font-family:'Helvetica Neue', Arial, sans-serif;
 font-size:12px; letter-spacing:.22em; text-transform:uppercase;
 color: var(--gold); margin-bottom:24px;
 }
-.client-grid{
-display:flex; flex-wrap:wrap; justify-content:center;
-gap:24px;
+.carousel-wrap{
+position:relative;
 }
-.client-card{ flex:1 1 280px; max-width:380px; }
+.client-grid{
+display:flex;
+gap:24px;
+overflow:hidden;
+scroll-behavior:smooth;
+}
 .client-card{
+flex: 0 0 calc(33.333% - 16px);
+min-width:260px;
 background: linear-gradient(160deg, rgba(212,162,78,0.10), rgba(255,255,255,0.03));
 border:1px solid rgba(212,162,78,0.35);
 border-radius:10px;
@@ -410,7 +416,7 @@ width:fit-content;
 content:""; width:6px; height:6px; border-radius:50%;
 background: var(--gold); display:inline-block;
 }
-.client-card h4{ font-size:19px; font-weight:400; line-height:1.3; }
+.client-card h4{ font-size:19px; font-weight:400; line-height:1.3; color: var(--paper); }
 .client-card p{ color: var(--muted); font-size:14px; flex:1; }
 .client-card a{
 font-family:'Helvetica Neue', Arial, sans-serif; font-size:13px;
@@ -423,6 +429,41 @@ align-self:flex-start; margin-top:4px;
 .client-card a:hover{ border-color: var(--gold); color: var(--gold); background: rgba(212,162,78,0.08); }
 .client-card a svg{ width:14px; height:14px; transition: transform .2s; }
 .client-card a:hover svg{ transform: translateX(3px); }
+/* Carousel nav */
+.carousel-nav{
+display:flex; align-items:center; justify-content:space-between;
+margin-top:28px;
+}
+.carousel-dots{
+display:flex; gap:8px; align-items:center;
+}
+.carousel-dot{
+width:8px; height:8px; border-radius:50%;
+background: rgba(255,255,255,0.2);
+cursor:pointer; transition: all .2s;
+border:none; padding:0;
+}
+.carousel-dot.active{
+background: var(--gold); width:24px; border-radius:4px;
+}
+.carousel-arrows{ display:flex; gap:10px; }
+.carousel-btn{
+width:44px; height:44px; border-radius:50%;
+border:1px solid var(--line);
+background:transparent; color:var(--paper);
+display:flex; align-items:center; justify-content:center;
+cursor:pointer; transition: all .2s ease;
+flex-shrink:0;
+}
+.carousel-btn:hover{ border-color: var(--gold); color: var(--gold); }
+.carousel-btn:disabled{ opacity:.3; cursor:default; }
+.carousel-btn svg{ width:18px; height:18px; }
+@media (max-width: 820px){
+.client-card{ flex: 0 0 calc(50% - 12px); }
+}
+@media (max-width: 580px){
+.client-card{ flex: 0 0 85vw; }
+}
 
 /* ===== FLOATING MESSENGER BUTTON ===== */
 .float-msg{
@@ -534,7 +575,7 @@ section{ padding:54px 6vw; }
 .featured-banner{ min-height:280px; }
 .featured-content{ padding:28px 24px; }
 .client-grid{ flex-direction:column; align-items:stretch; }
-.client-card{ max-width:none; }
+.client-card{ max-width:none; flex: 0 0 85vw; }
 }
 
 /* =====================================================
@@ -777,7 +818,8 @@ Browse the Store
 <!-- ADDITIONAL PROJECTS -->
 <div class="more-projects">
 <div class="more-label sans">Client Projects</div>
-<div class="client-grid">
+<div class="carousel-wrap">
+<div class="client-grid" id="clientCarousel">
 <div class="client-card">
 <div class="badge">Landing Page</div>
 <h4>Trustories — Landing Page</h4>
@@ -822,6 +864,18 @@ View Page
 View My Facebook Lead Generation Strategy
 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 5l7 7-7 7"/></svg>
 </a>
+</div>
+</div>
+<div class="carousel-nav">
+<div class="carousel-dots" id="carouselDots"></div>
+<div class="carousel-arrows">
+<button class="carousel-btn" id="carouselPrev" aria-label="Previous">
+<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 12H5M12 5l-7 7 7 7"/></svg>
+</button>
+<button class="carousel-btn" id="carouselNext" aria-label="Next">
+<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+</button>
+</div>
 </div>
 </div>
 </div>
@@ -933,6 +987,63 @@ root.setAttribute('data-theme','dark');
 localStorage.setItem('theme','dark');
 }
 });
+// CAROUSEL
+(function(){
+var track = document.getElementById('clientCarousel');
+var prevBtn = document.getElementById('carouselPrev');
+var nextBtn = document.getElementById('carouselNext');
+var dotsWrap = document.getElementById('carouselDots');
+if(!track) return;
+
+var cards = track.querySelectorAll('.client-card');
+var current = 0;
+
+function getVisible(){
+var w = track.offsetWidth;
+var gap = 24;
+var cardW = cards[0].offsetWidth;
+return Math.round(w / (cardW + gap));
+}
+
+function totalSlides(){
+return cards.length - getVisible() + 1;
+}
+
+function buildDots(){
+dotsWrap.innerHTML = '';
+var n = totalSlides();
+for(var i = 0; i < n; i++){
+var d = document.createElement('button');
+d.className = 'carousel-dot' + (i===current?' active':'');
+d.setAttribute('aria-label','Slide '+(i+1));
+(function(idx){ d.addEventListener('click', function(){ goTo(idx); }); })(i);
+dotsWrap.appendChild(d);
+}
+}
+
+function goTo(idx){
+var n = totalSlides();
+current = Math.max(0, Math.min(idx, n-1));
+var cardW = cards[0].offsetWidth + 24;
+track.scrollLeft = current * cardW;
+buildDots();
+prevBtn.disabled = current === 0;
+nextBtn.disabled = current >= n-1;
+}
+
+prevBtn.addEventListener('click', function(){ goTo(current - 1); });
+nextBtn.addEventListener('click', function(){ goTo(current + 1); });
+
+// touch/swipe support
+var startX = 0;
+track.addEventListener('touchstart', function(e){ startX = e.touches[0].clientX; }, {passive:true});
+track.addEventListener('touchend', function(e){
+var diff = startX - e.changedTouches[0].clientX;
+if(Math.abs(diff) > 50){ goTo(current + (diff > 0 ? 1 : -1)); }
+}, {passive:true});
+
+window.addEventListener('resize', function(){ buildDots(); goTo(current); });
+buildDots();
 })();
 </script>
 
