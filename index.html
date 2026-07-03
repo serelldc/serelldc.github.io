@@ -259,7 +259,9 @@ transition: background .3s ease;
 }
 
 /* ===== ABOUT ===== */
-.about{ background: var(--paper); transition: background .3s ease; }
+.about{ background: var(--paper); transition: background .3s ease; position:relative; overflow:hidden; }
+.section-canvas{ position:absolute; inset:0; width:100%; height:100%; pointer-events:none; z-index:0; }
+.section-content{ position:relative; z-index:1; }
 .about-grid{
 display:grid; grid-template-columns: 1.3fr 1fr; gap:60px;
 }
@@ -515,12 +517,12 @@ animation: pingring 2.4s ease-out infinite;
 }
 
 /* ===== CASE STUDIES ===== */
-.work{ background: var(--ink); color: var(--paper); }
+.work{ background: var(--ink); color: var(--paper); position:relative; overflow:hidden; }
 .work .section-head h2, .work .section-head .num{ color: var(--paper); }
 .work .rule{ background: rgba(255,255,255,0.12); }
 
 /* ===== SKILLS ===== */
-.skills{ background: var(--paper); transition: background .3s ease; }
+.skills{ background: var(--paper); transition: background .3s ease; position:relative; overflow:hidden; }
 .skills-grid{
 display:grid; grid-template-columns: repeat(auto-fit, minmax(240px,1fr));
 gap: 28px 50px;
@@ -533,7 +535,7 @@ color: var(--gold); margin-bottom:12px;
 .skill-group p{ color:#33425C; font-size:15.5px; transition: color .3s ease; }
 
 /* ===== EDUCATION ===== */
-.creds{ background:#fff; border-top:1px solid var(--paper-dim); border-bottom:1px solid var(--paper-dim); transition: background .3s ease, border-color .3s ease; }
+.creds{ background:#fff; border-top:1px solid var(--paper-dim); border-bottom:1px solid var(--paper-dim); transition: background .3s ease, border-color .3s ease; position:relative; overflow:hidden; }
 .creds-grid{ display:grid; grid-template-columns: repeat(auto-fit, minmax(280px,1fr)); gap:36px; }
 .cred{
 border-left:3px solid var(--gold);
@@ -561,7 +563,10 @@ background: linear-gradient(160deg, var(--navy-deep) 0%, var(--navy) 100%);
 color: var(--paper);
 text-align:center;
 padding: 90px 8vw 80px;
+position:relative;
+overflow:hidden;
 }
+.contact-content{ position:relative; z-index:1; }
 .contact .eyebrow{ justify-content:center; display:flex; }
 .contact h2{
 font-size: clamp(32px, 5vw, 56px);
@@ -685,7 +690,8 @@ box-shadow: 0 12px 30px -8px rgba(0,0,0,0.7);
 
 <!-- HERO -->
 <div class="hero" id="top">
-<div>
+<canvas id="heroCanvas" style="position:absolute;inset:0;width:100%;height:100%;pointer-events:none;z-index:0;"></canvas>
+<div style="position:relative;z-index:1;">
 <div class="eyebrow sans">Facebook Media Buyer · Founder, SRDC</div>
 <h1>Relly&nbsp;Se</h1>
 <p class="role">Built a self-funded digital brand from zero to <strong>verified paying customers in 3 countries</strong> — bringing a business owner's mindset to every ad dollar spent.</p>
@@ -707,7 +713,7 @@ Message on Messenger
 <a href="https://www.facebook.com/share/g/18oPyKjK1k/" target="_blank">Skill to Revenue Digital Community</a>
 </div>
 </div>
-<div class="hero-portrait">
+<div class="hero-portrait" style="position:relative;z-index:1;">
 <img src="assets/profile3.jpg" alt="Relly Se — Founder, SRDC">
 <div class="frame-label">Founder &amp; Media Buyer — SRDC</div>
 </div>
@@ -723,6 +729,8 @@ Message on Messenger
 
 <!-- ABOUT + STATS -->
 <section class="about" id="about">
+<canvas class="section-canvas" data-tone="light"></canvas>
+<div class="section-content">
 <div class="section-head">
 <span class="num sans">01</span>
 <h2>About</h2>
@@ -753,10 +761,13 @@ Message on Messenger
 </div>
 </div>
 </div>
+</div>
 </section>
 
 <!-- CASE STUDIES -->
 <section class="work" id="work">
+<canvas class="section-canvas" data-tone="dark"></canvas>
+<div class="section-content">
 <div class="section-head">
 <span class="num sans">02</span>
 <h2>Case Studies &amp; Live Work</h2>
@@ -915,10 +926,13 @@ View My Facebook Lead Generation Strategy
 </div>
 </div>
 </div>
+</div>
 </section>
 
 <!-- SKILLS -->
 <section class="skills">
+<canvas class="section-canvas" data-tone="light"></canvas>
+<div class="section-content">
 <div class="section-head">
 <span class="num sans">03</span>
 <h2>Skills</h2>
@@ -950,10 +964,13 @@ View My Facebook Lead Generation Strategy
 <p>Health &amp; Wellness (Keto/Weight Loss), Digital Products, Filipino Diaspora Market</p>
 </div>
 </div>
+</div>
 </section>
 
 <!-- EDUCATION / CREDENTIALS -->
 <section class="creds">
+<canvas class="section-canvas" data-tone="light"></canvas>
+<div class="section-content">
 <div class="section-head">
 <span class="num sans">04</span>
 <h2>Certifications</h2>
@@ -982,10 +999,13 @@ View My Facebook Lead Generation Strategy
 <p>Certified Digital Ecommerce Professional by KMCre8tives — equipped with expertise in digital marketing, e-commerce growth strategies, sales funnel optimization, customer acquisition, and scalable online business development.</p>
 </div>
 </div>
+</div>
 </section>
 
 <!-- CONTACT -->
 <div class="contact" id="contact">
+<canvas class="section-canvas" data-tone="dark"></canvas>
+<div class="contact-content">
 <div class="eyebrow sans">Let's Work Together</div>
 <h2>Ready to scale your campaigns?</h2>
 <p>I bring real-money campaign experience, full-funnel know-how, and a results-first mindset to every client account.</p>
@@ -995,6 +1015,7 @@ View My Facebook Lead Generation Strategy
 <a href="https://linkedin.com/in/rell-se" target="_blank">LinkedIn</a>
 <a href="https://payhip.com/SRDC" target="_blank">Payhip Store</a>
 <a href="https://www.facebook.com/share/g/18oPyKjK1k/" target="_blank">Skill to Revenue Digital Community</a>
+</div>
 </div>
 </div>
 
@@ -1136,6 +1157,304 @@ window.addEventListener('resize', function(){ goTo(current); });
 setTimeout(function(){ goTo(0); }, 80);
 })();
 
+</script>
+
+<script>
+(function(){
+  var canvas = document.getElementById('heroCanvas');
+  if(!canvas) return;
+  var ctx = canvas.getContext('2d');
+
+  function resize(){
+    var hero = canvas.parentElement;
+    canvas.width  = hero.offsetWidth;
+    canvas.height = hero.offsetHeight;
+  }
+  resize();
+  window.addEventListener('resize', resize);
+
+  var meshT = 0;
+  function drawMesh(){
+    meshT += 0.003;
+    var w = canvas.width, h = canvas.height;
+
+    var x1 = w * (0.3 + 0.15 * Math.sin(meshT));
+    var y1 = h * (0.4 + 0.10 * Math.cos(meshT * 0.7));
+    var g1 = ctx.createRadialGradient(x1,y1,0, x1,y1, w*0.55);
+    g1.addColorStop(0, 'rgba(30,60,120,0.18)');
+    g1.addColorStop(1, 'rgba(0,0,0,0)');
+
+    var x2 = w * (0.7 + 0.12 * Math.cos(meshT * 0.8));
+    var y2 = h * (0.55 + 0.12 * Math.sin(meshT * 1.1));
+    var g2 = ctx.createRadialGradient(x2,y2,0, x2,y2, w*0.45);
+    g2.addColorStop(0, 'rgba(212,162,78,0.07)');
+    g2.addColorStop(1, 'rgba(0,0,0,0)');
+
+    ctx.fillStyle = g1; ctx.fillRect(0,0,w,h);
+    ctx.fillStyle = g2; ctx.fillRect(0,0,w,h);
+  }
+
+  var PARTICLE_COUNT = 55;
+  var particles = [];
+
+  function randRange(a,b){ return a + Math.random()*(b-a); }
+
+  for(var i=0; i<PARTICLE_COUNT; i++){
+    particles.push({
+      x: Math.random(),
+      y: Math.random(),
+      vx: randRange(-0.00012, 0.00012),
+      vy: randRange(-0.00008, 0.00008),
+      r:  randRange(1.2, 2.8),
+      alpha: randRange(0.25, 0.7)
+    });
+  }
+
+  function drawParticles(){
+    var w = canvas.width, h = canvas.height;
+    var MAX_DIST = 0.18;
+
+    particles.forEach(function(p){
+      p.x += p.vx; p.y += p.vy;
+      if(p.x < 0) p.x = 1;
+      if(p.x > 1) p.x = 0;
+      if(p.y < 0) p.y = 1;
+      if(p.y > 1) p.y = 0;
+    });
+
+    for(var i=0; i<particles.length; i++){
+      for(var j=i+1; j<particles.length; j++){
+        var a = particles[i], b = particles[j];
+        var dx = a.x - b.x, dy = a.y - b.y;
+        var dist = Math.sqrt(dx*dx + dy*dy);
+        if(dist < MAX_DIST){
+          var opacity = (1 - dist/MAX_DIST) * 0.35;
+          ctx.beginPath();
+          ctx.strokeStyle = 'rgba(100,160,255,' + opacity + ')';
+          ctx.lineWidth = 0.8;
+          ctx.moveTo(a.x*w, a.y*h);
+          ctx.lineTo(b.x*w, b.y*h);
+          ctx.stroke();
+        }
+      }
+    }
+
+    particles.forEach(function(p){
+      ctx.beginPath();
+      ctx.arc(p.x*w, p.y*h, p.r, 0, Math.PI*2);
+      ctx.fillStyle = 'rgba(130,180,255,' + p.alpha + ')';
+      ctx.fill();
+    });
+  }
+
+  var METRICS = [
+    { label:'ROAS',   value:'5.42',  suffix:'',   color:'rgba(212,162,78,0.75)'   },
+    { label:'CTR',    value:'4.8',   suffix:'%',  color:'rgba(100,200,120,0.65)'  },
+    { label:'CPL',    value:'₱12.4', suffix:'',   color:'rgba(130,180,255,0.70)'  },
+    { label:'CPC',    value:'$0.38', suffix:'',   color:'rgba(180,140,255,0.65)'  },
+    { label:'ROAS',   value:'↑ 32',  suffix:'%',  color:'rgba(212,162,78,0.55)'   },
+    { label:'Conv.',  value:'91',    suffix:'%',  color:'rgba(100,200,150,0.60)'  }
+  ];
+
+  var floaters = METRICS.map(function(m, i){
+    return {
+      label: m.label, value: m.value, suffix: m.suffix, color: m.color,
+      x:  0.15 + Math.random() * 0.72,
+      y:  0.08 + Math.random() * 0.82,
+      vx: randRange(-0.00008, 0.00008),
+      vy: randRange(-0.00012, -0.00005),
+      opacity: 0,
+      targetOpacity: randRange(0.5, 1),
+      life: 0,
+      maxLife: randRange(220, 380),
+      born: i * 60
+    };
+  });
+
+  var tick = 0;
+  function drawMetrics(){
+    var w = canvas.width, h = canvas.height;
+    tick++;
+
+    floaters.forEach(function(f){
+      if(tick < f.born) return;
+
+      f.life++;
+      f.x += f.vx;
+      f.y += f.vy;
+
+      if(f.life < 40){
+        f.opacity = (f.life / 40) * f.targetOpacity;
+      } else if(f.life > f.maxLife - 40){
+        f.opacity = ((f.maxLife - f.life) / 40) * f.targetOpacity;
+      } else {
+        f.opacity = f.targetOpacity;
+      }
+
+      if(f.life >= f.maxLife){
+        f.x = 0.15 + Math.random() * 0.72;
+        f.y = 0.7 + Math.random() * 0.25;
+        f.vx = randRange(-0.00008, 0.00008);
+        f.vy = randRange(-0.00012, -0.00005);
+        f.life = 0;
+        f.maxLife = randRange(220, 380);
+        f.targetOpacity = randRange(0.5, 1);
+      }
+
+      var px = f.x * w, py = f.y * h;
+
+      ctx.save();
+      ctx.globalAlpha = f.opacity * 0.22;
+      ctx.fillStyle = '#0B1E36';
+      roundRect(ctx, px-28, py-14, 72, 28, 6);
+      ctx.fill();
+      ctx.globalAlpha = f.opacity * 0.5;
+      ctx.strokeStyle = f.color;
+      ctx.lineWidth = 0.8;
+      roundRect(ctx, px-28, py-14, 72, 28, 6);
+      ctx.stroke();
+      ctx.restore();
+
+      ctx.save();
+      ctx.globalAlpha = f.opacity * 0.55;
+      ctx.fillStyle = '#8AA0BD';
+      ctx.font = '9px Helvetica Neue, Arial, sans-serif';
+      ctx.fillText(f.label, px-24, py-2);
+
+      ctx.globalAlpha = f.opacity;
+      ctx.fillStyle = f.color;
+      ctx.font = 'bold 11px Helvetica Neue, Arial, sans-serif';
+      ctx.fillText(f.value + f.suffix, px-24, py+10);
+      ctx.restore();
+    });
+  }
+
+  function roundRect(ctx, x,y,w,h,r){
+    ctx.beginPath();
+    ctx.moveTo(x+r, y);
+    ctx.lineTo(x+w-r, y);
+    ctx.quadraticCurveTo(x+w, y, x+w, y+r);
+    ctx.lineTo(x+w, y+h-r);
+    ctx.quadraticCurveTo(x+w, y+h, x+w-r, y+h);
+    ctx.lineTo(x+r, y+h);
+    ctx.quadraticCurveTo(x, y+h, x, y+h-r);
+    ctx.lineTo(x, y+r);
+    ctx.quadraticCurveTo(x, y, x+r, y);
+    ctx.closePath();
+  }
+
+  function loop(){
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
+    drawMesh();
+    drawParticles();
+    drawMetrics();
+    requestAnimationFrame(loop);
+  }
+  loop();
+})();
+</script>
+
+<!-- ===== SECTION BACKGROUND ANIMATIONS (particle network, lighter version) ===== -->
+<script>
+(function(){
+  var canvases = document.querySelectorAll('.section-canvas');
+  if(!canvases.length) return;
+
+  var TONES = {
+    dark:  { dot: '130,180,255', line: '100,160,255', mesh1: '30,60,120', mesh2: '212,162,78' },
+    light: { dot: '20,50,90',    line: '30,70,130',   mesh1: '30,60,120', mesh2: '212,162,78' }
+  };
+
+  canvases.forEach(function(canvas){
+    var tone = TONES[canvas.getAttribute('data-tone')] || TONES.light;
+    var ctx = canvas.getContext('2d');
+    var particles = [];
+    var COUNT = 26;
+
+    function randRange(a,b){ return a + Math.random()*(b-a); }
+
+    function resize(){
+      var parent = canvas.parentElement;
+      canvas.width = parent.offsetWidth;
+      canvas.height = parent.offsetHeight;
+    }
+    resize();
+    window.addEventListener('resize', resize);
+
+    for(var i=0; i<COUNT; i++){
+      particles.push({
+        x: Math.random(),
+        y: Math.random(),
+        vx: randRange(-0.00009, 0.00009),
+        vy: randRange(-0.00006, 0.00006),
+        r:  randRange(1, 2.2),
+        alpha: randRange(0.18, 0.4)
+      });
+    }
+
+    var meshT = Math.random() * 10;
+    var dotOpacity = canvas.getAttribute('data-tone') === 'light' ? 0.35 : 0.7;
+    var lineOpacity = canvas.getAttribute('data-tone') === 'light' ? 0.12 : 0.28;
+    var meshOpacity = canvas.getAttribute('data-tone') === 'light' ? 0.05 : 0.12;
+
+    function drawMesh(){
+      meshT += 0.0018;
+      var w = canvas.width, h = canvas.height;
+      var x1 = w * (0.25 + 0.15 * Math.sin(meshT));
+      var y1 = h * (0.35 + 0.12 * Math.cos(meshT * 0.7));
+      var g1 = ctx.createRadialGradient(x1,y1,0, x1,y1, Math.max(w,h)*0.5);
+      g1.addColorStop(0, 'rgba(' + tone.mesh1 + ',' + meshOpacity + ')');
+      g1.addColorStop(1, 'rgba(0,0,0,0)');
+      ctx.fillStyle = g1;
+      ctx.fillRect(0,0,w,h);
+    }
+
+    function drawParticles(){
+      var w = canvas.width, h = canvas.height;
+      var MAX_DIST = 0.16;
+
+      particles.forEach(function(p){
+        p.x += p.vx; p.y += p.vy;
+        if(p.x < 0) p.x = 1;
+        if(p.x > 1) p.x = 0;
+        if(p.y < 0) p.y = 1;
+        if(p.y > 1) p.y = 0;
+      });
+
+      for(var i=0; i<particles.length; i++){
+        for(var j=i+1; j<particles.length; j++){
+          var a = particles[i], b = particles[j];
+          var dx = a.x - b.x, dy = a.y - b.y;
+          var dist = Math.sqrt(dx*dx + dy*dy);
+          if(dist < MAX_DIST){
+            var opacity = (1 - dist/MAX_DIST) * lineOpacity;
+            ctx.beginPath();
+            ctx.strokeStyle = 'rgba(' + tone.line + ',' + opacity + ')';
+            ctx.lineWidth = 0.7;
+            ctx.moveTo(a.x*w, a.y*h);
+            ctx.lineTo(b.x*w, b.y*h);
+            ctx.stroke();
+          }
+        }
+      }
+
+      particles.forEach(function(p){
+        ctx.beginPath();
+        ctx.arc(p.x*w, p.y*h, p.r, 0, Math.PI*2);
+        ctx.fillStyle = 'rgba(' + tone.dot + ',' + (p.alpha * dotOpacity) + ')';
+        ctx.fill();
+      });
+    }
+
+    function loop(){
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
+      drawMesh();
+      drawParticles();
+      requestAnimationFrame(loop);
+    }
+    loop();
+  });
+})();
 </script>
 
 </body>
