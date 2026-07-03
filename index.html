@@ -729,7 +729,7 @@ Message on Messenger
 
 <!-- ABOUT + STATS -->
 <section class="about" id="about">
-<canvas class="section-canvas" data-tone="light"></canvas>
+<canvas class="section-canvas" data-tone="auto"></canvas>
 <div class="section-content">
 <div class="section-head">
 <span class="num sans">01</span>
@@ -766,7 +766,7 @@ Message on Messenger
 
 <!-- CASE STUDIES -->
 <section class="work" id="work">
-<canvas class="section-canvas" data-tone="dark"></canvas>
+<canvas class="section-canvas" data-tone="fixed-dark"></canvas>
 <div class="section-content">
 <div class="section-head">
 <span class="num sans">02</span>
@@ -931,7 +931,7 @@ View My Facebook Lead Generation Strategy
 
 <!-- SKILLS -->
 <section class="skills">
-<canvas class="section-canvas" data-tone="light"></canvas>
+<canvas class="section-canvas" data-tone="auto"></canvas>
 <div class="section-content">
 <div class="section-head">
 <span class="num sans">03</span>
@@ -969,7 +969,7 @@ View My Facebook Lead Generation Strategy
 
 <!-- EDUCATION / CREDENTIALS -->
 <section class="creds">
-<canvas class="section-canvas" data-tone="light"></canvas>
+<canvas class="section-canvas" data-tone="auto"></canvas>
 <div class="section-content">
 <div class="section-head">
 <span class="num sans">04</span>
@@ -1004,7 +1004,7 @@ View My Facebook Lead Generation Strategy
 
 <!-- CONTACT -->
 <div class="contact" id="contact">
-<canvas class="section-canvas" data-tone="dark"></canvas>
+<canvas class="section-canvas" data-tone="fixed-dark"></canvas>
 <div class="contact-content">
 <div class="eyebrow sans">Let's Work Together</div>
 <h2>Ready to scale your campaigns?</h2>
@@ -1354,24 +1354,61 @@ setTimeout(function(){ goTo(0); }, 80);
 })();
 </script>
 
-<!-- ===== SECTION BACKGROUND ANIMATIONS (particle network, lighter version) ===== -->
+<!-- ===== SECTION BACKGROUND ANIMATIONS (mesh + particles + floating metrics, dark-mode aware) ===== -->
 <script>
 (function(){
   var canvases = document.querySelectorAll('.section-canvas');
   if(!canvases.length) return;
 
-  var TONES = {
-    dark:  { dot: '130,180,255', line: '100,160,255', mesh1: '30,60,120', mesh2: '212,162,78' },
-    light: { dot: '20,50,90',    line: '30,70,130',   mesh1: '30,60,120', mesh2: '212,162,78' }
+  var PALETTES = {
+    dark: {
+      dot: '130,180,255', line: '100,160,255', mesh1: '30,60,120', mesh2: '212,162,78',
+      dotOpacity: 0.7, lineOpacity: 0.28, meshOpacity: 0.14,
+      pillBg: '11,30,54', pillFill: 0.28, pillStroke: 0.55,
+      labelColor: '#8AA0BD'
+    },
+    light: {
+      dot: '20,50,90', line: '30,70,130', mesh1: '30,60,120', mesh2: '212,162,78',
+      dotOpacity: 0.35, lineOpacity: 0.12, meshOpacity: 0.05,
+      pillBg: '11,30,54', pillFill: 0.06, pillStroke: 0.30,
+      labelColor: '#5C6B80'
+    }
   };
 
-  canvases.forEach(function(canvas){
-    var tone = TONES[canvas.getAttribute('data-tone')] || TONES.light;
-    var ctx = canvas.getContext('2d');
-    var particles = [];
-    var COUNT = 26;
+  var METRICS = [
+    { label:'ROAS',  value:'5.42',  suffix:'',  color:'rgba(212,162,78,0.85)' },
+    { label:'CTR',   value:'4.8',   suffix:'%', color:'rgba(60,170,90,0.85)'  },
+    { label:'CPL',   value:'₱12.4', suffix:'',  color:'rgba(70,130,220,0.85)' },
+    { label:'CPC',   value:'$0.38', suffix:'',  color:'rgba(150,100,220,0.85)'},
+    { label:'ROAS',  value:'↑ 32',  suffix:'%', color:'rgba(212,162,78,0.7)'  },
+    { label:'Conv.', value:'91',    suffix:'%', color:'rgba(60,170,110,0.75)' }
+  ];
 
-    function randRange(a,b){ return a + Math.random()*(b-a); }
+  function randRange(a,b){ return a + Math.random()*(b-a); }
+
+  function roundRect(ctx, x,y,w,h,r){
+    ctx.beginPath();
+    ctx.moveTo(x+r, y);
+    ctx.lineTo(x+w-r, y);
+    ctx.quadraticCurveTo(x+w, y, x+w, y+r);
+    ctx.lineTo(x+w, y+h-r);
+    ctx.quadraticCurveTo(x+w, y+h, x+w-r, y+h);
+    ctx.lineTo(x+r, y+h);
+    ctx.quadraticCurveTo(x, y+h, x, y+h-r);
+    ctx.lineTo(x, y+r);
+    ctx.quadraticCurveTo(x, y, x+r, y);
+    ctx.closePath();
+  }
+
+  canvases.forEach(function(canvas, canvasIndex){
+    var pref = canvas.getAttribute('data-tone'); // 'fixed-dark' | 'auto'
+    var ctx = canvas.getContext('2d');
+
+    function currentPalette(){
+      if(pref === 'fixed-dark') return PALETTES.dark;
+      var isDark = document.documentElement.getAttribute('data-theme') === 'dark';
+      return isDark ? PALETTES.dark : PALETTES.light;
+    }
 
     function resize(){
       var parent = canvas.parentElement;
@@ -1381,75 +1418,128 @@ setTimeout(function(){ goTo(0); }, 80);
     resize();
     window.addEventListener('resize', resize);
 
-    for(var i=0; i<COUNT; i++){
+    // Particles
+    var PARTICLE_COUNT = 32;
+    var particles = [];
+    for(var i=0; i<PARTICLE_COUNT; i++){
       particles.push({
-        x: Math.random(),
-        y: Math.random(),
-        vx: randRange(-0.00009, 0.00009),
-        vy: randRange(-0.00006, 0.00006),
-        r:  randRange(1, 2.2),
-        alpha: randRange(0.18, 0.4)
+        x: Math.random(), y: Math.random(),
+        vx: randRange(-0.0001, 0.0001), vy: randRange(-0.00007, 0.00007),
+        r: randRange(1, 2.4), alpha: randRange(0.2, 0.55)
       });
     }
 
-    var meshT = Math.random() * 10;
-    var dotOpacity = canvas.getAttribute('data-tone') === 'light' ? 0.35 : 0.7;
-    var lineOpacity = canvas.getAttribute('data-tone') === 'light' ? 0.12 : 0.28;
-    var meshOpacity = canvas.getAttribute('data-tone') === 'light' ? 0.05 : 0.12;
-
-    function drawMesh(){
-      meshT += 0.0018;
-      var w = canvas.width, h = canvas.height;
-      var x1 = w * (0.25 + 0.15 * Math.sin(meshT));
-      var y1 = h * (0.35 + 0.12 * Math.cos(meshT * 0.7));
-      var g1 = ctx.createRadialGradient(x1,y1,0, x1,y1, Math.max(w,h)*0.5);
-      g1.addColorStop(0, 'rgba(' + tone.mesh1 + ',' + meshOpacity + ')');
-      g1.addColorStop(1, 'rgba(0,0,0,0)');
-      ctx.fillStyle = g1;
-      ctx.fillRect(0,0,w,h);
-    }
-
-    function drawParticles(){
-      var w = canvas.width, h = canvas.height;
-      var MAX_DIST = 0.16;
-
+    function drawParticles(pal){
+      var w = canvas.width, h = canvas.height, MAX_DIST = 0.17;
       particles.forEach(function(p){
         p.x += p.vx; p.y += p.vy;
-        if(p.x < 0) p.x = 1;
-        if(p.x > 1) p.x = 0;
-        if(p.y < 0) p.y = 1;
-        if(p.y > 1) p.y = 0;
+        if(p.x < 0) p.x = 1; if(p.x > 1) p.x = 0;
+        if(p.y < 0) p.y = 1; if(p.y > 1) p.y = 0;
       });
-
       for(var i=0; i<particles.length; i++){
         for(var j=i+1; j<particles.length; j++){
           var a = particles[i], b = particles[j];
-          var dx = a.x - b.x, dy = a.y - b.y;
-          var dist = Math.sqrt(dx*dx + dy*dy);
+          var dx = a.x-b.x, dy = a.y-b.y, dist = Math.sqrt(dx*dx+dy*dy);
           if(dist < MAX_DIST){
-            var opacity = (1 - dist/MAX_DIST) * lineOpacity;
+            var opacity = (1 - dist/MAX_DIST) * pal.lineOpacity;
             ctx.beginPath();
-            ctx.strokeStyle = 'rgba(' + tone.line + ',' + opacity + ')';
+            ctx.strokeStyle = 'rgba(' + pal.line + ',' + opacity + ')';
             ctx.lineWidth = 0.7;
-            ctx.moveTo(a.x*w, a.y*h);
-            ctx.lineTo(b.x*w, b.y*h);
+            ctx.moveTo(a.x*w, a.y*h); ctx.lineTo(b.x*w, b.y*h);
             ctx.stroke();
           }
         }
       }
-
       particles.forEach(function(p){
         ctx.beginPath();
         ctx.arc(p.x*w, p.y*h, p.r, 0, Math.PI*2);
-        ctx.fillStyle = 'rgba(' + tone.dot + ',' + (p.alpha * dotOpacity) + ')';
+        ctx.fillStyle = 'rgba(' + pal.dot + ',' + (p.alpha * pal.dotOpacity) + ')';
         ctx.fill();
       });
     }
 
+    // Gradient mesh
+    var meshT = Math.random() * 10;
+    function drawMesh(pal){
+      meshT += 0.0018;
+      var w = canvas.width, h = canvas.height;
+      var x1 = w * (0.25 + 0.15 * Math.sin(meshT));
+      var y1 = h * (0.35 + 0.12 * Math.cos(meshT * 0.7));
+      var g1 = ctx.createRadialGradient(x1,y1,0, x1,y1, Math.max(w,h)*0.55);
+      g1.addColorStop(0, 'rgba(' + pal.mesh1 + ',' + pal.meshOpacity + ')');
+      g1.addColorStop(1, 'rgba(0,0,0,0)');
+      ctx.fillStyle = g1; ctx.fillRect(0,0,w,h);
+
+      var x2 = w * (0.7 + 0.12 * Math.cos(meshT * 0.8));
+      var y2 = h * (0.55 + 0.12 * Math.sin(meshT * 1.1));
+      var g2 = ctx.createRadialGradient(x2,y2,0, x2,y2, Math.max(w,h)*0.4);
+      g2.addColorStop(0, 'rgba(' + pal.mesh2 + ',' + (pal.meshOpacity*0.6) + ')');
+      g2.addColorStop(1, 'rgba(0,0,0,0)');
+      ctx.fillStyle = g2; ctx.fillRect(0,0,w,h);
+    }
+
+    // Floating ad metrics (fewer per section than hero)
+    var METRIC_COUNT = 4;
+    var tick = 0;
+    var floaters = [];
+    for(var m=0; m<METRIC_COUNT; m++){
+      var src = METRICS[(m + canvasIndex) % METRICS.length];
+      floaters.push({
+        label: src.label, value: src.value, suffix: src.suffix, color: src.color,
+        x: 0.12 + Math.random() * 0.76, y: 0.12 + Math.random() * 0.76,
+        vx: randRange(-0.00007, 0.00007), vy: randRange(-0.0001, -0.00004),
+        opacity: 0, targetOpacity: randRange(0.45, 0.9),
+        life: 0, maxLife: randRange(260, 420), born: m * 90 + canvasIndex * 40
+      });
+    }
+
+    function drawMetrics(pal){
+      var w = canvas.width, h = canvas.height;
+      tick++;
+      floaters.forEach(function(f){
+        if(tick < f.born) return;
+        f.life++;
+        f.x += f.vx; f.y += f.vy;
+
+        if(f.life < 40) f.opacity = (f.life/40) * f.targetOpacity;
+        else if(f.life > f.maxLife - 40) f.opacity = ((f.maxLife-f.life)/40) * f.targetOpacity;
+        else f.opacity = f.targetOpacity;
+
+        if(f.life >= f.maxLife){
+          f.x = 0.12 + Math.random()*0.76; f.y = 0.65 + Math.random()*0.3;
+          f.vx = randRange(-0.00007, 0.00007); f.vy = randRange(-0.0001, -0.00004);
+          f.life = 0; f.maxLife = randRange(260, 420); f.targetOpacity = randRange(0.45, 0.9);
+        }
+
+        var px = f.x*w, py = f.y*h;
+        ctx.save();
+        ctx.globalAlpha = f.opacity * pal.pillFill;
+        ctx.fillStyle = 'rgb(' + pal.pillBg + ')';
+        roundRect(ctx, px-28, py-14, 72, 28, 6); ctx.fill();
+        ctx.globalAlpha = f.opacity * pal.pillStroke;
+        ctx.strokeStyle = f.color; ctx.lineWidth = 0.8;
+        roundRect(ctx, px-28, py-14, 72, 28, 6); ctx.stroke();
+        ctx.restore();
+
+        ctx.save();
+        ctx.globalAlpha = f.opacity * 0.7;
+        ctx.fillStyle = pal.labelColor;
+        ctx.font = '9px Helvetica Neue, Arial, sans-serif';
+        ctx.fillText(f.label, px-24, py-2);
+        ctx.globalAlpha = f.opacity;
+        ctx.fillStyle = f.color;
+        ctx.font = 'bold 11px Helvetica Neue, Arial, sans-serif';
+        ctx.fillText(f.value + f.suffix, px-24, py+10);
+        ctx.restore();
+      });
+    }
+
     function loop(){
+      var pal = currentPalette();
       ctx.clearRect(0, 0, canvas.width, canvas.height);
-      drawMesh();
-      drawParticles();
+      drawMesh(pal);
+      drawParticles(pal);
+      drawMetrics(pal);
       requestAnimationFrame(loop);
     }
     loop();
