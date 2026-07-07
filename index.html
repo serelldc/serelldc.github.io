@@ -303,44 +303,49 @@ width:14px; height:14px; flex-shrink:0;
 /* ===== CASE STUDY CARDS — 3D COVERFLOW ===== */
 .work-carousel-wrap{
 position:relative;
-perspective: 1600px;
 margin-bottom:60px;
+--step: 300px;
+--angle: 38deg;
+--stage-h: 460px;
+}
+.work-carousel-stage{
+position:relative;
+height: var(--stage-h);
+perspective: 1600px;
+perspective-origin: 50% 50%;
 }
 .work-grid{
-position:relative;
-height:460px;
+position:absolute;
+inset:0;
 transform-style: preserve-3d;
 }
 .case-card{
 position:absolute;
 top:0; left:50%;
-width:320px;
+width:300px;
+margin-left:-150px;
 background: rgba(255,255,255,0.03);
 border:1px solid var(--line);
 border-radius:10px;
 overflow:hidden;
 display:flex; flex-direction:column;
-transition: transform .55s cubic-bezier(.4,0,.2,1), opacity .55s ease, border-color .25s ease;
-will-change: transform, opacity;
 cursor:pointer;
+transform-style: preserve-3d;
+transition: transform .55s cubic-bezier(.34,1.56,.64,1), opacity .5s ease, border-color .3s ease, box-shadow .5s ease;
+box-shadow: 0 30px 50px -20px rgba(0,0,0,0.5);
 }
-.case-card.is-active{ border-color: var(--gold); }
-.case-card .thumb-wrap{ overflow:hidden; height:190px; background:#0c1626; flex-shrink:0; }
+.case-card.is-active{ border-color: var(--gold); cursor:default; box-shadow: 0 40px 70px -20px rgba(0,0,0,0.65); }
+.case-card .thumb-wrap{ overflow:hidden; height:170px; background:#0c1626; flex-shrink:0; }
 .case-card .thumb-wrap img{
 width:100%; height:100%; object-fit:cover; display:block;
-transition: transform .5s ease;
 }
-.case-card.is-active:hover .thumb-wrap img{ transform: scale(1.06); }
-.case-card .body{ padding:22px 24px 26px; display:flex; flex-direction:column; gap:10px; flex:1; }
+.case-card .body{ padding:22px 22px 26px; display:flex; flex-direction:column; gap:10px; flex:1; }
 .case-card .tag{
 font-family:'Helvetica Neue', Arial, sans-serif;
 font-size:11px; letter-spacing:.22em; color: var(--gold); text-transform:uppercase;
 }
 .case-card h3{ font-size:19px; font-weight:400; line-height:1.3; }
-.case-card p{
-color: var(--muted); font-size:13.5px; flex:1;
-display:-webkit-box; -webkit-line-clamp:3; -webkit-box-orient:vertical; overflow:hidden;
-}
+.case-card p{ color: var(--muted); font-size:13.5px; flex:1; }
 .case-card .link{
 font-family:'Helvetica Neue', Arial, sans-serif;
 font-size:13px;
@@ -352,28 +357,29 @@ transition: all .2s;
 white-space:nowrap;
 align-self:flex-start;
 margin-top:4px;
+pointer-events:none;
 }
-.case-card .link:hover{ border-color: var(--gold); color: var(--gold); }
+.case-card.is-active .link{ pointer-events:auto; }
+.case-card.is-active .link:hover{ border-color: var(--gold); color: var(--gold); }
 .case-card .link svg{ width:14px; height:14px; transition: transform .2s; }
-.case-card .link:hover svg{ transform: translateX(3px); }
-.case-card:not(.is-active) .link{ pointer-events:none; }
+.case-card.is-active .link:hover svg{ transform: translateX(3px); }
 
 /* Work carousel nav */
 .work-carousel-nav{
 display:flex; align-items:center; justify-content:space-between;
-margin-bottom:40px;
+margin-top:32px;
 }
 .work-carousel-dots{ display:flex; gap:8px; align-items:center; }
 .work-carousel-arrows{ display:flex; gap:10px; }
 
-@media (max-width: 900px){
-.work-grid{ height:430px; }
-.case-card{ width:270px; }
+@media (max-width: 820px){
+.work-carousel-wrap{ --step: 210px; --angle: 32deg; --stage-h: 420px; }
+.case-card{ width:260px; margin-left:-130px; }
 }
 @media (max-width: 580px){
-.work-grid{ height:400px; }
-.case-card{ width:82vw; max-width:300px; }
-.case-card .thumb-wrap{ height:160px; }
+.work-carousel-wrap{ --step: 140px; --angle: 26deg; --stage-h: 400px; }
+.case-card{ width:230px; margin-left:-115px; }
+.case-card .thumb-wrap{ height:150px; }
 }
 .featured-banner{
 position:relative;
@@ -408,7 +414,7 @@ border:1px solid rgba(255,255,255,0.1);
 .featured-content h3{ font-size: clamp(22px,2.6vw,30px); font-weight:400; margin-bottom:14px; line-height:1.3; }
 .featured-content p{ color: var(--muted); font-size:15px; margin-bottom:20px; max-width:46ch; }
 
-/* ===== CLIENT PROJECTS CAROUSEL ===== */
+/* ===== CLIENT PROJECTS CAROUSEL — 3D COVERFLOW ===== */
 .more-projects{
 border-top:1px solid var(--line);
 padding-top:40px;
@@ -420,27 +426,37 @@ color: var(--gold); margin-bottom:24px;
 }
 .carousel-wrap{
 position:relative;
-perspective: 1600px;
+--step: 270px;
+--angle: 34deg;
+--stage-h: 340px;
+}
+.carousel-stage{
+position:relative;
+height: var(--stage-h);
+perspective: 1500px;
+perspective-origin: 50% 50%;
 }
 .client-grid{
-position:relative;
-height:300px;
+position:absolute;
+inset:0;
 transform-style: preserve-3d;
 }
 .client-card{
 position:absolute;
 top:0; left:50%;
-width:300px;
-background: linear-gradient(160deg, rgba(212,162,78,0.10), rgba(255,255,255,0.03));
+width:340px;
+margin-left:-170px;
+background: linear-gradient(160deg, #1B2C48, #101B2E);
 border:1px solid rgba(212,162,78,0.35);
 border-radius:10px;
-padding:24px 24px 22px;
-display:flex; flex-direction:column; gap:10px;
-transition: transform .55s cubic-bezier(.4,0,.2,1), opacity .55s ease, border-color .25s ease;
-will-change: transform, opacity;
+padding:28px 28px 26px;
+display:flex; flex-direction:column; gap:12px;
 cursor:pointer;
+transform-style: preserve-3d;
+transition: transform .55s cubic-bezier(.34,1.56,.64,1), opacity .5s ease, border-color .3s ease, box-shadow .5s ease;
+box-shadow: 0 24px 40px -18px rgba(0,0,0,0.5);
 }
-.client-card.is-active{ border-color: var(--gold); }
+.client-card.is-active{ border-color: var(--gold); cursor:default; box-shadow: 0 34px 60px -18px rgba(0,0,0,0.6); }
 .client-card .badge{
 font-family:'Helvetica Neue', Arial, sans-serif;
 font-size:11px; letter-spacing:.18em; text-transform:uppercase;
@@ -452,23 +468,21 @@ width:fit-content;
 content:""; width:6px; height:6px; border-radius:50%;
 background: var(--gold); display:inline-block;
 }
-.client-card h4{ font-size:18px; font-weight:400; line-height:1.3; color: var(--paper); }
-.client-card p{
-color: var(--muted); font-size:13.5px; flex:1;
-display:-webkit-box; -webkit-line-clamp:3; -webkit-box-orient:vertical; overflow:hidden;
-}
+.client-card h4{ font-size:19px; font-weight:400; line-height:1.3; color: var(--paper); }
+.client-card p{ color: var(--muted); font-size:14px; flex:1; }
 .client-card a{
 font-family:'Helvetica Neue', Arial, sans-serif; font-size:13px;
 color: var(--paper); text-decoration:none;
-border:1px solid var(--line); padding:10px 18px; border-radius:4px;
-transition: all .2s; white-space:nowrap;
-display:inline-flex; align-items:center; gap:8px;
-align-self:flex-start; margin-top:4px;
+border:1px solid var(--line); padding:10px 16px; border-radius:4px;
+transition: all .2s; white-space:normal; line-height:1.35; text-align:center;
+display:inline-flex; align-items:center; justify-content:center; gap:8px;
+align-self:flex-start; max-width:100%; margin-top:2px;
+pointer-events:none;
 }
-.client-card a:hover{ border-color: var(--gold); color: var(--gold); background: rgba(212,162,78,0.08); }
-.client-card a svg{ width:14px; height:14px; transition: transform .2s; }
-.client-card a:hover svg{ transform: translateX(3px); }
-.client-card:not(.is-active) a{ pointer-events:none; }
+.client-card.is-active a{ pointer-events:auto; }
+.client-card.is-active a:hover{ border-color: var(--gold); color: var(--gold); background: rgba(212,162,78,0.08); }
+.client-card a svg{ width:14px; height:14px; flex-shrink:0; transition: transform .2s; }
+.client-card.is-active a:hover svg{ transform: translateX(3px); }
 /* Carousel nav */
 .carousel-nav{
 display:flex; align-items:center; justify-content:space-between;
@@ -498,13 +512,13 @@ flex-shrink:0;
 .carousel-btn:hover{ border-color: var(--gold); color: var(--gold); }
 .carousel-btn:disabled{ opacity:.3; cursor:default; }
 .carousel-btn svg{ width:18px; height:18px; }
-@media (max-width: 900px){
-.client-grid{ height:280px; }
-.client-card{ width:260px; }
+@media (max-width: 820px){
+.carousel-wrap{ --step: 210px; --angle: 30deg; --stage-h: 380px; }
+.client-card{ width:280px; margin-left:-140px; }
 }
 @media (max-width: 580px){
-.client-grid{ height:300px; }
-.client-card{ width:82vw; max-width:300px; }
+.carousel-wrap{ --step: 150px; --angle: 24deg; --stage-h: 400px; }
+.client-card{ width:250px; margin-left:-125px; padding:24px 22px 22px; }
 }
 
 /* ===== FLOATING MESSENGER BUTTON ===== */
@@ -789,6 +803,7 @@ Message on Messenger
 <div class="rule"></div>
 </div>
 <div class="work-carousel-wrap">
+<div class="work-carousel-stage">
 <div class="work-grid" id="workCarousel">
 <div class="case-card">
 <div class="thumb-wrap"><img src="media-buyer-blueprint-cover.png" alt="Media Buyer Blueprint: The Reverse Portfolio Method" style="object-fit:cover; object-position:center top;"></div>
@@ -863,6 +878,7 @@ View Store
 </div>
 </div>
 </div>
+</div>
 <div class="work-carousel-nav">
 <div class="work-carousel-dots" id="workDots"></div>
 <div class="work-carousel-arrows">
@@ -893,6 +909,7 @@ Browse the Store
 <div class="more-projects">
 <div class="more-label sans">Client Projects</div>
 <div class="carousel-wrap">
+<div class="carousel-stage">
 <div class="client-grid" id="clientCarousel">
 <div class="client-card">
 <div class="badge">Landing Page</div>
@@ -938,6 +955,7 @@ View Page
 View My Facebook Lead Generation Strategy
 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 5l7 7-7 7"/></svg>
 </a>
+</div>
 </div>
 </div>
 <div class="carousel-nav">
@@ -1072,66 +1090,94 @@ localStorage.setItem('theme','dark');
 }
 });
 })();
-// 3D COVERFLOW CAROUSEL (shared engine)
-function initCoverflow(opts){
+// 3D COVERFLOW CAROUSEL ENGINE
+function init3DCarousel(opts){
 var track = document.getElementById(opts.trackId);
-if(!track) return;
 var prevBtn = document.getElementById(opts.prevId);
 var nextBtn = document.getElementById(opts.nextId);
 var dotsWrap = document.getElementById(opts.dotsId);
-var cards = Array.from(track.children);
-var total = cards.length;
+if(!track) return;
+
+var wrap = track.closest(opts.wrapSelector);
+var cards = Array.from(track.querySelectorAll(opts.cardSelector));
+var len = cards.length;
 var current = 0;
 
-function angleFor(){ return window.innerWidth <= 580 ? 26 : 42; }
-function spacingFor(){ return window.innerWidth <= 580 ? 58 : (window.innerWidth <= 900 ? 74 : 92); }
+function getVars(){
+var cs = getComputedStyle(wrap);
+return {
+step: parseFloat(cs.getPropertyValue('--step')) || 260,
+angle: parseFloat(cs.getPropertyValue('--angle')) || 35
+};
+}
+
+function shortestDiff(i, cur){
+var d = i - cur;
+if(d > len/2) d -= len;
+if(d < -len/2) d += len;
+return d;
+}
 
 function render(){
-var angle = angleFor();
-var spacing = spacingFor();
+var v = getVars();
 cards.forEach(function(card, i){
-var offset = i - current;
-var abs = Math.abs(offset);
-var visible = abs <= 2;
-var tx = offset * spacing;
-var tz = -abs * 150;
-var ry = offset === 0 ? 0 : (offset > 0 ? -angle : angle);
-var scale = offset === 0 ? 1 : (abs === 1 ? 0.82 : 0.66);
-var opacity = offset === 0 ? 1 : (abs === 1 ? 0.55 : (abs === 2 ? 0.2 : 0));
-card.style.transform = 'translateX(-50%) translateX(' + tx + '%) translateZ(' + tz + 'px) rotateY(' + ry + 'deg) scale(' + scale + ')';
-card.style.opacity = opacity;
-card.style.zIndex = 100 - abs;
-card.style.pointerEvents = visible ? 'auto' : 'none';
-card.classList.toggle('is-active', offset === 0);
+var diff = shortestDiff(i, current);
+var abs = Math.abs(diff);
+card.classList.toggle('is-active', diff === 0);
+if(abs > 3){
+card.style.opacity = '0';
+card.style.pointerEvents = 'none';
+card.style.transform = 'translateX(' + (diff * v.step) + 'px) translateZ(-600px) rotateY(' + (-diff * v.angle) + 'deg)';
+card.style.zIndex = 0;
+return;
+}
+var scale = diff === 0 ? 1.1 : Math.max(0.55, 1 - abs * 0.15);
+var opacity = Math.max(0.12, 1 - abs * 0.32);
+var tz = diff === 0 ? 60 : -abs * 120;
+var ty = diff === 0 ? -16 : 0;
+card.style.pointerEvents = 'auto';
+card.style.opacity = String(opacity);
+card.style.zIndex = String(100 - abs);
+card.style.transform =
+'translateX(' + (diff * v.step) + 'px) ' +
+'translateY(' + ty + 'px) ' +
+'translateZ(' + tz + 'px) ' +
+'rotateY(' + (-diff * v.angle) + 'deg) ' +
+'scale(' + scale + ')';
 });
 buildDots();
 }
 
 function buildDots(){
 if(!dotsWrap) return;
+if(dotsWrap.childElementCount !== len){
 dotsWrap.innerHTML = '';
-for(var i = 0; i < total; i++){
+for(var i = 0; i < len; i++){
 var d = document.createElement('button');
-d.className = 'carousel-dot' + (i === current ? ' active' : '');
+d.className = 'carousel-dot';
 d.setAttribute('aria-label', 'Slide ' + (i+1));
 (function(idx){ d.addEventListener('click', function(){ goTo(idx); }); })(i);
 dotsWrap.appendChild(d);
 }
 }
+Array.from(dotsWrap.children).forEach(function(d, i){
+d.classList.toggle('active', i === current);
+});
+}
 
 function goTo(idx){
-current = (idx + total) % total;
+current = ((idx % len) + len) % len;
 render();
 }
 
+cards.forEach(function(card, i){
+card.addEventListener('click', function(){
+if(i !== current) goTo(i);
+});
+});
+
 if(prevBtn) prevBtn.addEventListener('click', function(){ goTo(current - 1); });
 if(nextBtn) nextBtn.addEventListener('click', function(){ goTo(current + 1); });
-
-cards.forEach(function(card, i){
-card.addEventListener('click', function(e){
-if(i !== current){ e.preventDefault(); goTo(i); }
-});
-});
 
 var startX = 0;
 track.addEventListener('touchstart', function(e){ startX = e.touches[0].clientX; }, {passive:true});
@@ -1141,11 +1187,26 @@ if(Math.abs(diff) > 40){ goTo(current + (diff > 0 ? 1 : -1)); }
 }, {passive:true});
 
 window.addEventListener('resize', render);
-render();
+goTo(0);
 }
 
-initCoverflow({ trackId:'clientCarousel', prevId:'carouselPrev', nextId:'carouselNext', dotsId:'carouselDots' });
-initCoverflow({ trackId:'workCarousel', prevId:'workPrev', nextId:'workNext', dotsId:'workDots' });
+init3DCarousel({
+trackId: 'clientCarousel',
+prevId: 'carouselPrev',
+nextId: 'carouselNext',
+dotsId: 'carouselDots',
+wrapSelector: '.carousel-wrap',
+cardSelector: '.client-card'
+});
+
+init3DCarousel({
+trackId: 'workCarousel',
+prevId: 'workPrev',
+nextId: 'workNext',
+dotsId: 'workDots',
+wrapSelector: '.work-carousel-wrap',
+cardSelector: '.case-card'
+});
 
 </script>
 
