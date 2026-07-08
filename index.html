@@ -304,6 +304,7 @@ width:14px; height:14px; flex-shrink:0;
 .work-carousel-wrap{
 position:relative;
 margin-bottom:60px;
+padding-top:24px;
 --step: 300px;
 --angle: 38deg;
 --stage-h: 460px;
@@ -324,7 +325,7 @@ position:absolute;
 top:0; left:50%;
 width:300px;
 margin-left:-150px;
-background: rgba(255,255,255,0.03);
+background: linear-gradient(160deg, #1B2C48, #101B2E);
 border:1px solid var(--line);
 border-radius:10px;
 overflow:hidden;
@@ -373,11 +374,11 @@ margin-top:32px;
 .work-carousel-arrows{ display:flex; gap:10px; }
 
 @media (max-width: 820px){
-.work-carousel-wrap{ --step: 210px; --angle: 32deg; --stage-h: 420px; }
+.work-carousel-wrap{ --step: 210px; --angle: 32deg; --stage-h: 460px; padding-top:36px; margin-bottom:70px; }
 .case-card{ width:260px; margin-left:-130px; }
 }
 @media (max-width: 580px){
-.work-carousel-wrap{ --step: 140px; --angle: 26deg; --stage-h: 400px; }
+.work-carousel-wrap{ --step: 140px; --angle: 26deg; --stage-h: 460px; padding-top:44px; margin-bottom:80px; }
 .case-card{ width:230px; margin-left:-115px; }
 .case-card .thumb-wrap{ height:150px; }
 }
