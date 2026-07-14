@@ -463,7 +463,14 @@ transform-style: preserve-3d;
 transition: transform .55s cubic-bezier(.34,1.56,.64,1), opacity .5s ease, border-color .3s ease, box-shadow .5s ease;
 box-shadow: 0 24px 40px -18px rgba(0,0,0,0.5);
 }
-.client-card.is-active{ border-color: var(--gold); cursor:default; box-shadow: 0 34px 60px -18px rgba(0,0,0,0.6); }
+.client-card.is-active{ border-color: var(--gold); cursor:default; box-shadow: 0 34px 60px -18px rgba(0,0,0,0.6); }.client-card .logo-badge{
+width:48px; height:48px; border-radius:10px;
+background:#fff; padding:6px;
+margin-bottom:6px;
+}
+.client-card .logo-badge img{
+width:100%; height:100%; object-fit:contain; display:block;
+}
 .client-card .badge{
 font-family:'Helvetica Neue', Arial, sans-serif;
 font-size:11px; letter-spacing:.18em; text-transform:uppercase;
@@ -944,7 +951,8 @@ View Page
 View Page
 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 5l7 7-7 7"/></svg>
 </a>
-</div><div class="client-card">
+<div class="client-card">
+  <div class="logo-badge"><img src="assets/clients/jenca-logo.png" alt="JENCA logo"></div>
   <div class="badge">Healthcare · Clinic Website</div>
   <h4>JENCA Medical &amp; Dental Aesthetic Clinic — Website</h4>
   <p>Full clinic website build — regenerative healthcare, medical aesthetics, dental care &amp; wellness services, live and viewable online.</p>
