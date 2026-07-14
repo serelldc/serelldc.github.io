@@ -417,13 +417,18 @@ border:1px solid rgba(255,255,255,0.1);
 
 /* ===== CLIENT PROJECTS CAROUSEL — 3D COVERFLOW ===== */
 .more-projects{
-border-top:1px solid var(--line);
-padding-top:40px;
+border-top:2px solid var(--gold);
+padding-top:44px;
 }
 .more-projects .more-label{
 font-family:'Helvetica Neue', Arial, sans-serif;
-font-size:12px; letter-spacing:.22em; text-transform:uppercase;
-color: var(--gold); margin-bottom:24px;
+font-size:14px; letter-spacing:.24em; text-transform:uppercase;
+color: var(--gold); margin-bottom:8px;
+display:flex; align-items:center; gap:10px;
+}
+.more-projects .more-label::before{
+content:""; width:9px; height:9px; border-radius:50%;
+background: var(--gold); box-shadow:0 0 0 4px rgba(212,162,78,0.2);
 }
 .carousel-wrap{
 position:relative;
