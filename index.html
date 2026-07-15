@@ -57,6 +57,19 @@ white-space:nowrap;
 }
 .topnav .nav-cta svg{ width:14px; height:14px; }
 .topnav .nav-cta:hover{ background: var(--gold); color: var(--navy-deep); }
+.nav-badge{
+font-family:'Helvetica Neue', Arial, sans-serif;
+font-size:11px; letter-spacing:.06em; color: var(--paper);
+border:1px solid var(--line);
+padding:8px 14px; border-radius:30px;
+white-space:nowrap;
+text-decoration:none;
+transition: all .2s;
+}
+.nav-badge:hover{ border-color: var(--gold); color: var(--gold); }
+@media (max-width: 900px){
+.nav-badge{ display:none; }
+}
 
 /* THEME TOGGLE BUTTON */
 .theme-toggle{
@@ -419,11 +432,19 @@ border:1px solid rgba(255,255,255,0.1);
 .more-projects{
 border-top:1px solid var(--line);
 padding-top:40px;
+scroll-margin-top: 100px;
 }
 .more-projects .more-label{
 font-family:'Helvetica Neue', Arial, sans-serif;
 font-size:12px; letter-spacing:.22em; text-transform:uppercase;
-color: var(--gold); margin-bottom:24px;
+color: var(--gold); margin-bottom:10px;
+}
+.more-projects .more-heading{
+font-family: 'Georgia', 'Times New Roman', serif;
+font-size: clamp(24px, 2.8vw, 34px);
+font-weight:400;
+color: var(--paper);
+margin-bottom:24px;
 }
 .carousel-wrap{
 position:relative;
@@ -704,10 +725,12 @@ box-shadow: 0 12px 30px -8px rgba(0,0,0,0.7);
 <a href="#top"><img src="srdc-logo-mark-new.png" alt="SRDC — Strategic Resource Digital Creators"></a>
 <div class="nav-links">
 <a href="#work">Work</a>
+<a href="#client-work">Client Work</a>
 <a href="#about">About</a>
 <a href="#contact">Contact</a>
 </div>
 <div class="nav-right">
+<a class="nav-badge" href="#client-work">6 Client Projects</a>
 <button class="theme-toggle" id="themeToggle" type="button" aria-label="Toggle dark mode">
 <svg class="icon-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="5"/><path d="M12 1v2M12 21v2M4.22 4.22l1.42 1.42M18.36 18.36l1.42 1.42M1 12h2M21 12h2M4.22 19.78l1.42-1.42M18.36 5.64l1.42-1.42"/></svg>
 <svg class="icon-moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 12.79A9 9 0 1111.21 3a7 7 0 109.79 9.79z"/></svg>
@@ -738,6 +761,7 @@ Message on Messenger
 </div>
 <div class="hero-meta">
 <span>Sharjah, UAE — Open to Remote &amp; US Clients</span>
+<a href="#client-work">6 Client Projects Delivered</a>
 <a href="mailto:strategicresource.dc@gmail.com">strategicresource.dc@gmail.com</a>
 <a href="https://linkedin.com/in/rell-se" target="_blank">LinkedIn</a>
 <a href="https://payhip.com/SRDC" target="_blank">Payhip Store</a>
@@ -789,6 +813,10 @@ Message on Messenger
 <div class="stat-card">
 <div class="num">94/94</div>
 <div class="label sans">FMBM V4 LESSONS — 100% COMPLETE</div>
+</div>
+<div class="stat-card">
+<div class="num">6</div>
+<div class="label sans">CLIENT PROJECTS DELIVERED</div>
 </div>
 </div>
 </div>
@@ -908,8 +936,9 @@ Browse the Store
 </div>
 
 <!-- ADDITIONAL PROJECTS -->
-<div class="more-projects">
+<div class="more-projects" id="client-work">
 <div class="more-label sans">Client Projects</div>
+<div class="more-heading">Real client work, delivered and live — 6 projects across law, healthcare, real estate, e-commerce &amp; publishing.</div>
 <div class="carousel-wrap">
 <div class="carousel-stage">
 <div class="client-grid" id="clientCarousel">
@@ -955,6 +984,15 @@ View Page
 <p>Facebook ad campaign for a fully furnished condo rental in Las Piñas — currently in progress.</p>
 <a href="assets/FB-Ads-Strategy-Barcelona211.pdf?v=2" target="_blank">
 View My Facebook Lead Generation Strategy
+<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 5l7 7-7 7"/></svg>
+</a>
+</div>
+<div class="client-card">
+<div class="badge">Full Website · Healthcare</div>
+<h4>JENCA Medical &amp; Dental Aesthetic Clinic</h4>
+<p>Full multi-page clinic website — home, about, services, team, and a live booking system with an installable PWA app for one-tap appointments. Live and viewable online.</p>
+<a href="https://jencaclinicph.github.io/jenca-website/book.html" target="_blank">
+View Website
 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 5l7 7-7 7"/></svg>
 </a>
 </div>
@@ -1058,6 +1096,7 @@ View My Facebook Lead Generation Strategy
 <p>I bring real-money campaign experience, full-funnel know-how, and a results-first mindset to every client account.</p>
 <div class="contact-links">
 <a class="primary" href="mailto:strategicresource.dc@gmail.com">Email Me</a>
+<a href="#client-work">See Client Work</a>
 <a href="https://m.me/imserell" target="_blank">Message on Messenger</a>
 <a href="https://linkedin.com/in/rell-se" target="_blank">LinkedIn</a>
 <a href="https://payhip.com/SRDC" target="_blank">Payhip Store</a>
