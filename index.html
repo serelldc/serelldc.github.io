@@ -263,6 +263,9 @@ transition: background .3s ease;
 .about{ background: var(--paper); transition: background .3s ease; position:relative; overflow:hidden; }
 .section-canvas{ position:absolute; inset:0; width:100%; height:100%; pointer-events:none; z-index:0; }
 .kinetic-canvas{ position:absolute; inset:0; width:100%; height:100%; pointer-events:none; z-index:0; }
+@media (max-width: 900px){
+.kinetic-canvas{ display:none; }
+}
 .section-content{ position:relative; z-index:1; }
 .about-grid{
 display:grid; grid-template-columns: 1.3fr 1fr; gap:60px;
@@ -1629,34 +1632,37 @@ cardSelector: '.case-card'
 })();
 </script>
 
-<!-- ===== KINETIC GRID — cursor-reactive dot grid, layered on every section ===== -->
+<!-- ===== KINETIC GRID — cursor-reactive dot grid, desktop only ===== -->
 <script>
 (function(){
   var canvases = document.querySelectorAll('.kinetic-canvas');
   if(!canvases.length) return;
+
+  var mql = window.matchMedia('(min-width: 901px)');
 
   var GAP = 42;
   var R = 160;
   var PULL = 1.6;
 
   var mouse = { x: -9999, y: -9999 };
+  var running = false;
 
   function setMouse(clientX, clientY){
     mouse.x = clientX;
     mouse.y = clientY;
   }
-  window.addEventListener('mousemove', function(e){ setMouse(e.clientX, e.clientY); }, { passive: true });
-  window.addEventListener('touchmove', function(e){ var t = e.touches[0]; if(t) setMouse(t.clientX, t.clientY); }, { passive: true });
 
   function colorsFor(tone){
     if(tone === 'fixed-dark'){
-      return { dot: '212,162,78', line: '138,160,189' };
+      return { dot: '212,162,78' };
     }
     var isDark = document.documentElement.getAttribute('data-theme') === 'dark';
     return isDark
-      ? { dot: '212,162,78', line: '138,160,189' }
-      : { dot: '11,30,54', line: '20,50,90' };
+      ? { dot: '212,162,78' }
+      : { dot: '11,30,54' };
   }
+
+  var instances = [];
 
   canvases.forEach(function(canvas){
     var tone = canvas.getAttribute('data-tone');
@@ -1664,7 +1670,7 @@ cardSelector: '.case-card'
     var host = canvas.parentElement;
     var W = 1, H = 1;
     var dots = [];
-    var cols = [];
+    var raf = null;
 
     function build(){
       var r = host.getBoundingClientRect();
@@ -1677,23 +1683,16 @@ cardSelector: '.case-card'
       canvas.style.height = H + 'px';
       ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
 
-      cols = [];
       dots = [];
       var nCols = Math.floor(W / GAP) + 2;
       var nRows = Math.floor(H / GAP) + 2;
       for(var c = 0; c < nCols; c++){
-        var col = [];
         for(var rIdx = 0; rIdx < nRows; rIdx++){
           var hx = c * GAP, hy = rIdx * GAP;
-          var d = { hx: hx, hy: hy, x: hx, y: hy, vx: 0, vy: 0 };
-          col.push(d);
-          dots.push(d);
+          dots.push({ hx: hx, hy: hy, x: hx, y: hy, vx: 0, vy: 0 });
         }
-        cols.push(col);
       }
     }
-    build();
-    window.addEventListener('resize', build);
 
     function frame(){
       var rect = canvas.getBoundingClientRect();
@@ -1721,43 +1720,61 @@ cardSelector: '.case-card'
         d.vy = (d.vy + ay) * 0.82;
         d.x += d.vx;
         d.y += d.vy;
-      }
 
-      for(var c = 0; c < cols.length; c++){
-        for(var rIdx = 0; rIdx < cols[c].length; rIdx++){
-          var d2 = cols[c][rIdx];
-          var right = cols[c+1] ? cols[c+1][rIdx] : null;
-          var down = cols[c][rIdx+1];
-          var prox = active ? Math.max(0, 1 - Math.sqrt((localX-d2.x)*(localX-d2.x) + (localY-d2.y)*(localY-d2.y)) / R) : 0;
-          if(right){
-            ctx.globalAlpha = 0.04 + prox * 0.5;
-            ctx.strokeStyle = 'rgb(' + col.line + ')';
-            ctx.lineWidth = 0.5 + prox * 1.2;
-            ctx.beginPath(); ctx.moveTo(d2.x, d2.y); ctx.lineTo(right.x, right.y); ctx.stroke();
-          }
-          if(down){
-            ctx.globalAlpha = 0.04 + prox * 0.5;
-            ctx.strokeStyle = 'rgb(' + col.line + ')';
-            ctx.lineWidth = 0.5 + prox * 1.2;
-            ctx.beginPath(); ctx.moveTo(d2.x, d2.y); ctx.lineTo(down.x, down.y); ctx.stroke();
-          }
-        }
-      }
-
-      for(var j = 0; j < dots.length; j++){
-        var d3 = dots[j];
-        var prox2 = active ? Math.max(0, 1 - Math.sqrt((localX-d3.x)*(localX-d3.x) + (localY-d3.y)*(localY-d3.y)) / R) : 0;
-        ctx.globalAlpha = 0.14 + prox2 * 0.66;
+        var prox = active ? Math.max(0, 1 - Math.sqrt((localX-d.x)*(localX-d.x) + (localY-d.y)*(localY-d.y)) / R) : 0;
+        ctx.globalAlpha = 0.14 + prox * 0.66;
         ctx.fillStyle = 'rgb(' + col.dot + ')';
         ctx.beginPath();
-        ctx.arc(d3.x, d3.y, 0.7 + prox2 * 1.8, 0, 2*Math.PI);
+        ctx.arc(d.x, d.y, 0.7 + prox * 1.8, 0, 2*Math.PI);
         ctx.fill();
       }
       ctx.globalAlpha = 1;
-      requestAnimationFrame(frame);
+      raf = requestAnimationFrame(frame);
     }
-    requestAnimationFrame(frame);
+
+    instances.push({
+      start: function(){
+        if(raf) return;
+        build();
+        raf = requestAnimationFrame(frame);
+      },
+      stop: function(){
+        if(raf){ cancelAnimationFrame(raf); raf = null; }
+        ctx.clearRect(0, 0, canvas.width, canvas.height);
+      },
+      resize: function(){
+        if(raf) build();
+      }
+    });
   });
+
+  function startAll(){
+    if(running) return;
+    running = true;
+    window.addEventListener('mousemove', onMove, { passive: true });
+    window.addEventListener('touchmove', onTouch, { passive: true });
+    instances.forEach(function(inst){ inst.start(); });
+  }
+  function stopAll(){
+    if(!running) return;
+    running = false;
+    window.removeEventListener('mousemove', onMove);
+    window.removeEventListener('touchmove', onTouch);
+    instances.forEach(function(inst){ inst.stop(); });
+  }
+  function onMove(e){ setMouse(e.clientX, e.clientY); }
+  function onTouch(e){ var t = e.touches[0]; if(t) setMouse(t.clientX, t.clientY); }
+  function onResize(){ instances.forEach(function(inst){ inst.resize(); }); }
+
+  window.addEventListener('resize', onResize);
+
+  function handleMqlChange(e){
+    if(e.matches){ startAll(); } else { stopAll(); }
+  }
+  if(mql.addEventListener) mql.addEventListener('change', handleMqlChange);
+  else mql.addListener(handleMqlChange);
+
+  if(mql.matches) startAll();
 })();
 </script>
 
