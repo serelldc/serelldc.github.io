@@ -136,6 +136,7 @@ font-weight:400;
 letter-spacing:.01em;
 line-height:1.05;
 max-width:14ch;
+cursor: default;
 }
 .hero .role{
 font-family:'Helvetica Neue', Arial, sans-serif;
@@ -261,6 +262,7 @@ transition: background .3s ease;
 /* ===== ABOUT ===== */
 .about{ background: var(--paper); transition: background .3s ease; position:relative; overflow:hidden; }
 .section-canvas{ position:absolute; inset:0; width:100%; height:100%; pointer-events:none; z-index:0; }
+.kinetic-canvas{ position:absolute; inset:0; width:100%; height:100%; pointer-events:none; z-index:0; }
 .section-content{ position:relative; z-index:1; }
 .about-grid{
 display:grid; grid-template-columns: 1.3fr 1fr; gap:60px;
@@ -731,6 +733,7 @@ box-shadow: 0 12px 30px -8px rgba(0,0,0,0.7);
 <!-- HERO -->
 <div class="hero" id="top">
 <canvas id="heroCanvas" style="position:absolute;inset:0;width:100%;height:100%;pointer-events:none;z-index:0;"></canvas>
+<canvas class="kinetic-canvas" data-tone="fixed-dark"></canvas>
 <div style="position:relative;z-index:1;">
 <div class="eyebrow sans">Facebook Media Buyer · Founder, SRDC</div>
 <h1>Relly&nbsp;Se</h1>
@@ -771,6 +774,7 @@ Message on Messenger
 <!-- ABOUT + STATS -->
 <section class="about" id="about">
 <canvas class="section-canvas" data-tone="auto"></canvas>
+<canvas class="kinetic-canvas" data-tone="auto"></canvas>
 <div class="section-content">
 <div class="section-head">
 <span class="num sans">01</span>
@@ -808,6 +812,7 @@ Message on Messenger
 <!-- CASE STUDIES -->
 <section class="work" id="work">
 <canvas class="section-canvas" data-tone="fixed-dark"></canvas>
+<canvas class="kinetic-canvas" data-tone="fixed-dark"></canvas>
 <div class="section-content">
 <div class="section-head">
 <span class="num sans">02</span>
@@ -999,6 +1004,7 @@ View Website
 <!-- SKILLS -->
 <section class="skills">
 <canvas class="section-canvas" data-tone="auto"></canvas>
+<canvas class="kinetic-canvas" data-tone="auto"></canvas>
 <div class="section-content">
 <div class="section-head">
 <span class="num sans">03</span>
@@ -1037,6 +1043,7 @@ View Website
 <!-- EDUCATION / CREDENTIALS -->
 <section class="creds">
 <canvas class="section-canvas" data-tone="auto"></canvas>
+<canvas class="kinetic-canvas" data-tone="auto"></canvas>
 <div class="section-content">
 <div class="section-head">
 <span class="num sans">04</span>
@@ -1072,6 +1079,7 @@ View Website
 <!-- CONTACT -->
 <div class="contact" id="contact">
 <canvas class="section-canvas" data-tone="fixed-dark"></canvas>
+<canvas class="kinetic-canvas" data-tone="fixed-dark"></canvas>
 <div class="contact-content">
 <div class="eyebrow sans">Let's Work Together</div>
 <h2>Ready to scale your campaigns?</h2>
@@ -1617,6 +1625,138 @@ cardSelector: '.case-card'
       requestAnimationFrame(loop);
     }
     loop();
+  });
+})();
+</script>
+
+<!-- ===== KINETIC GRID — cursor-reactive dot grid, layered on every section ===== -->
+<script>
+(function(){
+  var canvases = document.querySelectorAll('.kinetic-canvas');
+  if(!canvases.length) return;
+
+  var GAP = 42;
+  var R = 160;
+  var PULL = 1.6;
+
+  var mouse = { x: -9999, y: -9999 };
+
+  function setMouse(clientX, clientY){
+    mouse.x = clientX;
+    mouse.y = clientY;
+  }
+  window.addEventListener('mousemove', function(e){ setMouse(e.clientX, e.clientY); }, { passive: true });
+  window.addEventListener('touchmove', function(e){ var t = e.touches[0]; if(t) setMouse(t.clientX, t.clientY); }, { passive: true });
+
+  function colorsFor(tone){
+    if(tone === 'fixed-dark'){
+      return { dot: '212,162,78', line: '138,160,189' };
+    }
+    var isDark = document.documentElement.getAttribute('data-theme') === 'dark';
+    return isDark
+      ? { dot: '212,162,78', line: '138,160,189' }
+      : { dot: '11,30,54', line: '20,50,90' };
+  }
+
+  canvases.forEach(function(canvas){
+    var tone = canvas.getAttribute('data-tone');
+    var ctx = canvas.getContext('2d');
+    var host = canvas.parentElement;
+    var W = 1, H = 1;
+    var dots = [];
+    var cols = [];
+
+    function build(){
+      var r = host.getBoundingClientRect();
+      W = Math.max(1, Math.floor(r.width));
+      H = Math.max(1, Math.floor(r.height));
+      var dpr = window.devicePixelRatio || 1;
+      canvas.width = Math.floor(W * dpr);
+      canvas.height = Math.floor(H * dpr);
+      canvas.style.width = W + 'px';
+      canvas.style.height = H + 'px';
+      ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+
+      cols = [];
+      dots = [];
+      var nCols = Math.floor(W / GAP) + 2;
+      var nRows = Math.floor(H / GAP) + 2;
+      for(var c = 0; c < nCols; c++){
+        var col = [];
+        for(var rIdx = 0; rIdx < nRows; rIdx++){
+          var hx = c * GAP, hy = rIdx * GAP;
+          var d = { hx: hx, hy: hy, x: hx, y: hy, vx: 0, vy: 0 };
+          col.push(d);
+          dots.push(d);
+        }
+        cols.push(col);
+      }
+    }
+    build();
+    window.addEventListener('resize', build);
+
+    function frame(){
+      var rect = canvas.getBoundingClientRect();
+      var localX = mouse.x - rect.left;
+      var localY = mouse.y - rect.top;
+      var active = localX > -R && localX < W + R && localY > -R && localY < H + R;
+      var col = colorsFor(tone);
+
+      ctx.clearRect(0, 0, W, H);
+
+      for(var i = 0; i < dots.length; i++){
+        var d = dots[i];
+        var ax = (d.hx - d.x) * 0.08;
+        var ay = (d.hy - d.y) * 0.08;
+        if(active){
+          var dx = localX - d.x, dy = localY - d.y;
+          var dist = Math.sqrt(dx*dx + dy*dy);
+          if(dist < R && dist > 0.001){
+            var f = (1 - dist / R) * PULL;
+            ax += (dx / dist) * f;
+            ay += (dy / dist) * f;
+          }
+        }
+        d.vx = (d.vx + ax) * 0.82;
+        d.vy = (d.vy + ay) * 0.82;
+        d.x += d.vx;
+        d.y += d.vy;
+      }
+
+      for(var c = 0; c < cols.length; c++){
+        for(var rIdx = 0; rIdx < cols[c].length; rIdx++){
+          var d2 = cols[c][rIdx];
+          var right = cols[c+1] ? cols[c+1][rIdx] : null;
+          var down = cols[c][rIdx+1];
+          var prox = active ? Math.max(0, 1 - Math.sqrt((localX-d2.x)*(localX-d2.x) + (localY-d2.y)*(localY-d2.y)) / R) : 0;
+          if(right){
+            ctx.globalAlpha = 0.04 + prox * 0.5;
+            ctx.strokeStyle = 'rgb(' + col.line + ')';
+            ctx.lineWidth = 0.5 + prox * 1.2;
+            ctx.beginPath(); ctx.moveTo(d2.x, d2.y); ctx.lineTo(right.x, right.y); ctx.stroke();
+          }
+          if(down){
+            ctx.globalAlpha = 0.04 + prox * 0.5;
+            ctx.strokeStyle = 'rgb(' + col.line + ')';
+            ctx.lineWidth = 0.5 + prox * 1.2;
+            ctx.beginPath(); ctx.moveTo(d2.x, d2.y); ctx.lineTo(down.x, down.y); ctx.stroke();
+          }
+        }
+      }
+
+      for(var j = 0; j < dots.length; j++){
+        var d3 = dots[j];
+        var prox2 = active ? Math.max(0, 1 - Math.sqrt((localX-d3.x)*(localX-d3.x) + (localY-d3.y)*(localY-d3.y)) / R) : 0;
+        ctx.globalAlpha = 0.14 + prox2 * 0.66;
+        ctx.fillStyle = 'rgb(' + col.dot + ')';
+        ctx.beginPath();
+        ctx.arc(d3.x, d3.y, 0.7 + prox2 * 1.8, 0, 2*Math.PI);
+        ctx.fill();
+      }
+      ctx.globalAlpha = 1;
+      requestAnimationFrame(frame);
+    }
+    requestAnimationFrame(frame);
   });
 })();
 </script>
