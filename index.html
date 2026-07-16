@@ -1732,12 +1732,19 @@ cardSelector: '.case-card'
         for(var rIdx = 0; rIdx < cols[c].length; rIdx++){
           var d2 = cols[c][rIdx];
           var right = cols[c+1] ? cols[c+1][rIdx] : null;
+          var down = cols[c][rIdx+1];
+          var prox = active ? Math.max(0, 1 - Math.sqrt((localX-d2.x)*(localX-d2.x) + (localY-d2.y)*(localY-d2.y)) / R) : 0;
           if(right){
-            var prox = active ? Math.max(0, 1 - Math.sqrt((localX-d2.x)*(localX-d2.x) + (localY-d2.y)*(localY-d2.y)) / R) : 0;
             ctx.globalAlpha = 0.04 + prox * 0.5;
             ctx.strokeStyle = 'rgb(' + col.line + ')';
             ctx.lineWidth = 0.5 + prox * 1.2;
             ctx.beginPath(); ctx.moveTo(d2.x, d2.y); ctx.lineTo(right.x, right.y); ctx.stroke();
+          }
+          if(down){
+            ctx.globalAlpha = 0.04 + prox * 0.5;
+            ctx.strokeStyle = 'rgb(' + col.line + ')';
+            ctx.lineWidth = 0.5 + prox * 1.2;
+            ctx.beginPath(); ctx.moveTo(d2.x, d2.y); ctx.lineTo(down.x, down.y); ctx.stroke();
           }
         }
       }
