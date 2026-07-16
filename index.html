@@ -1654,12 +1654,12 @@ cardSelector: '.case-card'
 
   function colorsFor(tone){
     if(tone === 'fixed-dark'){
-      return { dot: '212,162,78' };
+      return { dot: '212,162,78', line: '138,160,189' };
     }
     var isDark = document.documentElement.getAttribute('data-theme') === 'dark';
     return isDark
-      ? { dot: '212,162,78' }
-      : { dot: '11,30,54' };
+      ? { dot: '212,162,78', line: '138,160,189' }
+      : { dot: '11,30,54', line: '20,50,90' };
   }
 
   var instances = [];
@@ -1670,6 +1670,7 @@ cardSelector: '.case-card'
     var host = canvas.parentElement;
     var W = 1, H = 1;
     var dots = [];
+    var cols = [];
     var raf = null;
 
     function build(){
@@ -1683,14 +1684,19 @@ cardSelector: '.case-card'
       canvas.style.height = H + 'px';
       ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
 
+      cols = [];
       dots = [];
       var nCols = Math.floor(W / GAP) + 2;
       var nRows = Math.floor(H / GAP) + 2;
       for(var c = 0; c < nCols; c++){
+        var col = [];
         for(var rIdx = 0; rIdx < nRows; rIdx++){
           var hx = c * GAP, hy = rIdx * GAP;
-          dots.push({ hx: hx, hy: hy, x: hx, y: hy, vx: 0, vy: 0 });
+          var d = { hx: hx, hy: hy, x: hx, y: hy, vx: 0, vy: 0 };
+          col.push(d);
+          dots.push(d);
         }
+        cols.push(col);
       }
     }
 
@@ -1720,12 +1726,29 @@ cardSelector: '.case-card'
         d.vy = (d.vy + ay) * 0.82;
         d.x += d.vx;
         d.y += d.vy;
+      }
 
-        var prox = active ? Math.max(0, 1 - Math.sqrt((localX-d.x)*(localX-d.x) + (localY-d.y)*(localY-d.y)) / R) : 0;
-        ctx.globalAlpha = 0.14 + prox * 0.66;
+      for(var c = 0; c < cols.length; c++){
+        for(var rIdx = 0; rIdx < cols[c].length; rIdx++){
+          var d2 = cols[c][rIdx];
+          var right = cols[c+1] ? cols[c+1][rIdx] : null;
+          if(right){
+            var prox = active ? Math.max(0, 1 - Math.sqrt((localX-d2.x)*(localX-d2.x) + (localY-d2.y)*(localY-d2.y)) / R) : 0;
+            ctx.globalAlpha = 0.04 + prox * 0.5;
+            ctx.strokeStyle = 'rgb(' + col.line + ')';
+            ctx.lineWidth = 0.5 + prox * 1.2;
+            ctx.beginPath(); ctx.moveTo(d2.x, d2.y); ctx.lineTo(right.x, right.y); ctx.stroke();
+          }
+        }
+      }
+
+      for(var j = 0; j < dots.length; j++){
+        var d3 = dots[j];
+        var prox2 = active ? Math.max(0, 1 - Math.sqrt((localX-d3.x)*(localX-d3.x) + (localY-d3.y)*(localY-d3.y)) / R) : 0;
+        ctx.globalAlpha = 0.14 + prox2 * 0.66;
         ctx.fillStyle = 'rgb(' + col.dot + ')';
         ctx.beginPath();
-        ctx.arc(d.x, d.y, 0.7 + prox * 1.8, 0, 2*Math.PI);
+        ctx.arc(d3.x, d3.y, 0.7 + prox2 * 1.8, 0, 2*Math.PI);
         ctx.fill();
       }
       ctx.globalAlpha = 1;
