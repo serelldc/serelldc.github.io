@@ -1264,7 +1264,7 @@ var cards = Array.from(grid.querySelectorAll('.case-card'));
 var len = cards.length;
 if(!len) return;
 
-var CARD_W = 300, CARD_H = 396;
+var CARD_W = 300;
 var angleStep = (Math.PI * 2) / len;
 var radius = (CARD_W + 60) / (2 * Math.sin(angleStep / 2));
 
@@ -1282,7 +1282,6 @@ viewport.appendChild(renderer.domElement);
 
 var objects = cards.map(function(card, i){
 card.style.width = CARD_W + 'px';
-card.style.height = CARD_H + 'px';
 card.setAttribute('draggable', 'false');
 var img = card.querySelector('img');
 if(img) img.setAttribute('draggable', 'false');
