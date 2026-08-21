@@ -317,13 +317,24 @@ padding-top:24px;
 .work-carousel-stage{
 position:relative;
 height: var(--stage-h);
-perspective: 1600px;
-perspective-origin: 50% 50%;
+cursor: grab;
+}
+.work-carousel-stage.is-dragging{ cursor: grabbing; }
+.work-carousel-stage .css3d-viewport{
+position:absolute; inset:0;
+overflow:hidden;
 }
 .work-grid{
 position:absolute;
 inset:0;
 transform-style: preserve-3d;
+}
+.work-grid .case-card{ visibility:hidden; }
+.css3d-viewport .case-card{
+position:absolute; top:0; left:0; margin:0;
+transition: opacity .4s ease, border-color .3s ease, box-shadow .5s ease;
+visibility:visible;
+-webkit-user-select:none; user-select:none;
 }
 .case-card{
 position:absolute;
@@ -898,6 +909,7 @@ View Store
 </div>
 </div>
 </div>
+<div class="css3d-viewport" id="workCarousel3D"></div>
 </div>
 <div class="work-carousel-nav">
 <div class="work-carousel-dots" id="workDots"></div>
@@ -1109,6 +1121,10 @@ View Website
 <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.477 2 2 6.145 2 11.243c0 2.9 1.456 5.484 3.736 7.17V22l3.41-1.873c.91.252 1.873.388 2.854.388 5.523 0 10-4.145 10-9.243C22 6.145 17.523 2 12 2zm1.008 12.45-2.563-2.736-5.004 2.736 5.51-5.85 2.626 2.736 4.94-2.736-5.509 5.85z"/></svg>
 </a>
 
+<!-- 3D case-study carousel engine -->
+<script src="https://cdn.jsdelivr.net/npm/three@0.128.0/build/three.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/three@0.128.0/examples/js/renderers/CSS3DRenderer.js"></script>
+
 <script>
 (function(){
 var root = document.documentElement;
@@ -1233,14 +1249,175 @@ wrapSelector: '.carousel-wrap',
 cardSelector: '.client-card'
 });
 
-init3DCarousel({
-trackId: 'workCarousel',
-prevId: 'workPrev',
-nextId: 'workNext',
-dotsId: 'workDots',
-wrapSelector: '.work-carousel-wrap',
-cardSelector: '.case-card'
+function initWorkCarousel3D(){
+if(typeof THREE === 'undefined' || typeof THREE.CSS3DRenderer === 'undefined') return;
+
+var stage = document.querySelector('.work-carousel-stage');
+var viewport = document.getElementById('workCarousel3D');
+var grid = document.getElementById('workCarousel');
+var dotsWrap = document.getElementById('workDots');
+var prevBtn = document.getElementById('workPrev');
+var nextBtn = document.getElementById('workNext');
+if(!stage || !viewport || !grid) return;
+
+var cards = Array.from(grid.querySelectorAll('.case-card'));
+var len = cards.length;
+if(!len) return;
+
+var CARD_W = 300, CARD_H = 396;
+var angleStep = (Math.PI * 2) / len;
+var radius = (CARD_W + 60) / (2 * Math.sin(angleStep / 2));
+
+var width = stage.clientWidth, height = stage.clientHeight;
+var camera = new THREE.PerspectiveCamera(38, width / height, 1, 5000);
+camera.position.set(0, 0, radius + 620);
+
+var scene = new THREE.Scene();
+var group = new THREE.Group();
+scene.add(group);
+
+var renderer = new THREE.CSS3DRenderer();
+renderer.setSize(width, height);
+viewport.appendChild(renderer.domElement);
+
+var objects = cards.map(function(card, i){
+card.style.width = CARD_W + 'px';
+card.style.height = CARD_H + 'px';
+card.setAttribute('draggable', 'false');
+var img = card.querySelector('img');
+if(img) img.setAttribute('draggable', 'false');
+
+var obj = new THREE.CSS3DObject(card);
+var a = i * angleStep;
+obj.position.set(radius * Math.sin(a), 0, radius * Math.cos(a));
+obj.rotation.y = a;
+group.add(obj);
+return { el: card, obj: obj, baseAngle: a, index: i };
 });
+
+var currentStep = 0;
+var current = 0;
+var rotY = 0;
+var targetRotY = 0;
+
+function normalize(a){
+a = a % (Math.PI * 2);
+if(a > Math.PI) a -= Math.PI * 2;
+if(a < -Math.PI) a += Math.PI * 2;
+return a;
+}
+
+function updateCards(){
+objects.forEach(function(o){
+var worldAngle = normalize(o.baseAngle + rotY);
+var absA = Math.abs(worldAngle);
+var isActive = Math.round(worldAngle / angleStep) === 0 && absA < angleStep / 2;
+o.el.classList.toggle('is-active', isActive);
+var opacity = Math.max(0.08, Math.cos(Math.min(absA, Math.PI/2)) );
+if(absA > Math.PI * 0.62){ opacity = 0; }
+o.el.style.opacity = String(opacity);
+o.el.style.pointerEvents = absA < angleStep * 0.75 ? 'auto' : 'none';
+});
+buildDots();
+}
+
+function buildDots(){
+if(!dotsWrap) return;
+if(dotsWrap.childElementCount !== len){
+dotsWrap.innerHTML = '';
+objects.forEach(function(o, i){
+var d = document.createElement('button');
+d.className = 'carousel-dot';
+d.setAttribute('aria-label', 'Slide ' + (i+1));
+d.addEventListener('click', function(){ goToIndex(i); });
+dotsWrap.appendChild(d);
+});
+}
+Array.from(dotsWrap.children).forEach(function(d, i){
+d.classList.toggle('active', i === current);
+});
+}
+
+function goToStep(step){
+currentStep = step;
+current = ((currentStep % len) + len) % len;
+targetRotY = -currentStep * angleStep;
+}
+
+function goToIndex(idx){
+idx = ((idx % len) + len) % len;
+var delta = idx - current;
+if(delta > len / 2) delta -= len;
+if(delta < -len / 2) delta += len;
+goToStep(currentStep + delta);
+}
+
+objects.forEach(function(o){
+o.el.addEventListener('click', function(e){
+if(stage.classList.contains('was-dragged')) return;
+if(o.index !== current){ goToIndex(o.index); }
+});
+});
+
+if(prevBtn) prevBtn.addEventListener('click', function(){ goToStep(currentStep - 1); });
+if(nextBtn) nextBtn.addEventListener('click', function(){ goToStep(currentStep + 1); });
+
+var dragging = false, dragStartX = 0, dragStartRot = 0, dragMoved = 0;
+
+function pointerDown(e){
+dragging = true;
+dragMoved = 0;
+dragStartX = (e.touches ? e.touches[0].clientX : e.clientX);
+dragStartRot = targetRotY;
+stage.classList.add('is-dragging');
+}
+function pointerMove(e){
+if(!dragging) return;
+var x = (e.touches ? e.touches[0].clientX : e.clientX);
+var dx = x - dragStartX;
+dragMoved = Math.max(dragMoved, Math.abs(dx));
+targetRotY = dragStartRot + dx * 0.0055;
+rotY = targetRotY;
+}
+function pointerUp(){
+if(!dragging) return;
+dragging = false;
+stage.classList.remove('is-dragging');
+goToStep(Math.round(-targetRotY / angleStep));
+if(dragMoved > 6){
+stage.classList.add('was-dragged');
+setTimeout(function(){ stage.classList.remove('was-dragged'); }, 50);
+}
+}
+
+stage.addEventListener('mousedown', pointerDown);
+window.addEventListener('mousemove', pointerMove);
+window.addEventListener('mouseup', pointerUp);
+stage.addEventListener('touchstart', pointerDown, {passive:true});
+stage.addEventListener('touchmove', pointerMove, {passive:true});
+stage.addEventListener('touchend', pointerUp);
+
+function resize(){
+width = stage.clientWidth; height = stage.clientHeight;
+camera.aspect = width / height;
+camera.updateProjectionMatrix();
+renderer.setSize(width, height);
+}
+window.addEventListener('resize', resize);
+
+function animate(){
+rotY += (targetRotY - rotY) * 0.08;
+group.rotation.y = rotY;
+updateCards();
+renderer.render(scene, camera);
+requestAnimationFrame(animate);
+}
+
+goToStep(0);
+animate();
+}
+
+initWorkCarousel3D();
 
 </script>
 
