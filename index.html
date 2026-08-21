@@ -1264,12 +1264,37 @@ var len = cards.length;
 if(!len) return;
 
 var CARD_W = 300;
+var FOV = 38;
+var FOV_HALF_TAN = Math.tan(THREE.Math.degToRad(FOV / 2));
 var angleStep = (Math.PI * 2) / len;
 var radius = (CARD_W + 60) / (2 * Math.sin(angleStep / 2));
 
-var width = stage.clientWidth, height = stage.clientHeight;
-var camera = new THREE.PerspectiveCamera(38, width / height, 1, 5000);
-camera.position.set(0, 0, radius + 620);
+cards.forEach(function(card){
+card.style.width = CARD_W + 'px';
+card.setAttribute('draggable', 'false');
+var img = card.querySelector('img');
+if(img){
+img.setAttribute('draggable', 'false');
+if(!img.complete){
+img.addEventListener('load', function(){ resize(); }, {once:true});
+img.addEventListener('error', function(){ resize(); }, {once:true});
+}
+}
+});
+
+function fitStageHeight(){
+var maxH = Math.max.apply(null, cards.map(function(c){ return c.offsetHeight; }));
+var stageHeight = maxH + 40;
+stage.style.height = stageHeight + 'px';
+return stageHeight;
+}
+
+var height = fitStageHeight();
+var width = stage.clientWidth;
+var camDist = (0.5 * height / FOV_HALF_TAN);
+
+var camera = new THREE.PerspectiveCamera(FOV, width / height, 1, 5000);
+camera.position.set(0, 0, radius + camDist);
 
 var scene = new THREE.Scene();
 var group = new THREE.Group();
@@ -1280,11 +1305,6 @@ renderer.setSize(width, height);
 viewport.appendChild(renderer.domElement);
 
 var objects = cards.map(function(card, i){
-card.style.width = CARD_W + 'px';
-card.setAttribute('draggable', 'false');
-var img = card.querySelector('img');
-if(img) img.setAttribute('draggable', 'false');
-
 var obj = new THREE.CSS3DObject(card);
 var a = i * angleStep;
 obj.position.set(radius * Math.sin(a), 0, radius * Math.cos(a));
@@ -1396,7 +1416,10 @@ stage.addEventListener('touchmove', pointerMove, {passive:true});
 stage.addEventListener('touchend', pointerUp);
 
 function resize(){
-width = stage.clientWidth; height = stage.clientHeight;
+height = fitStageHeight();
+width = stage.clientWidth;
+camDist = (0.5 * height / FOV_HALF_TAN);
+camera.position.z = radius + camDist;
 camera.aspect = width / height;
 camera.updateProjectionMatrix();
 renderer.setSize(width, height);
