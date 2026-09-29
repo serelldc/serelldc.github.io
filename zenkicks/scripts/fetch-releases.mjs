@@ -68,7 +68,7 @@ async function releases() {
 }
 
 // StockX files slides, clogs and boots under "sneakers" too; What's hot shows real sneakers only
-const NOT_SNEAKER = /\b(slides?|clogs?|crocs|boots?|timberland|sandals?|slippers?|mules?|flip[- ]?flops?|ugg|birkenstock|foam ?runner)\b/i;
+const NOT_SNEAKER = /\b(slides?|clogs?|crocs|boots?|timberland|sandals?|slippers?|mules?|flip[- ]?flops?|ugg|birkenstock|foam ?runner|ys-?0\d|adilette|benassi|offcourt|victori one)\b/i;
 
 async function hot() {
   const r = await get('/stockx/products', { filters: 'product_type = "sneakers"', limit: '40' });
