@@ -121,8 +121,8 @@
   // shell
   // ------------------------------------------------------------------
   function header(r) {
-    var back = { l: 'market', c: 'legit', 'new-check': 'legit', sell: 'drops', login: 'drops' }[r.name];
-    var titles = { l: 'Listing', c: 'Legit check', 'new-check': 'New check', sell: 'Sell a pair', login: 'Sign in' };
+    var back = { l: 'market', c: 'legit', 'new-check': 'legit', sell: 'drops', login: 'drops', u: 'market' }[r.name];
+    var titles = { l: 'Listing', c: 'Legit check', 'new-check': 'New check', sell: 'Sell a pair', login: 'Sign in', u: 'Member' };
     if (back) {
       return '<header class="hd"><button class="ibtn" data-go="' + back + '" aria-label="Back">' + (r.name === 'sell' || r.name === 'new-check' || r.name === 'login' ? I.close : I.back) + '</button><div class="hd-title">' + LOGO + esc(titles[r.name]) + '</div><span style="width:44px"></span></header>';
     }
@@ -222,6 +222,58 @@
     var ps = (l.photos || []).slice().sort(function (a, b) { var o = { side: 0, tag: 1 }; return ((o[a.kind] != null ? o[a.kind] : 5) - (o[b.kind] != null ? o[b.kind] : 5)) || a.position - b.position; });
     return ps[0] ? pub('listing-photos', ps[0].path) : '';
   }
+  // ---- install as an app (home-screen icon) ----
+  var deferredInstall = null;
+  window.addEventListener('beforeinstallprompt', function (e) { e.preventDefault(); deferredInstall = e; var c = document.getElementById('installcard'); if (c && route().name === 'drops') render(true); });
+  window.addEventListener('appinstalled', function () { store('noinstall', true); toast('Zenkicks is on your home screen'); });
+  function installEnv() {
+    var ua = navigator.userAgent || '';
+    var standalone = (window.matchMedia && window.matchMedia('(display-mode: standalone)').matches) || window.navigator.standalone === true;
+    return { standalone: standalone, inApp: /FBAN|FBAV|FB_IAB|FBIOS|Messenger|Instagram|Line\/|TikTok|Snapchat/i.test(ua), ios: /iPhone|iPad|iPod/i.test(ua), android: /Android/i.test(ua) };
+  }
+  function installCard() {
+    var env = installEnv();
+    if (env.standalone || store('noinstall')) return '';
+    var body, btn = '';
+    if (env.inApp) {
+      body = env.ios ? 'You’re inside Messenger/Instagram. Tap <b>•••</b> then <b>Open in Safari</b>, then <b>Share → Add to Home Screen</b>.' : 'You’re inside Messenger/Instagram. Open Zenkicks in Chrome to install the app icon.';
+      if (env.android) btn = '<a class="btn red" style="height:40px;padding:0 14px;font-size:13px" href="intent://' + location.host + location.pathname + '#Intent;scheme=https;package=com.android.chrome;end">Open in Chrome</a>';
+    } else if (deferredInstall) {
+      body = 'Get the Zenkicks icon on your home screen. Opens like an app, no app store needed.';
+      btn = '<button class="btn red" style="height:40px;padding:0 14px;font-size:13px" data-act="install">Install app</button>';
+    } else if (env.ios) {
+      body = 'Add Zenkicks to your home screen: tap <b>Share</b> (square with arrow) then <b>Add to Home Screen</b>.';
+    } else {
+      body = 'Add Zenkicks to your home screen: open the browser menu <b>⋮</b> then <b>Install app</b> or <b>Add to Home screen</b>.';
+    }
+    return '<div class="card installcard" id="installcard"><img src="icons/icon-192.png" alt="" width="44" height="44"><div class="grow"><b>Get the app</b><div class="m">' + body + '</div></div><div style="display:flex;flex-direction:column;gap:6px;align-items:flex-end">' + btn + '<button class="link" style="color:var(--muted);font-size:12px;padding:2px 0" data-act="hideinstall">Hide</button></div></div>';
+  }
+  function installApp() {
+    if (!deferredInstall) { toast('Use your browser menu: Add to Home screen'); return; }
+    deferredInstall.prompt();
+    deferredInstall.userChoice.then(function () { deferredInstall = null; render(true); });
+  }
+
+  // ---- vouches (1-5 star ratings between members) ----
+  function starBadge(v, dark) {
+    if (!v || !v.total) return '<span class="vbadge new' + (dark ? ' dark' : '') + '">New member</span>';
+    return '<span class="vbadge' + (dark ? ' dark' : '') + '" title="' + v.total + ' vouches">★ ' + Number(v.avg_stars).toFixed(1) + ' <span>(' + v.total + ')</span></span>';
+  }
+  function vouchMap(ids) {
+    ids = (ids || []).filter(function (x, i, a) { return x && a.indexOf(x) === i; });
+    if (!sb || !ids.length) return Promise.resolve({});
+    return sb.rpc('vouch_summary', { ids: ids }).then(function (r) { var m = {}; (r.data || []).forEach(function (x) { m[x.user_id] = x; }); return m; }).catch(function () { return {}; });
+  }
+  function vouchModal(target, user, ref, kind) {
+    if (!requireLogin()) return;
+    ST.vstars = 0;
+    var intro = kind === 'deal' ? 'How was your deal with @' + esc(user) + '? Your rating shows on their profile.' : 'Did @' + esc(user) + ' help you check this pair? Vouch for them.';
+    openModal('<h2>Vouch for @' + esc(user) + '</h2><p class="sub">' + intro + '</p>' +
+      '<div class="stars" role="radiogroup" aria-label="Rating">' + [1, 2, 3, 4, 5].map(function (i) { return '<button role="radio" aria-checked="false" aria-label="' + i + ' star' + (i > 1 ? 's' : '') + '" data-act="vstar" data-v="' + i + '">★</button>'; }).join('') + '</div>' +
+      '<textarea id="v-note" maxlength="280" placeholder="' + (kind === 'deal' ? 'e.g. Legit pair, smooth meet-up in Sharjah' : 'e.g. Spotted the fake tag fast, thanks!') + '" style="padding:10px;border:1px solid var(--line);border-radius:10px;min-height:70px"></textarea>' +
+      '<p class="err" id="v-err" role="alert"></p><div class="row"><button class="btn ghost" style="flex:1" data-act="mclose">Cancel</button><button class="btn red" style="flex:1" data-act="vsend" data-target="' + target + '" data-ref="' + ref + '" data-kind="' + kind + '">Send vouch</button></div>');
+  }
+  function userLink(id, name) { return '<button class="link ulink" data-go="u/' + id + '">@' + esc(name) + '</button>'; }
   function verifiedPill(level) {
     return level === 'id' ? '<span class="pill ok">✓ ID-verified</span>' : level === 'phone' ? '<span class="pill ok">✓ Phone-verified</span>' : '<span class="pill sample">Email only</span>';
   }
@@ -270,7 +322,7 @@
       }
       var ids = listings.map(function (l) { return l.id; });
       return statsFor(ids).then(function (stats) {
-        return '<section class="hero"><span class="eyebrow">Your Sneakerheadlines</span><h1>Hype drops.<br><span class="script">Zen deals.</span><br>Zero fakes.</h1>' + nextCard + '</section>' +
+        return installCard() + '<section class="hero"><span class="eyebrow">Your Sneakerheadlines</span><h1>Hype drops.<br><span class="script">Zen deals.</span><br>Zero fakes.</h1>' + nextCard + '</section>' +
           '<div class="pad">' +
           '<section class="sec"><div class="between"><h2>Release calendar</h2><span class="pill ok" style="font-size:10px">AUTO</span></div><p class="sub" style="font-size:12px">' + esc(stamp()) + ' · AED from US retail at 3.6725; UAE store prices may differ</p>' + rows + '</section>' +
           (hot ? '<section class="sec"><div class="between"><h2>What’s hot</h2><button class="link" data-go="hot">See all</button></div><div class="scroller">' + hot + '</div></section>' : '') +
@@ -350,9 +402,10 @@
       var mine = me && l.seller_id === me;
       var jobs = [statsFor([l.id]),
         me ? sb.from('watches').select('listing_id').eq('user_id', me).eq('listing_id', l.id) : Promise.resolve({ data: [] }),
-        me ? sb.from('bids').select('id,amount_aed,status,created_at,bidder_id,bidder:profiles!bids_bidder_id_fkey(username,verified_level)').eq('listing_id', l.id).order('amount_aed', { ascending: false }) : Promise.resolve({ data: [] })];
+        me ? sb.from('bids').select('id,amount_aed,status,created_at,bidder_id,bidder:profiles!bids_bidder_id_fkey(username,verified_level)').eq('listing_id', l.id).order('amount_aed', { ascending: false }) : Promise.resolve({ data: [] }),
+        vouchMap([l.seller_id])];
       return Promise.all(jobs).then(function (a) {
-        var s = a[0][l.id] || {}; var watching = (a[1].data || []).length > 0; var bids = a[2].data || [];
+        var s = a[0][l.id] || {}; var watching = (a[1].data || []).length > 0; var bids = a[2].data || []; var sv = a[3][l.seller_id];
         var myBids = bids.filter(function (b) { return b.bidder_id === me && b.status !== 'withdrawn'; });
         var myBid = myBids[0];
         var photos = (l.photos || []).slice().sort(function (x, y) { return x.position - y.position; });
@@ -364,7 +417,7 @@
           ownerPanel = '<div class="card" style="padding:14px;display:flex;flex-direction:column;gap:10px"><b>Bids on your pair</b>' +
             (active.length ? active.map(function (b) {
               return '<div class="kv" style="align-items:center"><span><b>' + aed(b.amount_aed) + '</b> · @' + esc(b.bidder && b.bidder.username) + ' <span class="tiny">' + ago(b.created_at) + '</span></span>' +
-                (b.status === 'accepted' ? '<button class="btn dark" style="height:40px;font-size:13px" data-act="contact" data-id="' + b.id + '">Show contact</button>'
+                (b.status === 'accepted' ? '<span class="row" style="gap:6px"><button class="btn dark" style="height:40px;padding:0 12px;font-size:13px" data-act="contact" data-id="' + b.id + '">Contact</button><button class="btn ghost" style="height:40px;padding:0 12px;font-size:13px" data-act="vouch" data-target="' + b.bidder_id + '" data-user="' + esc(b.bidder && b.bidder.username) + '" data-ref="' + l.id + '" data-kind="deal">★ Rate</button></span>'
                   : '<span class="row" style="gap:6px"><button class="btn red" style="height:40px;padding:0 12px;font-size:13px" data-act="accept" data-id="' + b.id + '">Accept</button><button class="btn ghost" style="height:40px;padding:0 12px;font-size:13px" data-act="decline" data-id="' + b.id + '">Decline</button></span>') + '</div>';
             }).join('') : '<span class="sub">No bids yet. Share your listing to get more eyes on it.</span>') +
             '<div class="row" style="gap:8px"><button class="btn dark" style="flex:1" data-act="sold" data-id="' + l.id + '">Mark as sold</button><button class="btn ghost" style="flex:1" data-act="remove" data-id="' + l.id + '">Remove</button></div></div>';
@@ -372,7 +425,7 @@
         var myBidPanel = '';
         if (myBid) {
           myBidPanel = '<div class="note" role="status" style="background:' + (myBid.status === 'accepted' ? 'var(--green);color:#fff' : 'var(--mint)') + '"><span style="width:18px">' + I.check + '</span><span>' +
-            (myBid.status === 'accepted' ? '<b>The seller accepted your bid of ' + aed(myBid.amount_aed) + '.</b> Contact them to agree on payment and meet-up or delivery. <button class="link" style="color:#fff;text-decoration:underline" data-act="contact" data-id="' + myBid.id + '">Show seller contact</button>'
+            (myBid.status === 'accepted' ? '<b>The seller accepted your bid of ' + aed(myBid.amount_aed) + '.</b> Contact them to agree on payment and meet-up or delivery. <button class="link" style="color:#fff;text-decoration:underline" data-act="contact" data-id="' + myBid.id + '">Show seller contact</button> · <button class="link" style="color:#fff;text-decoration:underline" data-act="vouch" data-target="' + l.seller_id + '" data-user="' + esc(l.seller && l.seller.username) + '" data-ref="' + l.id + '" data-kind="deal">Rate the seller</button>'
               : myBid.status === 'declined' ? '<b>Your bid of ' + aed(myBid.amount_aed) + ' was declined.</b> You can place a new one.'
                 : '<b>Your bid: ' + aed(myBid.amount_aed) + '.</b> Waiting for the seller. <button class="link" style="padding:0" data-act="withdraw" data-id="' + myBid.id + '">Withdraw</button>') + '</span></div>';
         }
@@ -383,7 +436,7 @@
           '<div class="card between" style="padding:14px;align-items:center"><div><div class="m">Highest bid</div><div class="money" style="font-size:19px">' + (s.high_bid ? aed(s.high_bid) : '—') + '</div></div><span class="m">' + (s.bid_count || 0) + ' bids · ' + (s.watchers || 0) + ' watching</span></div>' +
           myBidPanel + ownerPanel +
           (l.description ? '<div class="card" style="padding:14px;display:flex;flex-direction:column;gap:6px"><b>Seller’s note</b><p class="sub" style="font-size:14px;white-space:pre-line">' + esc(l.description) + '</p></div>' : '') +
-          '<div class="card row" style="padding:12px 14px"><div class="avatar">' + esc(((l.seller && l.seller.username) || '?')[0].toUpperCase()) + '</div><div class="grow"><div class="t">@' + esc(l.seller && l.seller.username) + '</div><div class="m">Listed ' + ago(l.created_at) + ' ago</div></div>' +
+          '<div class="card row" style="padding:12px 14px"><button class="avatar" style="border:0" data-go="u/' + l.seller_id + '" aria-label="Seller profile">' + esc(((l.seller && l.seller.username) || '?')[0].toUpperCase()) + '</button><div class="grow"><div class="t">' + userLink(l.seller_id, l.seller && l.seller.username) + ' ' + starBadge(sv) + '</div><div class="m">Listed ' + ago(l.created_at) + ' ago · tap name for vouches</div></div>' +
           (!mine ? '<button class="round" data-act="report" data-type="listing" data-id="' + l.id + '" aria-label="Report this listing">' + I.flag + '</button>' : '') + '</div>' +
           '<div class="safety"><span style="color:var(--coral)">' + I.shield + '</span><div><b style="font-size:14px">No payments through Zenkicks</b><br><span>When a bid is accepted, you get each other’s WhatsApp to agree on payment and delivery. Meet in a public place, check the pair before you pay, and never send money in advance to someone you can’t verify.</span></div></div>' +
           '</div>';
@@ -582,6 +635,7 @@
       var c = a[0].data; if (!c) return '<div class="empty">' + I.shield + '<b>This check was removed</b><button class="btn dark" data-go="legit">Back</button></div>';
       var s = (a[1].data || [])[0] || {}; var comments = a[2].data || []; var likes = {}; (a[3].data || []).forEach(function (x) { likes[x.comment_id] = x.likes; });
       var myVote = ((a[4].data || [])[0] || {}).vote; var myLikes = {}; (a[5].data || []).forEach(function (x) { myLikes[x.comment_id] = true; });
+      return vouchMap([c.author_id].concat(comments.map(function (m) { return m.author_id; }))).then(function (vm) {
       var total = (s.legit || 0) + (s.fake || 0) + (s.unsure || 0);
       function pct(k) { return total ? Math.round((s[k] || 0) * 100 / total) : 0; }
       var bars = ['fake', 'unsure', 'legit'].map(function (k) {
@@ -598,16 +652,17 @@
         var au = m.author || {}; var badge = (au.is_checker || au.is_admin) ? ' <span class="pill ok" style="padding:1px 7px;font-size:10px">✓ Checker</span>' : (m.author_id === c.author_id ? ' <span class="pill dark" style="padding:1px 7px;font-size:10px">OP</span>' : '');
         var liked = !!myLikes[m.id];
         return '<div class="row" style="align-items:flex-start;gap:10px' + (isReply ? ';margin-left:40px' : '') + '"><div class="avatar" style="width:' + (isReply ? 28 : 34) + 'px;height:' + (isReply ? 28 : 34) + 'px;font-size:13px">' + esc((au.username || '?')[0].toUpperCase()) + '</div>' +
-          '<div class="grow" style="display:flex;flex-direction:column;gap:4px"><div style="font-size:13px"><b>@' + esc(au.username) + '</b>' + badge + ' <span class="m">· ' + ago(m.created_at) + '</span></div>' +
+          '<div class="grow" style="display:flex;flex-direction:column;gap:4px"><div style="font-size:13px"><b>' + userLink(m.author_id, au.username) + '</b>' + badge + ' ' + starBadge(vm[m.author_id]) + ' <span class="m">· ' + ago(m.created_at) + '</span></div>' +
           '<div style="font-size:14px;line-height:1.45;white-space:pre-line' + (au.is_checker ? ';padding:8px 10px;border-radius:10px;background:var(--mint)' : '') + '">' + esc(m.body) + '</div>' +
           '<div class="row" style="gap:2px"><button class="link" style="color:' + (liked ? 'var(--red)' : 'var(--muted)') + ';padding:6px 8px 6px 0;font-size:12px;display:inline-flex;align-items:center;gap:4px" data-act="like" data-id="' + m.id + '" data-on="' + liked + '" aria-pressed="' + liked + '"><span style="width:14px;height:14px;display:inline-flex">' + (liked ? I.heartOn : I.heart) + '</span>' + (likes[m.id] || 0) + '</button>' +
           '<button class="link" style="color:var(--muted);padding:6px 8px;font-size:12px" data-act="reply" data-id="' + (m.parent_id || m.id) + '" data-user="' + esc(au.username) + '">Reply</button>' +
+          (me && c.author_id === me && m.author_id !== me ? '<button class="link" style="color:var(--red);padding:6px 8px;font-size:12px;font-weight:700" data-act="vouch" data-target="' + m.author_id + '" data-user="' + esc(au.username) + '" data-ref="' + c.id + '" data-kind="legit">★ Vouch</button>' : '') +
           (m.author_id === me || isStaff() ? '<button class="link" style="color:var(--muted);padding:6px 8px;font-size:12px" data-act="delcomment" data-id="' + m.id + '">Delete</button>' : '<button class="link" style="color:var(--muted);padding:6px 8px;font-size:12px" data-act="report" data-type="comment" data-id="' + m.id + '">Report</button>') + '</div></div></div>';
       }
       var thread = tops.map(function (m) { return cItem(m, false) + comments.filter(function (x) { return x.parent_id === m.id; }).map(function (x) { return cItem(x, true); }).join(''); }).join('<div style="height:1px;background:#EFEBE2"></div>');
       var verdictForm = (!c.verdict && isStaff()) ? '<div class="card" style="padding:14px;display:flex;flex-direction:column;gap:8px"><b>Checker verdict</b><textarea id="vnote" maxlength="400" placeholder="Why? (shown to everyone)" style="padding:10px;border:1px solid var(--line);border-radius:10px;min-height:70px"></textarea><div class="row"><button class="btn" style="flex:1;background:var(--green);color:#fff" data-act="verdict" data-id="' + c.id + '" data-v="legit">Legit</button><button class="btn red" style="flex:1" data-act="verdict" data-id="' + c.id + '" data-v="fake">Fake</button></div></div>' : '';
       var html = '<div class="pad">' +
-        '<div class="row"><div class="avatar">' + esc(((c.author && c.author.username) || '?')[0].toUpperCase()) + '</div><div class="grow"><div class="t">@' + esc(c.author && c.author.username) + '</div><div class="m">' + ago(c.created_at) + ' ago</div></div>' + statusPill(c) + '</div>' +
+        '<div class="row"><div class="avatar">' + esc(((c.author && c.author.username) || '?')[0].toUpperCase()) + '</div><div class="grow"><div class="t">' + userLink(c.author_id, c.author && c.author.username) + ' ' + starBadge(vm[c.author_id]) + '</div><div class="m">' + ago(c.created_at) + ' ago</div></div>' + statusPill(c) + '</div>' +
         '<div class="scroller" style="gap:8px">' + ps.map(function (u) { return '<a href="' + esc(u) + '" target="_blank" rel="noopener" style="width:200px;flex-shrink:0"><img src="' + esc(u) + '" alt="" style="width:200px;height:170px;object-fit:cover;border-radius:12px;background:#fff"></a>'; }).join('') + '</div>' +
         '<div class="sec" style="gap:6px"><h1 style="font-size:22px">' + esc(c.model) + '</h1>' + (c.question ? '<p style="margin:0;font-size:15px;line-height:1.5;white-space:pre-line">' + esc(c.question) + '</p>' : '') +
         '<div class="chips-wrap">' + (c.size ? '<span class="proof" style="background:#fff;border:1px solid var(--line)">' + esc(c.size) + '</span>' : '') + (c.price_aed ? '<span class="proof" style="background:#fff;border:1px solid var(--line)">Offered at ' + aed(c.price_aed) + '</span>' : '') + (c.found_where ? '<span class="proof" style="background:#fff;border:1px solid var(--line)">' + esc(c.found_where) + '</span>' : '') + '</div></div>' +
@@ -615,7 +670,7 @@
         '<div class="card" style="padding:14px;display:flex;flex-direction:column;gap:10px"><b>' + (c.verdict ? 'Community vote' : 'Your vote') + '</b>' + (!c.verdict ? (me ? voteBtns : '<button class="btn dark" data-go="login">Sign in to vote</button>') : '') + ((myVote || c.verdict) ? bars : '<span class="m">Vote to see how the community voted.</span>') + '</div>' +
         verdictForm +
         '<section class="sec"><h2>Comments <span class="m" style="font-family:var(--body)">(' + comments.length + ')</span></h2>' + (thread ? '<div class="card" style="padding:14px;display:flex;flex-direction:column;gap:12px">' + thread + '</div>' : '<p class="sub">No comments yet. Start the conversation.</p>') +
-        '<p class="m" style="margin:0">Be respectful. Call out the pair, not the person.</p></section>' +
+        '<p class="m" style="margin:0">Be respectful. Call out the pair, not the person.' + (me && c.author_id === me ? ' Tap <b>★ Vouch</b> on a comment to thank someone who helped.' : '') + '</p></section>' +
         (c.author_id !== me ? '<button class="link" style="align-self:flex-start;color:var(--muted)" data-act="report" data-type="check" data-id="' + c.id + '">Report this post</button>' : '') + '</div>';
       var bottom = me
         ? '<div style="flex-shrink:0;display:flex;flex-direction:column;gap:6px;padding:10px 12px calc(16px + env(safe-area-inset-bottom,0px));background:var(--ink);border-top:1px solid var(--ink3)">' +
@@ -623,6 +678,29 @@
           '<div class="row" style="gap:8px"><label class="bidfield" for="cmt" style="font-family:var(--body);font-weight:400"><input id="cmt" type="text" maxlength="1000" placeholder="' + (ST.replyTo ? 'Write a reply…' : 'Add a comment…') + '" autocomplete="off"></label><button class="btn red" style="height:52px;padding:0 18px" data-act="send" data-id="' + c.id + '">Send</button></div></div>'
         : '<div class="actionbar"><button class="btn red" style="flex:1;height:52px" data-go="login">Sign in to comment</button></div>';
       return { html: html, bottom: bottom };
+      });
+    });
+  };
+
+  // ------------------------------------------------------------------
+  // MEMBER PROFILE (public): rating + vouches
+  // ------------------------------------------------------------------
+  VIEWS.u = function (r) {
+    if (!sb) return needSb();
+    return Promise.all([
+      sb.from('profiles').select('id,username,city,verified_level,is_checker,is_admin,created_at').eq('id', r.id).maybeSingle(),
+      vouchMap([r.id]),
+      sb.from('vouches').select('id,kind,stars,note,created_at,from_id,from:profiles!vouches_from_id_fkey(username)').eq('to_id', r.id).order('created_at', { ascending: false }).limit(50),
+      sb.from('listings').select(LISTING_COLS).eq('seller_id', r.id).eq('status', 'active').order('created_at', { ascending: false }).limit(6)
+    ]).then(function (a) {
+      var p = a[0].data; if (!p) return '<div class="empty">' + I.user + '<b>Member not found</b><button class="btn dark" data-go="market">Back</button></div>';
+      var v = a[1][p.id] || {}; var vs = a[2].data || []; var ls = a[3].data || [];
+      var bars = [5, 4, 3, 2, 1].map(function (n) { var k = vs.filter(function (x) { return x.stars === n; }).length; var w = vs.length ? Math.round(k * 100 / vs.length) : 0; return '<div class="bar"><span style="width:28px">' + n + '★</span><div class="track"><div class="fill" style="width:' + w + '%;background:var(--red)"></div></div><span style="width:24px;text-align:right">' + k + '</span></div>'; }).join('');
+      return '<div class="pad"><div class="row"><div class="avatar" style="width:56px;height:56px;font-size:22px;background:var(--red)">' + esc((p.username || '?')[0].toUpperCase()) + '</div><div class="grow"><h1 style="font-size:22px">@' + esc(p.username) + '</h1><div class="m">' + esc(p.city || 'UAE') + ' · member since ' + new Date(p.created_at).toLocaleDateString('en-GB', { month: 'short', year: 'numeric' }) + '</div></div>' + verifiedPill(p.verified_level) + '</div>' +
+        '<div class="card" style="padding:14px;display:flex;flex-direction:column;gap:10px"><div class="between"><div><div class="money" style="font-size:30px">' + (v.total ? '★ ' + Number(v.avg_stars).toFixed(1) : '—') + '</div><div class="m">' + (v.total || 0) + ' vouches · ' + (v.deals || 0) + ' from deals · ' + (v.legit || 0) + ' from legit checks</div></div>' + ((p.is_checker || p.is_admin) ? '<span class="pill ok">✓ Checker</span>' : '') + '</div>' + (v.total ? bars : '<span class="sub">No vouches yet. Members vouch after a deal or when someone helps on a legit check.</span>') + '</div>' +
+        (vs.length ? '<section class="sec"><h2>Vouches</h2><div class="card" style="padding:4px 14px">' + vs.map(function (x) { return '<div class="kv" style="flex-direction:column;align-items:flex-start;gap:2px"><span><b style="color:var(--red)">' + '★★★★★'.slice(0, x.stars) + '</b><span style="opacity:.25">' + '★★★★★'.slice(x.stars) + '</span> <span class="m">· ' + (x.kind === 'deal' ? 'Deal' : 'Legit check') + ' · ' + ago(x.created_at) + ' ago</span></span>' + (x.note ? '<span style="font-size:14px">' + esc(x.note) + '</span>' : '') + '<span class="m">from ' + userLink(x.from_id, x.from && x.from.username) + '</span></div>'; }).join('') + '</div></section>' : '') +
+        (ls.length ? '<section class="sec"><h2>Pairs for sale</h2><div class="grid">' + ls.map(function (l) { return itemCard(l, {}); }).join('') + '</div></section>' : '') +
+        (uid() && uid() !== p.id ? '<button class="link" style="align-self:flex-start;color:var(--muted)" data-act="report" data-type="user" data-id="' + p.id + '">Report this member</button>' : '') + '</div>';
     });
   };
 
@@ -636,11 +714,14 @@
     return Promise.all([
       sb.from('listings').select('id,model,price_aed,status,created_at').eq('seller_id', uid()).order('created_at', { ascending: false }).limit(30),
       sb.from('bids').select('id,amount_aed,status,created_at,listing:listings(id,model)').eq('bidder_id', uid()).order('created_at', { ascending: false }).limit(30),
-      isStaff() ? sb.from('reports').select('id,target_type,target_id,reason,created_at,resolved').eq('resolved', false).order('created_at', { ascending: false }).limit(30) : Promise.resolve({ data: null })
+      isStaff() ? sb.from('reports').select('id,target_type,target_id,reason,created_at,resolved').eq('resolved', false).order('created_at', { ascending: false }).limit(30) : Promise.resolve({ data: null }),
+      vouchMap([uid()])
     ]).then(function (a) {
+      ST.myVouch = a[3][uid()];
       var ls = a[0].data || []; var bs = a[1].data || []; var reps = a[2].data;
       var cities = ['', 'Dubai', 'Sharjah', 'Abu Dhabi', 'Ajman', 'Ras Al Khaimah', 'Fujairah', 'Umm Al Quwain', 'Al Ain'];
       return '<div class="pad"><div class="row"><div class="avatar" style="width:56px;height:56px;font-size:22px;background:var(--red)">' + esc((me.username || '?')[0].toUpperCase()) + '</div><div class="grow"><h1 style="font-size:22px">@' + esc(me.username) + '</h1><div class="m">' + esc(ST.session.user.email || ST.session.user.phone || '') + '</div></div>' + verifiedPill(me.verified_level) + '</div>' +
+        '<button class="card between" style="padding:14px;width:100%;text-align:left;align-items:center" data-go="u/' + uid() + '"><span><b>My vouches</b><br><span class="m">See your public profile and ratings</span></span>' + starBadge(ST.myVouch) + '</button>' +
         '<div class="card" style="padding:14px;display:flex;flex-direction:column;gap:10px"><b>Profile</b>' +
         '<label class="field" for="p-user">Username<input id="p-user" type="text" maxlength="24" value="' + esc(me.username) + '" autocomplete="username"></label>' +
         '<label class="field" for="p-city">Emirate<select id="p-city">' + cities.map(function (o) { return '<option value="' + o + '"' + (me.city === o ? ' selected' : '') + '>' + (o || 'Select') + '</option>'; }).join('') + '</select></label>' +
@@ -720,6 +801,21 @@
         sb.from('reports').insert({ reporter_id: uid(), target_type: el.getAttribute('data-type'), target_id: id, reason: reason }).then(function (r) { if (r.error) return fail(r.error); closeModal(); toast('Thanks. We’ll review it.'); });
         break;
       case 'mclose': closeModal(); break;
+      case 'vouch': vouchModal(el.getAttribute('data-target'), el.getAttribute('data-user'), el.getAttribute('data-ref'), el.getAttribute('data-kind')); break;
+      case 'vstar':
+        ST.vstars = +v;
+        app.querySelectorAll('.stars button').forEach(function (b, i) { var onS = i < ST.vstars; b.classList.toggle('on', onS); b.setAttribute('aria-checked', String(i + 1 === ST.vstars)); });
+        break;
+      case 'vsend':
+        if (!ST.vstars) { document.getElementById('v-err').textContent = 'Tap 1 to 5 stars.'; return; }
+        el.disabled = true;
+        sb.rpc('give_vouch', { target: el.getAttribute('data-target'), ref: el.getAttribute('data-ref'), k: el.getAttribute('data-kind'), s: ST.vstars, msg: (document.getElementById('v-note').value || '').trim() }).then(function (r) {
+          el.disabled = false; if (r.error) { document.getElementById('v-err').textContent = r.error.message; return; }
+          closeModal(); toast('Vouch sent. Thanks for keeping the tambayan legit!'); render(true);
+        });
+        break;
+      case 'install': installApp(); break;
+      case 'hideinstall': store('noinstall', true); var ic2 = document.getElementById('installcard'); if (ic2) ic2.remove(); break;
       case 'resolve': sb.from('reports').update({ resolved: true }).eq('id', id).then(function (r) { if (r.error) return fail(r.error); render(true); }); break;
       case 'sback': ST.sell.step = Math.max(1, ST.sell.step - 1); render(); break;
       case 'snext': sellNext(el); break;
