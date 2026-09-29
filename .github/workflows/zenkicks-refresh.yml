@@ -1,0 +1,33 @@
+name: Zenkicks - refresh releases and what's hot
+
+on:
+  schedule:
+    - cron: '46 3 * * *'   # every day 7:46am Dubai time (03:46 UTC)
+  workflow_dispatch:        # run it by hand from the Actions tab
+
+permissions:
+  contents: write
+
+jobs:
+  refresh:
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: zenkicks
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+      - name: Fetch latest data from KicksDB
+        env:
+          KICKSDB_API_KEY: ${{ secrets.KICKSDB_API_KEY }}
+        run: node scripts/fetch-releases.mjs
+      - name: Save changes
+        run: |
+          if git diff --quiet -- data; then echo "No changes"; exit 0; fi
+          git config user.name "zenkicks-bot"
+          git config user.email "actions@users.noreply.github.com"
+          git add data
+          git commit -m "Zenkicks: daily data refresh"
+          git push
