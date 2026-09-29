@@ -349,6 +349,67 @@ revoke all on function public.accept_bid(uuid), public.decline_bid(uuid), public
   public.deal_contact(uuid), public.set_verdict(uuid, text, text) from anon;
 
 -- ---------------------------------------------------------------------
+-- VOUCHES: 1-5 star ratings between members
+--   deal  : buyer and seller rate each other after a bid is accepted
+--   legit : the poster of a legit check rates people who helped in the comments
+-- ---------------------------------------------------------------------
+create table public.vouches (
+  id uuid primary key default gen_random_uuid(),
+  from_id uuid not null references public.profiles(id) on delete cascade,
+  to_id uuid not null references public.profiles(id) on delete cascade,
+  kind text not null check (kind in ('deal','legit')),
+  ref_id uuid not null,
+  stars int not null check (stars between 1 and 5),
+  note text check (char_length(note) <= 280),
+  created_at timestamptz not null default now(),
+  unique (from_id, to_id, ref_id),
+  check (from_id <> to_id)
+);
+create index on public.vouches (to_id, created_at desc);
+alter table public.vouches enable row level security;
+create policy "vouches readable" on public.vouches for select using (true);
+-- no direct insert/update: everything goes through give_vouch()
+
+create or replace function public.give_vouch(target uuid, ref uuid, k text, s int, msg text)
+returns void language plpgsql security definer set search_path = public as $$
+declare ok boolean := false;
+begin
+  if auth.uid() is null or public.is_banned() then raise exception 'Sign in to vouch'; end if;
+  if target = auth.uid() then raise exception 'You cannot vouch for yourself'; end if;
+  if s < 1 or s > 5 then raise exception 'Pick 1 to 5 stars'; end if;
+  if k = 'deal' then
+    select exists (
+      select 1 from bids b join listings l on l.id = b.listing_id
+      where l.id = ref and b.status = 'accepted'
+        and ((b.bidder_id = auth.uid() and l.seller_id = target) or (l.seller_id = auth.uid() and b.bidder_id = target))
+    ) into ok;
+    if not ok then raise exception 'You can only rate someone you made a deal with'; end if;
+  elsif k = 'legit' then
+    select exists (
+      select 1 from checks c where c.id = ref and c.author_id = auth.uid()
+        and exists (select 1 from comments m where m.check_id = c.id and m.author_id = target)
+    ) into ok;
+    if not ok then raise exception 'Only the poster can vouch for people who helped on this check'; end if;
+  else
+    raise exception 'Unknown vouch type';
+  end if;
+  insert into vouches (from_id, to_id, kind, ref_id, stars, note)
+  values (auth.uid(), target, k, ref, s, nullif(left(trim(coalesce(msg, '')), 280), ''))
+  on conflict (from_id, to_id, ref_id) do update set stars = excluded.stars, note = excluded.note, created_at = now();
+end $$;
+
+-- average stars and counts for a set of members
+create or replace function public.vouch_summary(ids uuid[])
+returns table (user_id uuid, avg_stars numeric, total int, deals int, legit int)
+language sql stable security definer set search_path = public as $$
+  select v.to_id, round(avg(v.stars)::numeric, 1), count(*)::int,
+         count(*) filter (where v.kind = 'deal')::int, count(*) filter (where v.kind = 'legit')::int
+  from vouches v where v.to_id = any(ids) group by v.to_id
+$$;
+
+revoke all on function public.give_vouch(uuid, uuid, text, int, text) from anon;
+
+-- ---------------------------------------------------------------------
 -- STORAGE: public photo buckets; users upload only into their own folder
 -- ---------------------------------------------------------------------
 insert into storage.buckets (id, name, public, file_size_limit, allowed_mime_types)
