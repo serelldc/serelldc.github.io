@@ -1,20 +1,12 @@
 {
   "updated": "2026-09-29",
-  "source": "SneakerFiles, Sole Retriever and SI Sneakers release calendars (seed data; KicksDB takes over once your API key is set)",
+  "source": "SneakerFiles & Sneaker News release calendars (curated weekly); photos from KicksDB (StockX)",
   "items": [
     {
       "date": "2026-09-29",
       "name": "Nike Air Bakin OG \"Varsity Red\"",
       "brand": "Nike",
       "retail_usd": 170,
-      "image": "",
-      "link": ""
-    },
-    {
-      "date": "2026-09-30",
-      "name": "Union LA x Nike Dunk Low \"Bamboo\"",
-      "brand": "Nike",
-      "retail_usd": 135,
       "image": "",
       "link": ""
     },
@@ -35,18 +27,18 @@
       "link": ""
     },
     {
-      "date": "2026-10-01",
-      "name": "Air Jordan 1 Low OG \"Howard\"",
-      "brand": "Jordan",
-      "retail_usd": 155,
+      "date": "2026-09-30",
+      "name": "Union LA x Nike Dunk Low \"Bamboo\"",
+      "brand": "Nike",
+      "retail_usd": 135,
       "image": "",
       "link": ""
     },
     {
       "date": "2026-10-01",
-      "name": "Nike Dunk Low \"Campfire Orange\"",
-      "brand": "Nike",
-      "retail_usd": 120,
+      "name": "Air Jordan 1 Low OG \"Howard\"",
+      "brand": "Jordan",
+      "retail_usd": 155,
       "image": "",
       "link": ""
     },
@@ -59,10 +51,10 @@
       "link": "https://stockx.pvxt.net/c/4722526/1023711/9060?u=https%3A%2F%2Fstockx.com%2Fnew-balance-991v2-miuk-karanda-red"
     },
     {
-      "date": "2026-10-02",
-      "name": "J Balvin x Air Jordan 4 \"Amazonas\"",
-      "brand": "Jordan",
-      "retail_usd": 225,
+      "date": "2026-10-01",
+      "name": "Nike Dunk Low \"Campfire Orange\"",
+      "brand": "Nike",
+      "retail_usd": 120,
       "image": "",
       "link": ""
     },
@@ -73,6 +65,30 @@
       "retail_usd": 220,
       "image": "https://images.stockx.com/images/Air-Jordan-4-Retro-Light-Army.jpg?fit=fill&bg=FFFFFF&w=600&h=430&fm=webp&auto=compress&q=90&dpr=2&trim=color&updated_at=1787342946",
       "link": "https://stockx.pvxt.net/c/4722526/1023711/9060?u=https%3A%2F%2Fstockx.com%2Fair-jordan-4-retro-light-army"
+    },
+    {
+      "date": "2026-10-02",
+      "name": "J Balvin x Air Jordan 4 \"Amazonas\"",
+      "brand": "Jordan",
+      "retail_usd": 225,
+      "image": "",
+      "link": ""
+    },
+    {
+      "date": "2026-10-03",
+      "name": "Air Jordan 14 Low \"Black Ostrich\"",
+      "brand": "Jordan",
+      "retail_usd": 240,
+      "image": "",
+      "link": ""
+    },
+    {
+      "date": "2026-10-03",
+      "name": "Air Jordan 16 \"Black Pack\"",
+      "brand": "Jordan",
+      "retail_usd": 245,
+      "image": "",
+      "link": ""
     },
     {
       "date": "2026-10-03",
@@ -91,6 +107,14 @@
       "link": ""
     },
     {
+      "date": "2026-10-06",
+      "name": "Nike Sabrina 4 \"90s Kid\"",
+      "brand": "Nike",
+      "retail_usd": 135,
+      "image": "",
+      "link": ""
+    },
+    {
       "date": "2026-10-07",
       "name": "Nike Air Force 1 '01 \"Subway Rat\"",
       "brand": "Nike",
@@ -103,6 +127,246 @@
       "name": "Nike Air Griffey Max 1 \"Cincinnati Reds\"",
       "brand": "Nike",
       "retail_usd": 170,
+      "image": "",
+      "link": ""
+    },
+    {
+      "date": "2026-10-09",
+      "name": "adidas Anthony Edwards 3 \"Snow Camo\"",
+      "brand": "adidas",
+      "retail_usd": 130,
+      "image": "",
+      "link": ""
+    },
+    {
+      "date": "2026-10-10",
+      "name": "Air Jordan 1 High OG \"Royal\" (2026)",
+      "brand": "Jordan",
+      "retail_usd": 180,
+      "image": "",
+      "link": ""
+    },
+    {
+      "date": "2026-10-10",
+      "name": "Nike KD 6 \"Texas\"",
+      "brand": "Nike",
+      "retail_usd": 135,
+      "image": "",
+      "link": ""
+    },
+    {
+      "date": "2026-10-14",
+      "name": "Nike Caitlin 1 \"Hot Punch\"",
+      "brand": "Nike",
+      "retail_usd": 140,
+      "image": "",
+      "link": ""
+    },
+    {
+      "date": "2026-10-15",
+      "name": "Jordan Tatum 5 \"Sunrise\"",
+      "brand": "Jordan",
+      "retail_usd": 125,
+      "image": "",
+      "link": ""
+    },
+    {
+      "date": "2026-10-16",
+      "name": "Nike Air Foamposite Pro \"Glow in the Dark\"",
+      "brand": "Nike",
+      "retail_usd": 250,
+      "image": "",
+      "link": ""
+    },
+    {
+      "date": "2026-10-17",
+      "name": "Air Jordan 12 \"Fireside\"",
+      "brand": "Jordan",
+      "retail_usd": 215,
+      "image": "",
+      "link": ""
+    },
+    {
+      "date": "2026-10-17",
+      "name": "Air Jordan 5 \"Halloween\"",
+      "brand": "Jordan",
+      "retail_usd": 220,
+      "image": "",
+      "link": ""
+    },
+    {
+      "date": "2026-10-23",
+      "name": "Nike Air Force 1 Low \"NYC Rat\"",
+      "brand": "Nike",
+      "retail_usd": 140,
+      "image": "",
+      "link": ""
+    },
+    {
+      "date": "2026-10-23",
+      "name": "Nike Ja 4 \"Halloween\"",
+      "brand": "Nike",
+      "retail_usd": 145,
+      "image": "",
+      "link": ""
+    },
+    {
+      "date": "2026-10-23",
+      "name": "Nike Sabrina 4 \"Halloween\"",
+      "brand": "Nike",
+      "retail_usd": 145,
+      "image": "",
+      "link": ""
+    },
+    {
+      "date": "2026-10-24",
+      "name": "Air Jordan 1 Low \"Halloween\"",
+      "brand": "Jordan",
+      "retail_usd": 125,
+      "image": "",
+      "link": ""
+    },
+    {
+      "date": "2026-10-24",
+      "name": "Air Jordan 1 Mid \"Dia de Los Muertos\"",
+      "brand": "Jordan",
+      "retail_usd": 145,
+      "image": "",
+      "link": ""
+    },
+    {
+      "date": "2026-10-24",
+      "name": "NIGO x J-Hope x Nike Air Force 1 '01",
+      "brand": "Nike",
+      "retail_usd": 150,
+      "image": "",
+      "link": ""
+    },
+    {
+      "date": "2026-10-24",
+      "name": "Nike Air Force 1 Low \"Ghostface\"",
+      "brand": "Nike",
+      "retail_usd": 125,
+      "image": "",
+      "link": ""
+    },
+    {
+      "date": "2026-10-24",
+      "name": "Nike Air Max 95 \"Reverse Blue Spark\"",
+      "brand": "Nike",
+      "retail_usd": 190,
+      "image": "",
+      "link": ""
+    },
+    {
+      "date": "2026-10-25",
+      "name": "Air Jordan 41 \"University Red\"",
+      "brand": "Jordan",
+      "retail_usd": 205,
+      "image": "",
+      "link": ""
+    },
+    {
+      "date": "2026-10-30",
+      "name": "Nike Book 2 \"Oogie Boogie\"",
+      "brand": "Nike",
+      "retail_usd": 155,
+      "image": "",
+      "link": ""
+    },
+    {
+      "date": "2026-10-31",
+      "name": "Air Jordan 14 \"Forest Green\"",
+      "brand": "Jordan",
+      "retail_usd": 215,
+      "image": "",
+      "link": ""
+    },
+    {
+      "date": "2026-11-01",
+      "name": "Nike Kobe 3 Low Protro \"Black\"",
+      "brand": "Nike",
+      "retail_usd": 190,
+      "image": "",
+      "link": ""
+    },
+    {
+      "date": "2026-11-05",
+      "name": "Nike Air Max Foamdome \"Eggplant\" (2026)",
+      "brand": "Nike",
+      "retail_usd": 265,
+      "image": "",
+      "link": ""
+    },
+    {
+      "date": "2026-11-05",
+      "name": "Victor Wembanyama x Nike GT Cut 4 \"Statue of Liberty\"",
+      "brand": "Nike",
+      "retail_usd": 210,
+      "image": "",
+      "link": ""
+    },
+    {
+      "date": "2026-11-07",
+      "name": "Air Jordan 15 \"Snakeskin\"",
+      "brand": "Jordan",
+      "retail_usd": 240,
+      "image": "",
+      "link": ""
+    },
+    {
+      "date": "2026-11-07",
+      "name": "Air Jordan 6 \"White Infrared\" (2026)",
+      "brand": "Jordan",
+      "retail_usd": 215,
+      "image": "",
+      "link": ""
+    },
+    {
+      "date": "2026-11-11",
+      "name": "Air Jordan 11 \"Light British Tan\"",
+      "brand": "Jordan",
+      "retail_usd": 235,
+      "image": "",
+      "link": ""
+    },
+    {
+      "date": "2026-11-11",
+      "name": "Nike Kobe 8 Protro \"Shanghai Fireworks\"",
+      "brand": "Nike",
+      "retail_usd": 200,
+      "image": "",
+      "link": ""
+    },
+    {
+      "date": "2026-11-12",
+      "name": "Nike Air Bakin \"Varsity Royal\" (2026)",
+      "brand": "Nike",
+      "retail_usd": 170,
+      "image": "",
+      "link": ""
+    },
+    {
+      "date": "2026-11-13",
+      "name": "Nike Air Foamposite One \"Mummy\"",
+      "brand": "Nike",
+      "retail_usd": 240,
+      "image": "",
+      "link": ""
+    },
+    {
+      "date": "2026-11-14",
+      "name": "Air Jordan 11 \"Green Screen\"",
+      "brand": "Jordan",
+      "retail_usd": 255,
+      "image": "",
+      "link": ""
+    },
+    {
+      "date": "2026-11-14",
+      "name": "CPFM x Nike Flea 1 \"Barely\"",
+      "brand": "Nike",
+      "retail_usd": 180,
       "image": "",
       "link": ""
     }
