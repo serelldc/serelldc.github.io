@@ -74,25 +74,25 @@ async function main() {
 
   console.log(`Window: ${today} to ${until}`);
 
-  // 1) StockX, newest release dates first (tries two sort spellings)
-  for (const sort of ['release_date:desc', 'release_date']) {
-    let arr = [];
-    for (let page = 1; page <= 3; page++) {
-      const batch = await get('/stockx/products', { filters: 'product_type = "sneakers"', sort, limit: '100', page: String(page) });
-      arr = arr.concat(batch);
-      if (batch.length < 100) break;
-      const last = fromStockx(batch[batch.length - 1]).date;
-      if (last && last < today) break; // already past today, stop paging
-    }
-    add(arr, fromStockx, `StockX sort=${sort}`);
+  // 1) StockX upcoming releases. The date filter format is tried several ways;
+  //    the first one that returns upcoming pairs wins.
+  const t0 = Math.floor(Date.parse(today + 'T00:00:00Z') / 1000);
+  const t1 = Math.floor(Date.parse(until + 'T23:59:59Z') / 1000);
+  const tries = [
+    { filters: `product_type = "sneakers" AND release_date >= ${t0} AND release_date <= ${t1}`, limit: '100' },
+    { filters: `product_type = "sneakers" AND release_date >= "${today}T00:00:00Z" AND release_date <= "${until}T23:59:59Z"`, limit: '100' },
+    { filters: `product_type = "sneakers" AND release_date >= "${today}" AND release_date <= "${until}"`, limit: '100' },
+    { filters: 'product_type = "sneakers"', sort: 'release_date', limit: '20' }
+  ];
+  for (const params of tries) {
+    const arr = await get('/stockx/products', params);
+    add(arr, fromStockx, 'StockX try');
     if (items.length >= 3) break;
   }
 
-  // 2) SNKRS launch calendar (Nike / Jordan) for extra coverage and retail prices
-  try {
-    const arr = await get('/snkrs/products', { filters: 'country_code = "US" AND product_type = "FOOTWEAR"', sort: 'id:desc', limit: '100' });
-    add(arr, fromSnkrs, 'SNKRS US');
-  } catch (e) { console.log('  SNKRS skipped:', e.message); }
+  // 2) SNKRS launch calendar (needs a paid KicksDB plan; skipped quietly on the free plan)
+  const snk = await get('/snkrs/products', { filters: 'country_code = "US" AND product_type = "FOOTWEAR"', sort: 'id:desc', limit: '100' });
+  if (snk.length) add(snk, fromSnkrs, 'SNKRS US');
 
   // de-duplicate by name, earliest date wins
   const seen = new Map();
@@ -104,6 +104,7 @@ async function main() {
 
   // 3) What's hot: most-traded sneakers right now (default sort = StockX rank)
   const hj = await get('/stockx/products', { filters: 'product_type = "sneakers"', limit: '20' });
+  if (hj[0]) console.log('  release_date format example:', JSON.stringify(hj[0].release_date));
   const online = hj.map((p) => ({ ...fromStockx(p), weekly: Number(p.weekly_orders || 0) }))
     .filter((x) => x.name && x.image)
     .sort((a, b) => b.weekly - a.weekly).slice(0, 10)
