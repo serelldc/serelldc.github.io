@@ -5,8 +5,8 @@
 // =====================================================================
 window.ZK_CONFIG = {
   // Supabase > Project Settings > API
-  SUPABASE_URL: '',        // e.g. 'https://abcdxyz.supabase.co'
-  SUPABASE_ANON_KEY: '',   // the long "anon public" key
+  SUPABASE_URL: 'https://dsgyxkrputkifxnbcknf.supabase.co',
+  SUPABASE_ANON_KEY: 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImRzZ3l4a3JwdXRraWZ4bmJja25mIiwicm9sZSI6ImFub24iLCJpYXQiOjE3OTA2NzkxNDMsImV4cCI6MjEwNjI1NTE0M30.UPz9kk8zzgqZ49yih6Ii8MUiFdzm0uorjQm3FnF8avw',
 
   // Sign-in options
   GOOGLE_LOGIN: false,     // true after you enable Google in Supabase > Authentication > Providers
