@@ -1,75 +1,75 @@
 {
   "updated": "2026-09-29",
-  "source": "KicksDB (StockX weekly orders)",
+  "source": "KicksDB (StockX best sellers)",
   "online": [
     {
       "name": "Jordan 9 Retro OG Space Jam (2026)",
       "why": "1,374 orders on StockX this week",
       "tag": "Resale",
-      "image": "https://images.stockx.com/images/Air-Jordan-9-Retro-OG-Space-Jam-2026-Product.jpg?fit=fill&bg=FFFFFF&w=140&h=100&fm=webp&auto=compress&q=90&dpr=2&trim=color&updated_at=1788539897",
+      "image": "https://images.stockx.com/images/Air-Jordan-9-Retro-OG-Space-Jam-2026-Product.jpg?fit=fill&bg=FFFFFF&w=600&h=430&fm=webp&auto=compress&q=90&dpr=2&trim=color&updated_at=1788539897",
       "link": "https://stockx.pvxt.net/c/4722526/1023711/9060?u=https%3A%2F%2Fstockx.com%2Fair-jordan-9-retro-og-space-jam-2026"
     },
     {
       "name": "YZY YS-01 Black",
       "why": "733 orders on StockX this week",
       "tag": "Resale",
-      "image": "https://images.stockx.com/images/YZY-YS-01-Black-Product.jpg?fit=fill&bg=FFFFFF&w=140&h=100&fm=webp&auto=compress&q=90&dpr=2&trim=color&updated_at=1785853658",
+      "image": "https://images.stockx.com/images/YZY-YS-01-Black-Product.jpg?fit=fill&bg=FFFFFF&w=600&h=430&fm=webp&auto=compress&q=90&dpr=2&trim=color&updated_at=1785853658",
       "link": "https://stockx.pvxt.net/c/4722526/1023711/9060?u=https%3A%2F%2Fstockx.com%2Fyzy-ys-01-black"
-    },
-    {
-      "name": "Jordan 1 Retro Low OG Last Dance At The Garden",
-      "why": "632 orders on StockX this week",
-      "tag": "Resale",
-      "image": "https://images.stockx.com/images/Air-Jordan-1-Retro-Low-OG-Last-Dance-At-The-Garden-Product.jpg?fit=fill&bg=FFFFFF&w=140&h=100&fm=webp&auto=compress&q=90&dpr=2&trim=color&updated_at=1788539860",
-      "link": "https://stockx.pvxt.net/c/4722526/1023711/9060?u=https%3A%2F%2Fstockx.com%2Fair-jordan-1-retro-low-og-last-dance-at-the-garden"
     },
     {
       "name": "Nike Mind 001 Slide Black Chrome",
       "why": "583 orders on StockX this week",
       "tag": "Resale",
-      "image": "https://images.stockx.com/images/Nike-Mind-001-Slide-Black-Chrome-Product.jpg?fit=fill&bg=FFFFFF&w=140&h=100&fm=webp&auto=compress&q=90&dpr=2&trim=color&updated_at=1789404168",
+      "image": "https://images.stockx.com/images/Nike-Mind-001-Slide-Black-Chrome-Product.jpg?fit=fill&bg=FFFFFF&w=600&h=430&fm=webp&auto=compress&q=90&dpr=2&trim=color&updated_at=1789404168",
       "link": "https://stockx.pvxt.net/c/4722526/1023711/9060?u=https%3A%2F%2Fstockx.com%2Fnike-mind-001-slide-black-chrome"
-    },
-    {
-      "name": "Jordan 4 Retro Toro Bravo (2026)",
-      "why": "578 orders on StockX this week",
-      "tag": "Resale",
-      "image": "https://images.stockx.com/images/Air-Jordan-4-Retro-Toro-Bravo-2026-Product.jpg?fit=fill&bg=FFFFFF&w=140&h=100&fm=webp&auto=compress&q=90&dpr=2&trim=color&updated_at=1784232937",
-      "link": "https://stockx.pvxt.net/c/4722526/1023711/9060?u=https%3A%2F%2Fstockx.com%2Fair-jordan-4-retro-toro-bravo-2026"
     },
     {
       "name": "Jordan 4 Retro Rare Air Tour Yellow (2026)",
       "why": "569 orders on StockX this week",
       "tag": "Resale",
-      "image": "https://images.stockx.com/images/air-jordan-4-retro-rare-air-tour-yellow.jpg?fit=fill&bg=FFFFFF&w=140&h=100&fm=webp&auto=compress&q=90&dpr=2&trim=color&updated_at=1786796812",
+      "image": "https://images.stockx.com/images/air-jordan-4-retro-rare-air-tour-yellow.jpg?fit=fill&bg=FFFFFF&w=600&h=430&fm=webp&auto=compress&q=90&dpr=2&trim=color&updated_at=1786796812",
       "link": "https://stockx.pvxt.net/c/4722526/1023711/9060?u=https%3A%2F%2Fstockx.com%2Fair-jordan-4-retro-rare-air-tour-yellow"
+    },
+    {
+      "name": "Jordan 4 Retro Toro Bravo (2026)",
+      "why": "578 orders on StockX this week",
+      "tag": "Resale",
+      "image": "https://images.stockx.com/images/Air-Jordan-4-Retro-Toro-Bravo-2026-Product.jpg?fit=fill&bg=FFFFFF&w=600&h=430&fm=webp&auto=compress&q=90&dpr=2&trim=color&updated_at=1784232937",
+      "link": "https://stockx.pvxt.net/c/4722526/1023711/9060?u=https%3A%2F%2Fstockx.com%2Fair-jordan-4-retro-toro-bravo-2026"
+    },
+    {
+      "name": "Jordan 1 Retro Low OG Last Dance At The Garden",
+      "why": "632 orders on StockX this week",
+      "tag": "Resale",
+      "image": "https://images.stockx.com/images/Air-Jordan-1-Retro-Low-OG-Last-Dance-At-The-Garden-Product.jpg?fit=fill&bg=FFFFFF&w=600&h=430&fm=webp&auto=compress&q=90&dpr=2&trim=color&updated_at=1788539860",
+      "link": "https://stockx.pvxt.net/c/4722526/1023711/9060?u=https%3A%2F%2Fstockx.com%2Fair-jordan-1-retro-low-og-last-dance-at-the-garden"
     },
     {
       "name": "Jordan 8 Retro Chrome (2026)",
       "why": "533 orders on StockX this week",
       "tag": "Resale",
-      "image": "https://images.stockx.com/images/Air-Jordan-8-Retro-Chrome-2026-Product.jpg?fit=fill&bg=FFFFFF&w=140&h=100&fm=webp&auto=compress&q=90&dpr=2&trim=color&updated_at=1788529029",
+      "image": "https://images.stockx.com/images/Air-Jordan-8-Retro-Chrome-2026-Product.jpg?fit=fill&bg=FFFFFF&w=600&h=430&fm=webp&auto=compress&q=90&dpr=2&trim=color&updated_at=1788529029",
       "link": "https://stockx.pvxt.net/c/4722526/1023711/9060?u=https%3A%2F%2Fstockx.com%2Fair-jordan-8-retro-chrome-2026"
     },
     {
       "name": "Timberland 6\" Premium Waterproof Boot Wheat",
       "why": "441 orders on StockX this week",
       "tag": "Resale",
-      "image": "https://images.stockx.com/images/Timberland-6-Inch-Premium-Waterproof-Wheat-Product.jpg?fit=fill&bg=FFFFFF&w=140&h=100&fm=webp&auto=compress&q=90&dpr=2&trim=color&updated_at=1784763584",
+      "image": "https://images.stockx.com/images/Timberland-6-Inch-Premium-Waterproof-Wheat-Product.jpg?fit=fill&bg=FFFFFF&w=600&h=430&fm=webp&auto=compress&q=90&dpr=2&trim=color&updated_at=1784763584",
       "link": "https://stockx.pvxt.net/c/4722526/1023711/9060?u=https%3A%2F%2Fstockx.com%2Ftimberland-6-inch-premium-waterproof-wheat"
     },
     {
       "name": "Nike Mind 001 Slide Triple Black",
       "why": "439 orders on StockX this week",
       "tag": "Resale",
-      "image": "https://images.stockx.com/images/Nike-Mind-001-Slide-Triple-Black-Product.jpg?fit=fill&bg=FFFFFF&w=140&h=100&fm=webp&auto=compress&q=90&dpr=2&trim=color&updated_at=1788356294",
+      "image": "https://images.stockx.com/images/Nike-Mind-001-Slide-Triple-Black-Product.jpg?fit=fill&bg=FFFFFF&w=600&h=430&fm=webp&auto=compress&q=90&dpr=2&trim=color&updated_at=1788356294",
       "link": "https://stockx.pvxt.net/c/4722526/1023711/9060?u=https%3A%2F%2Fstockx.com%2Fnike-mind-001-slide-triple-black"
     },
     {
       "name": "Crocs Crocband Clog Cars Lightning McQueen Dinoco",
       "why": "403 orders on StockX this week",
       "tag": "Resale",
-      "image": "https://images.stockx.com/images/Crocs-Classic-Clog-Cars-Lightning-McQueen-Dinoco.jpg?fit=fill&bg=FFFFFF&w=140&h=100&fm=webp&auto=compress&q=90&dpr=2&trim=color&updated_at=1786562880",
+      "image": "https://images.stockx.com/images/Crocs-Classic-Clog-Cars-Lightning-McQueen-Dinoco.jpg?fit=fill&bg=FFFFFF&w=600&h=430&fm=webp&auto=compress&q=90&dpr=2&trim=color&updated_at=1786562880",
       "link": "https://stockx.pvxt.net/c/4722526/1023711/9060?u=https%3A%2F%2Fstockx.com%2Fcrocs-crocband-clog-cars-lightning-mcqueen-dinoco"
     }
   ]
