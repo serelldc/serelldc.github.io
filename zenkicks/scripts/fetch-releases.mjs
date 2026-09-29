@@ -17,7 +17,7 @@ import { readFile, writeFile } from 'node:fs/promises';
 const KEY = process.env.KICKSDB_API_KEY;
 const API = 'https://api.kicks.dev/v3';
 const today = new Date(Date.now() + 4 * 3600 * 1000).toISOString().slice(0, 10); // Dubai date
-const MAX_PHOTO_LOOKUPS = 6;
+const MAX_PHOTO_LOOKUPS = 15;
 
 if (!KEY) { console.log('No KICKSDB_API_KEY set; keeping current data.'); process.exit(0); }
 
