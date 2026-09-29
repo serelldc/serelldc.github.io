@@ -67,9 +67,12 @@ async function releases() {
   console.log(`Calendar: ${file.items.length} upcoming (${before - file.items.length} past removed), ${found}/${looked} new photos.`);
 }
 
+// StockX files slides, clogs and boots under "sneakers" too; What's hot shows real sneakers only
+const NOT_SNEAKER = /\b(slides?|clogs?|crocs|boots?|timberland|sandals?|slippers?|mules?|flip[- ]?flops?|ugg|birkenstock|foam ?runner)\b/i;
+
 async function hot() {
-  const r = await get('/stockx/products', { filters: 'product_type = "sneakers"', limit: '20' });
-  const online = r.filter((p) => p.title && p.image).slice(0, 10).map((p, i) => ({
+  const r = await get('/stockx/products', { filters: 'product_type = "sneakers"', limit: '40' });
+  const online = r.filter((p) => p.title && p.image && !NOT_SNEAKER.test(p.title)).slice(0, 10).map((p, i) => ({
     name: clean(p.title),
     why: Number(p.weekly_orders) ? `${Number(p.weekly_orders).toLocaleString('en-US')} orders on StockX this week` : `#${i + 1} best seller on StockX`,
     tag: 'Resale',
