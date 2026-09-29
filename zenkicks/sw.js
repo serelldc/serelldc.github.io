@@ -1,6 +1,6 @@
 // Zenkicks service worker: makes the app installable and opens fast.
 // Bump VERSION whenever you change app.js / app.css so phones get the update.
-var VERSION = 'zk-v1';
+var VERSION = 'zk-v2';
 var SHELL = ['./', 'index.html', 'config.js', 'assets/app.js', 'assets/app.css', 'manifest.webmanifest', 'icons/icon-192.png', 'icons/icon-512.png'];
 
 self.addEventListener('install', function (e) {
