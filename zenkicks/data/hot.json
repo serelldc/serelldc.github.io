@@ -1,5 +1,5 @@
 {
-  "updated": "2026-09-29",
+  "updated": "2026-09-30",
   "source": "KicksDB (StockX best sellers)",
   "online": [
     {
@@ -24,13 +24,6 @@
       "link": "https://stockx.pvxt.net/c/4722526/1023711/9060?u=https%3A%2F%2Fstockx.com%2Fair-jordan-1-retro-low-og-last-dance-at-the-garden"
     },
     {
-      "name": "Nike Mind 001 Slide Black Chrome",
-      "why": "583 orders on StockX this week",
-      "tag": "Resale",
-      "image": "https://images.stockx.com/images/Nike-Mind-001-Slide-Black-Chrome-Product.jpg?fit=fill&bg=FFFFFF&w=600&h=430&fm=webp&auto=compress&q=90&dpr=2&trim=color&updated_at=1789404168",
-      "link": "https://stockx.pvxt.net/c/4722526/1023711/9060?u=https%3A%2F%2Fstockx.com%2Fnike-mind-001-slide-black-chrome"
-    },
-    {
       "name": "Jordan 4 Retro Toro Bravo (2026)",
       "why": "578 orders on StockX this week",
       "tag": "Resale",
@@ -52,25 +45,32 @@
       "link": "https://stockx.pvxt.net/c/4722526/1023711/9060?u=https%3A%2F%2Fstockx.com%2Fair-jordan-8-retro-chrome-2026"
     },
     {
-      "name": "Timberland 6\" Premium Waterproof Boot Wheat",
-      "why": "441 orders on StockX this week",
+      "name": "Jordan 12 Retro Bucks",
+      "why": "391 orders on StockX this week",
       "tag": "Resale",
-      "image": "https://images.stockx.com/images/Timberland-6-Inch-Premium-Waterproof-Wheat-Product.jpg?fit=fill&bg=FFFFFF&w=600&h=430&fm=webp&auto=compress&q=90&dpr=2&trim=color&updated_at=1784763584",
-      "link": "https://stockx.pvxt.net/c/4722526/1023711/9060?u=https%3A%2F%2Fstockx.com%2Ftimberland-6-inch-premium-waterproof-wheat"
+      "image": "https://images.stockx.com/images/Air-Jordan-12-Retro-Bucks-Product.jpg?fit=fill&bg=FFFFFF&w=600&h=430&fm=webp&auto=compress&q=90&dpr=2&trim=color&updated_at=1788355234",
+      "link": "https://stockx.pvxt.net/c/4722526/1023711/9060?u=https%3A%2F%2Fstockx.com%2Fair-jordan-12-retro-bucks"
     },
     {
-      "name": "Nike Mind 001 Slide Triple Black",
-      "why": "439 orders on StockX this week",
+      "name": "ASICS Gel-1130 Black Pure Silver",
+      "why": "390 orders on StockX this week",
       "tag": "Resale",
-      "image": "https://images.stockx.com/images/Nike-Mind-001-Slide-Triple-Black-Product.jpg?fit=fill&bg=FFFFFF&w=600&h=430&fm=webp&auto=compress&q=90&dpr=2&trim=color&updated_at=1788356294",
-      "link": "https://stockx.pvxt.net/c/4722526/1023711/9060?u=https%3A%2F%2Fstockx.com%2Fnike-mind-001-slide-triple-black"
+      "image": "https://images.stockx.com/images/ASICS-Gel-1130-Black-Pure-Silver-Product.jpg?fit=fill&bg=FFFFFF&w=600&h=430&fm=webp&auto=compress&q=90&dpr=2&trim=color&updated_at=1784840409",
+      "link": "https://stockx.pvxt.net/c/4722526/1023711/9060?u=https%3A%2F%2Fstockx.com%2Fasics-gel-1130-black-pure-silver"
     },
     {
-      "name": "Crocs Crocband Clog Cars Lightning McQueen Dinoco",
-      "why": "403 orders on StockX this week",
+      "name": "Nike Air Force 1 Low '07 White",
+      "why": "351 orders on StockX this week",
       "tag": "Resale",
-      "image": "https://images.stockx.com/images/Crocs-Classic-Clog-Cars-Lightning-McQueen-Dinoco.jpg?fit=fill&bg=FFFFFF&w=600&h=430&fm=webp&auto=compress&q=90&dpr=2&trim=color&updated_at=1786562880",
-      "link": "https://stockx.pvxt.net/c/4722526/1023711/9060?u=https%3A%2F%2Fstockx.com%2Fcrocs-crocband-clog-cars-lightning-mcqueen-dinoco"
+      "image": "https://images.stockx.com/images/Nike-Air-Force-1-Low-White-07-Product_V2.jpg?fit=fill&bg=FFFFFF&w=600&h=430&fm=webp&auto=compress&q=90&dpr=2&trim=color&updated_at=1785333173",
+      "link": "https://stockx.pvxt.net/c/4722526/1023711/9060?u=https%3A%2F%2Fstockx.com%2Fnike-air-force-1-low-white-07"
+    },
+    {
+      "name": "Jordan 5 Retro Black University Blue (2026)",
+      "why": "341 orders on StockX this week",
+      "tag": "Resale",
+      "image": "https://images.stockx.com/images/Air-Jordan-5-Retro-Black-University-Blue-2026-Product.jpg?fit=fill&bg=FFFFFF&w=600&h=430&fm=webp&auto=compress&q=90&dpr=2&trim=color&updated_at=1784225202",
+      "link": "https://stockx.pvxt.net/c/4722526/1023711/9060?u=https%3A%2F%2Fstockx.com%2Fair-jordan-5-retro-black-university-blue-2026"
     }
   ]
 }

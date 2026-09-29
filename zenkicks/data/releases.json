@@ -1,15 +1,7 @@
 {
-  "updated": "2026-09-29",
+  "updated": "2026-09-30",
   "source": "SneakerFiles & Sneaker News release calendars (curated weekly); photos from KicksDB (StockX)",
   "items": [
-    {
-      "date": "2026-09-29",
-      "name": "Nike Air Bakin OG \"Varsity Red\"",
-      "brand": "Nike",
-      "retail_usd": 170,
-      "image": "",
-      "link": ""
-    },
     {
       "date": "2026-09-30",
       "name": "Air Jordan 11 MCS \"Black Metallic Gold\"",
@@ -279,24 +271,24 @@
       "name": "Air Jordan 14 \"Forest Green\"",
       "brand": "Jordan",
       "retail_usd": 215,
-      "image": "",
-      "link": ""
+      "image": "https://images.stockx.com/images/air-jordan-14-retro-white-forest-green-2026.jpg?fit=fill&bg=FFFFFF&w=600&h=430&fm=webp&auto=compress&q=90&dpr=2&trim=color&updated_at=1787345035",
+      "link": "https://stockx.pvxt.net/c/4722526/1023711/9060?u=https%3A%2F%2Fstockx.com%2Fair-jordan-14-retro-white-forest-green-2026"
     },
     {
       "date": "2026-11-01",
       "name": "Nike Kobe 3 Low Protro \"Black\"",
       "brand": "Nike",
       "retail_usd": 190,
-      "image": "",
-      "link": ""
+      "image": "https://stockx-assets.imgix.net/media/Product-Placeholder-Default-20210415.jpg?fit=fill&bg=FFFFFF&w=600&h=430&fm=webp&auto=compress&q=90&dpr=2&trim=color",
+      "link": "https://stockx.pvxt.net/c/4722526/1023711/9060?u=https%3A%2F%2Fstockx.com%2Fnike-kobe-3-low-protro-duke-pe-blue-black"
     },
     {
       "date": "2026-11-05",
       "name": "Nike Air Max Foamdome \"Eggplant\" (2026)",
       "brand": "Nike",
       "retail_usd": 265,
-      "image": "",
-      "link": ""
+      "image": "https://stockx-assets.imgix.net/media/Product-Placeholder-Default-20210415.jpg?fit=fill&bg=FFFFFF&w=600&h=430&fm=webp&auto=compress&q=90&dpr=2&trim=color",
+      "link": "https://stockx.pvxt.net/c/4722526/1023711/9060?u=https%3A%2F%2Fstockx.com%2Fnike-air-max-foamdome-eggplant-2026"
     },
     {
       "date": "2026-11-05",
@@ -319,8 +311,8 @@
       "name": "Air Jordan 6 \"White Infrared\" (2026)",
       "brand": "Jordan",
       "retail_usd": 215,
-      "image": "",
-      "link": ""
+      "image": "https://images.stockx.com/images/Air-Jordan-6-Rings-White-Infrared-23-Black-GS.jpg?fit=fill&bg=FFFFFF&w=600&h=430&fm=webp&auto=compress&q=90&dpr=2&trim=color&updated_at=1729145781",
+      "link": "https://stockx.pvxt.net/c/4722526/1023711/9060?u=https%3A%2F%2Fstockx.com%2Fair-jordan-6-rings-white-infrared-23-black-gs"
     },
     {
       "date": "2026-11-11",
