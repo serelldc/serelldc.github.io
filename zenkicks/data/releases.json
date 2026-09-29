@@ -1,0 +1,110 @@
+{
+  "updated": "2026-09-29",
+  "source": "SneakerFiles, Sole Retriever and SI Sneakers release calendars (seed data; KicksDB takes over once your API key is set)",
+  "items": [
+    {
+      "date": "2026-09-29",
+      "name": "Nike Air Bakin OG \"Varsity Red\"",
+      "brand": "Nike",
+      "retail_usd": 170,
+      "image": "",
+      "link": ""
+    },
+    {
+      "date": "2026-09-30",
+      "name": "Union LA x Nike Dunk Low \"Bamboo\"",
+      "brand": "Nike",
+      "retail_usd": 135,
+      "image": "",
+      "link": ""
+    },
+    {
+      "date": "2026-09-30",
+      "name": "Air Jordan 11 MCS \"Black Metallic Gold\"",
+      "brand": "Jordan",
+      "retail_usd": 210,
+      "image": "",
+      "link": ""
+    },
+    {
+      "date": "2026-09-30",
+      "name": "Nike Kobe AD Protro \"Purple Stardust\"",
+      "brand": "Nike",
+      "retail_usd": 155,
+      "image": "",
+      "link": ""
+    },
+    {
+      "date": "2026-10-01",
+      "name": "Air Jordan 1 Low OG \"Howard\"",
+      "brand": "Jordan",
+      "retail_usd": 155,
+      "image": "",
+      "link": ""
+    },
+    {
+      "date": "2026-10-01",
+      "name": "Nike Dunk Low \"Campfire Orange\"",
+      "brand": "Nike",
+      "retail_usd": 120,
+      "image": "",
+      "link": ""
+    },
+    {
+      "date": "2026-10-01",
+      "name": "New Balance Made in UK 991v2 \"Karanda Red\"",
+      "brand": "New Balance",
+      "retail_usd": 249.99,
+      "image": "",
+      "link": ""
+    },
+    {
+      "date": "2026-10-02",
+      "name": "J Balvin x Air Jordan 4 \"Amazonas\"",
+      "brand": "Jordan",
+      "retail_usd": 225,
+      "image": "",
+      "link": ""
+    },
+    {
+      "date": "2026-10-02",
+      "name": "Air Jordan 4 \"Light Army\"",
+      "brand": "Jordan",
+      "retail_usd": 220,
+      "image": "",
+      "link": ""
+    },
+    {
+      "date": "2026-10-03",
+      "name": "Air Jordan 3 \"Fireside\" (W)",
+      "brand": "Jordan",
+      "retail_usd": 205,
+      "image": "",
+      "link": ""
+    },
+    {
+      "date": "2026-10-05",
+      "name": "Nike Kobe 10 Low Protro \"5 AM Flight\"",
+      "brand": "Nike",
+      "retail_usd": 200,
+      "image": "",
+      "link": ""
+    },
+    {
+      "date": "2026-10-07",
+      "name": "Nike Air Force 1 '01 \"Subway Rat\"",
+      "brand": "Nike",
+      "retail_usd": 150,
+      "image": "",
+      "link": ""
+    },
+    {
+      "date": "2026-10-09",
+      "name": "Nike Air Griffey Max 1 \"Cincinnati Reds\"",
+      "brand": "Nike",
+      "retail_usd": 170,
+      "image": "",
+      "link": ""
+    }
+  ]
+}
