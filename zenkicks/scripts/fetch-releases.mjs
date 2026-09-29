@@ -35,6 +35,10 @@ const clean = (s) => String(s || '').replace(/\s+/g, ' ').trim();
 const big = (u) => String(u || '').replace(/([?&])w=\d+/, '$1w=600').replace(/([?&])h=\d+/, '$1h=430');
 const words = (s) => clean(s).toLowerCase().replace(/[^a-z0-9 ]/g, ' ').split(' ').filter((w) => w.length > 2 && !['nike', 'the', 'and', 'low', 'high', 'mid', 'retro', 'womens', 'mens'].includes(w));
 function sameShoe(wanted, found) {
+  // every model number must match (stops "Jordan 14" matching an "Air Force 1"), then most key words
+  const nums = (t) => (clean(t).toLowerCase().match(/\b\d+\b/g) || []).filter((n) => n.length < 4); // skip years like 2026
+  const fnums = new Set(nums(found));
+  if (!nums(wanted).every((n) => fnums.has(n))) return false;
   const a = words(wanted), b = new Set(words(found));
   if (!a.length) return false;
   const hit = a.filter((w) => b.has(w)).length;
