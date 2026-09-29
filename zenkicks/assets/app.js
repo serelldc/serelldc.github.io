@@ -140,10 +140,10 @@
       t('market', 'Market', I.bag) + t('legit', 'Legit', I.shield) + '</nav>';
   }
   function setupBanner() {
-    return sb ? '' : '<div class="banner"><b>Setup mode:</b> connect Supabase in <code>config.js</code> to turn on accounts, listings, bids and legit checks (README step 2). Release calendar works already.</div>';
+    return ''; // no public setup banner
   }
   function needSb() {
-    return '<div class="empty">' + I.shield + '<b>Not connected yet</b><span>Add your Supabase URL and key in config.js to use this part.</span></div>';
+    return '<div class="empty">' + I.shield + '<b>Opening soon</b><span>Buy, sell and legit checks are coming soon. Drops and What’s hot are live now.</span><button class="btn red" data-go="drops">See drops</button></div>';
   }
   function needLogin(what) {
     return '<div class="empty">' + I.user + '<b>Sign in to ' + esc(what) + '</b><span>It’s free. Use your email' + (C.GOOGLE_LOGIN ? ' or Google' : '') + '.</span><button class="btn red" data-go="login">Sign in</button></div>';
@@ -197,6 +197,9 @@
     function j(u) { return fetch(u + '?v=' + dubaiToday(), { cache: 'no-cache' }).then(function (r) { return r.ok ? r.json() : null; }).catch(function () { return null; }); }
     return Promise.all([j('data/releases.json'), j('data/hot.json'), j('data/photos.json')]).then(function (a) {
       ST.releases = a[0] || { items: [] }; ST.hot = a[1] || { online: [] }; ST.photos = a[2] || {};
+      // Show only pairs that have a real photo; others appear once KicksDB or data/photos.json gives them one.
+      ST.releases.items = (ST.releases.items || []).filter(function (d) { return !!releaseImg(d); });
+      ST.hot.online = (ST.hot.online || []).filter(function (h) { return !!releaseImg(h); });
     });
   }
   function releaseImg(item) {
