@@ -1,0 +1,41 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Zenkicks — UAE sneaker drops, market and legit checks</title>
+<meta name="description" content="The UAE's sneaker tambayan: release calendar, what's hot, buy and sell verified pairs, and community legit checks. Free.">
+<meta name="theme-color" content="#0D0D0D">
+<link rel="manifest" href="manifest.webmanifest">
+<link rel="icon" type="image/png" sizes="32x32" href="icons/icon-32.png">
+<link rel="apple-touch-icon" href="icons/apple-touch-icon.png">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black">
+<meta name="apple-mobile-web-app-title" content="Zenkicks">
+<meta property="og:title" content="Zenkicks">
+<meta property="og:description" content="UAE sneaker drops, market and legit checks. Free.">
+<meta property="og:image" content="icons/icon-512.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Audiowide&family=Oxanium:wght@500;600;700&family=Yellowtail&family=Instrument+Sans:wght@400;500;600;700&display=swap">
+<link rel="stylesheet" href="assets/app.css">
+<style>
+  .hd{padding-top:env(safe-area-inset-top,0px);height:calc(64px + env(safe-area-inset-top,0px))}
+  .tabs,.actionbar{padding-bottom:calc(10px + env(safe-area-inset-bottom,0px))}
+  .tabs{height:calc(78px + env(safe-area-inset-bottom,0px))}
+</style>
+</head>
+<body>
+<div class="shell" id="app">
+  <noscript><p style="padding:24px">Zenkicks needs JavaScript turned on.</p></noscript>
+</div>
+<script src="config.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.45.4/dist/umd/supabase.min.js"></script>
+<script src="assets/app.js"></script>
+<script>
+  if ('serviceWorker' in navigator) {
+    window.addEventListener('load', function () { navigator.serviceWorker.register('sw.js').catch(function () {}); });
+  }
+</script>
+</body>
+</html>
