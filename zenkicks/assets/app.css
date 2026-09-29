@@ -208,3 +208,5 @@ h2{font-size:19px}
 .installcard{display:flex;align-items:center;gap:12px;padding:12px 14px;margin:12px 16px 0}
 .installcard img{border-radius:12px;flex-shrink:0}
 .installcard .m{font-size:12.5px;line-height:1.4}
+.pill.founder{background:linear-gradient(135deg,#E52C27,#8E1512);color:#fff;letter-spacing:.02em}
+.chip.on{background:var(--ink);color:var(--bone);border-color:var(--ink)}

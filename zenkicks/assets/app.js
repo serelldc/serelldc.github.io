@@ -40,7 +40,9 @@
   function store(key, val) { try { if (val === undefined) return JSON.parse(localStorage.getItem('zk.' + key) || 'null'); localStorage.setItem('zk.' + key, JSON.stringify(val)); } catch (e) { return null; } }
   function pub(bucket, path) { return sb ? sb.storage.from(bucket).getPublicUrl(path).data.publicUrl : ''; }
   function uid() { return ST.session && ST.session.user ? ST.session.user.id : null; }
-  function isStaff() { return !!(ST.me && (ST.me.is_admin || ST.me.is_checker)); }
+  function isStaff() { return !!(ST.me && !ST.me.is_banned && (ST.me.is_admin || ST.me.is_checker || ST.me.is_owner)); }
+  function isAdmin() { return !!(ST.me && !ST.me.is_banned && (ST.me.is_admin || ST.me.is_owner)); }
+  function isOwner() { return !!(ST.me && ST.me.is_owner); }
   function cleanQ(q) { return String(q).replace(/[%,()*\\]/g, ' ').trim().slice(0, 40); }
   function dubaiToday() { return new Date(Date.now() + 4 * 3600 * 1000).toISOString().slice(0, 10); }
   function dayDiff(iso) { return Math.round((Date.parse(iso + 'T00:00:00Z') - Date.parse(dubaiToday() + 'T00:00:00Z')) / 86400000); }
@@ -121,8 +123,8 @@
   // shell
   // ------------------------------------------------------------------
   function header(r) {
-    var back = { l: 'market', c: 'legit', 'new-check': 'legit', sell: 'drops', login: 'drops', u: 'market' }[r.name];
-    var titles = { l: 'Listing', c: 'Legit check', 'new-check': 'New check', sell: 'Sell a pair', login: 'Sign in', u: 'Member' };
+    var back = { l: 'market', c: 'legit', 'new-check': 'legit', sell: 'drops', login: 'drops', u: 'market', admin: 'me' }[r.name];
+    var titles = { l: 'Listing', c: 'Legit check', 'new-check': 'New check', sell: 'Sell a pair', login: 'Sign in', u: 'Member', admin: 'Admin panel' };
     if (back) {
       return '<header class="hd"><button class="ibtn" data-go="' + back + '" aria-label="Back">' + (r.name === 'sell' || r.name === 'new-check' || r.name === 'login' ? I.close : I.back) + '</button><div class="hd-title">' + LOGO + esc(titles[r.name]) + '</div><span style="width:44px"></span></header>';
     }
@@ -273,7 +275,8 @@
       '<textarea id="v-note" maxlength="280" placeholder="' + (kind === 'deal' ? 'e.g. Legit pair, smooth meet-up in Sharjah' : 'e.g. Spotted the fake tag fast, thanks!') + '" style="padding:10px;border:1px solid var(--line);border-radius:10px;min-height:70px"></textarea>' +
       '<p class="err" id="v-err" role="alert"></p><div class="row"><button class="btn ghost" style="flex:1" data-act="mclose">Cancel</button><button class="btn red" style="flex:1" data-act="vsend" data-target="' + target + '" data-ref="' + ref + '" data-kind="' + kind + '">Send vouch</button></div>');
   }
-  function userLink(id, name) { return '<button class="link ulink" data-go="u/' + id + '">@' + esc(name) + '</button>'; }
+  function founderPill(id) { return ST.owners && ST.owners[id] ? ' <span class="pill founder">★ Founder</span>' : ''; }
+  function userLink(id, name) { return '<button class="link ulink" data-go="u/' + id + '">@' + esc(name) + '</button>' + founderPill(id); }
   function verifiedPill(level) {
     return level === 'id' ? '<span class="pill ok">✓ ID-verified</span>' : level === 'phone' ? '<span class="pill ok">✓ Phone-verified</span>' : '<span class="pill sample">Email only</span>';
   }
@@ -688,7 +691,7 @@
   VIEWS.u = function (r) {
     if (!sb) return needSb();
     return Promise.all([
-      sb.from('profiles').select('id,username,city,verified_level,is_checker,is_admin,created_at').eq('id', r.id).maybeSingle(),
+      sb.from('profiles').select('id,username,city,verified_level,is_checker,is_admin,is_owner,created_at').eq('id', r.id).maybeSingle(),
       vouchMap([r.id]),
       sb.from('vouches').select('id,kind,stars,note,created_at,from_id,from:profiles!vouches_from_id_fkey(username)').eq('to_id', r.id).order('created_at', { ascending: false }).limit(50),
       sb.from('listings').select(LISTING_COLS).eq('seller_id', r.id).eq('status', 'active').order('created_at', { ascending: false }).limit(6)
@@ -696,7 +699,7 @@
       var p = a[0].data; if (!p) return '<div class="empty">' + I.user + '<b>Member not found</b><button class="btn dark" data-go="market">Back</button></div>';
       var v = a[1][p.id] || {}; var vs = a[2].data || []; var ls = a[3].data || [];
       var bars = [5, 4, 3, 2, 1].map(function (n) { var k = vs.filter(function (x) { return x.stars === n; }).length; var w = vs.length ? Math.round(k * 100 / vs.length) : 0; return '<div class="bar"><span style="width:28px">' + n + '★</span><div class="track"><div class="fill" style="width:' + w + '%;background:var(--red)"></div></div><span style="width:24px;text-align:right">' + k + '</span></div>'; }).join('');
-      return '<div class="pad"><div class="row"><div class="avatar" style="width:56px;height:56px;font-size:22px;background:var(--red)">' + esc((p.username || '?')[0].toUpperCase()) + '</div><div class="grow"><h1 style="font-size:22px">@' + esc(p.username) + '</h1><div class="m">' + esc(p.city || 'UAE') + ' · member since ' + new Date(p.created_at).toLocaleDateString('en-GB', { month: 'short', year: 'numeric' }) + '</div></div>' + verifiedPill(p.verified_level) + '</div>' +
+      return '<div class="pad"><div class="row"><div class="avatar" style="width:56px;height:56px;font-size:22px;background:var(--red)">' + esc((p.username || '?')[0].toUpperCase()) + '</div><div class="grow"><h1 style="font-size:22px">@' + esc(p.username) + '</h1>' + (p.is_owner || (ST.owners && ST.owners[p.id]) ? '<span class="pill founder" style="align-self:flex-start">★ Founder of Zenkicks</span>' : '') + '<div class="m">' + esc(p.city || 'UAE') + ' · member since ' + new Date(p.created_at).toLocaleDateString('en-GB', { month: 'short', year: 'numeric' }) + '</div></div>' + verifiedPill(p.verified_level) + '</div>' +
         '<div class="card" style="padding:14px;display:flex;flex-direction:column;gap:10px"><div class="between"><div><div class="money" style="font-size:30px">' + (v.total ? '★ ' + Number(v.avg_stars).toFixed(1) : '—') + '</div><div class="m">' + (v.total || 0) + ' vouches · ' + (v.deals || 0) + ' from deals · ' + (v.legit || 0) + ' from legit checks</div></div>' + ((p.is_checker || p.is_admin) ? '<span class="pill ok">✓ Checker</span>' : '') + '</div>' + (v.total ? bars : '<span class="sub">No vouches yet. Members vouch after a deal or when someone helps on a legit check.</span>') + '</div>' +
         (vs.length ? '<section class="sec"><h2>Vouches</h2><div class="card" style="padding:4px 14px">' + vs.map(function (x) { return '<div class="kv" style="flex-direction:column;align-items:flex-start;gap:2px"><span><b style="color:var(--red)">' + '★★★★★'.slice(0, x.stars) + '</b><span style="opacity:.25">' + '★★★★★'.slice(x.stars) + '</span> <span class="m">· ' + (x.kind === 'deal' ? 'Deal' : 'Legit check') + ' · ' + ago(x.created_at) + ' ago</span></span>' + (x.note ? '<span style="font-size:14px">' + esc(x.note) + '</span>' : '') + '<span class="m">from ' + userLink(x.from_id, x.from && x.from.username) + '</span></div>'; }).join('') + '</div></section>' : '') +
         (ls.length ? '<section class="sec"><h2>Pairs for sale</h2><div class="grid">' + ls.map(function (l) { return itemCard(l, {}); }).join('') + '</div></section>' : '') +
@@ -730,8 +733,52 @@
         '<section class="sec"><h2>My listings</h2>' + (ls.length ? '<div class="card" style="padding:4px 14px">' + ls.map(function (l) { return '<button class="kv" style="width:100%;background:none;border-left:0;border-right:0;border-top:0;text-align:left" data-go="l/' + l.id + '"><span>' + esc(l.model) + '</span><span class="m">' + aed(l.price_aed) + ' · ' + l.status + '</span></button>'; }).join('') + '</div>' : '<p class="sub">Nothing listed yet.</p>') + '</section>' +
         '<section class="sec"><h2>My bids</h2>' + (bs.length ? '<div class="card" style="padding:4px 14px">' + bs.map(function (b) { return '<button class="kv" style="width:100%;background:none;border-left:0;border-right:0;border-top:0;text-align:left" data-go="l/' + (b.listing && b.listing.id) + '"><span>' + esc(b.listing && b.listing.model) + '</span><span class="m">' + aed(b.amount_aed) + ' · ' + b.status + '</span></button>'; }).join('') + '</div>' : '<p class="sub">No bids yet.</p>') + '</section>' +
         (reps ? '<section class="sec"><h2>Open reports</h2>' + (reps.length ? '<div class="card" style="padding:4px 14px">' + reps.map(function (x) { return '<div class="kv" style="align-items:center"><span><b>' + x.target_type + '</b> · ' + esc(x.reason) + '<br><span class="tiny">' + x.target_id + '</span></span><button class="btn ghost" style="height:36px;padding:0 10px;font-size:12px" data-act="resolve" data-id="' + x.id + '">Resolve</button></div>'; }).join('') + '</div>' : '<p class="sub">No open reports.</p>') + '</section>' : '') +
+        (isAdmin() ? '<button class="btn dark full" data-go="admin">' + (isOwner() ? '★ Owner panel' : 'Admin panel') + '</button>' : '') +
         '<button class="btn ghost full" data-act="signout">Sign out</button>' +
         '<p class="tiny center"><a href="terms.html" style="text-decoration:underline">Terms</a> · <a href="privacy.html" style="text-decoration:underline">Privacy</a>' + (C.CONTACT_EMAIL ? ' · ' + esc(C.CONTACT_EMAIL) : '') + '</p></div>';
+    });
+  };
+
+  // ------------------------------------------------------------------
+  // OWNER / ADMIN PANEL
+  // ------------------------------------------------------------------
+  VIEWS.admin = function () {
+    if (!sb) return needSb();
+    if (!uid()) return needLogin('open the admin panel');
+    if (!isAdmin()) return '<div class="empty">' + I.shield + '<b>Admins only</b><button class="btn dark" data-go="drops">Back</button></div>';
+    var q = ST.adminQ || '';
+    return Promise.all([
+      sb.rpc('admin_stats'),
+      sb.rpc('admin_find_users', { q: q }),
+      sb.from('reports').select('id,target_type,target_id,reason,created_at,reporter:profiles!reports_reporter_id_fkey(username)').eq('resolved', false).order('created_at', { ascending: false }).limit(30),
+      sb.from('listings').select('id,model,price_aed,status,created_at,seller_id,seller:profiles!listings_seller_id_fkey(username)').order('created_at', { ascending: false }).limit(15),
+      sb.from('checks').select('id,model,created_at,author_id,verdict,author:profiles!checks_author_id_fkey(username)').order('created_at', { ascending: false }).limit(10)
+    ]).then(function (a) {
+      if (a[0].error) throw a[0].error;
+      var st = (a[0].data || [])[0] || {}; var users = a[1].data || []; var reps = a[2].data || []; var ls = a[3].data || []; var cs = a[4].data || [];
+      function tile(n, label) { return '<div class="card" style="padding:12px;display:flex;flex-direction:column;gap:2px"><span class="money" style="font-size:22px">' + (n || 0) + '</span><span class="m">' + label + '</span></div>'; }
+      function roleBtn(u, role, on, label) { return '<button class="chip' + (on ? ' on' : '') + '" data-act="arole" data-id="' + u.id + '" data-v="' + role + '" data-on="' + on + '" aria-pressed="' + on + '">' + (on ? '✓ ' : '') + label + '</button>'; }
+      var userRows = users.map(function (u) {
+        var tags = (u.is_owner ? '<span class="pill founder">★ Founder</span>' : '') + (u.is_admin && !u.is_owner ? '<span class="pill dark">Admin</span>' : '') + (u.is_checker ? '<span class="pill ok">Checker</span>' : '') + (u.is_banned ? '<span class="pill red">Banned</span>' : '');
+        var controls = u.is_owner ? '<span class="m">Owner. Cannot be changed.</span>' :
+          (isOwner() ? roleBtn(u, 'admin', u.is_admin, 'Admin') : '') + roleBtn(u, 'checker', u.is_checker, 'Checker') +
+          '<button class="chip" style="' + (u.is_banned ? '' : 'color:var(--red);border-color:var(--red)') + '" data-act="aban" data-id="' + u.id + '" data-on="' + u.is_banned + '">' + (u.is_banned ? 'Unban' : 'Ban') + '</button>';
+        return '<div class="kv" style="flex-direction:column;align-items:flex-start;gap:6px"><div class="row" style="gap:6px;flex-wrap:wrap">' + userLink(u.id, u.username).replace(founderPill(u.id), '') + ' ' + tags + '</div>' +
+          '<span class="m">' + (u.email ? esc(u.email) + ' · ' : '') + esc(u.city || 'UAE') + ' · joined ' + ago(u.created_at) + ' ago</span><div class="chips-wrap">' + controls + '</div></div>';
+      }).join('') || '<p class="sub">No members found.</p>';
+      var repRows = reps.map(function (x) {
+        var go = x.target_type === 'listing' ? 'l/' + x.target_id : x.target_type === 'check' ? 'c/' + x.target_id : x.target_type === 'user' ? 'u/' + x.target_id : '';
+        return '<div class="kv" style="align-items:center"><span><b>' + esc(x.target_type) + '</b> · ' + esc(x.reason) + '<br><span class="m">by @' + esc(x.reporter && x.reporter.username) + ' · ' + ago(x.created_at) + ' ago</span></span><span class="row" style="gap:6px">' + (go ? '<button class="btn ghost" style="height:36px;padding:0 10px;font-size:12px" data-go="' + go + '">View</button>' : '') + '<button class="btn dark" style="height:36px;padding:0 10px;font-size:12px" data-act="resolve" data-id="' + x.id + '">Done</button></span></div>';
+      }).join('') || '<p class="sub" style="padding:8px 0">No open reports. 🎉</p>';
+      var lRows = ls.map(function (l) { return '<div class="kv" style="align-items:center"><button class="link" style="text-align:left;padding:0;color:inherit" data-go="l/' + l.id + '"><b>' + esc(l.model) + '</b><br><span class="m">' + aed(l.price_aed) + ' · @' + esc(l.seller && l.seller.username) + ' · ' + esc(l.status) + '</span></button>' + (l.status !== 'removed' ? '<button class="btn ghost" style="height:36px;padding:0 10px;font-size:12px;color:var(--red)" data-act="aremove" data-id="' + l.id + '">Remove</button>' : '<span class="m">removed</span>') + '</div>'; }).join('') || '<p class="sub">No listings yet.</p>';
+      var cRows = cs.map(function (c) { return '<div class="kv" style="align-items:center"><button class="link" style="text-align:left;padding:0;color:inherit" data-go="c/' + c.id + '"><b>' + esc(c.model) + '</b><br><span class="m">@' + esc(c.author && c.author.username) + ' · ' + (c.verdict ? c.verdict.toUpperCase() : 'open') + ' · ' + ago(c.created_at) + ' ago</span></button><button class="btn ghost" style="height:36px;padding:0 10px;font-size:12px;color:var(--red)" data-act="adelcheck" data-id="' + c.id + '">Delete</button></div>'; }).join('') || '<p class="sub">No legit checks yet.</p>';
+      return '<div class="pad"><div class="sec" style="gap:4px"><h1>' + (isOwner() ? 'Owner panel' : 'Admin panel') + '</h1><p class="sub">' + (isOwner() ? 'You’re the founder. You appoint admins and checkers, and nobody can change your role.' : 'Handle reports, checkers and bans.') + '</p></div>' +
+        '<div class="grid" style="grid-template-columns:repeat(3,1fr)">' + tile(st.members, 'Members') + tile(st.new_7d, 'New this week') + tile(st.active_listings, 'Pairs for sale') + tile(st.sold, 'Sold') + tile(st.checks, 'Legit checks') + tile(st.open_reports, 'Open reports') + '</div>' +
+        '<section class="sec"><h2>Reports</h2><div class="card" style="padding:4px 14px">' + repRows + '</div></section>' +
+        '<section class="sec"><h2>Members</h2><label class="search" for="aq">' + I.search + '<input id="aq" type="search" placeholder="Search username' + (isOwner() ? ' or email' : '') + '" value="' + esc(q) + '" autocomplete="off"></label><div class="card" style="padding:4px 14px">' + userRows + '</div>' +
+        '<p class="m" style="margin:0">Admin: reports, bans, removals' + (isOwner() ? ', appointed by you' : '') + '. Checker: posts Legit/Fake verdicts. Banning someone also takes down their pairs for sale.</p></section>' +
+        '<section class="sec"><h2>Latest listings</h2><div class="card" style="padding:4px 14px">' + lRows + '</div></section>' +
+        '<section class="sec"><h2>Latest legit checks</h2><div class="card" style="padding:4px 14px">' + cRows + '</div></section></div>';
     });
   };
 
@@ -815,6 +862,20 @@
         });
         break;
       case 'install': installApp(); break;
+      case 'arole':
+        sb.rpc('admin_set_role', { target: id, role: v, val: !on }).then(function (r) { if (r.error) return fail(r.error); toast((!on ? 'Made ' : 'Removed ') + v); return loadOwners().then(function () { render(true); }); });
+        break;
+      case 'aban':
+        if (!on && !window.confirm('Ban this member? Their pairs for sale will be taken down.')) return;
+        sb.rpc('admin_set_ban', { target: id, val: !on }).then(function (r) { if (r.error) return fail(r.error); toast(on ? 'Unbanned' : 'Banned'); render(true); });
+        break;
+      case 'aremove':
+        sb.rpc('admin_remove_listing', { lid: id }).then(function (r) { if (r.error) return fail(r.error); toast('Listing removed'); render(true); });
+        break;
+      case 'adelcheck':
+        if (!window.confirm('Delete this legit check and its comments?')) return;
+        sb.from('checks').delete().eq('id', id).then(function (r) { if (r.error) return fail(r.error); toast('Deleted'); render(true); });
+        break;
       case 'hideinstall': store('noinstall', true); var ic2 = document.getElementById('installcard'); if (ic2) ic2.remove(); break;
       case 'resolve': sb.from('reports').update({ resolved: true }).eq('id', id).then(function (r) { if (r.error) return fail(r.error); render(true); }); break;
       case 'sback': ST.sell.step = Math.max(1, ST.sell.step - 1); render(); break;
@@ -897,6 +958,7 @@
     if (e.target.id === 'cmt') { e.preventDefault(); var b = app.querySelector('[data-act="send"]'); if (b) b.click(); }
     if (e.target.id === 'amt') { e.preventDefault(); var b2 = app.querySelector('[data-act="bid"]'); if (b2) b2.click(); }
     if (e.target.id === 'l-email') { e.preventDefault(); var b3 = app.querySelector('[data-act="emaillink"]'); if (b3) b3.click(); }
+    if (e.target.id === 'aq') { e.preventDefault(); ST.adminQ = e.target.value.trim(); render(true); }
   });
 
   // ------------------------------------------------------------------
@@ -907,8 +969,12 @@
     return Promise.all([sb.from('profiles').select('*').eq('id', uid()).maybeSingle(), sb.from('private_contacts').select('whatsapp').eq('user_id', uid()).maybeSingle()])
       .then(function (a) { ST.me = a[0].data; ST.contact = a[1].data; });
   }
+  function loadOwners() {
+    if (!sb) return Promise.resolve();
+    return sb.rpc('owner_ids').then(function (r) { ST.owners = {}; (r.data || []).forEach(function (x) { ST.owners[typeof x === 'string' ? x : (x.owner_ids || x.id)] = true; }); }).catch(function () {});
+  }
   if (sb) {
-    sb.auth.getSession().then(function (r) { ST.session = r.data.session; return loadMe(); }).then(function () { render(); });
+    sb.auth.getSession().then(function (r) { ST.session = r.data.session; return Promise.all([loadMe(), loadOwners()]); }).then(function () { render(); });
     sb.auth.onAuthStateChange(function (evt, session) {
       var was = uid(); ST.session = session;
       if ((session && session.user && session.user.id) !== was) loadMe().then(function () { if (evt === 'SIGNED_IN' && route().name === 'login') go('drops'); else render(true); });
