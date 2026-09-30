@@ -405,6 +405,19 @@
   // ------------------------------------------------------------------
   var VIEWS = {};
 
+  // someone who asked for a code but never typed it: remind them when they come back (this device only)
+  function pendingSignup() {
+    var p = store('pending');
+    if (!p || !p.email) return null;
+    if (uid() || Date.now() - p.t > 30 * 864e5) { store('pending', null); return null; }
+    return p;
+  }
+  function pendingBanner() {
+    var p = pendingSignup(); if (!p) return '';
+    return '<div class="pad" style="padding-bottom:0"><div class="card pendbox"><div><b>You’re almost in!</b><br><span class="m">Finish signing up with the 6-digit code we emailed to <b>' + esc(p.email) + '</b>. Check Spam or Promotions if you can’t see it.</span></div>' +
+      '<div class="row" style="gap:8px;flex-wrap:wrap"><button class="btn red" style="height:40px;padding:0 16px;font-size:13px" data-act="pendcode">Enter my code</button><button class="btn ghost" style="height:40px;padding:0 14px;font-size:13px;color:var(--ink)" data-act="pendnew">Send a new code</button><button class="link" style="font-size:12px" data-act="pendforget">Not me</button></div></div></div>';
+  }
+
   VIEWS.drops = function () {
     var hc = ST.homeCache && Date.now() - ST.homeCache.t < 30000 ? ST.homeCache : null;
     var fresh = hc ? Promise.resolve({ data: hc.listings }) : sb ? sb.from('listings').select(LISTING_COLS).eq('status', 'active').order('created_at', { ascending: false }).limit(4) : Promise.resolve({ data: [] });
@@ -426,7 +439,7 @@
       var ids = listings.map(function (l) { return l.id; });
       return (hc ? Promise.resolve(hc.stats) : statsFor(ids)).then(function (stats) {
         ST.homeCache = { t: hc ? hc.t : Date.now(), listings: listings, stats: stats };
-        return installCard() + heroHtml +
+        return installCard() + pendingBanner() + heroHtml +
           '<div class="pad">' +
           '<section class="sec"><div class="between"><h2>Release calendar</h2><span class="pill ok" style="font-size:10px">AUTO</span></div><p class="sub" style="font-size:12px">' + esc(stamp()) + ' · AED from US retail at 3.6725; UAE store prices may differ</p>' + rows + '</section>' +
           (hot ? '<section class="sec"><div class="between"><h2>What’s hot</h2><button class="link" data-go="hot">See all</button></div><div class="scroller">' + hot + '</div></section>' : '') +
@@ -866,10 +879,12 @@
       var st = (a[0].data || [])[0] || {}; var users = a[1].data || []; var reps = a[2].data || []; var ls = a[3].data || []; var cs = a[4].data || [];
       function tile(n, label) { return '<div class="card" style="padding:12px;display:flex;flex-direction:column;gap:2px"><span class="money" style="font-size:22px">' + (n || 0) + '</span><span class="m">' + label + '</span></div>'; }
       function roleBtn(u, role, on, label) { return '<button class="chip' + (on ? ' on' : '') + '" data-act="arole" data-id="' + u.id + '" data-v="' + role + '" data-on="' + on + '" aria-pressed="' + on + '">' + (on ? '✓ ' : '') + label + '</button>'; }
+      ST.pendingList = users.filter(function (u) { return u.confirmed === false && u.email; }).map(function (u) { return { id: u.id, email: u.email }; });
       var userRows = users.map(function (u) {
         var tags = (u.is_owner ? '<span class="pill founder">★ Founder</span>' : '') + (u.is_admin && !u.is_owner ? '<span class="pill dark">Admin</span>' : '') + (u.is_checker ? '<span class="pill ok">Checker</span>' : '') + (u.is_banned ? '<span class="pill red">Banned</span>' : '') +
-          (!u.is_banned && u.banned_until ? '<span class="pill red">On hold until ' + esc(fmtDay(new Date(u.banned_until))) + '</span>' : '') + (u.confirmed === false ? '<span class="pill sample" title="Never finished signing in (email not confirmed)">Not confirmed</span>' : '') + (u.warns ? '<span class="pill sample">' + u.warns + ' warning' + (u.warns > 1 ? 's' : '') + '</span>' : '') + (ST.og && ST.og[u.id] ? ogPill(ST.og[u.id]) : '');
+          (!u.is_banned && u.banned_until ? '<span class="pill red">On hold until ' + esc(fmtDay(new Date(u.banned_until))) + '</span>' : '') + (u.confirmed === false ? '<span class="pill sample" title="Never finished signing in (email not confirmed)">Not confirmed' + (remindedAgo(u.id) !== null ? ' · reminded ' + (remindedAgo(u.id) < 60e3 ? 'just now' : ago(new Date(Date.now() - remindedAgo(u.id)).toISOString()) + ' ago') : '') + '</span>' : '') + (u.warns ? '<span class="pill sample">' + u.warns + ' warning' + (u.warns > 1 ? 's' : '') + '</span>' : '') + (ST.og && ST.og[u.id] ? ogPill(ST.og[u.id]) : '');
         var controls = u.is_owner ? '<span class="m">Owner. Cannot be changed.</span>' :
+          (u.confirmed === false && u.email ? '<button class="chip" style="color:#9a5b00;border-color:#d8a24a" data-act="aremind" data-id="' + u.id + '" data-v="' + esc(u.email) + '">' + (remindedAgo(u.id) !== null ? 'Remind again' : 'Send reminder') + '</button>' : '') +
           (isOwner() ? roleBtn(u, 'admin', u.is_admin, 'Admin') : '') + roleBtn(u, 'checker', u.is_checker, 'Checker') +
           (u.id === uid() ? '' : (u.is_banned ? '' : '<button class="chip" data-act="awarn" data-id="' + u.id + '" data-user="' + esc(u.username) + '">Warn</button>' +
             (u.banned_until ? '<button class="chip" data-act="alift" data-id="' + u.id + '">Lift hold</button>' : '<button class="chip" style="color:#9a5b00;border-color:#d8a24a" data-act="asusp" data-id="' + u.id + '" data-user="' + esc(u.username) + '">Suspend</button>')) +
@@ -886,12 +901,33 @@
       return '<div class="pad"><div class="sec" style="gap:4px"><h1>' + (isOwner() ? 'Owner panel' : 'Admin panel') + '</h1><p class="sub">' + (isOwner() ? 'You’re the founder. You appoint admins and checkers, and nobody can change your role.' : 'Handle reports, checkers and bans.') + '</p></div>' +
         '<div class="grid" style="grid-template-columns:repeat(3,1fr)">' + tile(st.members, 'Members' + (st.pending ? '<br><span style="color:#9a5b00">+ ' + st.pending + ' pending</span>' : '')) + tile(st.new_7d, 'New this week') + tile(st.active_listings, 'Pairs for sale') + tile(st.sold, 'Sold') + tile(st.checks, 'Legit checks') + tile(st.open_reports, 'Open reports') + '</div>' +
         '<section class="sec"><h2>Reports</h2><div class="card" style="padding:4px 14px">' + repRows + '</div></section>' +
-        '<section class="sec"><h2>Members</h2><label class="search" for="aq">' + I.search + '<input id="aq" type="search" placeholder="Search username' + (isOwner() ? ' or email' : '') + '" value="' + esc(q) + '" autocomplete="off"></label><div class="card" style="padding:4px 14px">' + userRows + '</div>' +
+        '<section class="sec"><h2>Members</h2><label class="search" for="aq">' + I.search + '<input id="aq" type="search" placeholder="Search username' + (isOwner() ? ' or email' : '') + '" value="' + esc(q) + '" autocomplete="off"></label>' + (ST.pendingList.length ? '<div class="card pendbox"><div><b>' + ST.pendingList.length + ' never finished signing up</b><br><span class="m">They asked for a code but never typed it. A reminder re-sends their sign-up email with a fresh code. One per day each.</span></div><button class="btn red" style="height:40px;padding:0 16px;font-size:13px" data-act="aremindall">Remind all ' + ST.pendingList.length + '</button></div>' : '') +
+        '<div class="card" style="padding:4px 14px">' + userRows + '</div>' +
         '<p class="m" style="margin:0">Be fair: <b>Warn</b> first, then <b>Suspend</b> (1–30 days), and <b>Ban</b> for scams or repeat offenders. The member sees your reason when they open the app. Banning also takes down their pairs for sale. Admin: reports, bans, removals' + (isOwner() ? ', appointed by you' : '') + '. Checker: posts Legit/Fake verdicts.</p></section>' +
         '<section class="sec"><h2>Latest listings</h2><div class="card" style="padding:4px 14px">' + lRows + '</div></section>' +
         '<section class="sec"><h2>Latest legit checks</h2><div class="card" style="padding:4px 14px">' + cRows + '</div></section></div>';
     });
   };
+
+  // owner: re-send the sign-up code to members who never finished (max once a day each)
+  function remindedAgo(id) { var r = store('reminded') || {}; return r[id] ? Date.now() - r[id] : null; }
+  function remindUsers(list, btn) {
+    var todo = list.filter(function (u) { var a = remindedAgo(u.id); return u.email && (a === null || a > 20 * 3600e3); });
+    if (!todo.length) { toast('Already reminded in the last 24 hours'); return; }
+    if (btn) { btn.disabled = true; btn.textContent = 'Sending…'; }
+    var sent = 0, failed = 0, i = 0;
+    (function next() {
+      if (i >= todo.length) {
+        toast(sent ? 'Reminder sent to ' + sent + ' member' + (sent > 1 ? 's' : '') + (failed ? ' (' + failed + ' failed, try later)' : '') : 'Could not send. Try again in a few minutes.');
+        return render(true);
+      }
+      var u = todo[i++];
+      sb.auth.resend({ type: 'signup', email: u.email, options: { emailRedirectTo: location.origin + location.pathname } }).then(function (r) {
+        if (r.error) failed++; else { sent++; var rm = store('reminded') || {}; rm[u.id] = Date.now(); store('reminded', rm); }
+        setTimeout(next, 1200);
+      }, function () { failed++; setTimeout(next, 1200); });
+    })();
+  }
 
   // shown under the code box: most "missing" codes are sitting in Spam or Promotions
   function spamTip(em, canGoogle) {
@@ -907,7 +943,7 @@
   VIEWS.login = function () {
     if (!sb) return needSb();
     if (uid()) { setTimeout(function () { go(takeAfter() || 'me'); }, 0); return skeleton(); }
-    var L = ST.login || {};
+    var L = ST.login || {}; if (!L.email && !L.sentTo) { var pd = pendingSignup(); if (pd) L = { email: pd.email }; }
     var gBtn = C.GOOGLE_LOGIN && !inAppBrowser() ? '<button class="btn dark full gbtn" data-act="google">' + I.google + 'Continue with Google</button><div class="or"><span>or use your email</span></div>' : '';
     var emailBox = L.sentTo
       ? '<div class="card" style="padding:14px;display:flex;flex-direction:column;gap:10px"><p class="sub" style="margin:0">We emailed a code to <b>' + esc(L.sentTo) + '</b>. Type it here, or tap the button in the email.</p>' +
@@ -1078,7 +1114,7 @@
         sb.auth.signInWithOtp({ email: em, options: { emailRedirectTo: location.origin + location.pathname } }).then(function (r) {
           el.disabled = false; el.textContent = oldTxt;
           if (r.error) { lerr.textContent = /rate|security purposes|seconds/i.test(r.error.message) ? 'Too many tries. Wait a minute, then try again.' : r.error.message; return; }
-          ST.login = { email: em, sentTo: em, sentAt: Date.now() }; render(true); toast('Code sent. Check your inbox, and Spam too');
+          ST.login = { email: em, sentTo: em, sentAt: Date.now() }; store('pending', { email: em, t: Date.now() }); render(true); toast('Code sent. Check your inbox, and Spam too');
           setTimeout(function () { var c = document.getElementById('l-code'); if (c) c.focus(); }, 50);
         });
         break;
@@ -1093,6 +1129,11 @@
           ST.login = null; // onAuthStateChange takes it from here
         });
         break;
+      case 'pendcode': var pc = pendingSignup(); if (pc) { ST.login = { email: pc.email, sentTo: pc.email, sentAt: pc.t }; go('login'); } break;
+      case 'pendnew': var pn = pendingSignup(); if (pn) { ST.login = { email: pn.email }; go('login'); setTimeout(function () { var sbn = app.querySelector('[data-act="emaillink"]'); if (sbn) sbn.click(); }, 150); } break;
+      case 'pendforget': store('pending', null); render(true); break;
+      case 'aremind': remindUsers([{ id: el.getAttribute('data-id'), email: v }], el); break;
+      case 'aremindall': remindUsers(ST.pendingList || [], el); break;
       case 'emailchange': ST.login = { email: ST.login && ST.login.sentTo }; render(true); break;
       case 'google': el.disabled = true; sb.auth.signInWithOAuth({ provider: 'google', options: { redirectTo: location.origin + location.pathname } }).then(function (r) { if (r && r.error) { el.disabled = false; fail(r.error); } }); break;
       case 'smscode':
@@ -1184,7 +1225,7 @@
       var was = uid(); ST.session = session;
       if ((session && session.user && session.user.id) !== was) loadMe().then(function () {
         if (evt !== 'SIGNED_IN' || !uid()) return render(true);
-        var fresh = ST.me && ST.me.created_at && Date.now() - new Date(ST.me.created_at).getTime() < 10 * 60e3;
+        var fresh = ST.me && ST.me.created_at && Date.now() - new Date(ST.me.created_at).getTime() < 10 * 60e3 || !!store('pending'); store('pending', null);
         var next = takeAfter();
         if (next) go(next); else if (route().name === 'login') go('drops'); else render(true);
         setTimeout(checkNotices, 1500);

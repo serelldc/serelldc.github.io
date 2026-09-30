@@ -285,3 +285,7 @@ h2{font-size:19px}
 .spamtip{display:flex;flex-direction:column;gap:6px;padding:10px 12px;border-radius:12px;background:#fff6e0;border:1px solid #f0d49a;font-size:12.5px;line-height:1.45;color:#5c4300}
 .spamtip b{color:#3d2c00}
 .spamtip .link{font-size:12.5px;padding:0;font-weight:700;text-decoration:underline}
+
+/* "you're almost in" and owner remind boxes */
+.card.pendbox{display:flex;flex-direction:column;gap:10px;padding:14px;background:#fff6e0;border:1px solid #f0d49a;border-left:4px solid #d8a24a}
+.card.pendbox b{color:#3d2c00}
