@@ -265,7 +265,12 @@ h2{font-size:19px}
 .hx-cop{border:0;background:var(--brand);color:#fff;font-family:'Permanent Marker',cursive;font-size:15px;line-height:1.05;clip-path:polygon(14% 0,100% 0,100% 100%,0 100%);padding-left:10px}
 
 /* ---------- badges + moderation ---------- */
-.pill.og{background:#0D0D0D;color:#F4C542;border:1px solid #F4C542;letter-spacing:.04em}
+.pill.og{background:#141414;color:#F2D27A;border:1px solid #C9A24A;font-family:var(--label);font-weight:800;letter-spacing:.05em;padding:0 9px 0 3px;height:22px;gap:4px}
+.pill.og .ogmini{width:16px;height:18px;flex-shrink:0}
+.ogbadge{display:block;width:110px;height:106px;flex-shrink:0}
+.card.ogshow{display:flex;align-items:center;gap:14px;padding:12px 14px;background:radial-gradient(circle at 20% 50%,#2a2a2a,#111 75%);border-color:#3a3220;color:#F4F1EA}
+.card.ogshow b{font-family:var(--display);font-weight:400;font-size:18px;color:#F2D27A}
+.card.ogshow .m{color:#BDB8AC}
 .pill.trusted{background:#0B6E4F;color:#fff}
 .ogmark{flex-shrink:0;width:40px;height:40px;border-radius:50%;background:#0D0D0D;color:#F4C542;border:2px solid #F4C542;display:flex;align-items:center;justify-content:center;font-family:'Permanent Marker',cursive;font-size:16px;transform:rotate(-8deg)}
 .oghook{display:flex;align-items:center;gap:12px;padding:12px 14px;border-radius:14px;background:#FFF7DD;border:1px solid #F4C542;color:var(--ink);font-size:13px;line-height:1.35}
