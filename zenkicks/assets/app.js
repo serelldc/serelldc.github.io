@@ -73,6 +73,7 @@
   function ic(p, w) { return '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="' + (w || 2) + '" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">' + p + '</svg>'; }
   var I = {
     search: ic('<circle cx="11" cy="11" r="7"/><path d="M20 20l-4-4"/>'),
+    google: '<svg width="18" height="18" viewBox="0 0 48 48" aria-hidden="true"><path fill="#FFC107" d="M43.6 20.5H42V20H24v8h11.3C33.7 32.7 29.2 36 24 36c-6.6 0-12-5.4-12-12s5.4-12 12-12c3.1 0 5.8 1.2 7.9 3.1l5.7-5.7C34 6.1 29.3 4 24 4 12.9 4 4 12.9 4 24s8.9 20 20 20 20-8.9 20-20c0-1.3-.1-2.4-.4-3.5z"/><path fill="#FF3D00" d="M6.3 14.7l6.6 4.8C14.7 15.1 19 12 24 12c3.1 0 5.8 1.2 7.9 3.1l5.7-5.7C34 6.1 29.3 4 24 4 16.3 4 9.7 8.3 6.3 14.7z"/><path fill="#4CAF50" d="M24 44c5.2 0 9.9-2 13.4-5.2l-6.2-5.2C29.2 35.1 26.7 36 24 36c-5.2 0-9.6-3.3-11.3-7.9l-6.5 5C9.5 39.6 16.2 44 24 44z"/><path fill="#1976D2" d="M43.6 20.5H42V20H24v8h11.3c-.8 2.2-2.2 4.2-4.1 5.6l6.2 5.2C37 39.2 44 34 44 24c0-1.3-.1-2.4-.4-3.5z"/></svg>',
     bell: ic('<path d="M6 16v-5a6 6 0 0 1 12 0v5l2 2H4z"/><path d="M10 21a2 2 0 0 0 4 0"/>'),
     check: ic('<path d="M5 12l5 5L20 7"/>', 3),
     back: ic('<path d="M15 5l-7 7 7 7"/>', 2.2),
@@ -103,7 +104,7 @@
   function toast(msg) {
     var old = app.querySelector('.toast'); if (old) old.remove();
     var t = document.createElement('div'); t.className = 'toast'; t.setAttribute('role', 'status'); t.textContent = msg; app.appendChild(t);
-    clearTimeout(toastTimer); toastTimer = setTimeout(function () { t.remove(); }, 2800);
+    clearTimeout(toastTimer); toastTimer = setTimeout(function () { t.remove(); }, Math.max(2800, msg.length * 55));
   }
   function openModal(html) { closeModal(); var m = document.createElement('div'); m.className = 'modal-back'; m.innerHTML = '<div class="modal" role="dialog" aria-modal="true">' + html + '</div>'; app.appendChild(m); var f = m.querySelector('input,textarea,button'); if (f) f.focus(); }
   function closeModal() { var m = app.querySelector('.modal-back'); if (m) m.remove(); }
@@ -118,6 +119,16 @@
   }
   function go(path) { if (location.hash === '#/' + path) render(); else location.hash = '#/' + path; }
   window.addEventListener('hashchange', function () { render(); });
+  // after sign-in, send people back to what they were doing (a listing, Sell, a legit check)
+  function rememberAfter() {
+    var p = (location.hash || '').replace(/^#\/?/, '');
+    if (p && !/^(login|me)(\/|$)/.test(p)) store('after', { p: p, t: Date.now() });
+  }
+  function takeAfter() {
+    var a = store('after'); store('after', null);
+    return a && a.p && Date.now() - a.t < 3600e3 ? a.p : null;
+  }
+  function inAppBrowser() { return installEnv().inApp; } // Google blocks sign-in inside Messenger/Instagram
 
   // ------------------------------------------------------------------
   // shell
@@ -784,10 +795,18 @@
 
   VIEWS.login = function () {
     if (!sb) return needSb();
-    if (uid()) { setTimeout(function () { go('me'); }, 0); return skeleton(); }
-    return '<div class="pad"><div class="sec" style="gap:4px"><h1>Join the tambayan</h1><p class="sub">Free. Sign in to sell, bid, vote and comment.</p></div>' +
-      '<div class="card" style="padding:14px;display:flex;flex-direction:column;gap:10px"><label class="field" for="l-email">Email<input id="l-email" type="email" autocomplete="email" placeholder="you@example.com"></label><button class="btn red" data-act="emaillink">Email me a sign-in link</button></div>' +
-      (C.GOOGLE_LOGIN ? '<button class="btn dark full" data-act="google">Continue with Google</button>' : '') +
+    if (uid()) { setTimeout(function () { go(takeAfter() || 'me'); }, 0); return skeleton(); }
+    var L = ST.login || {};
+    var gBtn = C.GOOGLE_LOGIN && !inAppBrowser() ? '<button class="btn dark full gbtn" data-act="google">' + I.google + 'Continue with Google</button><div class="or"><span>or use your email</span></div>' : '';
+    var emailBox = L.sentTo
+      ? '<div class="card" style="padding:14px;display:flex;flex-direction:column;gap:10px"><p class="sub" style="margin:0">We emailed a code to <b>' + esc(L.sentTo) + '</b>. Type it here, or tap the button in the email.</p>' +
+        '<label class="field" for="l-code">Sign-in code<input id="l-code" class="codein" type="text" inputmode="numeric" autocomplete="one-time-code" maxlength="10" placeholder="••••••"></label>' +
+        '<button class="btn red" data-act="emailverify">Sign in</button>' +
+        '<div class="row" style="justify-content:space-between"><button class="link" data-act="emailchange">Use another email</button><button class="link" data-act="emaillink" id="l-resend">Send a new code</button></div>' +
+        '<p class="tiny" style="margin:0">No email? Check Spam or Promotions.</p></div>'
+      : '<div class="card" style="padding:14px;display:flex;flex-direction:column;gap:10px"><label class="field" for="l-email">Email<input id="l-email" type="email" autocomplete="email" inputmode="email" placeholder="you@example.com" value="' + esc(L.email || '') + '"></label><button class="btn red" data-act="emaillink">Email me a code</button><p class="tiny" style="margin:0">No password. New here? This creates your free account.</p></div>';
+    return '<div class="pad"><div class="sec" style="gap:4px"><h1>Join the tambayan</h1><p class="sub">Free. Takes 30 seconds. Sign in to sell, bid, vote and comment.</p></div>' +
+      gBtn + emailBox +
       (C.SMS_LOGIN ? '<div class="card" style="padding:14px;display:flex;flex-direction:column;gap:10px"><label class="field" for="l-phone">Phone<input id="l-phone" type="tel" autocomplete="tel" placeholder="+971 50 123 4567"></label><button class="btn dark" data-act="smscode">Text me a code</button><div id="otp-wrap" hidden><label class="field" for="l-otp">6-digit code<input id="l-otp" inputmode="numeric" maxlength="6"></label><button class="btn red full" data-act="smsverify">Verify</button></div></div>' : '') +
       '<p class="err" id="l-err" role="alert"></p><p class="tiny">By signing in you agree to the <a href="terms.html" style="text-decoration:underline">Terms</a> and <a href="privacy.html" style="text-decoration:underline">Privacy Policy</a>.</p></div>';
   };
@@ -795,7 +814,7 @@
   // ------------------------------------------------------------------
   // ACTIONS
   // ------------------------------------------------------------------
-  function requireLogin() { if (!uid()) { go('login'); return false; } return true; }
+  function requireLogin() { if (!uid()) { rememberAfter(); go('login'); return false; } return true; }
   function reportModal(type, id) {
     if (!requireLogin()) return;
     openModal('<h2>Report</h2><p class="sub">Tell us what’s wrong. Our team reviews every report.</p><div class="chips-wrap">' + ['Fake or replica', 'Scam or suspicious', 'Offensive', 'Spam', 'Other'].map(function (r) { return '<button class="chip" data-act="rpick" data-v="' + r + '">' + r + '</button>'; }).join('') + '</div><textarea id="r-text" maxlength="500" placeholder="Add details (optional)" style="padding:10px;border:1px solid var(--line);border-radius:10px;min-height:80px"></textarea><div class="row"><button class="btn ghost" style="flex:1" data-act="mclose">Cancel</button><button class="btn red" style="flex:1" data-act="rsend" data-type="' + type + '" data-id="' + id + '">Send report</button></div>');
@@ -803,7 +822,7 @@
 
   app.addEventListener('click', function (e) {
     var el = e.target.closest('[data-go],[data-act]'); if (!el) return;
-    if (el.hasAttribute('data-go')) { e.preventDefault(); closeModal(); var g = el.getAttribute('data-go'); if (g === 'sell') ST.sell = ST.sell || freshSell(); go(g); return; }
+    if (el.hasAttribute('data-go')) { e.preventDefault(); closeModal(); var g = el.getAttribute('data-go'); if (g === 'sell') ST.sell = ST.sell || freshSell(); if (g === 'login' && !uid()) rememberAfter(); go(g); return; }
     var a = el.getAttribute('data-act'), v = el.getAttribute('data-v'), id = el.getAttribute('data-id');
     var on = el.getAttribute('data-on') === 'true';
     switch (a) {
@@ -917,15 +936,29 @@
         break;
       case 'signout': sb.auth.signOut().then(function () { ST.me = null; ST.contact = null; go('drops'); }); break;
       case 'emaillink':
-        var em = (document.getElementById('l-email').value || '').trim(); var lerr = document.getElementById('l-err'); lerr.textContent = '';
+        var emEl = document.getElementById('l-email');
+        var em = ((emEl ? emEl.value : (ST.login && ST.login.sentTo)) || '').trim().toLowerCase(); var lerr = document.getElementById('l-err'); lerr.textContent = '';
         if (!/^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(em)) { lerr.textContent = 'Enter a valid email.'; return; }
-        el.disabled = true;
+        if (ST.login && ST.login.sentAt && ST.login.sentTo === em && Date.now() - ST.login.sentAt < 60000) { lerr.textContent = 'Please wait ' + Math.ceil((60000 - (Date.now() - ST.login.sentAt)) / 1000) + 's before asking for a new code.'; return; }
+        el.disabled = true; var oldTxt = el.textContent; el.textContent = 'Sending…';
         sb.auth.signInWithOtp({ email: em, options: { emailRedirectTo: location.origin + location.pathname } }).then(function (r) {
-          el.disabled = false; if (r.error) { lerr.textContent = r.error.message; return; }
-          openModal('<h2>Check your email</h2><p class="sub">We sent a sign-in link to <b>' + esc(em) + '</b>. Open it on this phone to continue.</p><button class="btn dark" data-act="mclose">OK</button>');
+          el.disabled = false; el.textContent = oldTxt;
+          if (r.error) { lerr.textContent = /rate|security purposes|seconds/i.test(r.error.message) ? 'Too many tries. Wait a minute, then try again.' : r.error.message; return; }
+          ST.login = { email: em, sentTo: em, sentAt: Date.now() }; render(true); toast('Code sent. Check your email');
+          setTimeout(function () { var c = document.getElementById('l-code'); if (c) c.focus(); }, 50);
         });
         break;
-      case 'google': sb.auth.signInWithOAuth({ provider: 'google', options: { redirectTo: location.origin + location.pathname } }); break;
+      case 'emailverify':
+        var code = ((document.getElementById('l-code') || {}).value || '').replace(/\D/g, ''); var verr = document.getElementById('l-err'); verr.textContent = '';
+        if (code.length < 6) { verr.textContent = 'Enter the code from the email.'; return; }
+        el.disabled = true; el.textContent = 'Signing in…';
+        sb.auth.verifyOtp({ email: ST.login.sentTo, token: code, type: 'email' }).then(function (r) {
+          if (r.error) { el.disabled = false; el.textContent = 'Sign in'; verr.textContent = /expired|invalid/i.test(r.error.message) ? 'That code is wrong or expired. Check it, or send a new code.' : r.error.message; return; }
+          ST.login = null; // onAuthStateChange takes it from here
+        });
+        break;
+      case 'emailchange': ST.login = { email: ST.login && ST.login.sentTo }; render(true); break;
+      case 'google': el.disabled = true; sb.auth.signInWithOAuth({ provider: 'google', options: { redirectTo: location.origin + location.pathname } }).then(function (r) { if (r && r.error) { el.disabled = false; fail(r.error); } }); break;
       case 'smscode':
         var ph = (document.getElementById('l-phone').value || '').replace(/\s/g, '');
         sb.auth.signInWithOtp({ phone: ph }).then(function (r) { if (r.error) return fail(r.error); document.getElementById('otp-wrap').hidden = false; toast('Code sent'); });
@@ -938,6 +971,7 @@
 
   app.addEventListener('input', function (e) {
     var t = e.target;
+    if (t.id === 'l-code') { var d = t.value.replace(/\D/g, ''); if (d !== t.value) t.value = d; if (d.length === (C.OTP_LENGTH || 6)) { var vb = app.querySelector('[data-act="emailverify"]'); if (vb && !vb.disabled) vb.click(); } return; }
     if (t.id === 'q') { ST.marketQ = t.value; clearTimeout(ST.qTimer); ST.qTimer = setTimeout(function () { var w = document.getElementById('grid-wrap'); if (!w) return; marketGrid().then(function (h) { w.innerHTML = h; }).catch(fail); }, 350); return; }
     if (t.getAttribute('data-sf')) { ST.sell.f[t.getAttribute('data-sf')] = t.type === 'checkbox' ? t.checked : t.value; return; }
     if (t.getAttribute('data-cf')) { ST.newCheck.f[t.getAttribute('data-cf')] = t.value; return; }
@@ -958,6 +992,7 @@
     if (e.target.id === 'cmt') { e.preventDefault(); var b = app.querySelector('[data-act="send"]'); if (b) b.click(); }
     if (e.target.id === 'amt') { e.preventDefault(); var b2 = app.querySelector('[data-act="bid"]'); if (b2) b2.click(); }
     if (e.target.id === 'l-email') { e.preventDefault(); var b3 = app.querySelector('[data-act="emaillink"]'); if (b3) b3.click(); }
+    if (e.target.id === 'l-code') { e.preventDefault(); var b4 = app.querySelector('[data-act="emailverify"]'); if (b4) b4.click(); }
     if (e.target.id === 'aq') { e.preventDefault(); ST.adminQ = e.target.value.trim(); render(true); }
   });
 
@@ -977,7 +1012,13 @@
     sb.auth.getSession().then(function (r) { ST.session = r.data.session; return Promise.all([loadMe(), loadOwners()]); }).then(function () { render(); });
     sb.auth.onAuthStateChange(function (evt, session) {
       var was = uid(); ST.session = session;
-      if ((session && session.user && session.user.id) !== was) loadMe().then(function () { if (evt === 'SIGNED_IN' && route().name === 'login') go('drops'); else render(true); });
+      if ((session && session.user && session.user.id) !== was) loadMe().then(function () {
+        if (evt !== 'SIGNED_IN' || !uid()) return render(true);
+        var fresh = ST.me && ST.me.created_at && Date.now() - new Date(ST.me.created_at).getTime() < 10 * 60e3;
+        var next = takeAfter();
+        if (next) go(next); else if (route().name === 'login') go('drops'); else render(true);
+        setTimeout(function () { toast(fresh ? 'Welcome to Zenkicks, @' + ST.me.username + '! Change your username anytime in Profile.' : 'Signed in as @' + ((ST.me && ST.me.username) || '')); }, 400);
+      });
     });
   } else {
     render();
