@@ -18,7 +18,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Audiowide&family=Oxanium:wght@500;600;700&family=Yellowtail&family=Instrument+Sans:wght@400;500;600;700&display=swap">
-<link rel="stylesheet" href="assets/app.css?v=6">
+<link rel="stylesheet" href="assets/app.css?v=7">
 <style>
   .hd{padding-top:env(safe-area-inset-top,0px);height:calc(64px + env(safe-area-inset-top,0px))}
   .tabs,.actionbar{padding-bottom:calc(10px + env(safe-area-inset-bottom,0px))}
@@ -29,9 +29,27 @@
 <div class="shell" id="app">
   <noscript><p style="padding:24px">Zenkicks needs JavaScript turned on.</p></noscript>
 </div>
-<script src="config.js?v=6"></script>
+<script>
+  // Phone in Chrome "Desktop site" mode shows the page ~980px wide, so the app looks tiny.
+  // Scale the app back up to the real phone width so it always fills the screen.
+  (function () {
+    function fit() {
+      var el = document.getElementById('app'); if (!el) return;
+      var sw = window.screen && screen.width || 0, touch = ('ontouchstart' in window) || navigator.maxTouchPoints > 0;
+      var small = Math.min(screen.width || 9999, screen.height || 9999) < 700;
+      if (touch && small && sw && window.innerWidth > sw * 1.3) {
+        var z = window.innerWidth / sw;
+        el.style.zoom = z; el.style.maxWidth = 'none'; el.style.width = (window.innerWidth / z) + 'px'; el.style.height = (window.innerHeight / z) + 'px';
+      } else if (el.style.zoom) {
+        el.style.zoom = ''; el.style.maxWidth = ''; el.style.width = ''; el.style.height = '';
+      }
+    }
+    fit(); window.addEventListener('resize', fit); window.addEventListener('orientationchange', function () { setTimeout(fit, 300); });
+  })();
+</script>
+<script src="config.js?v=7"></script>
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.45.4/dist/umd/supabase.min.js"></script>
-<script src="assets/app.js?v=6"></script>
+<script src="assets/app.js?v=7"></script>
 <script>
   if ('serviceWorker' in navigator) {
     var hadController = !!navigator.serviceWorker.controller, reloaded = false;
