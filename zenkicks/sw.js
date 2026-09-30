@@ -1,6 +1,6 @@
 // Zenkicks service worker: makes the app installable and opens fast.
 // Code and settings load network-first, so updates show on the next open.
-var VERSION = 'zk-v9';
+var VERSION = 'zk-v10';
 var SHELL = ['./', 'index.html', 'config.js', 'assets/app.js', 'assets/app.css', 'manifest.webmanifest', 'icons/icon-192.png', 'icons/icon-512.png'];
 
 self.addEventListener('install', function (e) {
