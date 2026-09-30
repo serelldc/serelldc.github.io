@@ -9,6 +9,7 @@ window.ZK_CONFIG = {
   SUPABASE_ANON_KEY: 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImRzZ3l4a3JwdXRraWZ4bmJja25mIiwicm9sZSI6ImFub24iLCJpYXQiOjE3OTA2NzkxNDMsImV4cCI6MjEwNjI1NTE0M30.UPz9kk8zzgqZ49yih6Ii8MUiFdzm0uorjQm3FnF8avw',
 
   // Sign-in options
+  OTP_LENGTH: 6,           // digits in the email sign-in code (Supabase > Auth > Email > Email OTP length)
   GOOGLE_LOGIN: false,     // true after you enable Google in Supabase > Authentication > Providers
   SMS_LOGIN: false,        // true after you connect an SMS provider (Twilio etc.) in Supabase — costs per SMS
 
