@@ -263,3 +263,15 @@ h2{font-size:19px}
 .hx-trust-i svg{width:20px;height:20px}
 .hx-trust-i b{font-family:var(--label);font-weight:700;font-size:9.5px;letter-spacing:.06em;text-transform:uppercase;color:var(--ink);line-height:1.15}
 .hx-cop{border:0;background:var(--brand);color:#fff;font-family:'Permanent Marker',cursive;font-size:15px;line-height:1.05;clip-path:polygon(14% 0,100% 0,100% 100%,0 100%);padding-left:10px}
+
+/* ---------- badges + moderation ---------- */
+.pill.og{background:#0D0D0D;color:#F4C542;border:1px solid #F4C542;letter-spacing:.04em}
+.pill.trusted{background:#0B6E4F;color:#fff}
+.ogmark{flex-shrink:0;width:40px;height:40px;border-radius:50%;background:#0D0D0D;color:#F4C542;border:2px solid #F4C542;display:flex;align-items:center;justify-content:center;font-family:'Permanent Marker',cursive;font-size:16px;transform:rotate(-8deg)}
+.oghook{display:flex;align-items:center;gap:12px;padding:12px 14px;border-radius:14px;background:#FFF7DD;border:1px solid #F4C542;color:var(--ink);font-size:13px;line-height:1.35}
+.oghook.dark{background:#1b1a14;border-color:#6b5a1d;color:#F4F1EA;margin-top:4px}
+.oghook b{font-size:14px}
+.ogcard{display:flex;align-items:center;gap:12px;padding:14px;background:#FFF7DD;border-color:#F4C542}
+.card.notice{border-left:4px solid var(--red)}
+.card.notice.warn{border-left-color:#d8a24a}
+.card.notice.lift{border-left-color:var(--green)}

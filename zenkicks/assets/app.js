@@ -43,6 +43,15 @@
   function isStaff() { return !!(ST.me && !ST.me.is_banned && (ST.me.is_admin || ST.me.is_checker || ST.me.is_owner)); }
   function isAdmin() { return !!(ST.me && !ST.me.is_banned && (ST.me.is_admin || ST.me.is_owner)); }
   function isOwner() { return !!(ST.me && ST.me.is_owner); }
+  function suspendedUntil(p) { p = p || ST.me; return p && p.banned_until && new Date(p.banned_until) > new Date() ? new Date(p.banned_until) : null; }
+  function isBlocked() { return !!(ST.me && (ST.me.is_banned || suspendedUntil())); }
+  function fmtDay(d) { return d.toLocaleDateString('en-GB', { day: 'numeric', month: 'short' }) + ', ' + d.toLocaleTimeString('en-GB', { hour: '2-digit', minute: '2-digit' }); }
+  function blockedNote(what) {
+    var u = suspendedUntil();
+    return '<div class="empty">' + I.shield + '<b>' + (ST.me && ST.me.is_banned ? 'Your account is banned' : 'Your account is on hold') + '</b><span>' +
+      (u ? 'You can ' + esc(what) + ' again after ' + esc(fmtDay(u)) + '.' : 'You can’t ' + esc(what) + '. Contact the Zenkicks team if you think this is a mistake.') +
+      '</span><button class="btn dark" data-go="drops">Back to drops</button></div>';
+  }
   function cleanQ(q) { return String(q).replace(/[%,()*\\]/g, ' ').trim().slice(0, 40); }
   function dubaiToday() { return new Date(Date.now() + 4 * 3600 * 1000).toISOString().slice(0, 10); }
   function dayDiff(iso) { return Math.round((Date.parse(iso + 'T00:00:00Z') - Date.parse(dubaiToday() + 'T00:00:00Z')) / 86400000); }
@@ -179,6 +188,11 @@
     '<rect x="120" y="176" width="44" height="44"/><rect x="60" y="188" width="54" height="32"/>' +
     '</g></svg>';
   var CROWN = '<svg class="hx-crown" viewBox="0 0 40 26" aria-hidden="true"><path d="M3 22 L6 6 L14 15 L20 3 L26 15 L34 6 L37 22 Z" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linejoin="round" stroke-linecap="round"/></svg>';
+  function ogLeft() { return typeof ST.ogCount === 'number' ? Math.max(0, 100 - ST.ogCount) : null; }
+  function ogHook(dark) {
+    var left = ogLeft(); if (left === null || left <= 0) return '';
+    return '<div class="oghook' + (dark ? ' dark' : '') + '"><span class="ogmark">OG</span><span><b>First 100 members get the OG badge</b><br>' + left + ' spot' + (left === 1 ? '' : 's') + ' left. It stays on your profile forever.</span></div>';
+  }
   function heroSection(next, dropCount, rem) {
     var stage = '', info = '';
     if (next) {
@@ -203,6 +217,7 @@
       '<p class="hx-sub">The UAE sneaker tambayan. Drops in <b>AED</b>, buy and sell direct, and <b>community legit checks</b>.</p>' +
       stage + info +
       '<div class="hx-cta"><button class="btn hx-shop" data-go="market">' + I.bag + 'Shop pairs</button><button class="btn hx-sell" data-go="sell">Sell a pair</button></div>' +
+      (!uid() && ogLeft() ? '<button class="oghook dark" data-go="login" style="border:0;text-align:left;width:100%"><span class="ogmark">OG</span><span><b>Claim your OG badge</b><br>Only ' + ogLeft() + ' of 100 spots left. Join free.</span><span aria-hidden="true" style="margin-left:auto;font-size:20px">›</span></button>' : '') +
       '</section>' +
       '<div class="hx-trust">' + trust + '<button class="hx-cop" data-go="market"><span>Bid. Deal.<br>Cop.</span></button></div>';
   }
@@ -314,7 +329,7 @@
   // ---- vouches (1-5 star ratings between members) ----
   function starBadge(v, dark) {
     if (!v || !v.total) return '<span class="vbadge new' + (dark ? ' dark' : '') + '">New member</span>';
-    return '<span class="vbadge' + (dark ? ' dark' : '') + '" title="' + v.total + ' vouches">★ ' + Number(v.avg_stars).toFixed(1) + ' <span>(' + v.total + ')</span></span>';
+    return '<span class="vbadge' + (dark ? ' dark' : '') + '" title="' + v.total + ' vouches">★ ' + Number(v.avg_stars).toFixed(1) + ' <span>(' + v.total + ')</span></span>' + trustedPill(v);
   }
   function vouchMap(ids) {
     ids = (ids || []).filter(function (x, i, a) { return x && a.indexOf(x) === i; });
@@ -330,7 +345,20 @@
       '<textarea id="v-note" maxlength="280" placeholder="' + (kind === 'deal' ? 'e.g. Legit pair, smooth meet-up in Sharjah' : 'e.g. Spotted the fake tag fast, thanks!') + '" style="padding:10px;border:1px solid var(--line);border-radius:10px;min-height:70px"></textarea>' +
       '<p class="err" id="v-err" role="alert"></p><div class="row"><button class="btn ghost" style="flex:1" data-act="mclose">Cancel</button><button class="btn red" style="flex:1" data-act="vsend" data-target="' + target + '" data-ref="' + ref + '" data-kind="' + kind + '">Send vouch</button></div>');
   }
-  function founderPill(id) { return ST.owners && ST.owners[id] ? ' <span class="pill founder">★ Founder</span>' : ''; }
+  function modModal(kind, id, user) {
+    var t = { warn: ['Warn @' + user, 'They’ll see this message the next time they open Zenkicks. Nothing else changes.', 'Send warning', 'e.g. Please use real photos of the pair you’re selling.'],
+      suspend: ['Suspend @' + user, 'They can still browse, but can’t sell, bid, vote or comment until the hold ends.', 'Suspend', 'e.g. Second warning for fake-looking photos.'],
+      ban: ['Ban @' + user, 'Permanent. Their pairs for sale are taken down. Use this for scams or repeat offenders.', 'Ban member', 'e.g. Took payment and didn’t deliver.'] }[kind];
+    openModal('<h2>' + esc(t[0]) + '</h2><p class="sub">' + t[1] + '</p>' +
+      (kind === 'suspend' ? '<div class="chips-wrap" role="group" aria-label="How long">' + [1, 3, 7, 30].map(function (d) { var on = (ST.modDays || 7) === d; return '<button class="chip' + (on ? ' on' : '') + '" data-act="adays" data-v="' + d + '" aria-pressed="' + on + '">' + d + ' day' + (d > 1 ? 's' : '') + '</button>'; }).join('') + '</div>' : '') +
+      '<textarea id="mod-why" maxlength="300" placeholder="' + esc(t[3]) + '" style="padding:10px;border:1px solid var(--line);border-radius:10px;min-height:80px"></textarea>' +
+      '<p class="err" id="mod-err" role="alert"></p><div class="row"><button class="btn ghost" style="flex:1" data-act="mclose">Cancel</button><button class="btn ' + (kind === 'warn' ? 'dark' : 'red') + '" style="flex:1" data-act="amodsend" data-kind="' + kind + '" data-id="' + id + '">' + t[2] + '</button></div>');
+  }
+  function founderPill(id) {
+    return (ST.owners && ST.owners[id] ? ' <span class="pill founder">★ Founder</span>' : '') +
+      (ST.og && ST.og[id] ? ' <span class="pill og" title="One of the first 100 members">OG #' + ST.og[id] + '</span>' : '');
+  }
+  function trustedPill(v) { return v && v.trusted ? ' <span class="pill trusted" title="5+ deals rated 4.5★ or higher">✓ Trusted seller</span>' : ''; }
   function userLink(id, name) { return '<button class="link ulink" data-go="u/' + id + '">@' + esc(name) + '</button>' + founderPill(id); }
   function verifiedPill(level) {
     return level === 'id' ? '<span class="pill ok">✓ ID-verified</span>' : level === 'phone' ? '<span class="pill ok">✓ Phone-verified</span>' : '<span class="pill sample">Email only</span>';
@@ -523,6 +551,7 @@
   VIEWS.sell = function () {
     if (!sb) return needSb();
     if (!uid()) return needLogin('sell a pair');
+    if (isBlocked()) return blockedNote('sell pairs');
     var S = ST.sell;
     var steps = ['Contact', 'Photos', 'Details'].map(function (s, i) { return '<li class="' + (S.step >= i + 1 ? 'on' : '') + '"><i></i>' + s + '</li>'; }).join('');
     var body = '';
@@ -637,6 +666,7 @@
   VIEWS['new-check'] = function () {
     if (!sb) return needSb();
     if (!uid()) return needLogin('post a legit check');
+    if (isBlocked()) return blockedNote('post legit checks');
     var d = ST.newCheck;
     var tiles = d.photos.map(function (p, i) {
       return '<div style="position:relative"><div class="ph" style="height:104px;padding:0"><img src="' + p.url + '" alt="Photo ' + (i + 1) + '" style="width:100%;height:100%;object-fit:cover;border-radius:10px"></div><button data-act="rmphoto" data-i="' + i + '" aria-label="Remove photo ' + (i + 1) + '" style="position:absolute;top:4px;right:4px;width:32px;height:32px;border-radius:999px;border:0;background:rgba(13,13,13,.75);color:#fff;display:flex;align-items:center;justify-content:center"><span style="width:16px;height:16px;display:inline-flex">' + I.close + '</span></button></div>';
@@ -739,7 +769,7 @@
   VIEWS.u = function (r) {
     if (!sb) return needSb();
     return Promise.all([
-      sb.from('profiles').select('id,username,city,verified_level,is_checker,is_admin,is_owner,created_at').eq('id', r.id).maybeSingle(),
+      sb.from('profiles').select('id,username,city,verified_level,is_checker,is_admin,is_owner,is_banned,banned_until,created_at').eq('id', r.id).maybeSingle(),
       vouchMap([r.id]),
       sb.from('vouches').select('id,kind,stars,note,created_at,from_id,from:profiles!vouches_from_id_fkey(username)').eq('to_id', r.id).order('created_at', { ascending: false }).limit(50),
       sb.from('listings').select(LISTING_COLS).eq('seller_id', r.id).eq('status', 'active').order('created_at', { ascending: false }).limit(6)
@@ -747,7 +777,9 @@
       var p = a[0].data; if (!p) return '<div class="empty">' + I.user + '<b>Member not found</b><button class="btn dark" data-go="market">Back</button></div>';
       var v = a[1][p.id] || {}; var vs = a[2].data || []; var ls = a[3].data || [];
       var bars = [5, 4, 3, 2, 1].map(function (n) { var k = vs.filter(function (x) { return x.stars === n; }).length; var w = vs.length ? Math.round(k * 100 / vs.length) : 0; return '<div class="bar"><span style="width:28px">' + n + '★</span><div class="track"><div class="fill" style="width:' + w + '%;background:var(--red)"></div></div><span style="width:24px;text-align:right">' + k + '</span></div>'; }).join('');
-      return '<div class="pad"><div class="row"><div class="avatar" style="width:56px;height:56px;font-size:22px;background:var(--red)">' + esc((p.username || '?')[0].toUpperCase()) + '</div><div class="grow"><h1 style="font-size:22px">@' + esc(p.username) + '</h1>' + (p.is_owner || (ST.owners && ST.owners[p.id]) ? '<span class="pill founder" style="align-self:flex-start">★ Founder of Zenkicks</span>' : '') + '<div class="m">' + esc(p.city || 'UAE') + ' · member since ' + new Date(p.created_at).toLocaleDateString('en-GB', { month: 'short', year: 'numeric' }) + '</div></div>' + verifiedPill(p.verified_level) + '</div>' +
+      return '<div class="pad"><div class="row"><div class="avatar" style="width:56px;height:56px;font-size:22px;background:var(--red)">' + esc((p.username || '?')[0].toUpperCase()) + '</div><div class="grow"><h1 style="font-size:22px">@' + esc(p.username) + '</h1>' + (p.is_owner || (ST.owners && ST.owners[p.id]) ? '<span class="pill founder" style="align-self:flex-start">★ Founder of Zenkicks</span>' : '') +
+        '<div class="row" style="gap:6px;flex-wrap:wrap;margin-top:4px">' + (ST.og && ST.og[p.id] ? '<span class="pill og">OG #' + ST.og[p.id] + ' · first 100 members</span>' : '') + trustedPill(v) +
+        (p.is_banned ? '<span class="pill red">Banned</span>' : suspendedUntil(p) ? '<span class="pill red">On hold</span>' : '') + '</div><div class="m">' + esc(p.city || 'UAE') + ' · member since ' + new Date(p.created_at).toLocaleDateString('en-GB', { month: 'short', year: 'numeric' }) + '</div></div>' + verifiedPill(p.verified_level) + '</div>' +
         '<div class="card" style="padding:14px;display:flex;flex-direction:column;gap:10px"><div class="between"><div><div class="money" style="font-size:30px">' + (v.total ? '★ ' + Number(v.avg_stars).toFixed(1) : '—') + '</div><div class="m">' + (v.total || 0) + ' vouches · ' + (v.deals || 0) + ' from deals · ' + (v.legit || 0) + ' from legit checks</div></div>' + ((p.is_checker || p.is_admin) ? '<span class="pill ok">✓ Checker</span>' : '') + '</div>' + (v.total ? bars : '<span class="sub">No vouches yet. Members vouch after a deal or when someone helps on a legit check.</span>') + '</div>' +
         (vs.length ? '<section class="sec"><h2>Vouches</h2><div class="card" style="padding:4px 14px">' + vs.map(function (x) { return '<div class="kv" style="flex-direction:column;align-items:flex-start;gap:2px"><span><b style="color:var(--red)">' + '★★★★★'.slice(0, x.stars) + '</b><span style="opacity:.25">' + '★★★★★'.slice(x.stars) + '</span> <span class="m">· ' + (x.kind === 'deal' ? 'Deal' : 'Legit check') + ' · ' + ago(x.created_at) + ' ago</span></span>' + (x.note ? '<span style="font-size:14px">' + esc(x.note) + '</span>' : '') + '<span class="m">from ' + userLink(x.from_id, x.from && x.from.username) + '</span></div>'; }).join('') + '</div></section>' : '') +
         (ls.length ? '<section class="sec"><h2>Pairs for sale</h2><div class="grid">' + ls.map(function (l) { return itemCard(l, {}); }).join('') + '</div></section>' : '') +
@@ -772,6 +804,8 @@
       var ls = a[0].data || []; var bs = a[1].data || []; var reps = a[2].data;
       var cities = ['', 'Dubai', 'Sharjah', 'Abu Dhabi', 'Ajman', 'Ras Al Khaimah', 'Fujairah', 'Umm Al Quwain', 'Al Ain'];
       return '<div class="pad"><div class="row"><div class="avatar" style="width:56px;height:56px;font-size:22px;background:var(--red)">' + esc((me.username || '?')[0].toUpperCase()) + '</div><div class="grow"><h1 style="font-size:22px">@' + esc(me.username) + '</h1><div class="m">' + esc(ST.session.user.email || ST.session.user.phone || '') + '</div></div>' + verifiedPill(me.verified_level) + '</div>' +
+        (isBlocked() ? '<div class="card notice suspend" style="padding:14px"><b>' + (me.is_banned ? 'Your account is banned' : 'Your account is on hold until ' + esc(fmtDay(suspendedUntil()))) + '</b><br><span class="m">You can browse, but you can’t sell, bid or post for now.</span></div>' : '') +
+        (ST.og && ST.og[uid()] ? '<div class="card ogcard"><span class="ogmark">OG</span><span><b>OG #' + ST.og[uid()] + '</b><br><span class="m">You’re one of the first 100 members of Zenkicks. This badge shows next to your name forever.</span></span></div>' : '') +
         '<button class="card between" style="padding:14px;width:100%;text-align:left;align-items:center" data-go="u/' + uid() + '"><span><b>My vouches</b><br><span class="m">See your public profile and ratings</span></span>' + starBadge(ST.myVouch) + '</button>' +
         '<div class="card" style="padding:14px;display:flex;flex-direction:column;gap:10px"><b>Profile</b>' +
         '<label class="field" for="p-user">Username<input id="p-user" type="text" maxlength="24" value="' + esc(me.username) + '" autocomplete="username"></label>' +
@@ -807,10 +841,13 @@
       function tile(n, label) { return '<div class="card" style="padding:12px;display:flex;flex-direction:column;gap:2px"><span class="money" style="font-size:22px">' + (n || 0) + '</span><span class="m">' + label + '</span></div>'; }
       function roleBtn(u, role, on, label) { return '<button class="chip' + (on ? ' on' : '') + '" data-act="arole" data-id="' + u.id + '" data-v="' + role + '" data-on="' + on + '" aria-pressed="' + on + '">' + (on ? '✓ ' : '') + label + '</button>'; }
       var userRows = users.map(function (u) {
-        var tags = (u.is_owner ? '<span class="pill founder">★ Founder</span>' : '') + (u.is_admin && !u.is_owner ? '<span class="pill dark">Admin</span>' : '') + (u.is_checker ? '<span class="pill ok">Checker</span>' : '') + (u.is_banned ? '<span class="pill red">Banned</span>' : '');
+        var tags = (u.is_owner ? '<span class="pill founder">★ Founder</span>' : '') + (u.is_admin && !u.is_owner ? '<span class="pill dark">Admin</span>' : '') + (u.is_checker ? '<span class="pill ok">Checker</span>' : '') + (u.is_banned ? '<span class="pill red">Banned</span>' : '') +
+          (!u.is_banned && u.banned_until ? '<span class="pill red">On hold until ' + esc(fmtDay(new Date(u.banned_until))) + '</span>' : '') + (u.warns ? '<span class="pill sample">' + u.warns + ' warning' + (u.warns > 1 ? 's' : '') + '</span>' : '') + (ST.og && ST.og[u.id] ? '<span class="pill og">OG #' + ST.og[u.id] + '</span>' : '');
         var controls = u.is_owner ? '<span class="m">Owner. Cannot be changed.</span>' :
           (isOwner() ? roleBtn(u, 'admin', u.is_admin, 'Admin') : '') + roleBtn(u, 'checker', u.is_checker, 'Checker') +
-          '<button class="chip" style="' + (u.is_banned ? '' : 'color:var(--red);border-color:var(--red)') + '" data-act="aban" data-id="' + u.id + '" data-on="' + u.is_banned + '">' + (u.is_banned ? 'Unban' : 'Ban') + '</button>';
+          (u.id === uid() ? '' : (u.is_banned ? '' : '<button class="chip" data-act="awarn" data-id="' + u.id + '" data-user="' + esc(u.username) + '">Warn</button>' +
+            (u.banned_until ? '<button class="chip" data-act="alift" data-id="' + u.id + '">Lift hold</button>' : '<button class="chip" style="color:#9a5b00;border-color:#d8a24a" data-act="asusp" data-id="' + u.id + '" data-user="' + esc(u.username) + '">Suspend</button>')) +
+          '<button class="chip" style="' + (u.is_banned ? '' : 'color:var(--red);border-color:var(--red)') + '" data-act="aban" data-id="' + u.id + '" data-user="' + esc(u.username) + '" data-on="' + u.is_banned + '">' + (u.is_banned ? 'Unban' : 'Ban') + '</button>');
         return '<div class="kv" style="flex-direction:column;align-items:flex-start;gap:6px"><div class="row" style="gap:6px;flex-wrap:wrap">' + userLink(u.id, u.username).replace(founderPill(u.id), '') + ' ' + tags + '</div>' +
           '<span class="m">' + (u.email ? esc(u.email) + ' · ' : '') + esc(u.city || 'UAE') + ' · joined ' + ago(u.created_at) + ' ago</span><div class="chips-wrap">' + controls + '</div></div>';
       }).join('') || '<p class="sub">No members found.</p>';
@@ -824,7 +861,7 @@
         '<div class="grid" style="grid-template-columns:repeat(3,1fr)">' + tile(st.members, 'Members') + tile(st.new_7d, 'New this week') + tile(st.active_listings, 'Pairs for sale') + tile(st.sold, 'Sold') + tile(st.checks, 'Legit checks') + tile(st.open_reports, 'Open reports') + '</div>' +
         '<section class="sec"><h2>Reports</h2><div class="card" style="padding:4px 14px">' + repRows + '</div></section>' +
         '<section class="sec"><h2>Members</h2><label class="search" for="aq">' + I.search + '<input id="aq" type="search" placeholder="Search username' + (isOwner() ? ' or email' : '') + '" value="' + esc(q) + '" autocomplete="off"></label><div class="card" style="padding:4px 14px">' + userRows + '</div>' +
-        '<p class="m" style="margin:0">Admin: reports, bans, removals' + (isOwner() ? ', appointed by you' : '') + '. Checker: posts Legit/Fake verdicts. Banning someone also takes down their pairs for sale.</p></section>' +
+        '<p class="m" style="margin:0">Be fair: <b>Warn</b> first, then <b>Suspend</b> (1–30 days), and <b>Ban</b> for scams or repeat offenders. The member sees your reason when they open the app. Banning also takes down their pairs for sale. Admin: reports, bans, removals' + (isOwner() ? ', appointed by you' : '') + '. Checker: posts Legit/Fake verdicts.</p></section>' +
         '<section class="sec"><h2>Latest listings</h2><div class="card" style="padding:4px 14px">' + lRows + '</div></section>' +
         '<section class="sec"><h2>Latest legit checks</h2><div class="card" style="padding:4px 14px">' + cRows + '</div></section></div>';
     });
@@ -842,7 +879,7 @@
         '<div class="row" style="justify-content:space-between"><button class="link" data-act="emailchange">Use another email</button><button class="link" data-act="emaillink" id="l-resend">Send a new code</button></div>' +
         '<p class="tiny" style="margin:0">No email? Check Spam or Promotions.</p></div>'
       : '<div class="card" style="padding:14px;display:flex;flex-direction:column;gap:10px"><label class="field" for="l-email">Email<input id="l-email" type="email" autocomplete="email" inputmode="email" placeholder="you@example.com" value="' + esc(L.email || '') + '"></label><button class="btn red" data-act="emaillink">Email me a code</button><p class="tiny" style="margin:0">No password. New here? This creates your free account.</p></div>';
-    return '<div class="pad"><div class="sec" style="gap:4px"><h1>Join the tambayan</h1><p class="sub">Free. Takes 30 seconds. Sign in to sell, bid, vote and comment.</p></div>' +
+    return '<div class="pad"><div class="sec" style="gap:4px"><h1>Join the tambayan</h1><p class="sub">Free. Takes 30 seconds. Sign in to sell, bid, vote and comment.</p></div>' + ogHook() +
       gBtn + emailBox +
       (C.SMS_LOGIN ? '<div class="card" style="padding:14px;display:flex;flex-direction:column;gap:10px"><label class="field" for="l-phone">Phone<input id="l-phone" type="tel" autocomplete="tel" placeholder="+971 50 123 4567"></label><button class="btn dark" data-act="smscode">Text me a code</button><div id="otp-wrap" hidden><label class="field" for="l-otp">6-digit code<input id="l-otp" inputmode="numeric" maxlength="6"></label><button class="btn red full" data-act="smsverify">Verify</button></div></div>' : '') +
       '<p class="err" id="l-err" role="alert"></p><p class="tiny">By signing in you agree to the <a href="terms.html" style="text-decoration:underline">Terms</a> and <a href="privacy.html" style="text-decoration:underline">Privacy Policy</a>.</p></div>';
@@ -876,6 +913,7 @@
         break;
       case 'bid':
         if (!requireLogin()) return;
+        if (isBlocked()) { var su = suspendedUntil(); toast(su ? 'Your account is on hold until ' + fmtDay(su) : 'Your account can’t place bids'); return; }
         var amt = parseInt((document.getElementById('amt') || {}).value, 10);
         if (!(amt > 0)) { toast('Enter your bid in AED'); return; }
         el.disabled = true;
@@ -904,6 +942,7 @@
         sb.from('reports').insert({ reporter_id: uid(), target_type: el.getAttribute('data-type'), target_id: id, reason: reason }).then(function (r) { if (r.error) return fail(r.error); closeModal(); toast('Thanks. We’ll review it.'); });
         break;
       case 'mclose': closeModal(); break;
+      case 'acknotice': sb.rpc('ack_notices').then(function () { closeModal(); }); break;
       case 'vouch': vouchModal(el.getAttribute('data-target'), el.getAttribute('data-user'), el.getAttribute('data-ref'), el.getAttribute('data-kind')); break;
       case 'vstar':
         ST.vstars = +v;
@@ -922,8 +961,24 @@
         sb.rpc('admin_set_role', { target: id, role: v, val: !on }).then(function (r) { if (r.error) return fail(r.error); toast((!on ? 'Made ' : 'Removed ') + v); return loadOwners().then(function () { render(true); }); });
         break;
       case 'aban':
-        if (!on && !window.confirm('Ban this member? Their pairs for sale will be taken down.')) return;
-        sb.rpc('admin_set_ban', { target: id, val: !on }).then(function (r) { if (r.error) return fail(r.error); toast(on ? 'Unbanned' : 'Banned'); render(true); });
+        if (on) { sb.rpc('admin_set_ban', { target: id, val: false, msg: null }).then(function (r) { if (r.error) return fail(r.error); toast('Unbanned'); render(true); }); break; }
+        modModal('ban', id, el.getAttribute('data-user'));
+        break;
+      case 'awarn': modModal('warn', id, el.getAttribute('data-user')); break;
+      case 'asusp': ST.modDays = 7; modModal('suspend', id, el.getAttribute('data-user')); break;
+      case 'adays':
+        ST.modDays = parseInt(v, 10);
+        Array.prototype.forEach.call(app.querySelectorAll('[data-act="adays"]'), function (b) { var sel = b.getAttribute('data-v') === v; b.classList.toggle('on', sel); b.setAttribute('aria-pressed', sel); });
+        break;
+      case 'amodsend':
+        var kind = el.getAttribute('data-kind'), why = ((document.getElementById('mod-why') || {}).value || '').trim(), merr = document.getElementById('mod-err');
+        if (why.length < 3) { merr.textContent = 'Write a short reason. The member will see it.'; return; }
+        el.disabled = true;
+        (kind === 'warn' ? sb.rpc('admin_warn', { target: id, msg: why }) : kind === 'suspend' ? sb.rpc('admin_suspend', { target: id, days: ST.modDays || 7, msg: why }) : sb.rpc('admin_set_ban', { target: id, val: true, msg: why }))
+          .then(function (r) { el.disabled = false; if (r.error) { merr.textContent = r.error.message; return; } closeModal(); toast(kind === 'warn' ? 'Warning sent' : kind === 'suspend' ? 'Suspended for ' + (ST.modDays || 7) + ' day' + ((ST.modDays || 7) > 1 ? 's' : '') : 'Banned'); render(true); });
+        break;
+      case 'alift':
+        sb.rpc('admin_lift', { target: id }).then(function (r) { if (r.error) return fail(r.error); toast('Hold lifted'); render(true); });
         break;
       case 'aremove':
         sb.rpc('admin_remove_listing', { lid: id }).then(function (r) { if (r.error) return fail(r.error); toast('Listing removed'); render(true); });
@@ -1041,12 +1096,29 @@
     return Promise.all([sb.from('profiles').select('*').eq('id', uid()).maybeSingle(), sb.from('private_contacts').select('whatsapp').eq('user_id', uid()).maybeSingle()])
       .then(function (a) { ST.me = a[0].data; ST.contact = a[1].data; });
   }
+  function checkNotices() {
+    if (!sb || !uid()) return;
+    sb.rpc('my_notices').then(function (r) {
+      var ns = (r && r.data) || []; if (!ns.length) return;
+      var label = { warn: 'Warning', suspend: 'Account on hold', ban: 'Account banned', lift: 'Good news' };
+      openModal('<h2>' + (ns.some(function (n) { return n.kind !== 'lift'; }) ? 'A message from the Zenkicks team' : 'Good news') + '</h2>' +
+        ns.map(function (n) {
+          return '<div class="card notice ' + n.kind + '" style="padding:12px;display:flex;flex-direction:column;gap:4px"><b>' + label[n.kind] + '</b><span>' + esc(n.reason) + '</span>' +
+            (n.until_at ? '<span class="m">Until ' + esc(fmtDay(new Date(n.until_at))) + '. You can still browse drops and the market.</span>' : '') + '</div>';
+        }).join('') +
+        '<p class="m" style="margin:0">Please follow the community rules: legit pairs only, honest photos and prices, and respect for every member.</p>' +
+        '<button class="btn dark full" data-act="acknotice">I understand</button>');
+    }).catch(function () {});
+  }
   function loadOwners() {
     if (!sb) return Promise.resolve();
-    return sb.rpc('owner_ids').then(function (r) { ST.owners = {}; (r.data || []).forEach(function (x) { ST.owners[typeof x === 'string' ? x : (x.owner_ids || x.id)] = true; }); }).catch(function () {});
+    return Promise.all([
+      sb.rpc('owner_ids').then(function (r) { ST.owners = {}; (r.data || []).forEach(function (x) { ST.owners[typeof x === 'string' ? x : (x.owner_ids || x.id)] = true; }); }).catch(function () {}),
+      sb.rpc('og_members').then(function (r) { if (r.error) return; ST.og = {}; ST.ogCount = (r.data || []).length; (r.data || []).forEach(function (x) { ST.og[x.user_id] = x.n; }); }).catch(function () {})
+    ]);
   }
   if (sb) {
-    sb.auth.getSession().then(function (r) { ST.session = r.data.session; return Promise.all([loadMe(), loadOwners()]); }).then(function () { render(); });
+    sb.auth.getSession().then(function (r) { ST.session = r.data.session; return Promise.all([loadMe(), loadOwners()]); }).then(function () { render(); checkNotices(); });
     sb.auth.onAuthStateChange(function (evt, session) {
       var was = uid(); ST.session = session;
       if ((session && session.user && session.user.id) !== was) loadMe().then(function () {
@@ -1054,6 +1126,7 @@
         var fresh = ST.me && ST.me.created_at && Date.now() - new Date(ST.me.created_at).getTime() < 10 * 60e3;
         var next = takeAfter();
         if (next) go(next); else if (route().name === 'login') go('drops'); else render(true);
+        setTimeout(checkNotices, 1500);
         setTimeout(function () { toast(fresh ? 'Welcome to Zenkicks, @' + ST.me.username + '! Change your username anytime in Profile.' : 'Signed in as @' + ((ST.me && ST.me.username) || '')); }, 400);
       });
     });
