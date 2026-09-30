@@ -30,6 +30,8 @@ async function get(path, params) {
   return Array.isArray(j) ? j : Array.isArray(j.data) ? j.data : [];
 }
 
+// StockX shows a grey 'X' placeholder when a product has no photo yet; never use it
+const realImg = (u) => !!u && !/placeholder/i.test(u);
 const clean = (s) => String(s || '').replace(/\s+/g, ' ').trim();
 // bigger, sharper StockX photo than the 140px thumbnail the API returns
 const big = (u) => String(u || '').replace(/([?&])w=\d+/, '$1w=600').replace(/([?&])h=\d+/, '$1h=430');
@@ -54,11 +56,12 @@ async function releases() {
   try { own = JSON.parse(await readFile('data/photos.json', 'utf8')); } catch { /* no own photos */ }
   const hasOwn = (name) => Object.keys(own).some((k) => k.toLowerCase() === name.toLowerCase());
   let looked = 0, found = 0;
+  for (const d of file.items) if (d.image && !realImg(d.image)) { delete d.image; console.log(`  removed placeholder photo: ${d.name}`); }
   for (const d of file.items) {
     if (d.image || hasOwn(d.name) || looked >= MAX_PHOTO_LOOKUPS) continue;
     looked++;
     const r = await get('/stockx/products', { query: d.name, limit: '3' });
-    const hit = r.find((p) => p.image && sameShoe(d.name, p.title));
+    const hit = r.find((p) => realImg(p.image) && sameShoe(d.name, p.title));
     if (hit) { d.image = big(hit.image); d.link = d.link || hit.link || ''; found++; console.log(`  photo: ${d.name} <- ${hit.title}`); }
     else console.log(`  no StockX match yet: ${d.name}`);
   }
@@ -72,7 +75,7 @@ const NOT_SNEAKER = /\b(slides?|clogs?|crocs|boots?|timberland|sandals?|slippers
 
 async function hot() {
   const r = await get('/stockx/products', { filters: 'product_type = "sneakers"', limit: '40' });
-  const online = r.filter((p) => p.title && p.image && !NOT_SNEAKER.test(p.title)).slice(0, 10).map((p, i) => ({
+  const online = r.filter((p) => p.title && realImg(p.image) && !NOT_SNEAKER.test(p.title)).slice(0, 10).map((p, i) => ({
     name: clean(p.title),
     why: Number(p.weekly_orders) ? `${Number(p.weekly_orders).toLocaleString('en-US')} orders on StockX this week` : `#${i + 1} best seller on StockX`,
     tag: 'Resale',
