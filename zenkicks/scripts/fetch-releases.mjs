@@ -62,7 +62,7 @@ async function releases() {
     looked++;
     const r = await get('/stockx/products', { query: d.name, limit: '3' });
     const hit = r.find((p) => realImg(p.image) && sameShoe(d.name, p.title));
-    if (hit) { d.image = big(hit.image); d.link = d.link || hit.link || ''; found++; console.log(`  photo: ${d.name} <- ${hit.title}`); }
+    if (hit) { d.image = big(hit.image); d.link = d.link || hit.link || ''; const x = details(hit); ['brand', 'sku', 'colorway'].forEach((k) => { if (x[k] && !d[k]) d[k] = x[k]; }); found++; console.log(`  photo: ${d.name} <- ${hit.title}`); }
     else console.log(`  no StockX match yet: ${d.name}`);
   }
   file.updated = today;
@@ -73,6 +73,22 @@ async function releases() {
 // StockX files slides, clogs and boots under "sneakers" too; What's hot shows real sneakers only
 const NOT_SNEAKER = /\b(slides?|clogs?|crocs|boots?|timberland|sandals?|slippers?|mules?|flip[- ]?flops?|ugg|birkenstock|foam ?runner|ys-?0\d|adilette|benassi|offcourt|victori one)\b/i;
 
+// extra details for the press-and-hold preview (only kept when StockX has them)
+const trait = (p, name) => { const t = (p.traits || []).find((x) => String(x.trait || x.name || '').toLowerCase() === name); return t ? clean(t.value) : ''; };
+const usd = (v) => { const n = Math.round(Number(String(v || '').replace(/[^0-9.]/g, ''))); return n > 0 && n < 100000 ? n : undefined; };
+function details(p) {
+  const out = {
+    brand: clean(p.brand) || undefined,
+    sku: clean(p.sku) || undefined,
+    colorway: trait(p, 'colorway') || undefined,
+    retail_usd: usd(trait(p, 'retail price')),
+    released: trait(p, 'release date') || undefined,
+    price_usd: usd(p.min_price) || usd(p.avg_price)
+  };
+  Object.keys(out).forEach((k) => out[k] === undefined && delete out[k]);
+  return out;
+}
+
 async function hot() {
   const r = await get('/stockx/products', { filters: 'product_type = "sneakers"', limit: '40' });
   const online = r.filter((p) => p.title && realImg(p.image) && !NOT_SNEAKER.test(p.title)).slice(0, 10).map((p, i) => ({
@@ -80,7 +96,8 @@ async function hot() {
     why: Number(p.weekly_orders) ? `${Number(p.weekly_orders).toLocaleString('en-US')} orders on StockX this week` : `#${i + 1} best seller on StockX`,
     tag: 'Resale',
     image: big(p.image),
-    link: p.link || ''
+    link: p.link || '',
+    ...details(p)
   }));
   if (online.length < 3) { console.log(`Hot: only ${online.length}; keeping old file.`); return; }
   await writeFile('data/hot.json', JSON.stringify({ updated: today, source: 'KicksDB (StockX best sellers)', online }, null, 2) + '\n');
