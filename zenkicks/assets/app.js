@@ -139,6 +139,14 @@
     var a = store('after'); store('after', null);
     return a && a.p && Date.now() - a.t < 3600e3 ? a.p : null;
   }
+  // catch typos like yahoo.coms / gmial.com before we send a code to an address that doesn't exist
+  var MAIL_DOMAINS = ['gmail.com', 'yahoo.com', 'hotmail.com', 'outlook.com', 'icloud.com', 'live.com', 'ymail.com', 'msn.com', 'aol.com', 'me.com', 'proton.me', 'protonmail.com', 'yahoo.co.uk', 'hotmail.co.uk', 'googlemail.com', 'eim.ae', 'emirates.net.ae'];
+  function lev(a, b) { var m = [], i, j; for (i = 0; i <= a.length; i++) m[i] = [i]; for (j = 0; j <= b.length; j++) m[0][j] = j; for (i = 1; i <= a.length; i++) for (j = 1; j <= b.length; j++) m[i][j] = Math.min(m[i - 1][j] + 1, m[i][j - 1] + 1, m[i - 1][j - 1] + (a[i - 1] === b[j - 1] ? 0 : 1)); return m[a.length][b.length]; }
+  function emailFix(em) {
+    var at = em.lastIndexOf('@'), d = em.slice(at + 1); if (at < 1 || MAIL_DOMAINS.indexOf(d) > -1) return null;
+    var best = null, bd = 3; MAIL_DOMAINS.forEach(function (c) { var x = lev(d, c); if (x < bd) { bd = x; best = c; } });
+    return best ? em.slice(0, at + 1) + best : null;
+  }
   function inAppBrowser() { return installEnv().inApp; } // Google blocks sign-in inside Messenger/Instagram
 
   // ------------------------------------------------------------------
@@ -860,7 +868,7 @@
       function roleBtn(u, role, on, label) { return '<button class="chip' + (on ? ' on' : '') + '" data-act="arole" data-id="' + u.id + '" data-v="' + role + '" data-on="' + on + '" aria-pressed="' + on + '">' + (on ? '✓ ' : '') + label + '</button>'; }
       var userRows = users.map(function (u) {
         var tags = (u.is_owner ? '<span class="pill founder">★ Founder</span>' : '') + (u.is_admin && !u.is_owner ? '<span class="pill dark">Admin</span>' : '') + (u.is_checker ? '<span class="pill ok">Checker</span>' : '') + (u.is_banned ? '<span class="pill red">Banned</span>' : '') +
-          (!u.is_banned && u.banned_until ? '<span class="pill red">On hold until ' + esc(fmtDay(new Date(u.banned_until))) + '</span>' : '') + (u.warns ? '<span class="pill sample">' + u.warns + ' warning' + (u.warns > 1 ? 's' : '') + '</span>' : '') + (ST.og && ST.og[u.id] ? ogPill(ST.og[u.id]) : '');
+          (!u.is_banned && u.banned_until ? '<span class="pill red">On hold until ' + esc(fmtDay(new Date(u.banned_until))) + '</span>' : '') + (u.confirmed === false ? '<span class="pill sample" title="Never finished signing in (email not confirmed)">Not confirmed</span>' : '') + (u.warns ? '<span class="pill sample">' + u.warns + ' warning' + (u.warns > 1 ? 's' : '') + '</span>' : '') + (ST.og && ST.og[u.id] ? ogPill(ST.og[u.id]) : '');
         var controls = u.is_owner ? '<span class="m">Owner. Cannot be changed.</span>' :
           (isOwner() ? roleBtn(u, 'admin', u.is_admin, 'Admin') : '') + roleBtn(u, 'checker', u.is_checker, 'Checker') +
           (u.id === uid() ? '' : (u.is_banned ? '' : '<button class="chip" data-act="awarn" data-id="' + u.id + '" data-user="' + esc(u.username) + '">Warn</button>' +
@@ -1049,6 +1057,11 @@
         var emEl = document.getElementById('l-email');
         var em = ((emEl ? emEl.value : (ST.login && ST.login.sentTo)) || '').trim().toLowerCase(); var lerr = document.getElementById('l-err'); lerr.textContent = '';
         if (!/^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(em)) { lerr.textContent = 'Enter a valid email.'; return; }
+        var fixEm = emailFix(em);
+        if (fixEm && ST.okEmail !== em) {
+          lerr.innerHTML = 'Did you mean <b>' + esc(fixEm) + '</b>?<br><span class="row" style="gap:8px;margin-top:8px"><button class="btn red" style="height:38px;padding:0 14px;font-size:13px" data-act="emailfix" data-v="' + esc(fixEm) + '">Yes, use that</button><button class="btn ghost" style="height:38px;padding:0 14px;font-size:13px;color:var(--ink)" data-act="emailkeep" data-v="' + esc(em) + '">No, it’s correct</button></span>';
+          return;
+        }
         if (ST.login && ST.login.sentAt && ST.login.sentTo === em && Date.now() - ST.login.sentAt < 60000) { lerr.textContent = 'Please wait ' + Math.ceil((60000 - (Date.now() - ST.login.sentAt)) / 1000) + 's before asking for a new code.'; return; }
         el.disabled = true; var oldTxt = el.textContent; el.textContent = 'Sending…';
         sb.auth.signInWithOtp({ email: em, options: { emailRedirectTo: location.origin + location.pathname } }).then(function (r) {
@@ -1058,6 +1071,8 @@
           setTimeout(function () { var c = document.getElementById('l-code'); if (c) c.focus(); }, 50);
         });
         break;
+      case 'emailfix': var ei = document.getElementById('l-email'); if (ei) ei.value = v; ST.okEmail = v; document.getElementById('l-err').textContent = ''; var sb1 = app.querySelector('[data-act="emaillink"]'); if (sb1) sb1.click(); break;
+      case 'emailkeep': ST.okEmail = v; document.getElementById('l-err').textContent = ''; var sb2 = app.querySelector('[data-act="emaillink"]'); if (sb2) sb2.click(); break;
       case 'emailverify':
         var code = ((document.getElementById('l-code') || {}).value || '').replace(/\D/g, ''); var verr = document.getElementById('l-err'); verr.textContent = '';
         if (code.length < 6) { verr.textContent = 'Enter the code from the email.'; return; }
