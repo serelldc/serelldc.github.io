@@ -208,7 +208,7 @@
       var tag = 'Next drop · ' + whenLabel(next.date);
       stage = '<div class="hx-stage">' +
         '<div class="hx-slab" aria-hidden="true"></div>' +
-        (nim ? '<figure class="hx-poster"><img src="' + esc(nim) + '" alt="' + esc(next.name) + '"></figure>' : '<figure class="hx-poster hx-noimg">' + I.shoe + '</figure>') +
+        (nim ? '<figure class="hx-poster" data-peek="r|' + esc(next.name + next.date) + '"><img draggable="false" src="' + esc(nim) + '" alt="' + esc(next.name) + '"></figure>' : '<figure class="hx-poster hx-noimg">' + I.shoe + '</figure>') +
         '<span class="hx-tag">' + esc(tag) + '</span>' +
         '<div class="hx-badge" aria-label="' + dropCount + ' upcoming drops"><small>Upcoming</small><b>' + dropCount + '</b><small>drops</small></div>' +
         '</div>';
@@ -426,14 +426,14 @@
       var up = upcoming(); var next = up[0]; var rem = store('rem') || {};
       var rows = up.slice(0, 8).map(function (d) {
         var dt = new Date(d.date + 'T00:00:00Z'); var on = !!rem[d.name + d.date]; var im = releaseImg(d);
-        return '<div class="card drop"><div class="date"><span>' + MON[dt.getUTCMonth()] + '</span><b>' + ('0' + dt.getUTCDate()).slice(-2) + '</b></div>' +
-          (im ? '<img src="' + esc(im) + '" alt="" loading="lazy" style="width:64px;height:46px;object-fit:cover;border-radius:8px;flex-shrink:0;background:#fff">' : '') +
+        return '<div class="card drop" data-peek="r|' + esc(d.name + d.date) + '"><div class="date"><span>' + MON[dt.getUTCMonth()] + '</span><b>' + ('0' + dt.getUTCDate()).slice(-2) + '</b></div>' +
+          (im ? '<img draggable="false" src="' + esc(im) + '" alt="" loading="lazy" style="width:64px;height:46px;object-fit:cover;border-radius:8px;flex-shrink:0;background:#fff">' : '') +
           '<div class="grow"><div class="t" style="font-size:14px;line-height:1.3">' + esc(d.name) + '</div><div class="m">' + DOW[dt.getUTCDay()] + ' · ' + whenLabel(d.date) + ' · ' + priceLine(d.retail_usd) + '</div></div>' +
           '<button class="round' + (on ? ' on' : '') + '" data-act="rem" data-key="' + esc(d.name + d.date) + '" aria-pressed="' + on + '" aria-label="' + (on ? 'Remove reminder for ' : 'Remind me about ') + esc(d.name) + '">' + (on ? I.check : I.bell) + '</button></div>';
       }).join('') || '<p class="sub">No upcoming drops in the feed right now.</p>';
       var hot = (ST.hot.online || []).slice(0, 5).map(function (h, i) {
         var im = releaseImg(h);
-        return '<button class="card hotcard" data-go="hot"><div class="tile" style="height:90px;background:#fff"><span class="rank" style="z-index:1">' + (i + 1) + '</span>' + (im ? '<img src="' + esc(im) + '" alt="" loading="lazy" style="width:100%;height:100%;object-fit:cover">' : I.shoe) + '</div><span class="t" style="font-size:13px;line-height:1.3">' + esc(h.name) + '</span><span class="m">' + esc(h.why || '') + '</span></button>';
+        return '<button class="card hotcard" data-go="hot" data-peek="h|' + i + '"><div class="tile" style="height:90px;background:#fff"><span class="rank" style="z-index:1">' + (i + 1) + '</span>' + (im ? '<img src="' + esc(im) + '" alt="" loading="lazy" style="width:100%;height:100%;object-fit:cover">' : I.shoe) + '</div><span class="t" style="font-size:13px;line-height:1.3">' + esc(h.name) + '</span><span class="m">' + esc(h.why || '') + '</span></button>';
       }).join('');
       var heroHtml = heroSection(next, up.length, rem);
       var ids = listings.map(function (l) { return l.id; });
@@ -441,7 +441,7 @@
         ST.homeCache = { t: hc ? hc.t : Date.now(), listings: listings, stats: stats };
         return installCard() + pendingBanner() + heroHtml +
           '<div class="pad">' +
-          '<section class="sec"><div class="between"><h2>Release calendar</h2><span class="pill ok" style="font-size:10px">AUTO</span></div><p class="sub" style="font-size:12px">' + esc(stamp()) + ' · AED from US retail at 3.6725; UAE store prices may differ</p>' + rows + '</section>' +
+          '<section class="sec"><div class="between"><h2>Release calendar</h2><span class="pill ok" style="font-size:10px">AUTO</span></div><p class="sub" style="font-size:12px">' + esc(stamp()) + ' · AED from US retail at 3.6725; UAE store prices may differ · <b>Press and hold a pair for details</b></p>' + rows + '</section>' +
           (hot ? '<section class="sec"><div class="between"><h2>What’s hot</h2><button class="link" data-go="hot">See all</button></div><div class="scroller">' + hot + '</div></section>' : '') +
           adSlot() +
           '<section class="sec"><div class="between"><h2>Fresh pairs</h2><button class="link" data-go="market">Shop</button></div>' +
@@ -458,11 +458,11 @@
   VIEWS.hot = function () {
     return loadFeeds().then(function () {
       var seg = '<div class="seg" role="tablist" aria-label="Hot source"><button role="tab" class="' + (ST.hotTab === 'online' ? 'on' : '') + '" aria-selected="' + (ST.hotTab === 'online') + '" data-act="hottab" data-v="online">Online buzz</button><button role="tab" class="' + (ST.hotTab === 'market' ? 'on' : '') + '" aria-selected="' + (ST.hotTab === 'market') + '" data-act="hottab" data-v="market">On Zenkicks</button></div>';
-      var head = '<div class="sec" style="gap:4px"><div class="row"><h1>What’s hot</h1><span class="pill ok" style="font-size:10px">AUTO</span></div><p class="sub">' + (ST.hotTab === 'online' ? 'Most-traded and most-hyped pairs right now, refreshed daily.' : 'Live from the Zenkicks market: bids and watchlist saves in the last 7 days.') + '</p></div>';
+      var head = '<div class="sec" style="gap:4px"><div class="row"><h1>What’s hot</h1><span class="pill ok" style="font-size:10px">AUTO</span></div><p class="sub">' + (ST.hotTab === 'online' ? 'Most-traded and most-hyped pairs right now, refreshed daily. Press and hold a pair for details.' : 'Live from the Zenkicks market: bids and watchlist saves in the last 7 days.') + '</p></div>';
       if (ST.hotTab === 'online') {
         var list = (ST.hot.online || []).map(function (h, n) {
           var im = releaseImg(h);
-          return '<div class="card hotrow"><span class="n">' + (n + 1) + '</span><div class="tile" style="width:72px;height:52px;flex-shrink:0;background:#fff">' + (im ? '<img src="' + esc(im) + '" alt="" loading="lazy" style="width:100%;height:100%;object-fit:cover">' : I.shoe) + '</div><div class="grow"><div class="t" style="font-size:14px;line-height:1.3">' + esc(h.name) + '</div><div class="m">' + esc(h.why || '') + '</div></div>' + (h.tag ? '<span class="trend">' + esc(h.tag) + '</span>' : '') + '</div>';
+          return '<div class="card hotrow" data-peek="h|' + n + '"><span class="n">' + (n + 1) + '</span><div class="tile" style="width:72px;height:52px;flex-shrink:0;background:#fff">' + (im ? '<img src="' + esc(im) + '" alt="" loading="lazy" style="width:100%;height:100%;object-fit:cover">' : I.shoe) + '</div><div class="grow"><div class="t" style="font-size:14px;line-height:1.3">' + esc(h.name) + '</div><div class="m">' + esc(h.why || '') + '</div></div>' + (h.tag ? '<span class="trend">' + esc(h.tag) + '</span>' : '') + '</div>';
         }).join('') || '<p class="sub">Nothing in the feed yet.</p>';
         return '<div class="pad">' + head + seg + '<div class="list">' + list + '</div>' + adSlot() + sourcesNote() + '</div>';
       }
@@ -967,7 +967,64 @@
     openModal('<h2>Report</h2><p class="sub">Tell us what’s wrong. Our team reviews every report.</p><div class="chips-wrap">' + ['Fake or replica', 'Scam or suspicious', 'Offensive', 'Spam', 'Other'].map(function (r) { return '<button class="chip" data-act="rpick" data-v="' + r + '">' + r + '</button>'; }).join('') + '</div><textarea id="r-text" maxlength="500" placeholder="Add details (optional)" style="padding:10px;border:1px solid var(--line);border-radius:10px;min-height:80px"></textarea><div class="row"><button class="btn ghost" style="flex:1" data-act="mclose">Cancel</button><button class="btn red" style="flex:1" data-act="rsend" data-type="' + type + '" data-id="' + id + '">Send report</button></div>');
   }
 
+  // ---- press & hold a sneaker: big photo + details ----
+  function peekItem(key) {
+    var p = String(key || '').split('|'), rest = p.slice(1).join('|');
+    if (p[0] === 'h') { var h = (ST.hot && ST.hot.online || [])[+rest]; return h ? { kind: 'hot', rank: +rest + 1, d: h } : null; }
+    if (p[0] === 'r') { var r = (ST.releases && ST.releases.items || []).filter(function (x) { return x.name + x.date === rest; })[0]; return r ? { kind: 'drop', d: r } : null; }
+    return null;
+  }
+  function shortModel(name) { return String(name || '').split(/["“(]/)[0].replace(/\s+/g, ' ').trim(); }
+  function openPeek(key) {
+    var it = peekItem(key); if (!it) return;
+    var d = it.d, im = releaseImg(d), rows = [], k = d.name + d.date;
+    function row(l, v) { rows.push('<div class="kv"><span class="m">' + l + '</span><span class="pv">' + v + '</span></div>'); }
+    if (it.kind === 'drop') {
+      var dt = new Date(d.date + 'T00:00:00Z');
+      row('Release', DOW[dt.getUTCDay()] + ', ' + dt.getUTCDate() + ' ' + MON[dt.getUTCMonth()].charAt(0) + MON[dt.getUTCMonth()].slice(1).toLowerCase() + ' ' + dt.getUTCFullYear() + ' · <b>' + whenLabel(d.date) + '</b>');
+      row('Retail', priceLine(d.retail_usd));
+    } else {
+      row('Trending', '<b>#' + it.rank + '</b>' + (d.why ? ' · ' + esc(d.why) : ''));
+      if (d.price_usd) row('Resale', 'From AED ' + usdToAed(d.price_usd).toLocaleString('en-US') + ' <span style="opacity:.7">(US$' + d.price_usd + ')</span>');
+      if (d.retail_usd) row('Retail', priceLine(d.retail_usd));
+      if (d.released) row('Released', esc(d.released));
+    }
+    if (d.brand) row('Brand', esc(d.brand));
+    if (d.colorway) row('Colorway', esc(d.colorway));
+    if (d.sku) row('Style code', esc(d.sku));
+    var on = !!(store('rem') || {})[k];
+    openModal('<div class="peek-top"><span class="pill ' + (it.kind === 'drop' ? 'ok">Release' : 'sample">What’s hot') + '</span><button class="round" data-act="peekclose" aria-label="Close">✕</button></div>' +
+      '<div class="peek-img">' + (im ? '<img src="' + esc(im) + '" alt="' + esc(d.name) + '">' : I.shoe) + '</div>' +
+      '<h2 class="peek-name">' + esc(d.name) + '</h2>' +
+      '<div class="card" style="padding:4px 14px">' + rows.join('') + '</div>' +
+      '<div class="row" style="gap:8px;flex-wrap:wrap">' +
+      (it.kind === 'drop' && dayDiff(d.date) >= 0 ? '<button class="btn ' + (on ? 'ghost' : 'red') + '" style="flex:1" data-act="peekrem" data-key="' + esc(k) + '">' + (on ? I.check + ' Reminder on' : I.bell + ' Remind me') + '</button>' : '') +
+      '<button class="btn dark" style="flex:1" data-act="peekmarket" data-v="' + esc(shortModel(d.name)) + '">' + I.bag + ' Find on Market</button>' +
+      '</div>' +
+      (d.link ? '<a class="link" style="text-align:center" href="' + esc(d.link) + '" target="_blank" rel="noopener">See it on StockX ›</a>' : ''));
+    var mb = app.querySelector('.modal-back'); if (mb) { mb.classList.add('peekback'); mb.querySelector('.modal').classList.add('peek'); }
+  }
+  function closePeek() { closeModal(); if (ST.peekDirty) { ST.peekDirty = false; render(true); } }
+  (function () {
+    var timer = null, sx = 0, sy = 0, fired = false, cur = null;
+    function stop() { clearTimeout(timer); timer = null; if (cur) cur.classList.remove('peeking'); cur = null; }
+    app.addEventListener('pointerdown', function (e) {
+      fired = false; stop();
+      var el = e.target.closest('[data-peek]'); if (!el || e.button > 0 || e.target.closest('[data-act]')) return;
+      sx = e.clientX; sy = e.clientY; cur = el; el.classList.add('peeking');
+      timer = setTimeout(function () { var key = cur && cur.getAttribute('data-peek'); stop(); fired = true; try { if (navigator.vibrate) navigator.vibrate(12); } catch (x) {} openPeek(key); }, 450);
+    });
+    app.addEventListener('pointermove', function (e) { if (timer && (Math.abs(e.clientX - sx) > 10 || Math.abs(e.clientY - sy) > 10)) stop(); });
+    app.addEventListener('pointerup', stop); app.addEventListener('pointercancel', stop);
+    window.addEventListener('scroll', stop, true);
+    // the finger lifting after a hold must not also "tap" what is underneath
+    app.addEventListener('click', function (e) { if (fired) { fired = false; e.preventDefault(); e.stopPropagation(); } }, true);
+    app.addEventListener('contextmenu', function (e) { if (e.target.closest('[data-peek]')) e.preventDefault(); });
+    app.addEventListener('dragstart', function (e) { if (e.target.closest('[data-peek]')) e.preventDefault(); });
+  })();
+
   app.addEventListener('click', function (e) {
+    if (e.target.classList && e.target.classList.contains('peekback')) { closePeek(); return; }
     var el = e.target.closest('[data-go],[data-act]'); if (!el) return;
     if (el.hasAttribute('data-go')) { e.preventDefault(); closeModal(); var g = el.getAttribute('data-go'); if (g === 'sell') ST.sell = ST.sell || freshSell(); if (g === 'login' && !uid()) rememberAfter(); go(g); return; }
     var a = el.getAttribute('data-act'), v = el.getAttribute('data-v'), id = el.getAttribute('data-id');
@@ -1015,6 +1072,10 @@
         sb.from('reports').insert({ reporter_id: uid(), target_type: el.getAttribute('data-type'), target_id: id, reason: reason }).then(function (r) { if (r.error) return fail(r.error); closeModal(); toast('Thanks. We’ll review it.'); });
         break;
       case 'mclose': closeModal(); break;
+      case 'peekclose': closePeek(); break;
+      case 'peekrem': var prm = store('rem') || {}; var pk = el.getAttribute('data-key'); prm[pk] = !prm[pk]; store('rem', prm); ST.peekDirty = true;
+        el.className = 'btn ' + (prm[pk] ? 'ghost' : 'red'); el.innerHTML = prm[pk] ? I.check + ' Reminder on' : I.bell + ' Remind me'; toast(prm[pk] ? 'Reminder saved on this device' : 'Reminder removed'); break;
+      case 'peekmarket': closeModal(); ST.marketQ = v || ''; ST.marketFilter = 'all'; go('market'); break;
       case 'acknotice': sb.rpc('ack_notices').then(function () { closeModal(); }); break;
       case 'vouch': vouchModal(el.getAttribute('data-target'), el.getAttribute('data-user'), el.getAttribute('data-ref'), el.getAttribute('data-kind')); break;
       case 'vstar':
