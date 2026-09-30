@@ -1,28 +1,45 @@
-// Zenkicks service worker: makes the app installable and opens fast.
-// Code and settings load network-first, so updates show on the next open.
-var VERSION = 'zk-v11';
-var SHELL = ['./', 'index.html', 'config.js', 'assets/app.js', 'assets/app.css', 'manifest.webmanifest', 'icons/icon-192.png', 'icons/icon-512.png'];
+// Zenkicks service worker: makes the app installable and opens it instantly.
+// - The page opens from the phone's cache and refreshes itself in the background.
+// - Code files carry ?v=N, so each version is cached once and never re-downloaded.
+// - Drops and What's hot data try the network first (max 3s), then fall back to the cache.
+// A new version of this file (VERSION changes) reloads the app once with the new code.
+var VERSION = 'zk-v12';
+var SHELL = ['./', 'index.html'];
 
 self.addEventListener('install', function (e) {
-  e.waitUntil(caches.open(VERSION).then(function (c) { return c.addAll(SHELL); }).then(function () { return self.skipWaiting(); }));
+  e.waitUntil(caches.open(VERSION).then(function (c) {
+    return Promise.all(SHELL.map(function (u) { return fetch(new Request(u, { cache: 'reload' })).then(function (r) { if (r.ok) return c.put(u, r); }); }));
+  }).then(function () { return self.skipWaiting(); }));
 });
 self.addEventListener('activate', function (e) {
   e.waitUntil(caches.keys().then(function (keys) {
     return Promise.all(keys.filter(function (k) { return k !== VERSION; }).map(function (k) { return caches.delete(k); }));
   }).then(function () { return self.clients.claim(); }));
 });
+
+function put(req, res) { if (res && res.ok) { var copy = res.clone(); caches.open(VERSION).then(function (c) { c.put(req, copy); }); } return res; }
+function fromNet(req) { return fetch(req, { cache: 'no-cache' }).then(function (res) { return put(req, res); }); }
+function timeout(ms) { return new Promise(function (_, rej) { setTimeout(function () { rej(new Error('slow')); }, ms); }); }
+
 self.addEventListener('fetch', function (e) {
   var req = e.request; var url = new URL(req.url);
   if (req.method !== 'GET' || url.origin !== location.origin) return; // never cache Supabase or other sites
-  // images and icons: cache first (they rarely change)
-  if (/\.(png|jpe?g|webp|svg|ico)$/i.test(url.pathname)) {
-    e.respondWith(caches.match(req).then(function (r) {
-      return r || fetch(req).then(function (res) { var copy = res.clone(); caches.open(VERSION).then(function (c) { c.put(req, copy); }); return res; });
+
+  // the app page: open from cache right away, refresh the copy in the background
+  if (req.mode === 'navigate' || /\/zenkicks\/(index\.html)?$/.test(url.pathname)) {
+    e.respondWith(caches.match(req, { ignoreSearch: true }).then(function (hit) {
+      var net = fromNet(req).catch(function () { return hit; });
+      return hit || net.then(function (r) { return r || caches.match('index.html'); });
     }));
     return;
   }
-  // pages, code, settings and data: network first so updates show right away; cache only when offline
-  e.respondWith(fetch(req, { cache: 'no-cache' }).then(function (res) {
-    var copy = res.clone(); caches.open(VERSION).then(function (c) { c.put(req, copy); }); return res;
-  }).catch(function () { return caches.match(req).then(function (r) { return r || caches.match('index.html'); }); }));
+  // versioned code (app.js?v=12 etc.) and images: cache first
+  if (url.search.indexOf('v=') > -1 && /\.(js|css)$/.test(url.pathname) || /\.(png|jpe?g|webp|svg|ico)$/i.test(url.pathname)) {
+    e.respondWith(caches.match(req).then(function (hit) { return hit || fetch(req).then(function (res) { return put(req, res); }); }));
+    return;
+  }
+  // data and everything else: network first (3s max), cache when slow or offline
+  e.respondWith(Promise.race([fromNet(req), timeout(3000)]).catch(function () {
+    return caches.match(req, { ignoreSearch: true }).then(function (hit) { return hit || fromNet(req); });
+  }));
 });
