@@ -884,7 +884,7 @@
       var lRows = ls.map(function (l) { return '<div class="kv" style="align-items:center"><button class="link" style="text-align:left;padding:0;color:inherit" data-go="l/' + l.id + '"><b>' + esc(l.model) + '</b><br><span class="m">' + aed(l.price_aed) + ' · @' + esc(l.seller && l.seller.username) + ' · ' + esc(l.status) + '</span></button>' + (l.status !== 'removed' ? '<button class="btn ghost" style="height:36px;padding:0 10px;font-size:12px;color:var(--red)" data-act="aremove" data-id="' + l.id + '">Remove</button>' : '<span class="m">removed</span>') + '</div>'; }).join('') || '<p class="sub">No listings yet.</p>';
       var cRows = cs.map(function (c) { return '<div class="kv" style="align-items:center"><button class="link" style="text-align:left;padding:0;color:inherit" data-go="c/' + c.id + '"><b>' + esc(c.model) + '</b><br><span class="m">@' + esc(c.author && c.author.username) + ' · ' + (c.verdict ? c.verdict.toUpperCase() : 'open') + ' · ' + ago(c.created_at) + ' ago</span></button><button class="btn ghost" style="height:36px;padding:0 10px;font-size:12px;color:var(--red)" data-act="adelcheck" data-id="' + c.id + '">Delete</button></div>'; }).join('') || '<p class="sub">No legit checks yet.</p>';
       return '<div class="pad"><div class="sec" style="gap:4px"><h1>' + (isOwner() ? 'Owner panel' : 'Admin panel') + '</h1><p class="sub">' + (isOwner() ? 'You’re the founder. You appoint admins and checkers, and nobody can change your role.' : 'Handle reports, checkers and bans.') + '</p></div>' +
-        '<div class="grid" style="grid-template-columns:repeat(3,1fr)">' + tile(st.members, 'Members') + tile(st.new_7d, 'New this week') + tile(st.active_listings, 'Pairs for sale') + tile(st.sold, 'Sold') + tile(st.checks, 'Legit checks') + tile(st.open_reports, 'Open reports') + '</div>' +
+        '<div class="grid" style="grid-template-columns:repeat(3,1fr)">' + tile(st.members, 'Members' + (st.pending ? '<br><span style="color:#9a5b00">+ ' + st.pending + ' pending</span>' : '')) + tile(st.new_7d, 'New this week') + tile(st.active_listings, 'Pairs for sale') + tile(st.sold, 'Sold') + tile(st.checks, 'Legit checks') + tile(st.open_reports, 'Open reports') + '</div>' +
         '<section class="sec"><h2>Reports</h2><div class="card" style="padding:4px 14px">' + repRows + '</div></section>' +
         '<section class="sec"><h2>Members</h2><label class="search" for="aq">' + I.search + '<input id="aq" type="search" placeholder="Search username' + (isOwner() ? ' or email' : '') + '" value="' + esc(q) + '" autocomplete="off"></label><div class="card" style="padding:4px 14px">' + userRows + '</div>' +
         '<p class="m" style="margin:0">Be fair: <b>Warn</b> first, then <b>Suspend</b> (1–30 days), and <b>Ban</b> for scams or repeat offenders. The member sees your reason when they open the app. Banning also takes down their pairs for sale. Admin: reports, bans, removals' + (isOwner() ? ', appointed by you' : '') + '. Checker: posts Legit/Fake verdicts.</p></section>' +
@@ -892,6 +892,17 @@
         '<section class="sec"><h2>Latest legit checks</h2><div class="card" style="padding:4px 14px">' + cRows + '</div></section></div>';
     });
   };
+
+  // shown under the code box: most "missing" codes are sitting in Spam or Promotions
+  function spamTip(em, canGoogle) {
+    var d = String(em || '').split('@')[1] || '';
+    var where = /yahoo|ymail|rocketmail/.test(d) ? 'On Yahoo, open the <b>Spam</b> folder.' :
+      /gmail|googlemail/.test(d) ? 'On Gmail, check the <b>Promotions</b> tab and <b>Spam</b>.' :
+      /outlook|hotmail|live|msn/.test(d) ? 'On Outlook, check <b>Junk Email</b> and the <b>Other</b> tab.' :
+      /icloud|me\.com|mac\.com/.test(d) ? 'On iCloud Mail, check the <b>Junk</b> folder.' : 'Check your <b>Spam</b> or <b>Junk</b> folder.';
+    return '<div class="spamtip"><b>Can’t find the code?</b><span>It can take a minute. Look for an email from <b>Zenkicks</b>. ' + where + ' If it’s there, tap <b>Not spam</b> so the next ones reach your inbox.</span>' +
+      (canGoogle ? '<span>Still nothing? <button class="link" data-act="google">Continue with Google</button> instead. No code needed.</span>' : '') + '</div>';
+  }
 
   VIEWS.login = function () {
     if (!sb) return needSb();
@@ -903,7 +914,7 @@
         '<label class="field" for="l-code">Sign-in code<input id="l-code" class="codein" type="text" inputmode="numeric" autocomplete="one-time-code" maxlength="10" placeholder="••••••"></label>' +
         '<button class="btn red" data-act="emailverify">Sign in</button>' +
         '<div class="row" style="justify-content:space-between"><button class="link" data-act="emailchange">Use another email</button><button class="link" data-act="emaillink" id="l-resend">Send a new code</button></div>' +
-        '<p class="tiny" style="margin:0">No email? Check Spam or Promotions.</p></div>'
+        spamTip(L.sentTo, !!gBtn) + '</div>'
       : '<div class="card" style="padding:14px;display:flex;flex-direction:column;gap:10px"><label class="field" for="l-email">Email<input id="l-email" type="email" autocomplete="email" inputmode="email" placeholder="you@example.com" value="' + esc(L.email || '') + '"></label><button class="btn red" data-act="emaillink">Email me a code</button><p class="tiny" style="margin:0">No password. New here? This creates your free account.</p></div>';
     return '<div class="pad"><div class="sec" style="gap:4px"><h1>Join the tambayan</h1><p class="sub">Free. Takes 30 seconds. Sign in to sell, bid, vote and comment.</p></div>' + ogHook() +
       gBtn + emailBox +
@@ -1067,7 +1078,7 @@
         sb.auth.signInWithOtp({ email: em, options: { emailRedirectTo: location.origin + location.pathname } }).then(function (r) {
           el.disabled = false; el.textContent = oldTxt;
           if (r.error) { lerr.textContent = /rate|security purposes|seconds/i.test(r.error.message) ? 'Too many tries. Wait a minute, then try again.' : r.error.message; return; }
-          ST.login = { email: em, sentTo: em, sentAt: Date.now() }; render(true); toast('Code sent. Check your email');
+          ST.login = { email: em, sentTo: em, sentAt: Date.now() }; render(true); toast('Code sent. Check your inbox, and Spam too');
           setTimeout(function () { var c = document.getElementById('l-code'); if (c) c.focus(); }, 50);
         });
         break;

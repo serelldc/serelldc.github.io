@@ -280,3 +280,8 @@ h2{font-size:19px}
 .card.notice{border-left:4px solid var(--red)}
 .card.notice.warn{border-left-color:#d8a24a}
 .card.notice.lift{border-left-color:var(--green)}
+
+/* code screen: where to find a missing code */
+.spamtip{display:flex;flex-direction:column;gap:6px;padding:10px 12px;border-radius:12px;background:#fff6e0;border:1px solid #f0d49a;font-size:12.5px;line-height:1.45;color:#5c4300}
+.spamtip b{color:#3d2c00}
+.spamtip .link{font-size:12.5px;padding:0;font-weight:700;text-decoration:underline}
