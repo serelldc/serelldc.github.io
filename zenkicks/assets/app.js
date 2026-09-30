@@ -266,13 +266,14 @@
   // ------------------------------------------------------------------
   function loadFeeds() {
     if (ST.releases) return Promise.resolve();
+    if (ST.feedsP) return ST.feedsP;
     function j(u) { return fetch(u + '?v=' + dubaiToday(), { cache: 'no-cache' }).then(function (r) { return r.ok ? r.json() : null; }).catch(function () { return null; }); }
-    return Promise.all([j('data/releases.json'), j('data/hot.json'), j('data/photos.json')]).then(function (a) {
+    return (ST.feedsP = Promise.all([j('data/releases.json'), j('data/hot.json'), j('data/photos.json')]).then(function (a) {
       ST.releases = a[0] || { items: [] }; ST.hot = a[1] || { online: [] }; ST.photos = a[2] || {};
       // Show only pairs that have a real photo; others appear once KicksDB or data/photos.json gives them one.
       ST.releases.items = (ST.releases.items || []).filter(function (d) { return !!releaseImg(d); });
       ST.hot.online = (ST.hot.online || []).filter(function (h) { return !!releaseImg(h); });
-    });
+    }));
   }
   function releaseImg(item) {
     var n = norm(item.name);
@@ -397,7 +398,8 @@
   var VIEWS = {};
 
   VIEWS.drops = function () {
-    var fresh = sb ? sb.from('listings').select(LISTING_COLS).eq('status', 'active').order('created_at', { ascending: false }).limit(4) : Promise.resolve({ data: [] });
+    var hc = ST.homeCache && Date.now() - ST.homeCache.t < 30000 ? ST.homeCache : null;
+    var fresh = hc ? Promise.resolve({ data: hc.listings }) : sb ? sb.from('listings').select(LISTING_COLS).eq('status', 'active').order('created_at', { ascending: false }).limit(4) : Promise.resolve({ data: [] });
     return Promise.all([loadFeeds(), fresh]).then(function (a) {
       var listings = (a[1] && a[1].data) || [];
       var up = upcoming(); var next = up[0]; var rem = store('rem') || {};
@@ -414,7 +416,8 @@
       }).join('');
       var heroHtml = heroSection(next, up.length, rem);
       var ids = listings.map(function (l) { return l.id; });
-      return statsFor(ids).then(function (stats) {
+      return (hc ? Promise.resolve(hc.stats) : statsFor(ids)).then(function (stats) {
+        ST.homeCache = { t: hc ? hc.t : Date.now(), listings: listings, stats: stats };
         return installCard() + heroHtml +
           '<div class="pad">' +
           '<section class="sec"><div class="between"><h2>Release calendar</h2><span class="pill ok" style="font-size:10px">AUTO</span></div><p class="sub" style="font-size:12px">' + esc(stamp()) + ' · AED from US retail at 3.6725; UAE store prices may differ</p>' + rows + '</section>' +
@@ -1133,8 +1136,25 @@
     ]);
   }
   if (sb) {
-    sb.auth.getSession().then(function (r) { ST.session = r.data.session; return Promise.all([loadMe(), loadOwners()]); }).then(function () { render(); checkNotices(); });
+    // Start everything at once and show the page as soon as the session is known.
+    // Badges come from the last visit first (instant), then refresh in the background.
+    var cb = store('badges'); if (cb) { ST.owners = cb.owners || {}; ST.og = cb.og || {}; ST.ogCount = cb.ogCount; }
+    loadFeeds();
+    var ownersP = loadOwners().then(function () { store('badges', { owners: ST.owners || {}, og: ST.og || {}, ogCount: ST.ogCount }); });
+    var booted = false;
+    sb.auth.getSession().then(function (r) {
+      ST.session = r.data.session;
+      var meP = loadMe();
+      var needMe = uid() && /^(me|admin|sell|new-check|login)$/.test(route().name);
+      (needMe ? meP : Promise.resolve()).then(function () { booted = true; render(); });
+      Promise.all([meP, ownersP]).then(function () {
+        var badgesChanged = JSON.stringify([cb && cb.og, cb && cb.owners]) !== JSON.stringify([ST.og, ST.owners]);
+        if (booted && (uid() && !needMe || badgesChanged)) render(true);
+        checkNotices();
+      });
+    });
     sb.auth.onAuthStateChange(function (evt, session) {
+      if (evt === 'INITIAL_SESSION') return; // handled by getSession above
       var was = uid(); ST.session = session;
       if ((session && session.user && session.user.id) !== was) loadMe().then(function () {
         if (evt !== 'SIGNED_IN' || !uid()) return render(true);
