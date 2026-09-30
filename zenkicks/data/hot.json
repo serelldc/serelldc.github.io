@@ -1,5 +1,5 @@
 {
-  "updated": "2026-09-30",
+  "updated": "2026-10-01",
   "source": "KicksDB (StockX best sellers)",
   "online": [
     {
@@ -7,70 +7,100 @@
       "why": "1,378 orders on StockX this week",
       "tag": "Resale",
       "image": "https://images.stockx.com/images/Air-Jordan-9-Retro-OG-Space-Jam-2026-Product.jpg?fit=fill&bg=FFFFFF&w=600&h=430&fm=webp&auto=compress&q=90&dpr=2&trim=color&updated_at=1788539897",
-      "link": "https://stockx.pvxt.net/c/4722526/1023711/9060?u=https%3A%2F%2Fstockx.com%2Fair-jordan-9-retro-og-space-jam-2026"
+      "link": "https://stockx.pvxt.net/c/4722526/1023711/9060?u=https%3A%2F%2Fstockx.com%2Fair-jordan-9-retro-og-space-jam-2026",
+      "brand": "Jordan",
+      "sku": "IX6179-100",
+      "price_usd": 227
     },
     {
       "name": "Jordan 1 Retro Low OG Last Dance At The Garden",
       "why": "753 orders on StockX this week",
       "tag": "Resale",
       "image": "https://images.stockx.com/images/Air-Jordan-1-Retro-Low-OG-Last-Dance-At-The-Garden-Product.jpg?fit=fill&bg=FFFFFF&w=600&h=430&fm=webp&auto=compress&q=90&dpr=2&trim=color&updated_at=1788539860",
-      "link": "https://stockx.pvxt.net/c/4722526/1023711/9060?u=https%3A%2F%2Fstockx.com%2Fair-jordan-1-retro-low-og-last-dance-at-the-garden"
+      "link": "https://stockx.pvxt.net/c/4722526/1023711/9060?u=https%3A%2F%2Fstockx.com%2Fair-jordan-1-retro-low-og-last-dance-at-the-garden",
+      "brand": "Jordan",
+      "sku": "IR0088-001",
+      "price_usd": 96
     },
     {
-      "name": "Jordan 4 Retro Toro Bravo (2026)",
-      "why": "630 orders on StockX this week",
+      "name": "Nike Air Bakin OG (2026)",
+      "why": "719 orders on StockX this week",
       "tag": "Resale",
-      "image": "https://images.stockx.com/images/Air-Jordan-4-Retro-Toro-Bravo-2026-Product.jpg?fit=fill&bg=FFFFFF&w=600&h=430&fm=webp&auto=compress&q=90&dpr=2&trim=color&updated_at=1784232937",
-      "link": "https://stockx.pvxt.net/c/4722526/1023711/9060?u=https%3A%2F%2Fstockx.com%2Fair-jordan-4-retro-toro-bravo-2026"
+      "image": "https://images.stockx.com/images/nike-air-bakin-og-2026.jpg?fit=fill&bg=FFFFFF&w=600&h=430&fm=webp&auto=compress&q=90&dpr=2&trim=color&updated_at=1789488060",
+      "link": "https://stockx.pvxt.net/c/4722526/1023711/9060?u=https%3A%2F%2Fstockx.com%2Fnike-air-bakin-og-2026",
+      "brand": "Nike",
+      "sku": "IQ5365-600",
+      "price_usd": 197
     },
     {
       "name": "Jordan 4 Retro Rare Air Tour Yellow (2026)",
       "why": "651 orders on StockX this week",
       "tag": "Resale",
       "image": "https://images.stockx.com/images/air-jordan-4-retro-rare-air-tour-yellow.jpg?fit=fill&bg=FFFFFF&w=600&h=430&fm=webp&auto=compress&q=90&dpr=2&trim=color&updated_at=1786796812",
-      "link": "https://stockx.pvxt.net/c/4722526/1023711/9060?u=https%3A%2F%2Fstockx.com%2Fair-jordan-4-retro-rare-air-tour-yellow"
+      "link": "https://stockx.pvxt.net/c/4722526/1023711/9060?u=https%3A%2F%2Fstockx.com%2Fair-jordan-4-retro-rare-air-tour-yellow",
+      "brand": "Jordan",
+      "sku": "IO2463-102",
+      "price_usd": 145
+    },
+    {
+      "name": "Jordan 4 Retro Toro Bravo (2026)",
+      "why": "630 orders on StockX this week",
+      "tag": "Resale",
+      "image": "https://images.stockx.com/images/Air-Jordan-4-Retro-Toro-Bravo-2026-Product.jpg?fit=fill&bg=FFFFFF&w=600&h=430&fm=webp&auto=compress&q=90&dpr=2&trim=color&updated_at=1784232937",
+      "link": "https://stockx.pvxt.net/c/4722526/1023711/9060?u=https%3A%2F%2Fstockx.com%2Fair-jordan-4-retro-toro-bravo-2026",
+      "brand": "Jordan",
+      "sku": "FQ8138-600",
+      "price_usd": 154
     },
     {
       "name": "Jordan 8 Retro Chrome (2026)",
       "why": "581 orders on StockX this week",
       "tag": "Resale",
       "image": "https://images.stockx.com/images/Air-Jordan-8-Retro-Chrome-2026-Product.jpg?fit=fill&bg=FFFFFF&w=600&h=430&fm=webp&auto=compress&q=90&dpr=2&trim=color&updated_at=1788529029",
-      "link": "https://stockx.pvxt.net/c/4722526/1023711/9060?u=https%3A%2F%2Fstockx.com%2Fair-jordan-8-retro-chrome-2026"
-    },
-    {
-      "name": "Jordan 12 Retro Bucks",
-      "why": "410 orders on StockX this week",
-      "tag": "Resale",
-      "image": "https://images.stockx.com/images/Air-Jordan-12-Retro-Bucks-Product.jpg?fit=fill&bg=FFFFFF&w=600&h=430&fm=webp&auto=compress&q=90&dpr=2&trim=color&updated_at=1788355234",
-      "link": "https://stockx.pvxt.net/c/4722526/1023711/9060?u=https%3A%2F%2Fstockx.com%2Fair-jordan-12-retro-bucks"
+      "link": "https://stockx.pvxt.net/c/4722526/1023711/9060?u=https%3A%2F%2Fstockx.com%2Fair-jordan-8-retro-chrome-2026",
+      "brand": "Jordan",
+      "sku": "305381-007",
+      "price_usd": 193
     },
     {
       "name": "ASICS Gel-1130 Black Pure Silver",
       "why": "462 orders on StockX this week",
       "tag": "Resale",
       "image": "https://images.stockx.com/images/ASICS-Gel-1130-Black-Pure-Silver-Product.jpg?fit=fill&bg=FFFFFF&w=600&h=430&fm=webp&auto=compress&q=90&dpr=2&trim=color&updated_at=1784840409",
-      "link": "https://stockx.pvxt.net/c/4722526/1023711/9060?u=https%3A%2F%2Fstockx.com%2Fasics-gel-1130-black-pure-silver"
+      "link": "https://stockx.pvxt.net/c/4722526/1023711/9060?u=https%3A%2F%2Fstockx.com%2Fasics-gel-1130-black-pure-silver",
+      "brand": "ASICS",
+      "sku": "1201A906-001",
+      "price_usd": 75
     },
     {
       "name": "Nike Air Force 1 Low '07 White",
       "why": "444 orders on StockX this week",
       "tag": "Resale",
       "image": "https://images.stockx.com/images/Nike-Air-Force-1-Low-White-07-Product_V2.jpg?fit=fill&bg=FFFFFF&w=600&h=430&fm=webp&auto=compress&q=90&dpr=2&trim=color&updated_at=1785333173",
-      "link": "https://stockx.pvxt.net/c/4722526/1023711/9060?u=https%3A%2F%2Fstockx.com%2Fnike-air-force-1-low-white-07"
+      "link": "https://stockx.pvxt.net/c/4722526/1023711/9060?u=https%3A%2F%2Fstockx.com%2Fnike-air-force-1-low-white-07",
+      "brand": "Nike",
+      "sku": "315122-111/CW2288-111",
+      "price_usd": 73
     },
     {
-      "name": "Jordan 5 Retro Black University Blue (2026)",
-      "why": "370 orders on StockX this week",
+      "name": "Jordan 12 Retro Bucks",
+      "why": "410 orders on StockX this week",
       "tag": "Resale",
-      "image": "https://images.stockx.com/images/Air-Jordan-5-Retro-Black-University-Blue-2026-Product.jpg?fit=fill&bg=FFFFFF&w=600&h=430&fm=webp&auto=compress&q=90&dpr=2&trim=color&updated_at=1784225202",
-      "link": "https://stockx.pvxt.net/c/4722526/1023711/9060?u=https%3A%2F%2Fstockx.com%2Fair-jordan-5-retro-black-university-blue-2026"
+      "image": "https://images.stockx.com/images/Air-Jordan-12-Retro-Bucks-Product.jpg?fit=fill&bg=FFFFFF&w=600&h=430&fm=webp&auto=compress&q=90&dpr=2&trim=color&updated_at=1788355234",
+      "link": "https://stockx.pvxt.net/c/4722526/1023711/9060?u=https%3A%2F%2Fstockx.com%2Fair-jordan-12-retro-bucks",
+      "brand": "Jordan",
+      "sku": "CT8013-103",
+      "price_usd": 164
     },
     {
       "name": "Jordan 3 Retro True Blue (2026)",
       "why": "381 orders on StockX this week",
       "tag": "Resale",
       "image": "https://images.stockx.com/images/Air-Jordan-3-Retro-True-Blue-2026-Product.jpg?fit=fill&bg=FFFFFF&w=600&h=430&fm=webp&auto=compress&q=90&dpr=2&trim=color&updated_at=1787951358",
-      "link": "https://stockx.pvxt.net/c/4722526/1023711/9060?u=https%3A%2F%2Fstockx.com%2Fair-jordan-3-retro-true-blue-2026"
+      "link": "https://stockx.pvxt.net/c/4722526/1023711/9060?u=https%3A%2F%2Fstockx.com%2Fair-jordan-3-retro-true-blue-2026",
+      "brand": "Jordan",
+      "sku": "IF4396-104",
+      "price_usd": 165
     }
   ]
 }
