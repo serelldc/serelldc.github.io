@@ -304,3 +304,5 @@ h2{font-size:19px}
 .modal.peek .pv{text-align:right;font-size:13px}
 @keyframes pkpop{from{transform:scale(.85);opacity:0}to{transform:none;opacity:1}}
 @keyframes pkfade{from{opacity:0}to{opacity:1}}
+.modal.peek .btn{gap:8px;white-space:nowrap;height:46px;font-size:14px}
+.modal.peek .btn svg{width:18px;height:18px;flex-shrink:0}
