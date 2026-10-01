@@ -235,6 +235,7 @@
     var r = route(); var seq = ++renderSeq;
     var oldMain = app.querySelector('.main'); var top = keepScroll && oldMain ? oldMain.scrollTop : 0;
     var bottom = (r.name === 'l' || r.name === 'c' || r.name === 'sell' || r.name === 'new-check') ? '<div id="bottombar"></div>' : tabs(r);
+    app.setAttribute('data-view', r.name); if (/^<nav/.test(bottom)) app.setAttribute('data-nav', ''); else app.removeAttribute('data-nav');
     app.innerHTML = header(r) + setupBanner() + '<main class="main" id="main">' + (keepScroll && oldMain ? oldMain.innerHTML : skeleton()) + '</main>' + bottom;
     var view = VIEWS[r.name] || VIEWS.drops;
     Promise.resolve().then(function () { return view(r); }).then(function (out) {
@@ -441,7 +442,7 @@
         ST.homeCache = { t: hc ? hc.t : Date.now(), listings: listings, stats: stats };
         return installCard() + pendingBanner() + heroHtml +
           '<div class="pad">' +
-          '<section class="sec"><div class="between"><h2>Release calendar</h2><span class="pill ok" style="font-size:10px">AUTO</span></div><p class="sub" style="font-size:12px">' + esc(stamp()) + ' · AED from US retail at 3.6725; UAE store prices may differ · <b>Press and hold a pair for details</b></p>' + rows + '</section>' +
+          '<section class="sec"><div class="between"><h2>Release calendar</h2><span class="pill ok" style="font-size:10px">AUTO</span></div><p class="sub" style="font-size:12px">' + esc(stamp()) + ' · AED from US retail at 3.6725; UAE store prices may differ · <b>Press and hold a pair for details</b></p><div class="droplist">' + rows + '</div></section>' +
           (hot ? '<section class="sec"><div class="between"><h2>What’s hot</h2><button class="link" data-go="hot">See all</button></div><div class="scroller">' + hot + '</div></section>' : '') +
           adSlot() +
           '<section class="sec"><div class="between"><h2>Fresh pairs</h2><button class="link" data-go="market">Shop</button></div>' +
@@ -464,7 +465,7 @@
           var im = releaseImg(h);
           return '<div class="card hotrow" data-peek="h|' + n + '"><span class="n">' + (n + 1) + '</span><div class="tile" style="width:72px;height:52px;flex-shrink:0;background:#fff">' + (im ? '<img src="' + esc(im) + '" alt="" loading="lazy" style="width:100%;height:100%;object-fit:cover">' : I.shoe) + '</div><div class="grow"><div class="t" style="font-size:14px;line-height:1.3">' + esc(h.name) + '</div><div class="m">' + esc(h.why || '') + '</div></div>' + (h.tag ? '<span class="trend">' + esc(h.tag) + '</span>' : '') + '</div>';
         }).join('') || '<p class="sub">Nothing in the feed yet.</p>';
-        return '<div class="pad">' + head + seg + '<div class="list">' + list + '</div>' + adSlot() + sourcesNote() + '</div>';
+        return '<div class="pad">' + head + seg + '<div class="list hotlist">' + list + '</div>' + adSlot() + sourcesNote() + '</div>';
       }
       if (!sb) return '<div class="pad">' + head + seg + needSb() + '</div>';
       return sb.rpc('hot_listings', { max_rows: 10 }).then(function (r) {
@@ -477,7 +478,7 @@
             var l = byId[id]; var s = b[1][id] || {};
             return '<button class="card hotrow" data-go="l/' + id + '"><span class="n">' + (n + 1) + '</span><div class="tile" style="width:72px;height:52px;flex-shrink:0;background:#fff">' + (firstPhoto(l) ? '<img src="' + esc(firstPhoto(l)) + '" alt="" style="width:100%;height:100%;object-fit:cover">' : I.shoe) + '</div><div class="grow"><div class="t" style="font-size:14px">' + esc(l.model) + '</div><div class="m">' + (s.bid_count || 0) + ' bids · ' + (s.watchers || 0) + ' watching · ' + aed(l.price_aed) + '</div></div></button>';
           }).join('');
-          return '<div class="pad">' + head + seg + '<div class="list">' + rows + '</div></div>';
+          return '<div class="pad">' + head + seg + '<div class="list hotlist">' + rows + '</div></div>';
         });
       });
     });
@@ -686,7 +687,7 @@
       if (!cs.length) return '<div class="pad">' + head + '<div class="empty">' + I.shield + '<span>' + (ST.legitTab === 'open' ? 'No open checks. Post the first one.' : 'No verdicts yet.') + '</span></div></div>';
       return sb.rpc('check_stats', { ids: cs.map(function (c) { return c.id; }) }).then(function (s) {
         var st = {}; (s.data || []).forEach(function (x) { st[x.check_id] = x; });
-        return '<div class="pad">' + head + cs.map(function (c, i) { return checkCard(c, st[c.id] || {}) + (i === 1 ? adSlot() : ''); }).join('') + '</div>';
+        return '<div class="pad">' + head + '<div class="feed">' + cs.map(function (c, i) { return checkCard(c, st[c.id] || {}) + (i === 1 ? adSlot() : ''); }).join('') + '</div></div>';
       });
     });
   };
