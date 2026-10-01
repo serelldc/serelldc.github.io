@@ -3,7 +3,7 @@
 // - Code files carry ?v=N, so each version is cached once and never re-downloaded.
 // - Drops and What's hot data try the network first (max 3s), then fall back to the cache.
 // A new version of this file (VERSION changes) reloads the app once with the new code.
-var VERSION = 'zk-v26';
+var VERSION = 'zk-v27';
 var SHELL = ['./', 'index.html'];
 
 self.addEventListener('install', function (e) {
@@ -42,5 +42,31 @@ self.addEventListener('fetch', function (e) {
   // data and everything else: network first (3s max), cache when slow or offline
   e.respondWith(Promise.race([fromNet(req), timeout(3000)]).catch(function () {
     return caches.match(req, { ignoreSearch: true }).then(function (hit) { return hit || fromNet(req); });
+  }));
+});
+
+// ---- drop-day notifications (sent by the "push" Edge Function) ----
+self.addEventListener('push', function (e) {
+  var d = {};
+  try { d = e.data ? e.data.json() : {}; } catch (_) { d = { body: e.data ? e.data.text() : '' }; }
+  e.waitUntil(self.registration.showNotification(d.title || 'Zenkicks', {
+    body: d.body || '',
+    icon: 'icons/icon-192.png',
+    badge: 'icons/badge-96.png',
+    image: d.image || undefined,
+    tag: d.tag || 'zenkicks',
+    renotify: true,
+    data: { url: d.url || './#/drops' }
+  }));
+});
+self.addEventListener('notificationclick', function (e) {
+  e.notification.close();
+  var url = new URL((e.notification.data && e.notification.data.url) || './', self.registration.scope).href;
+  e.waitUntil(self.clients.matchAll({ type: 'window', includeUncontrolled: true }).then(function (list) {
+    for (var i = 0; i < list.length; i++) {
+      var c = list[i];
+      if (c.url.indexOf(self.registration.scope) === 0 && 'focus' in c) { if ('navigate' in c) c.navigate(url).catch(function () {}); return c.focus(); }
+    }
+    return self.clients.openWindow(url);
   }));
 });
