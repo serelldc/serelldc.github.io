@@ -3,7 +3,7 @@
 // - Code files carry ?v=N, so each version is cached once and never re-downloaded.
 // - Drops and What's hot data try the network first (max 3s), then fall back to the cache.
 // A new version of this file (VERSION changes) reloads the app once with the new code.
-var VERSION = 'zk-v18';
+var VERSION = 'zk-v19';
 var SHELL = ['./', 'index.html'];
 
 self.addEventListener('install', function (e) {
@@ -24,6 +24,7 @@ function timeout(ms) { return new Promise(function (_, rej) { setTimeout(functio
 self.addEventListener('fetch', function (e) {
   var req = e.request; var url = new URL(req.url);
   if (req.method !== 'GET' || url.origin !== location.origin) return; // never cache Supabase or other sites
+  if (/\.mp4$/i.test(url.pathname)) return; // intro video: leave to the browser (phones need ranged video requests)
 
   // the app page: open from cache right away, refresh the copy in the background
   if (req.mode === 'navigate' || /\/zenkicks\/(index\.html)?$/.test(url.pathname)) {
