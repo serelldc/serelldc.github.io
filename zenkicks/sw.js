@@ -3,7 +3,7 @@
 // - Code files carry ?v=N, so each version is cached once and never re-downloaded.
 // - Drops and What's hot data try the network first (max 3s), then fall back to the cache.
 // A new version of this file (VERSION changes) reloads the app once with the new code.
-var VERSION = 'zk-v22';
+var VERSION = 'zk-v23';
 var SHELL = ['./', 'index.html'];
 
 self.addEventListener('install', function (e) {
