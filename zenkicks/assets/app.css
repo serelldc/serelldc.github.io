@@ -412,3 +412,35 @@ h2{font-size:19px}
 .ogb .ogn{position:absolute;left:0;right:0;top:78.4%;transform:translateY(-50%);text-align:center;font-family:'Russo One','Audiowide','Arial Black',sans-serif;font-weight:400;font-size:21px;font-size:19.5cqw;line-height:1;letter-spacing:.01em;color:#16100a;text-shadow:0 1px 0 rgba(255,238,175,.8),0 -1px 0 rgba(80,52,0,.55)}
 .ogb .ogn.s{font-size:17px;font-size:15.5cqw}
 .pill.og .ogmini{width:16px;height:18px;object-fit:contain}
+
+/* Cop or Drop */
+.cod{display:inline-flex;gap:6px;margin-top:6px;flex-wrap:wrap;align-items:center}
+.cod button{height:30px;padding:0 10px;border-radius:999px;border:1px solid var(--line);background:#fff;font-size:12.5px;font-weight:700;color:var(--ink);font-variant-numeric:tabular-nums}
+.cod button.cop.on{background:#FFE7DC;border-color:#E8642C;color:#A8320B}
+.cod button.drp.on{background:#E2F0FB;border-color:#4A90C8;color:#1E5A8A}
+.hx .cod button{background:rgba(255,255,255,.08);border-color:rgba(255,255,255,.25);color:#F4F1EA}
+.hx .cod button.cop.on{background:#E8642C;border-color:#E8642C;color:#fff}
+.hx .cod button.drp.on{background:#4A90C8;border-color:#4A90C8;color:#fff}
+.cod.big{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin:0}
+.cod.big button{height:46px;font-size:16px}
+.cod.big .codbar{grid-column:1/-1;height:8px;border-radius:999px;background:#CFE3F3;overflow:hidden}
+.cod.big .codbar i{display:block;height:100%;background:linear-gradient(90deg,#E8642C,#F2A33A)}
+.cod.big .codn{grid-column:1/-1;font-size:12px;color:var(--muted);text-align:center}
+/* market size chip */
+.chip.sizechip{border-style:dashed}
+.chip.sizechip.on{border-style:solid}
+/* grails */
+.card.grailbox{display:flex;align-items:center;gap:12px;width:100%;padding:14px;text-align:left;background:#FFF6E0;border:1px solid #F0D49A;border-left:4px solid #E8642C}
+.grailbox .gb-ico{font-size:26px}
+.newwrap{position:relative;display:flex}
+.newwrap>.item{flex:1}
+.newwrap .newtag{position:absolute;top:-8px;right:-4px;z-index:2}
+/* share */
+.btn.sharebtn{height:36px;padding:0 14px;font-size:13px;margin-top:8px;background:#F2D27A;color:#16100a}
+.btn.sharebtn.light{background:var(--ink);color:var(--bone)}
+.btn.sharebtn svg,.chip svg{width:16px;height:16px}
+.sharewrap{height:min(62vh,560px);display:flex;justify-content:center}
+.sharewrap img{height:100%;width:auto;max-width:100%;object-fit:contain;border-radius:14px;box-shadow:0 8px 24px rgba(0,0,0,.25)}
+.drop .cod{flex-wrap:nowrap;gap:5px}
+.drop .cod button{height:28px;padding:0 9px;font-size:12px;white-space:nowrap}
+.err:empty{display:none}

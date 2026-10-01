@@ -19,7 +19,7 @@
   var ST = {
     session: null, me: null, contact: null,
     releases: null, hot: null, photos: {},
-    hotTab: 'online', marketFilter: 'all', marketQ: '', legitTab: 'open',
+    hotTab: 'online', marketFilter: 'all', marketQ: '', legitTab: 'open', cod: {}, codAt: {}, sizeOnly: false,
     sell: freshSell(), newCheck: freshCheck(),
     replyTo: null, toast: '', modal: ''
   };
@@ -32,6 +32,16 @@
   function esc(s) { return String(s == null ? '' : s).replace(/[&<>"']/g, function (c) { return { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]; }); }
   function aed(n) { return 'AED ' + Number(n || 0).toLocaleString('en-US'); }
   function usdToAed(n) { return n ? Math.round(n * 3.6725) : 0; }
+  // Men's US <-> EU (Nike / Jordan size chart). Listings store EU; the app always shows both.
+  var SIZES = [[3.5, 35.5], [4, 36], [4.5, 36.5], [5, 37.5], [5.5, 38], [6, 38.5], [6.5, 39], [7, 40], [7.5, 40.5], [8, 41], [8.5, 42], [9, 42.5], [9.5, 43], [10, 44], [10.5, 44.5], [11, 45], [11.5, 45.5], [12, 46], [12.5, 47], [13, 47.5], [14, 48.5], [15, 49.5]];
+  function euToUs(eu) { eu = Number(eu); if (!eu) return null; var best = null, d = 9; SIZES.forEach(function (x) { var k = Math.abs(x[1] - eu); if (k < d) { d = k; best = x[0]; } }); return d <= 0.5 ? best : null; }
+  function sizeLabel(eu) { if (!eu) return ''; var us = euToUs(eu); return (us ? 'US ' + us + ' · ' : '') + 'EU ' + Number(eu); }
+  function sizeOptions(sel, blank) {
+    var v = sel ? Number(sel) : null, found = false;
+    var o = '<option value="">' + (blank || 'Select size') + '</option>' + SIZES.map(function (x) { var on = v === x[1]; if (on) found = true; return '<option value="' + x[1] + '"' + (on ? ' selected' : '') + '>US ' + x[0] + ' · EU ' + x[1] + '</option>'; }).join('');
+    return o + (v && !found ? '<option value="' + v + '" selected>' + esc(sizeLabel(v)) + '</option>' : '');
+  }
+  function mySize() { var x = (ST.me && ST.me.size_eu) || store('mysize'); return x ? Number(x) : null; }
   function ago(iso) {
     var s = Math.max(1, Math.round((Date.now() - Date.parse(iso)) / 1000));
     if (s < 60) return 'now'; if (s < 3600) return Math.floor(s / 60) + 'm'; if (s < 86400) return Math.floor(s / 3600) + 'h';
@@ -99,6 +109,7 @@
     plus: ic('<path d="M12 5v14M5 12h14"/>', 2.5),
     camera: ic('<path d="M4 8h3l2-3h6l2 3h3v11H4z"/><circle cx="12" cy="13" r="3.5"/>'),
     flag: ic('<path d="M5 21V4h11l-1.5 4L16 12H5"/>'),
+    share: ic('<path d="M12 15V3M7 8l5-5 5 5M5 13v6a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2v-6"/>'),
     user: ic('<circle cx="12" cy="8" r="4"/><path d="M4 21c1.5-4 4.5-6 8-6s6.5 2 8 6"/>'),
     shoe: '<svg viewBox="0 0 200 110" aria-hidden="true"><path d="M14 80 Q12 62 24 55 L62 42 Q80 37 90 22 L98 16 Q106 13 112 22 Q124 44 152 52 L182 61 Q195 66 193 80 Z" fill="#F7F4EC" stroke="#0D0D0D" stroke-width="4" stroke-linejoin="round"/><path d="M8 80 L194 80 Q198 80 198 85 L198 90 Q198 96 192 96 L16 96 Q8 96 8 88 Z" fill="#FFFFFF" stroke="#0D0D0D" stroke-width="4" stroke-linejoin="round"/></svg>'
   };
@@ -153,8 +164,8 @@
   // shell
   // ------------------------------------------------------------------
   function header(r) {
-    var back = { l: 'market', c: 'legit', 'new-check': 'legit', sell: 'drops', login: 'drops', u: 'market', admin: 'me' }[r.name];
-    var titles = { l: 'Listing', c: 'Legit check', 'new-check': 'New check', sell: 'Sell a pair', login: 'Sign in', u: 'Member', admin: 'Admin panel' };
+    var back = { grails: 'me', l: 'market', c: 'legit', 'new-check': 'legit', sell: 'drops', login: 'drops', u: 'market', admin: 'me' }[r.name];
+    var titles = { grails: 'My grails', l: 'Listing', c: 'Legit check', 'new-check': 'New check', sell: 'Sell a pair', login: 'Sign in', u: 'Member', admin: 'Admin panel' };
     if (back) {
       return '<header class="hd"><button class="ibtn" data-go="' + back + '" aria-label="Back">' + (r.name === 'sell' || r.name === 'new-check' || r.name === 'login' ? I.close : I.back) + '</button><div class="hd-title">' + LOGO + esc(titles[r.name]) + '</div><span style="width:44px"></span></header>';
     }
@@ -212,7 +223,7 @@
         '<span class="hx-tag">' + esc(tag) + '</span>' +
         '<div class="hx-badge" aria-label="' + dropCount + ' upcoming drops"><small>Upcoming</small><b>' + dropCount + '</b><small>drops</small></div>' +
         '</div>';
-      info = '<div class="hx-next"><div class="grow"><div class="hx-name">' + esc(next.name) + '</div><div class="hx-meta">' + DOW[nd.getUTCDay()] + ', ' + nd.getUTCDate() + ' ' + MON[nd.getUTCMonth()].charAt(0) + MON[nd.getUTCMonth()].slice(1).toLowerCase() + ' · ' + priceLine(next.retail_usd) + '</div></div>' +
+      info = '<div class="hx-next"><div class="grow"><div class="hx-name">' + esc(next.name) + '</div><div class="hx-meta">' + DOW[nd.getUTCDay()] + ', ' + nd.getUTCDate() + ' ' + MON[nd.getUTCMonth()].charAt(0) + MON[nd.getUTCMonth()].slice(1).toLowerCase() + ' · ' + priceLine(next.retail_usd) + '</div>' + codBtns(next.name + next.date) + '</div>' +
         '<button class="btn ' + (non ? 'ghost' : 'red') + ' hx-rem" ' + (non ? 'style="color:var(--coral)" ' : '') + 'data-act="rem" data-key="' + esc(next.name + next.date) + '" aria-pressed="' + non + '">' + (non ? I.check + 'Set' : I.bell + 'Remind me') + '</button></div>';
     }
     var trust = [[I.shield, 'Legit checks'], [I.tag, 'Prices in AED'], [I.star, 'Vouched sellers'], [I.heart, '100% free']].map(function (t) {
@@ -393,7 +404,7 @@
     return '<button class="item" data-go="l/' + l.id + '"><div class="tile" style="height:120px;background:#fff"><span class="pill white cond" style="z-index:1">' + esc(l.condition) + '</span>' +
       (l.legit_checked ? '<span class="pill dark chk" style="z-index:1">Checked</span>' : '') +
       (firstPhoto(l) ? '<img src="' + esc(firstPhoto(l)) + '" alt="" loading="lazy">' : I.shoe) + '</div>' +
-      '<span class="t">' + esc(l.model) + '</span><span class="m">' + (l.size_eu ? 'EU ' + l.size_eu + ' · ' : '') + esc(l.city || 'UAE') + '</span>' +
+      '<span class="t">' + esc(l.model) + '</span><span class="m">' + (l.size_eu ? sizeLabel(l.size_eu) + ' · ' : '') + esc(l.city || 'UAE') + '</span>' +
       '<span class="between" style="align-items:center"><span class="money" style="font-size:15px">' + aed(l.price_aed) + '</span>' +
       (stats.bid_count ? '<span class="tiny">' + stats.bid_count + ' bid' + (stats.bid_count === 1 ? '' : 's') + '</span>' : '<span style="font-size:12px;font-weight:700;color:var(--green)">' + (l.seller && l.seller.verified_level !== 'email' ? '✓' : '') + '</span>') + '</span></button>';
   }
@@ -420,17 +431,58 @@
       '<div class="row" style="gap:8px;flex-wrap:wrap"><button class="btn red" style="height:40px;padding:0 16px;font-size:13px" data-act="pendcode">Enter my code</button><button class="btn ghost" style="height:40px;padding:0 14px;font-size:13px;color:var(--ink)" data-act="pendnew">Send a new code</button><button class="link" style="font-size:12px" data-act="pendforget">Not me</button></div></div></div>';
   }
 
+  // ---- Cop or Drop (community vote on each release) ----
+  function codFor(keys) {
+    if (!sb || !keys.length) return Promise.resolve();
+    var now = Date.now(), need = keys.filter(function (k) { return !ST.cod[k] || now - (ST.codAt[k] || 0) > 60000; });
+    if (!need.length) return Promise.resolve();
+    return sb.rpc('drop_vote_stats', { keys: need }).then(function (r) {
+      (r.data || []).forEach(function (x) { ST.cod[x.release_key] = { c: x.cops || 0, d: x.drops || 0, mine: x.mine || 0 }; ST.codAt[x.release_key] = now; });
+    }).catch(function () {});
+  }
+  function codBtns(k, big) {
+    var s = ST.cod[k] || { c: 0, d: 0, mine: 0 }, t = s.c + s.d, pc = t ? Math.round(s.c * 100 / t) : 0;
+    return '<span class="cod' + (big ? ' big' : '') + '" data-k="' + esc(k) + '">' +
+      '<button class="cop' + (s.mine === 1 ? ' on' : '') + '" data-act="cod" data-key="' + esc(k) + '" data-v="1" aria-pressed="' + (s.mine === 1) + '" aria-label="Cop">🔥 ' + (t ? pc + '%' : 'Cop') + '</button>' +
+      '<button class="drp' + (s.mine === -1 ? ' on' : '') + '" data-act="cod" data-key="' + esc(k) + '" data-v="-1" aria-pressed="' + (s.mine === -1) + '" aria-label="Drop">🧊 ' + (t ? (100 - pc) + '%' : 'Drop') + '</button>' +
+      (big ? '<span class="codbar"><i style="width:' + (t ? pc : 50) + '%"></i></span><span class="codn">' + (t ? t + ' vote' + (t > 1 ? 's' : '') + ' · Cop or drop?' : 'Be the first to vote. Cop or drop?') + '</span>' : '') + '</span>';
+  }
+  function codVote(k, v) {
+    if (!requireLogin()) return;
+    if (isBlocked()) { toast('Your account is on hold, so you can’t vote right now.'); return; }
+    var s = ST.cod[k] || { c: 0, d: 0, mine: 0 }, prev = s.mine, next = prev === v ? 0 : v;
+    if (prev === 1) s.c--; if (prev === -1) s.d--; if (next === 1) s.c++; if (next === -1) s.d++;
+    s.mine = next; ST.cod[k] = s; ST.codAt[k] = Date.now(); paintCod(k);
+    var q = next ? sb.from('drop_votes').upsert({ release_key: k, user_id: uid(), vote: next }, { onConflict: 'release_key,user_id' }) : sb.from('drop_votes').delete().eq('release_key', k).eq('user_id', uid());
+    q.then(function (r) { if (r.error) { toast('Couldn’t save your vote. Try again.'); delete ST.codAt[k]; } });
+  }
+  function paintCod(k) { app.querySelectorAll('.cod').forEach(function (el) { if (el.getAttribute('data-k') === k) el.outerHTML = codBtns(k, el.classList.contains('big')); }); }
+
+  // ---- Grails (pairs a member is hunting) ----
+  function loadGrailHits(force) {
+    if (!sb || !uid()) { ST.grailHits = []; return Promise.resolve([]); }
+    if (!force && ST.grailHits && Date.now() - (ST.grailAt || 0) < 120000) return Promise.resolve(ST.grailHits);
+    return sb.rpc('my_grail_matches').then(function (r) { ST.grailHits = r.error ? [] : (r.data || []); ST.grailAt = Date.now(); return ST.grailHits; }).catch(function () { ST.grailHits = []; return []; });
+  }
+  function grailNew() { var seen = store('grailseen') || {}, u = {}; (ST.grailHits || []).forEach(function (h) { if (!seen[h.listing_id]) u[h.listing_id] = 1; }); return Object.keys(u); }
+  function markGrailsSeen() { var seen = store('grailseen') || {}; (ST.grailHits || []).forEach(function (h) { seen[h.listing_id] = 1; }); store('grailseen', seen); }
+  function grailBanner() {
+    var n = uid() ? grailNew().length : 0; if (!n) return '';
+    return '<div class="pad" style="padding-bottom:0"><button class="card grailbox" data-go="grails"><span class="gb-ico">🔔</span><span class="grow"><b>Grail alert!</b><br><span class="m">' + n + ' pair' + (n > 1 ? 's' : '') + ' you’re hunting just got listed on the Market.</span></span><span aria-hidden="true" style="font-size:20px">›</span></button></div>';
+  }
+
   VIEWS.drops = function () {
     var hc = ST.homeCache && Date.now() - ST.homeCache.t < 30000 ? ST.homeCache : null;
     var fresh = hc ? Promise.resolve({ data: hc.listings }) : sb ? sb.from('listings').select(LISTING_COLS).eq('status', 'active').order('created_at', { ascending: false }).limit(4) : Promise.resolve({ data: [] });
-    return Promise.all([loadFeeds(), fresh]).then(function (a) {
+    if (uid() && (!ST.grailHits || Date.now() - (ST.grailAt || 0) > 120000)) loadGrailHits().then(function () { if (route().name === 'drops' && grailNew().length && !app.querySelector('.grailbox')) render(true); });
+    return Promise.all([loadFeeds(), fresh]).then(function (a) { return codFor(upcoming().slice(0, 9).map(function (d) { return d.name + d.date; })).then(function () { return a; }); }).then(function (a) {
       var listings = (a[1] && a[1].data) || [];
       var up = upcoming(); var next = up[0]; var rem = store('rem') || {};
       var rows = up.slice(0, 8).map(function (d) {
         var dt = new Date(d.date + 'T00:00:00Z'); var on = !!rem[d.name + d.date]; var im = releaseImg(d);
         return '<div class="card drop" data-peek="r|' + esc(d.name + d.date) + '"><div class="date"><span>' + MON[dt.getUTCMonth()] + '</span><b>' + ('0' + dt.getUTCDate()).slice(-2) + '</b></div>' +
           (im ? '<img draggable="false" src="' + esc(im) + '" alt="" loading="lazy" style="width:64px;height:46px;object-fit:cover;border-radius:8px;flex-shrink:0;background:#fff">' : '') +
-          '<div class="grow"><div class="t" style="font-size:14px;line-height:1.3">' + esc(d.name) + '</div><div class="m">' + DOW[dt.getUTCDay()] + ' · ' + whenLabel(d.date) + ' · ' + priceLine(d.retail_usd) + '</div></div>' +
+          '<div class="grow"><div class="t" style="font-size:14px;line-height:1.3">' + esc(d.name) + '</div><div class="m">' + DOW[dt.getUTCDay()] + ' · ' + whenLabel(d.date) + ' · ' + priceLine(d.retail_usd) + '</div>' + codBtns(d.name + d.date) + '</div>' +
           '<button class="round' + (on ? ' on' : '') + '" data-act="rem" data-key="' + esc(d.name + d.date) + '" aria-pressed="' + on + '" aria-label="' + (on ? 'Remove reminder for ' : 'Remind me about ') + esc(d.name) + '">' + (on ? I.check : I.bell) + '</button></div>';
       }).join('') || '<p class="sub">No upcoming drops in the feed right now.</p>';
       var hot = (ST.hot.online || []).slice(0, 5).map(function (h, i) {
@@ -441,7 +493,7 @@
       var ids = listings.map(function (l) { return l.id; });
       return (hc ? Promise.resolve(hc.stats) : statsFor(ids)).then(function (stats) {
         ST.homeCache = { t: hc ? hc.t : Date.now(), listings: listings, stats: stats };
-        return installCard() + pendingBanner() + heroHtml +
+        return installCard() + pendingBanner() + grailBanner() + heroHtml +
           '<div class="pad">' +
           '<section class="sec"><div class="between"><h2>Release calendar</h2><span class="pill ok" style="font-size:10px">AUTO</span></div><p class="sub" style="font-size:12px">' + esc(stamp()) + ' · AED from US retail at 3.6725; UAE store prices may differ · <b>Press and hold a pair for details</b></p><div class="droplist">' + rows + '</div></section>' +
           (hot ? '<section class="sec"><div class="between"><h2>What’s hot</h2><button class="link" data-go="hot">See all</button></div><div class="scroller">' + hot + '</div></section>' : '') +
@@ -485,10 +537,116 @@
     });
   };
 
+  VIEWS.grails = function () {
+    if (!sb) return needSb();
+    if (!uid()) return needLogin('save your grails');
+    var dr = ST.grailDraft || {}; ST.grailDraft = null;
+    return Promise.all([sb.from('grails').select('id,model,size_eu,created_at').order('created_at', { ascending: false }), loadGrailHits(true)]).then(function (a) {
+      if (a[0].error) throw a[0].error;
+      var gs = a[0].data || [], hits = ST.grailHits || [], fresh = {};
+      grailNew().forEach(function (id) { fresh[id] = 1; });
+      var ids = []; hits.forEach(function (h) { if (ids.indexOf(h.listing_id) < 0) ids.push(h.listing_id); });
+      return (ids.length ? Promise.all([sb.from('listings').select(LISTING_COLS).in('id', ids), statsFor(ids)]) : Promise.resolve([{ data: [] }, {}])).then(function (b) {
+        var byId = {}; (b[0].data || []).forEach(function (l) { byId[l.id] = l; });
+        markGrailsSeen();
+        var count = {}; hits.forEach(function (h) { count[h.grail_id] = (count[h.grail_id] || 0) + 1; });
+        var list = gs.map(function (g) {
+          var n = count[g.id] || 0;
+          return '<div class="kv" style="align-items:center"><span><b>' + esc(g.model) + '</b><br><span class="m">' + (g.size_eu ? esc(sizeLabel(g.size_eu)) : 'Any size') + ' · ' + (n ? '<b style="color:var(--green)">' + n + ' on the Market</b>' : 'Watching') + '</span></span><button class="round" data-act="delgrail" data-id="' + g.id + '" aria-label="Remove ' + esc(g.model) + '">✕</button></div>';
+        }).join('');
+        var found = ids.filter(function (id) { return byId[id]; });
+        return '<div class="pad"><div class="sec" style="gap:4px"><h1>My grails ⭐</h1><p class="sub">Add the pairs you’re hunting. When someone lists one in your size, it shows up here and on your home screen.</p></div>' +
+          '<div class="card" style="padding:14px;display:flex;flex-direction:column;gap:10px">' +
+          '<label class="field" for="g-model">Pair<input id="g-model" type="text" maxlength="80" placeholder="e.g. Jordan 4 Bred" value="' + esc(dr.model || '') + '"></label>' +
+          '<label class="field" for="g-size">Size<select id="g-size">' + sizeOptions(dr.size || mySize(), 'Any size') + '</select></label>' +
+          '<p class="err" id="g-err" role="alert"></p><button class="btn red" data-act="addgrail">⭐ Add to my grails</button>' +
+          '<p class="tiny" style="margin:0">Tip: keep it short, like “Dunk Low Panda”. Every word must be in the listing.</p></div>' +
+          (gs.length ? '<section class="sec"><h2>Hunting (' + gs.length + '/20)</h2><div class="card" style="padding:4px 14px">' + list + '</div></section>' : '') +
+          '<section class="sec"><h2>On the Market now</h2>' + (found.length ? '<div class="grid">' + found.map(function (id) { return (fresh[id] ? '<div class="newwrap"><span class="pill red newtag">NEW</span>' : '<div class="newwrap">') + itemCard(byId[id], b[1][id]) + '</div>'; }).join('') + '</div>' : '<div class="empty" style="padding:20px">' + I.bag + '<span>' + (gs.length ? 'No matches yet. We’ll show them here the moment one gets listed.' : 'Add your first grail above.') + '</span></div>') + '</section></div>';
+      });
+    });
+  };
+
+  // ---- Share cards (1080x1920 image for IG / WhatsApp Story) ----
+  function loadImg(src) { return new Promise(function (res) { if (!src) return res(null); var im = new Image(); im.crossOrigin = 'anonymous'; im.onload = function () { res(im); }; im.onerror = function () { res(null); }; im.src = src; }); }
+  function rrect(x, a, b, w, h, r) { x.beginPath(); x.moveTo(a + r, b); x.arcTo(a + w, b, a + w, b + h, r); x.arcTo(a + w, b + h, a, b + h, r); x.arcTo(a, b + h, a, b, r); x.arcTo(a, b, a + w, b, r); x.closePath(); }
+  function wrapText(x, text, cx, y, maxW, lh, maxLines) {
+    var words = String(text).split(/\s+/), lines = [], cur = '';
+    words.forEach(function (w) { var t = cur ? cur + ' ' + w : w; if (x.measureText(t).width > maxW && cur) { lines.push(cur); cur = w; } else cur = t; });
+    if (cur) lines.push(cur);
+    if (lines.length > maxLines) { lines = lines.slice(0, maxLines); lines[maxLines - 1] += '…'; }
+    lines.forEach(function (l, i) { x.fillText(l, cx, y + i * lh); });
+    return y + lines.length * lh;
+  }
+  function fitImg(x, im, a, b, w, h) { var r = Math.min(w / im.width, h / im.height), iw = im.width * r, ih = im.height * r; x.drawImage(im, a + (w - iw) / 2, b + (h - ih) / 2, iw, ih); }
+  function cardBase(x, W, H) {
+    x.fillStyle = '#0D0D0D'; x.fillRect(0, 0, W, H);
+    var g = x.createRadialGradient(W * .8, 260, 40, W * .8, 260, 900); g.addColorStop(0, 'rgba(229,44,39,.35)'); g.addColorStop(1, 'rgba(229,44,39,0)'); x.fillStyle = g; x.fillRect(0, 0, W, H);
+    x.save(); x.translate(80 + 55, 90 + 55); x.scale(110 / 224, 110 / 224); x.fillStyle = '#E52C27'; var p = new Path2D(Z); x.fill(p); x.rotate(Math.PI); x.fill(p); x.restore();
+    x.fillStyle = '#F4F1EA'; x.textAlign = 'left'; x.textBaseline = 'middle'; x.font = '64px Audiowide, Arial Black, sans-serif'; x.fillText('ZENKICKS', 220, 147);
+    x.textAlign = 'center'; x.textBaseline = 'alphabetic';
+    x.fillStyle = '#CFCABD'; x.font = '600 38px Oxanium, sans-serif'; x.fillText('UAE sneaker drops · market · legit checks', W / 2, H - 140);
+    x.fillStyle = '#F4F1EA'; x.font = '700 44px Oxanium, sans-serif'; x.fillText('serelldc.github.io/zenkicks', W / 2, H - 80);
+  }
+  function pill(x, text, cx, y, bg, fg, font) { x.font = font; var w = x.measureText(text).width + 70; x.fillStyle = bg; rrect(x, cx - w / 2, y - 52, w, 80, 40); x.fill(); x.fillStyle = fg; x.textAlign = 'center'; x.fillText(text, cx, y); }
+  function drawShare(kind, photo, noPhoto) {
+    var W = 1080, H = 1920, cv = document.createElement('canvas'); cv.width = W; cv.height = H; var x = cv.getContext('2d');
+    cardBase(x, W, H);
+    if (kind === 'listing') {
+      var l = ST.shareListing;
+      x.fillStyle = '#fff'; rrect(x, 80, 280, 920, 920, 36); x.fill();
+      if (photo && !noPhoto) { x.save(); rrect(x, 80, 280, 920, 920, 36); x.clip(); fitImg(x, photo, 100, 300, 880, 880); x.restore(); }
+      pill(x, l.condition, 300, 380, '#0D0D0D', '#F4F1EA', '700 36px Oxanium, sans-serif');
+      if (l.legit_checked) pill(x, '✓ Legit-checked', 780, 380, '#0B6E4F', '#fff', '700 36px Oxanium, sans-serif');
+      x.fillStyle = '#F4F1EA'; x.font = '62px Audiowide, Arial Black, sans-serif';
+      var y = wrapText(x, l.model, W / 2, 1310, 920, 76, 2);
+      x.fillStyle = '#CFCABD'; x.font = '600 42px Oxanium, sans-serif'; x.fillText([sizeLabel(l.size_eu), l.city || 'UAE'].filter(Boolean).join('  ·  '), W / 2, y + 30);
+      x.fillStyle = '#E52C27'; x.font = '120px Audiowide, Arial Black, sans-serif'; x.fillText(aed(l.price_aed), W / 2, y + 190);
+      pill(x, 'Bid on Zenkicks  →', W / 2, 1700, '#E52C27', '#fff', '700 46px Oxanium, sans-serif');
+    } else if (kind === 'og') {
+      var n = ST.og[uid()], bw = 620, bh = bw * 432 / 380, bx = (W - bw) / 2, by = 300;
+      if (photo) { x.save(); x.shadowColor = 'rgba(242,201,76,.35)'; x.shadowBlur = 90; x.drawImage(photo, bx, by, bw, bh); x.restore(); }
+      x.fillStyle = '#16100a'; x.font = Math.round(bw * (String(n).length > 2 ? .155 : .195)) + 'px "Russo One", Audiowide, sans-serif'; x.textBaseline = 'middle'; x.fillText('#' + n, W / 2, by + bh * .784); x.textBaseline = 'alphabetic';
+      x.fillStyle = '#F2D27A'; x.font = '110px Audiowide, Arial Black, sans-serif'; x.fillText('OG #' + n, W / 2, by + bh + 150);
+      x.fillStyle = '#F4F1EA'; x.font = '600 60px Oxanium, sans-serif'; x.fillText('@' + ((ST.me && ST.me.username) || ''), W / 2, by + bh + 240);
+      x.fillStyle = '#CFCABD'; x.font = '44px "Instrument Sans", sans-serif'; wrapText(x, 'Founding member of Zenkicks. One of the first 100 sneakerheads in the UAE.', W / 2, by + bh + 330, 860, 58, 2);
+      var left = ogLeft(); pill(x, left ? 'Claim yours · ' + left + ' spots left' : 'Join Zenkicks', W / 2, 1700, '#E52C27', '#fff', '700 46px Oxanium, sans-serif');
+    } else {
+      var c = ST.shareCheck, legit = c.verdict === 'legit';
+      x.fillStyle = '#fff'; rrect(x, 80, 280, 920, 920, 36); x.fill();
+      if (photo && !noPhoto) { x.save(); rrect(x, 80, 280, 920, 920, 36); x.clip(); fitImg(x, photo, 80, 280, 920, 920); x.restore(); }
+      x.save(); x.translate(W / 2, 740); x.rotate(-0.18); x.strokeStyle = legit ? '#0B6E4F' : '#C8211F'; x.fillStyle = 'rgba(255,255,255,.85)'; x.lineWidth = 16;
+      rrect(x, -330, -110, 660, 220, 26); x.fill(); x.stroke(); x.fillStyle = legit ? '#0B6E4F' : '#C8211F'; x.font = '150px Audiowide, Arial Black, sans-serif'; x.textBaseline = 'middle'; x.fillText(legit ? 'LEGIT ✓' : 'FAKE ✕', 0, 8); x.restore(); x.textBaseline = 'alphabetic';
+      x.fillStyle = '#F4F1EA'; x.font = '62px Audiowide, Arial Black, sans-serif'; var y2 = wrapText(x, c.model, W / 2, 1310, 920, 76, 2);
+      x.fillStyle = '#CFCABD'; x.font = '44px "Instrument Sans", sans-serif'; wrapText(x, 'Checked by the Zenkicks community and a verified checker.', W / 2, y2 + 40, 880, 58, 2);
+      pill(x, 'Post your legit check  →', W / 2, 1700, '#E52C27', '#fff', '700 46px Oxanium, sans-serif');
+    }
+    return cv;
+  }
+  function openShare(kind) {
+    var src = kind === 'listing' ? (ST.shareListing && firstPhoto(ST.shareListing)) : kind === 'og' ? 'img/og-badge.webp?v=2' : (ST.shareCheck && checkPhotos(ST.shareCheck)[0]);
+    openModal('<div class="peek-top"><b>Share to your Story</b><button class="round" data-act="mclose" aria-label="Close">✕</button></div><div class="sharewrap"><div class="skeleton" style="height:100%"></div></div>');
+    var fonts = ['64px Audiowide', '600 40px Oxanium', '700 40px Oxanium', '40px "Instrument Sans"', '100px "Russo One"'].map(function (f) { return document.fonts && document.fonts.load ? document.fonts.load(f).catch(function () {}) : null; });
+    Promise.all([loadImg(src)].concat(fonts)).then(function (r) {
+      var cv = drawShare(kind, r[0]);
+      var done = function (blob) {
+        if (!blob) return toast('Couldn’t make the image. Try again.');
+        var file = new File([blob], 'zenkicks-' + kind + '.png', { type: 'image/png' }); ST.shareFile = file;
+        var url = URL.createObjectURL(blob), canShare = navigator.canShare && navigator.canShare({ files: [file] });
+        var w = app.querySelector('.sharewrap'); if (!w) return;
+        w.innerHTML = '<img src="' + url + '" alt="Share image preview">';
+        w.insertAdjacentHTML('afterend', '<div class="row" style="gap:8px">' + (canShare ? '<button class="btn red" style="flex:1" data-act="sharego">' + I.share + ' Share</button>' : '') + '<a class="btn ' + (canShare ? 'ghost' : 'red') + '" style="flex:1' + (canShare ? ';color:var(--ink)' : '') + '" href="' + url + '" download="zenkicks-' + kind + '.png">Save image</a></div><p class="tiny center" style="margin:0">Post it on your IG or WhatsApp Story. ' + (canShare ? '' : 'Save it, then add it from your gallery.') + '</p>');
+      };
+      try { cv.toBlob(done, 'image/png'); } catch (e) { drawShare(kind, r[0], true).toBlob(done, 'image/png'); }
+    });
+  }
+
   VIEWS.market = function () {
     var chips = [['all', 'All'], ['new', 'New / DS'], ['used', 'Pre-owned'], ['checked', 'Legit-checked']].map(function (c) {
       return '<button class="chip' + (ST.marketFilter === c[0] ? ' on' : '') + '" aria-pressed="' + (ST.marketFilter === c[0]) + '" data-act="mfilter" data-v="' + c[0] + '">' + c[1] + '</button>';
     }).join('');
+    var ms = mySize();
+    chips += ms ? '<button class="chip sizechip' + (ST.sizeOnly ? ' on' : '') + '" aria-pressed="' + ST.sizeOnly + '" data-act="msize">' + (ST.sizeOnly ? '✓ ' : '') + 'My size · ' + esc(sizeLabel(ms)) + '</button>' : '<button class="chip sizechip" data-act="setsize">＋ My size</button>';
     var head = '<div class="row"><h1>Market</h1></div><label class="search" for="q">' + I.search + '<input id="q" type="search" placeholder="Model, brand or city" value="' + esc(ST.marketQ) + '" autocomplete="off"></label><div class="chips">' + chips + '</div>';
     if (!sb) return '<div class="pad">' + head + needSb() + '</div>';
     return marketGrid().then(function (grid) {
@@ -500,12 +658,13 @@
     if (ST.marketFilter === 'new') q = q.eq('condition', 'New / DS');
     if (ST.marketFilter === 'used') q = q.neq('condition', 'New / DS');
     if (ST.marketFilter === 'checked') q = q.eq('legit_checked', true);
+    if (ST.sizeOnly && mySize()) q = q.eq('size_eu', mySize());
     var term = cleanQ(ST.marketQ);
     if (term) q = q.or('model.ilike.%' + term + '%,brand.ilike.%' + term + '%,city.ilike.%' + term + '%');
     return q.then(function (r) {
       if (r.error) throw r.error;
       var ls = r.data || [];
-      if (!ls.length) return '<div class="empty">' + I.bag + '<b>' + (term || ST.marketFilter !== 'all' ? 'No pairs match' : 'No pairs listed yet') + '</b><span>' + (term ? 'Try another model or clear the filter.' : 'List yours and it shows up here.') + '</span><button class="btn red" data-go="sell">Sell a pair</button></div>';
+      if (!ls.length) return '<div class="empty">' + I.bag + '<b>' + (term || ST.marketFilter !== 'all' || ST.sizeOnly ? 'No pairs match' : 'No pairs listed yet') + '</b><span>' + (term ? 'Try another model or clear the filter.' : 'List yours and it shows up here.') + '</span><button class="btn red" data-go="sell">Sell a pair</button></div>';
       return statsFor(ls.map(function (l) { return l.id; })).then(function (st) {
         return '<p class="sub" style="font-size:13px;margin-bottom:10px">' + ls.length + ' pairs · bid and deal direct with the seller</p><div class="grid">' + ls.map(function (l) { return itemCard(l, st[l.id]); }).join('') + '</div>';
       });
@@ -548,10 +707,11 @@
               : myBid.status === 'declined' ? '<b>Your bid of ' + aed(myBid.amount_aed) + ' was declined.</b> You can place a new one.'
                 : '<b>Your bid: ' + aed(myBid.amount_aed) + '.</b> Waiting for the seller. <button class="link" style="padding:0" data-act="withdraw" data-id="' + myBid.id + '">Withdraw</button>') + '</span></div>';
         }
+        ST.shareListing = l;
         var html = gal + '<div class="pad">' +
           '<div class="sec" style="gap:8px"><div class="chips-wrap">' + verifiedPill(l.seller && l.seller.verified_level) + (l.legit_checked ? '<span class="pill dark">Legit-checked</span>' : '') + '</div>' +
-          '<h1 style="font-size:24px">' + esc(l.model) + '</h1><div class="sub">' + (l.size_eu ? 'EU ' + l.size_eu + ' · ' : '') + esc(l.condition) + ' · ' + esc(l.city || 'UAE') + '</div>' +
-          '<div class="row" style="align-items:baseline;gap:8px"><span class="m">Asking</span><span class="money" style="font-size:26px">' + aed(l.price_aed) + '</span></div></div>' +
+          '<h1 style="font-size:24px">' + esc(l.model) + '</h1><div class="sub">' + (l.size_eu ? sizeLabel(l.size_eu) + ' · ' : '') + esc(l.condition) + ' · ' + esc(l.city || 'UAE') + '</div>' +
+          '<div class="row" style="align-items:baseline;gap:8px"><span class="m">Asking</span><span class="money" style="font-size:26px">' + aed(l.price_aed) + '</span><button class="chip" style="margin-left:auto;height:36px" data-act="share" data-k="listing">' + I.share + ' Share</button></div></div>' +
           '<div class="card between" style="padding:14px;align-items:center"><div><div class="m">Highest bid</div><div class="money" style="font-size:19px">' + (s.high_bid ? aed(s.high_bid) : '—') + '</div></div><span class="m">' + (s.bid_count || 0) + ' bids · ' + (s.watchers || 0) + ' watching</span></div>' +
           myBidPanel + ownerPanel +
           (l.description ? '<div class="card" style="padding:14px;display:flex;flex-direction:column;gap:6px"><b>Seller’s note</b><p class="sub" style="font-size:14px;white-space:pre-line">' + esc(l.description) + '</p></div>' : '') +
@@ -610,11 +770,11 @@
             '<input type="file" accept="image/*" data-sellphoto="' + p.key + '" aria-label="' + (f ? 'Replace ' : 'Add ') + p.label + '"></label>';
         }).join('') + '</div>';
     } else {
-      var f = S.f;
+      var f = S.f; if (!f.size && mySize()) f.size = String(mySize());
       body = '<h1>Pair details</h1>' +
         '<label class="field" for="s-model">Model<input id="s-model" data-sf="model" type="text" maxlength="80" placeholder="e.g. Jordan 1 Retro High OG" value="' + esc(f.model) + '"></label>' +
         '<div class="two"><label class="field" for="s-brand">Brand<select id="s-brand" data-sf="brand">' + ['', 'Nike', 'Jordan', 'adidas', 'New Balance', 'ASICS', 'Puma', 'Converse', 'Vans', 'Other'].map(function (o) { return '<option value="' + o + '"' + (f.brand === o ? ' selected' : '') + '>' + (o || 'Select') + '</option>'; }).join('') + '</select></label>' +
-        '<label class="field" for="s-size">Size (EU)<input id="s-size" data-sf="size" type="number" inputmode="decimal" step="0.5" min="30" max="52" placeholder="e.g. 43" value="' + esc(f.size) + '"></label></div>' +
+        '<label class="field" for="s-size">Size (US · EU)<select id="s-size" data-sf="size">' + sizeOptions(f.size, 'Select size') + '</select></label></div>' +
         '<label class="field" for="s-cond">Condition<select id="s-cond" data-sf="condition">' + ['', 'New / DS', 'Pre-owned 9/10', 'Pre-owned 8/10', 'Pre-owned 7/10 or lower'].map(function (o) { return '<option value="' + o + '"' + (f.condition === o ? ' selected' : '') + '>' + (o || 'Select condition') + '</option>'; }).join('') + '</select></label>' +
         '<div class="two"><label class="field" for="s-price">Asking (AED)<input id="s-price" data-sf="price" type="number" inputmode="numeric" min="1" placeholder="e.g. 1150" value="' + esc(f.price) + '"></label>' +
         '<label class="field" for="s-city">Emirate<select id="s-city" data-sf="city">' + ['', 'Dubai', 'Sharjah', 'Abu Dhabi', 'Ajman', 'Ras Al Khaimah', 'Fujairah', 'Umm Al Quwain', 'Al Ain'].map(function (o) { return '<option value="' + o + '"' + (f.city === o ? ' selected' : '') + '>' + (o || 'Select') + '</option>'; }).join('') + '</select></label></div>' +
@@ -781,13 +941,14 @@
           (m.author_id === me || isStaff() ? '<button class="link" style="color:var(--muted);padding:6px 8px;font-size:12px" data-act="delcomment" data-id="' + m.id + '">Delete</button>' : '<button class="link" style="color:var(--muted);padding:6px 8px;font-size:12px" data-act="report" data-type="comment" data-id="' + m.id + '">Report</button>') + '</div></div></div>';
       }
       var thread = tops.map(function (m) { return cItem(m, false) + comments.filter(function (x) { return x.parent_id === m.id; }).map(function (x) { return cItem(x, true); }).join(''); }).join('<div style="height:1px;background:#EFEBE2"></div>');
+      ST.shareCheck = c;
       var verdictForm = (!c.verdict && isStaff()) ? '<div class="card" style="padding:14px;display:flex;flex-direction:column;gap:8px"><b>Checker verdict</b><textarea id="vnote" maxlength="400" placeholder="Why? (shown to everyone)" style="padding:10px;border:1px solid var(--line);border-radius:10px;min-height:70px"></textarea><div class="row"><button class="btn" style="flex:1;background:var(--green);color:#fff" data-act="verdict" data-id="' + c.id + '" data-v="legit">Legit</button><button class="btn red" style="flex:1" data-act="verdict" data-id="' + c.id + '" data-v="fake">Fake</button></div></div>' : '';
       var html = '<div class="pad">' +
         '<div class="row"><div class="avatar">' + esc(((c.author && c.author.username) || '?')[0].toUpperCase()) + '</div><div class="grow"><div class="t">' + userLink(c.author_id, c.author && c.author.username) + ' ' + starBadge(vm[c.author_id]) + '</div><div class="m">' + ago(c.created_at) + ' ago</div></div>' + statusPill(c) + '</div>' +
         '<div class="scroller" style="gap:8px">' + ps.map(function (u) { return '<a href="' + esc(u) + '" target="_blank" rel="noopener" style="width:200px;flex-shrink:0"><img src="' + esc(u) + '" alt="" style="width:200px;height:170px;object-fit:cover;border-radius:12px;background:#fff"></a>'; }).join('') + '</div>' +
         '<div class="sec" style="gap:6px"><h1 style="font-size:22px">' + esc(c.model) + '</h1>' + (c.question ? '<p style="margin:0;font-size:15px;line-height:1.5;white-space:pre-line">' + esc(c.question) + '</p>' : '') +
         '<div class="chips-wrap">' + (c.size ? '<span class="proof" style="background:#fff;border:1px solid var(--line)">' + esc(c.size) + '</span>' : '') + (c.price_aed ? '<span class="proof" style="background:#fff;border:1px solid var(--line)">Offered at ' + aed(c.price_aed) + '</span>' : '') + (c.found_where ? '<span class="proof" style="background:#fff;border:1px solid var(--line)">' + esc(c.found_where) + '</span>' : '') + '</div></div>' +
-        (c.verdict ? '<div class="checker" style="background:' + (c.verdict === 'legit' ? 'var(--mint)' : '#F6DAD6') + '"><b style="color:' + (c.verdict === 'legit' ? 'var(--green)' : 'var(--red)') + '">Verdict: ' + c.verdict.toUpperCase() + '.</b> ' + esc(c.verdict_note || '') + '</div>' : '') +
+        (c.verdict ? '<div class="checker" style="background:' + (c.verdict === 'legit' ? 'var(--mint)' : '#F6DAD6') + '"><b style="color:' + (c.verdict === 'legit' ? 'var(--green)' : 'var(--red)') + '">Verdict: ' + c.verdict.toUpperCase() + '.</b> ' + esc(c.verdict_note || '') + '<br><button class="btn sharebtn light" data-act="share" data-k="check">' + I.share + ' Share verdict to Story</button></div>' : '') +
         '<div class="card" style="padding:14px;display:flex;flex-direction:column;gap:10px"><b>' + (c.verdict ? 'Community vote' : 'Your vote') + '</b>' + (!c.verdict ? (me ? voteBtns : '<button class="btn dark" data-go="login">Sign in to vote</button>') : '') + ((myVote || c.verdict) ? bars : '<span class="m">Vote to see how the community voted.</span>') + '</div>' +
         verdictForm +
         '<section class="sec"><h2>Comments <span class="m" style="font-family:var(--body)">(' + comments.length + ')</span></h2>' + (thread ? '<div class="card" style="padding:14px;display:flex;flex-direction:column;gap:12px">' + thread + '</div>' : '<p class="sub">No comments yet. Start the conversation.</p>') +
@@ -820,7 +981,7 @@
       return '<div class="pad"><div class="row"><div class="avatar" style="width:56px;height:56px;font-size:22px;background:var(--red)">' + esc((p.username || '?')[0].toUpperCase()) + '</div><div class="grow"><h1 style="font-size:22px">@' + esc(p.username) + '</h1>' + (p.is_owner || (ST.owners && ST.owners[p.id]) ? '<span class="pill founder" style="align-self:flex-start">★ Founder of Zenkicks</span>' : '') +
         '<div class="row" style="gap:6px;flex-wrap:wrap;margin-top:4px">' + (ST.og && ST.og[p.id] ? ogPill(ST.og[p.id]) : '') + trustedPill(v) +
         (p.is_banned ? '<span class="pill red">Banned</span>' : suspendedUntil(p) ? '<span class="pill red">On hold</span>' : '') + '</div><div class="m">' + esc(p.city || 'UAE') + ' · member since ' + new Date(p.created_at).toLocaleDateString('en-GB', { month: 'short', year: 'numeric' }) + '</div></div>' + verifiedPill(p.verified_level) + '</div>' +
-        (ST.og && ST.og[p.id] ? '<div class="card ogshow">' + ogBadge(ST.og[p.id]) + '<div><b>OG #' + ST.og[p.id] + '</b><br><span class="m">Founding member: one of the first 100 people to join Zenkicks.</span></div></div>' : '') +
+        (ST.og && ST.og[p.id] ? '<div class="card ogshow">' + ogBadge(ST.og[p.id]) + '<div><b>OG #' + ST.og[p.id] + '</b><br><span class="m">Founding member: one of the first 100 people to join Zenkicks.</span>' + (p.id === uid() ? '<br><button class="btn sharebtn" data-act="share" data-k="og">' + I.share + ' Share to Story</button>' : '') + '</div></div>' : '') +
         '<div class="card" style="padding:14px;display:flex;flex-direction:column;gap:10px"><div class="between"><div><div class="money" style="font-size:30px">' + (v.total ? '★ ' + Number(v.avg_stars).toFixed(1) : '—') + '</div><div class="m">' + (v.total || 0) + ' vouches · ' + (v.deals || 0) + ' from deals · ' + (v.legit || 0) + ' from legit checks</div></div>' + ((p.is_checker || p.is_admin) ? '<span class="pill ok">✓ Checker</span>' : '') + '</div>' + (v.total ? bars : '<span class="sub">No vouches yet. Members vouch after a deal or when someone helps on a legit check.</span>') + '</div>' +
         (vs.length ? '<section class="sec"><h2>Vouches</h2><div class="card" style="padding:4px 14px">' + vs.map(function (x) { return '<div class="kv" style="flex-direction:column;align-items:flex-start;gap:2px"><span><b style="color:var(--red)">' + '★★★★★'.slice(0, x.stars) + '</b><span style="opacity:.25">' + '★★★★★'.slice(x.stars) + '</span> <span class="m">· ' + (x.kind === 'deal' ? 'Deal' : 'Legit check') + ' · ' + ago(x.created_at) + ' ago</span></span>' + (x.note ? '<span style="font-size:14px">' + esc(x.note) + '</span>' : '') + '<span class="m">from ' + userLink(x.from_id, x.from && x.from.username) + '</span></div>'; }).join('') + '</div></section>' : '') +
         (ls.length ? '<section class="sec"><h2>Pairs for sale</h2><div class="grid">' + ls.map(function (l) { return itemCard(l, {}); }).join('') + '</div></section>' : '') +
@@ -846,11 +1007,13 @@
       var cities = ['', 'Dubai', 'Sharjah', 'Abu Dhabi', 'Ajman', 'Ras Al Khaimah', 'Fujairah', 'Umm Al Quwain', 'Al Ain'];
       return '<div class="pad"><div class="row"><div class="avatar" style="width:56px;height:56px;font-size:22px;background:var(--red)">' + esc((me.username || '?')[0].toUpperCase()) + '</div><div class="grow"><h1 style="font-size:22px">@' + esc(me.username) + '</h1><div class="m">' + esc(ST.session.user.email || ST.session.user.phone || '') + '</div></div>' + verifiedPill(me.verified_level) + '</div>' +
         (isBlocked() ? '<div class="card notice suspend" style="padding:14px"><b>' + (me.is_banned ? 'Your account is banned' : 'Your account is on hold until ' + esc(fmtDay(suspendedUntil()))) + '</b><br><span class="m">You can browse, but you can’t sell, bid or post for now.</span></div>' : '') +
-        (ST.og && ST.og[uid()] ? '<div class="card ogshow">' + ogBadge(ST.og[uid()]) + '<div><b>OG #' + ST.og[uid()] + '</b><br><span class="m">You’re one of the first 100 members of Zenkicks. This badge stays on your profile forever.</span></div></div>' : '') +
+        (ST.og && ST.og[uid()] ? '<div class="card ogshow">' + ogBadge(ST.og[uid()]) + '<div><b>OG #' + ST.og[uid()] + '</b><br><span class="m">You’re one of the first 100 members of Zenkicks. This badge stays on your profile forever.</span><br><button class="btn sharebtn" data-act="share" data-k="og">' + I.share + ' Share to Story</button></div></div>' : '') +
+        '<button class="card between" style="padding:14px;width:100%;text-align:left;align-items:center" data-go="grails"><span><b>⭐ My grails</b><br><span class="m">Pairs you’re hunting. We alert you when one gets listed.</span></span>' + (grailNew().length ? '<span class="pill red">' + grailNew().length + ' new</span>' : '<span aria-hidden="true" style="font-size:20px">›</span>') + '</button>' +
         '<button class="card between" style="padding:14px;width:100%;text-align:left;align-items:center" data-go="u/' + uid() + '"><span><b>My vouches</b><br><span class="m">See your public profile and ratings</span></span>' + starBadge(ST.myVouch) + '</button>' +
         '<div class="card" style="padding:14px;display:flex;flex-direction:column;gap:10px"><b>Profile</b>' +
         '<label class="field" for="p-user">Username<input id="p-user" type="text" maxlength="24" value="' + esc(me.username) + '" autocomplete="username"></label>' +
         '<label class="field" for="p-city">Emirate<select id="p-city">' + cities.map(function (o) { return '<option value="' + o + '"' + (me.city === o ? ' selected' : '') + '>' + (o || 'Select') + '</option>'; }).join('') + '</select></label>' +
+        '<label class="field" for="p-size">My sneaker size<select id="p-size">' + sizeOptions(mySize(), 'Not set') + '</select></label>' +
         '<label class="field" for="p-wa">WhatsApp (private)<input id="p-wa" type="tel" placeholder="+971 50 123 4567" value="' + esc(ST.contact && ST.contact.whatsapp || '') + '"></label>' +
         '<p class="err" id="p-err" role="alert"></p><button class="btn dark" data-act="saveprofile">Save</button></div>' +
         '<section class="sec"><h2>My listings</h2>' + (ls.length ? '<div class="card" style="padding:4px 14px">' + ls.map(function (l) { return '<button class="kv" style="width:100%;background:none;border-left:0;border-right:0;border-top:0;text-align:left" data-go="l/' + l.id + '"><span>' + esc(l.model) + '</span><span class="m">' + aed(l.price_aed) + ' · ' + l.status + '</span></button>'; }).join('') + '</div>' : '<p class="sub">Nothing listed yet.</p>') + '</section>' +
@@ -999,10 +1162,12 @@
       '<div class="peek-img">' + (im ? '<img src="' + esc(im) + '" alt="' + esc(d.name) + '">' : I.shoe) + '</div>' +
       '<h2 class="peek-name">' + esc(d.name) + '</h2>' +
       '<div class="card" style="padding:4px 14px">' + rows.join('') + '</div>' +
+      (it.kind === 'drop' ? codBtns(k, true) : '') +
       '<div class="row" style="gap:8px;flex-wrap:wrap">' +
       (it.kind === 'drop' && dayDiff(d.date) >= 0 ? '<button class="btn ' + (on ? 'ghost' : 'red') + '" style="flex:1" data-act="peekrem" data-key="' + esc(k) + '">' + (on ? I.check + ' Reminder on' : I.bell + ' Remind me') + '</button>' : '') +
       '<button class="btn dark" style="flex:1" data-act="peekmarket" data-v="' + esc(shortModel(d.name)) + '">' + I.bag + ' Find on Market</button>' +
       '</div>' +
+      '<button class="btn ghost" style="color:var(--ink)" data-act="peekgrail" data-v="' + esc(String(d.name).replace(/["“”]/g, '')) + '">⭐ Add to my grails</button>' +
       (d.link ? '<a class="link" style="text-align:center" href="' + esc(d.link) + '" target="_blank" rel="noopener">See it on StockX ›</a>' : ''));
     var mb = app.querySelector('.modal-back'); if (mb) { mb.classList.add('peekback'); mb.querySelector('.modal').classList.add('peek'); }
   }
@@ -1036,6 +1201,24 @@
       case 'rem': var rem = store('rem') || {}; var k = el.getAttribute('data-key'); rem[k] = !rem[k]; store('rem', rem); toast(rem[k] ? 'Reminder saved on this device' : 'Reminder removed'); render(true); break;
       case 'hottab': ST.hotTab = v; render(true); break;
       case 'mfilter': ST.marketFilter = v; render(true); break;
+      case 'msize': ST.sizeOnly = !ST.sizeOnly; render(true); break;
+      case 'setsize': openModal('<h2>My sneaker size</h2><p class="sub">We use it to show pairs that fit you. US and EU are both shown (Nike / Jordan size chart).</p><label class="field" for="ms-size">Size<select id="ms-size">' + sizeOptions(mySize(), 'Select size') + '</select></label><div class="row"><button class="btn ghost" style="flex:1" data-act="mclose">Cancel</button><button class="btn red" style="flex:1" data-act="savesize">Save</button></div>'); break;
+      case 'savesize': var nsz = Number((document.getElementById('ms-size') || {}).value) || null; if (!nsz) return; store('mysize', nsz); if (ST.me) ST.me.size_eu = nsz; if (uid()) sb.from('profiles').update({ size_eu: nsz }).eq('id', uid()).then(function () {}); closeModal(); ST.sizeOnly = true; toast('Saved: ' + sizeLabel(nsz)); render(true); break;
+      case 'cod': codVote(el.getAttribute('data-key'), Number(v)); break;
+      case 'peekgrail': closeModal(); ST.grailDraft = { model: v }; if (!requireLogin()) return; go('grails'); break;
+      case 'addgrail':
+        var gm = (document.getElementById('g-model').value || '').trim(), gsz = Number(document.getElementById('g-size').value) || null, gerr = document.getElementById('g-err'); gerr.textContent = '';
+        if (gm.length < 2) { gerr.textContent = 'Type the pair you’re hunting, e.g. Jordan 4 Bred.'; return; }
+        el.disabled = true;
+        sb.from('grails').insert({ user_id: uid(), model: gm, size_eu: gsz }).then(function (r) {
+          el.disabled = false;
+          if (r.error) { gerr.textContent = /row-level|policy/i.test(r.error.message) ? 'You can hunt up to 20 pairs. Remove one first.' : r.error.message; return; }
+          toast('Added to your grails. We’ll alert you when it’s listed.'); ST.grailHits = null; render(true);
+        });
+        break;
+      case 'delgrail': sb.from('grails').delete().eq('id', id).then(function () { ST.grailHits = null; render(true); }); break;
+      case 'share': openShare(el.getAttribute('data-k')); break;
+      case 'sharego': if (ST.shareFile && navigator.share) navigator.share({ files: [ST.shareFile], title: 'Zenkicks', text: 'serelldc.github.io/zenkicks' }).catch(function () {}); break;
       case 'ltab': ST.legitTab = v; render(true); break;
       case 'gal': ST.gallery.i = +el.getAttribute('data-i'); document.getElementById('gallery').outerHTML = galleryHTML(); break;
       case 'watch':
@@ -1153,11 +1336,11 @@
         sb.rpc('set_verdict', { chk: id, v: v, note: (document.getElementById('vnote').value || '').trim() }).then(function (r) { if (r.error) return fail(r.error); toast('Verdict posted'); render(true); });
         break;
       case 'saveprofile':
-        var un = (document.getElementById('p-user').value || '').trim().toLowerCase(); var city = document.getElementById('p-city').value || null; var wa = (document.getElementById('p-wa').value || '').trim();
+        var un = (document.getElementById('p-user').value || '').trim().toLowerCase(); var city = document.getElementById('p-city').value || null; var psz = Number(document.getElementById('p-size').value) || null; store('mysize', psz); var wa = (document.getElementById('p-wa').value || '').trim();
         var perr = document.getElementById('p-err'); perr.textContent = '';
         if (!/^[a-z0-9._]{3,24}$/.test(un)) { perr.textContent = 'Username: 3–24 characters, letters, numbers, dot or underscore.'; return; }
         if (wa && !/^\+?[0-9 ]{7,20}$/.test(wa)) { perr.textContent = 'Enter a valid WhatsApp number.'; return; }
-        Promise.all([sb.from('profiles').update({ username: un, city: city }).eq('id', uid()), sb.from('private_contacts').update({ whatsapp: wa || null }).eq('user_id', uid())]).then(function (r) {
+        Promise.all([sb.from('profiles').update({ username: un, city: city, size_eu: psz }).eq('id', uid()), sb.from('private_contacts').update({ whatsapp: wa || null }).eq('user_id', uid())]).then(function (r) {
           var er = r[0].error || r[1].error; if (er) { perr.textContent = /duplicate|unique/i.test(er.message) ? 'That username is taken.' : er.message; return; }
           return loadMe().then(function () { toast('Saved'); render(true); });
         });
