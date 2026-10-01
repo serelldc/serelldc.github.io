@@ -408,3 +408,10 @@ h2{font-size:19px}
 .hx-badge b{font-family:'Permanent Marker',cursive;font-size:46px;color:#C8211F;margin:-2px 0 -4px;transform:rotate(-6deg);line-height:1}
 .hx-badge small:last-child{font-family:'Rubik Dirt','Arial Black',sans-serif;font-weight:400;font-size:15px;letter-spacing:.06em;color:#0D0D0D}
 @media (max-width:699px){.hx-badge{width:104px;height:100px;padding-top:8px}.hx-badge b{font-size:38px}.hx-badge small:last-child{font-size:13px}.hx-badge small:first-child{font-size:8px}}
+
+/* OG badge: gold shield artwork + engraved member number */
+.ogb{position:relative;display:block;width:120px;aspect-ratio:380/432;flex-shrink:0;container-type:inline-size}
+.ogb img{width:100%;height:100%;display:block;filter:drop-shadow(0 6px 10px rgba(0,0,0,.45));-webkit-user-drag:none}
+.ogb .ogn{position:absolute;left:0;right:0;top:78.4%;transform:translateY(-50%);text-align:center;font-family:'Russo One','Audiowide','Arial Black',sans-serif;font-weight:400;font-size:21px;font-size:19.5cqw;line-height:1;letter-spacing:.01em;color:#16100a;text-shadow:0 1px 0 rgba(255,238,175,.8),0 -1px 0 rgba(80,52,0,.55)}
+.ogb .ogn.s{font-size:17px;font-size:15.5cqw}
+.pill.og .ogmini{width:16px;height:18px;object-fit:contain}
