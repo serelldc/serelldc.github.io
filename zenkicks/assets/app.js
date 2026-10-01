@@ -1284,7 +1284,7 @@
     sb.auth.onAuthStateChange(function (evt, session) {
       if (evt === 'INITIAL_SESSION') return; // handled by getSession above
       var was = uid(); ST.session = session;
-      if ((session && session.user && session.user.id) !== was) loadMe().then(function () {
+      if ((session && session.user && session.user.id) !== was) Promise.all([loadMe(), evt === 'SIGNED_IN' ? loadOwners().then(function () { store('badges', { owners: ST.owners, og: ST.og, ogCount: ST.ogCount }); }) : null]).then(function () {
         if (evt !== 'SIGNED_IN' || !uid()) return render(true);
         var fresh = ST.me && ST.me.created_at && Date.now() - new Date(ST.me.created_at).getTime() < 10 * 60e3 || !!store('pending'); store('pending', null);
         var next = takeAfter();
