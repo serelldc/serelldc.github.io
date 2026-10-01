@@ -315,6 +315,118 @@
     var ps = (l.photos || []).slice().sort(function (a, b) { var o = { side: 0, tag: 1 }; return ((o[a.kind] != null ? o[a.kind] : 5) - (o[b.kind] != null ? o[b.kind] : 5)) || a.position - b.position; });
     return ps[0] ? pub('listing-photos', ps[0].path) : '';
   }
+  // ---- drop-day phone alerts (Web Push) ----
+  // "Remind me" saves the pair on this phone AND (when the phone allows) sends a notification at 8 AM UAE on drop day.
+  // The phone's push address + its reminder list live in Supabase (push_save); the "push" Edge Function sends.
+  function pushEnv() {
+    var env = installEnv();
+    var can = 'serviceWorker' in navigator && 'PushManager' in window && 'Notification' in window && !!sb;
+    return { can: can, ios: env.ios, standalone: env.standalone, perm: can ? Notification.permission : 'unsupported' };
+  }
+  function b64uBytes(s) { s = String(s).replace(/-/g, '+').replace(/_/g, '/'); var bin = atob(s + '==='.slice((s.length + 3) % 4)); var out = new Uint8Array(bin.length); for (var i = 0; i < bin.length; i++) out[i] = bin.charCodeAt(i); return out; }
+  function pushKey() {
+    var k = store('pushkey'); if (k) return Promise.resolve(k);
+    if (!sb) return Promise.resolve(null);
+    return sb.rpc('push_public_key').then(function (r) {
+      if (r.data) { store('pushkey', r.data); return r.data; }
+      return sb.functions.invoke('push', { body: { action: 'key' } }).then(function (f) { var key = f.data && f.data.publicKey; if (key) store('pushkey', key); return key || null; });
+    }).catch(function () { return null; });
+  }
+  function swReady() { return Promise.race([navigator.serviceWorker.ready, new Promise(function (_, rej) { setTimeout(function () { rej(new Error('no sw')); }, 6000); })]); }
+  function currentSub() { if (!pushEnv().can) return Promise.resolve(null); return swReady().then(function (r) { return r.pushManager.getSubscription(); }).catch(function () { return null; }); }
+  function remItems() {
+    var rem = store('rem') || {}; var all = (ST.releases && ST.releases.items) || [];
+    return all.filter(function (d) { return rem[d.name + d.date] && dayDiff(d.date) >= 0; }).map(function (d) {
+      return { key: d.name + d.date, name: d.name, date: d.date, image: releaseImg(d) || '', usd: d.retail_usd || null };
+    });
+  }
+  function pushSync(sub) {
+    var j = sub.toJSON ? sub.toJSON() : sub;
+    return loadFeeds().then(function () {
+      return sb.rpc('push_save', { p_endpoint: j.endpoint, p_p256dh: j.keys.p256dh, p_auth: j.keys.auth, p_items: remItems() });
+    }).then(function (r) { if (r.error) throw r.error; store('pushon', j.endpoint); store('pushsync', Date.now()); return r.data; });
+  }
+  // Must be called straight from a tap (phones only show the permission prompt for a tap).
+  // Resolves to: 'on' | 'ios-home' | 'unsupported' | 'blocked' | 'declined' | 'error'
+  function pushOn() {
+    var e = pushEnv();
+    if (!e.can) return Promise.resolve(e.ios && !e.standalone ? 'ios-home' : 'unsupported');
+    if (Notification.permission === 'denied') return Promise.resolve('blocked');
+    var keyP = pushKey();
+    var permP = Notification.permission === 'granted' ? Promise.resolve('granted') : new Promise(function (res) { var p = Notification.requestPermission(res); if (p && p.then) p.then(res); });
+    return Promise.all([permP, keyP]).then(function (a) {
+      if (a[0] !== 'granted') return a[0] === 'denied' ? 'blocked' : 'declined';
+      if (!a[1]) return 'error';
+      return swReady().then(function (r) {
+        return r.pushManager.getSubscription().then(function (s) { return s || r.pushManager.subscribe({ userVisibleOnly: true, applicationServerKey: b64uBytes(a[1]) }); });
+      }).then(function (sub) {
+        var first = !store('pushon'); store('pushoff', null);
+        return pushSync(sub).then(function () {
+          if (first) sb.functions.invoke('push', { body: { action: 'test', endpoint: sub.endpoint } }).catch(function () {});
+          return 'on';
+        });
+      });
+    }).catch(function () { return 'error'; });
+  }
+  function pushOff() {
+    store('pushoff', true);
+    return currentSub().then(function (s) {
+      var ep = (s && s.endpoint) || store('pushon'); store('pushon', null);
+      return Promise.all([ep ? sb.rpc('push_off', { p_endpoint: ep }) : null, s ? s.unsubscribe().catch(function () {}) : null]);
+    });
+  }
+  // after any reminder change: keep the server list in step (only when alerts are on)
+  function pushResync() { if (!store('pushon') || store('pushoff')) return; currentSub().then(function (s) { if (s) pushSync(s).catch(function () {}); }); }
+  function iosPushHelp() {
+    openModal('<h2>Get drop alerts on iPhone</h2><p class="sub" style="margin:6px 0 12px">iPhone only sends notifications to apps on your Home Screen. It takes 10 seconds:</p>' +
+      '<ol style="margin:0 0 14px;padding-left:20px;line-height:1.7"><li>Tap <b>Share</b> (square with arrow) in Safari</li><li>Tap <b>Add to Home Screen</b></li><li>Open Zenkicks from the new icon</li><li>Tap <b>Remind me</b> again and <b>Allow</b></li></ol>' +
+      '<p class="tiny" style="margin:0 0 12px">Your reminder is already saved.</p><button class="btn red" style="width:100%" data-act="mclose">Got it</button>');
+  }
+  var PUSH_MSG = {
+    on: '🔔 Reminder on. We’ll notify you at 8 AM (UAE) on drop day.',
+    unsupported: 'Reminder saved. This browser can’t show notifications.',
+    blocked: 'Reminder saved. Notifications are blocked for Zenkicks in your settings.',
+    declined: 'Reminder saved in the app only (notifications not allowed).',
+    error: 'Reminder saved. Couldn’t turn on phone alerts, try again later.'
+  };
+  // the bell on a drop: flip it, then turn on phone alerts if we can
+  function toggleRem(k, after) {
+    var rem = store('rem') || {}; var on = !rem[k]; if (on) rem[k] = true; else delete rem[k]; store('rem', rem);
+    if (after) after(on);
+    if (!on) { toast('Reminder removed'); pushResync(); return; }
+    if (store('pushoff')) { toast('Reminder saved. Drop alerts are off (turn them on in Me).'); return; }
+    if (store('pushon') && pushEnv().perm === 'granted') { toast(PUSH_MSG.on); pushResync(); return; }
+    pushOn().then(function (res) {
+      if (res === 'ios-home') { if (!store('ioshelp')) { store('ioshelp', true); iosPushHelp(); } else toast('Reminder saved. Add Zenkicks to your Home Screen for phone alerts.'); return; }
+      toast(PUSH_MSG[res] || PUSH_MSG.error);
+      if (route().name === 'me') render(true);
+    });
+  }
+  // status for the Me page card
+  function pushState() {
+    var e = pushEnv();
+    if (!e.can) return Promise.resolve({ s: e.ios && !e.standalone ? 'ios-home' : 'unsupported' });
+    if (e.perm === 'denied') return Promise.resolve({ s: 'blocked' });
+    return currentSub().then(function (sub) { return { s: sub && store('pushon') && !store('pushoff') && e.perm === 'granted' ? 'on' : 'off' }; });
+  }
+  function pushCard(st) {
+    var n = Object.keys(store('rem') || {}).length, body, btn = '';
+    if (st.s === 'on') { body = 'On for this phone. 8 AM (UAE) on drop day' + (n ? ' · ' + n + ' reminder' + (n > 1 ? 's' : '') : '. Tap 🔔 on any drop.'); btn = '<button class="chip" data-act="pushtest">Send test</button><button class="chip" data-act="pushoff">Turn off</button>'; }
+    else if (st.s === 'off') { body = 'Get a phone notification on the morning of every drop you tap 🔔 on.'; btn = '<button class="btn red" style="height:38px;padding:0 14px;font-size:13px" data-act="pushon">Turn on</button>'; }
+    else if (st.s === 'ios-home') { body = 'On iPhone, add Zenkicks to your Home Screen first (Share → Add to Home Screen), then open it from the icon and turn alerts on here.'; }
+    else if (st.s === 'blocked') { body = 'Notifications are blocked for Zenkicks. Allow them in your phone or browser settings, then come back here.'; }
+    else { body = 'This browser can’t show notifications. Open Zenkicks in Chrome or from your Home Screen app.'; }
+    return '<div class="card pushcard" style="padding:14px;display:flex;flex-direction:column;gap:8px"><div class="between" style="align-items:center"><b>🔔 Drop alerts</b>' + (st.s === 'on' ? '<span class="pill ok">ON</span>' : '') + '</div><span class="m">' + body + '</span>' + (btn ? '<div class="row" style="gap:8px;flex-wrap:wrap">' + btn + '</div>' : '') + '</div>';
+  }
+  // on start: refresh this phone's list once a day, or re-subscribe if the phone dropped the old address
+  function pushBoot() {
+    if (!pushEnv().can || Notification.permission !== 'granted' || !store('pushon') || store('pushoff')) return;
+    currentSub().then(function (s) {
+      if (!s) return pushOn();
+      if (s.endpoint !== store('pushon') || Date.now() - (store('pushsync') || 0) > 20 * 3600e3) return pushSync(s);
+    }).catch(function () {});
+  }
+
   // ---- install as an app (home-screen icon) ----
   var deferredInstall = null;
   window.addEventListener('beforeinstallprompt', function (e) { e.preventDefault(); deferredInstall = e; var c = document.getElementById('installcard'); if (c && route().name === 'drops') render(true); });
@@ -506,7 +618,7 @@
     });
   };
   function sourcesNote() {
-    return '<p class="tiny" style="margin:0">Release data: ' + esc((ST.releases && ST.releases.source) || 'public release calendars') + '. Product images belong to their owners. Reminders are saved on this device.</p>';
+    return '<p class="tiny" style="margin:0">Release data: ' + esc((ST.releases && ST.releases.source) || 'public release calendars') + '. Product images belong to their owners. Reminders send a phone notification at 8 AM (UAE) on drop day when alerts are allowed.</p>';
   }
 
   VIEWS.hot = function () {
@@ -1000,15 +1112,17 @@
       sb.from('listings').select('id,model,price_aed,status,created_at').eq('seller_id', uid()).order('created_at', { ascending: false }).limit(30),
       sb.from('bids').select('id,amount_aed,status,created_at,listing:listings(id,model)').eq('bidder_id', uid()).order('created_at', { ascending: false }).limit(30),
       isStaff() ? sb.from('reports').select('id,target_type,target_id,reason,created_at,resolved').eq('resolved', false).order('created_at', { ascending: false }).limit(30) : Promise.resolve({ data: null }),
-      vouchMap([uid()])
+      vouchMap([uid()]),
+      pushState()
     ]).then(function (a) {
-      ST.myVouch = a[3][uid()];
+      ST.myVouch = a[3][uid()]; var pst = a[4];
       var ls = a[0].data || []; var bs = a[1].data || []; var reps = a[2].data;
       var cities = ['', 'Dubai', 'Sharjah', 'Abu Dhabi', 'Ajman', 'Ras Al Khaimah', 'Fujairah', 'Umm Al Quwain', 'Al Ain'];
       return '<div class="pad"><div class="row"><div class="avatar" style="width:56px;height:56px;font-size:22px;background:var(--red)">' + esc((me.username || '?')[0].toUpperCase()) + '</div><div class="grow"><h1 style="font-size:22px">@' + esc(me.username) + '</h1><div class="m">' + esc(ST.session.user.email || ST.session.user.phone || '') + '</div></div>' + verifiedPill(me.verified_level) + '</div>' +
         (isBlocked() ? '<div class="card notice suspend" style="padding:14px"><b>' + (me.is_banned ? 'Your account is banned' : 'Your account is on hold until ' + esc(fmtDay(suspendedUntil()))) + '</b><br><span class="m">You can browse, but you can’t sell, bid or post for now.</span></div>' : '') +
         (ST.og && ST.og[uid()] ? '<div class="card ogshow">' + ogBadge(ST.og[uid()]) + '<div><b>OG #' + ST.og[uid()] + '</b><br><span class="m">You’re one of the first 100 members of Zenkicks. This badge stays on your profile forever.</span><br><button class="btn sharebtn" data-act="share" data-k="og">' + I.share + ' Share to Story</button></div></div>' : '') +
         '<button class="card between" style="padding:14px;width:100%;text-align:left;align-items:center" data-go="grails"><span><b>⭐ My grails</b><br><span class="m">Pairs you’re hunting. We alert you when one gets listed.</span></span>' + (grailNew().length ? '<span class="pill red">' + grailNew().length + ' new</span>' : '<span aria-hidden="true" style="font-size:20px">›</span>') + '</button>' +
+        pushCard(pst) +
         '<button class="card between" style="padding:14px;width:100%;text-align:left;align-items:center" data-go="u/' + uid() + '"><span><b>My vouches</b><br><span class="m">See your public profile and ratings</span></span>' + starBadge(ST.myVouch) + '</button>' +
         '<div class="card" style="padding:14px;display:flex;flex-direction:column;gap:10px"><b>Profile</b>' +
         '<label class="field" for="p-user">Username<input id="p-user" type="text" maxlength="24" value="' + esc(me.username) + '" autocomplete="username"></label>' +
@@ -1198,7 +1312,10 @@
     var on = el.getAttribute('data-on') === 'true';
     switch (a) {
       case 'reload': render(); break;
-      case 'rem': var rem = store('rem') || {}; var k = el.getAttribute('data-key'); rem[k] = !rem[k]; store('rem', rem); toast(rem[k] ? 'Reminder saved on this device' : 'Reminder removed'); render(true); break;
+      case 'rem': toggleRem(el.getAttribute('data-key'), function () { render(true); }); break;
+      case 'pushon': pushOn().then(function (res) { toast({ on: '🔔 Drop alerts on. Check your notifications.', 'ios-home': 'Add Zenkicks to your Home Screen first', unsupported: 'This browser can’t show notifications', blocked: 'Notifications are blocked in your settings', declined: 'Alerts not turned on' }[res] || 'Couldn’t turn on alerts, try again later'); render(true); }); break;
+      case 'pushoff': pushOff().then(function () { toast('Drop alerts off. Reminders stay saved in the app.'); render(true); }); break;
+      case 'pushtest': currentSub().then(function (s) { if (!s) { toast('Turn alerts on first'); return; } return sb.functions.invoke('push', { body: { action: 'test', endpoint: s.endpoint } }).then(function (r) { toast(r.data && r.data.ok ? 'Test sent. Check your notifications.' : 'Wait a few seconds and try again'); }); }); break;
       case 'hottab': ST.hotTab = v; render(true); break;
       case 'mfilter': ST.marketFilter = v; render(true); break;
       case 'msize': ST.sizeOnly = !ST.sizeOnly; render(true); break;
@@ -1258,8 +1375,8 @@
         break;
       case 'mclose': closeModal(); break;
       case 'peekclose': closePeek(); break;
-      case 'peekrem': var prm = store('rem') || {}; var pk = el.getAttribute('data-key'); prm[pk] = !prm[pk]; store('rem', prm); ST.peekDirty = true;
-        el.className = 'btn ' + (prm[pk] ? 'ghost' : 'red'); el.innerHTML = prm[pk] ? I.check + ' Reminder on' : I.bell + ' Remind me'; toast(prm[pk] ? 'Reminder saved on this device' : 'Reminder removed'); break;
+      case 'peekrem': toggleRem(el.getAttribute('data-key'), function (onNow) { ST.peekDirty = true;
+        el.className = 'btn ' + (onNow ? 'ghost' : 'red'); el.innerHTML = onNow ? I.check + ' Reminder on' : I.bell + ' Remind me'; }); break;
       case 'peekmarket': closeModal(); ST.marketQ = v || ''; ST.marketFilter = 'all'; go('market'); break;
       case 'acknotice': sb.rpc('ack_notices').then(function () { closeModal(); }); break;
       case 'vouch': vouchModal(el.getAttribute('data-target'), el.getAttribute('data-user'), el.getAttribute('data-ref'), el.getAttribute('data-kind')); break;
@@ -1453,6 +1570,7 @@
     // Badges come from the last visit first (instant), then refresh in the background.
     var cb = store('badges'); if (cb) { ST.owners = cb.owners || {}; ST.og = cb.og || {}; ST.ogCount = cb.ogCount; }
     loadFeeds();
+    setTimeout(pushBoot, 2500);
     var ownersP = loadOwners().then(function () { store('badges', { owners: ST.owners || {}, og: ST.og || {}, ogCount: ST.ogCount }); });
     var booted = false;
     sb.auth.getSession().then(function (r) {
