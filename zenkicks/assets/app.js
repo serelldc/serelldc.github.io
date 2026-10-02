@@ -164,10 +164,10 @@
   // shell
   // ------------------------------------------------------------------
   function header(r) {
-    var back = { grails: 'me', l: 'market', c: 'legit', 'new-check': 'legit', sell: 'drops', login: 'drops', u: 'market', admin: 'me' }[r.name];
-    var titles = { grails: 'My grails', l: 'Listing', c: 'Legit check', 'new-check': 'New check', sell: 'Sell a pair', login: 'Sign in', u: 'Member', admin: 'Admin panel' };
+    var back = { grails: 'me', l: 'market', c: 'legit', 'new-check': 'legit', sell: 'drops', login: 'drops', join: 'drops', u: 'market', admin: 'me' }[r.name];
+    var titles = { grails: 'My grails', l: 'Listing', c: 'Legit check', 'new-check': 'New check', sell: 'Sell a pair', login: 'Sign in', join: 'Join Zenkicks', u: 'Member', admin: 'Admin panel' };
     if (back) {
-      return '<header class="hd"><button class="ibtn" data-go="' + back + '" aria-label="Back">' + (r.name === 'sell' || r.name === 'new-check' || r.name === 'login' ? I.close : I.back) + '</button><div class="hd-title">' + LOGO + esc(titles[r.name]) + '</div><span style="width:44px"></span></header>';
+      return '<header class="hd"><button class="ibtn" data-go="' + back + '" aria-label="Back">' + (r.name === 'sell' || r.name === 'new-check' || r.name === 'login' || r.name === 'join' ? I.close : I.back) + '</button><div class="hd-title">' + LOGO + esc(titles[r.name]) + '</div><span style="width:44px"></span></header>';
     }
     var me = uid()
       ? '<button class="avatar-btn" data-go="me" aria-label="My profile" style="background:var(--red)">' + esc((ST.me && ST.me.username || '?')[0].toUpperCase()) + '</button>'
@@ -176,7 +176,7 @@
       '<button class="ibtn" data-go="market" aria-label="Search the market">' + I.search + '</button>' + me + '</header>';
   }
   function tabs(r) {
-    if (['l', 'c', 'sell', 'new-check', 'login'].indexOf(r.name) > -1) return '';
+    if (['l', 'c', 'sell', 'new-check', 'login', 'join'].indexOf(r.name) > -1) return '';
     function t(v, label, icon) { var on = r.name === v; return '<button class="tab' + (on ? ' on' : '') + '" data-go="' + v + '"' + (on ? ' aria-current="page"' : '') + '>' + icon + label + '</button>'; }
     return '<nav class="tabs" aria-label="App">' + t('drops', 'Drops', I.cal) + t('hot', 'Hot', I.flame) +
       '<button class="tab sell" data-go="sell"><span class="plus">' + I.plus + '</span>Sell</button>' +
@@ -315,6 +315,66 @@
     var ps = (l.photos || []).slice().sort(function (a, b) { var o = { side: 0, tag: 1 }; return ((o[a.kind] != null ? o[a.kind] : 5) - (o[b.kind] != null ? o[b.kind] : 5)) || a.position - b.position; });
     return ps[0] ? pub('listing-photos', ps[0].path) : '';
   }
+  // ---- invite links: serelldc.github.io/zenkicks/join?ref=username ----
+  var JOIN_URL = 'https://serelldc.github.io/zenkicks/join';
+  (function captureRef() {
+    var m = (location.search || '').match(/[?&]ref=([A-Za-z0-9_.\-]{2,30})/);
+    if (!m) return;
+    store('ref', { u: m[1], t: Date.now() });
+    try { history.replaceState(null, '', location.pathname + location.hash); } catch (e) { /* keep the URL */ }
+  })();
+  function pendingRef() { var r = store('ref'); return r && r.u && Date.now() - r.t < 14 * 864e5 ? r.u : null; }
+  // after sign-in: tell the database who invited this new member (only works once, within 3 days of joining)
+  function applyRef() {
+    var r = pendingRef(); if (!r || !uid() || !sb) return;
+    sb.rpc('set_referrer', { p_ref: r }).then(function (x) {
+      if (x.error || x.data === 'noprofile' || x.data === 'signin') return;
+      store('ref', null);
+      if (x.data === 'ok') setTimeout(function () { toast('You joined with @' + r + '’s invite 🙌'); }, 2600);
+    });
+  }
+  function inviteLink(main) { var u = !main && ST.me && ST.me.username; return JOIN_URL + (u ? '?ref=' + encodeURIComponent(u) : ''); }
+  function inviteCard(n) {
+    var left = ogLeft();
+    return '<div class="card invitecard"><div class="between" style="align-items:center"><b>📣 Invite friends</b>' + (n ? '<span class="pill ok">' + n + ' joined</span>' : '') + '</div>' +
+      '<span class="m">Send your link. Friends who sign up with it show up here.' + (left ? ' Only ' + left + ' OG spots left!' : '') + '</span>' +
+      '<div class="invlink">' + esc(inviteLink().replace(/^https:\/\//, '')) + '</div>' +
+      '<div class="chips-wrap"><button class="chip" data-act="invcopy">Copy link</button><button class="chip" data-act="invshare">' + I.share + ' Share</button><button class="chip" data-act="invqr">QR code</button><button class="chip" data-act="invstory">Story image</button></div>' +
+      (isOwner() ? '<div class="chips-wrap"><span class="m" style="width:100%">Main sign-up link (no invite tag), for posters and the Zenkicks page:</span><button class="chip" data-act="invqr" data-v="main">Main QR</button><button class="chip" data-act="invstory" data-v="main">Main Story</button><button class="chip" data-act="invcopy" data-v="main">Copy main link</button></div>' : '') +
+      '</div>';
+  }
+  // QR codes are drawn on this phone (assets/qr.js, loaded only when needed)
+  var qrP = null;
+  function loadQR() {
+    if (window.qrcode) return Promise.resolve(window.qrcode);
+    return qrP || (qrP = new Promise(function (res, rej) { var s = document.createElement('script'); s.src = 'assets/qr.js?v=1'; s.onload = function () { res(window.qrcode); }; s.onerror = function () { qrP = null; rej(new Error('qr')); }; document.head.appendChild(s); }));
+  }
+  function qrCanvas(text, scale) {
+    return loadQR().then(function (q) {
+      var qr = q(0, 'Q'); qr.addData(text); qr.make();
+      var n = qr.getModuleCount(), quiet = 4, s = scale || 12, size = (n + quiet * 2) * s;
+      var cv = document.createElement('canvas'); cv.width = cv.height = size; var x = cv.getContext('2d');
+      x.fillStyle = '#fff'; x.fillRect(0, 0, size, size); x.fillStyle = '#0D0D0D';
+      for (var r = 0; r < n; r++) for (var c = 0; c < n; c++) if (qr.isDark(r, c)) x.fillRect((c + quiet) * s, (r + quiet) * s, s, s);
+      // Zenkicks mark in the middle (QR level Q still reads with the center covered)
+      var b = Math.round(n * s * 0.2), o = (size - b) / 2;
+      x.fillStyle = '#fff'; rrect(x, o - s * 0.6, o - s * 0.6, b + s * 1.2, b + s * 1.2, b * 0.24); x.fill();
+      x.fillStyle = '#E52C27'; rrect(x, o, o, b, b, b * 0.2); x.fill();
+      x.save(); x.translate(size / 2, size / 2); x.scale(b * 0.78 / 224, b * 0.78 / 224); x.fillStyle = '#fff'; var p = new Path2D(Z); x.fill(p); x.rotate(Math.PI); x.fill(p); x.restore();
+      return cv;
+    });
+  }
+  function inviteQR(main) {
+    var link = inviteLink(main);
+    openModal('<div class="peek-top"><b>' + (main ? 'Zenkicks sign-up QR' : 'Your invite QR') + '</b><button class="round" data-act="mclose" aria-label="Close">✕</button></div><div class="qrwrap"><div class="skeleton" style="height:100%"></div></div><p class="tiny center" style="margin:0;word-break:break-all">' + esc(link.replace(/^https:\/\//, '')) + '</p>');
+    qrCanvas(link, 14).then(function (cv) {
+      var w = app.querySelector('.qrwrap'); if (!w) return;
+      var url = cv.toDataURL('image/png');
+      w.innerHTML = '<img src="' + url + '" alt="QR code for ' + esc(link) + '">';
+      w.insertAdjacentHTML('afterend', '<div class="row" style="gap:8px"><a class="btn red" style="flex:1" href="' + url + '" download="zenkicks-' + (main ? 'signup' : 'invite') + '-qr.png">Save QR</a><button class="btn ghost" style="flex:1;color:var(--ink)" data-act="invstory"' + (main ? ' data-v="main"' : '') + '>Story image</button></div><p class="tiny center" style="margin:0">Friends scan it with their phone camera to sign up.</p>');
+    }).catch(function () { toast('Couldn’t make the QR. Check your connection.'); });
+  }
+
   // ---- drop-day phone alerts (Web Push) ----
   // "Remind me" saves the pair on this phone AND (when the phone allows) sends a notification at 8 AM UAE on drop day.
   // The phone's push address + its reminder list live in Supabase (push_save); the "push" Edge Function sends.
@@ -715,6 +775,16 @@
       x.fillStyle = '#CFCABD'; x.font = '600 42px Oxanium, sans-serif'; x.fillText([sizeLabel(l.size_eu), l.city || 'UAE'].filter(Boolean).join('  ·  '), W / 2, y + 30);
       x.fillStyle = '#E52C27'; x.font = '120px Audiowide, Arial Black, sans-serif'; x.fillText(aed(l.price_aed), W / 2, y + 190);
       pill(x, 'Bid on Zenkicks  →', W / 2, 1700, '#E52C27', '#fff', '700 46px Oxanium, sans-serif');
+    } else if (kind === 'invite') {
+      var who = !ST.inviteMain && ST.me && ST.me.username;
+      pill(x, who ? '👋 Invited by @' + who : 'UAE SNEAKER TAMBAYAN', W / 2, 360, '#E52C27', '#fff', '700 42px Oxanium, sans-serif');
+      x.fillStyle = '#F4F1EA'; x.font = '104px Audiowide, Arial Black, sans-serif'; x.fillText('JOIN THE', W / 2, 520);
+      x.fillStyle = '#E52C27'; x.fillText('TAMBAYAN', W / 2, 640);
+      x.fillStyle = '#fff'; rrect(x, 200, 720, 680, 680, 44); x.fill();
+      if (photo) x.drawImage(photo, 220, 740, 640, 640);
+      x.fillStyle = '#F4F1EA'; x.font = '700 50px Oxanium, sans-serif'; x.fillText('Scan to sign up · it’s free', W / 2, 1490);
+      x.fillStyle = '#CFCABD'; x.font = '600 34px Oxanium, sans-serif'; x.fillText(inviteLink(ST.inviteMain).replace(/^https:\/\//, ''), W / 2, 1550);
+      var ol = ogLeft(); if (ol) { x.fillStyle = '#F2D27A'; x.font = '700 46px Oxanium, sans-serif'; x.fillText('🔥 Only ' + ol + ' OG spots left', W / 2, 1650); }
     } else if (kind === 'og') {
       var n = ST.og[uid()], bw = 620, bh = bw * 432 / 380, bx = (W - bw) / 2, by = 300;
       if (photo) { x.save(); x.shadowColor = 'rgba(242,201,76,.35)'; x.shadowBlur = 90; x.drawImage(photo, bx, by, bw, bh); x.restore(); }
@@ -739,15 +809,16 @@
     var src = kind === 'listing' ? (ST.shareListing && firstPhoto(ST.shareListing)) : kind === 'og' ? 'img/og-badge.webp?v=2' : (ST.shareCheck && checkPhotos(ST.shareCheck)[0]);
     openModal('<div class="peek-top"><b>Share to your Story</b><button class="round" data-act="mclose" aria-label="Close">✕</button></div><div class="sharewrap"><div class="skeleton" style="height:100%"></div></div>');
     var fonts = ['64px Audiowide', '600 40px Oxanium', '700 40px Oxanium', '40px "Instrument Sans"', '100px "Russo One"'].map(function (f) { return document.fonts && document.fonts.load ? document.fonts.load(f).catch(function () {}) : null; });
-    Promise.all([loadImg(src)].concat(fonts)).then(function (r) {
+    var srcP = kind === 'invite' ? qrCanvas(inviteLink(ST.inviteMain), 12).catch(function () { return null; }) : loadImg(src);
+    Promise.all([srcP].concat(fonts)).then(function (r) {
       var cv = drawShare(kind, r[0]);
       var done = function (blob) {
         if (!blob) return toast('Couldn’t make the image. Try again.');
-        var file = new File([blob], 'zenkicks-' + kind + '.png', { type: 'image/png' }); ST.shareFile = file;
+        var fname = 'zenkicks-' + (kind === 'invite' && ST.inviteMain ? 'signup' : kind) + '.png', file = new File([blob], fname, { type: 'image/png' }); ST.shareFile = file;
         var url = URL.createObjectURL(blob), canShare = navigator.canShare && navigator.canShare({ files: [file] });
         var w = app.querySelector('.sharewrap'); if (!w) return;
         w.innerHTML = '<img src="' + url + '" alt="Share image preview">';
-        w.insertAdjacentHTML('afterend', '<div class="row" style="gap:8px">' + (canShare ? '<button class="btn red" style="flex:1" data-act="sharego">' + I.share + ' Share</button>' : '') + '<a class="btn ' + (canShare ? 'ghost' : 'red') + '" style="flex:1' + (canShare ? ';color:var(--ink)' : '') + '" href="' + url + '" download="zenkicks-' + kind + '.png">Save image</a></div><p class="tiny center" style="margin:0">Post it on your IG or WhatsApp Story. ' + (canShare ? '' : 'Save it, then add it from your gallery.') + '</p>');
+        w.insertAdjacentHTML('afterend', '<div class="row" style="gap:8px">' + (canShare ? '<button class="btn red" style="flex:1" data-act="sharego">' + I.share + ' Share</button>' : '') + '<a class="btn ' + (canShare ? 'ghost' : 'red') + '" style="flex:1' + (canShare ? ';color:var(--ink)' : '') + '" href="' + url + '" download="' + fname + '">Save image</a></div><p class="tiny center" style="margin:0">Post it on your IG or WhatsApp Story. ' + (canShare ? '' : 'Save it, then add it from your gallery.') + '</p>');
       };
       try { cv.toBlob(done, 'image/png'); } catch (e) { drawShare(kind, r[0], true).toBlob(done, 'image/png'); }
     });
@@ -1113,16 +1184,17 @@
       sb.from('bids').select('id,amount_aed,status,created_at,listing:listings(id,model)').eq('bidder_id', uid()).order('created_at', { ascending: false }).limit(30),
       isStaff() ? sb.from('reports').select('id,target_type,target_id,reason,created_at,resolved').eq('resolved', false).order('created_at', { ascending: false }).limit(30) : Promise.resolve({ data: null }),
       vouchMap([uid()]),
-      pushState()
+      pushState(),
+      sb.rpc('my_invites').then(function (r) { return r.data || 0; }, function () { return 0; })
     ]).then(function (a) {
-      ST.myVouch = a[3][uid()]; var pst = a[4];
+      ST.myVouch = a[3][uid()]; var pst = a[4], invN = a[5];
       var ls = a[0].data || []; var bs = a[1].data || []; var reps = a[2].data;
       var cities = ['', 'Dubai', 'Sharjah', 'Abu Dhabi', 'Ajman', 'Ras Al Khaimah', 'Fujairah', 'Umm Al Quwain', 'Al Ain'];
       return '<div class="pad"><div class="row"><div class="avatar" style="width:56px;height:56px;font-size:22px;background:var(--red)">' + esc((me.username || '?')[0].toUpperCase()) + '</div><div class="grow"><h1 style="font-size:22px">@' + esc(me.username) + '</h1><div class="m">' + esc(ST.session.user.email || ST.session.user.phone || '') + '</div></div>' + verifiedPill(me.verified_level) + '</div>' +
         (isBlocked() ? '<div class="card notice suspend" style="padding:14px"><b>' + (me.is_banned ? 'Your account is banned' : 'Your account is on hold until ' + esc(fmtDay(suspendedUntil()))) + '</b><br><span class="m">You can browse, but you can’t sell, bid or post for now.</span></div>' : '') +
         (ST.og && ST.og[uid()] ? '<div class="card ogshow">' + ogBadge(ST.og[uid()]) + '<div><b>OG #' + ST.og[uid()] + '</b><br><span class="m">You’re one of the first 100 members of Zenkicks. This badge stays on your profile forever.</span><br><button class="btn sharebtn" data-act="share" data-k="og">' + I.share + ' Share to Story</button></div></div>' : '') +
         '<button class="card between" style="padding:14px;width:100%;text-align:left;align-items:center" data-go="grails"><span><b>⭐ My grails</b><br><span class="m">Pairs you’re hunting. We alert you when one gets listed.</span></span>' + (grailNew().length ? '<span class="pill red">' + grailNew().length + ' new</span>' : '<span aria-hidden="true" style="font-size:20px">›</span>') + '</button>' +
-        pushCard(pst) +
+        pushCard(pst) + inviteCard(invN) +
         '<button class="card between" style="padding:14px;width:100%;text-align:left;align-items:center" data-go="u/' + uid() + '"><span><b>My vouches</b><br><span class="m">See your public profile and ratings</span></span>' + starBadge(ST.myVouch) + '</button>' +
         '<div class="card" style="padding:14px;display:flex;flex-direction:column;gap:10px"><b>Profile</b>' +
         '<label class="field" for="p-user">Username<input id="p-user" type="text" maxlength="24" value="' + esc(me.username) + '" autocomplete="username"></label>' +
@@ -1152,8 +1224,10 @@
       sb.rpc('admin_find_users', { q: q }),
       sb.from('reports').select('id,target_type,target_id,reason,created_at,reporter:profiles!reports_reporter_id_fkey(username)').eq('resolved', false).order('created_at', { ascending: false }).limit(30),
       sb.from('listings').select('id,model,price_aed,status,created_at,seller_id,seller:profiles!listings_seller_id_fkey(username)').order('created_at', { ascending: false }).limit(15),
-      sb.from('checks').select('id,model,created_at,author_id,verdict,author:profiles!checks_author_id_fkey(username)').order('created_at', { ascending: false }).limit(10)
+      sb.from('checks').select('id,model,created_at,author_id,verdict,author:profiles!checks_author_id_fkey(username)').order('created_at', { ascending: false }).limit(10),
+      isOwner() ? sb.rpc('invite_stats') : Promise.resolve({ data: [] })
     ]).then(function (a) {
+      var invs = (a[5] && a[5].data) || [];
       if (a[0].error) throw a[0].error;
       var st = (a[0].data || [])[0] || {}; var users = a[1].data || []; var reps = a[2].data || []; var ls = a[3].data || []; var cs = a[4].data || [];
       function tile(n, label) { return '<div class="card" style="padding:12px;display:flex;flex-direction:column;gap:2px"><span class="money" style="font-size:22px">' + (n || 0) + '</span><span class="m">' + label + '</span></div>'; }
@@ -1180,6 +1254,7 @@
       return '<div class="pad"><div class="sec" style="gap:4px"><h1>' + (isOwner() ? 'Owner panel' : 'Admin panel') + '</h1><p class="sub">' + (isOwner() ? 'You’re the founder. You appoint admins and checkers, and nobody can change your role.' : 'Handle reports, checkers and bans.') + '</p></div>' +
         '<div class="grid" style="grid-template-columns:repeat(3,1fr)">' + tile(st.members, 'Members' + (st.pending ? '<br><span style="color:#9a5b00">+ ' + st.pending + ' pending</span>' : '')) + tile(st.new_7d, 'New this week') + tile(st.active_listings, 'Pairs for sale') + tile(st.sold, 'Sold') + tile(st.checks, 'Legit checks') + tile(st.open_reports, 'Open reports') + '</div>' +
         '<section class="sec"><h2>Reports</h2><div class="card" style="padding:4px 14px">' + repRows + '</div></section>' +
+        (invs.length ? '<section class="sec"><h2>Top inviters</h2><div class="card" style="padding:4px 14px">' + invs.map(function (r, k) { return '<div class="kv"><span>' + (k + 1) + '. ' + userLink(r.user_id, r.username) + '</span><span class="pv">' + r.invited + ' joined</span></div>'; }).join('') + '</div></section>' : '') +
         '<section class="sec"><h2>Members</h2><label class="search" for="aq">' + I.search + '<input id="aq" type="search" placeholder="Search username' + (isOwner() ? ' or email' : '') + '" value="' + esc(q) + '" autocomplete="off"></label>' + (ST.pendingList.length ? '<div class="card pendbox"><div><b>' + ST.pendingList.length + ' never finished signing up</b><br><span class="m">They asked for a code but never typed it. A reminder re-sends their sign-up email with a fresh code. One per day each.</span></div><button class="btn red" style="height:40px;padding:0 16px;font-size:13px" data-act="aremindall">Remind all ' + ST.pendingList.length + '</button></div>' : '') +
         '<div class="card" style="padding:4px 14px">' + userRows + '</div>' +
         '<p class="m" style="margin:0">Be fair: <b>Warn</b> first, then <b>Suspend</b> (1–30 days), and <b>Ban</b> for scams or repeat offenders. The member sees your reason when they open the app. Banning also takes down their pairs for sale. Admin: reports, bans, removals' + (isOwner() ? ', appointed by you' : '') + '. Checker: posts Legit/Fake verdicts.</p></section>' +
@@ -1222,6 +1297,9 @@
   VIEWS.login = function () {
     if (!sb) return needSb();
     if (uid()) { setTimeout(function () { go(takeAfter() || 'me'); }, 0); return skeleton(); }
+    return '<div class="pad"><div class="sec" style="gap:4px"><h1>Join the tambayan</h1><p class="sub">Free. Takes 30 seconds. Sign in to sell, bid, vote and comment.</p></div>' + ogHook() + loginForm() + '</div>';
+  };
+  function loginForm() {
     var L = ST.login || {}; if (!L.email && !L.sentTo) { var pd = pendingSignup(); if (pd) L = { email: pd.email }; }
     var gBtn = C.GOOGLE_LOGIN && !inAppBrowser() ? '<button class="btn dark full gbtn" data-act="google">' + I.google + 'Continue with Google</button><div class="or"><span>or use your email</span></div>' : '';
     var emailBox = L.sentTo
@@ -1231,10 +1309,20 @@
         '<div class="row" style="justify-content:space-between"><button class="link" data-act="emailchange">Use another email</button><button class="link" data-act="emaillink" id="l-resend">Send a new code</button></div>' +
         spamTip(L.sentTo, !!gBtn) + '</div>'
       : '<div class="card" style="padding:14px;display:flex;flex-direction:column;gap:10px"><label class="field" for="l-email">Email<input id="l-email" type="email" autocomplete="email" inputmode="email" placeholder="you@example.com" value="' + esc(L.email || '') + '"></label><button class="btn red" data-act="emaillink">Email me a code</button><p class="tiny" style="margin:0">No password. New here? This creates your free account.</p></div>';
-    return '<div class="pad"><div class="sec" style="gap:4px"><h1>Join the tambayan</h1><p class="sub">Free. Takes 30 seconds. Sign in to sell, bid, vote and comment.</p></div>' + ogHook() +
-      gBtn + emailBox +
+    return gBtn + emailBox +
       (C.SMS_LOGIN ? '<div class="card" style="padding:14px;display:flex;flex-direction:column;gap:10px"><label class="field" for="l-phone">Phone<input id="l-phone" type="tel" autocomplete="tel" placeholder="+971 50 123 4567"></label><button class="btn dark" data-act="smscode">Text me a code</button><div id="otp-wrap" hidden><label class="field" for="l-otp">6-digit code<input id="l-otp" inputmode="numeric" maxlength="6"></label><button class="btn red full" data-act="smsverify">Verify</button></div></div>' : '') +
-      '<p class="err" id="l-err" role="alert"></p><p class="tiny">By signing in you agree to the <a href="terms.html" style="text-decoration:underline">Terms</a> and <a href="privacy.html" style="text-decoration:underline">Privacy Policy</a>.</p></div>';
+      '<p class="err" id="l-err" role="alert"></p><p class="tiny">By signing in you agree to the <a href="terms.html" style="text-decoration:underline">Terms</a> and <a href="privacy.html" style="text-decoration:underline">Privacy Policy</a>.</p>';
+  };
+
+  // the page behind the sign-up link and QR code (serelldc.github.io/zenkicks/join)
+  VIEWS.join = function () {
+    var ref = pendingRef();
+    var hero = '<div class="joinhero">' + (ref ? '<span class="pill invited">👋 Invited by @' + esc(ref) + '</span>' : '<span class="pill invited">UAE sneaker tambayan</span>') +
+      '<h1>Join <span>Zenkicks</span></h1><p class="sub">Free. Takes 30 seconds. No app store needed.</p>' +
+      '<ul class="joinlist"><li><b>🔔 Drop alerts</b> at 8 AM on release day</li><li><b>🛒 Buy &amp; sell</b> pairs in AED</li><li><b>✅ Legit checks</b> from the community</li><li><b>⭐ Grail alerts</b> when your pair gets listed</li></ul></div>';
+    if (!sb) return '<div class="pad">' + hero + needSb() + '</div>';
+    if (uid()) return '<div class="pad">' + hero + '<div class="card" style="padding:14px"><b>You’re in ✅</b><br><span class="m">Signed in as @' + esc((ST.me && ST.me.username) || '') + '.</span></div>' + (ST.me ? inviteCard() : '') + '<button class="btn red" data-go="drops">Go to drops</button></div>';
+    return '<div class="pad">' + hero + ogHook() + loginForm() + '</div>';
   };
 
   // ------------------------------------------------------------------
@@ -1335,7 +1423,12 @@
         break;
       case 'delgrail': sb.from('grails').delete().eq('id', id).then(function () { ST.grailHits = null; render(true); }); break;
       case 'share': openShare(el.getAttribute('data-k')); break;
-      case 'sharego': if (ST.shareFile && navigator.share) navigator.share({ files: [ST.shareFile], title: 'Zenkicks', text: 'serelldc.github.io/zenkicks' }).catch(function () {}); break;
+      case 'invcopy': (function (link) { var ok = function () { toast('Link copied. Paste it in your chats 🔗'); };
+        if (navigator.clipboard && navigator.clipboard.writeText) navigator.clipboard.writeText(link).then(ok, function () { window.prompt('Copy your link:', link); }); else window.prompt('Copy your link:', link); })(inviteLink(v === 'main')); break;
+      case 'invshare': (function (link) { if (navigator.share) navigator.share({ title: 'Join me on Zenkicks', text: 'UAE sneaker drops, buy & sell, legit checks. Free 🔥', url: link }).catch(function () {}); else { ST.tmp = link; app.querySelector('[data-act=invcopy]').click(); } })(inviteLink()); break;
+      case 'invqr': inviteQR(v === 'main'); break;
+      case 'invstory': ST.inviteMain = v === 'main'; openShare('invite'); break;
+      case 'sharego': if (ST.shareFile && navigator.share) navigator.share({ files: [ST.shareFile], title: 'Zenkicks', text: /invite|signup/.test(ST.shareFile.name) ? inviteLink(ST.inviteMain).replace(/^https:\/\//, '') : 'serelldc.github.io/zenkicks' }).catch(function () {}); break;
       case 'ltab': ST.legitTab = v; render(true); break;
       case 'gal': ST.gallery.i = +el.getAttribute('data-i'); document.getElementById('gallery').outerHTML = galleryHTML(); break;
       case 'watch':
@@ -1581,7 +1674,7 @@
       Promise.all([meP, ownersP]).then(function () {
         var badgesChanged = JSON.stringify([cb && cb.og, cb && cb.owners]) !== JSON.stringify([ST.og, ST.owners]);
         if (booted && (uid() && !needMe || badgesChanged)) render(true);
-        checkNotices();
+        checkNotices(); applyRef();
       });
     });
     sb.auth.onAuthStateChange(function (evt, session) {
@@ -1591,8 +1684,8 @@
         if (evt !== 'SIGNED_IN' || !uid()) return render(true);
         var fresh = ST.me && ST.me.created_at && Date.now() - new Date(ST.me.created_at).getTime() < 10 * 60e3 || !!store('pending'); store('pending', null);
         var next = takeAfter();
-        if (next) go(next); else if (route().name === 'login') go('drops'); else render(true);
-        setTimeout(checkNotices, 1500);
+        if (next) go(next); else if (route().name === 'login' || route().name === 'join') go('drops'); else render(true);
+        setTimeout(checkNotices, 1500); applyRef();
         setTimeout(function () { toast(fresh ? 'Welcome to Zenkicks, @' + ST.me.username + '! Change your username anytime in Profile.' : 'Signed in as @' + ((ST.me && ST.me.username) || '')); }, 400);
       });
     });

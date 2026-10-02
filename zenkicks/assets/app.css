@@ -444,3 +444,16 @@ h2{font-size:19px}
 .drop .cod{flex-wrap:nowrap;gap:5px}
 .drop .cod button{height:28px;padding:0 9px;font-size:12px;white-space:nowrap}
 .err:empty{display:none}
+
+/* ---- sign-up link page (#/join) + invite card ---- */
+.joinhero{margin:0;border-radius:22px;padding:22px 18px 20px;color:var(--bone);background:linear-gradient(180deg,rgba(13,13,13,.55),rgba(13,13,13,.88)),url(../img/hero-bg-sm.webp) center 30%/cover no-repeat,var(--ink);display:flex;flex-direction:column;gap:10px}
+.joinhero h1{color:var(--bone);font-size:34px;line-height:1.05;margin:2px 0 0}
+.joinhero h1 span{color:var(--brand)}
+.joinhero .sub{color:var(--sand);margin:0}
+.joinlist{list-style:none;margin:4px 0 0;padding:0;display:grid;gap:7px;font-size:14px;color:var(--sand)}
+.joinlist b{color:var(--bone)}
+.pill.invited{align-self:flex-start;background:var(--brand);color:#fff;border:0}
+.invitecard{padding:14px;display:flex;flex-direction:column;gap:10px}
+.invlink{font:600 13px/1.3 var(--label,monospace);background:var(--bone);border:1px dashed var(--line);border-radius:10px;padding:9px 11px;word-break:break-all;color:var(--ink)}
+.qrwrap{width:min(78vw,320px);aspect-ratio:1;margin:0 auto;border-radius:18px;overflow:hidden;background:#fff}
+.qrwrap img{width:100%;height:100%;display:block;image-rendering:pixelated}
