@@ -1224,7 +1224,8 @@
       sb.from('reports').select('id,target_type,target_id,reason,created_at,reporter:profiles!reports_reporter_id_fkey(username)').eq('resolved', false).order('created_at', { ascending: false }).limit(30),
       sb.from('listings').select('id,model,price_aed,status,created_at,seller_id,seller:profiles!listings_seller_id_fkey(username)').order('created_at', { ascending: false }).limit(15),
       sb.from('checks').select('id,model,created_at,author_id,verdict,author:profiles!checks_author_id_fkey(username)').order('created_at', { ascending: false }).limit(10),
-      isOwner() ? sb.rpc('invite_stats') : Promise.resolve({ data: [] })
+      isOwner() ? sb.rpc('invite_stats') : Promise.resolve({ data: [] }),
+      loadOwners() // fresh OG numbers, so someone who just joined shows their badge here right away
     ]).then(function (a) {
       var invs = (a[5] && a[5].data) || [];
       if (a[0].error) throw a[0].error;
