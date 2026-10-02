@@ -166,8 +166,8 @@
   // shell
   // ------------------------------------------------------------------
   function header(r) {
-    var back = { grails: 'me', l: 'market', c: 'legit', 'new-check': 'legit', sell: 'drops', login: 'drops', join: 'drops', install: 'drops', u: 'market', admin: 'me' }[r.name];
-    var titles = { grails: 'My grails', l: 'Listing', c: 'Legit check', 'new-check': 'New check', sell: 'Sell a pair', login: 'Sign in', join: 'Join Zenkicks', install: 'Install the app', u: 'Member', admin: 'Admin panel' };
+    var back = { safety: 'market', grails: 'me', l: 'market', c: 'legit', 'new-check': 'legit', sell: 'drops', login: 'drops', join: 'drops', install: 'drops', u: 'market', admin: 'me' }[r.name];
+    var titles = { safety: 'Safety', grails: 'My grails', l: 'Listing', c: 'Legit check', 'new-check': 'New check', sell: 'Sell a pair', login: 'Sign in', join: 'Join Zenkicks', install: 'Install the app', u: 'Member', admin: 'Admin panel' };
     if (back) {
       return '<header class="hd"><button class="ibtn" data-go="' + back + '" aria-label="Back">' + (r.name === 'sell' || r.name === 'new-check' || r.name === 'login' || r.name === 'join' ? I.close : I.back) + '</button><div class="hd-title">' + LOGO + esc(titles[r.name]) + '</div><span style="width:44px"></span></header>';
     }
@@ -179,7 +179,7 @@
       '<button class="ibtn" data-go="market" aria-label="Search the market">' + I.search + '</button>' + me + '</header>';
   }
   function tabs(r) {
-    if (['l', 'c', 'sell', 'new-check', 'login', 'join', 'install'].indexOf(r.name) > -1) return '';
+    if (['l', 'c', 'sell', 'new-check', 'login', 'join', 'install', 'safety'].indexOf(r.name) > -1) return '';
     function t(v, label, icon) { var on = r.name === v; return '<button class="tab' + (on ? ' on' : '') + '" data-go="' + v + '"' + (on ? ' aria-current="page"' : '') + '>' + icon + label + '</button>'; }
     return '<nav class="tabs" aria-label="App">' + t('drops', 'Drops', I.cal) + t('hot', 'Hot', I.flame) +
       '<button class="tab sell" data-go="sell"><span class="plus">' + I.plus + '</span>Sell</button>' +
@@ -226,7 +226,7 @@
         '<span class="hx-tag">' + esc(tag) + '</span>' +
         '<div class="hx-badge" aria-label="' + dropCount + ' upcoming drops"><small>Upcoming</small><b>' + dropCount + '</b><small>drops</small></div>' +
         '</div>';
-      info = '<div class="hx-next"><div class="grow"><div class="hx-name">' + esc(next.name) + '</div><div class="hx-meta">' + DOW[nd.getUTCDay()] + ', ' + nd.getUTCDate() + ' ' + MON[nd.getUTCMonth()].charAt(0) + MON[nd.getUTCMonth()].slice(1).toLowerCase() + ' · ' + priceLine(next.retail_usd) + '</div>' + codBtns(next.name + next.date) + '</div>' +
+      info = '<div class="hx-next"><div class="grow"><div class="hx-name">' + esc(next.name) + '</div><div class="hx-meta">' + DOW[nd.getUTCDay()] + ', ' + nd.getUTCDate() + ' ' + MON[nd.getUTCMonth()].charAt(0) + MON[nd.getUTCMonth()].slice(1).toLowerCase() + ' · ' + dropPrice(next) + '</div>' + codBtns(next.name + next.date) + '</div>' +
         '<button class="btn ' + (non ? 'ghost' : 'red') + ' hx-rem" ' + (non ? 'style="color:var(--coral)" ' : '') + 'data-act="rem" data-key="' + esc(next.name + next.date) + '" aria-pressed="' + non + '">' + (non ? I.check + 'Set' : I.bell + 'Remind me') + '</button></div>';
     }
     // scrolling strip (marquee): the list is drawn twice so it loops without a gap
@@ -312,6 +312,62 @@
   }
   function priceLine(usd) { return usd ? 'AED ' + usdToAed(usd).toLocaleString('en-US') + ' <span style="opacity:.7">(US$' + usd + ')</span>' : 'Price TBA'; }
   function stamp() { return 'Updated ' + (ST.releases.updated || '—') + ' · auto-refreshes daily'; }
+
+  // ---- UAE info a drop can carry: { aed, where: [{ name, url, how }], note } ----
+  var UAE_STORES = [
+    { name: 'Nike SNKRS (UAE)', url: 'https://www.nike.com/ae/launch/', how: 'App draw' },
+    { name: 'Nike UAE', url: 'https://www.nike.ae/en/trends/upcoming-and-just-dropped/shoes', how: 'Online' },
+    { name: 'Foot Locker UAE', url: 'https://www.footlocker.ae/en/', how: 'Online and stores' },
+    { name: 'Jordan Dubai Mall', url: 'https://www.soleretriever.com/retailers/jordan-dubai-mall', how: 'Raffles' },
+    { name: 'Level Shoes', url: 'https://www.levelshoes.com/men/shoes.html', how: 'Online and Dubai Mall' },
+    { name: 'Sun & Sand Sports', url: 'https://en-ae.sssports.com/sports/sports-fashion/shoes/sneakers', how: 'Online and stores' }
+  ];
+  function safeUrl(u) { return /^https:\/\/[^\s"'<>]+$/.test(String(u || '')) ? String(u) : ''; }
+  function uaeWhere(d) { return ((d.uae && d.uae.where) || []).filter(function (w) { return w && w.name && safeUrl(w.url); }); }
+  function inUae(d) { return !!(d.uae && (d.uae.aed || uaeWhere(d).length)); }
+  // price shown on a drop: real UAE retail when we know it, else US retail converted
+  function dropPrice(d) {
+    var tag = inUae(d) ? ' <span class="uaetag">UAE</span>' : '';
+    return (d.uae && d.uae.aed ? 'AED ' + Number(d.uae.aed).toLocaleString('en-US') : priceLine(d.retail_usd)) + tag;
+  }
+  function storeRows(list) {
+    return list.map(function (w) { return '<a class="kv storerow" href="' + esc(safeUrl(w.url)) + '" target="_blank" rel="noopener"><span><b>' + esc(w.name) + '</b>' + (w.how ? '<br><span class="m">' + esc(w.how) + '</span>' : '') + '</span><span aria-hidden="true">›</span></a>'; }).join('');
+  }
+  function uaeBox(d) {
+    var w = uaeWhere(d), note = d.uae && d.uae.note;
+    return '<div class="card uaebox"><b>Where to cop in the UAE</b>' +
+      (w.length ? '<span class="m">Confirmed for the UAE' + (d.uae.aed ? ' · AED ' + Number(d.uae.aed).toLocaleString('en-US') : '') + '</span>' + storeRows(w)
+        : '<span class="m">No UAE store has confirmed this one yet. Keep an eye on:</span>' + storeRows(UAE_STORES)) +
+      (note ? '<span class="m">' + esc(note) + '</span>' : '') + '</div>';
+  }
+
+  // ---- deal meter: asking price vs StockX lowest ask (data/prices.json, refreshed daily) ----
+  function loadPrices() {
+    if (ST.prices) return Promise.resolve(ST.prices);
+    if (ST.pricesP) return ST.pricesP;
+    return (ST.pricesP = fetch('data/prices.json?v=' + dubaiToday(), { cache: 'no-cache' }).then(function (r) { return r.ok ? r.json() : null; }).catch(function () { return null; })
+      .then(function (p) { ST.prices = (p && p.items) || {}; return ST.prices; }));
+  }
+  function priceKey(s) { return String(s || '').replace(/[“”"]/g, '').replace(/\s+/g, ' ').trim().toLowerCase(); }
+  function dealMeter(l) {
+    var p = ST.prices && ST.prices[priceKey(l.model)];
+    if (!p || !p.usd || !l.price_aed) return p && p.none ? { none: true } : null;
+    var sx = usdToAed(p.usd), r = l.price_aed / sx;
+    var lv = r <= 0.9 ? ['great', 'Great deal'] : r <= 1.05 ? ['good', 'Good price'] : r <= 1.25 ? ['fair', 'Fair price'] : ['high', 'Above StockX'];
+    return { level: lv[0], label: lv[1], sx: sx, usd: p.usd, ratio: r, link: p.link };
+  }
+  function meterTag(l) { var m = dealMeter(l); return m && (m.level === 'great' || m.level === 'good') ? '<span class="dmtag ' + m.level + '">' + m.label + '</span>' : ''; }
+  function meterCard(l) {
+    var m = dealMeter(l);
+    if (!m) return l.status === 'active' ? '<div class="card meter"><b>Deal meter</b><span class="m">We look up the StockX price of new listings once a day. Check back tomorrow.</span></div>' : '';
+    if (m.none) return '<div class="card meter"><b>Deal meter</b><span class="m">We couldn’t find this exact model on StockX, so there’s no price to compare.</span></div>';
+    var pos = Math.max(2, Math.min(98, (m.ratio - 0.6) * 100)); // 0.6x .. 1.6x of StockX across the bar
+    var diff = Math.round(Math.abs(1 - m.ratio) * 100);
+    return '<div class="card meter ' + m.level + '"><div class="between" style="align-items:center"><b>Deal meter</b><span class="dmtag ' + m.level + '">' + m.label + '</span></div>' +
+      '<div class="mbar" role="img" aria-label="' + m.label + '"><i style="left:' + pos + '%"></i></div><div class="mlabels"><span>Great deal</span><span>Fair</span><span>High</span></div>' +
+      '<span class="m">StockX lowest ask: <b>AED ' + m.sx.toLocaleString('en-US') + '</b> (US$' + m.usd + ', all sizes), before shipping and customs to the UAE. This pair is <b>' + (diff < 3 ? 'about the same' : diff + '% ' + (m.ratio < 1 ? 'below' : 'above')) + '</b>' + (diff < 3 ? '.' : ' StockX.') + '</span>' +
+      (safeUrl(m.link) ? '<a class="link" style="align-self:flex-start;padding:0" href="' + esc(safeUrl(m.link)) + '" target="_blank" rel="noopener">Compare on StockX ›</a>' : '') + '</div>';
+  }
 
   // ------------------------------------------------------------------
   // data: listings
@@ -415,7 +471,11 @@
     var j = sub.toJSON ? sub.toJSON() : sub;
     return loadFeeds().then(function () {
       return sb.rpc('push_save', { p_endpoint: j.endpoint, p_p256dh: j.keys.p256dh, p_auth: j.keys.auth, p_items: remItems() });
-    }).then(function (r) { if (r.error) throw r.error; store('pushon', j.endpoint); store('pushsync', Date.now()); return r.data; });
+    }).then(function (r) {
+      if (r.error) throw r.error; store('pushon', j.endpoint); store('pushsync', Date.now());
+      var pf = pushPrefs(); if (!pf.weekly || !pf.grails) sb.rpc('push_prefs', { p_endpoint: j.endpoint, p_weekly: pf.weekly, p_grails: pf.grails }).then(function () {}, function () {});
+      return r.data;
+    });
   }
   // Must be called straight from a tap (phones only show the permission prompt for a tap).
   // Resolves to: 'on' | 'ios-home' | 'unsupported' | 'blocked' | 'declined' | 'error'
@@ -482,12 +542,19 @@
   }
   function pushCard(st) {
     var n = Object.keys(store('rem') || {}).length, body, btn = '';
-    if (st.s === 'on') { body = 'On for this phone. 8 AM (UAE) on drop day' + (n ? ' · ' + n + ' reminder' + (n > 1 ? 's' : '') : '. Tap 🔔 on any drop.'); btn = '<button class="chip" data-act="pushtest">Send test</button><button class="chip" data-act="pushoff">Turn off</button>'; }
-    else if (st.s === 'off') { body = 'Get a phone notification on the morning of every drop you tap 🔔 on.'; btn = '<button class="btn red" style="height:38px;padding:0 14px;font-size:13px" data-act="pushon">Turn on</button>'; }
+    var pf = pushPrefs();
+    function pfChip(k, label) { return '<button class="chip' + (pf[k] ? ' on' : '') + '" data-act="pushpref" data-v="' + k + '" aria-pressed="' + pf[k] + '">' + (pf[k] ? '✓ ' : '') + label + '</button>'; }
+    if (st.s === 'on') { body = 'On for this phone. Drop-day reminders at 8 AM (UAE)' + (n ? ' · ' + n + ' reminder' + (n > 1 ? 's' : '') : '. Tap 🔔 on any drop.'); btn = pfChip('weekly', 'Weekly drops list') + pfChip('grails', 'Grail alerts') + '<button class="chip" data-act="pushtest">Send test</button><button class="chip" data-act="pushoff">Turn off</button>'; }
+    else if (st.s === 'off') { body = 'Get a notification on drop day, a list of the week’s drops every Monday, and a ping when one of your grails gets listed.'; btn = '<button class="btn red" style="height:38px;padding:0 14px;font-size:13px" data-act="pushon">Turn on</button>'; }
     else if (st.s === 'ios-home') { body = 'On iPhone, add Zenkicks to your Home Screen first (Share → Add to Home Screen), then open it from the icon and turn alerts on here.'; }
     else if (st.s === 'blocked') { body = 'Notifications are blocked for Zenkicks. Allow them in your phone or browser settings, then come back here.'; }
     else { body = 'This browser can’t show notifications. Open Zenkicks in Chrome or from your Home Screen app.'; }
-    return '<div class="card pushcard" style="padding:14px;display:flex;flex-direction:column;gap:8px"><div class="between" style="align-items:center"><b>🔔 Drop alerts</b>' + (st.s === 'on' ? '<span class="pill ok">ON</span>' : '') + '</div><span class="m">' + body + '</span>' + (btn ? '<div class="row" style="gap:8px;flex-wrap:wrap">' + btn + '</div>' : '') + '</div>';
+    return '<div class="card pushcard" style="padding:14px;display:flex;flex-direction:column;gap:8px"><div class="between" style="align-items:center"><b>🔔 Phone alerts</b>' + (st.s === 'on' ? '<span class="pill ok">ON</span>' : '') + '</div><span class="m">' + body + '</span>' + (btn ? '<div class="row" style="gap:8px;flex-wrap:wrap">' + btn + '</div>' : '') + '</div>';
+  }
+  function pushPrefs() { var p = store('pushprefs') || {}; return { weekly: p.weekly !== false, grails: p.grails !== false }; }
+  function setPushPref(k) {
+    var p = pushPrefs(); p[k] = !p[k]; store('pushprefs', p);
+    return currentSub().then(function (s) { if (s) return sb.rpc('push_prefs', { p_endpoint: s.endpoint, p_weekly: p.weekly, p_grails: p.grails }); }).then(function () { return p[k]; });
   }
   // on start: refresh this phone's list once a day, or re-subscribe if the phone dropped the old address
   function pushBoot() {
@@ -578,16 +645,28 @@
   function trustedPill(v) { return v && v.trusted ? ' <span class="pill trusted" title="5+ deals rated 4.5★ or higher">✓ Trusted seller</span>' : ''; }
   function userLink(id, name) { return '<button class="link ulink" data-go="u/' + id + '">@' + esc(name) + '</button>' + founderPill(id); }
   function verifiedPill(level) {
-    return level === 'id' ? '<span class="pill ok">✓ ID-verified</span>' : level === 'phone' ? '<span class="pill ok">✓ Phone-verified</span>' : '<span class="pill sample">Email only</span>';
+    return level === 'id' ? '<span class="pill ok" title="ID checked by the Zenkicks team">✓ Verified seller</span>' : level === 'phone' ? '<span class="pill ok">✓ Phone-verified</span>' : '<span class="pill sample">Email only</span>';
+  }
+  // after a bid is accepted: both tap "Deal done", then they can rate each other
+  function dealSteps(b, role, l, otherId, otherName) {
+    var meDone = role === 'buyer' ? !!b.buyer_done_at : !!b.seller_done_at;
+    var otherDone = role === 'buyer' ? !!b.seller_done_at : !!b.buyer_done_at;
+    var who = '@' + esc(otherName || (role === 'buyer' ? 'the seller' : 'the buyer'));
+    var body;
+    if (meDone && otherDone) body = '<span class="dealstate ok">' + I.check + ' Deal complete</span><button class="btn red" style="height:40px;padding:0 14px;font-size:13px" data-act="vouch" data-target="' + otherId + '" data-user="' + esc(otherName) + '" data-ref="' + l.id + '" data-kind="deal">★ Rate ' + who + '</button>';
+    else if (meDone) body = '<span class="dealstate">' + I.check + ' You confirmed. Waiting for ' + who + ' to tap Deal done, then you can rate each other.</span>';
+    else body = '<span class="dealstate">' + (otherDone ? who + ' confirmed the deal. ' : '') + (role === 'seller' ? 'Sold the pair and got paid?' : 'Got the pair and paid?') + ' Confirm it so you can rate each other.</span>' +
+      '<span class="row" style="gap:6px;flex-wrap:wrap"><button class="btn red" style="height:40px;padding:0 14px;font-size:13px" data-act="dealdone" data-id="' + b.id + '">' + I.check + ' Deal done</button><button class="btn ghost" style="height:40px;padding:0 12px;font-size:13px" data-act="dealcancel" data-id="' + b.id + '" data-v="' + role + '">Fell through</button></span>';
+    return '<div class="dealsteps">' + body + '<button class="link" style="align-self:flex-start;padding:0;font-size:12px;color:var(--muted)" data-act="report" data-type="user" data-id="' + otherId + '">Problem with this deal? Report ' + who + '</button></div>';
   }
   function itemCard(l, stats) {
     stats = stats || {};
     return '<button class="item" data-go="l/' + l.id + '"><div class="tile" style="height:120px;background:#fff"><span class="pill white cond" style="z-index:1">' + esc(l.condition) + '</span>' +
       (l.legit_checked ? '<span class="pill dark chk" style="z-index:1">Checked</span>' : '') +
       (firstPhoto(l) ? '<img src="' + esc(firstPhoto(l)) + '" alt="" loading="lazy">' : I.shoe) + '</div>' +
-      '<span class="t">' + esc(l.model) + '</span><span class="m">' + (l.size_eu ? sizeLabel(l.size_eu) + ' · ' : '') + esc(l.city || 'UAE') + '</span>' +
+      '<span class="t">' + esc(l.model) + '</span><span class="m">' + (l.size_eu ? sizeLabel(l.size_eu) + ' · ' : '') + esc(l.city || 'UAE') + '</span>' + meterTag(l) +
       '<span class="between" style="align-items:center"><span class="money" style="font-size:15px">' + aed(l.price_aed) + '</span>' +
-      (stats.bid_count ? '<span class="tiny">' + stats.bid_count + ' bid' + (stats.bid_count === 1 ? '' : 's') + '</span>' : '<span style="font-size:12px;font-weight:700;color:var(--green)">' + (l.seller && l.seller.verified_level !== 'email' ? '✓' : '') + '</span>') + '</span></button>';
+      (stats.bid_count ? '<span class="tiny">' + stats.bid_count + ' bid' + (stats.bid_count === 1 ? '' : 's') + '</span>' : '<span style="font-size:12px;font-weight:700;color:var(--green)">' + (l.seller && l.seller.verified_level === 'id' ? '✓ Verified' : l.seller && l.seller.verified_level === 'phone' ? '✓' : '') + '</span>') + '</span></button>';
   }
   function statsFor(ids) {
     if (!sb || !ids.length) return Promise.resolve({});
@@ -689,7 +768,7 @@
         var dt = new Date(d.date + 'T00:00:00Z'); var on = !!rem[d.name + d.date]; var im = releaseImg(d);
         return '<div class="card drop" data-peek="r|' + esc(d.name + d.date) + '"><div class="date"><span>' + MON[dt.getUTCMonth()] + '</span><b>' + ('0' + dt.getUTCDate()).slice(-2) + '</b></div>' +
           (im ? '<img draggable="false" src="' + esc(im) + '" alt="" loading="lazy" style="width:64px;height:46px;object-fit:cover;border-radius:8px;flex-shrink:0;background:#fff">' : '') +
-          '<div class="grow"><div class="t" style="font-size:14px;line-height:1.3">' + esc(d.name) + '</div><div class="m">' + DOW[dt.getUTCDay()] + ' · ' + whenLabel(d.date) + ' · ' + priceLine(d.retail_usd) + '</div>' + codBtns(d.name + d.date) + '</div>' +
+          '<div class="grow"><div class="t" style="font-size:14px;line-height:1.3">' + esc(d.name) + '</div><div class="m">' + DOW[dt.getUTCDay()] + ' · ' + whenLabel(d.date) + ' · ' + dropPrice(d) + '</div>' + codBtns(d.name + d.date) + '</div>' +
           '<button class="round' + (on ? ' on' : '') + '" data-act="rem" data-key="' + esc(d.name + d.date) + '" aria-pressed="' + on + '" aria-label="' + (on ? 'Remove reminder for ' : 'Remind me about ') + esc(d.name) + '">' + (on ? I.check : I.bell) + '</button></div>';
       }).join('') || '<p class="sub">No upcoming drops in the feed right now.</p>';
       var hot = (ST.hot.online || []).slice(0, 5).map(function (h, i) {
@@ -700,7 +779,7 @@
       {
         var html = installCard() + pendingBanner() + grailBanner() + heroHtml +
           '<div class="pad">' +
-          '<section class="sec"><div class="between"><h2>Release calendar</h2><span class="pill ok" style="font-size:10px">AUTO</span></div><p class="sub" style="font-size:12px">' + esc(stamp()) + ' · AED from US retail at 3.6725; UAE store prices may differ · <b>Press and hold a pair for details</b></p><div class="droplist">' + rows + '</div></section>' +
+          '<section class="sec"><div class="between"><h2>Release calendar</h2><span class="pill ok" style="font-size:10px">AUTO</span></div><p class="sub" style="font-size:12px">' + esc(stamp()) + ' · <span class="uaetag">UAE</span> = confirmed UAE release and price; other prices are US retail at 3.6725 · <b>Press and hold a pair for details</b></p><div class="droplist">' + rows + '</div></section>' +
           (hot ? '<section class="sec"><div class="between"><h2>What’s hot</h2><button class="link" data-go="hot">See all</button></div><div class="scroller">' + hot + '</div></section>' : '') +
           adSlot() +
           '<section class="sec"><div class="between"><h2>Fresh pairs</h2><button class="link" data-go="market">Shop</button></div>' +
@@ -748,8 +827,11 @@
     if (!sb) return needSb();
     if (!uid()) return needLogin('save your grails');
     var dr = ST.grailDraft || {}; ST.grailDraft = null;
-    return Promise.all([sb.from('grails').select('id,model,size_eu,created_at').order('created_at', { ascending: false }), loadGrailHits(true)]).then(function (a) {
+    return Promise.all([sb.from('grails').select('id,model,size_eu,created_at').order('created_at', { ascending: false }), loadGrailHits(true), pushState(), loadPrices()]).then(function (a) {
       if (a[0].error) throw a[0].error;
+      var pst = a[2] || {}, alertBox = pst.s === 'on' ? (pushPrefs().grails ? '' : '<div class="card itip"><b>Grail alerts are off</b><span class="m">Turn them back on in Me → Alerts to get a ping when a match is listed.</span></div>')
+        : pst.s === 'off' ? '<div class="card between" style="padding:14px;align-items:center;gap:10px"><span><b>🔔 Get a ping when one is listed</b><br><span class="m">Turn on phone alerts and we notify you within minutes.</span></span><button class="btn red" style="height:38px;padding:0 14px;font-size:13px" data-act="pushon">Turn on</button></div>'
+        : pst.s === 'ios-home' ? '<div class="card itip"><b>Want a ping when one is listed?</b><span class="m">On iPhone, add Zenkicks to your Home Screen first, then turn on alerts in Me.</span></div>' : '';
       var gs = a[0].data || [], hits = ST.grailHits || [], fresh = {};
       grailNew().forEach(function (id) { fresh[id] = 1; });
       var ids = []; hits.forEach(function (h) { if (ids.indexOf(h.listing_id) < 0) ids.push(h.listing_id); });
@@ -767,7 +849,7 @@
           '<label class="field" for="g-model">Pair<input id="g-model" type="text" maxlength="80" placeholder="e.g. Jordan 4 Bred" value="' + esc(dr.model || '') + '"></label>' +
           '<label class="field" for="g-size">Size<select id="g-size">' + sizeOptions(dr.size || mySize(), 'Any size') + '</select></label>' +
           '<p class="err" id="g-err" role="alert"></p><button class="btn red" data-act="addgrail">⭐ Add to my grails</button>' +
-          '<p class="tiny" style="margin:0">Tip: keep it short, like “Dunk Low Panda”. Every word must be in the listing.</p></div>' +
+          '<p class="tiny" style="margin:0">Tip: keep it short, like “Dunk Low Panda”. Every word must be in the listing.</p></div>' + alertBox +
           (gs.length ? '<section class="sec"><h2>Hunting (' + gs.length + '/20)</h2><div class="card" style="padding:4px 14px">' + list + '</div></section>' : '') +
           '<section class="sec"><h2>On the Market now</h2>' + (found.length ? '<div class="grid">' + found.map(function (id) { return (fresh[id] ? '<div class="newwrap"><span class="pill red newtag">NEW</span>' : '<div class="newwrap">') + itemCard(byId[id], b[1][id]) + '</div>'; }).join('') + '</div>' : '<div class="empty" style="padding:20px">' + I.bag + '<span>' + (gs.length ? 'No matches yet. We’ll show them here the moment one gets listed.' : 'Add your first grail above.') + '</span></div>') + '</section></div>';
       });
@@ -882,7 +964,8 @@
       if (r.error) throw r.error;
       var ls = r.data || [];
       if (!ls.length) return '<div class="empty">' + I.bag + '<b>' + (term || ST.marketFilter !== 'all' || ST.sizeOnly ? 'No pairs match' : 'No pairs listed yet') + '</b><span>' + (term ? 'Try another model or clear the filter.' : 'List yours and it shows up here.') + '</span><button class="btn red" data-go="sell">Sell a pair</button></div>';
-      return statsFor(ls.map(function (l) { return l.id; })).then(function (st) {
+      return Promise.all([statsFor(ls.map(function (l) { return l.id; })), loadPrices()]).then(function (pa) {
+        var st = pa[0];
         return '<p class="sub" style="font-size:13px;margin-bottom:10px">' + ls.length + ' pairs · bid and deal direct with the seller</p><div class="grid">' + ls.map(function (l) { return itemCard(l, st[l.id]); }).join('') + '</div>';
       });
     });
@@ -897,8 +980,8 @@
       var mine = me && l.seller_id === me;
       var jobs = [statsFor([l.id]),
         me ? sb.from('watches').select('listing_id').eq('user_id', me).eq('listing_id', l.id) : Promise.resolve({ data: [] }),
-        me ? sb.from('bids').select('id,amount_aed,status,created_at,bidder_id,bidder:profiles!bids_bidder_id_fkey(username,verified_level)').eq('listing_id', l.id).order('amount_aed', { ascending: false }) : Promise.resolve({ data: [] }),
-        vouchMap([l.seller_id])];
+        me ? sb.from('bids').select('id,amount_aed,status,created_at,bidder_id,buyer_done_at,seller_done_at,bidder:profiles!bids_bidder_id_fkey(username,verified_level)').eq('listing_id', l.id).order('amount_aed', { ascending: false }) : Promise.resolve({ data: [] }),
+        vouchMap([l.seller_id]), loadPrices()];
       return Promise.all(jobs).then(function (a) {
         var s = a[0][l.id] || {}; var watching = (a[1].data || []).length > 0; var bids = a[2].data || []; var sv = a[3][l.seller_id];
         var myBids = bids.filter(function (b) { return b.bidder_id === me && b.status !== 'withdrawn'; });
@@ -912,17 +995,19 @@
           ownerPanel = '<div class="card" style="padding:14px;display:flex;flex-direction:column;gap:10px"><b>Bids on your pair</b>' +
             (active.length ? active.map(function (b) {
               return '<div class="kv" style="align-items:center"><span><b>' + aed(b.amount_aed) + '</b> · @' + esc(b.bidder && b.bidder.username) + ' <span class="tiny">' + ago(b.created_at) + '</span></span>' +
-                (b.status === 'accepted' ? '<span class="row" style="gap:6px"><button class="btn dark" style="height:40px;padding:0 12px;font-size:13px" data-act="contact" data-id="' + b.id + '">Contact</button><button class="btn ghost" style="height:40px;padding:0 12px;font-size:13px" data-act="vouch" data-target="' + b.bidder_id + '" data-user="' + esc(b.bidder && b.bidder.username) + '" data-ref="' + l.id + '" data-kind="deal">★ Rate</button></span>'
-                  : '<span class="row" style="gap:6px"><button class="btn red" style="height:40px;padding:0 12px;font-size:13px" data-act="accept" data-id="' + b.id + '">Accept</button><button class="btn ghost" style="height:40px;padding:0 12px;font-size:13px" data-act="decline" data-id="' + b.id + '">Decline</button></span>') + '</div>';
+                (b.status === 'accepted' ? '<button class="btn dark" style="height:40px;padding:0 12px;font-size:13px" data-act="contact" data-id="' + b.id + '">Contact</button>'
+                  : '<span class="row" style="gap:6px"><button class="btn red" style="height:40px;padding:0 12px;font-size:13px" data-act="accept" data-id="' + b.id + '">Accept</button><button class="btn ghost" style="height:40px;padding:0 12px;font-size:13px" data-act="decline" data-id="' + b.id + '">Decline</button></span>') + '</div>' +
+                (b.status === 'accepted' ? dealSteps(b, 'seller', l, b.bidder_id, b.bidder && b.bidder.username) : '');
             }).join('') : '<span class="sub">No bids yet. Share your listing to get more eyes on it.</span>') +
             '<div class="row" style="gap:8px"><button class="btn dark" style="flex:1" data-act="sold" data-id="' + l.id + '">Mark as sold</button><button class="btn ghost" style="flex:1" data-act="remove" data-id="' + l.id + '">Remove</button></div></div>';
         }
         var myBidPanel = '';
         if (myBid) {
           myBidPanel = '<div class="note" role="status" style="background:' + (myBid.status === 'accepted' ? 'var(--green);color:#fff' : 'var(--mint)') + '"><span style="width:18px">' + I.check + '</span><span>' +
-            (myBid.status === 'accepted' ? '<b>The seller accepted your bid of ' + aed(myBid.amount_aed) + '.</b> Contact them to agree on payment and meet-up or delivery. <button class="link" style="color:#fff;text-decoration:underline" data-act="contact" data-id="' + myBid.id + '">Show seller contact</button> · <button class="link" style="color:#fff;text-decoration:underline" data-act="vouch" data-target="' + l.seller_id + '" data-user="' + esc(l.seller && l.seller.username) + '" data-ref="' + l.id + '" data-kind="deal">Rate the seller</button>'
+            (myBid.status === 'accepted' ? '<b>The seller accepted your bid of ' + aed(myBid.amount_aed) + '.</b> Contact them to agree on payment and meet-up or delivery. <button class="link" style="color:#fff;text-decoration:underline" data-act="contact" data-id="' + myBid.id + '">Show seller contact</button>'
               : myBid.status === 'declined' ? '<b>Your bid of ' + aed(myBid.amount_aed) + ' was declined.</b> You can place a new one.'
-                : '<b>Your bid: ' + aed(myBid.amount_aed) + '.</b> Waiting for the seller. <button class="link" style="padding:0" data-act="withdraw" data-id="' + myBid.id + '">Withdraw</button>') + '</span></div>';
+                : '<b>Your bid: ' + aed(myBid.amount_aed) + '.</b> Waiting for the seller. <button class="link" style="padding:0" data-act="withdraw" data-id="' + myBid.id + '">Withdraw</button>') + '</span></div>' +
+            (myBid.status === 'accepted' ? '<div class="card" style="padding:12px 14px">' + dealSteps(myBid, 'buyer', l, l.seller_id, l.seller && l.seller.username) + '</div>' : '');
         }
         ST.shareListing = l;
         var html = gal + '<div class="pad">' +
@@ -930,11 +1015,11 @@
           '<h1 style="font-size:24px">' + esc(l.model) + '</h1><div class="sub">' + (l.size_eu ? sizeLabel(l.size_eu) + ' · ' : '') + esc(l.condition) + ' · ' + esc(l.city || 'UAE') + '</div>' +
           '<div class="row" style="align-items:baseline;gap:8px"><span class="m">Asking</span><span class="money" style="font-size:26px">' + aed(l.price_aed) + '</span><button class="chip" style="margin-left:auto;height:36px" data-act="share" data-k="listing">' + I.share + ' Share</button></div></div>' +
           '<div class="card between" style="padding:14px;align-items:center"><div><div class="m">Highest bid</div><div class="money" style="font-size:19px">' + (s.high_bid ? aed(s.high_bid) : '—') + '</div></div><span class="m">' + (s.bid_count || 0) + ' bids · ' + (s.watchers || 0) + ' watching</span></div>' +
-          myBidPanel + ownerPanel +
+          meterCard(l) + myBidPanel + ownerPanel +
           (l.description ? '<div class="card" style="padding:14px;display:flex;flex-direction:column;gap:6px"><b>Seller’s note</b><p class="sub" style="font-size:14px;white-space:pre-line">' + esc(l.description) + '</p></div>' : '') +
           '<div class="card row" style="padding:12px 14px"><button class="avatar" style="border:0" data-go="u/' + l.seller_id + '" aria-label="Seller profile">' + esc(((l.seller && l.seller.username) || '?')[0].toUpperCase()) + '</button><div class="grow"><div class="t">' + userLink(l.seller_id, l.seller && l.seller.username) + ' ' + starBadge(sv) + '</div><div class="m">Listed ' + ago(l.created_at) + ' ago · tap name for vouches</div></div>' +
           (!mine ? '<button class="round" data-act="report" data-type="listing" data-id="' + l.id + '" aria-label="Report this listing">' + I.flag + '</button>' : '') + '</div>' +
-          '<div class="safety"><span style="color:var(--coral)">' + I.shield + '</span><div><b style="font-size:14px">No payments through Zenkicks</b><br><span>When a bid is accepted, you get each other’s WhatsApp to agree on payment and delivery. Meet in a public place, check the pair before you pay, and never send money in advance to someone you can’t verify.</span></div></div>' +
+          '<div class="safety"><span style="color:var(--coral)">' + I.shield + '</span><div><b style="font-size:14px">No payments through Zenkicks</b><br><span>When a bid is accepted, you get each other’s WhatsApp to agree on payment and delivery. Meet in a public place, check the pair before you pay, and never send money in advance to someone you can’t verify.</span><br><button class="link" style="padding:4px 0 0;color:var(--bone);font-weight:700" data-go="safety">Read the safe meet-up guide ›</button></div></div>' +
           '</div>';
         var bottom = '';
         if (!mine && l.status === 'active') {
@@ -975,7 +1060,7 @@
     if (S.step === 1) {
       var lvl = ST.me && ST.me.verified_level;
       body = '<div class="sec" style="gap:4px"><h1>Before you list</h1><p class="sub">Buyers contact you on WhatsApp once you accept their bid. Your number stays hidden until then.</p></div>' +
-        '<div class="card verify">' + I.shield + '<div class="grow"><div class="t">Your badge</div><div class="m">' + (lvl === 'phone' ? 'Phone-verified' : lvl === 'id' ? 'ID-verified' : 'Email only. Phone verification coming soon.') + '</div></div>' + verifiedPill(lvl) + '</div>' +
+        '<div class="card verify">' + I.shield + '<div class="grow"><div class="t">Your badge</div><div class="m">' + (lvl === 'id' ? 'Verified seller. Buyers see the badge on your pairs.' : 'Not verified yet. <button class="link" style="padding:0" data-act="verifyreq">Get the Verified seller badge</button>') + '</div></div>' + verifiedPill(lvl) + '</div>' +
         '<label class="field" for="wa">WhatsApp number<input id="wa" type="tel" inputmode="tel" placeholder="+971 50 123 4567" value="' + esc(ST.contact && ST.contact.whatsapp || '') + '"></label>' +
         '<div class="note"><span style="color:var(--green)">' + I.shield + '</span><span>Only buyers whose bid you accept can see this number.</span></div>';
     } else if (S.step === 2) {
@@ -1199,7 +1284,7 @@
         '<div class="row" style="gap:6px;flex-wrap:wrap;margin-top:4px">' + (ST.og && ST.og[p.id] ? ogPill(ST.og[p.id]) : '') + trustedPill(v) +
         (p.is_banned ? '<span class="pill red">Banned</span>' : suspendedUntil(p) ? '<span class="pill red">On hold</span>' : '') + '</div><div class="m">' + esc(p.city || 'UAE') + ' · member since ' + new Date(p.created_at).toLocaleDateString('en-GB', { month: 'short', year: 'numeric' }) + '</div></div>' + verifiedPill(p.verified_level) + '</div>' +
         (ST.og && ST.og[p.id] ? '<div class="card ogshow">' + ogBadge(ST.og[p.id]) + '<div><b>OG #' + ST.og[p.id] + '</b><br><span class="m">Founding member: one of the first 100 people to join Zenkicks.</span>' + (p.id === uid() ? '<br><button class="btn sharebtn" data-act="share" data-k="og">' + I.share + ' Share to Story</button>' : '') + '</div></div>' : '') +
-        '<div class="card" style="padding:14px;display:flex;flex-direction:column;gap:10px"><div class="between"><div><div class="money" style="font-size:30px">' + (v.total ? '★ ' + Number(v.avg_stars).toFixed(1) : '—') + '</div><div class="m">' + (v.total || 0) + ' vouches · ' + (v.deals || 0) + ' from deals · ' + (v.legit || 0) + ' from legit checks</div></div>' + ((p.is_checker || p.is_admin) ? '<span class="pill ok">✓ Checker</span>' : '') + '</div>' + (v.total ? bars : '<span class="sub">No vouches yet. Members vouch after a deal or when someone helps on a legit check.</span>') + '</div>' +
+        '<div class="card" style="padding:14px;display:flex;flex-direction:column;gap:10px"><div class="between"><div><div class="money" style="font-size:30px">' + (v.total ? '★ ' + Number(v.avg_stars).toFixed(1) : '—') + '</div><div class="m">' + (v.total || 0) + ' vouches · ' + (v.deals_done || 0) + ' deal' + (v.deals_done === 1 ? '' : 's') + ' done · ' + (v.legit || 0) + ' from legit checks</div></div>' + ((p.is_checker || p.is_admin) ? '<span class="pill ok">✓ Checker</span>' : '') + '</div>' + (v.total ? bars : '<span class="sub">No vouches yet. Members vouch after a deal or when someone helps on a legit check.</span>') + '</div>' +
         (vs.length ? '<section class="sec"><h2>Vouches</h2><div class="card" style="padding:4px 14px">' + vs.map(function (x) { return '<div class="kv" style="flex-direction:column;align-items:flex-start;gap:2px"><span><b style="color:var(--red)">' + '★★★★★'.slice(0, x.stars) + '</b><span style="opacity:.25">' + '★★★★★'.slice(x.stars) + '</span> <span class="m">· ' + (x.kind === 'deal' ? 'Deal' : 'Legit check') + ' · ' + ago(x.created_at) + ' ago</span></span>' + (x.note ? '<span style="font-size:14px">' + esc(x.note) + '</span>' : '') + '<span class="m">from ' + userLink(x.from_id, x.from && x.from.username) + '</span></div>'; }).join('') + '</div></section>' : '') +
         (ls.length ? '<section class="sec"><h2>Pairs for sale</h2><div class="grid">' + ls.map(function (l) { return itemCard(l, {}); }).join('') + '</div></section>' : '') +
         (uid() && uid() !== p.id ? '<button class="link" style="align-self:flex-start;color:var(--muted)" data-act="report" data-type="user" data-id="' + p.id + '">Report this member</button>' : '') + '</div>';
@@ -1219,16 +1304,20 @@
       isStaff() ? sb.from('reports').select('id,target_type,target_id,reason,created_at,resolved').eq('resolved', false).order('created_at', { ascending: false }).limit(30) : Promise.resolve({ data: null }),
       vouchMap([uid()]),
       pushState(),
-      sb.rpc('my_invites').then(function (r) { return r.data || 0; }, function () { return 0; })
+      sb.rpc('my_invites').then(function (r) { return r.data || 0; }, function () { return 0; }),
+      sb.rpc('my_deals').then(function (r) { return r.data || []; }, function () { return []; }),
+      sb.from('verify_requests').select('status').eq('user_id', uid()).maybeSingle().then(function (r) { return r.data; }, function () { return null; })
     ]).then(function (a) {
-      ST.myVouch = a[3][uid()]; var pst = a[4], invN = a[5];
+      ST.myVouch = a[3][uid()]; var pst = a[4], invN = a[5], deals = a[6] || [], vreq = a[7];
       var ls = a[0].data || []; var bs = a[1].data || []; var reps = a[2].data;
       var cities = ['', 'Dubai', 'Sharjah', 'Abu Dhabi', 'Ajman', 'Ras Al Khaimah', 'Fujairah', 'Umm Al Quwain', 'Al Ain'];
       return '<div class="pad"><div class="row">' + (ST.og && ST.og[uid()] ? '<div class="avatar-og big">' + ogBadge(ST.og[uid()]) + '</div>' : '<div class="avatar" style="width:56px;height:56px;font-size:22px;background:var(--red)">' + esc((me.username || '?')[0].toUpperCase()) + '</div>') + '<div class="grow"><h1 style="font-size:22px">@' + esc(me.username) + '</h1><div class="m">' + esc(ST.session.user.email || ST.session.user.phone || '') + '</div></div>' + verifiedPill(me.verified_level) + '</div>' +
         (isBlocked() ? '<div class="card notice suspend" style="padding:14px"><b>' + (me.is_banned ? 'Your account is banned' : 'Your account is on hold until ' + esc(fmtDay(suspendedUntil()))) + '</b><br><span class="m">You can browse, but you can’t sell, bid or post for now.</span></div>' : '') +
         (ST.og && ST.og[uid()] ? '<div class="card ogshow">' + ogBadge(ST.og[uid()]) + '<div><b>OG #' + ST.og[uid()] + '</b><br><span class="m">You’re one of the first 100 members of Zenkicks. This badge stays on your profile forever.</span><br><button class="btn sharebtn" data-act="share" data-k="og">' + I.share + ' Share to Story</button></div></div>' : '') +
         '<button class="card between" style="padding:14px;width:100%;text-align:left;align-items:center" data-go="grails"><span><b>⭐ My grails</b><br><span class="m">Pairs you’re hunting. We alert you when one gets listed.</span></span>' + (grailNew().length ? '<span class="pill red">' + grailNew().length + ' new</span>' : '<span aria-hidden="true" style="font-size:20px">›</span>') + '</button>' +
+        dealsCard(deals) + verifyCard(me, vreq) +
         pushCard(pst) + inviteCard(invN) + installLink() +
+        '<button class="card between" style="padding:14px;width:100%;text-align:left;align-items:center" data-go="safety"><span><b>Safe meet-up guide</b><br><span class="m">Where to meet, how to check the pair, how to pay</span></span><span aria-hidden="true" style="font-size:20px">›</span></button>' +
         '<button class="card between" style="padding:14px;width:100%;text-align:left;align-items:center" data-go="u/' + uid() + '"><span><b>My vouches</b><br><span class="m">See your public profile and ratings</span></span>' + starBadge(ST.myVouch) + '</button>' +
         '<div class="card" style="padding:14px;display:flex;flex-direction:column;gap:10px"><b>Profile</b>' +
         '<label class="field" for="p-user">Username<input id="p-user" type="text" maxlength="24" value="' + esc(me.username) + '" autocomplete="username"></label>' +
@@ -1243,6 +1332,43 @@
         '<button class="btn ghost full" data-act="signout">Sign out</button>' +
         '<p class="tiny center"><a href="terms.html" style="text-decoration:underline">Terms</a> · <a href="privacy.html" style="text-decoration:underline">Privacy</a>' + (C.CONTACT_EMAIL ? ' · ' + esc(C.CONTACT_EMAIL) : '') + '</p></div>';
     });
+  };
+
+  function dealsCard(deals) {
+    if (!deals || !deals.length) return '';
+    var open = deals.filter(function (d) { return !d.me_done || (d.me_done && d.other_done && !d.rated); }).length;
+    return '<section class="sec"><div class="between"><h2>My deals</h2>' + (open ? '<span class="pill red">' + open + ' to do</span>' : '') + '</div><div class="card" style="padding:4px 14px">' + deals.map(function (d) {
+      var st = !d.me_done ? '<b style="color:var(--red)">Tap Deal done</b>' : !d.other_done ? 'Waiting for @' + esc(d.other_username) : d.rated ? 'Complete · rated' : '<b style="color:var(--red)">Rate @' + esc(d.other_username) + '</b>';
+      return '<button class="kv" style="width:100%;background:none;border-left:0;border-right:0;border-top:0;text-align:left" data-go="l/' + d.listing_id + '"><span>' + esc(d.model) + '<br><span class="m">' + (d.role === 'buyer' ? 'Bought from' : 'Sold to') + ' @' + esc(d.other_username) + ' · ' + aed(d.amount_aed) + '</span></span><span class="m" style="text-align:right">' + st + '</span></button>';
+    }).join('') + '</div></section>';
+  }
+  function verifyCard(me, req) {
+    if (me.verified_level === 'id') return '';
+    if (req && req.status === 'pending') return '<div class="card verify">' + I.shield + '<div class="grow"><div class="t">Verification requested</div><div class="m">We’ll message you on WhatsApp for a quick video call. Have your Emirates ID ready.</div></div><span class="pill sample">Pending</span></div>';
+    return '<div class="card verify">' + I.shield + '<div class="grow"><div class="t">Get the Verified seller badge</div><div class="m">Buyers trust verified sellers more. A 1-minute WhatsApp video call with our team, nothing to upload.</div></div><button class="btn red" style="height:38px;padding:0 14px;font-size:13px" data-act="verifyreq">Get verified</button></div>';
+  }
+  function verifyModal() {
+    if (!requireLogin()) return;
+    openModal('<h2>Get the Verified seller badge</h2><ol style="margin:4px 0 8px;padding-left:20px;line-height:1.7"><li>Make sure your <b>WhatsApp number</b> is saved in your profile</li><li>We message you to set up a <b>1-minute video call</b></li><li>On the call, show your <b>Emirates ID</b> next to your face</li><li>You get the <b>✓ Verified seller</b> badge on your profile and pairs</li></ol>' +
+      '<p class="tiny" style="margin:0 0 8px">We only look at your ID on the call. We don’t take photos or keep a copy, and your ID details are never shown to other members.</p>' +
+      '<textarea id="vr-note" maxlength="300" placeholder="Best time to call (optional)" style="padding:10px;border:1px solid var(--line);border-radius:10px;min-height:60px"></textarea>' +
+      '<p class="err" id="vr-err" role="alert"></p><div class="row"><button class="btn ghost" style="flex:1" data-act="mclose">Cancel</button><button class="btn red" style="flex:1" data-act="verifysend">Request badge</button></div>');
+  }
+
+  // ------------------------------------------------------------------
+  // SAFE MEET-UP GUIDE
+  // ------------------------------------------------------------------
+  VIEWS.safety = function () {
+    function block(title, items) { return '<section class="sec"><h2>' + title + '</h2><ul class="safelist">' + items.map(function (t) { return '<li><span class="ji">' + I.check + '</span><span>' + t + '</span></li>'; }).join('') + '</ul></section>'; }
+    return '<div class="pad"><div class="joinhero"><span class="pill invited">' + I.shield + 'Safety</span><h1>Meet up <span>safely</span></h1><p class="sub">Zenkicks never holds your money. Buyer and seller deal directly, so follow these steps every time.</p></div>' +
+      block('Before you meet', ['Check the member’s badges: <b>✓ Verified seller</b>, star rating and deals done', 'Ask for a <b>tag photo</b>: the pair next to paper with their @username and today’s date', 'Not sure it’s real? Post it on <b>Legit or Fake</b> for a second opinion', 'Agree on the price, place and time in writing on WhatsApp']) +
+      block('Where to meet', ['A busy public place in daylight: a <b>mall entrance, food court or café</b> with security and cameras', 'Bring a friend if you can, and tell someone where you’re going', 'Never meet at a private home or in a car park at night', 'Delivery instead? Only with sellers you trust (Verified, good ratings), and never pay in full before the pair arrives']) +
+      block('Check the pair', ['Compare the <b>style code (SKU)</b> on the box label and the size tag. They must match', 'Look at stitching, glue marks, the insole print and the sole', 'Try them on and check the size', 'Something feels off? Walk away. A good deal is never worth a fake']) +
+      block('Paying', ['Pay <b>only after</b> you’ve checked the pair: cash, or an instant bank transfer on the spot', 'Never send a deposit or full payment in advance to someone you can’t verify', 'Never share a bank OTP or card details. No real buyer or seller needs them']) +
+      block('After the deal', ['Both of you tap <b>Deal done</b> on the listing', 'Rate each other. Ratings build trust for everyone']) +
+      '<div class="card itip warn"><b>Red flags</b><span class="m">Price far below market · in a rush · won’t meet in person · asks for a deposit · new account with no photos of the actual pair · wants to move the chat off WhatsApp to a link.</span></div>' +
+      '<div class="card itip"><b>If something goes wrong</b><span class="m">Report the member in the app (we can ban them and take their pairs down). In an emergency call <b>999</b>. For online fraud you can report to the Dubai Police eCrime platform: <a href="https://ecrimehub.gov.ae/" target="_blank" rel="noopener" style="text-decoration:underline">ecrimehub.gov.ae</a>.</span></div>' +
+      '<button class="btn dark" data-go="market">Back to the Market</button></div>';
   };
 
   // ------------------------------------------------------------------
@@ -1260,9 +1386,10 @@
       sb.from('listings').select('id,model,price_aed,status,created_at,seller_id,seller:profiles!listings_seller_id_fkey(username)').order('created_at', { ascending: false }).limit(15),
       sb.from('checks').select('id,model,created_at,author_id,verdict,author:profiles!checks_author_id_fkey(username)').order('created_at', { ascending: false }).limit(10),
       isOwner() ? sb.rpc('invite_stats') : Promise.resolve({ data: [] }),
-      loadOwners() // fresh OG numbers, so someone who just joined shows their badge here right away
+      loadOwners(), // fresh OG numbers, so someone who just joined shows their badge here right away
+      sb.rpc('admin_verify_queue').then(function (r) { return r.data || []; }, function () { return []; })
     ]).then(function (a) {
-      var invs = (a[5] && a[5].data) || [];
+      var invs = (a[5] && a[5].data) || []; var vq = a[7] || [];
       if (a[0].error) throw a[0].error;
       var st = (a[0].data || [])[0] || {}; var users = a[1].data || []; var reps = a[2].data || []; var ls = a[3].data || []; var cs = a[4].data || [];
       function tile(n, label) { return '<div class="card" style="padding:12px;display:flex;flex-direction:column;gap:2px"><span class="money" style="font-size:22px">' + (n || 0) + '</span><span class="m">' + label + '</span></div>'; }
@@ -1274,6 +1401,7 @@
         var controls = u.is_owner ? '<span class="m">Owner. Cannot be changed.</span>' :
           (u.confirmed === false && u.email ? '<button class="chip" style="color:#9a5b00;border-color:#d8a24a" data-act="aremind" data-id="' + u.id + '" data-v="' + esc(u.email) + '">' + (remindedAgo(u.id) !== null ? 'Remind again' : 'Send reminder') + '</button>' : '') +
           (isOwner() ? roleBtn(u, 'admin', u.is_admin, 'Admin') : '') + roleBtn(u, 'checker', u.is_checker, 'Checker') +
+          '<button class="chip' + (u.verified_level === 'id' ? ' on' : '') + '" data-act="averify" data-id="' + u.id + '" data-v="' + (u.verified_level === 'id' ? '0' : '1') + '" aria-pressed="' + (u.verified_level === 'id') + '">' + (u.verified_level === 'id' ? '✓ Verified seller' : 'Verify seller') + '</button>' +
           (u.id === uid() ? '' : (u.is_banned ? '' : '<button class="chip" data-act="awarn" data-id="' + u.id + '" data-user="' + esc(u.username) + '">Warn</button>' +
             (u.banned_until ? '<button class="chip" data-act="alift" data-id="' + u.id + '">Lift hold</button>' : '<button class="chip" style="color:#9a5b00;border-color:#d8a24a" data-act="asusp" data-id="' + u.id + '" data-user="' + esc(u.username) + '">Suspend</button>')) +
           '<button class="chip" style="' + (u.is_banned ? '' : 'color:var(--red);border-color:var(--red)') + '" data-act="aban" data-id="' + u.id + '" data-user="' + esc(u.username) + '" data-on="' + u.is_banned + '">' + (u.is_banned ? 'Unban' : 'Ban') + '</button>');
@@ -1288,6 +1416,12 @@
       var cRows = cs.map(function (c) { return '<div class="kv" style="align-items:center"><button class="link" style="text-align:left;padding:0;color:inherit" data-go="c/' + c.id + '"><b>' + esc(c.model) + '</b><br><span class="m">@' + esc(c.author && c.author.username) + ' · ' + (c.verdict ? c.verdict.toUpperCase() : 'open') + ' · ' + ago(c.created_at) + ' ago</span></button><button class="btn ghost" style="height:36px;padding:0 10px;font-size:12px;color:var(--red)" data-act="adelcheck" data-id="' + c.id + '">Delete</button></div>'; }).join('') || '<p class="sub">No legit checks yet.</p>';
       return '<div class="pad"><div class="sec" style="gap:4px"><h1>' + (isOwner() ? 'Owner panel' : 'Admin panel') + '</h1><p class="sub">' + (isOwner() ? 'You’re the founder. You appoint admins and checkers, and nobody can change your role.' : 'Handle reports, checkers and bans.') + '</p></div>' +
         '<div class="grid" style="grid-template-columns:repeat(3,1fr)">' + tile(st.members, 'Members' + (st.pending ? '<br><span style="color:#9a5b00">+ ' + st.pending + ' pending</span>' : '')) + tile(st.new_7d, 'New this week') + tile(st.active_listings, 'Pairs for sale') + tile(st.sold, 'Sold') + tile(st.checks, 'Legit checks') + tile(st.open_reports, 'Open reports') + '</div>' +
+        (vq.length ? '<section class="sec"><h2>Verification requests (' + vq.length + ')</h2><div class="card" style="padding:4px 14px">' + vq.map(function (x) {
+          var wa = String(x.whatsapp || '').replace(/[^0-9]/g, '');
+          return '<div class="kv" style="flex-direction:column;align-items:flex-start;gap:6px"><span>' + userLink(x.user_id, x.username) + ' <span class="m">· asked ' + ago(x.requested_at) + ' ago · ' + (x.deals_done || 0) + ' deals done</span></span>' + (x.note ? '<span class="m">“' + esc(x.note) + '”</span>' : '') +
+            '<div class="chips-wrap">' + (wa ? '<a class="chip" href="https://wa.me/' + wa + '" target="_blank" rel="noopener">WhatsApp ' + esc(x.whatsapp) + '</a>' : '<span class="m">No WhatsApp saved</span>') +
+            '<button class="chip on" data-act="averify" data-id="' + x.user_id + '" data-v="1">✓ Approve</button><button class="chip" data-act="averify" data-id="' + x.user_id + '" data-v="0">Reject</button></div></div>';
+        }).join('') + '</div><p class="m" style="margin:0">Video-call them on WhatsApp. Approve only if the face matches the Emirates ID and the name looks right. Don’t screenshot or save the ID.</p></section>' : '') +
         '<section class="sec"><h2>Reports</h2><div class="card" style="padding:4px 14px">' + repRows + '</div></section>' +
         (invs.length ? '<section class="sec"><h2>Top inviters</h2><div class="card" style="padding:4px 14px">' + invs.map(function (r, k) { return '<div class="kv"><span>' + (k + 1) + '. ' + userLink(r.user_id, r.username) + '</span><span class="pv">' + r.invited + ' joined</span></div>'; }).join('') + '</div></section>' : '') +
         '<section class="sec"><h2>Members</h2><label class="search" for="aq">' + I.search + '<input id="aq" type="search" placeholder="Search username' + (isOwner() ? ' or email' : '') + '" value="' + esc(q) + '" autocomplete="off"></label>' + (ST.pendingList.length ? '<div class="card pendbox"><div><b>' + ST.pendingList.length + ' never finished signing up</b><br><span class="m">They asked for a code but never typed it. A reminder re-sends their sign-up email with a fresh code. One per day each.</span></div><button class="btn red" style="height:40px;padding:0 16px;font-size:13px" data-act="aremindall">Remind all ' + ST.pendingList.length + '</button></div>' : '') +
@@ -1418,7 +1552,8 @@
     if (it.kind === 'drop') {
       var dt = new Date(d.date + 'T00:00:00Z');
       row('Release', DOW[dt.getUTCDay()] + ', ' + dt.getUTCDate() + ' ' + MON[dt.getUTCMonth()].charAt(0) + MON[dt.getUTCMonth()].slice(1).toLowerCase() + ' ' + dt.getUTCFullYear() + ' · <b>' + whenLabel(d.date) + '</b>');
-      row('Retail', priceLine(d.retail_usd));
+      if (d.uae && d.uae.aed) row('UAE retail', '<b>AED ' + Number(d.uae.aed).toLocaleString('en-US') + '</b>');
+      row(d.uae && d.uae.aed ? 'US retail' : 'Retail', priceLine(d.retail_usd));
     } else {
       row('Trending', '<b>#' + it.rank + '</b>' + (d.why ? ' · ' + esc(d.why) : ''));
       if (d.price_usd) row('Resale', 'From AED ' + usdToAed(d.price_usd).toLocaleString('en-US') + ' <span style="opacity:.7">(US$' + d.price_usd + ')</span>');
@@ -1433,7 +1568,7 @@
       '<div class="peek-img">' + (im ? '<img src="' + esc(im) + '" alt="' + esc(d.name) + '">' : I.shoe) + '</div>' +
       '<h2 class="peek-name">' + esc(d.name) + '</h2>' +
       '<div class="card" style="padding:4px 14px">' + rows.join('') + '</div>' +
-      (it.kind === 'drop' ? codBtns(k, true) : '') +
+      (it.kind === 'drop' ? codBtns(k, true) + (dayDiff(d.date) >= 0 ? uaeBox(d) : '') : '') +
       '<div class="row" style="gap:8px;flex-wrap:wrap">' +
       (it.kind === 'drop' && dayDiff(d.date) >= 0 ? '<button class="btn ' + (on ? 'ghost' : 'red') + '" style="flex:1" data-act="peekrem" data-key="' + esc(k) + '">' + (on ? I.check + ' Reminder on' : I.bell + ' Remind me') + '</button>' : '') +
       '<button class="btn dark" style="flex:1" data-act="peekmarket" data-v="' + esc(shortModel(d.name)) + '">' + I.bag + ' Find on Market</button>' +
@@ -1522,13 +1657,38 @@
           var c = (r.data || [])[0];
           if (!c || !c.whatsapp) { openModal('<h2>No WhatsApp yet</h2><p class="sub">@' + esc(c && c.username || 'This user') + ' hasn’t added a WhatsApp number yet.</p><button class="btn dark" data-act="mclose">OK</button>'); return; }
           var digits = c.whatsapp.replace(/\D/g, '');
-          openModal('<h2>Contact @' + esc(c.username) + '</h2><p class="sub">Agree on payment and meet-up or delivery. Meet in a public place and check the pair before you pay.</p><div class="card" style="padding:14px;font-size:18px;font-weight:700;user-select:all">' + esc(c.whatsapp) + '</div><a class="btn red full" href="https://wa.me/' + digits + '" target="_blank" rel="noopener">Open WhatsApp</a><button class="btn ghost full" data-act="mclose">Close</button>');
+          openModal('<h2>Contact @' + esc(c.username) + '</h2><p class="sub">Agree on payment and meet-up or delivery. Meet in a public place and check the pair before you pay. <button class="link" style="padding:0" data-act="mguide">Safe meet-up guide ›</button></p><div class="card" style="padding:14px;font-size:18px;font-weight:700;user-select:all">' + esc(c.whatsapp) + '</div><a class="btn red full" href="https://wa.me/' + digits + '" target="_blank" rel="noopener">Open WhatsApp</a><button class="btn ghost full" data-act="mclose">Close</button>');
         });
         break;
       case 'sold': case 'remove':
         sb.from('listings').update({ status: a === 'sold' ? 'sold' : 'removed' }).eq('id', id).then(function (r) { if (r.error) return fail(r.error); toast(a === 'sold' ? 'Marked as sold. Congrats!' : 'Listing removed'); go('me'); });
         break;
-      case 'report': reportModal(el.getAttribute('data-type'), id); break;
+      case 'report': closeModal(); reportModal(el.getAttribute('data-type'), id); break;
+      case 'dealdone':
+        sb.rpc('confirm_deal', { bid: id }).then(function (r) { if (r.error) return fail(r.error); toast(r.data === 'done' ? 'Deal complete! Now rate each other.' : 'Confirmed. Ratings unlock when the other side taps Deal done.'); render(true); });
+        break;
+      case 'dealcancel':
+        openModal('<h2>Deal fell through?</h2><p class="sub">' + (v === 'seller' ? 'Your pair goes back on sale and other buyers can bid again.' : 'Your bid is withdrawn. You can bid again later.') + '</p><div class="row"><button class="btn ghost" style="flex:1" data-act="mclose">Keep the deal</button><button class="btn red" style="flex:1" data-act="dealcancel2" data-id="' + id + '">Yes, cancel it</button></div>');
+        break;
+      case 'dealcancel2':
+        sb.rpc('cancel_deal', { bid: id }).then(function (r) { if (r.error) return fail(r.error); closeModal(); toast('Deal cancelled'); render(true); });
+        break;
+      case 'verifyreq': verifyModal(); break;
+      case 'verifysend':
+        sb.rpc('request_verify', { p_note: (document.getElementById('vr-note').value || '').trim() }).then(function (r) {
+          var e = document.getElementById('vr-err');
+          if (r.error) { if (e) e.textContent = r.error.message; return; }
+          if (r.data === 'nowhatsapp') { if (e) e.textContent = 'Add your WhatsApp number in Me → Profile first, then try again.'; return; }
+          closeModal(); toast(r.data === 'already' ? 'You’re already verified' : r.data === 'blocked' ? 'Your account is on hold' : 'Request sent. We’ll message you on WhatsApp.'); render(true);
+        });
+        break;
+      case 'averify':
+        sb.rpc('admin_verify', { target: id, approve: v === '1' }).then(function (r) { if (r.error) return fail(r.error); toast(v === '1' ? 'Verified seller badge on' : 'Badge removed / request closed'); render(true); });
+        break;
+      case 'mguide': closeModal(); go('safety'); break;
+      case 'pushpref':
+        setPushPref(v).then(function (on) { toast((v === 'weekly' ? 'Weekly drops list ' : 'Grail alerts ') + (on ? 'on' : 'off')); render(true); }).catch(function () { toast('Couldn’t save, try again'); });
+        break;
       case 'rpick': var t = document.getElementById('r-text'); t.value = v + (t.value ? ': ' + t.value : ''); break;
       case 'rsend':
         var reason = (document.getElementById('r-text').value || '').trim();

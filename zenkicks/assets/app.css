@@ -505,3 +505,33 @@ h2{font-size:19px}
 .getapp svg{width:16px;height:16px;color:var(--brand)}
 @media (max-width:420px){.getapp{height:34px;padding:0 10px 0 8px;font-size:11px;letter-spacing:.04em;gap:4px}.getapp svg{width:15px;height:15px}.hd{gap:6px}}
 @media (max-width:370px){.getapp span{display:none}.getapp{padding:0 8px}}
+
+/* ---- v40: UAE drops ---- */
+.uaetag{display:inline-block;font:700 10px/1 var(--label);letter-spacing:.06em;padding:3px 5px;border-radius:5px;background:var(--green);color:#fff;vertical-align:1px}
+.uaebox{padding:12px 14px;display:flex;flex-direction:column;gap:6px}
+.storerow{padding:10px 0;align-items:center;color:var(--ink)}
+.storerow:last-child{border-bottom:0}
+.storerow > span[aria-hidden]{font-size:20px;color:var(--muted)}
+
+/* ---- v40: deal meter ---- */
+.dmtag{align-self:flex-start;display:inline-block;font:700 11px/1 var(--label);letter-spacing:.04em;padding:4px 7px;border-radius:6px;background:var(--mint);color:var(--green)}
+.dmtag.great{background:var(--green);color:#fff}
+.dmtag.fair{background:#EFE9DA;color:var(--muted)}
+.dmtag.high{background:#FBE3E0;color:var(--red)}
+.meter{padding:14px;display:flex;flex-direction:column;gap:8px}
+.mbar{position:relative;height:10px;border-radius:6px;margin:6px 0 0;background:linear-gradient(90deg,#0B6E4F 0%,#5FA47E 35%,#E6C46A 55%,#E07A5F 75%,#C8211F 100%)}
+.mbar i{position:absolute;top:50%;width:18px;height:18px;margin:-9px 0 0 -9px;border-radius:50%;background:var(--paper);border:3px solid var(--ink);box-shadow:0 1px 3px rgba(0,0,0,.3)}
+.mlabels{display:flex;justify-content:space-between;font-size:11px;color:var(--muted);font-weight:600}
+
+/* ---- v40: deal done steps ---- */
+.dealsteps{display:flex;flex-direction:column;gap:8px;padding:2px 0 8px;border-bottom:1px solid var(--line)}
+.card > .dealsteps{border-bottom:0;padding:0}
+.dealstate{display:flex;gap:6px;align-items:flex-start;font-size:13px;line-height:1.4;color:var(--muted)}
+.dealstate svg{width:16px;height:16px;flex-shrink:0;margin-top:1px}
+.dealstate.ok{color:var(--green);font-weight:700;font-size:14px}
+
+/* ---- v40: safe meet-up guide ---- */
+.safelist{list-style:none;margin:0;padding:0;display:grid;gap:10px}
+.safelist li{display:flex;gap:11px;align-items:flex-start;font-size:14px;line-height:1.45}
+.safelist .ji{width:24px;height:24px;border-radius:7px;background:var(--green);margin-top:-1px}
+.safelist .ji svg{width:14px;height:14px}
