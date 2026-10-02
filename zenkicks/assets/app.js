@@ -322,7 +322,7 @@
     return ps[0] ? pub('listing-photos', ps[0].path) : '';
   }
   // ---- install guide (#/install) ----
-  function installLink() { if (installEnv().standalone) return '<button class="card between ilink" data-act="guidecopy"><span class="invhead"><span class="ji">' + I.share + '</span><span><b>Share the install guide</b><br><span class="m">Help your friends put Zenkicks on their phone</span></span></span><span aria-hidden="true" style="font-size:20px">›</span></button>';
+  function installLink() { if (installEnv().standalone) return '<button class="card between ilink" data-go="install"><span class="invhead"><span class="ji">' + I.dl + '</span><span><b>Install guide</b><br><span class="m">Steps for Android and iPhone. Share them with your friends.</span></span></span><span aria-hidden="true" style="font-size:20px">›</span></button>';
     return '<button class="card between ilink" data-go="install"><span class="invhead"><span class="ji">' + I.dl + '</span><span><b>Install the app</b><br><span class="m">Put Zenkicks on your Android or iPhone</span></span></span><span aria-hidden="true" style="font-size:20px">›</span></button>'; }
 
   // ---- invite links: serelldc.github.io/zenkicks/join?ref=username ----
