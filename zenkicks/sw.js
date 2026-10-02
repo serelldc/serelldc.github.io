@@ -1,9 +1,9 @@
 // Zenkicks service worker: makes the app installable and opens it instantly.
 // - The page opens from the phone's cache and refreshes itself in the background.
 // - Code files carry ?v=N, so each version is cached once and never re-downloaded.
-// - Drops and What's hot data try the network first (max 3s), then fall back to the cache.
+// - Drops and What's hot data open from the cache (same day) and refresh in the background.
 // A new version of this file (VERSION changes) reloads the app once with the new code.
-var VERSION = 'zk-v37';
+var VERSION = 'zk-v38';
 var SHELL = ['./', 'index.html'];
 
 self.addEventListener('install', function (e) {
@@ -37,6 +37,15 @@ self.addEventListener('fetch', function (e) {
   // versioned code (app.js?v=12 etc.) and images: cache first
   if (url.search.indexOf('v=') > -1 && /\.(js|css)$/.test(url.pathname) || /\.(png|jpe?g|webp|svg|ico)$/i.test(url.pathname)) {
     e.respondWith(caches.match(req).then(function (hit) { return hit || fetch(req).then(function (res) { return put(req, res); }); }));
+    return;
+  }
+  // drops / what's hot data (?v=<day>): show the saved copy instantly, refresh it in the background
+  if (/\/data\/[^/]+\.json$/.test(url.pathname)) {
+    e.respondWith(caches.match(req).then(function (hit) {
+      var net = fromNet(req).catch(function () { return hit || caches.match(req, { ignoreSearch: true }); });
+      if (hit) { e.waitUntil(net.catch(function () {})); return hit; }
+      return Promise.race([net, timeout(3000)]).catch(function () { return caches.match(req, { ignoreSearch: true }).then(function (old) { return old || net; }); });
+    }));
     return;
   }
   // data and everything else: network first (3s max), cache when slow or offline
