@@ -252,23 +252,26 @@
       "brand": "Nike",
       "retail_usd": 190,
       "image": "",
-      "link": ""
+      "link": "",
+      "tried": "2026-10-03"
     },
     {
       "date": "2026-10-24",
       "name": "Nike Ja 4 \"Radar\"",
       "brand": "Nike",
       "retail_usd": 140,
-      "image": "",
-      "link": ""
+      "image": "https://images.stockx.com/images/Nike-Ja-4-Radar.jpg?fit=fill&bg=FFFFFF&w=600&h=430&fm=webp&auto=compress&q=90&dpr=2&trim=color&updated_at=1786133505",
+      "link": "https://stockx.pvxt.net/c/4722526/1023711/9060?u=https%3A%2F%2Fstockx.com%2Fnike-ja-4-radar",
+      "sku": "JA9745-400"
     },
     {
       "date": "2026-10-24",
       "name": "Vans Old Skool 36 Pearlized \"Red\"",
       "brand": "Vans",
       "retail_usd": 130,
-      "image": "",
-      "link": ""
+      "image": "https://images.stockx.com/images/Vans-LX-Old-Skool-36-Pearlized-Pack-Red.jpg?fit=fill&bg=FFFFFF&w=600&h=430&fm=webp&auto=compress&q=90&dpr=2&trim=color&updated_at=1787683428",
+      "link": "https://stockx.pvxt.net/c/4722526/1023711/9060?u=https%3A%2F%2Fstockx.com%2Fvans-lx-old-skool-36-pearlized-pack-red",
+      "sku": "VN000E8VIZQ"
     },
     {
       "date": "2026-10-25",
@@ -284,7 +287,8 @@
       "brand": "Nike",
       "retail_usd": 155,
       "image": "",
-      "link": ""
+      "link": "",
+      "tried": "2026-10-03"
     },
     {
       "date": "2026-10-30",
@@ -292,7 +296,8 @@
       "brand": "Nike",
       "retail_usd": 180,
       "image": "",
-      "link": ""
+      "link": "",
+      "tried": "2026-10-03"
     },
     {
       "date": "2026-10-31",
@@ -324,7 +329,8 @@
       "brand": "Nike",
       "retail_usd": 210,
       "image": "",
-      "link": ""
+      "link": "",
+      "tried": "2026-10-03"
     },
     {
       "date": "2026-11-06",
@@ -332,7 +338,8 @@
       "brand": "Nike",
       "retail_usd": 145,
       "image": "",
-      "link": ""
+      "link": "",
+      "tried": "2026-10-03"
     },
     {
       "date": "2026-11-07",
@@ -340,7 +347,8 @@
       "brand": "Jordan",
       "retail_usd": 240,
       "image": "",
-      "link": ""
+      "link": "",
+      "tried": "2026-10-03"
     },
     {
       "date": "2026-11-07",
@@ -348,7 +356,8 @@
       "brand": "Jordan",
       "retail_usd": 245,
       "image": "",
-      "link": ""
+      "link": "",
+      "tried": "2026-10-03"
     },
     {
       "date": "2026-11-07",
@@ -364,7 +373,8 @@
       "brand": "Jordan",
       "retail_usd": 235,
       "image": "",
-      "link": ""
+      "link": "",
+      "tried": "2026-10-03"
     },
     {
       "date": "2026-11-11",
@@ -388,7 +398,8 @@
       "brand": "Nike",
       "retail_usd": 170,
       "image": "",
-      "link": ""
+      "link": "",
+      "tried": "2026-10-03"
     },
     {
       "date": "2026-11-13",
@@ -403,7 +414,8 @@
       "name": "Air Jordan 11 \"Green Screen\"",
       "brand": "Jordan",
       "retail_usd": 255,
-      "link": "https://stockx.pvxt.net/c/4722526/1023711/9060?u=https%3A%2F%2Fstockx.com%2Fair-jordan-11-retro-green-screen-monstars"
+      "link": "https://stockx.pvxt.net/c/4722526/1023711/9060?u=https%3A%2F%2Fstockx.com%2Fair-jordan-11-retro-green-screen-monstars",
+      "tried": "2026-10-03"
     },
     {
       "date": "2026-11-14",
@@ -411,7 +423,8 @@
       "brand": "Nike",
       "retail_usd": 180,
       "image": "",
-      "link": ""
+      "link": "",
+      "tried": "2026-10-03"
     },
     {
       "date": "2026-11-14",
@@ -419,15 +432,17 @@
       "brand": "Nike",
       "retail_usd": 140,
       "image": "",
-      "link": ""
+      "link": "",
+      "tried": "2026-10-03"
     },
     {
       "date": "2026-11-14",
       "name": "Nike Zoom Hyperflight \"Green Apple\"",
       "brand": "Nike",
       "retail_usd": 170,
-      "image": "",
-      "link": ""
+      "image": "https://images.stockx.com/images/Nike-Zoom-Hyperflight-Green-Apple.jpg?fit=fill&bg=FFFFFF&w=600&h=430&fm=webp&auto=compress&q=90&dpr=2&trim=color&updated_at=1790190167",
+      "link": "https://stockx.pvxt.net/c/4722526/1023711/9060?u=https%3A%2F%2Fstockx.com%2Fnike-zoom-hyperflight-green-apple",
+      "sku": "IZ1481-300"
     },
     {
       "date": "2026-11-15",
