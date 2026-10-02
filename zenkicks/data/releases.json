@@ -4,6 +4,22 @@
   "items": [
     {
       "date": "2026-10-03",
+      "name": "ANTA Kai 3 \"Kai Feng\"",
+      "brand": "ANTA",
+      "retail_usd": 150,
+      "image": "",
+      "link": ""
+    },
+    {
+      "date": "2026-10-03",
+      "name": "Above the Clouds x ASICS Gel-SD LYTE",
+      "brand": "ASICS",
+      "retail_usd": 220,
+      "image": "",
+      "link": ""
+    },
+    {
+      "date": "2026-10-03",
       "name": "Air Jordan 14 Low \"Black Ostrich\"",
       "brand": "Jordan",
       "retail_usd": 240,
@@ -26,6 +42,54 @@
       "retail_usd": 205,
       "image": "https://images.stockx.com/images/Air-Jordan-3-Retro-Fireside-Womens.jpg?fit=fill&bg=FFFFFF&w=600&h=430&fm=webp&auto=compress&q=90&dpr=2&trim=color&updated_at=1785869669",
       "link": "https://stockx.pvxt.net/c/4722526/1023711/9060?u=https%3A%2F%2Fstockx.com%2Fair-jordan-3-retro-fireside-womens"
+    },
+    {
+      "date": "2026-10-03",
+      "name": "Hardies x adidas Adistar Control 5 \"Aurora Ruby\"",
+      "brand": "adidas",
+      "retail_usd": 130,
+      "image": "",
+      "link": ""
+    },
+    {
+      "date": "2026-10-03",
+      "name": "Victor Victor x Nike Air Force 1 Low '01 \"Yellow Zest\"",
+      "brand": "Nike",
+      "retail_usd": 150,
+      "image": "",
+      "link": ""
+    },
+    {
+      "date": "2026-10-03",
+      "name": "Willy Chavarria x adidas Megaride Bones \"Black\"",
+      "brand": "adidas",
+      "retail_usd": 230,
+      "image": "",
+      "link": ""
+    },
+    {
+      "date": "2026-10-03",
+      "name": "Willy Chavarria x adidas Megaride Bones \"Halo Green\"",
+      "brand": "adidas",
+      "retail_usd": 230,
+      "image": "",
+      "link": ""
+    },
+    {
+      "date": "2026-10-03",
+      "name": "Willy Chavarria x adidas Megaride High \"Core Black\"",
+      "brand": "adidas",
+      "retail_usd": 280,
+      "image": "",
+      "link": ""
+    },
+    {
+      "date": "2026-10-05",
+      "name": "Nike Air Force 1 Low Luxe \"Oregon Black\"",
+      "brand": "Nike",
+      "retail_usd": 125,
+      "image": "",
+      "link": ""
     },
     {
       "date": "2026-10-05",
@@ -55,6 +119,62 @@
       "tried": "2026-10-03"
     },
     {
+      "date": "2026-10-08",
+      "name": "Brain Dead x adidas Samba Bowling \"Cheetah\"",
+      "brand": "adidas",
+      "retail_usd": 250,
+      "image": "",
+      "link": ""
+    },
+    {
+      "date": "2026-10-08",
+      "name": "Brain Dead x adidas Samba Bowling \"Snakeskin\"",
+      "brand": "adidas",
+      "retail_usd": 250,
+      "image": "",
+      "link": ""
+    },
+    {
+      "date": "2026-10-08",
+      "name": "ROSÉ x Puma Speedcat VTG \"Haute Coffee\"",
+      "brand": "Puma",
+      "retail_usd": 120,
+      "image": "",
+      "link": ""
+    },
+    {
+      "date": "2026-10-08",
+      "name": "Vans Old Skool 36 Pearlized \"Marshmallow White\"",
+      "brand": "Vans",
+      "retail_usd": 130,
+      "image": "",
+      "link": ""
+    },
+    {
+      "date": "2026-10-09",
+      "name": "Instant Skateboards x Nike SB Air Force 1 Low \"Tokyo\"",
+      "brand": "Nike",
+      "retail_usd": 110,
+      "image": "",
+      "link": ""
+    },
+    {
+      "date": "2026-10-09",
+      "name": "Los Angeles Dodgers x Vans Sk8-Hi \"Classic Blue\"",
+      "brand": "Vans",
+      "retail_usd": 140,
+      "image": "",
+      "link": ""
+    },
+    {
+      "date": "2026-10-09",
+      "name": "Los Angeles Dodgers x Vans Skate Era \"Classic Blue\"",
+      "brand": "Vans",
+      "retail_usd": 120,
+      "image": "",
+      "link": ""
+    },
+    {
       "date": "2026-10-09",
       "name": "Nike Air Griffey Max 1 \"Cincinnati Reds\"",
       "brand": "Nike",
@@ -73,11 +193,59 @@
     },
     {
       "date": "2026-10-09",
+      "name": "Reebok Engine A 26 \"Black White\"",
+      "brand": "Reebok",
+      "retail_usd": 120,
+      "image": "",
+      "link": ""
+    },
+    {
+      "date": "2026-10-09",
+      "name": "Reebok Engine A 26 \"Grey\"",
+      "brand": "Reebok",
+      "retail_usd": 120,
+      "image": "",
+      "link": ""
+    },
+    {
+      "date": "2026-10-09",
+      "name": "Street Fighter x Puma Suede \"Chun-Li\"",
+      "brand": "Puma",
+      "retail_usd": 120,
+      "image": "",
+      "link": ""
+    },
+    {
+      "date": "2026-10-09",
+      "name": "Street Fighter x Puma Suede \"Ken Masters\"",
+      "brand": "Puma",
+      "retail_usd": 100,
+      "image": "",
+      "link": ""
+    },
+    {
+      "date": "2026-10-09",
+      "name": "Street Fighter x Puma Suede \"Ryu\"",
+      "brand": "Puma",
+      "retail_usd": 100,
+      "image": "",
+      "link": ""
+    },
+    {
+      "date": "2026-10-09",
       "name": "adidas Anthony Edwards 3 \"Snow Camo\"",
       "brand": "adidas",
       "retail_usd": 130,
       "image": "https://images.stockx.com/images/adidas-AE-3-Snow-Camo.jpg?fit=fill&bg=FFFFFF&w=600&h=430&fm=webp&auto=compress&q=90&dpr=2&trim=color&updated_at=1789149275",
       "link": "https://stockx.pvxt.net/c/4722526/1023711/9060?u=https%3A%2F%2Fstockx.com%2Fadidas-ae-3-snow-camo"
+    },
+    {
+      "date": "2026-10-09",
+      "name": "atmos x ASICS Gel-Kayano 12.1 \"Indonesia\"",
+      "brand": "ASICS",
+      "retail_usd": 190,
+      "image": "",
+      "link": ""
     },
     {
       "date": "2026-10-10",
@@ -89,11 +257,59 @@
     },
     {
       "date": "2026-10-10",
+      "name": "Ben-G x Nike SB Air Force 1 Low",
+      "brand": "Nike",
+      "retail_usd": 235,
+      "image": "",
+      "link": ""
+    },
+    {
+      "date": "2026-10-10",
+      "name": "Hellstar x adidas Megaride S2 \"Black Red\"",
+      "brand": "adidas",
+      "retail_usd": 200,
+      "image": "",
+      "link": ""
+    },
+    {
+      "date": "2026-10-10",
       "name": "Nike KD 6 \"Texas\"",
       "brand": "Nike",
       "retail_usd": 135,
       "image": "https://images.stockx.com/images/Nike-KD-6-Texas-Black-Galaxy-Halloween.jpg?fit=fill&bg=FFFFFF&w=600&h=430&fm=webp&auto=compress&q=90&dpr=2&trim=color&updated_at=1607059304",
       "link": "https://stockx.pvxt.net/c/4722526/1023711/9060?u=https%3A%2F%2Fstockx.com%2Fkd-6-texas"
+    },
+    {
+      "date": "2026-10-10",
+      "name": "Sneakerlah x ASICS Gel-Kayano 20 \"Ice Kacang\"",
+      "brand": "ASICS",
+      "retail_usd": 220,
+      "image": "",
+      "link": ""
+    },
+    {
+      "date": "2026-10-10",
+      "name": "Victor Victor x Nike Air Force 1 Low '01 \"Blue\"",
+      "brand": "Nike",
+      "retail_usd": 150,
+      "image": "",
+      "link": ""
+    },
+    {
+      "date": "2026-10-10",
+      "name": "adidas Adizero Electric+ II \"Snickers\"",
+      "brand": "adidas",
+      "retail_usd": 130,
+      "image": "",
+      "link": ""
+    },
+    {
+      "date": "2026-10-11",
+      "name": "Entire Studios x adidas Dropset 4",
+      "brand": "adidas",
+      "retail_usd": 180,
+      "image": "",
+      "link": ""
     },
     {
       "date": "2026-10-13",
@@ -119,6 +335,38 @@
       "retail_usd": 125,
       "image": "https://images.stockx.com/images/Air-Jordan-Tatum-5-Sunrise.jpg?fit=fill&bg=FFFFFF&w=600&h=430&fm=webp&auto=compress&q=90&dpr=2&trim=color&updated_at=1789065473",
       "link": "https://stockx.pvxt.net/c/4722526/1023711/9060?u=https%3A%2F%2Fstockx.com%2Fair-jordan-tatum-5-sunrise"
+    },
+    {
+      "date": "2026-10-15",
+      "name": "Nike Air Force 1 Low Luxe \"Georgia\"",
+      "brand": "Nike",
+      "retail_usd": 125,
+      "image": "",
+      "link": ""
+    },
+    {
+      "date": "2026-10-15",
+      "name": "Nike Air Force 1 Low Luxe \"Kentucky\"",
+      "brand": "Nike",
+      "retail_usd": 125,
+      "image": "",
+      "link": ""
+    },
+    {
+      "date": "2026-10-15",
+      "name": "Nike Air Force 1 Low Luxe \"Oregon Apple Green\"",
+      "brand": "Nike",
+      "retail_usd": 125,
+      "image": "",
+      "link": ""
+    },
+    {
+      "date": "2026-10-15",
+      "name": "Nike Air Force 1 Low Luxe \"Texas\"",
+      "brand": "Nike",
+      "retail_usd": 125,
+      "image": "",
+      "link": ""
     },
     {
       "date": "2026-10-16",
