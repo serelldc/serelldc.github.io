@@ -109,6 +109,7 @@
     plus: ic('<path d="M12 5v14M5 12h14"/>', 2.5),
     camera: ic('<path d="M4 8h3l2-3h6l2 3h3v11H4z"/><circle cx="12" cy="13" r="3.5"/>'),
     flag: ic('<path d="M5 21V4h11l-1.5 4L16 12H5"/>'),
+    dl: ic('<path d="M12 3v12M7 10l5 5 5-5M5 20h14"/>'),
     share: ic('<path d="M12 15V3M7 8l5-5 5 5M5 13v6a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2v-6"/>'),
     user: ic('<circle cx="12" cy="8" r="4"/><path d="M4 21c1.5-4 4.5-6 8-6s6.5 2 8 6"/>'),
     shoe: '<svg viewBox="0 0 200 110" aria-hidden="true"><path d="M14 80 Q12 62 24 55 L62 42 Q80 37 90 22 L98 16 Q106 13 112 22 Q124 44 152 52 L182 61 Q195 66 193 80 Z" fill="#F7F4EC" stroke="#0D0D0D" stroke-width="4" stroke-linejoin="round"/><path d="M8 80 L194 80 Q198 80 198 85 L198 90 Q198 96 192 96 L16 96 Q8 96 8 88 Z" fill="#FFFFFF" stroke="#0D0D0D" stroke-width="4" stroke-linejoin="round"/></svg>'
@@ -172,7 +173,8 @@
     var me = uid()
       ? (ST.og && ST.og[uid()] ? '<button class="avatar-btn avatar-og" data-go="me" aria-label="My profile, OG #' + ST.og[uid()] + '">' + ogBadge(ST.og[uid()]) + '</button>' : '<button class="avatar-btn" data-go="me" aria-label="My profile" style="background:var(--red)">' + esc((ST.me && ST.me.username || '?')[0].toUpperCase()) + '</button>')
       : '<button class="ibtn" data-go="login" aria-label="Sign in">' + I.user + '</button>';
-    return '<header class="hd"><button class="brand" data-go="drops" aria-label="Zenkicks home">' + LOGO + '<span>ZENKICKS</span></button>' +
+    var getApp = installEnv().standalone ? '' : '<button class="getapp" data-go="install" aria-label="How to install the Zenkicks app">' + I.dl + '<span>Get app</span></button>';
+    return '<header class="hd"><button class="brand" data-go="drops" aria-label="Zenkicks home">' + LOGO + '<span>ZENKICKS</span></button>' + getApp +
       '<button class="ibtn" data-go="market" aria-label="Search the market">' + I.search + '</button>' + me + '</header>';
   }
   function tabs(r) {
@@ -318,7 +320,8 @@
     return ps[0] ? pub('listing-photos', ps[0].path) : '';
   }
   // ---- install guide (#/install) ----
-  function installLink() { return installEnv().standalone ? '' : '<button class="card between ilink" data-go="install"><span class="invhead"><span class="ji">' + I.plus + '</span><span><b>Install the app</b><br><span class="m">Put Zenkicks on your Android or iPhone</span></span></span><span aria-hidden="true" style="font-size:20px">›</span></button>'; }
+  function installLink() { if (installEnv().standalone) return '<button class="card between ilink" data-act="guidecopy"><span class="invhead"><span class="ji">' + I.share + '</span><span><b>Share the install guide</b><br><span class="m">Help your friends put Zenkicks on their phone</span></span></span><span aria-hidden="true" style="font-size:20px">›</span></button>';
+    return '<button class="card between ilink" data-go="install"><span class="invhead"><span class="ji">' + I.dl + '</span><span><b>Install the app</b><br><span class="m">Put Zenkicks on your Android or iPhone</span></span></span><span aria-hidden="true" style="font-size:20px">›</span></button>'; }
 
   // ---- invite links: serelldc.github.io/zenkicks/join?ref=username ----
   var JOIN_URL = 'https://serelldc.github.io/zenkicks/join';
@@ -511,12 +514,10 @@
     } else if (deferredInstall) {
       body = 'Get the Zenkicks icon on your home screen. Opens like an app, no app store needed.';
       btn = '<button class="btn red" style="height:40px;padding:0 14px;font-size:13px" data-act="install">Install app</button>';
-    } else if (env.ios) {
-      body = 'Add Zenkicks to your home screen: tap <b>Share</b> (square with arrow) then <b>Add to Home Screen</b>.';
     } else {
-      body = 'Add Zenkicks to your home screen: open the browser menu <b>⋮</b> then <b>Install app</b> or <b>Add to Home screen</b>.';
+      body = 'Put Zenkicks on your home screen. Free, no app store, takes 1 minute.';
     }
-    return '<div class="card installcard" id="installcard"><img src="icons/icon-192.png" alt="" width="44" height="44"><div class="grow"><b>Get the app</b><div class="m">' + body + '</div></div><div style="display:flex;flex-direction:column;gap:6px;align-items:flex-end">' + btn + '<button class="link" style="font-size:12px;padding:2px 0;font-weight:700" data-go="install">How?</button><button class="link" style="color:var(--muted);font-size:12px;padding:2px 0" data-act="hideinstall">Hide</button></div></div>';
+    return '<div class="card installcard" id="installcard"><img src="icons/icon-192.png" alt="" width="44" height="44"><div class="grow"><b>Get the app</b><div class="m">' + body + '</div></div><div style="display:flex;flex-direction:column;gap:6px;align-items:flex-end">' + btn + (btn ? '<button class="link" style="font-size:12px;padding:2px 0;font-weight:700" data-go="install">How?</button>' : '<button class="btn red" style="height:38px;padding:0 14px;font-size:13px" data-go="install">Show me how</button>') + '<button class="link" style="color:var(--muted);font-size:12px;padding:2px 0" data-act="hideinstall">Hide</button></div></div>';
   }
   function installApp() {
     if (!deferredInstall) { toast('Use your browser menu: Add to Home screen'); return; }
@@ -678,7 +679,7 @@
           '<section class="sec"><div class="between"><h2>Fresh pairs</h2><button class="link" data-go="market">Shop</button></div>' +
           (listings.length ? '<div class="grid">' + listings.map(function (l) { return itemCard(l, stats[l.id]); }).join('') + '</div>' : '<div class="card empty" style="padding:20px">' + I.bag + '<span>No pairs listed yet. Be the first.</span><button class="btn red" data-go="sell">Sell a pair</button></div>') + '</section>' +
           '<button class="safety" style="border:0;text-align:left;align-items:center" data-go="legit"><span style="color:var(--coral)">' + I.shield + '</span><span class="grow" style="display:flex;flex-direction:column;gap:2px"><b style="font-size:15px;color:var(--bone)">Legit or fake?</b><span>Post photos and let the community vote</span></span><span aria-hidden="true" style="font-size:20px;color:var(--bone)">›</span></button>' +
-          sourcesNote() + '</div>';
+          installLink() + sourcesNote() + '</div>';
       });
     });
   };

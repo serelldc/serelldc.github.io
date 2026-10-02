@@ -499,3 +499,9 @@ h2{font-size:19px}
 .avatar-og.big .ogb{width:92px}
 .avatar-og.big .ogb .ogn{font-size:20cqw}
 .row:has(> .avatar-og.big) h1{font-size:24px!important}
+
+/* "Get app" in the header (hidden inside the installed app) */
+.getapp{flex-shrink:0;height:36px;padding:0 12px 0 10px;border-radius:999px;border:1px solid rgba(243,240,232,.28);background:transparent;color:var(--bone);font-family:var(--label);font-weight:700;font-size:12px;letter-spacing:.07em;text-transform:uppercase;display:inline-flex;align-items:center;gap:6px;white-space:nowrap}
+.getapp svg{width:16px;height:16px;color:var(--brand)}
+@media (max-width:420px){.getapp{height:34px;padding:0 10px 0 8px;font-size:11px;letter-spacing:.04em;gap:4px}.getapp svg{width:15px;height:15px}.hd{gap:6px}}
+@media (max-width:370px){.getapp span{display:none}.getapp{padding:0 8px}}
