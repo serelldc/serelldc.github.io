@@ -120,6 +120,16 @@ async function activeListings() {
   if (!res.ok) { console.log('  listings -> HTTP ' + res.status); return []; }
   return res.json();
 }
+// stricter than sameShoe: a price is only useful for the exact pair, so vague names ("Jordan 4", "Kobe") get none
+export function priceMatch(wanted, found) {
+  const w = words(wanted);
+  if (w.length < 2 || !sameShoe(wanted, found)) return false;
+  const kids = /\((gs|ps|td)\)|\b(gs|ps|td|kids|toddler|preschool|grade school)\b/i;
+  if (kids.test(found) && !kids.test(wanted)) return false;
+  const f = words(found).filter((x) => !/^(19|20)\d\d$/.test(x));
+  const ws = new Set(w);
+  return f.length > 0 && f.filter((x) => ws.has(x)).length / f.length >= 0.5;
+}
 async function prices() {
   let file = { items: {} };
   try { file = JSON.parse(await readFile('data/prices.json', 'utf8')); } catch { /* first run */ }
@@ -136,7 +146,7 @@ async function prices() {
     const name = clean(l.model);
     const q = l.brand && !name.toLowerCase().includes(String(l.brand).toLowerCase()) ? l.brand + ' ' + name : name;
     const r = await get('/stockx/products', { query: q, limit: '5' });
-    const hit = r.find((p) => p.title && sameShoe(name, p.title) && (usd(p.min_price) || usd(p.avg_price)));
+    const hit = r.find((p) => p.title && priceMatch(name, p.title) && (usd(p.min_price) || usd(p.avg_price)));
     if (hit) {
       file.items[k] = { title: clean(hit.title), usd: usd(hit.min_price) || usd(hit.avg_price), avg_usd: usd(hit.avg_price), link: hit.link || '', at: today };
       found++; console.log(`  price: ${name} <- ${hit.title} US$${file.items[k].usd}`);
