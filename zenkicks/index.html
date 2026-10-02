@@ -20,8 +20,12 @@
 <meta name="twitter:card" content="summary_large_image">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Audiowide&family=Russo+One&family=Permanent+Marker&family=Rubik+Dirt&family=Oxanium:wght@500;600;700&family=Yellowtail&family=Instrument+Sans:wght@400;500;600;700&display=swap">
-<link rel="stylesheet" href="assets/app.css?v=36">
+<link rel="preconnect" href="https://dsgyxkrputkifxnbcknf.supabase.co" crossorigin>
+<link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin>
+<!-- fonts load without blocking the first paint -->
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Audiowide&family=Russo+One&family=Permanent+Marker&family=Rubik+Dirt&family=Oxanium:wght@500;600;700&family=Yellowtail&family=Instrument+Sans:wght@400;500;600;700&display=swap" media="print" onload="this.media='all'">
+<noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Audiowide&family=Russo+One&family=Permanent+Marker&family=Rubik+Dirt&family=Oxanium:wght@500;600;700&family=Yellowtail&family=Instrument+Sans:wght@400;500;600;700&display=swap"></noscript>
+<link rel="stylesheet" href="assets/app.css?v=37">
 <style>
   .hd{padding-top:env(safe-area-inset-top,0px);height:calc(64px + env(safe-area-inset-top,0px))}
   /* launch intro (installed app only) */
@@ -82,9 +86,9 @@
     fit(); window.addEventListener('resize', fit); window.addEventListener('orientationchange', function () { setTimeout(fit, 300); });
   })();
 </script>
-<script src="config.js?v=36"></script>
+<script src="config.js?v=37"></script>
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.45.4/dist/umd/supabase.min.js"></script>
-<script src="assets/app.js?v=36"></script>
+<script src="assets/app.js?v=37"></script>
 <script>
   if ('serviceWorker' in navigator) {
     var hadController = !!navigator.serviceWorker.controller, reloaded = false;
