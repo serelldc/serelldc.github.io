@@ -1,5 +1,50 @@
 {
-  "items": {},
+  "items": {
+    "jordan 11 gratitude": {
+      "title": "Jordan 11 Retro DMP Gratitude (2023)",
+      "usd": 216,
+      "avg_usd": 326,
+      "link": "https://stockx.pvxt.net/c/4722526/1023711/9060?u=https%3A%2F%2Fstockx.com%2Fair-jordan-11-retro-dmp-defining-moments-2023",
+      "at": "2026-10-03"
+    },
+    "jordan 4": {
+      "title": "Jordan 4 Retro Rare Air Tour Yellow (GS) (2026)",
+      "usd": 88,
+      "avg_usd": 118,
+      "link": "https://stockx.pvxt.net/c/4722526/1023711/9060?u=https%3A%2F%2Fstockx.com%2Fair-jordan-4-retro-rare-air-tour-yellow-gs",
+      "at": "2026-10-03"
+    },
+    "aj1 retro mid cut gum red": {
+      "none": true,
+      "at": "2026-10-03"
+    },
+    "kobe": {
+      "title": "Nike Kobe Aston Martin Pack V/Hyperdunk",
+      "usd": 1199,
+      "avg_usd": 1974,
+      "link": "https://stockx.pvxt.net/c/4722526/1023711/9060?u=https%3A%2F%2Fstockx.com%2Fkobe-aston-martin-pack-v-hyperdunk",
+      "at": "2026-10-03"
+    },
+    "nike gianni's": {
+      "none": true,
+      "at": "2026-10-03"
+    },
+    "jordan 1 high og true blue": {
+      "title": "Jordan 1 Retro High OG True Blue",
+      "usd": 60,
+      "avg_usd": 155,
+      "link": "https://stockx.pvxt.net/c/4722526/1023711/9060?u=https%3A%2F%2Fstockx.com%2Fair-jordan-1-retro-high-og-true-blue",
+      "at": "2026-10-03"
+    },
+    "rebook question": {
+      "none": true,
+      "at": "2026-10-03"
+    },
+    "j 1 low concord": {
+      "none": true,
+      "at": "2026-10-03"
+    }
+  },
   "updated": "2026-10-03",
   "source": "KicksDB (StockX lowest ask, all sizes)"
 }

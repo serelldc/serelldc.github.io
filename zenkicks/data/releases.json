@@ -1,45 +1,23 @@
 {
-  "updated": "2026-10-02",
+  "updated": "2026-10-03",
   "source": "SneakerFiles & Sneaker News release calendars (curated weekly); photos from KicksDB (StockX)",
   "items": [
-    {
-      "date": "2026-10-02",
-      "name": "Air Jordan 4 \"Light Army\"",
-      "brand": "Jordan",
-      "retail_usd": 220,
-      "image": "https://images.stockx.com/images/Air-Jordan-4-Retro-Light-Army.jpg?fit=fill&bg=FFFFFF&w=600&h=430&fm=webp&auto=compress&q=90&dpr=2&trim=color&updated_at=1787342946",
-      "link": "https://stockx.pvxt.net/c/4722526/1023711/9060?u=https%3A%2F%2Fstockx.com%2Fair-jordan-4-retro-light-army"
-    },
-    {
-      "date": "2026-10-02",
-      "name": "Air Jordan 6 Low \"Black Pink Foam\"",
-      "brand": "Jordan",
-      "retail_usd": 150,
-      "image": "",
-      "link": ""
-    },
-    {
-      "date": "2026-10-02",
-      "name": "J Balvin x Air Jordan 4 \"Amazonas\"",
-      "brand": "Jordan",
-      "retail_usd": 225,
-      "image": "",
-      "link": ""
-    },
     {
       "date": "2026-10-03",
       "name": "Air Jordan 14 Low \"Black Ostrich\"",
       "brand": "Jordan",
       "retail_usd": 240,
       "image": "",
-      "link": ""
+      "link": "",
+      "tried": "2026-10-03"
     },
     {
       "date": "2026-10-03",
       "name": "Air Jordan 16 \"Black Pack\"",
       "brand": "Jordan",
       "retail_usd": 245,
-      "link": "https://stockx.pvxt.net/c/4722526/1023711/9060?u=https%3A%2F%2Fstockx.com%2Fair-jordan-16-retro-black-pack"
+      "link": "https://stockx.pvxt.net/c/4722526/1023711/9060?u=https%3A%2F%2Fstockx.com%2Fair-jordan-16-retro-black-pack",
+      "tried": "2026-10-03"
     },
     {
       "date": "2026-10-03",
@@ -55,7 +33,8 @@
       "brand": "Nike",
       "retail_usd": 200,
       "image": "",
-      "link": ""
+      "link": "",
+      "tried": "2026-10-03"
     },
     {
       "date": "2026-10-06",
@@ -63,7 +42,8 @@
       "brand": "Nike",
       "retail_usd": 135,
       "image": "",
-      "link": ""
+      "link": "",
+      "tried": "2026-10-03"
     },
     {
       "date": "2026-10-07",
@@ -71,7 +51,8 @@
       "brand": "Nike",
       "retail_usd": 150,
       "image": "",
-      "link": ""
+      "link": "",
+      "tried": "2026-10-03"
     },
     {
       "date": "2026-10-09",
@@ -87,7 +68,8 @@
       "brand": "Nike",
       "retail_usd": 190,
       "image": "",
-      "link": ""
+      "link": "",
+      "tried": "2026-10-03"
     },
     {
       "date": "2026-10-09",
@@ -119,7 +101,8 @@
       "brand": "Nike",
       "retail_usd": 125,
       "image": "",
-      "link": ""
+      "link": "",
+      "tried": "2026-10-03"
     },
     {
       "date": "2026-10-14",
@@ -166,8 +149,9 @@
       "name": "Nike Air Max Plus \"Spider Web\"",
       "brand": "Nike",
       "retail_usd": 170,
-      "image": "",
-      "link": ""
+      "image": "https://images.stockx.com/images/Nike-Air-Max-Plus-Spider-Web-Product.jpg?fit=fill&bg=FFFFFF&w=600&h=430&fm=webp&auto=compress&q=90&dpr=2&trim=color&updated_at=1738193358",
+      "link": "https://stockx.pvxt.net/c/4722526/1023711/9060?u=https%3A%2F%2Fstockx.com%2Fnike-air-max-plus-spider-web",
+      "sku": "DD4004-001"
     },
     {
       "date": "2026-10-23",
@@ -175,14 +159,16 @@
       "brand": "Nike",
       "retail_usd": 150,
       "image": "",
-      "link": ""
+      "link": "",
+      "tried": "2026-10-03"
     },
     {
       "date": "2026-10-23",
       "name": "Nike Ja 4 \"Halloween\"",
       "brand": "Nike",
       "retail_usd": 145,
-      "link": "https://stockx.pvxt.net/c/4722526/1023711/9060?u=https%3A%2F%2Fstockx.com%2Fnike-ja-4-halloween"
+      "link": "https://stockx.pvxt.net/c/4722526/1023711/9060?u=https%3A%2F%2Fstockx.com%2Fnike-ja-4-halloween",
+      "tried": "2026-10-03"
     },
     {
       "date": "2026-10-23",
@@ -190,7 +176,8 @@
       "brand": "Nike",
       "retail_usd": 145,
       "image": "",
-      "link": ""
+      "link": "",
+      "tried": "2026-10-03"
     },
     {
       "date": "2026-10-24",
@@ -222,30 +209,34 @@
       "brand": "Nike",
       "retail_usd": 170,
       "image": "",
-      "link": ""
+      "link": "",
+      "tried": "2026-10-03"
     },
     {
       "date": "2026-10-24",
       "name": "NIGO x J-Hope x Nike Air Force 1 '01",
       "brand": "Nike",
       "retail_usd": 150,
-      "link": "https://stockx.pvxt.net/c/4722526/1023711/9060?u=https%3A%2F%2Fstockx.com%2Fnike-air-force-1-low-01-nigo-x-j-hope"
+      "link": "https://stockx.pvxt.net/c/4722526/1023711/9060?u=https%3A%2F%2Fstockx.com%2Fnike-air-force-1-low-01-nigo-x-j-hope",
+      "tried": "2026-10-03"
     },
     {
       "date": "2026-10-24",
       "name": "Nike Air Diamond Turf 2 \"White Black\"",
       "brand": "Nike",
       "retail_usd": 170,
-      "image": "",
-      "link": ""
+      "image": "https://images.stockx.com/images/Nike-Air-Diamond-Turf-2-White-Black.jpg?fit=fill&bg=FFFFFF&w=600&h=430&fm=webp&auto=compress&q=90&dpr=2&trim=color&updated_at=1790106900",
+      "link": "https://stockx.pvxt.net/c/4722526/1023711/9060?u=https%3A%2F%2Fstockx.com%2Fnike-air-diamond-turf-2-white-black",
+      "sku": "HQ2631-100"
     },
     {
       "date": "2026-10-24",
       "name": "Nike Air Force 1 Low \"Ghostface Black\"",
       "brand": "Nike",
       "retail_usd": 125,
-      "image": "",
-      "link": ""
+      "image": "https://images.stockx.com/images/Nike-Air-Force-1-Low-Scream-Ghostface-Black.jpg?fit=fill&bg=FFFFFF&w=600&h=430&fm=webp&auto=compress&q=90&dpr=2&trim=color&updated_at=1790191292",
+      "link": "https://stockx.pvxt.net/c/4722526/1023711/9060?u=https%3A%2F%2Fstockx.com%2Fnike-air-force-1-low-scream-ghostface-black",
+      "sku": "IZ1207-010"
     },
     {
       "date": "2026-10-24",
