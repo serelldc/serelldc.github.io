@@ -1,31 +1,7 @@
 {
-  "updated": "2026-10-01",
+  "updated": "2026-10-02",
   "source": "SneakerFiles & Sneaker News release calendars (curated weekly); photos from KicksDB (StockX)",
   "items": [
-    {
-      "date": "2026-10-01",
-      "name": "Air Jordan 1 Low OG \"Howard\"",
-      "brand": "Jordan",
-      "retail_usd": 155,
-      "image": "",
-      "link": ""
-    },
-    {
-      "date": "2026-10-01",
-      "name": "New Balance Made in UK 991v2 \"Karanda Red\"",
-      "brand": "New Balance",
-      "retail_usd": 249.99,
-      "image": "https://images.stockx.com/images/New-Balance-991v2-MiUK-Karanda-Red.jpg?fit=fill&bg=FFFFFF&w=600&h=430&fm=webp&auto=compress&q=90&dpr=2&trim=color&updated_at=1789759110",
-      "link": "https://stockx.pvxt.net/c/4722526/1023711/9060?u=https%3A%2F%2Fstockx.com%2Fnew-balance-991v2-miuk-karanda-red"
-    },
-    {
-      "date": "2026-10-01",
-      "name": "Nike Dunk Low \"Campfire Orange\"",
-      "brand": "Nike",
-      "retail_usd": 120,
-      "image": "",
-      "link": ""
-    },
     {
       "date": "2026-10-02",
       "name": "Air Jordan 4 \"Light Army\"",
