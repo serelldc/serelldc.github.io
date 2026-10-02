@@ -164,8 +164,8 @@
   // shell
   // ------------------------------------------------------------------
   function header(r) {
-    var back = { grails: 'me', l: 'market', c: 'legit', 'new-check': 'legit', sell: 'drops', login: 'drops', join: 'drops', u: 'market', admin: 'me' }[r.name];
-    var titles = { grails: 'My grails', l: 'Listing', c: 'Legit check', 'new-check': 'New check', sell: 'Sell a pair', login: 'Sign in', join: 'Join Zenkicks', u: 'Member', admin: 'Admin panel' };
+    var back = { grails: 'me', l: 'market', c: 'legit', 'new-check': 'legit', sell: 'drops', login: 'drops', join: 'drops', install: 'drops', u: 'market', admin: 'me' }[r.name];
+    var titles = { grails: 'My grails', l: 'Listing', c: 'Legit check', 'new-check': 'New check', sell: 'Sell a pair', login: 'Sign in', join: 'Join Zenkicks', install: 'Install the app', u: 'Member', admin: 'Admin panel' };
     if (back) {
       return '<header class="hd"><button class="ibtn" data-go="' + back + '" aria-label="Back">' + (r.name === 'sell' || r.name === 'new-check' || r.name === 'login' || r.name === 'join' ? I.close : I.back) + '</button><div class="hd-title">' + LOGO + esc(titles[r.name]) + '</div><span style="width:44px"></span></header>';
     }
@@ -176,7 +176,7 @@
       '<button class="ibtn" data-go="market" aria-label="Search the market">' + I.search + '</button>' + me + '</header>';
   }
   function tabs(r) {
-    if (['l', 'c', 'sell', 'new-check', 'login', 'join'].indexOf(r.name) > -1) return '';
+    if (['l', 'c', 'sell', 'new-check', 'login', 'join', 'install'].indexOf(r.name) > -1) return '';
     function t(v, label, icon) { var on = r.name === v; return '<button class="tab' + (on ? ' on' : '') + '" data-go="' + v + '"' + (on ? ' aria-current="page"' : '') + '>' + icon + label + '</button>'; }
     return '<nav class="tabs" aria-label="App">' + t('drops', 'Drops', I.cal) + t('hot', 'Hot', I.flame) +
       '<button class="tab sell" data-go="sell"><span class="plus">' + I.plus + '</span>Sell</button>' +
@@ -315,6 +315,9 @@
     var ps = (l.photos || []).slice().sort(function (a, b) { var o = { side: 0, tag: 1 }; return ((o[a.kind] != null ? o[a.kind] : 5) - (o[b.kind] != null ? o[b.kind] : 5)) || a.position - b.position; });
     return ps[0] ? pub('listing-photos', ps[0].path) : '';
   }
+  // ---- "Paano i-install" guide (#/install) ----
+  function installLink() { return installEnv().standalone ? '' : '<button class="card between ilink" data-go="install"><span class="invhead"><span class="ji">' + I.plus + '</span><span><b>I-install ang app</b><br><span class="m">Paano ilagay ang Zenkicks sa Android o iPhone</span></span></span><span aria-hidden="true" style="font-size:20px">›</span></button>'; }
+
   // ---- invite links: serelldc.github.io/zenkicks/join?ref=username ----
   var JOIN_URL = 'https://serelldc.github.io/zenkicks/join';
   (function captureRef() {
@@ -511,7 +514,7 @@
     } else {
       body = 'Add Zenkicks to your home screen: open the browser menu <b>⋮</b> then <b>Install app</b> or <b>Add to Home screen</b>.';
     }
-    return '<div class="card installcard" id="installcard"><img src="icons/icon-192.png" alt="" width="44" height="44"><div class="grow"><b>Get the app</b><div class="m">' + body + '</div></div><div style="display:flex;flex-direction:column;gap:6px;align-items:flex-end">' + btn + '<button class="link" style="color:var(--muted);font-size:12px;padding:2px 0" data-act="hideinstall">Hide</button></div></div>';
+    return '<div class="card installcard" id="installcard"><img src="icons/icon-192.png" alt="" width="44" height="44"><div class="grow"><b>Get the app</b><div class="m">' + body + '</div></div><div style="display:flex;flex-direction:column;gap:6px;align-items:flex-end">' + btn + '<button class="link" style="font-size:12px;padding:2px 0;font-weight:700" data-go="install">Paano?</button><button class="link" style="color:var(--muted);font-size:12px;padding:2px 0" data-act="hideinstall">Hide</button></div></div>';
   }
   function installApp() {
     if (!deferredInstall) { toast('Use your browser menu: Add to Home screen'); return; }
@@ -1193,7 +1196,7 @@
         (isBlocked() ? '<div class="card notice suspend" style="padding:14px"><b>' + (me.is_banned ? 'Your account is banned' : 'Your account is on hold until ' + esc(fmtDay(suspendedUntil()))) + '</b><br><span class="m">You can browse, but you can’t sell, bid or post for now.</span></div>' : '') +
         (ST.og && ST.og[uid()] ? '<div class="card ogshow">' + ogBadge(ST.og[uid()]) + '<div><b>OG #' + ST.og[uid()] + '</b><br><span class="m">You’re one of the first 100 members of Zenkicks. This badge stays on your profile forever.</span><br><button class="btn sharebtn" data-act="share" data-k="og">' + I.share + ' Share to Story</button></div></div>' : '') +
         '<button class="card between" style="padding:14px;width:100%;text-align:left;align-items:center" data-go="grails"><span><b>⭐ My grails</b><br><span class="m">Pairs you’re hunting. We alert you when one gets listed.</span></span>' + (grailNew().length ? '<span class="pill red">' + grailNew().length + ' new</span>' : '<span aria-hidden="true" style="font-size:20px">›</span>') + '</button>' +
-        pushCard(pst) + inviteCard(invN) +
+        pushCard(pst) + inviteCard(invN) + installLink() +
         '<button class="card between" style="padding:14px;width:100%;text-align:left;align-items:center" data-go="u/' + uid() + '"><span><b>My vouches</b><br><span class="m">See your public profile and ratings</span></span>' + starBadge(ST.myVouch) + '</button>' +
         '<div class="card" style="padding:14px;display:flex;flex-direction:column;gap:10px"><b>Profile</b>' +
         '<label class="field" for="p-user">Username<input id="p-user" type="text" maxlength="24" value="' + esc(me.username) + '" autocomplete="username"></label>' +
@@ -1314,6 +1317,40 @@
       '<p class="err" id="l-err" role="alert"></p><p class="tiny">By signing in you agree to the <a href="terms.html" style="text-decoration:underline">Terms</a> and <a href="privacy.html" style="text-decoration:underline">Privacy Policy</a>.</p>';
   };
 
+  VIEWS.install = function () {
+    var env = installEnv();
+    var os = ST.installOS || (env.ios ? 'ios' : 'android');
+    var share = '<span class="kbd">' + I.share + '</span>';
+    function steps(list) { return '<ol class="isteps">' + list.map(function (s, i) { return '<li><span class="ji">' + (i + 1) + '</span><span>' + s + '</span></li>'; }).join('') + '</ol>'; }
+    var android = steps([
+      'Buksan ang <b>serelldc.github.io/zenkicks</b> sa <b>Chrome</b>',
+      'I-tap ang <b>Install app</b> sa home page ng Zenkicks<br><span class="m">o i-tap ang <span class="kbd">⋮</span> sa taas, tapos <b>Install app</b> o <b>Add to Home screen</b></span>' + (deferredInstall ? '<br><button class="btn red" style="height:40px;padding:0 16px;font-size:13px;margin-top:8px" data-act="install">Install app ngayon</button>' : ''),
+      'I-tap ang <b>Install</b>',
+      'Makikita mo na ang <b>Zenkicks icon</b> sa phone mo'
+    ]);
+    var ios = steps([
+      'Buksan ang <b>serelldc.github.io/zenkicks</b> sa <b>Safari</b>',
+      'I-tap ang <b>Share</b> button ' + share + ' (kahon na may arrow pataas)<br><span class="m">Kung wala sa baba, i-tap muna ang <span class="kbd">•••</span></span>',
+      'Mag-scroll at piliin ang <b>Add to Home Screen</b>',
+      'I-tap ang <b>Add</b>',
+      'Buksan ang Zenkicks mula sa <b>bagong icon</b>'
+    ]);
+    return '<div class="pad">' +
+      '<div class="joinhero"><span class="pill invited">' + I.plus + 'Install guide</span><h1>I-install ang <span>Zenkicks</span></h1><p class="sub">Libre, walang App Store o Play Store. 1 minuto lang.</p></div>' +
+      (env.standalone ? '<div class="card youin"><span class="ji ok">' + I.check + '</span><span><b>Naka-install na</b><br><span class="m">Gamit mo na ang Zenkicks app sa phone na ito. I-share mo ang guide na ito sa tropa mo.</span></span></div>' : '') +
+      (env.inApp ? '<div class="card itip warn"><b>Nasa loob ka ng Messenger o Instagram</b><span class="m">I-tap muna ang <span class="kbd">•••</span>, tapos <b>' + (env.ios ? 'Open in Safari' : 'Open in Chrome') + '</b>. Hindi gumagana ang install sa loob ng Messenger o Instagram.</span></div>' : '') +
+      '<div class="seg" role="tablist" aria-label="Phone"><button role="tab" class="' + (os === 'android' ? 'on' : '') + '" aria-selected="' + (os === 'android') + '" data-act="ios" data-v="android">Android (Chrome)</button><button role="tab" class="' + (os === 'ios' ? 'on' : '') + '" aria-selected="' + (os === 'ios') + '" data-act="ios" data-v="ios">iPhone (Safari)</button></div>' +
+      '<div class="card" style="padding:16px">' + (os === 'ios' ? ios : android) + '</div>' +
+      '<section class="sec"><h2>Pagka-install</h2><ul class="joinlist light">' +
+      [[I.user, 'Mag-sign up', 'gamit ang Google o email (libre)'], [I.bell, 'I-tap ang bell', 'sa kahit anong drop, tapos <b>Allow</b>, para may alert ka ng 8 AM sa araw ng release'], [I.star, 'First 100 members', 'lang ang may OG badge']].map(function (f) { return '<li><span class="ji">' + f[0] + '</span><span><b>' + f[1] + '</b> ' + f[2] + '</span></li>'; }).join('') +
+      '</ul></section>' +
+      (os === 'ios' ? '<div class="card itip"><b>Para sa iPhone</b><span class="m">Kailangang naka-Add to Home Screen ang Zenkicks para gumana ang drop alerts (iOS 16.4 pataas).</span></div>' : '') +
+      '<div class="card itip"><b>Tip</b><span class="m">Kung galing ka sa Messenger o Instagram, i-tap muna ang <span class="kbd">•••</span> tapos <b>Open in Chrome</b> o <b>Open in Safari</b>. Hindi gumagana ang install sa loob ng Messenger o Instagram.</span></div>' +
+      '<button class="btn ghost" style="color:var(--ink)" data-act="guidecopy">' + I.share + ' I-share ang guide na ito</button>' +
+      (uid() ? '' : '<button class="btn red" data-go="join">Mag-sign up</button>') +
+      '</div>';
+  };
+
   // the page behind the sign-up link and QR code (serelldc.github.io/zenkicks/join)
   VIEWS.join = function () {
     var ref = pendingRef();
@@ -1321,8 +1358,8 @@
       '<h1>Join <span>Zenkicks</span></h1><p class="sub">Free. Takes 30 seconds. No app store needed.</p>' +
       '<ul class="joinlist">' + [[I.bell, 'Drop alerts', 'at 8 AM on release day'], [I.bag, 'Buy &amp; sell', 'pairs in AED'], [I.shield, 'Legit checks', 'from the community'], [I.star, 'Grail alerts', 'when your pair gets listed']].map(function (f) { return '<li><span class="ji">' + f[0] + '</span><span><b>' + f[1] + '</b> ' + f[2] + '</span></li>'; }).join('') + '</ul></div>';
     if (!sb) return '<div class="pad">' + hero + needSb() + '</div>';
-    if (uid()) return '<div class="pad">' + hero + '<div class="card youin"><span class="ji ok">' + I.check + '</span><span><b>You’re in</b><br><span class="m">Signed in as @' + esc((ST.me && ST.me.username) || '') + '.</span></span></div>' + (ST.me ? inviteCard() : '') + '<button class="btn red" data-go="drops">Go to drops</button></div>';
-    return '<div class="pad">' + hero + ogHook() + loginForm() + '</div>';
+    if (uid()) return '<div class="pad">' + hero + '<div class="card youin"><span class="ji ok">' + I.check + '</span><span><b>You’re in</b><br><span class="m">Signed in as @' + esc((ST.me && ST.me.username) || '') + '.</span></span></div>' + (ST.me ? inviteCard() : '') + installLink() + '<button class="btn red" data-go="drops">Go to drops</button></div>';
+    return '<div class="pad">' + hero + ogHook() + loginForm() + installLink() + '</div>';
   };
 
   // ------------------------------------------------------------------
@@ -1486,6 +1523,8 @@
         });
         break;
       case 'install': installApp(); break;
+      case 'ios': ST.installOS = v; render(true); break;
+      case 'guidecopy': (function (link) { if (navigator.share) navigator.share({ title: 'Paano i-install ang Zenkicks', text: 'Guide: paano i-install ang Zenkicks app sa Android at iPhone', url: link }).catch(function () {}); else if (navigator.clipboard && navigator.clipboard.writeText) navigator.clipboard.writeText(link).then(function () { toast('Guide link copied'); }); else window.prompt('Copy the guide link:', link); })('https://serelldc.github.io/zenkicks/#/install'); break;
       case 'arole':
         sb.rpc('admin_set_role', { target: id, role: v, val: !on }).then(function (r) { if (r.error) return fail(r.error); toast((!on ? 'Made ' : 'Removed ') + v); return loadOwners().then(function () { render(true); }); });
         break;
