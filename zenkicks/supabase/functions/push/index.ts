@@ -4,6 +4,8 @@
 //   POST {"action":"key"}                -> {"publicKey": "..."} (makes the sending keys the first time)
 //   POST {"action":"test","endpoint":".."} -> sends "alerts are on" to that phone
 //   POST {"action":"run"}                -> sends today's drop reminders (pg_cron calls this at 8 AM UAE)
+//   POST {"action":"grails"}             -> sends grail alerts for newly listed matches (pg_cron, every 15 min)
+//   POST {"action":"weekly"}             -> "drops this week" digest (pg_cron, Mondays; max once per 6 days)
 // Standard Web Push (VAPID + aes128gcm), built on Web Crypto only: no extra packages.
 // Uses the project's own SUPABASE_URL and SUPABASE_SERVICE_ROLE_KEY (provided by Supabase).
 // =====================================================================
@@ -181,6 +183,86 @@ async function runDue() {
   return { phones: due.length, sent, gone, failed };
 }
 
+// ---------- grail alerts (every 15 min) ----------
+export function grailMessage(items, photoBase) {
+  const sz = (s) => (s ? ' · EU ' + Number(s) : '');
+  if (items.length === 1) {
+    const l = items[0];
+    return {
+      title: '⭐ Grail alert: ' + l.model,
+      body: 'Just listed on Zenkicks' + sz(l.size) + ' · AED ' + Number(l.price).toLocaleString('en-US') + '. Tap to bid before someone else does.',
+      image: l.photo ? photoBase + l.photo : undefined,
+      tag: 'grail-' + l.id,
+      url: './#/l/' + l.id,
+    };
+  }
+  const names = items.map((l) => l.model + sz(l.size)).join(' · ');
+  return {
+    title: '⭐ ' + items.length + ' of your grails just got listed',
+    body: names.length > 170 ? names.slice(0, 167) + '…' : names,
+    image: (items.find((l) => l.photo) || {}).photo ? photoBase + items.find((l) => l.photo).photo : undefined,
+    tag: 'grails',
+    url: './#/grails',
+  };
+}
+async function runGrails() {
+  const due = (await rpc('push_grail_due')) || [];
+  const photoBase = env('SUPABASE_URL') + '/storage/v1/object/public/listing-photos/';
+  let sent = 0, failed = 0;
+  const users = new Set();
+  if (due.length) {
+    const keys = await getKeys();
+    for (let i = 0; i < due.length; i += 10) {
+      await Promise.all(due.slice(i, i + 10).map(async (row) => {
+        const status = await sendPush(row, grailMessage(row.items || [], photoBase), keys);
+        await rpc('push_done', { p_endpoint: row.endpoint, p_status: status, p_keys: [] });
+        if (status >= 200 && status < 300) sent++; else failed++;
+        users.add(row.user_id);
+      }));
+    }
+  }
+  for (const u of users) await rpc('push_grail_done', { p_user: u });
+  await rpc('push_grail_done', {}); // members with no phone alerts: just clear their queue
+  return { phones: due.length, members: users.size, sent, failed };
+}
+
+// ---------- weekly "drops this week" digest (Mondays) ----------
+const DOW = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'];
+export function weeklyMessage(drops) {
+  const list = drops.map((d) => DOW[new Date(d.date + 'T00:00:00Z').getUTCDay()] + ' · ' + d.name.replace(/"/g, '')).join(', ');
+  return {
+    title: '🗓️ ' + drops.length + ' drop' + (drops.length > 1 ? 's' : '') + ' this week',
+    body: list.length > 170 ? list.slice(0, 167) + '…' : list,
+    image: (drops.find((d) => d.image) || {}).image || undefined,
+    tag: 'weekly-drops',
+    url: './#/drops',
+  };
+}
+export function dropsThisWeek(items, now = Date.now()) {
+  const day = (ms) => new Date(ms + 4 * 3600e3).toISOString().slice(0, 10); // UAE date
+  const from = day(now), to = day(now + 6 * 86400e3);
+  return (items || []).filter((d) => d.date >= from && d.date <= to && d.image).sort((a, b) => (a.date < b.date ? -1 : a.date > b.date ? 1 : 0));
+}
+async function runWeekly() {
+  const r = await fetch(APP_URL + 'data/releases.json?t=' + Date.now());
+  if (!r.ok) return { error: 'calendar ' + r.status };
+  const drops = dropsThisWeek((await r.json()).items);
+  if (!drops.length) return { drops: 0 };
+  if (!(await rpc('push_weekly_claim'))) return { skipped: 'already sent this week' };
+  const targets = (await rpc('push_weekly_targets')) || [];
+  const keys = await getKeys();
+  const msg = weeklyMessage(drops);
+  let sent = 0, failed = 0;
+  for (let i = 0; i < targets.length; i += 10) {
+    await Promise.all(targets.slice(i, i + 10).map(async (row) => {
+      const status = await sendPush(row, msg, keys);
+      await rpc('push_done', { p_endpoint: row.endpoint, p_status: status, p_keys: [] });
+      if (status >= 200 && status < 300) sent++; else failed++;
+    }));
+  }
+  return { drops: drops.length, phones: targets.length, sent, failed };
+}
+
 async function runTest(endpoint) {
   if (!endpoint || !/^https:\/\//.test(endpoint)) return { ok: false, error: 'bad endpoint' };
   const rows = await rpc('push_test_target', { p_endpoint: endpoint });
@@ -205,6 +287,8 @@ export async function handle(req) {
     if (action === 'key') return json({ publicKey: (await getKeys()).publicKey });
     if (action === 'test') return json(await runTest(body.endpoint));
     if (action === 'run') return json(await runDue());
+    if (action === 'grails') return json(await runGrails());
+    if (action === 'weekly') return json(await runWeekly());
     return json({ error: 'unknown action' }, 400);
   } catch (e) {
     return json({ error: String((e && e.message) || e) }, 500);
