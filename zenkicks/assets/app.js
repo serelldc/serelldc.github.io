@@ -1684,7 +1684,7 @@
         if (evt !== 'SIGNED_IN' || !uid()) return render(true);
         var fresh = ST.me && ST.me.created_at && Date.now() - new Date(ST.me.created_at).getTime() < 10 * 60e3 || !!store('pending'); store('pending', null);
         var next = takeAfter();
-        if (next) go(next); else if (route().name === 'login' || route().name === 'join') go('drops'); else render(true);
+        if (next) go(next); else if (route().name === 'login' || route().name === 'join' && fresh) go('drops'); else render(true); // join: only brand-new members jump to Drops (a returning member just sees "You're in")
         setTimeout(checkNotices, 1500); applyRef();
         setTimeout(function () { toast(fresh ? 'Welcome to Zenkicks, @' + ST.me.username + '! Change your username anytime in Profile.' : 'Signed in as @' + ((ST.me && ST.me.username) || '')); }, 400);
       });
