@@ -226,9 +226,11 @@
       info = '<div class="hx-next"><div class="grow"><div class="hx-name">' + esc(next.name) + '</div><div class="hx-meta">' + DOW[nd.getUTCDay()] + ', ' + nd.getUTCDate() + ' ' + MON[nd.getUTCMonth()].charAt(0) + MON[nd.getUTCMonth()].slice(1).toLowerCase() + ' · ' + priceLine(next.retail_usd) + '</div>' + codBtns(next.name + next.date) + '</div>' +
         '<button class="btn ' + (non ? 'ghost' : 'red') + ' hx-rem" ' + (non ? 'style="color:var(--coral)" ' : '') + 'data-act="rem" data-key="' + esc(next.name + next.date) + '" aria-pressed="' + non + '">' + (non ? I.check + 'Set' : I.bell + 'Remind me') + '</button></div>';
     }
-    var trust = [[I.shield, 'Legit checks'], [I.tag, 'Prices in AED'], [I.star, 'Vouched sellers'], [I.heart, '100% free']].map(function (t) {
+    // scrolling strip (marquee): the list is drawn twice so it loops without a gap
+    var trustItems = [[I.shield, 'Legit checks'], [I.tag, 'Prices in AED'], [I.star, 'Vouched sellers'], [I.heart, '100% free'], [I.bell, 'Drop alerts 8 AM'], [I.bag, 'Buy &amp; sell'], [I.flame, 'Cop or drop'], [I.user, 'First 100 get OG']].map(function (t) {
       return '<span class="hx-trust-i">' + t[0] + '<b>' + t[1] + '</b></span>';
     }).join('');
+    var trust = '<div class="hx-marq"><div class="hx-track"><div class="hx-set">' + trustItems + '</div><div class="hx-set" aria-hidden="true">' + trustItems + '</div></div></div>';
     return '<section class="hx">' + SKYLINE + '<span class="hx-scrawl" aria-hidden="true">Cop smart.<br>Wear <u>loud.</u></span>' +
       '<div class="hx-top">' + CROWN + '<span>Your sneakerheadlines</span><i></i></div>' +
       '<h1 class="hx-h"><span class="hx-big">Hype</span><span class="hx-red">Drops.</span></h1>' +
