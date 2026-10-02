@@ -330,13 +330,13 @@
     sb.rpc('set_referrer', { p_ref: r }).then(function (x) {
       if (x.error || x.data === 'noprofile' || x.data === 'signin') return;
       store('ref', null);
-      if (x.data === 'ok') setTimeout(function () { toast('You joined with @' + r + '’s invite 🙌'); }, 2600);
+      if (x.data === 'ok') setTimeout(function () { toast('You joined with @' + r + '’s invite'); }, 2600);
     });
   }
   function inviteLink(main) { var u = !main && ST.me && ST.me.username; return JOIN_URL + (u ? '?ref=' + encodeURIComponent(u) : ''); }
   function inviteCard(n) {
     var left = ogLeft();
-    return '<div class="card invitecard"><div class="between" style="align-items:center"><b>📣 Invite friends</b>' + (n ? '<span class="pill ok">' + n + ' joined</span>' : '') + '</div>' +
+    return '<div class="card invitecard"><div class="between" style="align-items:center"><b class="invhead"><span class="ji">' + I.share + '</span>Invite friends</b>' + (n ? '<span class="pill ok">' + n + ' joined</span>' : '') + '</div>' +
       '<span class="m">Send your link. Friends who sign up with it show up here.' + (left ? ' Only ' + left + ' OG spots left!' : '') + '</span>' +
       '<div class="invlink">' + esc(inviteLink().replace(/^https:\/\//, '')) + '</div>' +
       '<div class="chips-wrap"><button class="chip" data-act="invcopy">Copy link</button><button class="chip" data-act="invshare">' + I.share + ' Share</button><button class="chip" data-act="invqr">QR code</button><button class="chip" data-act="invstory">Story image</button></div>' +
@@ -777,14 +777,14 @@
       pill(x, 'Bid on Zenkicks  →', W / 2, 1700, '#E52C27', '#fff', '700 46px Oxanium, sans-serif');
     } else if (kind === 'invite') {
       var who = !ST.inviteMain && ST.me && ST.me.username;
-      pill(x, who ? '👋 Invited by @' + who : 'UAE SNEAKER TAMBAYAN', W / 2, 360, '#E52C27', '#fff', '700 42px Oxanium, sans-serif');
+      pill(x, who ? 'INVITED BY @' + who.toUpperCase() : 'UAE SNEAKER TAMBAYAN', W / 2, 360, '#E52C27', '#fff', '700 42px Oxanium, sans-serif');
       x.fillStyle = '#F4F1EA'; x.font = '104px Audiowide, Arial Black, sans-serif'; x.fillText('JOIN THE', W / 2, 520);
       x.fillStyle = '#E52C27'; x.fillText('TAMBAYAN', W / 2, 640);
       x.fillStyle = '#fff'; rrect(x, 200, 720, 680, 680, 44); x.fill();
       if (photo) x.drawImage(photo, 220, 740, 640, 640);
       x.fillStyle = '#F4F1EA'; x.font = '700 50px Oxanium, sans-serif'; x.fillText('Scan to sign up · it’s free', W / 2, 1490);
       x.fillStyle = '#CFCABD'; x.font = '600 34px Oxanium, sans-serif'; x.fillText(inviteLink(ST.inviteMain).replace(/^https:\/\//, ''), W / 2, 1550);
-      var ol = ogLeft(); if (ol) { x.fillStyle = '#F2D27A'; x.font = '700 46px Oxanium, sans-serif'; x.fillText('🔥 Only ' + ol + ' OG spots left', W / 2, 1650); }
+      var ol = ogLeft(); if (ol) { x.fillStyle = '#F2D27A'; x.font = '700 46px Oxanium, sans-serif'; x.fillText('ONLY ' + ol + ' OG SPOTS LEFT', W / 2, 1650); }
     } else if (kind === 'og') {
       var n = ST.og[uid()], bw = 620, bh = bw * 432 / 380, bx = (W - bw) / 2, by = 300;
       if (photo) { x.save(); x.shadowColor = 'rgba(242,201,76,.35)'; x.shadowBlur = 90; x.drawImage(photo, bx, by, bw, bh); x.restore(); }
@@ -1317,11 +1317,11 @@
   // the page behind the sign-up link and QR code (serelldc.github.io/zenkicks/join)
   VIEWS.join = function () {
     var ref = pendingRef();
-    var hero = '<div class="joinhero">' + (ref ? '<span class="pill invited">👋 Invited by @' + esc(ref) + '</span>' : '<span class="pill invited">UAE sneaker tambayan</span>') +
+    var hero = '<div class="joinhero">' + (ref ? '<span class="pill invited">' + I.user + 'Invited by @' + esc(ref) + '</span>' : '<span class="pill invited">' + I.flame + 'UAE sneaker tambayan</span>') +
       '<h1>Join <span>Zenkicks</span></h1><p class="sub">Free. Takes 30 seconds. No app store needed.</p>' +
-      '<ul class="joinlist"><li><b>🔔 Drop alerts</b> at 8 AM on release day</li><li><b>🛒 Buy &amp; sell</b> pairs in AED</li><li><b>✅ Legit checks</b> from the community</li><li><b>⭐ Grail alerts</b> when your pair gets listed</li></ul></div>';
+      '<ul class="joinlist">' + [[I.bell, 'Drop alerts', 'at 8 AM on release day'], [I.bag, 'Buy &amp; sell', 'pairs in AED'], [I.shield, 'Legit checks', 'from the community'], [I.star, 'Grail alerts', 'when your pair gets listed']].map(function (f) { return '<li><span class="ji">' + f[0] + '</span><span><b>' + f[1] + '</b> ' + f[2] + '</span></li>'; }).join('') + '</ul></div>';
     if (!sb) return '<div class="pad">' + hero + needSb() + '</div>';
-    if (uid()) return '<div class="pad">' + hero + '<div class="card" style="padding:14px"><b>You’re in ✅</b><br><span class="m">Signed in as @' + esc((ST.me && ST.me.username) || '') + '.</span></div>' + (ST.me ? inviteCard() : '') + '<button class="btn red" data-go="drops">Go to drops</button></div>';
+    if (uid()) return '<div class="pad">' + hero + '<div class="card youin"><span class="ji ok">' + I.check + '</span><span><b>You’re in</b><br><span class="m">Signed in as @' + esc((ST.me && ST.me.username) || '') + '.</span></span></div>' + (ST.me ? inviteCard() : '') + '<button class="btn red" data-go="drops">Go to drops</button></div>';
     return '<div class="pad">' + hero + ogHook() + loginForm() + '</div>';
   };
 
@@ -1423,7 +1423,7 @@
         break;
       case 'delgrail': sb.from('grails').delete().eq('id', id).then(function () { ST.grailHits = null; render(true); }); break;
       case 'share': openShare(el.getAttribute('data-k')); break;
-      case 'invcopy': (function (link) { var ok = function () { toast('Link copied. Paste it in your chats 🔗'); };
+      case 'invcopy': (function (link) { var ok = function () { toast('Link copied. Paste it in your chats'); };
         if (navigator.clipboard && navigator.clipboard.writeText) navigator.clipboard.writeText(link).then(ok, function () { window.prompt('Copy your link:', link); }); else window.prompt('Copy your link:', link); })(inviteLink(v === 'main')); break;
       case 'invshare': (function (link) { if (navigator.share) navigator.share({ title: 'Join me on Zenkicks', text: 'UAE sneaker drops, buy & sell, legit checks. Free 🔥', url: link }).catch(function () {}); else { ST.tmp = link; app.querySelector('[data-act=invcopy]').click(); } })(inviteLink()); break;
       case 'invqr': inviteQR(v === 'main'); break;

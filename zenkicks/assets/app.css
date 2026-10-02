@@ -450,9 +450,19 @@ h2{font-size:19px}
 .joinhero h1{color:var(--bone);font-size:34px;line-height:1.05;margin:2px 0 0}
 .joinhero h1 span{color:var(--brand)}
 .joinhero .sub{color:var(--sand);margin:0}
-.joinlist{list-style:none;margin:4px 0 0;padding:0;display:grid;gap:7px;font-size:14px;color:var(--sand)}
+.joinlist{list-style:none;margin:6px 0 0;padding:0;display:grid;gap:9px;font-size:14px;color:var(--sand)}
+.joinlist li{display:flex;align-items:center;gap:11px}
+.ji{width:30px;height:30px;flex-shrink:0;border-radius:8px;background:var(--brand);color:#fff;display:inline-grid;place-items:center;box-shadow:2px 2px 0 #0D0D0D;transform:rotate(-4deg)}
+.joinlist li:nth-child(even) .ji{transform:rotate(3deg)}
+.ji svg{width:17px;height:17px}
+.ji.ok{background:var(--green)}
+.youin{padding:14px;display:flex;align-items:center;gap:12px}
+.invhead{display:inline-flex;align-items:center;gap:10px}
+.invhead .ji{width:26px;height:26px;border-radius:7px}
+.invhead .ji svg{width:15px;height:15px}
 .joinlist b{color:var(--bone)}
-.pill.invited{align-self:flex-start;background:var(--brand);color:#fff;border:0}
+.pill.invited{align-self:flex-start;display:inline-flex;align-items:center;gap:6px;background:var(--brand);color:#fff;border:0;font-family:var(--label);font-weight:700;letter-spacing:.08em;text-transform:uppercase;padding:5px 11px 5px 9px;transform:rotate(-2deg);box-shadow:2px 2px 0 #0D0D0D}
+.pill.invited svg{width:14px;height:14px}
 .invitecard{padding:14px;display:flex;flex-direction:column;gap:10px}
 .invlink{font:600 13px/1.3 var(--label,monospace);background:var(--bone);border:1px dashed var(--line);border-radius:10px;padding:9px 11px;word-break:break-all;color:var(--ink)}
 .qrwrap{width:min(78vw,320px);aspect-ratio:1;margin:0 auto;border-radius:18px;overflow:hidden;background:#fff}
