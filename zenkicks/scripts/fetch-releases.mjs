@@ -8,7 +8,9 @@
 // there. This script then:
 //   1. removes drops that already happened,
 //   2. finds a StockX photo for any drop that has no photo yet,
-//   3. rebuilds What's hot from the best-selling sneakers on StockX.
+//   3. rebuilds What's hot from the best-selling sneakers on StockX,
+//   4. deal meter: finds the StockX price of pairs listed on the Zenkicks
+//      market (data/prices.json; each model is re-checked once a week).
 // About 1-10 requests per run (free plan = 1,000/month).
 // If anything fails, the old files are kept, so the app never breaks.
 // =====================================================================
@@ -18,6 +20,8 @@ const KEY = process.env.KICKSDB_API_KEY;
 const API = 'https://api.kicks.dev/v3';
 const today = new Date(Date.now() + 4 * 3600 * 1000).toISOString().slice(0, 10); // Dubai date
 const MAX_PHOTO_LOOKUPS = 15;
+const MAX_PRICE_LOOKUPS = 8;   // deal meter: new models looked up per run
+const daysSince = (ymd) => (Date.parse(today) - Date.parse(ymd)) / 86400000;
 
 if (!KEY) { console.log('No KICKSDB_API_KEY set; keeping current data.'); process.exit(0); }
 
@@ -59,10 +63,11 @@ async function releases() {
   for (const d of file.items) if (d.image && !realImg(d.image)) { delete d.image; console.log(`  removed placeholder photo: ${d.name}`); }
   for (const d of file.items) {
     if (d.image || hasOwn(d.name) || looked >= MAX_PHOTO_LOOKUPS) continue;
-    looked++;
+    if (d.tried && daysSince(d.tried) < 2) continue; // StockX rarely adds a photo overnight; saves free-plan requests
+    looked++; d.tried = today;
     const r = await get('/stockx/products', { query: d.name, limit: '3' });
     const hit = r.find((p) => realImg(p.image) && sameShoe(d.name, p.title));
-    if (hit) { d.image = big(hit.image); d.link = d.link || hit.link || ''; const x = details(hit); ['brand', 'sku', 'colorway'].forEach((k) => { if (x[k] && !d[k]) d[k] = x[k]; }); found++; console.log(`  photo: ${d.name} <- ${hit.title}`); }
+    if (hit) { delete d.tried; d.image = big(hit.image); d.link = d.link || hit.link || ''; const x = details(hit); ['brand', 'sku', 'colorway'].forEach((k) => { if (x[k] && !d[k]) d[k] = x[k]; }); found++; console.log(`  photo: ${d.name} <- ${hit.title}`); }
     else console.log(`  no StockX match yet: ${d.name}`);
   }
   file.updated = today;
@@ -104,5 +109,46 @@ async function hot() {
   console.log(`Hot: saved ${online.length} pairs.`);
 }
 
+// ---------- deal meter: StockX price for each model listed on the market ----------
+export const priceKey = (s) => clean(String(s || '').replace(/[“”"]/g, '')).toLowerCase();
+async function activeListings() {
+  const cfg = await readFile('config.js', 'utf8');
+  const url = (cfg.match(/SUPABASE_URL:\s*'([^']+)'/) || [])[1];
+  const key = (cfg.match(/SUPABASE_ANON_KEY:\s*'([^']+)'/) || [])[1]; // public key, same one the app uses
+  if (!url || !key) return [];
+  const res = await fetch(url + '/rest/v1/listings?select=model,brand&status=eq.active&limit=1000', { headers: { apikey: key, Authorization: 'Bearer ' + key } });
+  if (!res.ok) { console.log('  listings -> HTTP ' + res.status); return []; }
+  return res.json();
+}
+async function prices() {
+  let file = { items: {} };
+  try { file = JSON.parse(await readFile('data/prices.json', 'utf8')); } catch { /* first run */ }
+  file.items = file.items || {};
+  const ls = await activeListings();
+  const models = new Map();
+  for (const l of ls) { const k = priceKey(l.model); if (k && !models.has(k)) models.set(k, l); }
+  let looked = 0, found = 0;
+  for (const [k, l] of models) {
+    const have = file.items[k];
+    if (have && daysSince(have.at) < (have.none ? 3 : 7)) continue;
+    if (looked >= MAX_PRICE_LOOKUPS) break;
+    looked++;
+    const name = clean(l.model);
+    const q = l.brand && !name.toLowerCase().includes(String(l.brand).toLowerCase()) ? l.brand + ' ' + name : name;
+    const r = await get('/stockx/products', { query: q, limit: '5' });
+    const hit = r.find((p) => p.title && sameShoe(name, p.title) && (usd(p.min_price) || usd(p.avg_price)));
+    if (hit) {
+      file.items[k] = { title: clean(hit.title), usd: usd(hit.min_price) || usd(hit.avg_price), avg_usd: usd(hit.avg_price), link: hit.link || '', at: today };
+      found++; console.log(`  price: ${name} <- ${hit.title} US$${file.items[k].usd}`);
+    } else { file.items[k] = { none: true, at: today }; console.log(`  no StockX price: ${name}`); }
+  }
+  // forget models no longer for sale after a month
+  for (const k of Object.keys(file.items)) if (!models.has(k) && daysSince(file.items[k].at) > 30) delete file.items[k];
+  file.updated = today; file.source = 'KicksDB (StockX lowest ask, all sizes)';
+  await writeFile('data/prices.json', JSON.stringify(file, null, 2) + '\n');
+  console.log(`Deal meter: ${models.size} models on the market, ${found}/${looked} new prices.`);
+}
+
 try { await releases(); } catch (e) { console.log('Calendar step failed:', e.message); }
 try { await hot(); } catch (e) { console.log('Hot step failed:', e.message); }
+try { await prices(); } catch (e) { console.log('Price step failed:', e.message); }
