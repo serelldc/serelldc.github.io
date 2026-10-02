@@ -54,6 +54,7 @@ h2{font-size:19px}
 
 /* buttons */
 .btn{height:48px;padding:0 20px;border-radius:999px;border:0;font-weight:700;font-size:15px;display:inline-flex;align-items:center;justify-content:center;gap:8px}
+.btn > svg{width:18px;height:18px;flex-shrink:0}
 .btn.red{background:var(--red);color:#fff}
 .btn.dark{background:var(--ink);color:var(--bone)}
 .btn.ghost{background:transparent;border:1.5px solid currentColor}
@@ -482,3 +483,13 @@ h2{font-size:19px}
 .ilink{padding:14px;width:100%;text-align:left;align-items:center}
 .ilink .ji{width:26px;height:26px;border-radius:7px}
 .ilink .ji svg{width:15px;height:15px}
+
+/* OG members: their badge is their profile picture */
+.avatar-btn.avatar-og{background:transparent;width:48px;height:56px;border-radius:0;padding:0}
+.avatar-og .ogb{width:48px}
+.avatar-og .ogb img{filter:drop-shadow(0 2px 4px rgba(0,0,0,.5))}
+.avatar-og .ogb .ogn{font-size:24cqw}
+.avatar-og.big{flex-shrink:0}
+.avatar-og.big .ogb{width:92px}
+.avatar-og.big .ogb .ogn{font-size:20cqw}
+.row:has(> .avatar-og.big) h1{font-size:24px!important}
