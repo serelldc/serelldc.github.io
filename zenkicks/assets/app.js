@@ -351,10 +351,11 @@
   function priceKey(s) { return String(s || '').replace(/[“”"]/g, '').replace(/\s+/g, ' ').trim().toLowerCase(); }
   function dealMeter(l) {
     var p = ST.prices && ST.prices[priceKey(l.model)];
-    if (!p || !p.usd || !l.price_aed) return p && p.none ? { none: true } : null;
-    var sx = usdToAed(p.usd), r = l.price_aed / sx;
+    var usd = p && (p.avg_usd || p.usd); // average sale price; the lowest ask can be one odd size
+    if (!usd || !l.price_aed) return p && p.none ? { none: true } : null;
+    var sx = usdToAed(usd), r = l.price_aed / sx;
     var lv = r <= 0.9 ? ['great', 'Great deal'] : r <= 1.05 ? ['good', 'Good price'] : r <= 1.25 ? ['fair', 'Fair price'] : ['high', 'Above StockX'];
-    return { level: lv[0], label: lv[1], sx: sx, usd: p.usd, ratio: r, link: p.link };
+    return { level: lv[0], label: lv[1], sx: sx, usd: usd, ratio: r, link: p.link };
   }
   function meterTag(l) { var m = dealMeter(l); return m && (m.level === 'great' || m.level === 'good') ? '<span class="dmtag ' + m.level + '">' + m.label + '</span>' : ''; }
   function meterCard(l) {
@@ -365,7 +366,7 @@
     var diff = Math.round(Math.abs(1 - m.ratio) * 100);
     return '<div class="card meter ' + m.level + '"><div class="between" style="align-items:center"><b>Deal meter</b><span class="dmtag ' + m.level + '">' + m.label + '</span></div>' +
       '<div class="mbar" role="img" aria-label="' + m.label + '"><i style="left:' + pos + '%"></i></div><div class="mlabels"><span>Great deal</span><span>Fair</span><span>High</span></div>' +
-      '<span class="m">StockX lowest ask: <b>AED ' + m.sx.toLocaleString('en-US') + '</b> (US$' + m.usd + ', all sizes), before shipping and customs to the UAE. This pair is <b>' + (diff < 3 ? 'about the same' : diff + '% ' + (m.ratio < 1 ? 'below' : 'above')) + '</b>' + (diff < 3 ? '.' : ' StockX.') + '</span>' +
+      '<span class="m">StockX average resale: <b>AED ' + m.sx.toLocaleString('en-US') + '</b> (US$' + m.usd + ', all sizes), before shipping and customs to the UAE. This pair is <b>' + (diff < 3 ? 'about the same' : diff + '% ' + (m.ratio < 1 ? 'below' : 'above')) + '</b>' + (diff < 3 ? '.' : ' StockX.') + '</span>' +
       (safeUrl(m.link) ? '<a class="link" style="align-self:flex-start;padding:0" href="' + esc(safeUrl(m.link)) + '" target="_blank" rel="noopener">Compare on StockX ›</a>' : '') + '</div>';
   }
 
