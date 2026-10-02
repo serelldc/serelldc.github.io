@@ -154,7 +154,7 @@ async function prices() {
   }
   // forget models no longer for sale after a month
   for (const k of Object.keys(file.items)) if (!models.has(k) && daysSince(file.items[k].at) > 30) delete file.items[k];
-  file.updated = today; file.source = 'KicksDB (StockX lowest ask, all sizes)';
+  file.updated = today; file.source = 'KicksDB (StockX average resale, all sizes)';
   await writeFile('data/prices.json', JSON.stringify(file, null, 2) + '\n');
   console.log(`Deal meter: ${models.size} models on the market, ${found}/${looked} new prices.`);
 }
