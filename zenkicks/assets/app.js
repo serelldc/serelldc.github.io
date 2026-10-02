@@ -8,6 +8,7 @@
   'use strict';
 
   var C = window.ZK_CONFIG || {};
+  var AUTH_RETURN = /access_token=|[?&]code=/.test(location.href); // back from Google sign-in
   var sb = null;
   try {
     if (C.SUPABASE_URL && C.SUPABASE_ANON_KEY && window.supabase) {
@@ -257,6 +258,7 @@
       if (seq !== renderSeq) return;
       if (typeof out === 'string') out = { html: out };
       var main = document.getElementById('main'); main.innerHTML = out.html; main.scrollTop = top;
+      if (!window.__zkShown) { window.__zkShown = true; try { performance.mark('zk-first-view'); } catch (e) { /* old browser */ } }
       var bb = document.getElementById('bottombar'); if (bb) bb.outerHTML = out.bottom || '';
       if (out.after) out.after();
       fillAds();
@@ -401,7 +403,8 @@
     }).catch(function () { return null; });
   }
   function swReady() { return Promise.race([navigator.serviceWorker.ready, new Promise(function (_, rej) { setTimeout(function () { rej(new Error('no sw')); }, 6000); })]); }
-  function currentSub() { if (!pushEnv().can) return Promise.resolve(null); return swReady().then(function (r) { return r.pushManager.getSubscription(); }).catch(function () { return null; }); }
+  // quick check (no waiting for the service worker to start): used by Me page and start-up
+  function currentSub() { if (!pushEnv().can) return Promise.resolve(null); return navigator.serviceWorker.getRegistration().then(function (r) { return r && r.pushManager ? r.pushManager.getSubscription() : null; }).catch(function () { return null; }); }
   function remItems() {
     var rem = store('rem') || {}; var all = (ST.releases && ST.releases.items) || [];
     return all.filter(function (d) { return rem[d.name + d.date] && dayDiff(d.date) >= 0; }).map(function (d) {
@@ -640,7 +643,9 @@
   function loadGrailHits(force) {
     if (!sb || !uid()) { ST.grailHits = []; return Promise.resolve([]); }
     if (!force && ST.grailHits && Date.now() - (ST.grailAt || 0) < 120000) return Promise.resolve(ST.grailHits);
-    return sb.rpc('my_grail_matches').then(function (r) { ST.grailHits = r.error ? [] : (r.data || []); ST.grailAt = Date.now(); return ST.grailHits; }).catch(function () { ST.grailHits = []; return []; });
+    if (ST.grailP) return ST.grailP;
+    ST.grailP = sb.rpc('my_grail_matches').then(function (r) { ST.grailHits = r.error ? [] : (r.data || []); ST.grailAt = Date.now(); ST.grailP = null; return ST.grailHits; }).catch(function () { ST.grailHits = []; ST.grailP = null; return []; });
+    return ST.grailP;
   }
   function grailNew() { var seen = store('grailseen') || {}, u = {}; (ST.grailHits || []).forEach(function (h) { if (!seen[h.listing_id]) u[h.listing_id] = 1; }); return Object.keys(u); }
   function markGrailsSeen() { var seen = store('grailseen') || {}; (ST.grailHits || []).forEach(function (h) { seen[h.listing_id] = 1; }); store('grailseen', seen); }
@@ -649,12 +654,36 @@
     return '<div class="pad" style="padding-bottom:0"><button class="card grailbox" data-go="grails"><span class="gb-ico">🔔</span><span class="grow"><b>Grail alert!</b><br><span class="m">' + n + ' pair' + (n > 1 ? 's' : '') + ' you’re hunting just got listed on the Market.</span></span><span aria-hidden="true" style="font-size:20px">›</span></button></div>';
   }
 
+  // newest pairs + their bid stats, kept on the phone so Home opens instantly next time
+  function fetchHome() {
+    if (ST.homeP) return ST.homeP; // one request at a time, even if Home redraws while it loads
+    var p = sb.from('listings').select(LISTING_COLS).eq('status', 'active').order('created_at', { ascending: false }).limit(4).then(function (r) {
+      var listings = r.data || [];
+      return statsFor(listings.map(function (l) { return l.id; })).then(function (stats) {
+        ST.homeCache = { t: Date.now(), listings: listings, stats: stats };
+        store('homecache', ST.homeCache);
+        return ST.homeCache;
+      });
+    });
+    ST.homeP = p;
+    p.then(function () { ST.homeP = null; }, function () { ST.homeP = null; });
+    return p;
+  }
   VIEWS.drops = function () {
     var hc = ST.homeCache && Date.now() - ST.homeCache.t < 30000 ? ST.homeCache : null;
-    var fresh = hc ? Promise.resolve({ data: hc.listings }) : sb ? sb.from('listings').select(LISTING_COLS).eq('status', 'active').order('created_at', { ascending: false }).limit(4) : Promise.resolve({ data: [] });
+    if (!hc && sb && !ST.homeRefreshing) {
+      var saved = ST.homeCache || store('homecache');
+      if (saved && saved.listings && Date.now() - saved.t < 3 * 864e5) {
+        // show the last copy right away, refresh quietly, then redraw once with fresh data
+        hc = saved; ST.homeRefreshing = true;
+        fetchHome().then(function (fresh) { ST.homeRefreshing = false; if (route().name === 'drops' && JSON.stringify(fresh.listings) + JSON.stringify(fresh.stats) !== JSON.stringify(saved.listings) + JSON.stringify(saved.stats)) render(true); }, function () { ST.homeRefreshing = false; });
+      }
+    }
+    var homeData = hc ? Promise.resolve(hc) : sb ? fetchHome().catch(function () { return { listings: [], stats: {} }; }) : Promise.resolve({ listings: [], stats: {} });
     if (uid() && (!ST.grailHits || Date.now() - (ST.grailAt || 0) > 120000)) loadGrailHits().then(function () { if (route().name === 'drops' && grailNew().length && !app.querySelector('.grailbox')) render(true); });
-    return Promise.all([loadFeeds(), fresh]).then(function (a) { return codFor(upcoming().slice(0, 9).map(function (d) { return d.name + d.date; })).then(function () { return a; }); }).then(function (a) {
-      var listings = (a[1] && a[1].data) || [];
+    return Promise.all([loadFeeds(), homeData]).then(function (a) {
+      var codKeys = upcoming().slice(0, 9).map(function (d) { return d.name + d.date; });
+      var listings = a[1].listings || [], stats = a[1].stats || {};
       var up = upcoming(); var next = up[0]; var rem = store('rem') || {};
       var rows = up.slice(0, 8).map(function (d) {
         var dt = new Date(d.date + 'T00:00:00Z'); var on = !!rem[d.name + d.date]; var im = releaseImg(d);
@@ -668,10 +697,8 @@
         return '<button class="card hotcard" data-go="hot" data-peek="h|' + i + '"><div class="tile" style="height:90px;background:#fff"><span class="rank" style="z-index:1">' + (i + 1) + '</span>' + (im ? '<img src="' + esc(im) + '" alt="" loading="lazy" style="width:100%;height:100%;object-fit:cover">' : I.shoe) + '</div><span class="t" style="font-size:13px;line-height:1.3">' + esc(h.name) + '</span><span class="m">' + esc(h.why || '') + '</span></button>';
       }).join('');
       var heroHtml = heroSection(next, up.length, rem);
-      var ids = listings.map(function (l) { return l.id; });
-      return (hc ? Promise.resolve(hc.stats) : statsFor(ids)).then(function (stats) {
-        ST.homeCache = { t: hc ? hc.t : Date.now(), listings: listings, stats: stats };
-        return installCard() + pendingBanner() + grailBanner() + heroHtml +
+      {
+        var html = installCard() + pendingBanner() + grailBanner() + heroHtml +
           '<div class="pad">' +
           '<section class="sec"><div class="between"><h2>Release calendar</h2><span class="pill ok" style="font-size:10px">AUTO</span></div><p class="sub" style="font-size:12px">' + esc(stamp()) + ' · AED from US retail at 3.6725; UAE store prices may differ · <b>Press and hold a pair for details</b></p><div class="droplist">' + rows + '</div></section>' +
           (hot ? '<section class="sec"><div class="between"><h2>What’s hot</h2><button class="link" data-go="hot">See all</button></div><div class="scroller">' + hot + '</div></section>' : '') +
@@ -680,7 +707,9 @@
           (listings.length ? '<div class="grid">' + listings.map(function (l) { return itemCard(l, stats[l.id]); }).join('') + '</div>' : '<div class="card empty" style="padding:20px">' + I.bag + '<span>No pairs listed yet. Be the first.</span><button class="btn red" data-go="sell">Sell a pair</button></div>') + '</section>' +
           '<button class="safety" style="border:0;text-align:left;align-items:center" data-go="legit"><span style="color:var(--coral)">' + I.shield + '</span><span class="grow" style="display:flex;flex-direction:column;gap:2px"><b style="font-size:15px;color:var(--bone)">Legit or fake?</b><span>Post photos and let the community vote</span></span><span aria-hidden="true" style="font-size:20px;color:var(--bone)">›</span></button>' +
           installLink() + sourcesNote() + '</div>';
-      });
+        // Cop/Drop percentages fill in right after the page shows (no waiting on them)
+        return { html: html, after: function () { codFor(codKeys).then(function () { codKeys.forEach(paintCod); }); } };
+      }
     });
   };
   function sourcesNote() {
@@ -1708,27 +1737,39 @@
     setTimeout(pushBoot, 2500);
     var ownersP = loadOwners().then(function () { store('badges', { owners: ST.owners || {}, og: ST.og || {}, ogCount: ST.ogCount }); });
     var booted = false;
-    sb.auth.getSession().then(function (r) {
+    var sessionP = sb.auth.getSession();
+    sessionP.then(function (r) {
       ST.session = r.data.session;
+      if (AUTH_RETURN && uid()) meP0 = true;
       var meP = loadMe();
       var needMe = uid() && /^(me|admin|sell|new-check|login)$/.test(route().name);
       (needMe ? meP : Promise.resolve()).then(function () { booted = true; render(); });
       Promise.all([meP, ownersP]).then(function () {
+        if (meP0) { meP0 = false; return afterSignedIn(); } // just came back from Google
         var badgesChanged = JSON.stringify([cb && cb.og, cb && cb.owners]) !== JSON.stringify([ST.og, ST.owners]);
         if (booted && (uid() && !needMe || badgesChanged)) render(true);
         checkNotices(); applyRef();
       });
     });
+    var meP0 = false;
+    function afterSignedIn() {
+      var fresh = ST.me && ST.me.created_at && Date.now() - new Date(ST.me.created_at).getTime() < 10 * 60e3 || !!store('pending'); store('pending', null);
+      var next = takeAfter();
+      if (next) go(next); else if (route().name === 'login' || route().name === 'join' && fresh) go('drops'); else render(true); // join: only brand-new members jump to Drops (a returning member just sees "You're in")
+      setTimeout(checkNotices, 1500); applyRef();
+      setTimeout(function () { toast(fresh ? 'Welcome to Zenkicks, @' + ST.me.username + '! Change your username anytime in Profile.' : 'Signed in as @' + ((ST.me && ST.me.username) || '')); }, 400);
+    }
     sb.auth.onAuthStateChange(function (evt, session) {
       if (evt === 'INITIAL_SESSION') return; // handled by getSession above
-      var was = uid(); ST.session = session;
-      if ((session && session.user && session.user.id) !== was) Promise.all([loadMe(), evt === 'SIGNED_IN' ? loadOwners().then(function () { store('badges', { owners: ST.owners, og: ST.og, ogCount: ST.ogCount }); }) : null]).then(function () {
-        if (evt !== 'SIGNED_IN' || !uid()) return render(true);
-        var fresh = ST.me && ST.me.created_at && Date.now() - new Date(ST.me.created_at).getTime() < 10 * 60e3 || !!store('pending'); store('pending', null);
-        var next = takeAfter();
-        if (next) go(next); else if (route().name === 'login' || route().name === 'join' && fresh) go('drops'); else render(true); // join: only brand-new members jump to Drops (a returning member just sees "You're in")
-        setTimeout(checkNotices, 1500); applyRef();
-        setTimeout(function () { toast(fresh ? 'Welcome to Zenkicks, @' + ST.me.username + '! Change your username anytime in Profile.' : 'Signed in as @' + ((ST.me && ST.me.username) || '')); }, 400);
+      // wait until the start-up session is known: the library also fires SIGNED_IN while it loads a saved
+      // session, and treating that as a new sign-in made every page load twice
+      sessionP.then(function () {
+        var was = uid(); ST.session = session;
+        if ((session && session.user && session.user.id) === was) return;
+        Promise.all([loadMe(), evt === 'SIGNED_IN' ? loadOwners().then(function () { store('badges', { owners: ST.owners, og: ST.og, ogCount: ST.ogCount }); }) : null]).then(function () {
+          if (evt !== 'SIGNED_IN' || !uid()) return render(true);
+          afterSignedIn();
+        });
       });
     });
   } else {
