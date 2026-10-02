@@ -751,19 +751,19 @@
     return y + lines.length * lh;
   }
   function fitImg(x, im, a, b, w, h) { var r = Math.min(w / im.width, h / im.height), iw = im.width * r, ih = im.height * r; x.drawImage(im, a + (w - iw) / 2, b + (h - ih) / 2, iw, ih); }
-  function cardBase(x, W, H) {
+  function cardBase(x, W, H, noUrl) {
     x.fillStyle = '#0D0D0D'; x.fillRect(0, 0, W, H);
     var g = x.createRadialGradient(W * .8, 260, 40, W * .8, 260, 900); g.addColorStop(0, 'rgba(229,44,39,.35)'); g.addColorStop(1, 'rgba(229,44,39,0)'); x.fillStyle = g; x.fillRect(0, 0, W, H);
     x.save(); x.translate(80 + 55, 90 + 55); x.scale(110 / 224, 110 / 224); x.fillStyle = '#E52C27'; var p = new Path2D(Z); x.fill(p); x.rotate(Math.PI); x.fill(p); x.restore();
     x.fillStyle = '#F4F1EA'; x.textAlign = 'left'; x.textBaseline = 'middle'; x.font = '64px Audiowide, Arial Black, sans-serif'; x.fillText('ZENKICKS', 220, 147);
     x.textAlign = 'center'; x.textBaseline = 'alphabetic';
-    x.fillStyle = '#CFCABD'; x.font = '600 38px Oxanium, sans-serif'; x.fillText('UAE sneaker drops · market · legit checks', W / 2, H - 140);
-    x.fillStyle = '#F4F1EA'; x.font = '700 44px Oxanium, sans-serif'; x.fillText('serelldc.github.io/zenkicks', W / 2, H - 80);
+    x.fillStyle = '#CFCABD'; x.font = '600 38px Oxanium, sans-serif'; x.fillText('UAE sneaker drops · market · legit checks', W / 2, noUrl ? H - 100 : H - 140);
+    if (!noUrl) { x.fillStyle = '#F4F1EA'; x.font = '700 44px Oxanium, sans-serif'; x.fillText('serelldc.github.io/zenkicks', W / 2, H - 80); } // the invite card already shows its own link under the QR
   }
   function pill(x, text, cx, y, bg, fg, font) { x.font = font; var w = x.measureText(text).width + 70; x.fillStyle = bg; rrect(x, cx - w / 2, y - 52, w, 80, 40); x.fill(); x.fillStyle = fg; x.textAlign = 'center'; x.fillText(text, cx, y); }
   function drawShare(kind, photo, noPhoto) {
     var W = 1080, H = 1920, cv = document.createElement('canvas'); cv.width = W; cv.height = H; var x = cv.getContext('2d');
-    cardBase(x, W, H);
+    cardBase(x, W, H, kind === 'invite');
     if (kind === 'listing') {
       var l = ST.shareListing;
       x.fillStyle = '#fff'; rrect(x, 80, 280, 920, 920, 36); x.fill();
@@ -783,8 +783,7 @@
       x.fillStyle = '#fff'; rrect(x, 200, 720, 680, 680, 44); x.fill();
       if (photo) x.drawImage(photo, 220, 740, 640, 640);
       x.fillStyle = '#F4F1EA'; x.font = '700 50px Oxanium, sans-serif'; x.fillText('Scan to sign up · it’s free', W / 2, 1490);
-      x.fillStyle = '#CFCABD'; x.font = '600 34px Oxanium, sans-serif'; x.fillText(inviteLink(ST.inviteMain).replace(/^https:\/\//, ''), W / 2, 1550);
-      var ol = ogLeft(); if (ol) { x.fillStyle = '#F2D27A'; x.font = '700 46px Oxanium, sans-serif'; x.fillText('ONLY ' + ol + ' OG SPOTS LEFT', W / 2, 1650); }
+      var ol = ogLeft(); if (ol) { x.fillStyle = '#F2D27A'; x.font = '700 46px Oxanium, sans-serif'; x.fillText('ONLY ' + ol + ' OG SPOTS LEFT', W / 2, 1600); }
     } else if (kind === 'og') {
       var n = ST.og[uid()], bw = 620, bh = bw * 432 / 380, bx = (W - bw) / 2, by = 300;
       if (photo) { x.save(); x.shadowColor = 'rgba(242,201,76,.35)'; x.shadowBlur = 90; x.drawImage(photo, bx, by, bw, bh); x.restore(); }
