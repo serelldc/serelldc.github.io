@@ -37,8 +37,19 @@
     "j 1 low concord": {
       "none": true,
       "at": "2026-10-03"
+    },
+    "jordan 1 defiant og high": {
+      "title": "Jordan 1 Retro High OG Defiant Couture",
+      "usd": 103,
+      "avg_usd": 213,
+      "link": "https://stockx.pvxt.net/c/4722526/1023711/9060?u=https%3A%2F%2Fstockx.com%2Fair-jordan-1-retro-high-og-defiant-couture",
+      "at": "2026-10-03"
+    },
+    "j 1 low travis scott shy pink": {
+      "none": true,
+      "at": "2026-10-03"
     }
   },
   "updated": "2026-10-03",
-  "source": "KicksDB (StockX lowest ask, all sizes)"
+  "source": "KicksDB (StockX average resale, all sizes)"
 }
