@@ -1,95 +1,7 @@
 {
-  "updated": "2026-10-03",
+  "updated": "2026-10-04",
   "source": "SneakerFiles & Sneaker News release calendars (curated weekly); photos from KicksDB (StockX)",
   "items": [
-    {
-      "date": "2026-10-03",
-      "name": "ANTA Kai 3 \"Kai Feng\"",
-      "brand": "ANTA",
-      "retail_usd": 150,
-      "image": "",
-      "link": "",
-      "tried": "2026-10-03"
-    },
-    {
-      "date": "2026-10-03",
-      "name": "Above the Clouds x ASICS Gel-SD LYTE",
-      "brand": "ASICS",
-      "retail_usd": 220,
-      "image": "https://images.stockx.com/images/ASICS-GT-2160-Above-the-Clouds-Chocolate-Brown-Product.jpg?fit=fill&bg=FFFFFF&w=600&h=430&fm=webp&auto=compress&q=90&dpr=2&trim=color&updated_at=1786572687",
-      "link": "https://stockx.pvxt.net/c/4722526/1023711/9060?u=https%3A%2F%2Fstockx.com%2Fasics-gt-2160-above-the-clouds-chocolate-brown",
-      "sku": "1203A654-100"
-    },
-    {
-      "date": "2026-10-03",
-      "name": "Air Jordan 14 Low \"Black Ostrich\"",
-      "brand": "Jordan",
-      "retail_usd": 240,
-      "image": "",
-      "link": "",
-      "tried": "2026-10-03"
-    },
-    {
-      "date": "2026-10-03",
-      "name": "Air Jordan 16 \"Black Pack\"",
-      "brand": "Jordan",
-      "retail_usd": 245,
-      "link": "https://stockx.pvxt.net/c/4722526/1023711/9060?u=https%3A%2F%2Fstockx.com%2Fair-jordan-16-retro-black-pack",
-      "tried": "2026-10-03"
-    },
-    {
-      "date": "2026-10-03",
-      "name": "Air Jordan 3 \"Fireside\" (W)",
-      "brand": "Jordan",
-      "retail_usd": 205,
-      "image": "https://images.stockx.com/images/Air-Jordan-3-Retro-Fireside-Womens.jpg?fit=fill&bg=FFFFFF&w=600&h=430&fm=webp&auto=compress&q=90&dpr=2&trim=color&updated_at=1785869669",
-      "link": "https://stockx.pvxt.net/c/4722526/1023711/9060?u=https%3A%2F%2Fstockx.com%2Fair-jordan-3-retro-fireside-womens"
-    },
-    {
-      "date": "2026-10-03",
-      "name": "Hardies x adidas Adistar Control 5 \"Aurora Ruby\"",
-      "brand": "adidas",
-      "retail_usd": 130,
-      "image": "",
-      "link": "",
-      "tried": "2026-10-03"
-    },
-    {
-      "date": "2026-10-03",
-      "name": "Victor Victor x Nike Air Force 1 Low '01 \"Yellow Zest\"",
-      "brand": "Nike",
-      "retail_usd": 150,
-      "image": "https://images.stockx.com/images/Nike-Air-Force-1-Low-01-Victor-Victor-Yellow-Zest.jpg?fit=fill&bg=FFFFFF&w=600&h=430&fm=webp&auto=compress&q=90&dpr=2&trim=color&updated_at=1785950739",
-      "link": "https://stockx.pvxt.net/c/4722526/1023711/9060?u=https%3A%2F%2Fstockx.com%2Fnike-air-force-1-low-01-victor-victor-yellow-zest",
-      "sku": "IV3238-700"
-    },
-    {
-      "date": "2026-10-03",
-      "name": "Willy Chavarria x adidas Megaride Bones \"Black\"",
-      "brand": "adidas",
-      "retail_usd": 230,
-      "image": "https://images.stockx.com/images/adidas-Megaride-Copa-Mundial-Willy-Chavarria-Black-White.jpg?fit=fill&bg=FFFFFF&w=600&h=430&fm=webp&auto=compress&q=90&dpr=2&trim=color&updated_at=1780647762",
-      "link": "https://stockx.pvxt.net/c/4722526/1023711/9060?u=https%3A%2F%2Fstockx.com%2Fadidas-megaride-copa-mundial-willy-chavarria-black-white",
-      "sku": "KZ8743"
-    },
-    {
-      "date": "2026-10-03",
-      "name": "Willy Chavarria x adidas Megaride Bones \"Halo Green\"",
-      "brand": "adidas",
-      "retail_usd": 230,
-      "image": "",
-      "link": "",
-      "tried": "2026-10-03"
-    },
-    {
-      "date": "2026-10-03",
-      "name": "Willy Chavarria x adidas Megaride High \"Core Black\"",
-      "brand": "adidas",
-      "retail_usd": 280,
-      "image": "",
-      "link": "",
-      "tried": "2026-10-03"
-    },
     {
       "date": "2026-10-05",
       "name": "Nike Air Force 1 Low Luxe \"Oregon Black\"",
@@ -211,40 +123,44 @@
       "name": "Reebok Engine A 26 \"Black White\"",
       "brand": "Reebok",
       "retail_usd": 120,
-      "image": "",
-      "link": ""
+      "image": "https://images.stockx.com/images/Reebok-Engine-A-26-Black-White-Red.jpg?fit=fill&bg=FFFFFF&w=600&h=430&fm=webp&auto=compress&q=90&dpr=2&trim=color&updated_at=1789672055",
+      "link": "https://stockx.pvxt.net/c/4722526/1023711/9060?u=https%3A%2F%2Fstockx.com%2Freebok-engine-a-26-black-white-red",
+      "sku": "100276246"
     },
     {
       "date": "2026-10-09",
       "name": "Reebok Engine A 26 \"Grey\"",
       "brand": "Reebok",
       "retail_usd": 120,
-      "image": "",
-      "link": ""
+      "image": "https://images.stockx.com/images/Reebok-Engine-A-26-Grey-Optical-Emerald.jpg?fit=fill&bg=FFFFFF&w=600&h=430&fm=webp&auto=compress&q=90&dpr=2&trim=color&updated_at=1789672079",
+      "link": "https://stockx.pvxt.net/c/4722526/1023711/9060?u=https%3A%2F%2Fstockx.com%2Freebok-engine-a-26-grey-optical-emerald",
+      "sku": "100272089"
     },
     {
       "date": "2026-10-09",
       "name": "Street Fighter x Puma Suede \"Chun-Li\"",
       "brand": "Puma",
       "retail_usd": 120,
-      "image": "",
-      "link": ""
+      "image": "https://images.stockx.com/images/BAIT-x-Street-Fighter-6-Chun-Li-Hoodie-Black.jpg?fit=fill&bg=FFFFFF&w=600&h=430&fm=webp&auto=compress&q=90&dpr=2&trim=color&updated_at=1716339090",
+      "link": "https://stockx.pvxt.net/c/4722526/1023711/9060?u=https%3A%2F%2Fstockx.com%2Fbait-x-street-fighter-6-chun-li-hoodie-black",
+      "sku": "SF6CHUNHDBLK"
     },
     {
       "date": "2026-10-09",
       "name": "Street Fighter x Puma Suede \"Ken Masters\"",
       "brand": "Puma",
       "retail_usd": 100,
-      "image": "",
-      "link": ""
+      "image": "https://images.stockx.com/images/Street-Fighter-Ken-Masters-Bumbag.jpg?fit=fill&bg=FFFFFF&w=600&h=430&fm=webp&auto=compress&q=90&dpr=2&trim=color&updated_at=1790358881",
+      "link": "https://stockx.pvxt.net/c/4722526/1023711/9060?u=https%3A%2F%2Fstockx.com%2Fstreet-fighter-ken-masters-bumbag"
     },
     {
       "date": "2026-10-09",
       "name": "Street Fighter x Puma Suede \"Ryu\"",
       "brand": "Puma",
       "retail_usd": 100,
-      "image": "",
-      "link": ""
+      "image": "https://images.stockx.com/images/BAIT-x-Street-Fighter-6-Ryu-Men-Tee-White.jpg?fit=fill&bg=FFFFFF&w=600&h=430&fm=webp&auto=compress&q=90&dpr=2&trim=color&updated_at=1716339838",
+      "link": "https://stockx.pvxt.net/c/4722526/1023711/9060?u=https%3A%2F%2Fstockx.com%2Fbait-x-street-fighter-6-ryu-men-tee-white",
+      "sku": "SF6RYUTEEWH"
     },
     {
       "date": "2026-10-09",
@@ -260,7 +176,8 @@
       "brand": "ASICS",
       "retail_usd": 190,
       "image": "",
-      "link": ""
+      "link": "",
+      "tried": "2026-10-04"
     },
     {
       "date": "2026-10-10",
@@ -276,15 +193,17 @@
       "brand": "Nike",
       "retail_usd": 235,
       "image": "",
-      "link": ""
+      "link": "",
+      "tried": "2026-10-04"
     },
     {
       "date": "2026-10-10",
       "name": "Hellstar x adidas Megaride S2 \"Black Red\"",
       "brand": "adidas",
       "retail_usd": 200,
-      "image": "",
-      "link": ""
+      "image": "https://images.stockx.com/images/adidas-Adizero-Electric-II-Hellstar-Black-Red.jpg?fit=fill&bg=FFFFFF&w=600&h=430&fm=webp&auto=compress&q=90&dpr=2&trim=color&updated_at=1786133488",
+      "link": "https://stockx.pvxt.net/c/4722526/1023711/9060?u=https%3A%2F%2Fstockx.com%2Fadidas-adizero-electric-ii-hellstar-black-red",
+      "sku": "LA6357"
     },
     {
       "date": "2026-10-10",
@@ -300,7 +219,8 @@
       "brand": "ASICS",
       "retail_usd": 220,
       "image": "",
-      "link": ""
+      "link": "",
+      "tried": "2026-10-04"
     },
     {
       "date": "2026-10-10",
@@ -308,7 +228,8 @@
       "brand": "Nike",
       "retail_usd": 150,
       "image": "",
-      "link": ""
+      "link": "",
+      "tried": "2026-10-04"
     },
     {
       "date": "2026-10-10",
@@ -316,7 +237,8 @@
       "brand": "adidas",
       "retail_usd": 130,
       "image": "",
-      "link": ""
+      "link": "",
+      "tried": "2026-10-04"
     },
     {
       "date": "2026-10-11",
@@ -324,7 +246,8 @@
       "brand": "adidas",
       "retail_usd": 180,
       "image": "",
-      "link": ""
+      "link": "",
+      "tried": "2026-10-04"
     },
     {
       "date": "2026-10-13",
@@ -357,15 +280,17 @@
       "brand": "Nike",
       "retail_usd": 125,
       "image": "",
-      "link": ""
+      "link": "",
+      "tried": "2026-10-04"
     },
     {
       "date": "2026-10-15",
       "name": "Nike Air Force 1 Low Luxe \"Kentucky\"",
       "brand": "Nike",
       "retail_usd": 125,
-      "image": "",
-      "link": ""
+      "image": "https://images.stockx.com/images/Nike-Air-Force-1-Mid-Kentucky.jpg?fit=fill&bg=FFFFFF&w=600&h=430&fm=webp&auto=compress&q=90&dpr=2&trim=color&updated_at=1660799218",
+      "link": "https://stockx.pvxt.net/c/4722526/1023711/9060?u=https%3A%2F%2Fstockx.com%2Fnike-air-force-1-mid-kentucky",
+      "sku": "DX3721-100"
     },
     {
       "date": "2026-10-15",
@@ -373,7 +298,8 @@
       "brand": "Nike",
       "retail_usd": 125,
       "image": "",
-      "link": ""
+      "link": "",
+      "tried": "2026-10-04"
     },
     {
       "date": "2026-10-15",
