@@ -1,5 +1,5 @@
 {
-  "updated": "2026-10-04",
+  "updated": "2026-10-05",
   "source": "SneakerFiles & Sneaker News release calendars (curated weekly); photos from KicksDB (StockX)",
   "items": [
     {
@@ -7,9 +7,9 @@
       "name": "Nike Air Force 1 Low Luxe \"Oregon Black\"",
       "brand": "Nike",
       "retail_usd": 125,
-      "image": "",
-      "link": "",
-      "tried": "2026-10-03"
+      "image": "https://images.stockx.com/images/Nike-Air-Force-1-Low-Luxe-University-of-Oregon-Black.jpg?fit=fill&bg=FFFFFF&w=600&h=430&fm=webp&auto=compress&q=90&dpr=2&trim=color&updated_at=1790971102",
+      "link": "https://stockx.pvxt.net/c/4722526/1023711/9060?u=https%3A%2F%2Fstockx.com%2Fnike-air-force-1-low-luxe-university-of-oregon-black",
+      "sku": "JF5453-001"
     },
     {
       "date": "2026-10-05",
@@ -18,7 +18,7 @@
       "retail_usd": 200,
       "image": "",
       "link": "",
-      "tried": "2026-10-03"
+      "tried": "2026-10-05"
     },
     {
       "date": "2026-10-06",
@@ -27,7 +27,7 @@
       "retail_usd": 135,
       "image": "",
       "link": "",
-      "tried": "2026-10-03"
+      "tried": "2026-10-05"
     },
     {
       "date": "2026-10-07",
@@ -36,7 +36,7 @@
       "retail_usd": 150,
       "image": "",
       "link": "",
-      "tried": "2026-10-03"
+      "tried": "2026-10-05"
     },
     {
       "date": "2026-10-08",
@@ -81,7 +81,7 @@
       "retail_usd": 110,
       "image": "",
       "link": "",
-      "tried": "2026-10-03"
+      "tried": "2026-10-05"
     },
     {
       "date": "2026-10-09",
@@ -90,7 +90,7 @@
       "retail_usd": 140,
       "image": "",
       "link": "",
-      "tried": "2026-10-03"
+      "tried": "2026-10-05"
     },
     {
       "date": "2026-10-09",
@@ -99,7 +99,7 @@
       "retail_usd": 120,
       "image": "",
       "link": "",
-      "tried": "2026-10-03"
+      "tried": "2026-10-05"
     },
     {
       "date": "2026-10-09",
@@ -114,9 +114,9 @@
       "name": "Nike LeBron 24 \"Greater China\"",
       "brand": "Nike",
       "retail_usd": 190,
-      "image": "",
-      "link": "",
-      "tried": "2026-10-03"
+      "image": "https://images.stockx.com/images/Nike-LeBron-24-Greater-China.jpg?fit=fill&bg=FFFFFF&w=600&h=430&fm=webp&auto=compress&q=90&dpr=2&trim=color&updated_at=1790794863",
+      "link": "https://stockx.pvxt.net/c/4722526/1023711/9060?u=https%3A%2F%2Fstockx.com%2Fnike-lebron-24-greater-china",
+      "sku": "IX5105-200"
     },
     {
       "date": "2026-10-09",
@@ -256,7 +256,7 @@
       "retail_usd": 125,
       "image": "",
       "link": "",
-      "tried": "2026-10-03"
+      "tried": "2026-10-05"
     },
     {
       "date": "2026-10-14",
@@ -306,8 +306,9 @@
       "name": "Nike Air Force 1 Low Luxe \"Texas\"",
       "brand": "Nike",
       "retail_usd": 125,
-      "image": "",
-      "link": ""
+      "image": "https://images.stockx.com/images/Nike-Air-Force-1-Low-Texas.JPG?fit=fill&bg=FFFFFF&w=600&h=430&fm=webp&auto=compress&q=90&dpr=2&trim=color&updated_at=1618257516",
+      "link": "https://stockx.pvxt.net/c/4722526/1023711/9060?u=https%3A%2F%2Fstockx.com%2Fnike-air-force-1-low-texas",
+      "sku": "AH2439-991"
     },
     {
       "date": "2026-10-16",
@@ -349,7 +350,7 @@
       "retail_usd": 150,
       "image": "",
       "link": "",
-      "tried": "2026-10-03"
+      "tried": "2026-10-05"
     },
     {
       "date": "2026-10-23",
@@ -357,7 +358,7 @@
       "brand": "Nike",
       "retail_usd": 145,
       "link": "https://stockx.pvxt.net/c/4722526/1023711/9060?u=https%3A%2F%2Fstockx.com%2Fnike-ja-4-halloween",
-      "tried": "2026-10-03"
+      "tried": "2026-10-05"
     },
     {
       "date": "2026-10-23",
@@ -366,7 +367,7 @@
       "retail_usd": 145,
       "image": "",
       "link": "",
-      "tried": "2026-10-03"
+      "tried": "2026-10-05"
     },
     {
       "date": "2026-10-24",
@@ -399,7 +400,7 @@
       "retail_usd": 170,
       "image": "",
       "link": "",
-      "tried": "2026-10-03"
+      "tried": "2026-10-05"
     },
     {
       "date": "2026-10-24",
@@ -407,7 +408,7 @@
       "brand": "Nike",
       "retail_usd": 150,
       "link": "https://stockx.pvxt.net/c/4722526/1023711/9060?u=https%3A%2F%2Fstockx.com%2Fnike-air-force-1-low-01-nigo-x-j-hope",
-      "tried": "2026-10-03"
+      "tried": "2026-10-05"
     },
     {
       "date": "2026-10-24",
