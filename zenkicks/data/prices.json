@@ -9,19 +9,19 @@
     },
     "jordan 4": {
       "none": true,
-      "at": "2026-10-03"
+      "at": "2026-10-06"
     },
     "aj1 retro mid cut gum red": {
       "none": true,
-      "at": "2026-10-03"
+      "at": "2026-10-06"
     },
     "kobe": {
       "none": true,
-      "at": "2026-10-03"
+      "at": "2026-10-06"
     },
     "nike gianni's": {
       "none": true,
-      "at": "2026-10-03"
+      "at": "2026-10-06"
     },
     "jordan 1 high og true blue": {
       "title": "Jordan 1 Retro High OG True Blue",
@@ -32,11 +32,11 @@
     },
     "rebook question": {
       "none": true,
-      "at": "2026-10-03"
+      "at": "2026-10-06"
     },
     "j 1 low concord": {
       "none": true,
-      "at": "2026-10-03"
+      "at": "2026-10-06"
     },
     "jordan 1 defiant og high": {
       "title": "Jordan 1 Retro High OG Defiant Couture",
@@ -47,7 +47,7 @@
     },
     "j 1 low travis scott shy pink": {
       "none": true,
-      "at": "2026-10-03"
+      "at": "2026-10-06"
     },
     "nike zoom field jaxx travis scott leche blue": {
       "title": "Nike Zoom Field Jaxx Travis Scott Leche Blue",
@@ -84,8 +84,15 @@
       "avg_usd": 162,
       "link": "https://stockx.pvxt.net/c/4722526/1023711/9060?u=https%3A%2F%2Fstockx.com%2Freebok-question-pump-pump-universe",
       "at": "2026-10-05"
+    },
+    "kobe protro college navy": {
+      "title": "Nike Kobe 8 Protro College Navy",
+      "usd": 140,
+      "avg_usd": 289,
+      "link": "https://stockx.pvxt.net/c/4722526/1023711/9060?u=https%3A%2F%2Fstockx.com%2Fnike-kobe-8-protro-college-navy",
+      "at": "2026-10-06"
     }
   },
-  "updated": "2026-10-05",
+  "updated": "2026-10-06",
   "source": "KicksDB (StockX average resale, all sizes)"
 }

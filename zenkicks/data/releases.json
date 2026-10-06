@@ -1,25 +1,7 @@
 {
-  "updated": "2026-10-05",
+  "updated": "2026-10-06",
   "source": "SneakerFiles & Sneaker News release calendars (curated weekly); photos from KicksDB (StockX)",
   "items": [
-    {
-      "date": "2026-10-05",
-      "name": "Nike Air Force 1 Low Luxe \"Oregon Black\"",
-      "brand": "Nike",
-      "retail_usd": 125,
-      "image": "https://images.stockx.com/images/Nike-Air-Force-1-Low-Luxe-University-of-Oregon-Black.jpg?fit=fill&bg=FFFFFF&w=600&h=430&fm=webp&auto=compress&q=90&dpr=2&trim=color&updated_at=1790971102",
-      "link": "https://stockx.pvxt.net/c/4722526/1023711/9060?u=https%3A%2F%2Fstockx.com%2Fnike-air-force-1-low-luxe-university-of-oregon-black",
-      "sku": "JF5453-001"
-    },
-    {
-      "date": "2026-10-05",
-      "name": "Nike Kobe 10 Low Protro \"5 AM Flight\"",
-      "brand": "Nike",
-      "retail_usd": 200,
-      "image": "",
-      "link": "",
-      "tried": "2026-10-05"
-    },
     {
       "date": "2026-10-06",
       "name": "Nike Sabrina 4 \"90s Kid\"",
@@ -175,9 +157,9 @@
       "name": "atmos x ASICS Gel-Kayano 12.1 \"Indonesia\"",
       "brand": "ASICS",
       "retail_usd": 190,
-      "image": "",
-      "link": "",
-      "tried": "2026-10-04"
+      "image": "https://images.stockx.com/images/ASICS-Gel-Kayano-121-atmos-Indonesia.jpg?fit=fill&bg=FFFFFF&w=600&h=430&fm=webp&auto=compress&q=90&dpr=2&trim=color&updated_at=1790713015",
+      "link": "https://stockx.pvxt.net/c/4722526/1023711/9060?u=https%3A%2F%2Fstockx.com%2Fasics-gel-kayano-121-atmos-indonesia",
+      "sku": "1203B092-100"
     },
     {
       "date": "2026-10-10",
@@ -192,9 +174,9 @@
       "name": "Ben-G x Nike SB Air Force 1 Low",
       "brand": "Nike",
       "retail_usd": 235,
-      "image": "",
-      "link": "",
-      "tried": "2026-10-04"
+      "image": "https://images.stockx.com/images/Nike-SB-Air-Force-1-Low-City-Pack-Ben-G.jpg?fit=fill&bg=FFFFFF&w=600&h=430&fm=webp&auto=compress&q=90&dpr=2&trim=color&updated_at=1790886971",
+      "link": "https://stockx.pvxt.net/c/4722526/1023711/9060?u=https%3A%2F%2Fstockx.com%2Fnike-sb-air-force-1-low-city-pack-ben-g",
+      "sku": "IV5289-200"
     },
     {
       "date": "2026-10-10",
@@ -218,9 +200,9 @@
       "name": "Sneakerlah x ASICS Gel-Kayano 20 \"Ice Kacang\"",
       "brand": "ASICS",
       "retail_usd": 220,
-      "image": "",
-      "link": "",
-      "tried": "2026-10-04"
+      "image": "https://images.stockx.com/images/ASICS-Gel-Kayano-20-Sneakerlah-Ice-Kacang.jpg?fit=fill&bg=FFFFFF&w=600&h=430&fm=webp&auto=compress&q=90&dpr=2&trim=color&updated_at=1790713015",
+      "link": "https://stockx.pvxt.net/c/4722526/1023711/9060?u=https%3A%2F%2Fstockx.com%2Fasics-gel-kayano-20-sneakerlah-ice-kacang",
+      "sku": "1203B059-700"
     },
     {
       "date": "2026-10-10",
@@ -229,16 +211,16 @@
       "retail_usd": 150,
       "image": "",
       "link": "",
-      "tried": "2026-10-04"
+      "tried": "2026-10-06"
     },
     {
       "date": "2026-10-10",
       "name": "adidas Adizero Electric+ II \"Snickers\"",
       "brand": "adidas",
       "retail_usd": 130,
-      "image": "",
-      "link": "",
-      "tried": "2026-10-04"
+      "image": "https://images.stockx.com/images/adidas-Adizero-Electric-II-Snickers.jpg?fit=fill&bg=FFFFFF&w=600&h=430&fm=webp&auto=compress&q=90&dpr=2&trim=color&updated_at=1790713027",
+      "link": "https://stockx.pvxt.net/c/4722526/1023711/9060?u=https%3A%2F%2Fstockx.com%2Fadidas-adizero-electric-ii-snickers",
+      "sku": "KI5301"
     },
     {
       "date": "2026-10-11",
@@ -247,7 +229,7 @@
       "retail_usd": 180,
       "image": "",
       "link": "",
-      "tried": "2026-10-04"
+      "tried": "2026-10-06"
     },
     {
       "date": "2026-10-13",
@@ -281,7 +263,7 @@
       "retail_usd": 125,
       "image": "",
       "link": "",
-      "tried": "2026-10-04"
+      "tried": "2026-10-06"
     },
     {
       "date": "2026-10-15",
@@ -299,7 +281,7 @@
       "retail_usd": 125,
       "image": "",
       "link": "",
-      "tried": "2026-10-04"
+      "tried": "2026-10-06"
     },
     {
       "date": "2026-10-15",
@@ -441,9 +423,9 @@
       "name": "Nike Air Max 95 \"Reverse Blue Spark\"",
       "brand": "Nike",
       "retail_usd": 190,
-      "image": "",
-      "link": "",
-      "tried": "2026-10-03"
+      "image": "https://images.stockx.com/images/Nike-Air-Max-95-Premium-Big-Bubble-Reverse-Blue-Spark.jpg?fit=fill&bg=FFFFFF&w=600&h=430&fm=webp&auto=compress&q=90&dpr=2&trim=color&updated_at=1790795044",
+      "link": "https://stockx.pvxt.net/c/4722526/1023711/9060?u=https%3A%2F%2Fstockx.com%2Fnike-air-max-95-premium-big-bubble-reverse-blue-spark",
+      "sku": "JA0980-060"
     },
     {
       "date": "2026-10-24",
@@ -478,7 +460,7 @@
       "retail_usd": 155,
       "image": "",
       "link": "",
-      "tried": "2026-10-03"
+      "tried": "2026-10-06"
     },
     {
       "date": "2026-10-30",
@@ -487,7 +469,7 @@
       "retail_usd": 180,
       "image": "",
       "link": "",
-      "tried": "2026-10-03"
+      "tried": "2026-10-06"
     },
     {
       "date": "2026-10-31",
@@ -520,7 +502,7 @@
       "retail_usd": 210,
       "image": "",
       "link": "",
-      "tried": "2026-10-03"
+      "tried": "2026-10-06"
     },
     {
       "date": "2026-11-06",
@@ -529,7 +511,7 @@
       "retail_usd": 145,
       "image": "",
       "link": "",
-      "tried": "2026-10-03"
+      "tried": "2026-10-06"
     },
     {
       "date": "2026-11-07",
@@ -538,7 +520,7 @@
       "retail_usd": 240,
       "image": "",
       "link": "",
-      "tried": "2026-10-03"
+      "tried": "2026-10-06"
     },
     {
       "date": "2026-11-07",
@@ -547,7 +529,7 @@
       "retail_usd": 245,
       "image": "",
       "link": "",
-      "tried": "2026-10-03"
+      "tried": "2026-10-06"
     },
     {
       "date": "2026-11-07",
