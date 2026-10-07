@@ -502,7 +502,7 @@
       return sb.rpc('push_save', { p_endpoint: j.endpoint, p_p256dh: j.keys.p256dh, p_auth: j.keys.auth, p_items: remItems() });
     }).then(function (r) {
       if (r.error) throw r.error; store('pushon', j.endpoint); store('pushsync', Date.now());
-      var pf = pushPrefs(); if (!pf.weekly || !pf.grails) sb.rpc('push_prefs', { p_endpoint: j.endpoint, p_weekly: pf.weekly, p_grails: pf.grails }).then(function () {}, function () {});
+      var pf = pushPrefs(); if (!pf.weekly || !pf.grails || !pf.mentions) sb.rpc('push_prefs', { p_endpoint: j.endpoint, p_weekly: pf.weekly, p_grails: pf.grails, p_mentions: pf.mentions }).then(function () {}, function () {});
       return r.data;
     });
   }
@@ -573,17 +573,17 @@
     var n = Object.keys(store('rem') || {}).length, body, btn = '';
     var pf = pushPrefs();
     function pfChip(k, label) { return '<button class="chip' + (pf[k] ? ' on' : '') + '" data-act="pushpref" data-v="' + k + '" aria-pressed="' + pf[k] + '">' + (pf[k] ? '✓ ' : '') + label + '</button>'; }
-    if (st.s === 'on') { body = 'On for this phone. Drop-day reminders at 8 AM (UAE)' + (n ? ' · ' + n + ' reminder' + (n > 1 ? 's' : '') : '. Tap 🔔 on any drop.'); btn = pfChip('weekly', 'Weekly drops list') + pfChip('grails', 'Grail alerts') + '<button class="chip" data-act="pushtest">Send test</button><button class="chip" data-act="pushoff">Turn off</button>'; }
-    else if (st.s === 'off') { body = 'Get a notification on drop day, a list of the week’s drops every Monday, and a ping when one of your grails gets listed.'; btn = '<button class="btn red" style="height:38px;padding:0 14px;font-size:13px" data-act="pushon">Turn on</button>'; }
+    if (st.s === 'on') { body = 'On for this phone. Drop-day reminders at 8 AM (UAE)' + (n ? ' · ' + n + ' reminder' + (n > 1 ? 's' : '') : '. Tap 🔔 on any drop.'); btn = pfChip('weekly', 'Weekly drops list') + pfChip('grails', 'Grail alerts') + pfChip('mentions', 'Chat mentions') + '<button class="chip" data-act="pushtest">Send test</button><button class="chip" data-act="pushoff">Turn off</button>'; }
+    else if (st.s === 'off') { body = 'Get a notification on drop day, a list of the week’s drops every Monday, a ping when one of your grails gets listed, and a ping when someone @mentions you in chat.'; btn = '<button class="btn red" style="height:38px;padding:0 14px;font-size:13px" data-act="pushon">Turn on</button>'; }
     else if (st.s === 'ios-home') { body = 'On iPhone, add Zenkicks to your Home Screen first (Share → Add to Home Screen), then open it from the icon and turn alerts on here.'; }
     else if (st.s === 'blocked') { body = 'Notifications are blocked for Zenkicks. Allow them in your phone or browser settings, then come back here.'; }
     else { body = 'This browser can’t show notifications. Open Zenkicks in Chrome or from your Home Screen app.'; }
     return '<div class="card pushcard" style="padding:14px;display:flex;flex-direction:column;gap:8px"><div class="between" style="align-items:center"><b>🔔 Phone alerts</b>' + (st.s === 'on' ? '<span class="pill ok">ON</span>' : '') + '</div><span class="m">' + body + '</span>' + (btn ? '<div class="row" style="gap:8px;flex-wrap:wrap">' + btn + '</div>' : '') + '</div>';
   }
-  function pushPrefs() { var p = store('pushprefs') || {}; return { weekly: p.weekly !== false, grails: p.grails !== false }; }
+  function pushPrefs() { var p = store('pushprefs') || {}; return { weekly: p.weekly !== false, grails: p.grails !== false, mentions: p.mentions !== false }; }
   function setPushPref(k) {
     var p = pushPrefs(); p[k] = !p[k]; store('pushprefs', p);
-    return currentSub().then(function (s) { if (s) return sb.rpc('push_prefs', { p_endpoint: s.endpoint, p_weekly: p.weekly, p_grails: p.grails }); }).then(function () { return p[k]; });
+    return currentSub().then(function (s) { if (s) return sb.rpc('push_prefs', { p_endpoint: s.endpoint, p_weekly: p.weekly, p_grails: p.grails, p_mentions: p.mentions }); }).then(function () { return p[k]; });
   }
   // on start: refresh this phone's list once a day, or re-subscribe if the phone dropped the old address
   function pushBoot() {
@@ -1861,7 +1861,7 @@
         break;
       case 'mguide': closeModal(); go('safety'); break;
       case 'pushpref':
-        setPushPref(v).then(function (on) { toast((v === 'weekly' ? 'Weekly drops list ' : 'Grail alerts ') + (on ? 'on' : 'off')); render(true); }).catch(function () { toast('Couldn’t save, try again'); });
+        setPushPref(v).then(function (on) { toast((v === 'weekly' ? 'Weekly drops list ' : v === 'mentions' ? 'Chat mentions ' : 'Grail alerts ') + (on ? 'on' : 'off')); render(true); }).catch(function () { toast('Couldn’t save, try again'); });
         break;
       case 'rpick': var t = document.getElementById('r-text'); t.value = v + (t.value ? ': ' + t.value : ''); break;
       case 'rsend':
