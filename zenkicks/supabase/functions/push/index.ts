@@ -6,6 +6,7 @@
 //   POST {"action":"run"}                -> sends today's drop reminders (pg_cron calls this at 8 AM UAE)
 //   POST {"action":"grails"}             -> sends grail alerts for newly listed matches (pg_cron, every 15 min)
 //   POST {"action":"weekly"}             -> "drops this week" digest (pg_cron, Mondays; max once per 6 days)
+//   POST {"action":"mentions"}           -> "@someone mentioned you" chat alerts (pg_cron, every minute)
 // Standard Web Push (VAPID + aes128gcm), built on Web Crypto only: no extra packages.
 // Uses the project's own SUPABASE_URL and SUPABASE_SERVICE_ROLE_KEY (provided by Supabase).
 // =====================================================================
@@ -263,6 +264,37 @@ async function runWeekly() {
   return { drops: drops.length, phones: targets.length, sent, failed };
 }
 
+// ---------- chat @mentions ----------
+export function mentionMessage(items) {
+  const n = items.length, first = items[0] || {};
+  const clip = (t) => (t.length > 170 ? t.slice(0, 167) + '…' : t);
+  return {
+    title: n > 1 ? '💬 ' + n + ' people mentioned you in chat' : '💬 @' + first.author + ' mentioned you',
+    body: clip(n > 1 ? items.slice(0, 3).map((i) => '@' + i.author + ': ' + i.snippet).join(' · ') : first.snippet || ''),
+    tag: 'chat-mentions',
+    url: './#/chat',
+  };
+}
+async function runMentions() {
+  const due = (await rpc('push_mention_due')) || [];
+  let sent = 0, failed = 0;
+  const users = new Set();
+  if (due.length) {
+    const keys = await getKeys();
+    for (let i = 0; i < due.length; i += 10) {
+      await Promise.all(due.slice(i, i + 10).map(async (row) => {
+        const status = await sendPush(row, mentionMessage(row.items || []), keys);
+        await rpc('push_done', { p_endpoint: row.endpoint, p_status: status, p_keys: [] });
+        if (status >= 200 && status < 300) sent++; else failed++;
+        users.add(row.user_id);
+      }));
+    }
+  }
+  for (const u of users) await rpc('push_mention_done', { p_user: u });
+  await rpc('push_mention_done', {}); // members with no phone alerts: just clear their queue
+  return { phones: due.length, members: users.size, sent, failed };
+}
+
 async function runTest(endpoint) {
   if (!endpoint || !/^https:\/\//.test(endpoint)) return { ok: false, error: 'bad endpoint' };
   const rows = await rpc('push_test_target', { p_endpoint: endpoint });
@@ -289,6 +321,7 @@ export async function handle(req) {
     if (action === 'run') return json(await runDue());
     if (action === 'grails') return json(await runGrails());
     if (action === 'weekly') return json(await runWeekly());
+    if (action === 'mentions') return json(await runMentions());
     return json({ error: 'unknown action' }, 400);
   } catch (e) {
     return json({ error: String((e && e.message) || e) }, 500);
