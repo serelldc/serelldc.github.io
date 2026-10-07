@@ -219,7 +219,7 @@
     var stage = '', info = '';
     if (next) {
       var nd = new Date(next.date + 'T00:00:00Z'), nim = releaseImg(next), non = !!rem[next.name + next.date];
-      var tag = 'Next drop · ' + whenLabel(next.date);
+      var tag = 'Hyped drop · ' + whenLabel(next.date);
       stage = '<div class="hx-stage">' +
         '<div class="hx-slab" aria-hidden="true"></div>' +
         (nim ? '<figure class="hx-poster" data-peek="r|' + esc(next.name + next.date) + '"><img draggable="false" src="' + esc(nim) + '" alt="' + esc(next.name) + '"></figure>' : '<figure class="hx-poster hx-noimg">' + I.shoe + '</figure>') +
@@ -309,6 +309,31 @@
   function upcoming() {
     return (ST.releases.items || []).filter(function (d) { return d.date && dayDiff(d.date) >= 0; })
       .sort(function (a, b) { return a.date < b.date ? -1 : a.date > b.date ? 1 : 0; });
+  }
+  // hype ranking: what sneakerheads actually want (on the What's hot list, big collabs, Jordan / Dunk / Kobe...)
+  var HYPE_WORDS = [
+    [/travis scott|off.?white|fragment|sacai|supreme|union|a ma mani|salehe|jacquemus|eminem|st[uü]ssy|yeezy|chicago|bred\b|kobe|patta|undefeated|concepts|j balvin|nocta|drake/i, 45],
+    [/air jordan (1|3|4|5|6|11|12|13)\b|jordan (1|3|4|5|6|11|12|13)\b|\bdunk\b|air max (1|90|95|97)\b|new balance (99\d|55\d|2002r|1906|9060)|\bog\b|retro/i, 22]
+  ];
+  function hypeScore(d) {
+    var n = norm(d.name), s = 0, hot = (ST.hot && ST.hot.online) || [];
+    for (var i = 0; i < hot.length; i++) { var hn = norm(hot[i].name); if (hn && (n.indexOf(hn) > -1 || hn.indexOf(n) > -1)) { s += 100; break; } }
+    HYPE_WORDS.forEach(function (w) { if (w[0].test(d.name)) s += w[1]; });
+    if (/\bx\b/i.test(d.name)) s += 10;
+    var b = String(d.brand || d.name);
+    s += /jordan/i.test(b) ? 25 : /new balance/i.test(b) ? 12 : /nike/i.test(b) ? 10 : /asics/i.test(b) ? 8 : /adidas/i.test(b) ? 6 : 0;
+    s += Math.min(d.retail_usd || 0, 300) / 20;
+    if (/\b(gs|ps|td|kids?|toddler|infant|wmns|women'?s)\b/i.test(d.name)) s -= 20;
+    return s - Math.max(0, dayDiff(d.date)) * 0.8;
+  }
+  // upcoming drops, hottest first (only the next 30 days so a far-off hyped pair doesn't hide this week)
+  function hypeRanked(up) {
+    var soon = up.filter(function (d) { return dayDiff(d.date) <= 30; });
+    return (soon.length ? soon : up).slice().sort(function (a, b) { return hypeScore(b) - hypeScore(a); });
+  }
+  function homeDrops(up) {
+    if (ST.allDrops) return up.slice(0, 40);
+    return hypeRanked(up).slice(0, 8).sort(function (a, b) { return a.date < b.date ? -1 : a.date > b.date ? 1 : 0; });
   }
   function priceLine(usd) { return usd ? 'AED ' + usdToAed(usd).toLocaleString('en-US') + ' <span style="opacity:.7">(US$' + usd + ')</span>' : 'Price TBA'; }
   function stamp() { return 'Updated ' + (ST.releases.updated || '—') + ' · auto-refreshes daily'; }
@@ -570,6 +595,15 @@
   var deferredInstall = null;
   window.addEventListener('beforeinstallprompt', function (e) { e.preventDefault(); deferredInstall = e; var c = document.getElementById('installcard'); if (c && route().name === 'drops') render(true); });
   window.addEventListener('appinstalled', function () { store('noinstall', true); toast('Zenkicks is on your home screen'); });
+  // installed-app count: an open from the home-screen icon is recorded once per phone (random id, no personal data)
+  function trackInstall() {
+    if (!sb || !installEnv().standalone) return;
+    var env = installEnv(), did = store('did');
+    if (!did) { did = String(window.crypto && crypto.randomUUID ? crypto.randomUUID() : Math.random().toString(36).slice(2) + Date.now().toString(36)).replace(/-/g, ''); store('did', did); }
+    var mark = 'zk.open.' + (uid() || 'anon');
+    try { if (sessionStorage.getItem(mark)) return; sessionStorage.setItem(mark, '1'); } catch (e) {}
+    sb.rpc('record_app_open', { p_device: did, p_platform: env.ios ? 'ios' : env.android ? 'android' : 'other' }).then(function () {}, function () {});
+  }
   function installEnv() {
     var ua = navigator.userAgent || '';
     var standalone = (window.matchMedia && window.matchMedia('(display-mode: standalone)').matches) || window.navigator.standalone === true;
@@ -762,10 +796,10 @@
     var homeData = hc ? Promise.resolve(hc) : sb ? fetchHome().catch(function () { return { listings: [], stats: {} }; }) : Promise.resolve({ listings: [], stats: {} });
     if (uid() && (!ST.grailHits || Date.now() - (ST.grailAt || 0) > 120000)) loadGrailHits().then(function () { if (route().name === 'drops' && grailNew().length && !app.querySelector('.grailbox')) render(true); });
     return Promise.all([loadFeeds(), homeData]).then(function (a) {
-      var codKeys = upcoming().slice(0, 9).map(function (d) { return d.name + d.date; });
+      var codKeys = homeDrops(upcoming()).concat((hypeRanked(upcoming()) || []).slice(0, 1)).map(function (d) { return d.name + d.date; });
       var listings = a[1].listings || [], stats = a[1].stats || {};
-      var up = upcoming(); var next = up[0]; var rem = store('rem') || {};
-      var rows = up.slice(0, 8).map(function (d) {
+      var up = upcoming(); var next = hypeRanked(up)[0]; var rem = store('rem') || {};
+      var rows = homeDrops(up).map(function (d) {
         var dt = new Date(d.date + 'T00:00:00Z'); var on = !!rem[d.name + d.date]; var im = releaseImg(d);
         return '<div class="card drop" data-peek="r|' + esc(d.name + d.date) + '"><div class="date"><span>' + MON[dt.getUTCMonth()] + '</span><b>' + ('0' + dt.getUTCDate()).slice(-2) + '</b></div>' +
           (im ? '<img draggable="false" src="' + esc(im) + '" alt="" loading="lazy" style="width:64px;height:46px;object-fit:cover;border-radius:8px;flex-shrink:0;background:#fff">' : '') +
@@ -780,7 +814,7 @@
       {
         var html = installCard() + pendingBanner() + grailBanner() + heroHtml +
           '<div class="pad">' +
-          '<section class="sec"><div class="between"><h2>Release calendar</h2><span class="pill ok" style="font-size:10px">AUTO</span></div><p class="sub" style="font-size:12px">' + esc(stamp()) + ' · <span class="uaetag">UAE</span> = confirmed UAE release and price; other prices are US retail at 3.6725 · <b>Press and hold a pair for details</b></p><div class="droplist">' + rows + '</div></section>' +
+          '<section class="sec"><div class="between"><h2>Release calendar</h2><span class="pill ok" style="font-size:10px">AUTO</span></div><p class="sub" style="font-size:12px">' + esc(stamp()) + ' · <span class="uaetag">UAE</span> = confirmed UAE release and price; other prices are US retail at 3.6725 · <b>Hyped drops first. Press and hold a pair for details</b></p><div class="droplist">' + rows + '</div>' + (up.length > 8 ? '<button class="link" style="align-self:center" data-act="alldrops">' + (ST.allDrops ? 'Show hyped drops only' : 'Show all ' + up.length + ' drops') + '</button>' : '') + '</section>' +
           (hot ? '<section class="sec"><div class="between"><h2>What’s hot</h2><button class="link" data-go="hot">See all</button></div><div class="scroller">' + hot + '</div></section>' : '') +
           adSlot() +
           '<section class="sec"><div class="between"><h2>Fresh pairs</h2><button class="link" data-go="market">Shop</button></div>' +
@@ -799,7 +833,7 @@
   VIEWS.hot = function () {
     return loadFeeds().then(function () {
       var seg = '<div class="seg" role="tablist" aria-label="Hot source"><button role="tab" class="' + (ST.hotTab === 'online' ? 'on' : '') + '" aria-selected="' + (ST.hotTab === 'online') + '" data-act="hottab" data-v="online">Online buzz</button><button role="tab" class="' + (ST.hotTab === 'market' ? 'on' : '') + '" aria-selected="' + (ST.hotTab === 'market') + '" data-act="hottab" data-v="market">On Zenkicks</button></div>';
-      var head = '<div class="sec" style="gap:4px"><div class="row"><h1>What’s hot</h1><span class="pill ok" style="font-size:10px">AUTO</span></div><p class="sub">' + (ST.hotTab === 'online' ? 'Most-traded and most-hyped pairs right now, refreshed daily. Press and hold a pair for details.' : 'Live from the Zenkicks market: bids and watchlist saves in the last 7 days.') + '</p></div>';
+      var head = '<div class="sec" style="gap:4px"><div class="row"><h1>What’s hot</h1><span class="pill ok" style="font-size:10px">AUTO</span></div><p class="sub">' + (ST.hotTab === 'online' ? 'Most-traded and most-hyped pairs right now, refreshed daily. Hyped drops first. Press and hold a pair for details.' : 'Live from the Zenkicks market: bids and watchlist saves in the last 7 days.') + '</p></div>';
       if (ST.hotTab === 'online') {
         var list = (ST.hot.online || []).map(function (h, n) {
           var im = releaseImg(h);
@@ -1387,10 +1421,11 @@
       sb.from('listings').select('id,model,price_aed,status,created_at,seller_id,seller:profiles!listings_seller_id_fkey(username)').order('created_at', { ascending: false }).limit(15),
       sb.from('checks').select('id,model,created_at,author_id,verdict,author:profiles!checks_author_id_fkey(username)').order('created_at', { ascending: false }).limit(10),
       isOwner() ? sb.rpc('invite_stats') : Promise.resolve({ data: [] }),
+      isOwner() ? sb.rpc('owner_install_stats').then(function (r) { return r.data || null; }, function () { return null; }) : Promise.resolve(null),
       loadOwners(), // fresh OG numbers, so someone who just joined shows their badge here right away
       sb.rpc('admin_verify_queue').then(function (r) { return r.data || []; }, function () { return []; })
     ]).then(function (a) {
-      var invs = (a[5] && a[5].data) || []; var vq = a[7] || [];
+      var invs = (a[5] && a[5].data) || []; var ins = a[6]; var vq = a[8] || [];
       if (a[0].error) throw a[0].error;
       var st = (a[0].data || [])[0] || {}; var users = a[1].data || []; var reps = a[2].data || []; var ls = a[3].data || []; var cs = a[4].data || [];
       function tile(n, label) { return '<div class="card" style="padding:12px;display:flex;flex-direction:column;gap:2px"><span class="money" style="font-size:22px">' + (n || 0) + '</span><span class="m">' + label + '</span></div>'; }
@@ -1417,6 +1452,7 @@
       var cRows = cs.map(function (c) { return '<div class="kv" style="align-items:center"><button class="link" style="text-align:left;padding:0;color:inherit" data-go="c/' + c.id + '"><b>' + esc(c.model) + '</b><br><span class="m">@' + esc(c.author && c.author.username) + ' · ' + (c.verdict ? c.verdict.toUpperCase() : 'open') + ' · ' + ago(c.created_at) + ' ago</span></button><button class="btn ghost" style="height:36px;padding:0 10px;font-size:12px;color:var(--red)" data-act="adelcheck" data-id="' + c.id + '">Delete</button></div>'; }).join('') || '<p class="sub">No legit checks yet.</p>';
       return '<div class="pad"><div class="sec" style="gap:4px"><h1>' + (isOwner() ? 'Owner panel' : 'Admin panel') + '</h1><p class="sub">' + (isOwner() ? 'You’re the founder. You appoint admins and checkers, and nobody can change your role.' : 'Handle reports, checkers and bans.') + '</p></div>' +
         '<div class="grid" style="grid-template-columns:repeat(3,1fr)">' + tile(st.members, 'Members' + (st.pending ? '<br><span style="color:#9a5b00">+ ' + st.pending + ' pending</span>' : '')) + tile(st.new_7d, 'New this week') + tile(st.active_listings, 'Pairs for sale') + tile(st.sold, 'Sold') + tile(st.checks, 'Legit checks') + tile(st.open_reports, 'Open reports') + '</div>' +
+        (ins ? '<div class="card" style="padding:12px;display:flex;flex-direction:column;gap:6px"><div class="between"><b>Installed app</b><span class="money" style="font-size:22px">' + (ins.total || 0) + '</span></div><span class="m">iPhone ' + (ins.ios || 0) + ' · Android ' + (ins.android || 0) + ' · new this week ' + (ins.new_7d || 0) + ' · opened this week ' + (ins.active_7d || 0) + ' · signed in ' + (ins.members || 0) + '</span>' + ((ins.recent || []).length ? '<span class="m">Latest: ' + ins.recent.map(function (r) { return (r.username ? '@' + esc(r.username) : 'guest') + ' (' + (r.platform === 'ios' ? 'iPhone' : r.platform === 'android' ? 'Android' : 'other') + ')'; }).join(', ') + '</span>' : '') + '<span class="tiny">Counted when the app is opened from the home-screen icon. Uninstalls are not seen.</span></div>' : '') +
         (vq.length ? '<section class="sec"><h2>Verification requests (' + vq.length + ')</h2><div class="card" style="padding:4px 14px">' + vq.map(function (x) {
           var wa = String(x.whatsapp || '').replace(/[^0-9]/g, '');
           return '<div class="kv" style="flex-direction:column;align-items:flex-start;gap:6px"><span>' + userLink(x.user_id, x.username) + ' <span class="m">· asked ' + ago(x.requested_at) + ' ago · ' + (x.deals_done || 0) + ' deals done</span></span>' + (x.note ? '<span class="m">“' + esc(x.note) + '”</span>' : '') +
@@ -1605,6 +1641,7 @@
     var on = el.getAttribute('data-on') === 'true';
     switch (a) {
       case 'reload': render(); break;
+      case 'alldrops': ST.allDrops = !ST.allDrops; render(true); break;
       case 'rem': toggleRem(el.getAttribute('data-key'), function () { render(true); }); break;
       case 'pushon': pushOn().then(function (res) { toast({ on: '🔔 Drop alerts on. Check your notifications.', 'ios-home': 'Add Zenkicks to your Home Screen first', unsupported: 'This browser can’t show notifications', blocked: 'Notifications are blocked in your settings', declined: 'Alerts not turned on' }[res] || 'Couldn’t turn on alerts, try again later'); render(true); }); break;
       case 'pushoff': pushOff().then(function () { toast('Drop alerts off. Reminders stay saved in the app.'); render(true); }); break;
@@ -1920,6 +1957,7 @@
       setTimeout(checkNotices, 1500); applyRef();
       setTimeout(function () { toast(fresh ? 'Welcome to Zenkicks, @' + ST.me.username + '! Change your username anytime in Profile.' : 'Signed in as @' + ((ST.me && ST.me.username) || '')); }, 400);
     }
+    setTimeout(trackInstall, 3000);
     sb.auth.onAuthStateChange(function (evt, session) {
       if (evt === 'INITIAL_SESSION') return; // handled by getSession above
       // wait until the start-up session is known: the library also fires SIGNED_IN while it loads a saved
@@ -1929,7 +1967,7 @@
         if ((session && session.user && session.user.id) === was) return;
         Promise.all([loadMe(), evt === 'SIGNED_IN' ? loadOwners().then(function () { store('badges', { owners: ST.owners, og: ST.og, ogCount: ST.ogCount }); }) : null]).then(function () {
           if (evt !== 'SIGNED_IN' || !uid()) return render(true);
-          afterSignedIn();
+          afterSignedIn(); setTimeout(trackInstall, 1500);
         });
       });
     });
