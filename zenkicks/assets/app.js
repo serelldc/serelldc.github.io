@@ -215,7 +215,7 @@
     var left = ogLeft(); if (left === null || left <= 0) return '';
     return '<div class="oghook' + (dark ? ' dark' : '') + '"><span class="ogmark">OG</span><span><b>First 100 members get the OG badge</b><br>' + left + ' spot' + (left === 1 ? '' : 's') + ' left. It stays on your profile forever.</span></div>';
   }
-  function heroSection(next, dropCount, rem) {
+  function heroSection(next, dropCount, rem, pre) {
     var stage = '', info = '';
     if (next) {
       var nd = new Date(next.date + 'T00:00:00Z'), nim = releaseImg(next), non = !!rem[next.name + next.date];
@@ -234,7 +234,7 @@
       return '<span class="hx-trust-i">' + t[0] + '<b>' + t[1] + '</b></span>';
     }).join('');
     var trust = '<div class="hx-marq"><div class="hx-track"><div class="hx-set">' + trustItems + '</div><div class="hx-set" aria-hidden="true">' + trustItems + '</div></div></div>';
-    return '<section class="hx">' + SKYLINE + '<span class="hx-scrawl" aria-hidden="true">Cop smart.<br>Wear <u>loud.</u></span>' +
+    return '<div class="hxbg">' + (pre || '') + '<section class="hx">' + SKYLINE + '<span class="hx-scrawl" aria-hidden="true">Cop smart.<br>Wear <u>loud.</u></span>' +
       '<div class="hx-top">' + CROWN + '<span>Your sneakerheadlines</span><i></i></div>' +
       '<h1 class="hx-h"><span class="hx-big">Hype</span><span class="hx-red">Drops.</span></h1>' +
       '<div class="hx-band"><span>Zen deals. Zero fakes.</span></div>' +
@@ -242,7 +242,7 @@
       stage + info +
       '<div class="hx-cta"><button class="btn hx-shop" data-go="market">' + I.bag + 'Shop pairs</button><button class="btn hx-sell" data-go="sell">Sell a pair</button></div>' +
       (!uid() && ogLeft() ? '<button class="oghook dark" data-go="login" style="border:0;text-align:left;width:100%"><span class="ogmark">OG</span><span><b>Claim your OG badge</b><br>Only ' + ogLeft() + ' of 100 spots left. Join free.</span><span aria-hidden="true" style="margin-left:auto;font-size:20px">›</span></button>' : '') +
-      '</section>' +
+      '</section></div>' +
       '<div class="hx-trust">' + trust + '<button class="hx-cop" data-go="market"><span>Bid. Deal.<br>Cop.</span></button></div>';
   }
 
@@ -617,12 +617,12 @@
       body = env.ios ? 'You’re inside Messenger/Instagram. Tap <b>•••</b> then <b>Open in Safari</b>, then <b>Share → Add to Home Screen</b>.' : 'You’re inside Messenger/Instagram. Open Zenkicks in Chrome to install the app icon.';
       if (env.android) btn = '<a class="btn red" style="height:40px;padding:0 14px;font-size:13px" href="intent://' + location.host + location.pathname + '#Intent;scheme=https;package=com.android.chrome;end">Open in Chrome</a>';
     } else if (deferredInstall) {
-      body = 'Get the Zenkicks icon on your home screen. Opens like an app, no app store needed.';
+      body = 'Home-screen icon. Opens like an app, no app store.';
       btn = '<button class="btn red" style="height:40px;padding:0 14px;font-size:13px" data-act="install">Install app</button>';
     } else {
-      body = 'Put Zenkicks on your home screen. Free, no app store, takes 1 minute.';
+      body = 'Add Zenkicks to your home screen. Free, 1 minute.';
     }
-    return '<div class="card installcard" id="installcard"><img src="icons/icon-192.png" alt="" width="44" height="44"><div class="grow"><b>Get the app</b><div class="m">' + body + '</div></div><div style="display:flex;flex-direction:column;gap:6px;align-items:flex-end">' + btn + (btn ? '<button class="link" style="font-size:12px;padding:2px 0;font-weight:700" data-go="install">How?</button>' : '<button class="btn red" style="height:38px;padding:0 14px;font-size:13px" data-go="install">Show me how</button>') + '<button class="link" style="color:var(--muted);font-size:12px;padding:2px 0" data-act="hideinstall">Hide</button></div></div>';
+    return '<div class="card installcard" id="installcard"><img src="icons/icon-192.png" alt="" width="32" height="32"><div class="grow"><b>Get the app</b><div class="m">' + body + '</div></div><div class="ic-act">' + btn + (btn ? '<button class="link ic-how" data-go="install">How?</button>' : '<button class="btn red" data-go="install">Show me how</button>') + '<button class="link ic-hide" aria-label="Hide" data-act="hideinstall">✕</button></div></div>';
   }
   function installApp() {
     if (!deferredInstall) { toast('Use your browser menu: Add to Home screen'); return; }
@@ -810,9 +810,9 @@
         var im = releaseImg(h);
         return '<button class="card hotcard" data-go="hot" data-peek="h|' + i + '"><div class="tile" style="height:90px;background:#fff"><span class="rank" style="z-index:1">' + (i + 1) + '</span>' + (im ? '<img src="' + esc(im) + '" alt="" loading="lazy" style="width:100%;height:100%;object-fit:cover">' : I.shoe) + '</div><span class="t" style="font-size:13px;line-height:1.3">' + esc(h.name) + '</span><span class="m">' + esc(h.why || '') + '</span></button>';
       }).join('');
-      var heroHtml = heroSection(next, up.length, rem);
+      var heroHtml = heroSection(next, up.length, rem, installCard() + pendingBanner() + grailBanner());
       {
-        var html = installCard() + pendingBanner() + grailBanner() + heroHtml +
+        var html = heroHtml +
           '<div class="pad">' +
           '<section class="sec"><div class="between"><h2>Release calendar</h2><span class="pill ok" style="font-size:10px">AUTO</span></div><p class="sub" style="font-size:12px">' + esc(stamp()) + ' · <span class="uaetag">UAE</span> = confirmed UAE release and price; other prices are US retail at 3.6725 · <b>Hyped drops first. Press and hold a pair for details</b></p><div class="droplist">' + rows + '</div>' + (up.length > 8 ? '<button class="link" style="align-self:center" data-act="alldrops">' + (ST.allDrops ? 'Show hyped drops only' : 'Show all ' + up.length + ' drops') + '</button>' : '') + '</section>' +
           (hot ? '<section class="sec"><div class="between"><h2>What’s hot</h2><button class="link" data-go="hot">See all</button></div><div class="scroller">' + hot + '</div></section>' : '') +

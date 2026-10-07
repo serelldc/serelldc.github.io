@@ -206,9 +206,16 @@ h2{font-size:19px}
 .stars{display:flex;gap:6px;justify-content:center}
 .stars button{width:48px;height:48px;border-radius:12px;border:1.5px solid var(--line);background:#fff;font-size:26px;line-height:1;color:#D9D3C7;cursor:pointer}
 .stars button.on{color:#fff;background:var(--red);border-color:var(--red)}
-.installcard{display:flex;align-items:center;gap:12px;padding:12px 14px;margin:12px 16px 0}
-.installcard img{border-radius:12px;flex-shrink:0}
-.installcard .m{font-size:12.5px;line-height:1.4}
+.installcard{display:flex;align-items:center;gap:10px;padding:7px 8px 7px 10px;margin:10px 16px 0;border-radius:14px}
+.installcard img{border-radius:9px;flex-shrink:0;width:32px;height:32px}
+.installcard .grow{min-width:0}
+.installcard .grow b{font-size:13px;line-height:1.2}
+.installcard .m{font-size:11.5px;line-height:1.3}
+.installcard .ic-act{display:flex;align-items:center;gap:6px;flex-shrink:0}
+.installcard .btn{height:32px !important;padding:0 14px !important;font-size:12px !important}
+.installcard .ic-how{display:none;font-size:12px;font-weight:700;padding:4px 2px}
+.installcard .ic-hide{color:var(--muted);font-size:14px;line-height:1;padding:8px 8px}
+@media (min-width:700px){.installcard .ic-how{display:inline}}
 .pill.founder{background:linear-gradient(135deg,#E52C27,#8E1512);color:#fff;letter-spacing:.02em}
 .chip.on{background:var(--ink);color:var(--bone);border-color:var(--ink)}
 
@@ -398,13 +405,16 @@ h2{font-size:19px}
 }
 @media (min-width:700px){html:not(.zk-fit) .shell[data-view="login"] .pad{max-width:560px}}
 
-/* hero background: Zenkicks graffiti wall (darkened so the words stay readable) */
-.hx{background:linear-gradient(180deg,rgba(13,13,13,.58),rgba(13,13,13,.78)),url(../img/hero-bg-sm.webp) center 30%/cover no-repeat,var(--ink)}
+/* hero background: Zenkicks graffiti alley (darkened so the words stay readable) */
+.hxbg{position:relative;overflow:hidden;background:linear-gradient(180deg,rgba(13,13,13,.5),rgba(13,13,13,.8)),url(../img/hero-wall-sm.jpg) center 35%/cover no-repeat,var(--ink)}
+.hxbg .hx{background:none}
+.hxbg>.card.installcard,.hxbg>.pad{position:relative;z-index:1}
+.hxbg>.card.installcard{width:calc(100% - 32px)}
 .hx-sky{display:none}
 .hx-red{text-shadow:0 2px 0 #000,0 0 14px rgba(0,0,0,.75)}
 .hx-big,.hx-scrawl{text-shadow:0 2px 10px rgba(0,0,0,.55)}
 .hx-sub,.hx-top span,.hx-meta,.hx-name{text-shadow:0 1px 3px rgba(0,0,0,.7)}
-@media (min-width:700px){html:not(.zk-fit) .hx{background:linear-gradient(180deg,rgba(13,13,13,.58),rgba(13,13,13,.78)),url(../img/hero-bg.webp) center 38%/cover no-repeat,var(--ink)}}
+@media (min-width:700px){html:not(.zk-fit) .hxbg{background:linear-gradient(180deg,rgba(13,13,13,.5),rgba(13,13,13,.78)),url(../img/hero-wall.jpg) center 45%/cover no-repeat,var(--ink)}html:not(.zk-fit) .hxbg .hx{background:none}}
 
 /* 'Upcoming drops' badge: torn wheat-paste paper taped to the wall */
 .hx-badge{width:124px;height:120px;border:0;border-radius:0;background:url("data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 120 116%22%3E%3Cpath d=%22M10 14 L22 10 L30 13 L44 8 L58 12 L70 7 L84 11 L98 8 L112 12 L110 26 L114 40 L109 54 L113 70 L108 84 L112 98 L100 104 L88 100 L74 106 L60 101 L46 107 L32 102 L18 106 L8 100 L12 86 L7 72 L11 58 L6 44 L10 30 Z%22 fill=%22%23F4F1EA%22/%3E%3Cpath d=%22M10 14 L22 10 L30 13 L44 8 L58 12 L70 7 L84 11 L98 8 L112 12 L110 26 L114 40 L109 54 L113 70 L108 84 L112 98 L100 104 L88 100 L74 106 L60 101 L46 107 L32 102 L18 106 L8 100 L12 86 L7 72 L11 58 L6 44 L10 30 Z%22 fill=%22none%22 stroke=%22%23C9C3B4%22 stroke-width=%221.5%22/%3E%3Crect x=%2240%22 y=%220%22 width=%2244%22 height=%2216%22 fill=%22%23E8DCB0%22 opacity=%22.85%22 transform=%22rotate(-6 62 8)%22/%3E%3C/svg%3E") center/contain no-repeat;box-shadow:none;transform:rotate(5deg);justify-content:center;padding-top:10px;filter:drop-shadow(0 8px 12px rgba(0,0,0,.5))}
