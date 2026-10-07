@@ -1412,9 +1412,9 @@
   function chatBar() {
     if (!uid()) return '<div class="chatbar"><button class="btn red" style="width:100%" data-go="login">Sign in to join the chat</button></div>';
     if (ST.me && ST.me.is_banned) return '<div class="chatbar"><p class="m" style="margin:0;text-align:center">Your account is on hold, so chat is read-only.</p></div>';
-    return '<div class="chatbar" id="chatbar"><div id="chatprev"></div><div class="row" style="gap:8px;align-items:center">' +
+    return '<div class="chatbar" id="chatbar"><div id="chatsug" class="chatsug" hidden></div><div id="chatprev"></div><div class="row" style="gap:8px;align-items:center">' +
       '<label class="chatattach" for="chatfile" aria-label="Add a photo">' + I.camera + '</label><input id="chatfile" type="file" accept="image/*" hidden>' +
-      '<input id="chatin" class="chatin" type="text" maxlength="500" placeholder="Say something to the community…" autocomplete="off" enterkeyhint="send">' +
+      '<input id="chatin" class="chatin" type="text" maxlength="500" placeholder="Message the community…" autocomplete="off" enterkeyhint="send">' +
       '<button class="chatsend" id="chatsend" data-act="chatsend" aria-label="Send">' + I.send + '</button></div></div>';
   }
   VIEWS.chat = function () {
@@ -1424,7 +1424,7 @@
       if (r.error) throw r.error;
       var rows = (r.data || []).slice().reverse(); rows.forEach(chatAdd);
       if (!CHAT.newest) CHAT.newest = new Date(Date.now() - 5000).toISOString();
-      var html = '<div class="chatwrap"><div class="card chatrules"><div><b>Community chat</b><br><span class="m">Be respectful. No links, no selling here (use Market), no personal info. Tap ⋯ on a message to report or block.</span></div>' + (uid() ? '<button class="link" style="font-size:12px;font-weight:700" data-act="chatblocked">Blocked</button>' : '') + '</div>' +
+      var html = '<div class="chatwrap"><div class="card chatrules"><div><b>Community chat</b><br><span class="m">Be respectful. No links, no selling here (use Market), no personal info. Tap ⋯ on a message to report or block.</span></div>' + (uid() ? '<button class="link" style="font-size:12px;font-weight:700" data-act="chatblocked">Blocked list</button>' : '') + '</div>' +
         '<div id="chatmore" class="chatmore">' + (rows.length >= 40 ? '<button class="link" data-act="chatolder">Load older messages</button>' : '') + '</div>' +
         '<div id="chatlist">' + rows.map(chatItem).join('') + '</div>' +
         '<div class="chatempty" id="chatempty"' + (rows.length ? ' hidden' : '') + '>' + I.chat + '<b>No messages yet</b><span>Be the first to say hi.</span></div>' +
@@ -1479,6 +1479,49 @@
       (mine ? '' : '<button class="btn ghost" style="color:var(--ink)" data-act="chatreport" data-id="' + id + '">Report this message</button><button class="btn ghost" style="color:var(--red)" data-act="chatblock" data-id="' + id + '">Block @' + esc(m.username) + '</button>') +
       (mine || isAdmin() ? '<button class="btn ghost" style="color:var(--red)" data-act="chatdel" data-id="' + id + '">Delete message</button>' : '') +
       '<button class="btn dark" data-act="mclose">Close</button></div>');
+  }
+  // @mention suggestions: typing "@zy" shows matching members above the box; tap one (or Enter / Tab) to insert it
+  var SUG = { items: [], i: 0, token: '' };
+  function sugToken(inp) {
+    var pos = inp.selectionStart == null ? inp.value.length : inp.selectionStart;
+    var m = /(^|\s)@([a-z0-9._]{0,24})$/i.exec(inp.value.slice(0, pos));
+    return m ? { q: m[2], start: pos - m[2].length - 1, end: pos } : null;
+  }
+  function sugClose() { SUG.items = []; SUG.token = ''; var b = document.getElementById('chatsug'); if (b) { b.hidden = true; b.innerHTML = ''; } }
+  function sugShow() {
+    var b = document.getElementById('chatsug'); if (!b) return;
+    if (!SUG.items.length) { sugClose(); return; }
+    SUG.i = Math.min(SUG.i, SUG.items.length - 1);
+    b.innerHTML = SUG.items.map(function (n, k) { return '<button type="button" class="sugitem' + (k === SUG.i ? ' on' : '') + '" data-act="chatpick" data-v="' + esc(n) + '"><span class="avatar cav" style="width:28px;height:28px;font-size:12px">' + esc(n[0].toUpperCase()) + '</span><b>@' + esc(n) + '</b></button>'; }).join('');
+    b.hidden = false;
+  }
+  function sugUpdate(inp) {
+    var t = sugToken(inp); if (!t || !uid()) { sugClose(); return; }
+    var q = t.q.toLowerCase(); SUG.token = q;
+    var me = ST.me && ST.me.username ? ST.me.username.toLowerCase() : '', seen = {}, local = [];
+    Object.keys(CHAT.byId).map(function (k) { return CHAT.byId[k]; }).sort(function (a, b) { return a.created_at < b.created_at ? 1 : -1; }).forEach(function (m) {
+      var n = m.username, l = n.toLowerCase();
+      if (l !== me && !seen[l] && l.indexOf(q) === 0) { seen[l] = 1; local.push(n); }
+    });
+    SUG.items = local.slice(0, 6); SUG.i = 0; sugShow();
+    if (!q) return;
+    clearTimeout(SUG.timer);
+    SUG.timer = setTimeout(function () {
+      sb.rpc('chat_mention_search', { p_q: q }).then(function (r) {
+        if (r.error || SUG.token !== q) return;
+        var names = SUG.items.slice();
+        (r.data || []).forEach(function (x) { var l = x.username.toLowerCase(); if (!seen[l]) { seen[l] = 1; names.push(x.username); } });
+        SUG.items = names.slice(0, 6); sugShow();
+      }, function () {});
+    }, 160);
+  }
+  function sugPick(name) {
+    var inp = document.getElementById('chatin'); if (!inp) return;
+    var t = sugToken(inp); if (!t) { sugClose(); return; }
+    var ins = '@' + name + ' ';
+    inp.value = inp.value.slice(0, t.start) + ins + inp.value.slice(t.end);
+    var pos = t.start + ins.length; inp.focus(); try { inp.setSelectionRange(pos, pos); } catch (e) {}
+    sugClose();
   }
   function chatDrop(match) {
     var box = document.getElementById('chatlist'); if (!box) return;
@@ -1828,6 +1871,7 @@
         sb.from('reports').insert({ reporter_id: uid(), target_type: el.getAttribute('data-type'), target_id: id, reason: reason }).then(function (r) { if (r.error) return fail(r.error); closeModal(); toast('Thanks. We’ll review it.'); });
         break;
       case 'mclose': closeModal(); break;
+      case 'chatpick': sugPick(v); break;
       case 'chatsend': chatSend(); break;
       case 'chatimgx': chatClearImg(); break;
       case 'chatimg': openModal('<img src="' + esc(pub('chat-photos', v)) + '" alt="Photo shared in chat" style="width:100%;border-radius:12px"><button class="btn dark" data-act="mclose">Close</button>'); break;
@@ -1987,6 +2031,7 @@
   });
 
   app.addEventListener('input', function (e) {
+    if (e.target && e.target.id === 'chatin') { sugUpdate(e.target); return; }
     var t = e.target;
     if (t.id === 'l-code') { var d = t.value.replace(/\D/g, ''); if (d !== t.value) t.value = d; if (d.length === (C.OTP_LENGTH || 6)) { var vb = app.querySelector('[data-act="emailverify"]'); if (vb && !vb.disabled) vb.click(); } return; }
     if (t.id === 'q') { ST.marketQ = t.value; clearTimeout(ST.qTimer); ST.qTimer = setTimeout(function () { var w = document.getElementById('grid-wrap'); if (!w) return; marketGrid().then(function (h) { w.innerHTML = h; }).catch(fail); }, 350); return; }
@@ -2009,8 +2054,13 @@
     }
   });
   app.addEventListener('keydown', function (e) {
+    if (e.target && e.target.id === 'chatin' && SUG.items.length) {
+      if (e.key === 'ArrowDown' || e.key === 'ArrowUp') { e.preventDefault(); SUG.i = (SUG.i + (e.key === 'ArrowDown' ? 1 : SUG.items.length - 1)) % SUG.items.length; sugShow(); return; }
+      if (e.key === 'Tab') { e.preventDefault(); sugPick(SUG.items[SUG.i]); return; }
+      if (e.key === 'Escape') { e.preventDefault(); sugClose(); return; }
+    }
     if (e.key !== 'Enter') return;
-    if (e.target.id === 'chatin') { e.preventDefault(); chatSend(); }
+    if (e.target.id === 'chatin') { e.preventDefault(); if (SUG.items.length) sugPick(SUG.items[SUG.i]); else chatSend(); }
     if (e.target.id === 'cmt') { e.preventDefault(); var b = app.querySelector('[data-act="send"]'); if (b) b.click(); }
     if (e.target.id === 'amt') { e.preventDefault(); var b2 = app.querySelector('[data-act="bid"]'); if (b2) b2.click(); }
     if (e.target.id === 'l-email') { e.preventDefault(); var b3 = app.querySelector('[data-act="emaillink"]'); if (b3) b3.click(); }

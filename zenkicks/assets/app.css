@@ -578,3 +578,8 @@ h2{font-size:19px}
 .chatprev{position:relative;display:inline-block;width:72px;height:72px}
 .chatprev img{width:72px;height:72px;object-fit:cover;border-radius:10px}
 .chatx{position:absolute;top:-7px;right:-7px;width:24px;height:24px;border-radius:999px;border:0;background:var(--red);color:#fff;font-size:12px;line-height:1}
+
+.chatsug{position:absolute;left:12px;right:12px;bottom:100%;margin-bottom:6px;background:#fff;border-radius:14px;box-shadow:0 8px 28px rgba(0,0,0,.35);max-height:252px;overflow-y:auto;z-index:6;padding:4px}
+.chatsug[hidden]{display:none}
+.sugitem{display:flex;align-items:center;gap:10px;width:100%;min-height:44px;padding:6px 10px;border:0;background:none;border-radius:10px;text-align:left;font-size:14px;color:var(--ink);cursor:pointer}
+.sugitem.on,.sugitem:hover{background:#F3EFE6}
