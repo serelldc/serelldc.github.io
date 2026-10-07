@@ -120,3 +120,16 @@ revoke all on function public.chat_feed(timestamptz, int), public.chat_since(tim
 grant execute on function public.chat_feed(timestamptz, int), public.chat_since(timestamptz) to anon, authenticated;
 revoke all on function public.chat_post(text, text), public.chat_remove(uuid), public.chat_block(uuid, boolean), public.chat_block_list() from public, anon;
 grant execute on function public.chat_post(text, text), public.chat_remove(uuid), public.chat_block(uuid, boolean), public.chat_block_list() to authenticated;
+
+-- @mention suggestions: usernames that start with what you typed (people who chatted most recently first)
+create or replace function public.chat_mention_search(p_q text)
+returns table (username text)
+language sql stable security definer set search_path = public as $$
+  select p.username from profiles p
+  where auth.uid() is not null and p.id <> auth.uid() and not p.is_banned
+    and p.username ilike replace(replace(replace(coalesce(p_q, ''), '\', '\\'), '%', '\%'), '_', '\_') || '%'
+  order by (select max(m.created_at) from chat_messages m where m.user_id = p.id) desc nulls last, p.username
+  limit 6
+$$;
+revoke all on function public.chat_mention_search(text) from public, anon;
+grant execute on function public.chat_mention_search(text) to authenticated;
