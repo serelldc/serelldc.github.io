@@ -71,14 +71,14 @@
   var DOW = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'];
   function norm(t) { return String(t || '').toLowerCase().replace(/[^a-z0-9]+/g, ' ').trim(); }
 
-  function compress(file) {
+  function compress(file, maxDim, quality) {
     return new Promise(function (res) {
       var img = new Image(); var url = URL.createObjectURL(file);
       img.onload = function () {
-        var k = Math.min(1, 1600 / Math.max(img.width, img.height));
+        var k = Math.min(1, (typeof maxDim === 'number' ? maxDim : 1600) / Math.max(img.width, img.height));
         var c = document.createElement('canvas'); c.width = Math.round(img.width * k); c.height = Math.round(img.height * k);
         c.getContext('2d').drawImage(img, 0, 0, c.width, c.height);
-        c.toBlob(function (b) { URL.revokeObjectURL(url); res(b || file); }, 'image/jpeg', 0.82);
+        c.toBlob(function (b) { URL.revokeObjectURL(url); res(b || file); }, 'image/jpeg', typeof quality === 'number' ? quality : 0.82);
       };
       img.onerror = function () { URL.revokeObjectURL(url); res(file); };
       img.src = url;
@@ -104,6 +104,9 @@
     heartOn: '<svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 20s-7-4.5-7-10a4 4 0 0 1 7-2.6A4 4 0 0 1 19 10c0 5.5-7 10-7 10z"/></svg>',
     chat: ic('<path d="M4 5h16v11H9l-5 4z"/>'),
     shield: ic('<path d="M12 3l7 3v6c0 4-3 7.5-7 9-4-1.5-7-5-7-9V6z"/><path d="M9 12l2 2 4-4"/>'),
+    chat: ic('<path d="M21 12a8 8 0 0 1-11.6 7.1L4 20l1.1-4.4A8 8 0 1 1 21 12z"/>'),
+    camera: ic('<path d="M4 8h3l2-2h6l2 2h3a1 1 0 0 1 1 1v9a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1V9a1 1 0 0 1 1-1z"/><circle cx="12" cy="13" r="3.5"/>'),
+    send: ic('<path d="M4 12l16-8-6 16-2.5-6.5z"/>'),
     cal: ic('<rect x="3" y="5" width="18" height="16" rx="2"/><path d="M3 10h18M8 3v4M16 3v4"/>'),
     flame: ic('<path d="M12 3c1 4 5 5.5 5 10a5 5 0 0 1-10 0c0-2.5 1.5-3.5 2-5 1 1.5 1.5 2 2.5 2 0-2.5-.5-4.5.5-7z"/>'),
     bag: ic('<path d="M5 8h14l-1 12H6z"/><path d="M9 8V6a3 3 0 0 1 6 0v2"/>'),
@@ -183,7 +186,7 @@
     function t(v, label, icon) { var on = r.name === v; return '<button class="tab' + (on ? ' on' : '') + '" data-go="' + v + '"' + (on ? ' aria-current="page"' : '') + '>' + icon + label + '</button>'; }
     return '<nav class="tabs" aria-label="App">' + t('drops', 'Drops', I.cal) + t('hot', 'Hot', I.flame) +
       '<button class="tab sell" data-go="sell"><span class="plus">' + I.plus + '</span>Sell</button>' +
-      t('market', 'Market', I.bag) + t('legit', 'Legit', I.shield) + '</nav>';
+      t('market', 'Market', I.bag) + t('legit', 'Legit', I.shield) + t('chat', 'Chat', I.chat) + '</nav>';
   }
   function setupBanner() {
     return ''; // no public setup banner
@@ -1393,6 +1396,96 @@
   // ------------------------------------------------------------------
   // SAFE MEET-UP GUIDE
   // ------------------------------------------------------------------
+  // ------------------------------------------------------------------
+  // COMMUNITY CHAT: one room for every member (text + photos). Checked every few seconds while it is open.
+  // ------------------------------------------------------------------
+  var CHAT = { byId: {}, newest: null, oldest: null, timer: null, img: null, sending: false };
+  function chatAdd(m) { CHAT.byId[m.id] = m; if (!CHAT.newest || m.created_at > CHAT.newest) CHAT.newest = m.created_at; if (!CHAT.oldest || m.created_at < CHAT.oldest) CHAT.oldest = m.created_at; }
+  function chatItem(m) {
+    var me = uid(), mine = m.user_id === me, mn = ST.me && ST.me.username ? ST.me.username.toLowerCase() : '';
+    var badge = m.is_admin ? '<span class="pill dark" style="padding:1px 7px;font-size:10px">Admin</span>' : m.is_checker ? '<span class="pill ok" style="padding:1px 7px;font-size:10px">✓ Checker</span>' : '';
+    var body = esc(m.body).replace(/(^|\s)@([a-z0-9._]{3,24})/gi, function (_, sp, n) { return sp + '<span class="cmention' + (n.toLowerCase() === mn ? ' me' : '') + '">@' + n + '</span>'; });
+    var img = m.image_path ? '<button class="chatimg" data-act="chatimg" data-v="' + esc(m.image_path) + '" aria-label="Open photo"><img loading="lazy" src="' + esc(pub('chat-photos', m.image_path)) + '" alt="Photo shared in chat"></button>' : '';
+    return '<div class="cmsg' + (mine ? ' mine' : '') + '" data-id="' + m.id + '" data-user="' + m.user_id + '"><div class="avatar cav">' + esc((m.username || '?')[0].toUpperCase()) + '</div><div class="cbody"><div class="chead"><b>' + userLink(m.user_id, m.username) + '</b>' + badge + '<span class="m">' + ago(m.created_at) + '</span><button class="link cmore" data-act="chatmenu" data-id="' + m.id + '" aria-label="Message options">⋯</button></div>' +
+      (body ? '<div class="ctext">' + body + '</div>' : '') + img + '</div></div>';
+  }
+  function chatBar() {
+    if (!uid()) return '<div class="chatbar"><button class="btn red" style="width:100%" data-go="login">Sign in to join the chat</button></div>';
+    if (ST.me && ST.me.is_banned) return '<div class="chatbar"><p class="m" style="margin:0;text-align:center">Your account is on hold, so chat is read-only.</p></div>';
+    return '<div class="chatbar" id="chatbar"><div id="chatprev"></div><div class="row" style="gap:8px;align-items:center">' +
+      '<label class="chatattach" for="chatfile" aria-label="Add a photo">' + I.camera + '</label><input id="chatfile" type="file" accept="image/*" hidden>' +
+      '<input id="chatin" class="chatin" type="text" maxlength="500" placeholder="Say something to the community…" autocomplete="off" enterkeyhint="send">' +
+      '<button class="chatsend" id="chatsend" data-act="chatsend" aria-label="Send">' + I.send + '</button></div></div>';
+  }
+  VIEWS.chat = function () {
+    if (!sb) return needSb();
+    CHAT.byId = {}; CHAT.newest = null; CHAT.oldest = null; CHAT.img = null;
+    return sb.rpc('chat_feed', { p_limit: 40 }).then(function (r) {
+      if (r.error) throw r.error;
+      var rows = (r.data || []).slice().reverse(); rows.forEach(chatAdd);
+      if (!CHAT.newest) CHAT.newest = new Date(Date.now() - 5000).toISOString();
+      var html = '<div class="chatwrap"><div class="card chatrules"><div><b>Community chat</b><br><span class="m">Be respectful. No links, no selling here (use Market), no personal info. Tap ⋯ on a message to report or block.</span></div>' + (uid() ? '<button class="link" style="font-size:12px;font-weight:700" data-act="chatblocked">Blocked</button>' : '') + '</div>' +
+        '<div id="chatmore" class="chatmore">' + (rows.length >= 40 ? '<button class="link" data-act="chatolder">Load older messages</button>' : '') + '</div>' +
+        '<div id="chatlist">' + rows.map(chatItem).join('') + '</div>' +
+        '<div class="chatempty" id="chatempty"' + (rows.length ? ' hidden' : '') + '>' + I.chat + '<b>No messages yet</b><span>Be the first to say hi.</span></div>' +
+        '<button class="chatnew" id="chatnew" data-act="chatdown" hidden>New messages ↓</button>' + chatBar() + '</div>';
+      return { html: html, after: chatStart };
+    });
+  };
+  function chatStart() {
+    var main = document.getElementById('main'); if (main) main.scrollTop = main.scrollHeight;
+    clearInterval(CHAT.timer); CHAT.timer = setInterval(chatPoll, 4000);
+  }
+  function chatPoll(force) {
+    if (route().name !== 'chat') { clearInterval(CHAT.timer); CHAT.timer = null; return Promise.resolve(); }
+    if ((document.hidden && !force) || !CHAT.newest || !sb) return Promise.resolve();
+    return sb.rpc('chat_since', { p_after: CHAT.newest }).then(function (r) {
+      if (r.error || !r.data) return;
+      var fresh = r.data.filter(function (m) { return !CHAT.byId[m.id]; });
+      if (fresh.length) chatAppend(fresh, force);
+    }, function () {});
+  }
+  function chatAppend(list, stick) {
+    var main = document.getElementById('main'), box = document.getElementById('chatlist'); if (!main || !box) return;
+    var atBottom = main.scrollHeight - main.scrollTop - main.clientHeight < 140, me = uid();
+    list.forEach(chatAdd);
+    box.insertAdjacentHTML('beforeend', list.map(chatItem).join(''));
+    var em = document.getElementById('chatempty'); if (em) em.hidden = true;
+    var pill = document.getElementById('chatnew');
+    if (atBottom || stick || list.every(function (m) { return m.user_id === me; })) { main.scrollTop = main.scrollHeight; if (pill) pill.hidden = true; }
+    else if (pill) pill.hidden = false;
+  }
+  function chatSetBusy(on) { CHAT.sending = on; var b = document.getElementById('chatsend'); if (b) b.disabled = on; }
+  function chatClearImg() { if (CHAT.img) { try { URL.revokeObjectURL(CHAT.img.url); } catch (e) {} } CHAT.img = null; var pv = document.getElementById('chatprev'); if (pv) pv.innerHTML = ''; var f = document.getElementById('chatfile'); if (f) f.value = ''; }
+  function chatSend() {
+    if (!requireLogin() || CHAT.sending) return;
+    var inp = document.getElementById('chatin'); if (!inp) return;
+    var text = (inp.value || '').trim(); if (!text && !CHAT.img) return;
+    chatSetBusy(true);
+    var path = null;
+    var up = CHAT.img ? sb.storage.from('chat-photos').upload(uid() + '/' + Date.now() + '.jpg', CHAT.img.blob, { contentType: 'image/jpeg' }).then(function (u) { if (u.error) throw u.error; path = u.data.path; return path; }) : Promise.resolve(null);
+    up.then(function (pth) { return sb.rpc('chat_post', { p_body: text, p_image: pth }); }).then(function (r) {
+      if (r.error) throw r.error;
+      inp.value = ''; chatClearImg(); return chatPoll(true);
+    }).catch(function (e) {
+      if (path) sb.storage.from('chat-photos').remove([path]);
+      fail(e);
+    }).then(function () { chatSetBusy(false); });
+  }
+  function chatMenu(id) {
+    var m = CHAT.byId[id]; if (!m) return; var mine = m.user_id === uid();
+    var snip = (m.body || (m.image_path ? '[photo]' : '')).slice(0, 140);
+    openModal('<h2>@' + esc(m.username) + '</h2><p class="sub" style="white-space:pre-line">' + esc(snip) + '</p><div style="display:flex;flex-direction:column;gap:8px">' +
+      (mine ? '' : '<button class="btn ghost" style="color:var(--ink)" data-act="chatreport" data-id="' + id + '">Report this message</button><button class="btn ghost" style="color:var(--red)" data-act="chatblock" data-id="' + id + '">Block @' + esc(m.username) + '</button>') +
+      (mine || isAdmin() ? '<button class="btn ghost" style="color:var(--red)" data-act="chatdel" data-id="' + id + '">Delete message</button>' : '') +
+      '<button class="btn dark" data-act="mclose">Close</button></div>');
+  }
+  function chatDrop(match) {
+    var box = document.getElementById('chatlist'); if (!box) return;
+    box.querySelectorAll('.cmsg').forEach(function (n) { if (match(n)) { delete CHAT.byId[n.getAttribute('data-id')]; n.remove(); } });
+    var em = document.getElementById('chatempty'); if (em) em.hidden = !!box.querySelector('.cmsg');
+  }
+
   VIEWS.safety = function () {
     function block(title, items) { return '<section class="sec"><h2>' + title + '</h2><ul class="safelist">' + items.map(function (t) { return '<li><span class="ji">' + I.check + '</span><span>' + t + '</span></li>'; }).join('') + '</ul></section>'; }
     return '<div class="pad"><div class="joinhero"><span class="pill invited">' + I.shield + 'Safety</span><h1>Meet up <span>safely</span></h1><p class="sub">Zenkicks never holds your money. Buyer and seller deal directly, so follow these steps every time.</p></div>' +
@@ -1445,7 +1538,7 @@
           '<span class="m">' + (u.email ? esc(u.email) + ' · ' : '') + esc(u.city || 'UAE') + ' · joined ' + ago(u.created_at) + ' ago</span><div class="chips-wrap">' + controls + '</div></div>';
       }).join('') || '<p class="sub">No members found.</p>';
       var repRows = reps.map(function (x) {
-        var go = x.target_type === 'listing' ? 'l/' + x.target_id : x.target_type === 'check' ? 'c/' + x.target_id : x.target_type === 'user' ? 'u/' + x.target_id : '';
+        var go = x.target_type === 'listing' ? 'l/' + x.target_id : x.target_type === 'check' ? 'c/' + x.target_id : x.target_type === 'user' ? 'u/' + x.target_id : x.target_type === 'chat' ? 'chat' : '';
         return '<div class="kv" style="align-items:center"><span><b>' + esc(x.target_type) + '</b> · ' + esc(x.reason) + '<br><span class="m">by @' + esc(x.reporter && x.reporter.username) + ' · ' + ago(x.created_at) + ' ago</span></span><span class="row" style="gap:6px">' + (go ? '<button class="btn ghost" style="height:36px;padding:0 10px;font-size:12px" data-go="' + go + '">View</button>' : '') + '<button class="btn dark" style="height:36px;padding:0 10px;font-size:12px" data-act="resolve" data-id="' + x.id + '">Done</button></span></div>';
       }).join('') || '<p class="sub" style="padding:8px 0">No open reports. 🎉</p>';
       var lRows = ls.map(function (l) { return '<div class="kv" style="align-items:center"><button class="link" style="text-align:left;padding:0;color:inherit" data-go="l/' + l.id + '"><b>' + esc(l.model) + '</b><br><span class="m">' + aed(l.price_aed) + ' · @' + esc(l.seller && l.seller.username) + ' · ' + esc(l.status) + '</span></button>' + (l.status !== 'removed' ? '<button class="btn ghost" style="height:36px;padding:0 10px;font-size:12px;color:var(--red)" data-act="aremove" data-id="' + l.id + '">Remove</button>' : '<span class="m">removed</span>') + '</div>'; }).join('') || '<p class="sub">No listings yet.</p>';
@@ -1731,9 +1824,31 @@
       case 'rsend':
         var reason = (document.getElementById('r-text').value || '').trim();
         if (reason.length < 3) { toast('Pick a reason or add details'); return; }
+        if (el.getAttribute('data-type') === 'chat' && ST.chatSnip) reason = (reason + ' | ' + ST.chatSnip).slice(0, 500);
         sb.from('reports').insert({ reporter_id: uid(), target_type: el.getAttribute('data-type'), target_id: id, reason: reason }).then(function (r) { if (r.error) return fail(r.error); closeModal(); toast('Thanks. We’ll review it.'); });
         break;
       case 'mclose': closeModal(); break;
+      case 'chatsend': chatSend(); break;
+      case 'chatimgx': chatClearImg(); break;
+      case 'chatimg': openModal('<img src="' + esc(pub('chat-photos', v)) + '" alt="Photo shared in chat" style="width:100%;border-radius:12px"><button class="btn dark" data-act="mclose">Close</button>'); break;
+      case 'chatmenu': chatMenu(id); break;
+      case 'chatdown': var cm = document.getElementById('main'); if (cm) cm.scrollTop = cm.scrollHeight; var cn = document.getElementById('chatnew'); if (cn) cn.hidden = true; break;
+      case 'chatreport': var rm = CHAT.byId[id]; if (!rm) break; ST.chatSnip = '@' + rm.username + ': ' + (rm.body || '[photo]').slice(0, 140); closeModal(); reportModal('chat', id); break;
+      case 'chatblock': var bm = CHAT.byId[id]; if (!bm) break;
+        sb.rpc('chat_block', { p_target: bm.user_id, p_on: true }).then(function (r) { if (r.error) return fail(r.error); closeModal(); chatDrop(function (n) { return n.getAttribute('data-user') === bm.user_id; }); toast('Blocked @' + bm.username + '. Unblock anytime from “Blocked”.'); });
+        break;
+      case 'chatdel': sb.rpc('chat_remove', { p_id: id }).then(function (r) { if (r.error) return fail(r.error); closeModal(); chatDrop(function (n) { return n.getAttribute('data-id') === id; }); toast('Message deleted'); }); break;
+      case 'chatblocked': sb.rpc('chat_block_list').then(function (r) {
+        if (r.error) return fail(r.error); var rows = r.data || [];
+        openModal('<h2>Blocked people</h2>' + (rows.length ? '<div style="display:flex;flex-direction:column;gap:8px">' + rows.map(function (b) { return '<div class="row" style="justify-content:space-between"><b>@' + esc(b.username) + '</b><button class="chip" data-act="chatunblock" data-id="' + b.user_id + '">Unblock</button></div>'; }).join('') + '</div>' : '<p class="sub">You haven’t blocked anyone.</p>') + '<button class="btn dark" data-act="mclose">Close</button>');
+      }); break;
+      case 'chatunblock': sb.rpc('chat_block', { p_target: id, p_on: false }).then(function (r) { if (r.error) return fail(r.error); closeModal(); toast('Unblocked. Reopen the chat to see their messages.'); }); break;
+      case 'chatolder': if (!CHAT.oldest) break;
+        sb.rpc('chat_feed', { p_before: CHAT.oldest, p_limit: 40 }).then(function (r) {
+          if (r.error) return fail(r.error); var rows = (r.data || []).slice().reverse(); var main = document.getElementById('main'), box = document.getElementById('chatlist'); if (!main || !box) return;
+          var h0 = main.scrollHeight; rows.forEach(chatAdd); box.insertAdjacentHTML('afterbegin', rows.map(chatItem).join('')); main.scrollTop += main.scrollHeight - h0;
+          if (rows.length < 40) { var mo = document.getElementById('chatmore'); if (mo) mo.innerHTML = ''; }
+        }); break;
       case 'peekclose': closePeek(); break;
       case 'peekrem': toggleRem(el.getAttribute('data-key'), function (onNow) { ST.peekDirty = true;
         el.className = 'btn ' + (onNow ? 'ghost' : 'red'); el.innerHTML = onNow ? I.check + ' Reminder on' : I.bell + ' Remind me'; }); break;
@@ -1882,6 +1997,10 @@
     var t = e.target;
     if (t.getAttribute('data-sf')) { ST.sell.f[t.getAttribute('data-sf')] = t.type === 'checkbox' ? t.checked : t.value; return; }
     if (t.getAttribute('data-cf')) { ST.newCheck.f[t.getAttribute('data-cf')] = t.value; return; }
+    if (t.id === 'chatfile' && t.files && t.files[0]) {
+      compress(t.files[0], 1200, 0.78).then(function (b) { chatClearImg(); CHAT.img = { blob: b, url: URL.createObjectURL(b) }; var pv = document.getElementById('chatprev'); if (pv) pv.innerHTML = '<div class="chatprev"><img src="' + CHAT.img.url + '" alt="Photo to send"><button class="chatx" data-act="chatimgx" aria-label="Remove photo">✕</button></div>'; });
+      return;
+    }
     var k = t.getAttribute('data-sellphoto');
     if (k && t.files && t.files[0]) { compress(t.files[0]).then(function (b) { ST.sell.photos[k] = { blob: b, url: URL.createObjectURL(b) }; render(true); }); return; }
     if (t.getAttribute('data-checkphoto') && t.files) {
@@ -1891,6 +2010,7 @@
   });
   app.addEventListener('keydown', function (e) {
     if (e.key !== 'Enter') return;
+    if (e.target.id === 'chatin') { e.preventDefault(); chatSend(); }
     if (e.target.id === 'cmt') { e.preventDefault(); var b = app.querySelector('[data-act="send"]'); if (b) b.click(); }
     if (e.target.id === 'amt') { e.preventDefault(); var b2 = app.querySelector('[data-act="bid"]'); if (b2) b2.click(); }
     if (e.target.id === 'l-email') { e.preventDefault(); var b3 = app.querySelector('[data-act="emaillink"]'); if (b3) b3.click(); }
