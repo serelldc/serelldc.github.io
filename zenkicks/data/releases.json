@@ -1,16 +1,7 @@
 {
-  "updated": "2026-10-06",
+  "updated": "2026-10-07",
   "source": "SneakerFiles & Sneaker News release calendars (curated weekly); photos from KicksDB (StockX)",
   "items": [
-    {
-      "date": "2026-10-06",
-      "name": "Nike Sabrina 4 \"90s Kid\"",
-      "brand": "Nike",
-      "retail_usd": 135,
-      "image": "",
-      "link": "",
-      "tried": "2026-10-05"
-    },
     {
       "date": "2026-10-07",
       "name": "Nike Air Force 1 '01 \"Subway Rat\"",
@@ -18,7 +9,7 @@
       "retail_usd": 150,
       "image": "",
       "link": "",
-      "tried": "2026-10-05"
+      "tried": "2026-10-07"
     },
     {
       "date": "2026-10-08",
@@ -63,7 +54,7 @@
       "retail_usd": 110,
       "image": "",
       "link": "",
-      "tried": "2026-10-05"
+      "tried": "2026-10-07"
     },
     {
       "date": "2026-10-09",
@@ -72,7 +63,7 @@
       "retail_usd": 140,
       "image": "",
       "link": "",
-      "tried": "2026-10-05"
+      "tried": "2026-10-07"
     },
     {
       "date": "2026-10-09",
@@ -81,7 +72,7 @@
       "retail_usd": 120,
       "image": "",
       "link": "",
-      "tried": "2026-10-05"
+      "tried": "2026-10-07"
     },
     {
       "date": "2026-10-09",
@@ -238,7 +229,7 @@
       "retail_usd": 125,
       "image": "",
       "link": "",
-      "tried": "2026-10-05"
+      "tried": "2026-10-07"
     },
     {
       "date": "2026-10-14",
@@ -332,7 +323,7 @@
       "retail_usd": 150,
       "image": "",
       "link": "",
-      "tried": "2026-10-05"
+      "tried": "2026-10-07"
     },
     {
       "date": "2026-10-23",
@@ -340,7 +331,7 @@
       "brand": "Nike",
       "retail_usd": 145,
       "link": "https://stockx.pvxt.net/c/4722526/1023711/9060?u=https%3A%2F%2Fstockx.com%2Fnike-ja-4-halloween",
-      "tried": "2026-10-05"
+      "tried": "2026-10-07"
     },
     {
       "date": "2026-10-23",
@@ -349,7 +340,7 @@
       "retail_usd": 145,
       "image": "",
       "link": "",
-      "tried": "2026-10-05"
+      "tried": "2026-10-07"
     },
     {
       "date": "2026-10-24",
@@ -382,7 +373,7 @@
       "retail_usd": 170,
       "image": "",
       "link": "",
-      "tried": "2026-10-05"
+      "tried": "2026-10-07"
     },
     {
       "date": "2026-10-24",
@@ -390,7 +381,7 @@
       "brand": "Nike",
       "retail_usd": 150,
       "link": "https://stockx.pvxt.net/c/4722526/1023711/9060?u=https%3A%2F%2Fstockx.com%2Fnike-air-force-1-low-01-nigo-x-j-hope",
-      "tried": "2026-10-05"
+      "tried": "2026-10-07"
     },
     {
       "date": "2026-10-24",
@@ -546,7 +537,7 @@
       "retail_usd": 235,
       "image": "",
       "link": "",
-      "tried": "2026-10-03"
+      "tried": "2026-10-07"
     },
     {
       "date": "2026-11-11",
@@ -571,7 +562,7 @@
       "retail_usd": 170,
       "image": "",
       "link": "",
-      "tried": "2026-10-03"
+      "tried": "2026-10-07"
     },
     {
       "date": "2026-11-13",
@@ -587,7 +578,7 @@
       "brand": "Jordan",
       "retail_usd": 255,
       "link": "https://stockx.pvxt.net/c/4722526/1023711/9060?u=https%3A%2F%2Fstockx.com%2Fair-jordan-11-retro-green-screen-monstars",
-      "tried": "2026-10-03"
+      "tried": "2026-10-07"
     },
     {
       "date": "2026-11-14",
@@ -596,16 +587,16 @@
       "retail_usd": 180,
       "image": "",
       "link": "",
-      "tried": "2026-10-03"
+      "tried": "2026-10-07"
     },
     {
       "date": "2026-11-14",
       "name": "Nike Caitlin 1 \"Racer Blue Pink\"",
       "brand": "Nike",
       "retail_usd": 140,
-      "image": "",
-      "link": "",
-      "tried": "2026-10-03"
+      "image": "https://images.stockx.com/images/Nike-Caitlin-1-Racer-Blue-Pink-Womens.jpg?fit=fill&bg=FFFFFF&w=600&h=430&fm=webp&auto=compress&q=90&dpr=2&trim=color&updated_at=1790713034",
+      "link": "https://stockx.pvxt.net/c/4722526/1023711/9060?u=https%3A%2F%2Fstockx.com%2Fnike-caitlin-1-racer-blue-pink-womens",
+      "sku": "JF3474-400"
     },
     {
       "date": "2026-11-14",
