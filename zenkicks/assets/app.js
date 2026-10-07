@@ -18,7 +18,7 @@
 
   var app = document.getElementById('app');
   var ST = {
-    session: null, me: null, contact: null,
+    session: null, me: null, contact: null, chatUnread: 0,
     releases: null, hot: null, photos: {},
     hotTab: 'online', marketFilter: 'all', marketQ: '', legitTab: 'open', cod: {}, codAt: {}, sizeOnly: false,
     sell: freshSell(), newCheck: freshCheck(),
@@ -186,7 +186,7 @@
     function t(v, label, icon) { var on = r.name === v; return '<button class="tab' + (on ? ' on' : '') + '" data-go="' + v + '"' + (on ? ' aria-current="page"' : '') + '>' + icon + label + '</button>'; }
     return '<nav class="tabs" aria-label="App">' + t('drops', 'Drops', I.cal) + t('hot', 'Hot', I.flame) +
       '<button class="tab sell" data-go="sell"><span class="plus">' + I.plus + '</span>Sell</button>' +
-      t('market', 'Market', I.bag) + t('legit', 'Legit', I.shield) + t('chat', 'Chat', I.chat) + '</nav>';
+      t('market', 'Market', I.bag) + t('legit', 'Legit', I.shield) + t('chat', 'Chat', '<span class="tabico">' + I.chat + chatBadgeHtml() + '</span>') + '</nav>';
   }
   function setupBanner() {
     return ''; // no public setup banner
@@ -264,7 +264,7 @@
       if (!window.__zkShown) { window.__zkShown = true; try { performance.mark('zk-first-view'); } catch (e) { /* old browser */ } }
       var bb = document.getElementById('bottombar'); if (bb) bb.outerHTML = out.bottom || '';
       if (out.after) out.after();
-      fillAds();
+      fillAds(); chatUnreadRefresh();
     }).catch(function (e) {
       if (seq !== renderSeq) return;
       document.getElementById('main').innerHTML = '<div class="empty">' + I.flag + '<b>Couldn’t load this page</b><span>' + esc(e && e.message || 'Check your connection and try again.') + '</span><button class="btn dark" data-act="reload">Try again</button></div>';
@@ -1399,6 +1399,25 @@
   // ------------------------------------------------------------------
   // COMMUNITY CHAT: one room for every member (text + photos). Checked every few seconds while it is open.
   // ------------------------------------------------------------------
+  // unread @mentions: red number on the Chat tab (and on the app icon where the phone allows it)
+  function chatBadgeHtml() { var n = ST.chatUnread || 0; return n > 0 ? '<i class="tbadge" aria-label="' + n + ' unread mentions">' + (n > 9 ? '9+' : n) + '</i>' : ''; }
+  function chatBadgeUpdate() {
+    var ico = app.querySelector('.tab[data-go="chat"] .tabico');
+    if (ico) { var old = ico.querySelector('.tbadge'); if (old) old.remove(); ico.insertAdjacentHTML('beforeend', chatBadgeHtml()); }
+    try { if (navigator.setAppBadge) { if (ST.chatUnread > 0) navigator.setAppBadge(ST.chatUnread); else navigator.clearAppBadge(); } } catch (e) { /* not supported */ }
+  }
+  function chatUnreadRefresh(force) {
+    if (!sb || !uid() || document.hidden || route().name === 'chat') return;
+    var now = Date.now(); if (!force && now - (ST.chatUnreadAt || 0) < 20000) return; ST.chatUnreadAt = now;
+    sb.rpc('chat_unread_mentions').then(function (r) {
+      if (r.error) return; var n = Number(r.data) || 0;
+      if (n !== ST.chatUnread) { ST.chatUnread = n; chatBadgeUpdate(); }
+    }, function () {});
+  }
+  function chatSeen() {
+    if (!sb || !uid()) return;
+    sb.rpc('chat_mark_seen').then(function () { if (ST.chatUnread) { ST.chatUnread = 0; chatBadgeUpdate(); } }, function () {});
+  }
   var CHAT = { byId: {}, newest: null, oldest: null, timer: null, img: null, sending: false };
   function chatAdd(m) { CHAT.byId[m.id] = m; if (!CHAT.newest || m.created_at > CHAT.newest) CHAT.newest = m.created_at; if (!CHAT.oldest || m.created_at < CHAT.oldest) CHAT.oldest = m.created_at; }
   function chatItem(m) {
@@ -1435,6 +1454,7 @@
   function chatStart() {
     var main = document.getElementById('main'); if (main) main.scrollTop = main.scrollHeight;
     clearInterval(CHAT.timer); CHAT.timer = setInterval(chatPoll, 4000);
+    chatSeen();
   }
   function chatPoll(force) {
     if (route().name !== 'chat') { clearInterval(CHAT.timer); CHAT.timer = null; return Promise.resolve(); }
@@ -1442,7 +1462,7 @@
     return sb.rpc('chat_since', { p_after: CHAT.newest }).then(function (r) {
       if (r.error || !r.data) return;
       var fresh = r.data.filter(function (m) { return !CHAT.byId[m.id]; });
-      if (fresh.length) chatAppend(fresh, force);
+      if (fresh.length) { chatAppend(fresh, force); chatSeen(); }
     }, function () {});
   }
   function chatAppend(list, stick) {
@@ -2128,6 +2148,7 @@
       setTimeout(function () { toast(fresh ? 'Welcome to Zenkicks, @' + ST.me.username + '! Change your username anytime in Profile.' : 'Signed in as @' + ((ST.me && ST.me.username) || '')); }, 400);
     }
     setTimeout(trackInstall, 3000);
+    setTimeout(function () { chatUnreadRefresh(true); }, 2500); setInterval(function () { chatUnreadRefresh(); }, 60000);
     sb.auth.onAuthStateChange(function (evt, session) {
       if (evt === 'INITIAL_SESSION') return; // handled by getSession above
       // wait until the start-up session is known: the library also fires SIGNED_IN while it loads a saved
