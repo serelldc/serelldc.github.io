@@ -95,8 +95,16 @@
     "kobe ix elite low em protro black university-gold": {
       "none": true,
       "at": "2026-10-07"
+    },
+    "nike ja 4 nightmare": {
+      "none": true,
+      "at": "2026-10-08"
+    },
+    "nike ja 4 ny vs ny": {
+      "none": true,
+      "at": "2026-10-08"
     }
   },
-  "updated": "2026-10-07",
+  "updated": "2026-10-08",
   "source": "KicksDB (StockX average resale, all sizes)"
 }

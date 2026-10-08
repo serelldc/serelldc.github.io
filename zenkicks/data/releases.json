@@ -1,16 +1,7 @@
 {
-  "updated": "2026-10-07",
+  "updated": "2026-10-08",
   "source": "SneakerFiles & Sneaker News release calendars (curated weekly); photos from KicksDB (StockX)",
   "items": [
-    {
-      "date": "2026-10-07",
-      "name": "Nike Air Force 1 '01 \"Subway Rat\"",
-      "brand": "Nike",
-      "retail_usd": 150,
-      "image": "",
-      "link": "",
-      "tried": "2026-10-07"
-    },
     {
       "date": "2026-10-08",
       "name": "Brain Dead x adidas Samba Bowling \"Cheetah\"",
@@ -202,7 +193,7 @@
       "retail_usd": 150,
       "image": "",
       "link": "",
-      "tried": "2026-10-06"
+      "tried": "2026-10-08"
     },
     {
       "date": "2026-10-10",
@@ -220,7 +211,7 @@
       "retail_usd": 180,
       "image": "",
       "link": "",
-      "tried": "2026-10-06"
+      "tried": "2026-10-08"
     },
     {
       "date": "2026-10-13",
@@ -254,7 +245,7 @@
       "retail_usd": 125,
       "image": "",
       "link": "",
-      "tried": "2026-10-06"
+      "tried": "2026-10-08"
     },
     {
       "date": "2026-10-15",
@@ -272,7 +263,7 @@
       "retail_usd": 125,
       "image": "",
       "link": "",
-      "tried": "2026-10-06"
+      "tried": "2026-10-08"
     },
     {
       "date": "2026-10-15",
@@ -451,7 +442,7 @@
       "retail_usd": 155,
       "image": "",
       "link": "",
-      "tried": "2026-10-06"
+      "tried": "2026-10-08"
     },
     {
       "date": "2026-10-30",
@@ -460,7 +451,7 @@
       "retail_usd": 180,
       "image": "",
       "link": "",
-      "tried": "2026-10-06"
+      "tried": "2026-10-08"
     },
     {
       "date": "2026-10-31",
@@ -493,7 +484,7 @@
       "retail_usd": 210,
       "image": "",
       "link": "",
-      "tried": "2026-10-06"
+      "tried": "2026-10-08"
     },
     {
       "date": "2026-11-06",
@@ -502,7 +493,7 @@
       "retail_usd": 145,
       "image": "",
       "link": "",
-      "tried": "2026-10-06"
+      "tried": "2026-10-08"
     },
     {
       "date": "2026-11-07",
@@ -511,7 +502,7 @@
       "retail_usd": 240,
       "image": "",
       "link": "",
-      "tried": "2026-10-06"
+      "tried": "2026-10-08"
     },
     {
       "date": "2026-11-07",
@@ -520,7 +511,7 @@
       "retail_usd": 245,
       "image": "",
       "link": "",
-      "tried": "2026-10-06"
+      "tried": "2026-10-08"
     },
     {
       "date": "2026-11-07",
@@ -613,39 +604,43 @@
       "brand": "Nike",
       "retail_usd": 155,
       "image": "",
-      "link": ""
+      "link": "",
+      "tried": "2026-10-08"
     },
     {
       "date": "2026-11-16",
       "name": "Nike Air Foamposite Pro \"Mummy Duck\"",
       "brand": "Nike",
       "retail_usd": 240,
-      "image": "",
-      "link": ""
+      "image": "https://images.stockx.com/images/Nike-Air-Foamposite-Pro-Mummy-Duck-Oregon-PE.jpg?fit=fill&bg=FFFFFF&w=600&h=430&fm=webp&auto=compress&q=90&dpr=2&trim=color&updated_at=1759179882",
+      "link": "https://stockx.pvxt.net/c/4722526/1023711/9060?u=https%3A%2F%2Fstockx.com%2Fnike-air-foamposite-pro-mummy-duck-oregon-pe"
     },
     {
       "date": "2026-11-20",
       "name": "Nike Air Max 95 \"ACG\"",
       "brand": "Nike",
       "retail_usd": 190,
-      "image": "",
-      "link": ""
+      "image": "https://images.stockx.com/images/Nike-Air-Max-95-ACG-Mowabb.jpg?fit=fill&bg=FFFFFF&w=600&h=430&fm=webp&auto=compress&q=90&dpr=2&trim=color&updated_at=1771470738",
+      "link": "https://stockx.pvxt.net/c/4722526/1023711/9060?u=https%3A%2F%2Fstockx.com%2Fair-max-95-acg-mowabb",
+      "sku": "307255-251"
     },
     {
       "date": "2026-11-20",
       "name": "Nike Book 2 \"Be Legendary\"",
       "brand": "Nike",
       "retail_usd": 145,
-      "image": "",
-      "link": ""
+      "image": "https://images.stockx.com/images/Nike-Book-2-Be-Legendary.jpg?fit=fill&bg=FFFFFF&w=600&h=430&fm=webp&auto=compress&q=90&dpr=2&trim=color&updated_at=1788971656",
+      "link": "https://stockx.pvxt.net/c/4722526/1023711/9060?u=https%3A%2F%2Fstockx.com%2Fnike-book-2-be-legendary",
+      "sku": "FZ7013-501"
     },
     {
       "date": "2026-11-21",
       "name": "Air Jordan 3 \"Not Nice\"",
       "brand": "Jordan",
       "retail_usd": 215,
-      "image": "",
-      "link": ""
+      "image": "https://images.stockx.com/images/Air-Jordan-3-Retro-Not-Nice.jpg?fit=fill&bg=FFFFFF&w=600&h=430&fm=webp&auto=compress&q=90&dpr=2&trim=color&updated_at=1784748181",
+      "link": "https://stockx.pvxt.net/c/4722526/1023711/9060?u=https%3A%2F%2Fstockx.com%2Fair-jordan-3-retro-not-nice",
+      "sku": "IF4396-001"
     },
     {
       "date": "2026-11-21",
