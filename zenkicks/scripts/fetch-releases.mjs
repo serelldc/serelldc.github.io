@@ -6,6 +6,7 @@
 // Free KicksDB plan: release dates are hidden, so the release calendar
 // (names, dates, prices) lives in data/releases.json and you add new drops
 // there. This script then:
+//   0. adds newly announced drops from SneakerFiles (scripts/discover-drops.mjs),
 //   1. removes drops that already happened,
 //   2. finds a StockX photo for any drop that has no photo yet,
 //   3. rebuilds What's hot from the best-selling sneakers on StockX,
@@ -15,6 +16,7 @@
 // If anything fails, the old files are kept, so the app never breaks.
 // =====================================================================
 import { readFile, writeFile } from 'node:fs/promises';
+import { discoverDrops } from './discover-drops.mjs';
 
 const KEY = process.env.KICKSDB_API_KEY;
 const API = 'https://api.kicks.dev/v3';
@@ -56,6 +58,10 @@ async function releases() {
   try { file = JSON.parse(await readFile('data/releases.json', 'utf8')); } catch { console.log('No releases.json; skipping calendar.'); return; }
   const before = file.items.length;
   file.items = (file.items || []).filter((d) => d.date && d.date >= today);
+  const removed = before - file.items.length;
+  // new drops from SneakerFiles are only ADDED (existing items are never changed); if the page fails, nothing happens
+  try { const n = await discoverDrops(file.items, today); console.log(`New drops from SneakerFiles: ${n}`); }
+  catch (e) { console.log('SneakerFiles discovery skipped:', e.message); }
   let own = {};
   try { own = JSON.parse(await readFile('data/photos.json', 'utf8')); } catch { /* no own photos */ }
   const hasOwn = (name) => Object.keys(own).some((k) => k.toLowerCase() === name.toLowerCase());
@@ -72,7 +78,7 @@ async function releases() {
   }
   file.updated = today;
   await writeFile('data/releases.json', JSON.stringify(file, null, 2) + '\n');
-  console.log(`Calendar: ${file.items.length} upcoming (${before - file.items.length} past removed), ${found}/${looked} new photos.`);
+  console.log(`Calendar: ${file.items.length} upcoming (${removed} past removed), ${found}/${looked} new photos.`);
 }
 
 // StockX files slides, clogs and boots under "sneakers" too; What's hot shows real sneakers only
