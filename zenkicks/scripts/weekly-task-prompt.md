@@ -39,17 +39,21 @@ Work in the cloned repo. Run `git pull --rebase origin main`, then read `zenkick
 Today = the Dubai date (UTC+4). Do not use any device or computer tools; everything happens in this repo.
 
 ### 2. Research
-Use WebSearch and WebFetch. If a site cannot be fetched, do NOT try curl/python or mirrors; use other sources. Budget: about 25 tool calls in total.
+Use WebSearch and WebFetch. If a site cannot be fetched, do NOT try curl/python or mirrors; use other sources. Budget: up to about 45 tool calls in total (discovery matters more than speed).
 
-**a) New drops.** Look at drops from today to about 8 weeks ahead:
-- SneakerFiles release dates: https://www.sneakerfiles.com/release-dates/
-- Sneaker News release calendar: https://sneakernews.com/release-dates/
-- If either returns EGRESS_BLOCKED (this cloud sandbox may block some sites), do not retry. Use other fetchable calendars instead, for example https://www.sneakerfreaker.com/releases, https://justfreshkicks.com/release-dates/, https://www.complex.com/sneakers, and WebSearch queries such as `Air Jordan release dates <month> 2026`, `Nike Dunk release date <month> 2026`, `New Balance release date <month> 2026`, `adidas release date <month> 2026`.
-- Aim to check at least 4 different sources so the calendar is not thin. Say in the report which sources worked.
+**a) New drops.** Look at drops from today to about 8 weeks ahead.
 
-Only include:
-- real sneakers: no slides, clogs, boots, apparel or kids-only.
-- a confirmed release date: skip "TBD" and month-only dates.
+Sources, in this order:
+1. Try once each (they often return EGRESS_BLOCKED in this sandbox; if so, do not retry): https://www.sneakerfiles.com/release-dates/ and https://sneakernews.com/release-dates/
+2. Other fetchable calendars: https://www.sneakerfreaker.com/releases, https://justfreshkicks.com/release-dates/, https://www.complex.com/sneakers. If any of these is blocked too, move on.
+3. WebSearch. This is the main method when pages are blocked, so do it thoroughly: run at least 12 separate searches, one per brand and month, such as `Air Jordan release dates November 2026`, `Nike Dunk release date December 2026`, `Nike SB release date <month> 2026`, `New Balance release date <month> 2026`, `adidas release date <month> 2026`, `ASICS`, `Puma`, `Reebok`, `Converse`, `Kobe`, plus `sneaker release dates this week` and `sneaker release dates next week`. Search result snippets usually state the date; open a page only when the date or price is unclear.
+
+Rules for adding a drop:
+- It must be a real sneaker (no slides, clogs, boots, apparel or kids-only) with an exact release date stated in a source. Skip "TBD", "Holiday 2026" or month-only dates.
+- Compare against the existing file first and skip anything already there (see duplicate rule below).
+- `retail_usd`: only if a source states it, otherwise null.
+- Aim for every confirmed drop you can find, typically 10 to 30 new ones per week. If you find fewer than 5, say honestly in the report which searches returned nothing, so the owner knows the discovery was thin.
+- In the report, list which sources worked and which were blocked.
 
 **b) UAE info** is a required step, do not skip it. Pick the 6 to 8 most hyped drops in the next 3 weeks (Jordan, Nike SB/Dunk, Kobe, New Balance, adidas collabs) and run one WebSearch for each. At most 10 searches in total.
 - These pages do NOT work with WebFetch, so do not fetch them: nike.com/ae (empty without JavaScript), soleretriever.com (403).
