@@ -17,7 +17,7 @@ Naming style:
 - Colorway in straight double quotes.
 - Collabs written as "J Balvin x Air Jordan 4 \"Amazonas\"".
 - `brand` is the real brand name: Jordan, Nike, adidas, New Balance, ASICS, etc.
-- `retail_usd` is a number (US retail). Use null if unknown.
+- `retail_usd` is a number (US retail) that a source actually states. NEVER guess or use a "typical" price. If no source states it, use null (the app shows "Price TBA").
 - New items get `"image": ""` and `"link": ""`.
 - Items may also have a `"tried"` field, which belongs to the bot. Leave it alone.
 
@@ -44,13 +44,14 @@ Use WebSearch and WebFetch. If a site cannot be fetched, do NOT try curl/python 
 **a) New drops.** Look at drops from today to about 8 weeks ahead:
 - SneakerFiles release dates: https://www.sneakerfiles.com/release-dates/
 - Sneaker News release calendar: https://sneakernews.com/release-dates/
-- other reputable sneaker news sites if needed
+- If either returns EGRESS_BLOCKED (this cloud sandbox may block some sites), do not retry. Use other fetchable calendars instead, for example https://www.sneakerfreaker.com/releases, https://justfreshkicks.com/release-dates/, https://www.complex.com/sneakers, and WebSearch queries such as `Air Jordan release dates <month> 2026`, `Nike Dunk release date <month> 2026`, `New Balance release date <month> 2026`, `adidas release date <month> 2026`.
+- Aim to check at least 4 different sources so the calendar is not thin. Say in the report which sources worked.
 
 Only include:
 - real sneakers: no slides, clogs, boots, apparel or kids-only.
 - a confirmed release date: skip "TBD" and month-only dates.
 
-**b) UAE info**, for the hyped drops in the next 3 weeks (Jordan, Nike SB/Dunk, Kobe, New Balance, adidas collabs; not every drop). At most 10 searches.
+**b) UAE info** is a required step, do not skip it. Pick the 6 to 8 most hyped drops in the next 3 weeks (Jordan, Nike SB/Dunk, Kobe, New Balance, adidas collabs) and run one WebSearch for each. At most 10 searches in total.
 - These pages do NOT work with WebFetch, so do not fetch them: nike.com/ae (empty without JavaScript), soleretriever.com (403).
 - Use WebSearch only, with queries like `<shoe name> UAE release Dubai` or `<shoe name> raffle Dubai Mall`.
 - Add `uae` ONLY if a search result explicitly names a UAE store, draw or raffle for that exact shoe. Use that result's URL. Leave `aed` out unless the result states an AED price. Never guess and never convert from USD.
