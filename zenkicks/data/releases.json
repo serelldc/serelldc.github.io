@@ -713,6 +713,46 @@
       "retail_usd": 240,
       "image": "",
       "link": ""
+    },
+    {
+      "date": "2026-12-05",
+      "name": "Air Jordan 10 \"Sacramento\"",
+      "brand": "Jordan",
+      "retail_usd": null,
+      "image": "",
+      "link": ""
+    },
+    {
+      "date": "2026-12-05",
+      "name": "SoleFly x Air Jordan 5",
+      "brand": "Jordan",
+      "retail_usd": null,
+      "image": "",
+      "link": ""
+    },
+    {
+      "date": "2026-12-11",
+      "name": "JAIDE x Air Jordan 1 Low OG",
+      "brand": "Jordan",
+      "retail_usd": 150,
+      "image": "",
+      "link": ""
+    },
+    {
+      "date": "2026-12-12",
+      "name": "Air Jordan 11 \"Space Jam\" (2026)",
+      "brand": "Jordan",
+      "retail_usd": null,
+      "image": "",
+      "link": ""
+    },
+    {
+      "date": "2026-12-25",
+      "name": "Nike Kobe 6 Protro \"Coals\"",
+      "brand": "Nike",
+      "retail_usd": 190,
+      "image": "",
+      "link": ""
     }
   ]
 }
