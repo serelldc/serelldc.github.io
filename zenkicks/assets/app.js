@@ -908,6 +908,11 @@
   function fitImg(x, im, a, b, w, h) { var r = Math.min(w / im.width, h / im.height), iw = im.width * r, ih = im.height * r; x.drawImage(im, a + (w - iw) / 2, b + (h - ih) / 2, iw, ih); }
   function cardBase(x, W, H, noUrl) {
     x.fillStyle = '#0D0D0D'; x.fillRect(0, 0, W, H);
+    if (noUrl && ST.wall) { // invite + sell stories: graffiti wall, darkened so the words stay readable
+      x.drawImage(ST.wall, 0, 0, W, H);
+      var ov = x.createLinearGradient(0, 0, 0, H); ov.addColorStop(0, 'rgba(13,13,13,.45)'); ov.addColorStop(.55, 'rgba(13,13,13,.78)'); ov.addColorStop(1, '#0D0D0D');
+      x.fillStyle = ov; x.fillRect(0, 0, W, H);
+    }
     var g = x.createRadialGradient(W * .8, 260, 40, W * .8, 260, 900); g.addColorStop(0, 'rgba(229,44,39,.35)'); g.addColorStop(1, 'rgba(229,44,39,0)'); x.fillStyle = g; x.fillRect(0, 0, W, H);
     x.save(); x.translate(80 + 55, 90 + 55); x.scale(110 / 224, 110 / 224); x.fillStyle = '#E52C27'; var p = new Path2D(Z); x.fill(p); x.rotate(Math.PI); x.fill(p); x.restore();
     x.fillStyle = '#F4F1EA'; x.textAlign = 'left'; x.textBaseline = 'middle'; x.font = '64px Audiowide, Arial Black, sans-serif'; x.fillText('ZENKICKS', 220, 147);
@@ -975,7 +980,9 @@
     openModal('<div class="peek-top"><b>Share to your Story</b><button class="round" data-act="mclose" aria-label="Close">✕</button></div><div class="sharewrap"><div class="skeleton" style="height:100%"></div></div>');
     var fonts = ['64px Audiowide', '600 40px Oxanium', '700 40px Oxanium', '40px "Instrument Sans"', '100px "Russo One"'].map(function (f) { return document.fonts && document.fonts.load ? document.fonts.load(f).catch(function () {}) : null; });
     var srcP = kind === 'invite' || kind === 'sell' ? qrCanvas(inviteLink(ST.inviteMain), 12).catch(function () { return null; }) : loadImg(src);
-    Promise.all([srcP].concat(fonts)).then(function (r) {
+    var wallP = kind === 'invite' || kind === 'sell' ? loadImg('img/story-wall.jpg?v=51') : Promise.resolve(null);
+    Promise.all([srcP, wallP].concat(fonts)).then(function (r) {
+      ST.wall = r[1] || null;
       var cv = drawShare(kind, r[0]);
       var done = function (blob) {
         if (!blob) return toast('Couldn’t make the image. Try again.');
