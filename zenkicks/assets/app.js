@@ -434,8 +434,8 @@
     return '<div class="card invitecard"><div class="between" style="align-items:center"><b class="invhead"><span class="ji">' + I.share + '</span>Invite friends</b>' + (n ? '<span class="pill ok">' + n + ' joined</span>' : '') + '</div>' +
       '<span class="m">Send your link. Friends who sign up with it show up here.' + (left ? ' Only ' + left + ' OG spots left!' : '') + '</span>' +
       '<div class="invlink">' + esc(inviteLink().replace(/^https:\/\//, '')) + '</div>' +
-      '<div class="chips-wrap"><button class="chip" data-act="invcopy">Copy link</button><button class="chip" data-act="invshare">' + I.share + ' Share</button><button class="chip" data-act="invqr">QR code</button><button class="chip" data-act="invstory">Story image</button></div>' +
-      (isOwner() ? '<div class="chips-wrap"><span class="m" style="width:100%">Main sign-up link (no invite tag), for posters and the Zenkicks page:</span><button class="chip" data-act="invqr" data-v="main">Main QR</button><button class="chip" data-act="invstory" data-v="main">Main Story</button><button class="chip" data-act="invcopy" data-v="main">Copy main link</button></div>' : '') +
+      '<div class="chips-wrap"><button class="chip" data-act="invcopy">Copy link</button><button class="chip" data-act="invshare">' + I.share + ' Share</button><button class="chip" data-act="invqr">QR code</button><button class="chip" data-act="invstory">Story image</button><button class="chip" data-act="invstory" data-v="sell">Sell story</button></div>' +
+      (isOwner() ? '<div class="chips-wrap"><span class="m" style="width:100%">Main sign-up link (no invite tag), for posters and the Zenkicks page:</span><button class="chip" data-act="invqr" data-v="main">Main QR</button><button class="chip" data-act="invstory" data-v="main">Main Story</button><button class="chip" data-act="invstory" data-v="sellmain">Main Sell story</button><button class="chip" data-act="invcopy" data-v="main">Copy main link</button></div>' : '') +
       '</div>';
   }
   // QR codes are drawn on this phone (assets/qr.js, loaded only when needed)
@@ -918,7 +918,7 @@
   function pill(x, text, cx, y, bg, fg, font) { x.font = font; var w = x.measureText(text).width + 70; x.fillStyle = bg; rrect(x, cx - w / 2, y - 52, w, 80, 40); x.fill(); x.fillStyle = fg; x.textAlign = 'center'; x.fillText(text, cx, y); }
   function drawShare(kind, photo, noPhoto) {
     var W = 1080, H = 1920, cv = document.createElement('canvas'); cv.width = W; cv.height = H; var x = cv.getContext('2d');
-    cardBase(x, W, H, kind === 'invite');
+    cardBase(x, W, H, kind === 'invite' || kind === 'sell');
     if (kind === 'listing') {
       var l = ST.shareListing;
       x.fillStyle = '#fff'; rrect(x, 80, 280, 920, 920, 36); x.fill();
@@ -939,6 +939,17 @@
       if (photo) x.drawImage(photo, 220, 740, 640, 640);
       x.fillStyle = '#F4F1EA'; x.font = '700 50px Oxanium, sans-serif'; x.fillText('Scan to sign up · it’s free', W / 2, 1490);
       var ol = ogLeft(); if (ol) { x.fillStyle = '#F2D27A'; x.font = '700 46px Oxanium, sans-serif'; x.fillText('ONLY ' + ol + ' OG SPOTS LEFT', W / 2, 1600); }
+    } else if (kind === 'sell') {
+      pill(x, 'UAE SNEAKER TAMBAYAN', W / 2, 360, '#E52C27', '#fff', '700 42px Oxanium, sans-serif');
+      x.fillStyle = '#F4F1EA'; x.font = '136px Audiowide, Arial Black, sans-serif'; x.fillText('SELL YOUR', W / 2, 540);
+      x.fillStyle = '#E52C27'; x.font = '164px Audiowide, Arial Black, sans-serif'; x.fillText('PAIRS.', W / 2, 700);
+      x.font = '700 62px Oxanium, sans-serif'; x.textAlign = 'left';
+      var s1 = '100% FREE', s2 = ' listing.', w1 = x.measureText(s1).width, w2 = x.measureText(s2).width, sx = (W - w1 - w2) / 2;
+      x.fillStyle = '#F2CF6B'; x.fillText(s1, sx, 810); x.fillStyle = '#F4F1EA'; x.fillText(s2, sx + w1, 810); x.textAlign = 'center';
+      x.fillStyle = '#fff'; rrect(x, 220, 880, 640, 640, 48); x.fill();
+      if (photo) x.drawImage(photo, 240, 900, 600, 600);
+      x.fillStyle = '#F4F1EA'; x.font = '600 50px Oxanium, sans-serif'; x.fillText('Scan to sign up · it’s free', W / 2, 1610);
+      if (ogLeft()) { x.fillStyle = '#F2CF6B'; x.font = '700 44px Oxanium, sans-serif'; x.fillText('FIRST 100 MEMBERS GET THE OG BADGE', W / 2, 1700); }
     } else if (kind === 'og') {
       var n = ST.og[uid()], bw = 620, bh = bw * 432 / 380, bx = (W - bw) / 2, by = 300;
       if (photo) { x.save(); x.shadowColor = 'rgba(242,201,76,.35)'; x.shadowBlur = 90; x.drawImage(photo, bx, by, bw, bh); x.restore(); }
@@ -963,7 +974,7 @@
     var src = kind === 'listing' ? (ST.shareListing && firstPhoto(ST.shareListing)) : kind === 'og' ? 'img/og-badge.webp?v=2' : (ST.shareCheck && checkPhotos(ST.shareCheck)[0]);
     openModal('<div class="peek-top"><b>Share to your Story</b><button class="round" data-act="mclose" aria-label="Close">✕</button></div><div class="sharewrap"><div class="skeleton" style="height:100%"></div></div>');
     var fonts = ['64px Audiowide', '600 40px Oxanium', '700 40px Oxanium', '40px "Instrument Sans"', '100px "Russo One"'].map(function (f) { return document.fonts && document.fonts.load ? document.fonts.load(f).catch(function () {}) : null; });
-    var srcP = kind === 'invite' ? qrCanvas(inviteLink(ST.inviteMain), 12).catch(function () { return null; }) : loadImg(src);
+    var srcP = kind === 'invite' || kind === 'sell' ? qrCanvas(inviteLink(ST.inviteMain), 12).catch(function () { return null; }) : loadImg(src);
     Promise.all([srcP].concat(fonts)).then(function (r) {
       var cv = drawShare(kind, r[0]);
       var done = function (blob) {
@@ -1418,27 +1429,28 @@
     if (!sb || !uid()) return;
     sb.rpc('chat_mark_seen').then(function () { if (ST.chatUnread) { ST.chatUnread = 0; chatBadgeUpdate(); } }, function () {});
   }
-  var CHAT = { byId: {}, newest: null, oldest: null, timer: null, img: null, sending: false };
+  var CHAT = { rx: {}, replyTo: null, byId: {}, newest: null, oldest: null, timer: null, img: null, sending: false };
   function chatAdd(m) { CHAT.byId[m.id] = m; if (!CHAT.newest || m.created_at > CHAT.newest) CHAT.newest = m.created_at; if (!CHAT.oldest || m.created_at < CHAT.oldest) CHAT.oldest = m.created_at; }
   function chatItem(m) {
     var me = uid(), mine = m.user_id === me, mn = ST.me && ST.me.username ? ST.me.username.toLowerCase() : '';
     var badge = m.is_admin ? '<span class="pill dark" style="padding:1px 7px;font-size:10px">Admin</span>' : m.is_checker ? '<span class="pill ok" style="padding:1px 7px;font-size:10px">✓ Checker</span>' : '';
     var body = esc(m.body).replace(/(^|\s)@([a-z0-9._]{3,24})/gi, function (_, sp, n) { return sp + '<span class="cmention' + (n.toLowerCase() === mn ? ' me' : '') + '">@' + n + '</span>'; });
     var img = m.image_path ? '<button class="chatimg" data-act="chatimg" data-v="' + esc(m.image_path) + '" aria-label="Open photo"><img loading="lazy" src="' + esc(pub('chat-photos', m.image_path)) + '" alt="Photo shared in chat"></button>' : '';
-    return '<div class="cmsg' + (mine ? ' mine' : '') + '" data-id="' + m.id + '" data-user="' + m.user_id + '"><div class="avatar cav">' + esc((m.username || '?')[0].toUpperCase()) + '</div><div class="cbody"><div class="chead"><b>' + userLink(m.user_id, m.username) + '</b>' + badge + '<span class="m">' + ago(m.created_at) + '</span><button class="link cmore" data-act="chatmenu" data-id="' + m.id + '" aria-label="Message options">⋯</button></div>' +
-      (body ? '<div class="ctext">' + body + '</div>' : '') + img + '</div></div>';
+    return '<div class="cmsg' + (mine ? ' mine' : '') + '" data-id="' + m.id + '" data-user="' + m.user_id + '"><div class="avatar cav">' + esc((m.username || '?')[0].toUpperCase()) + '</div><div class="cbody"><div class="chead"><b>' + userLink(m.user_id, m.username) + '</b>' + badge + '<span class="m">' + ago(m.created_at) + '</span><span class="cact"><button class="link cbtn" data-act="chatreply" data-id="' + m.id + '" aria-label="Reply">↩</button><button class="link cbtn" data-act="chatreact" data-id="' + m.id + '" aria-label="React">☺</button><button class="link cmore" data-act="chatmenu" data-id="' + m.id + '" aria-label="Message options">⋯</button></span></div>' +
+      (m.reply_to && m.reply_user ? '<button class="creply" data-act="chatjump" data-id="' + m.reply_to + '"><b>@' + esc(m.reply_user) + '</b> ' + esc(m.reply_body || '') + '</button>' : '') +
+      (body ? '<div class="ctext">' + body + '</div>' : '') + img + '<div class="crx">' + chatRxHtml(m.id) + '</div></div></div>';
   }
   function chatBar() {
     if (!uid()) return '<div class="chatbar"><button class="btn red" style="width:100%" data-go="login">Sign in to join the chat</button></div>';
     if (ST.me && ST.me.is_banned) return '<div class="chatbar"><p class="m" style="margin:0;text-align:center">Your account is on hold, so chat is read-only.</p></div>';
-    return '<div class="chatbar" id="chatbar"><div id="chatsug" class="chatsug" hidden></div><div id="chatprev"></div><div class="row" style="gap:8px;align-items:center">' +
+    return '<div class="chatbar" id="chatbar"><div id="chatsug" class="chatsug" hidden></div><div id="chatreply"></div><div id="chatprev"></div><div class="row" style="gap:8px;align-items:center">' +
       '<label class="chatattach" for="chatfile" aria-label="Add a photo">' + I.camera + '</label><input id="chatfile" type="file" accept="image/*" hidden>' +
       '<input id="chatin" class="chatin" type="text" maxlength="500" placeholder="Message the community…" autocomplete="off" enterkeyhint="send">' +
       '<button class="chatsend" id="chatsend" data-act="chatsend" aria-label="Send">' + I.send + '</button></div></div>';
   }
   VIEWS.chat = function () {
     if (!sb) return needSb();
-    CHAT.byId = {}; CHAT.newest = null; CHAT.oldest = null; CHAT.img = null;
+    CHAT.byId = {}; CHAT.newest = null; CHAT.oldest = null; CHAT.img = null; CHAT.rx = {}; CHAT.replyTo = null;
     return sb.rpc('chat_feed', { p_limit: 40 }).then(function (r) {
       if (r.error) throw r.error;
       var rows = (r.data || []).slice().reverse(); rows.forEach(chatAdd);
@@ -1454,7 +1466,7 @@
   function chatStart() {
     var main = document.getElementById('main'); if (main) main.scrollTop = main.scrollHeight;
     clearInterval(CHAT.timer); CHAT.timer = setInterval(chatPoll, 4000);
-    chatSeen();
+    chatSeen(); chatRxLoad();
   }
   function chatPoll(force) {
     if (route().name !== 'chat') { clearInterval(CHAT.timer); CHAT.timer = null; return Promise.resolve(); }
@@ -1463,6 +1475,7 @@
       if (r.error || !r.data) return;
       var fresh = r.data.filter(function (m) { return !CHAT.byId[m.id]; });
       if (fresh.length) { chatAppend(fresh, force); chatSeen(); }
+      chatRxLoad();
     }, function () {});
   }
   function chatAppend(list, stick) {
@@ -1484,13 +1497,51 @@
     chatSetBusy(true);
     var path = null;
     var up = CHAT.img ? sb.storage.from('chat-photos').upload(uid() + '/' + Date.now() + '.jpg', CHAT.img.blob, { contentType: 'image/jpeg' }).then(function (u) { if (u.error) throw u.error; path = u.data.path; return path; }) : Promise.resolve(null);
-    up.then(function (pth) { return sb.rpc('chat_post', { p_body: text, p_image: pth }); }).then(function (r) {
+    up.then(function (pth) { return sb.rpc('chat_post', { p_body: text, p_image: pth, p_reply_to: CHAT.replyTo ? CHAT.replyTo.id : null }); }).then(function (r) {
       if (r.error) throw r.error;
-      inp.value = ''; chatClearImg(); return chatPoll(true);
+      inp.value = ''; chatClearImg(); chatClearReply(); return chatPoll(true);
     }).catch(function (e) {
       if (path) sb.storage.from('chat-photos').remove([path]);
       fail(e);
     }).then(function () { chatSetBusy(false); });
+  }
+  // emoji reactions + replies
+  var REACTS = ['🔥', '❤️', '😂', '👍', '😮', '👏'];
+  function chatRxHtml(id) {
+    return (CHAT.rx[id] || []).map(function (c) { return '<button class="rchip' + (c.mine ? ' on' : '') + '" data-act="chatchip" data-id="' + id + '" data-v="' + c.emoji + '" aria-pressed="' + c.mine + '"><span>' + c.emoji + '</span>' + c.n + '</button>'; }).join('');
+  }
+  function chatRxRender(id) { var box = document.querySelector('.cmsg[data-id="' + id + '"] .crx'); if (box) box.innerHTML = chatRxHtml(id); }
+  function chatRxLoad() {
+    if (!sb) return;
+    var ids = Object.keys(CHAT.byId).sort(function (a, b) { return CHAT.byId[a].created_at < CHAT.byId[b].created_at ? -1 : 1; }).slice(-150);
+    if (!ids.length) return;
+    sb.rpc('chat_reaction_counts', { p_ids: ids }).then(function (r) {
+      if (r.error || !r.data) return;
+      var next = {}; ids.forEach(function (id) { next[id] = []; });
+      r.data.forEach(function (x) { (next[x.message_id] = next[x.message_id] || []).push({ emoji: x.emoji, n: x.n, mine: !!x.mine }); });
+      ids.forEach(function (id) { if (JSON.stringify(next[id]) !== JSON.stringify(CHAT.rx[id] || [])) { CHAT.rx[id] = next[id]; chatRxRender(id); } });
+    }, function () {});
+  }
+  function chatToggleReact(id, emoji) {
+    if (!requireLogin()) return;
+    var list = CHAT.rx[id] = (CHAT.rx[id] || []).slice(), c = list.filter(function (x) { return x.emoji === emoji; })[0];
+    if (c && c.mine) { c.n--; c.mine = false; if (c.n <= 0) list.splice(list.indexOf(c), 1); }
+    else if (c) { c.n++; c.mine = true; } else list.push({ emoji: emoji, n: 1, mine: true });
+    chatRxRender(id);
+    sb.rpc('chat_react', { p_message: id, p_emoji: emoji }).then(function (r) { if (r.error) fail(r.error); chatRxLoad(); }, function (e) { fail(e); chatRxLoad(); });
+  }
+  function chatSetReply(id) {
+    var m = CHAT.byId[id]; if (!m || !requireLogin()) return;
+    CHAT.replyTo = { id: id, user: m.username, snip: (m.body || '[photo]').slice(0, 60) };
+    var b = document.getElementById('chatreply');
+    if (b) b.innerHTML = '<div class="replybar"><span>↩ Replying to <b>@' + esc(m.username) + '</b> <i>' + esc(CHAT.replyTo.snip) + '</i></span><button class="replyx" data-act="chatreplyx" aria-label="Cancel reply">✕</button></div>';
+    var inp = document.getElementById('chatin'); if (inp) inp.focus();
+  }
+  function chatClearReply() { CHAT.replyTo = null; var b = document.getElementById('chatreply'); if (b) b.innerHTML = ''; }
+  function chatJump(id) {
+    var n = document.querySelector('.cmsg[data-id="' + id + '"]');
+    if (!n) { toast('That message is further up. Tap “Load older messages”.'); return; }
+    n.scrollIntoView({ block: 'center' }); n.classList.add('flash'); setTimeout(function () { n.classList.remove('flash'); }, 1400);
   }
   function chatMenu(id) {
     var m = CHAT.byId[id]; if (!m) return; var mine = m.user_id === uid();
@@ -1825,7 +1876,7 @@
         if (navigator.clipboard && navigator.clipboard.writeText) navigator.clipboard.writeText(link).then(ok, function () { window.prompt('Copy your link:', link); }); else window.prompt('Copy your link:', link); })(inviteLink(v === 'main')); break;
       case 'invshare': (function (link) { if (navigator.share) navigator.share({ title: 'Join me on Zenkicks', text: 'UAE sneaker drops, buy & sell, legit checks. Free 🔥', url: link }).catch(function () {}); else { ST.tmp = link; app.querySelector('[data-act=invcopy]').click(); } })(inviteLink()); break;
       case 'invqr': inviteQR(v === 'main'); break;
-      case 'invstory': ST.inviteMain = v === 'main'; openShare('invite'); break;
+      case 'invstory': ST.inviteMain = v === 'main' || v === 'sellmain'; openShare(v === 'sell' || v === 'sellmain' ? 'sell' : 'invite'); break;
       case 'sharego': if (ST.shareFile && navigator.share) navigator.share({ files: [ST.shareFile], title: 'Zenkicks', text: /invite|signup/.test(ST.shareFile.name) ? inviteLink(ST.inviteMain).replace(/^https:\/\//, '') : 'serelldc.github.io/zenkicks' }).catch(function () {}); break;
       case 'ltab': ST.legitTab = v; render(true); break;
       case 'gal': ST.gallery.i = +el.getAttribute('data-i'); document.getElementById('gallery').outerHTML = galleryHTML(); break;
@@ -1892,6 +1943,13 @@
         break;
       case 'mclose': closeModal(); break;
       case 'chatpick': sugPick(v); break;
+      case 'chatreact': if (!requireLogin()) break;
+        openModal('<h2>React</h2><div class="rpick">' + REACTS.map(function (e) { return '<button class="rpickbtn" data-act="chatpickemoji" data-id="' + id + '" data-v="' + e + '">' + e + '</button>'; }).join('') + '</div><button class="btn ghost" style="color:var(--ink)" data-act="mclose">Cancel</button>'); break;
+      case 'chatpickemoji': closeModal(); chatToggleReact(id, v); break;
+      case 'chatchip': chatToggleReact(id, v); break;
+      case 'chatreply': chatSetReply(id); break;
+      case 'chatreplyx': chatClearReply(); break;
+      case 'chatjump': chatJump(id); break;
       case 'chatsend': chatSend(); break;
       case 'chatimgx': chatClearImg(); break;
       case 'chatimg': openModal('<img src="' + esc(pub('chat-photos', v)) + '" alt="Photo shared in chat" style="width:100%;border-radius:12px"><button class="btn dark" data-act="mclose">Close</button>'); break;
@@ -1912,6 +1970,7 @@
           if (r.error) return fail(r.error); var rows = (r.data || []).slice().reverse(); var main = document.getElementById('main'), box = document.getElementById('chatlist'); if (!main || !box) return;
           var h0 = main.scrollHeight; rows.forEach(chatAdd); box.insertAdjacentHTML('afterbegin', rows.map(chatItem).join('')); main.scrollTop += main.scrollHeight - h0;
           if (rows.length < 40) { var mo = document.getElementById('chatmore'); if (mo) mo.innerHTML = ''; }
+          chatRxLoad();
         }); break;
       case 'peekclose': closePeek(); break;
       case 'peekrem': toggleRem(el.getAttribute('data-key'), function (onNow) { ST.peekDirty = true;
