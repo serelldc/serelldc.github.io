@@ -1,5 +1,5 @@
 {
-  "updated": "2026-10-09",
+  "updated": "2026-10-10",
   "source": "SneakerFiles & Sneaker News release calendars (curated weekly); photos from KicksDB (StockX)",
   "items": [
     {
@@ -135,6 +135,14 @@
     },
     {
       "date": "2026-10-10",
+      "name": "Jordan Tatum 5 \"Laser\"",
+      "brand": "Jordan",
+      "retail_usd": 135,
+      "image": "",
+      "link": ""
+    },
+    {
+      "date": "2026-10-10",
       "name": "Nike KD 6 \"Texas\"",
       "brand": "Nike",
       "retail_usd": 135,
@@ -259,6 +267,14 @@
       "sku": "AH2439-991"
     },
     {
+      "date": "2026-10-15",
+      "name": "Nike Air Max Goadome Low \"Black Croc\"",
+      "brand": "Nike",
+      "retail_usd": 175,
+      "image": "",
+      "link": ""
+    },
+    {
       "date": "2026-10-16",
       "name": "Nike Air Foamposite Pro \"Glow in the Dark\"",
       "brand": "Nike",
@@ -275,6 +291,46 @@
       "link": "https://stockx.pvxt.net/c/4722526/1023711/9060?u=https%3A%2F%2Fstockx.com%2Fair-jordan-5-retro-halloween"
     },
     {
+      "date": "2026-10-17",
+      "name": "Bad Bunny x adidas Gazelle Indoor \"Solar Gold\"",
+      "brand": "adidas",
+      "retail_usd": 140,
+      "image": "",
+      "link": ""
+    },
+    {
+      "date": "2026-10-17",
+      "name": "Nocturnal x Nike SB Air Force 1 Low",
+      "brand": "Nike",
+      "retail_usd": 120,
+      "image": "",
+      "link": ""
+    },
+    {
+      "date": "2026-10-20",
+      "name": "MENACE x adidas Adistar Control 5 \"Heat Signature\"",
+      "brand": "adidas",
+      "retail_usd": 180,
+      "image": "",
+      "link": ""
+    },
+    {
+      "date": "2026-10-20",
+      "name": "Reebok Angel Reese 1 \"Reese's\"",
+      "brand": "Reebok",
+      "retail_usd": 160,
+      "image": "",
+      "link": ""
+    },
+    {
+      "date": "2026-10-22",
+      "name": "NIGO x J-Hope x Nike Air Force 1 '01",
+      "brand": "Nike",
+      "retail_usd": 150,
+      "link": "https://stockx.pvxt.net/c/4722526/1023711/9060?u=https%3A%2F%2Fstockx.com%2Fnike-air-force-1-low-01-nigo-x-j-hope",
+      "tried": "2026-10-09"
+    },
+    {
       "date": "2026-10-22",
       "name": "SZA x Vans VANSZA Collection",
       "brand": "Vans",
@@ -282,6 +338,22 @@
       "image": "",
       "link": "",
       "tried": "2026-10-08"
+    },
+    {
+      "date": "2026-10-23",
+      "name": "Cade Cunningham x Nike ST Charge \"Halloween\"",
+      "brand": "Nike",
+      "retail_usd": 145,
+      "image": "",
+      "link": ""
+    },
+    {
+      "date": "2026-10-23",
+      "name": "Nike Air Force 1 '01 \"Nightmare\"",
+      "brand": "Nike",
+      "retail_usd": 140,
+      "image": "",
+      "link": ""
     },
     {
       "date": "2026-10-23",
@@ -359,6 +431,14 @@
       "tried": "2026-10-09"
     },
     {
+      "date": "2026-10-23",
+      "name": "Puma Hali 1 \"Pacers\"",
+      "brand": "Puma",
+      "retail_usd": 130,
+      "image": "",
+      "link": ""
+    },
+    {
       "date": "2026-10-24",
       "name": "Air Jordan 1 Low \"Halloween\"",
       "brand": "Jordan",
@@ -389,14 +469,6 @@
       "retail_usd": 170,
       "image": "",
       "link": "",
-      "tried": "2026-10-09"
-    },
-    {
-      "date": "2026-10-24",
-      "name": "NIGO x J-Hope x Nike Air Force 1 '01",
-      "brand": "Nike",
-      "retail_usd": 150,
-      "link": "https://stockx.pvxt.net/c/4722526/1023711/9060?u=https%3A%2F%2Fstockx.com%2Fnike-air-force-1-low-01-nigo-x-j-hope",
       "tried": "2026-10-09"
     },
     {
@@ -442,6 +514,22 @@
       "image": "https://images.stockx.com/images/Nike-Ja-4-Radar.jpg?fit=fill&bg=FFFFFF&w=600&h=430&fm=webp&auto=compress&q=90&dpr=2&trim=color&updated_at=1786133505",
       "link": "https://stockx.pvxt.net/c/4722526/1023711/9060?u=https%3A%2F%2Fstockx.com%2Fnike-ja-4-radar",
       "sku": "JA9745-400"
+    },
+    {
+      "date": "2026-10-24",
+      "name": "Pharrell Williams x adidas Adistar Jellyfish \"Onix\"",
+      "brand": "adidas",
+      "retail_usd": 300,
+      "image": "",
+      "link": ""
+    },
+    {
+      "date": "2026-10-24",
+      "name": "Pharrell Williams x adidas Adistar Jellyfish \"Red Core Black\"",
+      "brand": "adidas",
+      "retail_usd": 300,
+      "image": "",
+      "link": ""
     },
     {
       "date": "2026-10-24",
@@ -647,6 +735,14 @@
       "link": "https://stockx.pvxt.net/c/4722526/1023711/9060?u=https%3A%2F%2Fstockx.com%2Fnike-air-bakin-varsity-royal-2026"
     },
     {
+      "date": "2026-11-12",
+      "name": "Vans Old Skool 36 Pearlized \"Lime Pop\"",
+      "brand": "Vans",
+      "retail_usd": 130,
+      "image": "",
+      "link": ""
+    },
+    {
       "date": "2026-11-13",
       "name": "Nike Air Diamond Turf 2 Patent \"Black Red\"",
       "brand": "Nike",
@@ -736,6 +832,22 @@
       "link": "https://stockx.pvxt.net/c/4722526/1023711/9060?u=https%3A%2F%2Fstockx.com%2Fnike-air-foamposite-pro-mummy-duck-oregon-pe"
     },
     {
+      "date": "2026-11-17",
+      "name": "Nike LeBron 24 \"Stars\"",
+      "brand": "Nike",
+      "retail_usd": 200,
+      "image": "",
+      "link": ""
+    },
+    {
+      "date": "2026-11-19",
+      "name": "Vans Old Skool 36 Pearlized \"Navy\"",
+      "brand": "Vans",
+      "retail_usd": 130,
+      "image": "",
+      "link": ""
+    },
+    {
       "date": "2026-11-20",
       "name": "Nike Air Max 95 \"ACG\"",
       "brand": "Nike",
@@ -752,6 +864,14 @@
       "image": "https://images.stockx.com/images/Nike-Book-2-Be-Legendary.jpg?fit=fill&bg=FFFFFF&w=600&h=430&fm=webp&auto=compress&q=90&dpr=2&trim=color&updated_at=1788971656",
       "link": "https://stockx.pvxt.net/c/4722526/1023711/9060?u=https%3A%2F%2Fstockx.com%2Fnike-book-2-be-legendary",
       "sku": "FZ7013-501"
+    },
+    {
+      "date": "2026-11-20",
+      "name": "adidas Anthony Edwards 3 \"Lucid Pink\"",
+      "brand": "adidas",
+      "retail_usd": 130,
+      "image": "",
+      "link": ""
     },
     {
       "date": "2026-11-21",
@@ -819,6 +939,14 @@
     },
     {
       "date": "2026-11-21",
+      "name": "Nike Zoom Hyperflight \"Safari\"",
+      "brand": "Nike",
+      "retail_usd": 190,
+      "image": "",
+      "link": ""
+    },
+    {
+      "date": "2026-11-21",
       "name": "Oregon Ducks x Nike Air Foamposite Pro \"Black Mummy Duck\"",
       "brand": "Nike",
       "retail_usd": 230,
@@ -868,6 +996,14 @@
       "link": ""
     },
     {
+      "date": "2026-11-27",
+      "name": "Vans Old Skool 36 Pearlized \"Black\"",
+      "brand": "Vans",
+      "retail_usd": 130,
+      "image": "",
+      "link": ""
+    },
+    {
       "date": "2026-11-28",
       "name": "Jordan 6 Rings Winterized \"Cobalt Blue\"",
       "brand": "Jordan",
@@ -876,6 +1012,14 @@
       "link": "",
       "sku": "IX8456-479",
       "colorway": "Cobalt Blue/Anthracite-Vast Grey-Varsity Maize"
+    },
+    {
+      "date": "2026-11-28",
+      "name": "Nike Air Foamposite Pro \"FSU\"",
+      "brand": "Nike",
+      "retail_usd": 240,
+      "image": "",
+      "link": ""
     },
     {
       "date": "2026-11-28",
@@ -958,6 +1102,14 @@
       "link": "",
       "sku": "IO8233-800",
       "colorway": "Laser Orange/Safety Orange"
+    },
+    {
+      "date": "2026-12-05",
+      "name": "Pharrell Williams x adidas Adistar Jellyfish \"Auburn Timber\"",
+      "brand": "adidas",
+      "retail_usd": 300,
+      "image": "",
+      "link": ""
     },
     {
       "date": "2026-12-05",
