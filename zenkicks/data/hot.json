@@ -1,106 +1,85 @@
 {
-  "updated": "2026-10-11",
+  "updated": "2026-10-12",
   "source": "KicksDB (StockX best sellers)",
   "online": [
     {
-      "name": "Maison Mihara Yasuhiro Hank OG Sole Canvas Low Black",
-      "why": "921 orders on StockX this week",
+      "name": "Nike Kobe 10 Elite Low Grinch iD",
+      "why": "#1 best seller on StockX",
       "tag": "Resale",
-      "image": "https://images.stockx.com/images/Mihara-Yasuhiro-Hank-OG-Sole-Canvas-Low-Black-Product.jpg?fit=fill&bg=FFFFFF&w=600&h=430&fm=webp&auto=compress&q=90&dpr=2&trim=color&updated_at=1738193358",
-      "link": "https://stockx.pvxt.net/c/4722526/1023711/9060?u=https%3A%2F%2Fstockx.com%2Fmihara-yasuhiro-hank-og-sole-canvas-low-black",
-      "brand": "Maison Mihara Yasuhiro",
-      "sku": "A05FW702",
-      "price_usd": 132
-    },
-    {
-      "name": "Jordan 4 Retro London",
-      "why": "617 orders on StockX this week",
-      "tag": "Resale",
-      "image": "https://images.stockx.com/images/Air-Jordan-4-Retro-London.jpg?fit=fill&bg=FFFFFF&w=600&h=430&fm=webp&auto=compress&q=90&dpr=2&trim=color&updated_at=1790958883",
-      "link": "https://stockx.pvxt.net/c/4722526/1023711/9060?u=https%3A%2F%2Fstockx.com%2Fair-jordan-4-retro-london",
-      "brand": "Jordan",
-      "sku": "IV6048-001",
-      "price_usd": 322
-    },
-    {
-      "name": "Jordan 14 Retro Low Black Pack",
-      "why": "90 orders on StockX this week",
-      "tag": "Resale",
-      "image": "https://images.stockx.com/images/Air-Jordan-14-Retro-Low-Black-Pack.jpg?fit=fill&bg=FFFFFF&w=600&h=430&fm=webp&auto=compress&q=90&dpr=2&trim=color&updated_at=1790971103",
-      "link": "https://stockx.pvxt.net/c/4722526/1023711/9060?u=https%3A%2F%2Fstockx.com%2Fair-jordan-14-retro-low-black-pack",
-      "brand": "Jordan",
-      "sku": "IZ3884-001",
-      "price_usd": 199
-    },
-    {
-      "name": "Jordan 4 Retro J Balvin Lemonade",
-      "why": "209 orders on StockX this week",
-      "tag": "Resale",
-      "image": "https://images.stockx.com/images/Air-Jordan-4-Retro-J-Balvin-Lemonade.jpg?fit=fill&bg=FFFFFF&w=600&h=430&fm=webp&auto=compress&q=90&dpr=2&trim=color&updated_at=1790108033",
-      "link": "https://stockx.pvxt.net/c/4722526/1023711/9060?u=https%3A%2F%2Fstockx.com%2Fair-jordan-4-retro-j-balvin-lemonade",
-      "brand": "Jordan",
-      "sku": "IW2872-700",
-      "price_usd": 167
-    },
-    {
-      "name": "ASICS Gel-Kayano 14 White Graphite Grey",
-      "why": "311 orders on StockX this week",
-      "tag": "Resale",
-      "image": "https://images.stockx.com/images/ASICS-Gel-Kayano-14-White-Graphite-Grey-Product.jpg?fit=fill&bg=FFFFFF&w=600&h=430&fm=webp&auto=compress&q=90&dpr=2&trim=color&updated_at=1784265085",
-      "link": "https://stockx.pvxt.net/c/4722526/1023711/9060?u=https%3A%2F%2Fstockx.com%2Fasics-gel-kayano-14-white-graphite-grey",
-      "brand": "ASICS",
-      "sku": "1203A537-110",
-      "price_usd": 99
-    },
-    {
-      "name": "Nike Kobe 5 Protro Dodgers",
-      "why": "275 orders on StockX this week",
-      "tag": "Resale",
-      "image": "https://images.stockx.com/images/Nike-Kobe-5-Protro-Dodgers-Product.jpg?fit=fill&bg=FFFFFF&w=600&h=430&fm=webp&auto=compress&q=90&dpr=2&trim=color&updated_at=1785850157",
-      "link": "https://stockx.pvxt.net/c/4722526/1023711/9060?u=https%3A%2F%2Fstockx.com%2Fnike-kobe-5-protro-dodgers",
+      "image": "https://images.stockx.com/images/01a0fef1-8672-7348-856e-de35fc840d70?fit=fill&bg=FFFFFF&w=600&h=430&fm=webp&auto=compress&q=90&dpr=2&trim=color&updated_at=1791208174",
+      "link": "https://stockx.pvxt.net/c/4722526/1023711/9060?u=https%3A%2F%2Fstockx.com%2Fnike-kobe-10-elite-low-grinch-id",
       "brand": "Nike",
-      "sku": "IO6256-400",
-      "price_usd": 173
+      "sku": "802817-901"
     },
     {
-      "name": "Jordan 9 Retro OG Space Jam (2026)",
-      "why": "177 orders on StockX this week",
+      "name": "Louis Vuitton Major Loafer Black Monogram",
+      "why": "#2 best seller on StockX",
       "tag": "Resale",
-      "image": "https://images.stockx.com/images/Air-Jordan-9-Retro-OG-Space-Jam-2026-Product.jpg?fit=fill&bg=FFFFFF&w=600&h=430&fm=webp&auto=compress&q=90&dpr=2&trim=color&updated_at=1790692048",
-      "link": "https://stockx.pvxt.net/c/4722526/1023711/9060?u=https%3A%2F%2Fstockx.com%2Fair-jordan-9-retro-og-space-jam-2026",
-      "brand": "Jordan",
-      "sku": "IX6179-100",
-      "price_usd": 199
+      "image": "https://images.stockx.com/images/01a103e0-31e8-7402-9e1d-f42622d49b14?fit=fill&bg=FFFFFF&w=600&h=430&fm=webp&auto=compress&q=90&dpr=2&trim=color&updated_at=1791212129",
+      "link": "https://stockx.pvxt.net/c/4722526/1023711/9060?u=https%3A%2F%2Fstockx.com%2Flouis-vuitton-major-loafer-black-monogram",
+      "brand": "Louis Vuitton",
+      "sku": "1AIXON"
     },
     {
-      "name": "Nike Caitlin 1 Warning Code (Women's)",
-      "why": "198 orders on StockX this week",
+      "name": "Prada America's Cup Yellow Black",
+      "why": "#3 best seller on StockX",
       "tag": "Resale",
-      "image": "https://images.stockx.com/images/Nike-Caitlin-1-Yellow-Zest-Womens-2.jpg?fit=fill&bg=FFFFFF&w=600&h=430&fm=webp&auto=compress&q=90&dpr=2&trim=color&updated_at=1790961855",
-      "link": "https://stockx.pvxt.net/c/4722526/1023711/9060?u=https%3A%2F%2Fstockx.com%2Fnike-caitlin-1-yellow-zest-womens",
-      "brand": "Nike",
-      "sku": "IH7423-700 / IH7421-700",
-      "price_usd": 145
+      "image": "https://images.stockx.com/images/01a103e4-5344-70e4-8b33-4bf0f686a473?fit=fill&bg=FFFFFF&w=600&h=430&fm=webp&auto=compress&q=90&dpr=2&trim=color&updated_at=1791212129",
+      "link": "https://stockx.pvxt.net/c/4722526/1023711/9060?u=https%3A%2F%2Fstockx.com%2Fprada-americas-cup-yellow-black",
+      "brand": "Prada",
+      "sku": "4E3400_ASZ_F0S3C"
     },
     {
-      "name": "Jordan 4 Retro Black Cat (2025)",
-      "why": "260 orders on StockX this week",
+      "name": "Off-White Be Right Back Sneaker White Yellow Black",
+      "why": "#4 best seller on StockX",
       "tag": "Resale",
-      "image": "https://images.stockx.com/images/Air-Jordan-4-Retro-Black-Cat-2025-Product.jpg?fit=fill&bg=FFFFFF&w=600&h=430&fm=webp&auto=compress&q=90&dpr=2&trim=color&updated_at=1784238263",
-      "link": "https://stockx.pvxt.net/c/4722526/1023711/9060?u=https%3A%2F%2Fstockx.com%2Fair-jordan-4-retro-black-cat-2025",
-      "brand": "Jordan",
-      "sku": "FV5029-010",
-      "price_usd": 277
+      "image": "https://images.stockx.com/images/01a103e2-208e-7832-9fd9-0ccb2946d430?fit=fill&bg=FFFFFF&w=600&h=430&fm=webp&auto=compress&q=90&dpr=2&trim=color&updated_at=1791212307",
+      "link": "https://stockx.pvxt.net/c/4722526/1023711/9060?u=https%3A%2F%2Fstockx.com%2Foff-white-be-right-back-sneaker-white-yellow-black",
+      "brand": "OFF-WHITE",
+      "sku": "OMIA295F24FAB0010165"
     },
     {
-      "name": "Nike Air Force 1 Low Supreme White",
-      "why": "241 orders on StockX this week",
+      "name": "Prada America's Cup Black Grey",
+      "why": "#5 best seller on StockX",
       "tag": "Resale",
-      "image": "https://images.stockx.com/images/Nike-Air-Force-1-Low-Supreme-Box-Logo-White-Product.jpg?fit=fill&bg=FFFFFF&w=600&h=430&fm=webp&auto=compress&q=90&dpr=2&trim=color&updated_at=1785008707",
-      "link": "https://stockx.pvxt.net/c/4722526/1023711/9060?u=https%3A%2F%2Fstockx.com%2Fnike-air-force-1-low-supreme-box-logo-white",
-      "brand": "Nike",
-      "sku": "CU9225-100",
-      "price_usd": 109
+      "image": "https://images.stockx.com/images/01a10412-1cb4-724f-b21b-93a8e370c6e6?fit=fill&bg=FFFFFF&w=600&h=430&fm=webp&auto=compress&q=90&dpr=2&trim=color&updated_at=1791212642",
+      "link": "https://stockx.pvxt.net/c/4722526/1023711/9060?u=https%3A%2F%2Fstockx.com%2Fprada-americas-cup-black-grey",
+      "brand": "Prada",
+      "sku": "PS0906_O0V_F0A64"
+    },
+    {
+      "name": "Christian Louboutin Louis Orlato Spikes High-Top Sneaker Blue",
+      "why": "#6 best seller on StockX",
+      "tag": "Resale",
+      "image": "https://images.stockx.com/images/01a1041c-2727-7eaa-8c36-6ebbb0237d0c?fit=fill&bg=FFFFFF&w=600&h=430&fm=webp&auto=compress&q=90&dpr=2&trim=color&updated_at=1791212920",
+      "link": "https://stockx.pvxt.net/c/4722526/1023711/9060?u=https%3A%2F%2Fstockx.com%2Fchristian-louboutin-louis-orlato-spikes-high-top-sneaker-blue",
+      "brand": "Christian Louboutin"
+    },
+    {
+      "name": "Sickö Diamond Flip Hiking Shoes PDF Red Cheetah",
+      "why": "#7 best seller on StockX",
+      "tag": "Resale",
+      "image": "https://images.stockx.com/images/01a104cb-67f8-753e-a9bb-61c1f22071aa?fit=fill&bg=FFFFFF&w=600&h=430&fm=webp&auto=compress&q=90&dpr=2&trim=color&updated_at=1791214600",
+      "link": "https://stockx.pvxt.net/c/4722526/1023711/9060?u=https%3A%2F%2Fstockx.com%2Fsicko-diamond-flip-hiking-shoes-pdf-red-cheetah",
+      "brand": "Sicko",
+      "sku": "F26X105RA"
+    },
+    {
+      "name": "Skechers Slip-ins Go Golf Flight Golf Shoes White Green",
+      "why": "#8 best seller on StockX",
+      "tag": "Resale",
+      "image": "https://images.stockx.com/images/01a104d0-55a2-7b5e-b3d3-46c53f738e01?fit=fill&bg=FFFFFF&w=600&h=430&fm=webp&auto=compress&q=90&dpr=2&trim=color&updated_at=1791214806",
+      "link": "https://stockx.pvxt.net/c/4722526/1023711/9060?u=https%3A%2F%2Fstockx.com%2Fskechers-slip-ins-go-golf-flight-golf-shoes-white-green",
+      "brand": "Skechers",
+      "sku": "214131WGR"
+    },
+    {
+      "name": "Explore Camp Lite Shandal",
+      "why": "#9 best seller on StockX",
+      "tag": "Resale",
+      "image": "https://images.stockx.com/images/01a107c3-9518-7ba5-9df3-75c4698144a3?fit=fill&bg=FFFFFF&w=600&h=430&fm=webp&auto=compress&q=90&dpr=2&trim=color&updated_at=1791132074",
+      "link": "https://stockx.pvxt.net/c/4722526/1023711/9060?u=https%3A%2F%2Fstockx.com%2Fexplore-camp-lite-shandal",
+      "brand": "The North Face"
     }
   ]
 }

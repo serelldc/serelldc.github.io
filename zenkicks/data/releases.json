@@ -3,15 +3,6 @@
   "source": "SneakerFiles & Sneaker News release calendars (curated weekly); photos from KicksDB (StockX)",
   "items": [
     {
-      "date": "2026-10-11",
-      "name": "Entire Studios x adidas Dropset 4",
-      "brand": "adidas",
-      "retail_usd": 180,
-      "image": "",
-      "link": "",
-      "tried": "2026-10-10"
-    },
-    {
       "date": "2026-10-13",
       "name": "Nike Cryoshot Mercurial Vapor 1 OG",
       "brand": "Nike",
@@ -61,9 +52,9 @@
       "name": "Nike Air Force 1 Low Luxe \"Georgia\"",
       "brand": "Nike",
       "retail_usd": 125,
-      "image": "",
-      "link": "",
-      "tried": "2026-10-10"
+      "image": "https://images.stockx.com/images/Nike-Air-Force-1-Low-Luxe-University-of-Georgia.jpg?fit=fill&bg=FFFFFF&w=600&h=430&fm=webp&auto=compress&q=90&dpr=2&trim=color&updated_at=1791314347",
+      "link": "https://stockx.pvxt.net/c/4722526/1023711/9060?u=https%3A%2F%2Fstockx.com%2Fnike-air-force-1-low-luxe-university-of-georgia",
+      "sku": "JF5457-600"
     },
     {
       "date": "2026-10-15",
@@ -79,9 +70,9 @@
       "name": "Nike Air Force 1 Low Luxe \"Oregon Apple Green\"",
       "brand": "Nike",
       "retail_usd": 125,
-      "image": "",
-      "link": "",
-      "tried": "2026-10-10"
+      "image": "https://images.stockx.com/images/Nike-Air-Force-1-Low-Luxe-University-of-Oregon-Apple-Green.jpg?fit=fill&bg=FFFFFF&w=600&h=430&fm=webp&auto=compress&q=90&dpr=2&trim=color&updated_at=1791314352",
+      "link": "https://stockx.pvxt.net/c/4722526/1023711/9060?u=https%3A%2F%2Fstockx.com%2Fnike-air-force-1-low-luxe-university-of-oregon-apple-green",
+      "sku": "JF5453-300"
     },
     {
       "date": "2026-10-15",
@@ -131,18 +122,18 @@
       "name": "Nocturnal x Nike SB Air Force 1 Low",
       "brand": "Nike",
       "retail_usd": 120,
-      "image": "",
-      "link": "",
-      "tried": "2026-10-10"
+      "image": "https://images.stockx.com/images/Nike-SB-Air-Force-1-Low-City-Pack-Nocturnal.jpg?fit=fill&bg=FFFFFF&w=600&h=430&fm=webp&auto=compress&q=90&dpr=2&trim=color&updated_at=1791399194",
+      "link": "https://stockx.pvxt.net/c/4722526/1023711/9060?u=https%3A%2F%2Fstockx.com%2Fnike-sb-air-force-1-low-city-pack-nocturnal",
+      "sku": "IV5289-003"
     },
     {
       "date": "2026-10-20",
       "name": "MENACE x adidas Adistar Control 5 \"Heat Signature\"",
       "brand": "adidas",
       "retail_usd": 180,
-      "image": "",
-      "link": "",
-      "tried": "2026-10-10"
+      "image": "https://images.stockx.com/images/adidas-Adistar-Control-5-Menace-Heat-Signature.jpg?fit=fill&bg=FFFFFF&w=600&h=430&fm=webp&auto=compress&q=90&dpr=2&trim=color&updated_at=1791486892",
+      "link": "https://stockx.pvxt.net/c/4722526/1023711/9060?u=https%3A%2F%2Fstockx.com%2Fadidas-adistar-control-5-menace-heat-signature",
+      "sku": "LB0086"
     },
     {
       "date": "2026-10-20",
@@ -168,7 +159,7 @@
       "retail_usd": null,
       "image": "",
       "link": "",
-      "tried": "2026-10-10"
+      "tried": "2026-10-12"
     },
     {
       "date": "2026-10-23",
@@ -177,7 +168,7 @@
       "retail_usd": 145,
       "image": "",
       "link": "",
-      "tried": "2026-10-10"
+      "tried": "2026-10-12"
     },
     {
       "date": "2026-10-23",
@@ -186,7 +177,7 @@
       "retail_usd": 140,
       "image": "",
       "link": "",
-      "tried": "2026-10-10"
+      "tried": "2026-10-12"
     },
     {
       "date": "2026-10-23",
@@ -229,11 +220,10 @@
       "name": "Nike Giannis Freak 8 \"Halloween\"",
       "brand": "Nike",
       "retail_usd": 130,
-      "image": "",
-      "link": "",
+      "image": "https://images.stockx.com/images/Nike-Giannis-Freak-8-Halloween.jpg?fit=fill&bg=FFFFFF&w=600&h=430&fm=webp&auto=compress&q=90&dpr=2&trim=color&updated_at=1791399211",
+      "link": "https://stockx.pvxt.net/c/4722526/1023711/9060?u=https%3A%2F%2Fstockx.com%2Fnike-giannis-freak-8-halloween",
       "sku": "IO7945-300",
-      "colorway": "Gorge Green/Hyper Grape-Lucky Green-Metallic Gold",
-      "tried": "2026-10-10"
+      "colorway": "Gorge Green/Hyper Grape-Lucky Green-Metallic Gold"
     },
     {
       "date": "2026-10-23",
@@ -252,7 +242,7 @@
       "link": "",
       "sku": "IO8112-600",
       "colorway": "Bright Crimson/Lime Ice-Stadium Green-Dark Smoke Grey",
-      "tried": "2026-10-10"
+      "tried": "2026-10-12"
     },
     {
       "date": "2026-10-23",
@@ -497,7 +487,7 @@
       "retail_usd": 210,
       "image": "",
       "link": "",
-      "tried": "2026-10-08"
+      "tried": "2026-10-12"
     },
     {
       "date": "2026-11-06",
@@ -506,7 +496,7 @@
       "retail_usd": 145,
       "image": "",
       "link": "",
-      "tried": "2026-10-08"
+      "tried": "2026-10-12"
     },
     {
       "date": "2026-11-07",
@@ -515,7 +505,7 @@
       "retail_usd": 240,
       "image": "",
       "link": "",
-      "tried": "2026-10-08"
+      "tried": "2026-10-12"
     },
     {
       "date": "2026-11-07",
@@ -524,7 +514,7 @@
       "retail_usd": 245,
       "image": "",
       "link": "",
-      "tried": "2026-10-08"
+      "tried": "2026-10-12"
     },
     {
       "date": "2026-11-07",
@@ -541,18 +531,17 @@
       "retail_usd": 235,
       "image": "",
       "link": "",
-      "tried": "2026-10-09"
+      "tried": "2026-10-12"
     },
     {
       "date": "2026-11-11",
       "name": "Air Jordan 11 \"Magic Ball\"",
       "brand": "Jordan",
       "retail_usd": 235,
-      "image": "",
-      "link": "",
+      "image": "https://images.stockx.com/images/Air-Jordan-11-Retro-Space-Jam-Magic-Ball-Womens.jpg?fit=fill&bg=FFFFFF&w=600&h=430&fm=webp&auto=compress&q=90&dpr=2&trim=color&updated_at=1791233930",
+      "link": "https://stockx.pvxt.net/c/4722526/1023711/9060?u=https%3A%2F%2Fstockx.com%2Fair-jordan-11-retro-space-jam-magic-ball-womens",
       "sku": "IZ1800-200",
-      "colorway": "Light British Tan/Off Noir-Metallic Silver",
-      "tried": "2026-10-08"
+      "colorway": "Light British Tan/Off Noir-Metallic Silver"
     },
     {
       "date": "2026-11-11",
@@ -1084,6 +1073,16 @@
       "link": "",
       "sku": "FZ5590-004",
       "colorway": "Black/Black-Black"
+    },
+    {
+      "date": "2026-12-21",
+      "name": "Nike Caitlin 1 \"Chiefs\"",
+      "brand": "Nike",
+      "retail_usd": 140,
+      "image": "",
+      "link": "",
+      "sku": "IH7423-601",
+      "colorway": "University Red/White-University Gold-Black-Metallic Silver-Racer Blue"
     },
     {
       "date": "2026-12-24",
