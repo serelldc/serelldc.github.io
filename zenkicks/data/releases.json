@@ -1,5 +1,5 @@
 {
-  "updated": "2026-10-11",
+  "updated": "2026-10-12",
   "source": "SneakerFiles & Sneaker News release calendars (curated weekly); photos from KicksDB (StockX)",
   "items": [
     {
@@ -556,6 +556,14 @@
     },
     {
       "date": "2026-11-11",
+      "name": "Air Jordan 11 Women's \"Lapis\"",
+      "brand": "Jordan",
+      "retail_usd": 235,
+      "image": "",
+      "link": ""
+    },
+    {
+      "date": "2026-11-11",
       "name": "Nike Kobe 8 Protro \"Shanghai Fireworks\"",
       "brand": "Nike",
       "retail_usd": 200,
@@ -602,6 +610,14 @@
       "retail_usd": 255,
       "link": "https://stockx.pvxt.net/c/4722526/1023711/9060?u=https%3A%2F%2Fstockx.com%2Fair-jordan-11-retro-green-screen-monstars",
       "tried": "2026-10-09"
+    },
+    {
+      "date": "2026-11-14",
+      "name": "Air Jordan 9 Boot \"Iridescent\"",
+      "brand": "Jordan",
+      "retail_usd": 240,
+      "image": "",
+      "link": ""
     },
     {
       "date": "2026-11-14",
@@ -985,6 +1001,14 @@
     },
     {
       "date": "2026-12-11",
+      "name": "Jalen Brunson x Nike Kobe 3 Low Protro \"Arancia\"",
+      "brand": "Nike",
+      "retail_usd": null,
+      "image": "",
+      "link": ""
+    },
+    {
+      "date": "2026-12-11",
       "name": "Nike Air Foamposite One \"Floral\" 2026",
       "brand": "Nike",
       "retail_usd": 240,
@@ -1062,10 +1086,34 @@
       "colorway": "Black/Black-Black"
     },
     {
+      "date": "2026-12-24",
+      "name": "Air Jordan 8 \"Knicks\"",
+      "brand": "Jordan",
+      "retail_usd": 215,
+      "image": "",
+      "link": ""
+    },
+    {
       "date": "2026-12-25",
       "name": "Nike Kobe 6 Protro \"Coals\"",
       "brand": "Nike",
       "retail_usd": 190,
+      "image": "",
+      "link": ""
+    },
+    {
+      "date": "2026-12-26",
+      "name": "Air Jordan 4 \"BIN 23\"",
+      "brand": "Jordan",
+      "retail_usd": 355,
+      "image": "",
+      "link": ""
+    },
+    {
+      "date": "2026-12-31",
+      "name": "Air Jordan 3 \"Middle East\"",
+      "brand": "Jordan",
+      "retail_usd": 215,
       "image": "",
       "link": ""
     }
