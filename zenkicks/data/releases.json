@@ -1,7 +1,17 @@
 {
-  "updated": "2026-10-12",
+  "updated": "2026-10-13",
   "source": "SneakerFiles & Sneaker News release calendars (curated weekly); photos from KicksDB (StockX)",
   "items": [
+    {
+      "date": "2026-10-13",
+      "name": "Air Jordan 1 Low OG \"Día de Muertos\"",
+      "brand": "Jordan",
+      "retail_usd": 3,
+      "image": "https://images.stockx.com/images/Air-Jordan-1-High-Zoom-Air-CMFT-2-Dia-de-los-Muertos-Product.jpg?fit=fill&bg=FFFFFF&w=600&h=430&fm=webp&auto=compress&q=90&dpr=2&trim=color&updated_at=1738193358",
+      "link": "https://stockx.pvxt.net/c/4722526/1023711/9060?u=https%3A%2F%2Fstockx.com%2Fair-jordan-1-high-zoom-air-cmft-2-dia-de-los-muertos",
+      "sku": "IZ4686-216",
+      "colorway": "Light Chocolate/Velvet Brown-Black-Fresh Water"
+    },
     {
       "date": "2026-10-13",
       "name": "Nike Cryoshot Mercurial Vapor 1 OG",
@@ -19,7 +29,7 @@
       "retail_usd": 125,
       "image": "",
       "link": "",
-      "tried": "2026-10-11"
+      "tried": "2026-10-13"
     },
     {
       "date": "2026-10-14",
@@ -93,6 +103,17 @@
       "sku": "IV4517-001"
     },
     {
+      "date": "2026-10-15",
+      "name": "Supreme x Martine Rose x Nike Dunk Low \"Mike Tyson\"",
+      "brand": "Nike",
+      "retail_usd": 150,
+      "image": "",
+      "link": "",
+      "sku": "JA1868-001",
+      "colorway": "Black/White",
+      "tried": "2026-10-13"
+    },
+    {
       "date": "2026-10-16",
       "name": "Nike Air Foamposite Pro \"Glow in the Dark\"",
       "brand": "Nike",
@@ -150,7 +171,8 @@
       "brand": "Nike",
       "retail_usd": 150,
       "link": "https://stockx.pvxt.net/c/4722526/1023711/9060?u=https%3A%2F%2Fstockx.com%2Fnike-air-force-1-low-01-nigo-x-j-hope",
-      "tried": "2026-10-11"
+      "image": "https://images.stockx.com/images/Nike-Air-Force-1-Low-01-NIGO-x-J-Hope.jpg?fit=fill&bg=FFFFFF&w=600&h=430&fm=webp&auto=compress&q=90&dpr=2&trim=color&updated_at=1791492831",
+      "sku": "IO8766-800"
     },
     {
       "date": "2026-10-22",
@@ -169,6 +191,17 @@
       "image": "",
       "link": "",
       "tried": "2026-10-12"
+    },
+    {
+      "date": "2026-10-23",
+      "name": "Nike A'Two \"Potion No. 22\"",
+      "brand": "Nike",
+      "retail_usd": 155,
+      "image": "",
+      "link": "",
+      "sku": "IZ2457-100",
+      "colorway": "Light Orewood Brown/Pine Green-Bright Crimson-Black",
+      "tried": "2026-10-13"
     },
     {
       "date": "2026-10-23",
@@ -203,7 +236,7 @@
       "retail_usd": 150,
       "image": "",
       "link": "",
-      "tried": "2026-10-11"
+      "tried": "2026-10-13"
     },
     {
       "date": "2026-10-23",
@@ -231,7 +264,8 @@
       "brand": "Nike",
       "retail_usd": 145,
       "link": "https://stockx.pvxt.net/c/4722526/1023711/9060?u=https%3A%2F%2Fstockx.com%2Fnike-ja-4-halloween",
-      "tried": "2026-10-11"
+      "image": "https://images.stockx.com/images/Nike-Ja-4-Halloween-2.jpg?fit=fill&bg=FFFFFF&w=600&h=430&fm=webp&auto=compress&q=90&dpr=2&trim=color&updated_at=1791350680",
+      "sku": "IO7939-300 / IO7936-300"
     },
     {
       "date": "2026-10-23",
@@ -251,7 +285,7 @@
       "retail_usd": 145,
       "image": "",
       "link": "",
-      "tried": "2026-10-11"
+      "tried": "2026-10-13"
     },
     {
       "date": "2026-10-23",
@@ -260,7 +294,18 @@
       "retail_usd": 130,
       "image": "",
       "link": "",
-      "tried": "2026-10-11"
+      "tried": "2026-10-13"
+    },
+    {
+      "date": "2026-10-23",
+      "name": "adidas Anthony Edwards 3 \"Omen\"",
+      "brand": "adidas",
+      "retail_usd": 130,
+      "image": "",
+      "link": "",
+      "sku": "KJ3021",
+      "colorway": "Red/Silver-Black",
+      "tried": "2026-10-13"
     },
     {
       "date": "2026-10-24",
@@ -293,7 +338,7 @@
       "retail_usd": 170,
       "image": "",
       "link": "",
-      "tried": "2026-10-11"
+      "tried": "2026-10-13"
     },
     {
       "date": "2026-10-24",
@@ -346,7 +391,7 @@
       "retail_usd": 300,
       "image": "",
       "link": "",
-      "tried": "2026-10-11"
+      "tried": "2026-10-13"
     },
     {
       "date": "2026-10-24",
@@ -355,7 +400,7 @@
       "retail_usd": 300,
       "image": "",
       "link": "",
-      "tried": "2026-10-11"
+      "tried": "2026-10-13"
     },
     {
       "date": "2026-10-24",
@@ -391,7 +436,7 @@
       "retail_usd": 155,
       "image": "",
       "link": "",
-      "tried": "2026-10-11"
+      "tried": "2026-10-13"
     },
     {
       "date": "2026-10-30",
@@ -400,7 +445,7 @@
       "retail_usd": 180,
       "image": "",
       "link": "",
-      "tried": "2026-10-11"
+      "tried": "2026-10-13"
     },
     {
       "date": "2026-10-31",
@@ -417,6 +462,16 @@
       "retail_usd": 190,
       "link": "https://stockx.pvxt.net/c/4722526/1023711/9060?u=https%3A%2F%2Fstockx.com%2Fnike-kobe-3-low-protro-duke-pe-blue-black",
       "image": "https://images.stockx.com/images/Nike-Kobe-3-SL-White-Black.jpg?fit=fill&bg=FFFFFF&w=600&h=430&fm=webp&auto=compress&q=90&dpr=2&trim=color&updated_at=1626900770"
+    },
+    {
+      "date": "2026-11-05",
+      "name": "Air Jordan 1 Low \"Lola Bunny\"",
+      "brand": "Jordan",
+      "retail_usd": 130,
+      "image": "",
+      "link": "",
+      "sku": "IX6038-100",
+      "colorway": "White/Laser Pink-Yellow Zest-Black"
     },
     {
       "date": "2026-11-05",
