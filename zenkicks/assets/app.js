@@ -71,14 +71,22 @@
   var DOW = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'];
   function norm(t) { return String(t || '').toLowerCase().replace(/[^a-z0-9]+/g, ' ').trim(); }
 
+  // Shrinks a photo before upload. Safe against bad arguments (e.g. when passed straight to Array.map)
+  // and never returns a broken result: a tiny/blank output falls back to the original file.
   function compress(file, maxDim, quality) {
+    maxDim = typeof maxDim === 'number' && maxDim >= 300 ? maxDim : 1600;
+    quality = typeof quality === 'number' && quality > 0 && quality <= 1 ? quality : 0.82;
     return new Promise(function (res) {
       var img = new Image(); var url = URL.createObjectURL(file);
       img.onload = function () {
-        var k = Math.min(1, (typeof maxDim === 'number' ? maxDim : 1600) / Math.max(img.width, img.height));
-        var c = document.createElement('canvas'); c.width = Math.round(img.width * k); c.height = Math.round(img.height * k);
+        var k = Math.min(1, maxDim / Math.max(img.width, img.height));
+        var c = document.createElement('canvas'); c.width = Math.max(1, Math.round(img.width * k)); c.height = Math.max(1, Math.round(img.height * k));
         c.getContext('2d').drawImage(img, 0, 0, c.width, c.height);
-        c.toBlob(function (b) { URL.revokeObjectURL(url); res(b || file); }, 'image/jpeg', typeof quality === 'number' ? quality : 0.82);
+        c.toBlob(function (b) {
+          URL.revokeObjectURL(url);
+          var broken = !b || (c.width < 200 && img.width >= 400) || (b.size < 4000 && file.size > 30000); // blank/tiny result = something went wrong
+          res(broken ? file : b);
+        }, 'image/jpeg', quality);
       };
       img.onerror = function () { URL.revokeObjectURL(url); res(file); };
       img.src = url;
