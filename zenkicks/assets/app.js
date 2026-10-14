@@ -2136,7 +2136,7 @@
     if (k && t.files && t.files[0]) { compress(t.files[0]).then(function (b) { ST.sell.photos[k] = { blob: b, url: URL.createObjectURL(b) }; render(true); }); return; }
     if (t.getAttribute('data-checkphoto') && t.files) {
       var files = Array.prototype.slice.call(t.files, 0, 8 - ST.newCheck.photos.length);
-      Promise.all(files.map(compress)).then(function (bs) { bs.forEach(function (b) { ST.newCheck.photos.push({ blob: b, url: URL.createObjectURL(b) }); }); render(true); });
+      Promise.all(files.map(function (f) { return compress(f); })).then(function (bs) { bs.forEach(function (b) { ST.newCheck.photos.push({ blob: b, url: URL.createObjectURL(b) }); }); render(true); });
     }
   });
   app.addEventListener('keydown', function (e) {
