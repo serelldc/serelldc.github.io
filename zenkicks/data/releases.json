@@ -166,6 +166,14 @@
       "sku": "100290074"
     },
     {
+      "date": "2026-10-21",
+      "name": "Nike Air Force 1 Low Pony Hair \"Team Red\"",
+      "brand": "Nike",
+      "retail_usd": 140,
+      "image": "",
+      "link": ""
+    },
+    {
       "date": "2026-10-22",
       "name": "NIGO x J-Hope x Nike Air Force 1 '01",
       "brand": "Nike",
@@ -448,6 +456,14 @@
       "tried": "2026-10-13"
     },
     {
+      "date": "2026-10-30",
+      "name": "Nike Kobe 3 Low Protro \"Mamba Eterno\"",
+      "brand": "Nike",
+      "retail_usd": 190,
+      "image": "",
+      "link": ""
+    },
+    {
       "date": "2026-10-31",
       "name": "Air Jordan 14 \"Forest Green\"",
       "brand": "Jordan",
@@ -494,6 +510,14 @@
     },
     {
       "date": "2026-11-05",
+      "name": "Air Jordan 1 Mid \"Space Jam Hare\"",
+      "brand": "Jordan",
+      "retail_usd": 140,
+      "image": "",
+      "link": ""
+    },
+    {
+      "date": "2026-11-05",
       "name": "Air Jordan 1 Mid \"Space Jam\"",
       "brand": "Jordan",
       "retail_usd": 165,
@@ -534,6 +558,14 @@
       "sku": "IX6381-001",
       "colorway": "Black/Green Strike-Racer Blue-Atomic Orange",
       "tried": "2026-10-11"
+    },
+    {
+      "date": "2026-11-05",
+      "name": "Jordan Trunner O/S \"Space Jam Planet\"",
+      "brand": "Jordan",
+      "retail_usd": 130,
+      "image": "",
+      "link": ""
     },
     {
       "date": "2026-11-05",
@@ -814,14 +846,6 @@
       "link": "",
       "sku": "IQ5570-300",
       "colorway": "Rage Green/Barely Volt-Black-Habanero Red"
-    },
-    {
-      "date": "2026-11-21",
-      "name": "Nike Air Force 1 Low Pony Hair \"Team Red\"",
-      "brand": "Nike",
-      "retail_usd": 140,
-      "image": "",
-      "link": ""
     },
     {
       "date": "2026-11-21",
