@@ -1,5 +1,5 @@
 {
-  "updated": "2026-10-13",
+  "updated": "2026-10-14",
   "source": "SneakerFiles & Sneaker News release calendars (curated weekly); photos from KicksDB (StockX)",
   "items": [
     {
@@ -462,6 +462,14 @@
       "retail_usd": 190,
       "link": "https://stockx.pvxt.net/c/4722526/1023711/9060?u=https%3A%2F%2Fstockx.com%2Fnike-kobe-3-low-protro-duke-pe-blue-black",
       "image": "https://images.stockx.com/images/Nike-Kobe-3-SL-White-Black.jpg?fit=fill&bg=FFFFFF&w=600&h=430&fm=webp&auto=compress&q=90&dpr=2&trim=color&updated_at=1626900770"
+    },
+    {
+      "date": "2026-11-02",
+      "name": "New Balance Numeric 442",
+      "brand": "New Balance",
+      "retail_usd": 125,
+      "image": "",
+      "link": ""
     },
     {
       "date": "2026-11-05",
