@@ -3,35 +3,6 @@
   "source": "SneakerFiles & Sneaker News release calendars (curated weekly); photos from KicksDB (StockX)",
   "items": [
     {
-      "date": "2026-10-13",
-      "name": "Air Jordan 1 Low OG \"Día de Muertos\"",
-      "brand": "Jordan",
-      "retail_usd": 3,
-      "image": "https://images.stockx.com/images/Air-Jordan-1-High-Zoom-Air-CMFT-2-Dia-de-los-Muertos-Product.jpg?fit=fill&bg=FFFFFF&w=600&h=430&fm=webp&auto=compress&q=90&dpr=2&trim=color&updated_at=1738193358",
-      "link": "https://stockx.pvxt.net/c/4722526/1023711/9060?u=https%3A%2F%2Fstockx.com%2Fair-jordan-1-high-zoom-air-cmft-2-dia-de-los-muertos",
-      "sku": "IZ4686-216",
-      "colorway": "Light Chocolate/Velvet Brown-Black-Fresh Water"
-    },
-    {
-      "date": "2026-10-13",
-      "name": "Nike Cryoshot Mercurial Vapor 1 OG",
-      "brand": "Nike",
-      "retail_usd": 200,
-      "image": "https://images.stockx.com/images/Nike-Cryoshot-Mercurial-Vapor-1-OG-Chrome-Lime.jpg?fit=fill&bg=FFFFFF&w=600&h=430&fm=webp&auto=compress&q=90&dpr=2&trim=color&updated_at=1787257192",
-      "link": "https://stockx.pvxt.net/c/4722526/1023711/9060?u=https%3A%2F%2Fstockx.com%2Fnike-cryoshot-mercurial-vapor-1-og-chrome-lime",
-      "sku": "IQ8161-001",
-      "colorway": "Chrome/Hot Lime-Black"
-    },
-    {
-      "date": "2026-10-13",
-      "name": "Nike SB P-Rod 1 \"Light British Tan\"",
-      "brand": "Nike",
-      "retail_usd": 125,
-      "image": "",
-      "link": "",
-      "tried": "2026-10-13"
-    },
-    {
       "date": "2026-10-14",
       "name": "Nike Caitlin 1 \"Hot Punch\"",
       "brand": "Nike",
@@ -170,8 +141,9 @@
       "name": "Nike Air Force 1 Low Pony Hair \"Team Red\"",
       "brand": "Nike",
       "retail_usd": 140,
-      "image": "",
-      "link": ""
+      "image": "https://images.stockx.com/images/Nike-Air-Force-1-Low-Technicolor-Tale-Team-Red-Pony-Hair.jpg?fit=fill&bg=FFFFFF&w=600&h=430&fm=webp&auto=compress&q=90&dpr=2&trim=color&updated_at=1791233933",
+      "link": "https://stockx.pvxt.net/c/4722526/1023711/9060?u=https%3A%2F%2Fstockx.com%2Fnike-air-force-1-low-technicolor-tale-team-red-pony-hair",
+      "sku": "IR1940-600"
     },
     {
       "date": "2026-10-22",
@@ -189,7 +161,7 @@
       "retail_usd": null,
       "image": "",
       "link": "",
-      "tried": "2026-10-12"
+      "tried": "2026-10-14"
     },
     {
       "date": "2026-10-23",
@@ -198,7 +170,7 @@
       "retail_usd": 145,
       "image": "",
       "link": "",
-      "tried": "2026-10-12"
+      "tried": "2026-10-14"
     },
     {
       "date": "2026-10-23",
@@ -218,7 +190,7 @@
       "retail_usd": 140,
       "image": "",
       "link": "",
-      "tried": "2026-10-12"
+      "tried": "2026-10-14"
     },
     {
       "date": "2026-10-23",
@@ -284,7 +256,7 @@
       "link": "",
       "sku": "IO8112-600",
       "colorway": "Bright Crimson/Lime Ice-Stadium Green-Dark Smoke Grey",
-      "tried": "2026-10-12"
+      "tried": "2026-10-14"
     },
     {
       "date": "2026-10-23",
@@ -461,7 +433,8 @@
       "brand": "Nike",
       "retail_usd": 190,
       "image": "",
-      "link": ""
+      "link": "",
+      "tried": "2026-10-14"
     },
     {
       "date": "2026-10-31",
@@ -484,16 +457,17 @@
       "name": "New Balance Numeric 442",
       "brand": "New Balance",
       "retail_usd": 125,
-      "image": "",
-      "link": ""
+      "image": "https://images.stockx.com/images/New-Balance-Numeric-442-Heron-Blue-White.jpg?fit=fill&bg=FFFFFF&w=600&h=430&fm=webp&auto=compress&q=90&dpr=2&trim=color&updated_at=1783021383",
+      "link": "https://stockx.pvxt.net/c/4722526/1023711/9060?u=https%3A%2F%2Fstockx.com%2Fnew-balance-numeric-442-heron-blue-white",
+      "sku": "UN442SMF"
     },
     {
       "date": "2026-11-05",
       "name": "Air Jordan 1 Low \"Lola Bunny\"",
       "brand": "Jordan",
       "retail_usd": 130,
-      "image": "",
-      "link": "",
+      "image": "https://images.stockx.com/images/Air-Jordan-1-Low-SE-Space-Jam-Lola-Bunny-TD.jpg?fit=fill&bg=FFFFFF&w=600&h=430&fm=webp&auto=compress&q=90&dpr=2&trim=color&updated_at=1791578763",
+      "link": "https://stockx.pvxt.net/c/4722526/1023711/9060?u=https%3A%2F%2Fstockx.com%2Fair-jordan-1-low-se-space-jam-lola-bunny-td",
       "sku": "IX6038-100",
       "colorway": "White/Laser Pink-Yellow Zest-Black"
     },
@@ -502,19 +476,19 @@
       "name": "Air Jordan 1 Low \"Magic Ball\"",
       "brand": "Jordan",
       "retail_usd": 130,
-      "image": "",
-      "link": "",
+      "image": "https://images.stockx.com/images/Air-Jordan-1-Low-SE-Space-Jam-Magic-Ball.jpg?fit=fill&bg=FFFFFF&w=600&h=430&fm=webp&auto=compress&q=90&dpr=2&trim=color&updated_at=1791486886",
+      "link": "https://stockx.pvxt.net/c/4722526/1023711/9060?u=https%3A%2F%2Fstockx.com%2Fair-jordan-1-low-se-space-jam-magic-ball",
       "sku": "IX6375-001",
-      "colorway": "Black/Action Green-Yellow Zest-Metallic Silver",
-      "tried": "2026-10-11"
+      "colorway": "Black/Action Green-Yellow Zest-Metallic Silver"
     },
     {
       "date": "2026-11-05",
       "name": "Air Jordan 1 Mid \"Space Jam Hare\"",
       "brand": "Jordan",
       "retail_usd": 140,
-      "image": "",
-      "link": ""
+      "image": "https://images.stockx.com/images/Air-Jordan-1-Mid-SE-Space-Jam-Hare.jpg?fit=fill&bg=FFFFFF&w=600&h=430&fm=webp&auto=compress&q=90&dpr=2&trim=color&updated_at=1791486859",
+      "link": "https://stockx.pvxt.net/c/4722526/1023711/9060?u=https%3A%2F%2Fstockx.com%2Fair-jordan-1-mid-se-space-jam-hare",
+      "sku": "IZ9293-001"
     },
     {
       "date": "2026-11-05",
@@ -531,41 +505,39 @@
       "name": "Air Jordan Women's OG \"Space Jam Amusement Park\"",
       "brand": "Jordan",
       "retail_usd": 155,
-      "image": "",
-      "link": "",
+      "image": "https://images.stockx.com/images/Air-Jordan-OG-Space-Jam-Amusement-Park-Womens.jpg?fit=fill&bg=FFFFFF&w=600&h=430&fm=webp&auto=compress&q=90&dpr=2&trim=color&updated_at=1791486860",
+      "link": "https://stockx.pvxt.net/c/4722526/1023711/9060?u=https%3A%2F%2Fstockx.com%2Fair-jordan-og-space-jam-amusement-park-womens",
       "sku": "IX6376-001",
-      "colorway": "Black/Concord-Crimson Tint-Pink Beam",
-      "tried": "2026-10-11"
+      "colorway": "Black/Concord-Crimson Tint-Pink Beam"
     },
     {
       "date": "2026-11-05",
       "name": "Jordan Son of Mars Low \"Lunar Tunes\"",
       "brand": "Jordan",
       "retail_usd": 165,
-      "image": "",
-      "link": "",
+      "image": "https://images.stockx.com/images/Air-Jordan-Son-of-Mars-Low-Space-Jam-Lunar-Tunes.jpg?fit=fill&bg=FFFFFF&w=600&h=430&fm=webp&auto=compress&q=90&dpr=2&trim=color&updated_at=1791486875",
+      "link": "https://stockx.pvxt.net/c/4722526/1023711/9060?u=https%3A%2F%2Fstockx.com%2Fair-jordan-son-of-mars-low-space-jam-lunar-tunes",
       "sku": "IX6377-001",
-      "colorway": "Base Grey/Ghost-Stealth-White",
-      "tried": "2026-10-11"
+      "colorway": "Base Grey/Ghost-Stealth-White"
     },
     {
       "date": "2026-11-05",
       "name": "Jordan Spizike Low \"Jam Central\"",
       "brand": "Jordan",
       "retail_usd": 165,
-      "image": "",
-      "link": "",
+      "image": "https://images.stockx.com/images/Air-Jordan-Spizike-Low-Space-Jam-Jam-Central.jpg?fit=fill&bg=FFFFFF&w=600&h=430&fm=webp&auto=compress&q=90&dpr=2&trim=color&updated_at=1791486897",
+      "link": "https://stockx.pvxt.net/c/4722526/1023711/9060?u=https%3A%2F%2Fstockx.com%2Fair-jordan-spizike-low-space-jam-jam-central",
       "sku": "IX6381-001",
-      "colorway": "Black/Green Strike-Racer Blue-Atomic Orange",
-      "tried": "2026-10-11"
+      "colorway": "Black/Green Strike-Racer Blue-Atomic Orange"
     },
     {
       "date": "2026-11-05",
       "name": "Jordan Trunner O/S \"Space Jam Planet\"",
       "brand": "Jordan",
       "retail_usd": 130,
-      "image": "",
-      "link": ""
+      "image": "https://images.stockx.com/images/Air-Jordan-Trunner-O-S-Space-Jam-Planet.jpg?fit=fill&bg=FFFFFF&w=600&h=430&fm=webp&auto=compress&q=90&dpr=2&trim=color&updated_at=1791578786",
+      "link": "https://stockx.pvxt.net/c/4722526/1023711/9060?u=https%3A%2F%2Fstockx.com%2Fair-jordan-trunner-o-s-space-jam-planet",
+      "sku": "IX6403-200"
     },
     {
       "date": "2026-11-05",
@@ -582,7 +554,7 @@
       "retail_usd": 210,
       "image": "",
       "link": "",
-      "tried": "2026-10-12"
+      "tried": "2026-10-14"
     },
     {
       "date": "2026-11-06",
