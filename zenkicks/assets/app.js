@@ -1449,7 +1449,8 @@
   function chatItem(m) {
     var me = uid(), mine = m.user_id === me, mn = ST.me && ST.me.username ? ST.me.username.toLowerCase() : '';
     var badge = m.is_admin ? '<span class="pill dark" style="padding:1px 7px;font-size:10px">Admin</span>' : m.is_checker ? '<span class="pill ok" style="padding:1px 7px;font-size:10px">✓ Checker</span>' : '';
-    var body = esc(m.body).replace(/(^|\s)@([a-z0-9._]{3,24})/gi, function (_, sp, n) { return sp + '<span class="cmention' + (n.toLowerCase() === mn ? ' me' : '') + '">@' + n + '</span>'; });
+    var myOg = ST.og && ST.og[me] ? 'og' + ST.og[me] : '';
+    var body = esc(m.body).replace(/(^|\s)@([a-z0-9._]{3,24})/gi, function (_, sp, n) { var l = n.toLowerCase(); return sp + '<button type="button" class="cmention' + (l === mn || l === myOg ? ' me' : '') + '" data-act="mentgo" data-v="' + n + '">@' + n + '</button>'; });
     var img = m.image_path ? '<button class="chatimg" data-act="chatimg" data-v="' + esc(m.image_path) + '" aria-label="Open photo"><img loading="lazy" src="' + esc(pub('chat-photos', m.image_path)) + '" alt="Photo shared in chat"></button>' : '';
     return '<div class="cmsg' + (mine ? ' mine' : '') + '" data-id="' + m.id + '" data-user="' + m.user_id + '"><div class="avatar cav">' + esc((m.username || '?')[0].toUpperCase()) + '</div><div class="cbody"><div class="chead"><b>' + userLink(m.user_id, m.username) + '</b>' + badge + '<span class="m">' + ago(m.created_at) + '</span><span class="cact"><button class="link cbtn" data-act="chatreply" data-id="' + m.id + '" aria-label="Reply">↩</button><button class="link cbtn" data-act="chatreact" data-id="' + m.id + '" aria-label="React">☺</button><button class="link cmore" data-act="chatmenu" data-id="' + m.id + '" aria-label="Message options">⋯</button></span></div>' +
       (m.reply_to && m.reply_user ? '<button class="creply" data-act="chatjump" data-id="' + m.reply_to + '"><b>@' + esc(m.reply_user) + '</b> ' + esc(m.reply_body || '') + '</button>' : '') +
@@ -1566,6 +1567,17 @@
       (mine || isAdmin() ? '<button class="btn ghost" style="color:var(--red)" data-act="chatdel" data-id="' + id + '">Delete message</button>' : '') +
       '<button class="btn dark" data-act="mclose">Close</button></div>');
   }
+  // tap @name or @OG12 in the chat: open that member's profile
+  function mentionGo(name) {
+    if (!name) return;
+    var og = /^og(\d{1,3})$/i.exec(name), id = null, l = name.toLowerCase();
+    if (og && ST.og) Object.keys(ST.og).forEach(function (k) { if (String(ST.og[k]) === String(+og[1])) id = k; });
+    if (!id) Object.keys(CHAT.byId).forEach(function (k) { var m = CHAT.byId[k]; if (m.username && m.username.toLowerCase() === l) id = m.user_id; });
+    if (id) { go('u/' + id); return; }
+    if (!sb) return;
+    var q = og ? sb.from('profiles').select('id').eq('og_no', +og[1]).maybeSingle() : sb.from('profiles').select('id').ilike('username', name.replace(/[\\%_]/g, '\\$&')).maybeSingle();
+    q.then(function (r) { if (r.data && r.data.id) go('u/' + r.data.id); else toast('Member not found'); }, function () { toast('Couldn’t open profile'); });
+  }
   // @mention suggestions: typing "@zy" shows matching members above the box; tap one (or Enter / Tab) to insert it
   var SUG = { items: [], i: 0, token: '' };
   function sugToken(inp) {
@@ -1589,6 +1601,10 @@
       var n = m.username, l = n.toLowerCase();
       if (l !== me && !seen[l] && l.indexOf(q) === 0) { seen[l] = 1; local.push(n); }
     });
+    if (/^o(g\d*)?$/.test(q) && ST.og) { // typing @o / @og / @og1 also offers OG numbers
+      var d = q.slice(2), ogs = Object.keys(ST.og).map(function (k) { return ST.og[k]; }).filter(function (n) { return String(n).indexOf(d) === 0; }).sort(function (a, b) { return a - b; }).slice(0, 4).map(function (n) { return 'OG' + n; });
+      local = ogs.concat(local);
+    }
     SUG.items = local.slice(0, 6); SUG.i = 0; sugShow();
     if (!q) return;
     clearTimeout(SUG.timer);
@@ -1958,6 +1974,7 @@
         break;
       case 'mclose': closeModal(); break;
       case 'chatpick': sugPick(v); break;
+      case 'mentgo': mentionGo(v); break;
       case 'chatreact': if (!requireLogin()) break;
         openModal('<h2>React</h2><div class="rpick">' + REACTS.map(function (e) { return '<button class="rpickbtn" data-act="chatpickemoji" data-id="' + id + '" data-v="' + e + '">' + e + '</button>'; }).join('') + '</div><button class="btn ghost" style="color:var(--ink)" data-act="mclose">Cancel</button>'); break;
       case 'chatpickemoji': closeModal(); chatToggleReact(id, v); break;
