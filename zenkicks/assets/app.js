@@ -1294,13 +1294,14 @@
         return '<button data-act="vote" data-id="' + c.id + '" data-v="' + k + '" data-on="' + on + '" aria-pressed="' + on + '" style="border:1.5px solid ' + col + ';' + (on ? 'background:' + col + ';color:#fff' : 'color:' + col) + '">' + (on ? '✓ ' : '') + { legit: 'Legit', fake: 'Fake', unsure: 'More pics' }[k] + '</button>';
       }).join('') + '</div>';
       var ps = checkPhotos(c);
+      CHAT.cmtNames = comments.map(function (m) { return m.author && m.author.username; }).filter(Boolean);
       var tops = comments.filter(function (m) { return !m.parent_id; });
       function cItem(m, isReply) {
         var au = m.author || {}; var badge = (au.is_checker || au.is_admin) ? ' <span class="pill ok" style="padding:1px 7px;font-size:10px">✓ Checker</span>' : (m.author_id === c.author_id ? ' <span class="pill dark" style="padding:1px 7px;font-size:10px">OP</span>' : '');
         var liked = !!myLikes[m.id];
         return '<div class="row" style="align-items:flex-start;gap:10px' + (isReply ? ';margin-left:40px' : '') + '"><div class="avatar" style="width:' + (isReply ? 28 : 34) + 'px;height:' + (isReply ? 28 : 34) + 'px;font-size:13px">' + esc((au.username || '?')[0].toUpperCase()) + '</div>' +
           '<div class="grow" style="display:flex;flex-direction:column;gap:4px"><div style="font-size:13px"><b>' + userLink(m.author_id, au.username) + '</b>' + badge + ' ' + starBadge(vm[m.author_id]) + ' <span class="m">· ' + ago(m.created_at) + '</span></div>' +
-          '<div style="font-size:14px;line-height:1.45;white-space:pre-line' + (au.is_checker ? ';padding:8px 10px;border-radius:10px;background:var(--mint)' : '') + '">' + esc(m.body) + '</div>' +
+          '<div style="font-size:14px;line-height:1.45;white-space:pre-line' + (au.is_checker ? ';padding:8px 10px;border-radius:10px;background:var(--mint)' : '') + '">' + mentionHtml(m.body) + '</div>' +
           '<div class="row" style="gap:2px"><button class="link" style="color:' + (liked ? 'var(--red)' : 'var(--muted)') + ';padding:6px 8px 6px 0;font-size:12px;display:inline-flex;align-items:center;gap:4px" data-act="like" data-id="' + m.id + '" data-on="' + liked + '" aria-pressed="' + liked + '"><span style="width:14px;height:14px;display:inline-flex">' + (liked ? I.heartOn : I.heart) + '</span>' + (likes[m.id] || 0) + '</button>' +
           '<button class="link" style="color:var(--muted);padding:6px 8px;font-size:12px" data-act="reply" data-id="' + (m.parent_id || m.id) + '" data-user="' + esc(au.username) + '">Reply</button>' +
           (me && c.author_id === me && m.author_id !== me ? '<button class="link" style="color:var(--red);padding:6px 8px;font-size:12px;font-weight:700" data-act="vouch" data-target="' + m.author_id + '" data-user="' + esc(au.username) + '" data-ref="' + c.id + '" data-kind="legit">★ Vouch</button>' : '') +
@@ -1321,7 +1322,7 @@
         '<p class="m" style="margin:0">Be respectful. Call out the pair, not the person.' + (me && c.author_id === me ? ' Tap <b>★ Vouch</b> on a comment to thank someone who helped.' : '') + '</p></section>' +
         (c.author_id !== me ? '<button class="link" style="align-self:flex-start;color:var(--muted)" data-act="report" data-type="check" data-id="' + c.id + '">Report this post</button>' : '') + '</div>';
       var bottom = me
-        ? '<div style="flex-shrink:0;display:flex;flex-direction:column;gap:6px;padding:10px 12px calc(16px + env(safe-area-inset-bottom,0px));background:var(--ink);border-top:1px solid var(--ink3)">' +
+        ? '<div style="position:relative;flex-shrink:0;display:flex;flex-direction:column;gap:6px;padding:10px 12px calc(16px + env(safe-area-inset-bottom,0px));background:var(--ink);border-top:1px solid var(--ink3)"><div id="chatsug" class="chatsug" hidden></div>' +
           (ST.replyTo ? '<div class="row" style="justify-content:space-between;font-size:12px;color:var(--sand);padding:0 4px"><span>Replying to @' + esc(ST.replyTo.user) + '</span><button class="link" style="color:var(--coral);padding:4px 0;font-size:12px" data-act="noreply">Cancel</button></div>' : '') +
           '<div class="row" style="gap:8px"><label class="bidfield" for="cmt" style="font-family:var(--body);font-weight:400"><input id="cmt" type="text" maxlength="1000" placeholder="' + (ST.replyTo ? 'Write a reply…' : 'Add a comment…') + '" autocomplete="off"></label><button class="btn red" style="height:52px;padding:0 18px" data-act="send" data-id="' + c.id + '">Send</button></div></div>'
         : '<div class="actionbar"><button class="btn red" style="flex:1;height:52px" data-go="login">Sign in to comment</button></div>';
@@ -1446,11 +1447,15 @@
   }
   var CHAT = { rx: {}, replyTo: null, byId: {}, newest: null, oldest: null, timer: null, img: null, sending: false };
   function chatAdd(m) { CHAT.byId[m.id] = m; if (!CHAT.newest || m.created_at > CHAT.newest) CHAT.newest = m.created_at; if (!CHAT.oldest || m.created_at < CHAT.oldest) CHAT.oldest = m.created_at; }
+  // escapes text and turns @name / @OG12 into tappable profile links (gold when it is you)
+  function mentionHtml(text) {
+    var mn = ST.me && ST.me.username ? ST.me.username.toLowerCase() : '', me = uid(), myOg = ST.og && ST.og[me] ? 'og' + ST.og[me] : '';
+    return esc(text).replace(/(^|\s)@([a-z0-9._]{3,24})/gi, function (_, sp, n) { var l = n.toLowerCase(); return sp + '<button type="button" class="cmention' + (l === mn || l === myOg ? ' me' : '') + '" data-act="mentgo" data-v="' + n + '">@' + n + '</button>'; });
+  }
   function chatItem(m) {
     var me = uid(), mine = m.user_id === me, mn = ST.me && ST.me.username ? ST.me.username.toLowerCase() : '';
     var badge = m.is_admin ? '<span class="pill dark" style="padding:1px 7px;font-size:10px">Admin</span>' : m.is_checker ? '<span class="pill ok" style="padding:1px 7px;font-size:10px">✓ Checker</span>' : '';
-    var myOg = ST.og && ST.og[me] ? 'og' + ST.og[me] : '';
-    var body = esc(m.body).replace(/(^|\s)@([a-z0-9._]{3,24})/gi, function (_, sp, n) { var l = n.toLowerCase(); return sp + '<button type="button" class="cmention' + (l === mn || l === myOg ? ' me' : '') + '" data-act="mentgo" data-v="' + n + '">@' + n + '</button>'; });
+    var body = mentionHtml(m.body);
     var img = m.image_path ? '<button class="chatimg" data-act="chatimg" data-v="' + esc(m.image_path) + '" aria-label="Open photo"><img loading="lazy" src="' + esc(pub('chat-photos', m.image_path)) + '" alt="Photo shared in chat"></button>' : '';
     return '<div class="cmsg' + (mine ? ' mine' : '') + '" data-id="' + m.id + '" data-user="' + m.user_id + '"><div class="avatar cav">' + esc((m.username || '?')[0].toUpperCase()) + '</div><div class="cbody"><div class="chead"><b>' + userLink(m.user_id, m.username) + '</b>' + badge + '<span class="m">' + ago(m.created_at) + '</span><span class="cact"><button class="link cbtn" data-act="chatreply" data-id="' + m.id + '" aria-label="Reply">↩</button><button class="link cbtn" data-act="chatreact" data-id="' + m.id + '" aria-label="React">☺</button><button class="link cmore" data-act="chatmenu" data-id="' + m.id + '" aria-label="Message options">⋯</button></span></div>' +
       (m.reply_to && m.reply_user ? '<button class="creply" data-act="chatjump" data-id="' + m.reply_to + '"><b>@' + esc(m.reply_user) + '</b> ' + esc(m.reply_body || '') + '</button>' : '') +
@@ -1605,6 +1610,7 @@
       var d = q.slice(2), ogs = Object.keys(ST.og).map(function (k) { return ST.og[k]; }).filter(function (n) { return String(n).indexOf(d) === 0; }).sort(function (a, b) { return a - b; }).slice(0, 4).map(function (n) { return 'OG' + n; });
       local = ogs.concat(local);
     }
+    (CHAT.cmtNames || []).forEach(function (n) { var l = n.toLowerCase(); if (l !== me && !seen[l] && l.indexOf(q) === 0) { seen[l] = 1; local.push(n); } });
     SUG.items = local.slice(0, 6); SUG.i = 0; sugShow();
     if (!q) return;
     clearTimeout(SUG.timer);
@@ -1618,7 +1624,7 @@
     }, 160);
   }
   function sugPick(name) {
-    var inp = document.getElementById('chatin'); if (!inp) return;
+    var inp = document.getElementById('chatin') || document.getElementById('cmt'); if (!inp) return;
     var t = sugToken(inp); if (!t) { sugClose(); return; }
     var ins = '@' + name + ' ';
     inp.value = inp.value.slice(0, t.start) + ins + inp.value.slice(t.end);
@@ -2142,7 +2148,7 @@
   });
 
   app.addEventListener('input', function (e) {
-    if (e.target && e.target.id === 'chatin') { sugUpdate(e.target); return; }
+    if (e.target && (e.target.id === 'chatin' || e.target.id === 'cmt')) { sugUpdate(e.target); return; }
     var t = e.target;
     if (t.id === 'l-code') { var d = t.value.replace(/\D/g, ''); if (d !== t.value) t.value = d; if (d.length === (C.OTP_LENGTH || 6)) { var vb = app.querySelector('[data-act="emailverify"]'); if (vb && !vb.disabled) vb.click(); } return; }
     if (t.id === 'q') { ST.marketQ = t.value; clearTimeout(ST.qTimer); ST.qTimer = setTimeout(function () { var w = document.getElementById('grid-wrap'); if (!w) return; marketGrid().then(function (h) { w.innerHTML = h; }).catch(fail); }, 350); return; }
@@ -2165,14 +2171,14 @@
     }
   });
   app.addEventListener('keydown', function (e) {
-    if (e.target && e.target.id === 'chatin' && SUG.items.length) {
+    if (e.target && (e.target.id === 'chatin' || e.target.id === 'cmt') && SUG.items.length) {
       if (e.key === 'ArrowDown' || e.key === 'ArrowUp') { e.preventDefault(); SUG.i = (SUG.i + (e.key === 'ArrowDown' ? 1 : SUG.items.length - 1)) % SUG.items.length; sugShow(); return; }
       if (e.key === 'Tab') { e.preventDefault(); sugPick(SUG.items[SUG.i]); return; }
       if (e.key === 'Escape') { e.preventDefault(); sugClose(); return; }
     }
     if (e.key !== 'Enter') return;
     if (e.target.id === 'chatin') { e.preventDefault(); if (SUG.items.length) sugPick(SUG.items[SUG.i]); else chatSend(); }
-    if (e.target.id === 'cmt') { e.preventDefault(); var b = app.querySelector('[data-act="send"]'); if (b) b.click(); }
+    if (e.target.id === 'cmt') { e.preventDefault(); if (SUG.items.length) { sugPick(SUG.items[SUG.i]); return; } var b = app.querySelector('[data-act="send"]'); if (b) b.click(); }
     if (e.target.id === 'amt') { e.preventDefault(); var b2 = app.querySelector('[data-act="bid"]'); if (b2) b2.click(); }
     if (e.target.id === 'l-email') { e.preventDefault(); var b3 = app.querySelector('[data-act="emaillink"]'); if (b3) b3.click(); }
     if (e.target.id === 'l-code') { e.preventDefault(); var b4 = app.querySelector('[data-act="emailverify"]'); if (b4) b4.click(); }
