@@ -1,25 +1,7 @@
 {
-  "updated": "2026-10-14",
+  "updated": "2026-10-15",
   "source": "SneakerFiles & Sneaker News release calendars (curated weekly); photos from KicksDB (StockX)",
   "items": [
-    {
-      "date": "2026-10-14",
-      "name": "Nike Caitlin 1 \"Hot Punch\"",
-      "brand": "Nike",
-      "retail_usd": 140,
-      "image": "https://images.stockx.com/images/Nike-Caitlin-1-Hot-Punch-Womens.jpg?fit=fill&bg=FFFFFF&w=600&h=430&fm=webp&auto=compress&q=90&dpr=2&trim=color&updated_at=1786384481",
-      "link": "https://stockx.pvxt.net/c/4722526/1023711/9060?u=https%3A%2F%2Fstockx.com%2Fnike-caitlin-1-hot-punch-womens"
-    },
-    {
-      "date": "2026-10-14",
-      "name": "Nike Caitlin 1 \"Midnight Fever\"",
-      "brand": "Nike",
-      "retail_usd": 140,
-      "image": "https://images.stockx.com/images/Nike-Caitlin-1-Hot-Punch-Womens.jpg?fit=fill&bg=FFFFFF&w=600&h=430&fm=webp&auto=compress&q=90&dpr=2&trim=color&updated_at=1786384481",
-      "link": "https://stockx.pvxt.net/c/4722526/1023711/9060?u=https%3A%2F%2Fstockx.com%2Fnike-caitlin-1-hot-punch-womens",
-      "sku": "IH7423-600",
-      "colorway": "Hot Punch/Neo Pink-Black-Laser Crimson-Racer Blue"
-    },
     {
       "date": "2026-10-15",
       "name": "Jordan Tatum 5 \"Sunrise\"",
@@ -82,7 +64,7 @@
       "link": "",
       "sku": "JA1868-001",
       "colorway": "Black/White",
-      "tried": "2026-10-13"
+      "tried": "2026-10-15"
     },
     {
       "date": "2026-10-16",
@@ -165,6 +147,28 @@
     },
     {
       "date": "2026-10-23",
+      "name": "APB x Air Jordan 11 Low \"Made for Locals\"",
+      "brand": "Jordan",
+      "retail_usd": 200,
+      "image": "",
+      "link": "",
+      "sku": "IU8266-400",
+      "colorway": "Binary Blue/Rust Pink-Sail-Steel",
+      "tried": "2026-10-15"
+    },
+    {
+      "date": "2026-10-23",
+      "name": "BBC ICECREAM x Reebok Board Flip \"Pumpkin\"",
+      "brand": "Reebok",
+      "retail_usd": 150,
+      "image": "",
+      "link": "",
+      "sku": "100265460",
+      "colorway": "Black/Orange-Blue",
+      "tried": "2026-10-15"
+    },
+    {
+      "date": "2026-10-23",
       "name": "Cade Cunningham x Nike ST Charge \"Halloween\"",
       "brand": "Nike",
       "retail_usd": 145,
@@ -181,7 +185,7 @@
       "link": "",
       "sku": "IZ2457-100",
       "colorway": "Light Orewood Brown/Pine Green-Bright Crimson-Black",
-      "tried": "2026-10-13"
+      "tried": "2026-10-15"
     },
     {
       "date": "2026-10-23",
@@ -216,7 +220,7 @@
       "retail_usd": 150,
       "image": "",
       "link": "",
-      "tried": "2026-10-13"
+      "tried": "2026-10-15"
     },
     {
       "date": "2026-10-23",
@@ -265,7 +269,7 @@
       "retail_usd": 145,
       "image": "",
       "link": "",
-      "tried": "2026-10-13"
+      "tried": "2026-10-15"
     },
     {
       "date": "2026-10-23",
@@ -274,7 +278,7 @@
       "retail_usd": 130,
       "image": "",
       "link": "",
-      "tried": "2026-10-13"
+      "tried": "2026-10-15"
     },
     {
       "date": "2026-10-23",
@@ -285,7 +289,7 @@
       "link": "",
       "sku": "KJ3021",
       "colorway": "Red/Silver-Black",
-      "tried": "2026-10-13"
+      "tried": "2026-10-15"
     },
     {
       "date": "2026-10-24",
@@ -318,7 +322,7 @@
       "retail_usd": 170,
       "image": "",
       "link": "",
-      "tried": "2026-10-13"
+      "tried": "2026-10-15"
     },
     {
       "date": "2026-10-24",
@@ -371,7 +375,7 @@
       "retail_usd": 300,
       "image": "",
       "link": "",
-      "tried": "2026-10-13"
+      "tried": "2026-10-15"
     },
     {
       "date": "2026-10-24",
@@ -380,7 +384,7 @@
       "retail_usd": 300,
       "image": "",
       "link": "",
-      "tried": "2026-10-13"
+      "tried": "2026-10-15"
     },
     {
       "date": "2026-10-24",
@@ -416,7 +420,7 @@
       "retail_usd": 155,
       "image": "",
       "link": "",
-      "tried": "2026-10-13"
+      "tried": "2026-10-15"
     },
     {
       "date": "2026-10-30",
@@ -425,7 +429,7 @@
       "retail_usd": 180,
       "image": "",
       "link": "",
-      "tried": "2026-10-13"
+      "tried": "2026-10-15"
     },
     {
       "date": "2026-10-30",
@@ -563,7 +567,7 @@
       "retail_usd": 145,
       "image": "",
       "link": "",
-      "tried": "2026-10-12"
+      "tried": "2026-10-15"
     },
     {
       "date": "2026-11-07",
@@ -572,7 +576,7 @@
       "retail_usd": 240,
       "image": "",
       "link": "",
-      "tried": "2026-10-12"
+      "tried": "2026-10-15"
     },
     {
       "date": "2026-11-07",

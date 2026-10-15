@@ -1,46 +1,16 @@
 {
-  "updated": "2026-10-14",
+  "updated": "2026-10-15",
   "source": "KicksDB (StockX best sellers)",
   "online": [
     {
-      "name": "Maison Mihara Yasuhiro Hank OG Sole Canvas Low Black",
-      "why": "719 orders on StockX this week",
-      "tag": "Resale",
-      "image": "https://images.stockx.com/images/Mihara-Yasuhiro-Hank-OG-Sole-Canvas-Low-Black-Product.jpg?fit=fill&bg=FFFFFF&w=600&h=430&fm=webp&auto=compress&q=90&dpr=2&trim=color&updated_at=1738193358",
-      "link": "https://stockx.pvxt.net/c/4722526/1023711/9060?u=https%3A%2F%2Fstockx.com%2Fmihara-yasuhiro-hank-og-sole-canvas-low-black",
-      "brand": "Maison Mihara Yasuhiro",
-      "sku": "A05FW702",
-      "price_usd": 121
-    },
-    {
-      "name": "Jordan 4 Retro London",
-      "why": "664 orders on StockX this week",
-      "tag": "Resale",
-      "image": "https://images.stockx.com/images/Air-Jordan-4-Retro-London.jpg?fit=fill&bg=FFFFFF&w=600&h=430&fm=webp&auto=compress&q=90&dpr=2&trim=color&updated_at=1790958883",
-      "link": "https://stockx.pvxt.net/c/4722526/1023711/9060?u=https%3A%2F%2Fstockx.com%2Fair-jordan-4-retro-london",
-      "brand": "Jordan",
-      "sku": "IV6048-001",
-      "price_usd": 335
-    },
-    {
       "name": "Jordan 1 Retro High OG Royal (2026)",
-      "why": "781 orders on StockX this week",
+      "why": "763 orders on StockX this week",
       "tag": "Resale",
       "image": "https://images.stockx.com/images/Air-Jordan-1-Retro-High-OG-Royal-2026.jpg?fit=fill&bg=FFFFFF&w=600&h=430&fm=webp&auto=compress&q=90&dpr=2&trim=color&updated_at=1790958824",
       "link": "https://stockx.pvxt.net/c/4722526/1023711/9060?u=https%3A%2F%2Fstockx.com%2Fair-jordan-1-retro-high-og-royal-2026",
       "brand": "Jordan",
       "sku": "IQ5495-005",
-      "price_usd": 135
-    },
-    {
-      "name": "Jordan 4 Retro Toro Bravo (2026)",
-      "why": "536 orders on StockX this week",
-      "tag": "Resale",
-      "image": "https://images.stockx.com/images/Air-Jordan-4-Retro-Toro-Bravo-2026-Product.jpg?fit=fill&bg=FFFFFF&w=600&h=430&fm=webp&auto=compress&q=90&dpr=2&trim=color&updated_at=1784232937",
-      "link": "https://stockx.pvxt.net/c/4722526/1023711/9060?u=https%3A%2F%2Fstockx.com%2Fair-jordan-4-retro-toro-bravo-2026",
-      "brand": "Jordan",
-      "sku": "FQ8138-600",
-      "price_usd": 150
+      "price_usd": 134
     },
     {
       "name": "Jordan 9 Retro OG Space Jam (2026)",
@@ -50,11 +20,31 @@
       "link": "https://stockx.pvxt.net/c/4722526/1023711/9060?u=https%3A%2F%2Fstockx.com%2Fair-jordan-9-retro-og-space-jam-2026",
       "brand": "Jordan",
       "sku": "IX6179-100",
-      "price_usd": 201
+      "price_usd": 205
+    },
+    {
+      "name": "Maison Mihara Yasuhiro Hank OG Sole Canvas Low Black",
+      "why": "527 orders on StockX this week",
+      "tag": "Resale",
+      "image": "https://images.stockx.com/images/Mihara-Yasuhiro-Hank-OG-Sole-Canvas-Low-Black-Product.jpg?fit=fill&bg=FFFFFF&w=600&h=430&fm=webp&auto=compress&q=90&dpr=2&trim=color&updated_at=1738193358",
+      "link": "https://stockx.pvxt.net/c/4722526/1023711/9060?u=https%3A%2F%2Fstockx.com%2Fmihara-yasuhiro-hank-og-sole-canvas-low-black",
+      "brand": "Maison Mihara Yasuhiro",
+      "sku": "A05FW702",
+      "price_usd": 126
+    },
+    {
+      "name": "Jordan 4 Retro London",
+      "why": "647 orders on StockX this week",
+      "tag": "Resale",
+      "image": "https://images.stockx.com/images/Air-Jordan-4-Retro-London.jpg?fit=fill&bg=FFFFFF&w=600&h=430&fm=webp&auto=compress&q=90&dpr=2&trim=color&updated_at=1790958883",
+      "link": "https://stockx.pvxt.net/c/4722526/1023711/9060?u=https%3A%2F%2Fstockx.com%2Fair-jordan-4-retro-london",
+      "brand": "Jordan",
+      "sku": "IV6048-001",
+      "price_usd": 335
     },
     {
       "name": "Nike Air Force 1 Low '07 White",
-      "why": "569 orders on StockX this week",
+      "why": "486 orders on StockX this week",
       "tag": "Resale",
       "image": "https://images.stockx.com/images/Nike-Air-Force-1-Low-White-07-Product_V2.jpg?fit=fill&bg=FFFFFF&w=600&h=430&fm=webp&auto=compress&q=90&dpr=2&trim=color&updated_at=1785333173",
       "link": "https://stockx.pvxt.net/c/4722526/1023711/9060?u=https%3A%2F%2Fstockx.com%2Fnike-air-force-1-low-white-07",
@@ -63,8 +53,28 @@
       "price_usd": 69
     },
     {
+      "name": "Jordan 4 Retro Toro Bravo (2026)",
+      "why": "444 orders on StockX this week",
+      "tag": "Resale",
+      "image": "https://images.stockx.com/images/Air-Jordan-4-Retro-Toro-Bravo-2026-Product.jpg?fit=fill&bg=FFFFFF&w=600&h=430&fm=webp&auto=compress&q=90&dpr=2&trim=color&updated_at=1784232937",
+      "link": "https://stockx.pvxt.net/c/4722526/1023711/9060?u=https%3A%2F%2Fstockx.com%2Fair-jordan-4-retro-toro-bravo-2026",
+      "brand": "Jordan",
+      "sku": "FQ8138-600",
+      "price_usd": 158
+    },
+    {
+      "name": "Jordan 5 Retro Halloween",
+      "why": "449 orders on StockX this week",
+      "tag": "Resale",
+      "image": "https://images.stockx.com/images/Air-Jordan-5-Retro-Halloween.jpg?fit=fill&bg=FFFFFF&w=600&h=430&fm=webp&auto=compress&q=90&dpr=2&trim=color&updated_at=1787342936",
+      "link": "https://stockx.pvxt.net/c/4722526/1023711/9060?u=https%3A%2F%2Fstockx.com%2Fair-jordan-5-retro-halloween",
+      "brand": "Jordan",
+      "sku": "HQ7978-001",
+      "price_usd": 224
+    },
+    {
       "name": "Nike Kobe 5 Protro Dodgers",
-      "why": "456 orders on StockX this week",
+      "why": "404 orders on StockX this week",
       "tag": "Resale",
       "image": "https://images.stockx.com/images/Nike-Kobe-5-Protro-Dodgers-Product.jpg?fit=fill&bg=FFFFFF&w=600&h=430&fm=webp&auto=compress&q=90&dpr=2&trim=color&updated_at=1785850157",
       "link": "https://stockx.pvxt.net/c/4722526/1023711/9060?u=https%3A%2F%2Fstockx.com%2Fnike-kobe-5-protro-dodgers",
@@ -73,34 +83,24 @@
       "price_usd": 172
     },
     {
-      "name": "ASICS Gel-Kayano 14 White Graphite Grey",
-      "why": "369 orders on StockX this week",
-      "tag": "Resale",
-      "image": "https://images.stockx.com/images/ASICS-Gel-Kayano-14-White-Graphite-Grey-Product.jpg?fit=fill&bg=FFFFFF&w=600&h=430&fm=webp&auto=compress&q=90&dpr=2&trim=color&updated_at=1784265085",
-      "link": "https://stockx.pvxt.net/c/4722526/1023711/9060?u=https%3A%2F%2Fstockx.com%2Fasics-gel-kayano-14-white-graphite-grey",
-      "brand": "ASICS",
-      "sku": "1203A537-110",
-      "price_usd": 113
-    },
-    {
-      "name": "ASICS Gel-1130 Black Pure Silver",
-      "why": "386 orders on StockX this week",
-      "tag": "Resale",
-      "image": "https://images.stockx.com/images/ASICS-Gel-1130-Black-Pure-Silver-Product.jpg?fit=fill&bg=FFFFFF&w=600&h=430&fm=webp&auto=compress&q=90&dpr=2&trim=color&updated_at=1784840409",
-      "link": "https://stockx.pvxt.net/c/4722526/1023711/9060?u=https%3A%2F%2Fstockx.com%2Fasics-gel-1130-black-pure-silver",
-      "brand": "ASICS",
-      "sku": "1201A906-001",
-      "price_usd": 85
-    },
-    {
       "name": "Jordan 4 Retro J Balvin Lemonade",
-      "why": "453 orders on StockX this week",
+      "why": "436 orders on StockX this week",
       "tag": "Resale",
       "image": "https://images.stockx.com/images/Air-Jordan-4-Retro-J-Balvin-Lemonade.jpg?fit=fill&bg=FFFFFF&w=600&h=430&fm=webp&auto=compress&q=90&dpr=2&trim=color&updated_at=1791480773",
       "link": "https://stockx.pvxt.net/c/4722526/1023711/9060?u=https%3A%2F%2Fstockx.com%2Fair-jordan-4-retro-j-balvin-lemonade",
       "brand": "Jordan",
       "sku": "IW2872-700",
-      "price_usd": 160
+      "price_usd": 163
+    },
+    {
+      "name": "Jordan 4 Retro Black Cat (2025)",
+      "why": "352 orders on StockX this week",
+      "tag": "Resale",
+      "image": "https://images.stockx.com/images/Air-Jordan-4-Retro-Black-Cat-2025-Product.jpg?fit=fill&bg=FFFFFF&w=600&h=430&fm=webp&auto=compress&q=90&dpr=2&trim=color&updated_at=1784238263",
+      "link": "https://stockx.pvxt.net/c/4722526/1023711/9060?u=https%3A%2F%2Fstockx.com%2Fair-jordan-4-retro-black-cat-2025",
+      "brand": "Jordan",
+      "sku": "FV5029-010",
+      "price_usd": 277
     }
   ]
 }
