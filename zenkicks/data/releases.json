@@ -1,71 +1,7 @@
 {
-  "updated": "2026-10-15",
+  "updated": "2026-10-16",
   "source": "SneakerFiles & Sneaker News release calendars (curated weekly); photos from KicksDB (StockX)",
   "items": [
-    {
-      "date": "2026-10-15",
-      "name": "Jordan Tatum 5 \"Sunrise\"",
-      "brand": "Jordan",
-      "retail_usd": 125,
-      "image": "https://images.stockx.com/images/Air-Jordan-Tatum-5-Sunrise.jpg?fit=fill&bg=FFFFFF&w=600&h=430&fm=webp&auto=compress&q=90&dpr=2&trim=color&updated_at=1789065473",
-      "link": "https://stockx.pvxt.net/c/4722526/1023711/9060?u=https%3A%2F%2Fstockx.com%2Fair-jordan-tatum-5-sunrise"
-    },
-    {
-      "date": "2026-10-15",
-      "name": "Nike Air Force 1 Low Luxe \"Georgia\"",
-      "brand": "Nike",
-      "retail_usd": 125,
-      "image": "https://images.stockx.com/images/Nike-Air-Force-1-Low-Luxe-University-of-Georgia.jpg?fit=fill&bg=FFFFFF&w=600&h=430&fm=webp&auto=compress&q=90&dpr=2&trim=color&updated_at=1791314347",
-      "link": "https://stockx.pvxt.net/c/4722526/1023711/9060?u=https%3A%2F%2Fstockx.com%2Fnike-air-force-1-low-luxe-university-of-georgia",
-      "sku": "JF5457-600"
-    },
-    {
-      "date": "2026-10-15",
-      "name": "Nike Air Force 1 Low Luxe \"Kentucky\"",
-      "brand": "Nike",
-      "retail_usd": 125,
-      "image": "https://images.stockx.com/images/Nike-Air-Force-1-Mid-Kentucky.jpg?fit=fill&bg=FFFFFF&w=600&h=430&fm=webp&auto=compress&q=90&dpr=2&trim=color&updated_at=1660799218",
-      "link": "https://stockx.pvxt.net/c/4722526/1023711/9060?u=https%3A%2F%2Fstockx.com%2Fnike-air-force-1-mid-kentucky",
-      "sku": "DX3721-100"
-    },
-    {
-      "date": "2026-10-15",
-      "name": "Nike Air Force 1 Low Luxe \"Oregon Apple Green\"",
-      "brand": "Nike",
-      "retail_usd": 125,
-      "image": "https://images.stockx.com/images/Nike-Air-Force-1-Low-Luxe-University-of-Oregon-Apple-Green.jpg?fit=fill&bg=FFFFFF&w=600&h=430&fm=webp&auto=compress&q=90&dpr=2&trim=color&updated_at=1791314352",
-      "link": "https://stockx.pvxt.net/c/4722526/1023711/9060?u=https%3A%2F%2Fstockx.com%2Fnike-air-force-1-low-luxe-university-of-oregon-apple-green",
-      "sku": "JF5453-300"
-    },
-    {
-      "date": "2026-10-15",
-      "name": "Nike Air Force 1 Low Luxe \"Texas\"",
-      "brand": "Nike",
-      "retail_usd": 125,
-      "image": "https://images.stockx.com/images/Nike-Air-Force-1-Low-Texas.JPG?fit=fill&bg=FFFFFF&w=600&h=430&fm=webp&auto=compress&q=90&dpr=2&trim=color&updated_at=1618257516",
-      "link": "https://stockx.pvxt.net/c/4722526/1023711/9060?u=https%3A%2F%2Fstockx.com%2Fnike-air-force-1-low-texas",
-      "sku": "AH2439-991"
-    },
-    {
-      "date": "2026-10-15",
-      "name": "Nike Air Max Goadome Low \"Black Croc\"",
-      "brand": "Nike",
-      "retail_usd": 175,
-      "image": "https://images.stockx.com/images/Nike-Air-Max-Goadome-Low-SP-QS-Black-Croc.jpg?fit=fill&bg=FFFFFF&w=600&h=430&fm=webp&auto=compress&q=90&dpr=2&trim=color&updated_at=1790275953",
-      "link": "https://stockx.pvxt.net/c/4722526/1023711/9060?u=https%3A%2F%2Fstockx.com%2Fnike-air-max-goadome-low-sp-qs-black-croc",
-      "sku": "IV4517-001"
-    },
-    {
-      "date": "2026-10-15",
-      "name": "Supreme x Martine Rose x Nike Dunk Low \"Mike Tyson\"",
-      "brand": "Nike",
-      "retail_usd": 150,
-      "image": "",
-      "link": "",
-      "sku": "JA1868-001",
-      "colorway": "Black/White",
-      "tried": "2026-10-15"
-    },
     {
       "date": "2026-10-16",
       "name": "Nike Air Foamposite Pro \"Glow in the Dark\"",
@@ -143,7 +79,7 @@
       "retail_usd": null,
       "image": "",
       "link": "",
-      "tried": "2026-10-14"
+      "tried": "2026-10-16"
     },
     {
       "date": "2026-10-23",
@@ -174,7 +110,7 @@
       "retail_usd": 145,
       "image": "",
       "link": "",
-      "tried": "2026-10-14"
+      "tried": "2026-10-16"
     },
     {
       "date": "2026-10-23",
@@ -194,7 +130,7 @@
       "retail_usd": 140,
       "image": "",
       "link": "",
-      "tried": "2026-10-14"
+      "tried": "2026-10-16"
     },
     {
       "date": "2026-10-23",
@@ -260,7 +196,7 @@
       "link": "",
       "sku": "IO8112-600",
       "colorway": "Bright Crimson/Lime Ice-Stadium Green-Dark Smoke Grey",
-      "tried": "2026-10-14"
+      "tried": "2026-10-16"
     },
     {
       "date": "2026-10-23",
@@ -438,7 +374,7 @@
       "retail_usd": 190,
       "image": "",
       "link": "",
-      "tried": "2026-10-14"
+      "tried": "2026-10-16"
     },
     {
       "date": "2026-10-31",
@@ -558,7 +494,7 @@
       "retail_usd": 210,
       "image": "",
       "link": "",
-      "tried": "2026-10-14"
+      "tried": "2026-10-16"
     },
     {
       "date": "2026-11-06",
@@ -585,7 +521,7 @@
       "retail_usd": 245,
       "image": "",
       "link": "",
-      "tried": "2026-10-12"
+      "tried": "2026-10-16"
     },
     {
       "date": "2026-11-07",
@@ -596,13 +532,23 @@
       "link": "https://stockx.pvxt.net/c/4722526/1023711/9060?u=https%3A%2F%2Fstockx.com%2Fair-jordan-6-rings-white-infrared-23-black-gs"
     },
     {
+      "date": "2026-11-07",
+      "name": "Nike Air Force 1 Low \"N7\"",
+      "brand": "Nike",
+      "retail_usd": null,
+      "image": "https://images.stockx.com/images/Nike-Air-Force-1-Low-N7-Product.jpg?fit=fill&bg=FFFFFF&w=600&h=430&fm=webp&auto=compress&q=90&dpr=2&trim=color&updated_at=1738193358",
+      "link": "https://stockx.pvxt.net/c/4722526/1023711/9060?u=https%3A%2F%2Fstockx.com%2Fnike-air-force-1-low-n7",
+      "sku": "IV6302-300",
+      "colorway": "Oasis Teal/Sand Drift-Sundial-Mesa Orange"
+    },
+    {
       "date": "2026-11-11",
       "name": "Air Jordan 11 \"Light British Tan\"",
       "brand": "Jordan",
       "retail_usd": 235,
       "image": "",
       "link": "",
-      "tried": "2026-10-12"
+      "tried": "2026-10-16"
     },
     {
       "date": "2026-11-11",
@@ -620,7 +566,8 @@
       "brand": "Jordan",
       "retail_usd": 235,
       "image": "",
-      "link": ""
+      "link": "",
+      "tried": "2026-10-16"
     },
     {
       "date": "2026-11-11",
@@ -644,7 +591,8 @@
       "brand": "Vans",
       "retail_usd": 130,
       "image": "",
-      "link": ""
+      "link": "",
+      "tried": "2026-10-16"
     },
     {
       "date": "2026-11-13",
@@ -653,7 +601,7 @@
       "retail_usd": 170,
       "image": "",
       "link": "",
-      "tried": "2026-10-09"
+      "tried": "2026-10-16"
     },
     {
       "date": "2026-11-13",
@@ -669,15 +617,17 @@
       "brand": "Jordan",
       "retail_usd": 255,
       "link": "https://stockx.pvxt.net/c/4722526/1023711/9060?u=https%3A%2F%2Fstockx.com%2Fair-jordan-11-retro-green-screen-monstars",
-      "tried": "2026-10-09"
+      "image": "https://images.stockx.com/images/Air-Jordan-11-Retro-Green-Screen-Monstars.jpg?fit=fill&bg=FFFFFF&w=600&h=430&fm=webp&auto=compress&q=90&dpr=2&trim=color&updated_at=1791233933",
+      "sku": "IQ5700-900"
     },
     {
       "date": "2026-11-14",
       "name": "Air Jordan 9 Boot \"Iridescent\"",
       "brand": "Jordan",
       "retail_usd": 240,
-      "image": "",
-      "link": ""
+      "image": "https://images.stockx.com/images/Air-Jordan-9-Retro-Boot-NRG-Black-Iridescent.jpg?fit=fill&bg=FFFFFF&w=600&h=430&fm=webp&auto=compress&q=90&dpr=2&trim=color&updated_at=1791314346",
+      "link": "https://stockx.pvxt.net/c/4722526/1023711/9060?u=https%3A%2F%2Fstockx.com%2Fair-jordan-9-retro-boot-nrg-black-iridescent",
+      "sku": "IX8455-060"
     },
     {
       "date": "2026-11-14",
@@ -686,7 +636,7 @@
       "retail_usd": 180,
       "image": "",
       "link": "",
-      "tried": "2026-10-09"
+      "tried": "2026-10-16"
     },
     {
       "date": "2026-11-14",

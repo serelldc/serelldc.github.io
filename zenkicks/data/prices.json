@@ -58,11 +58,11 @@
     },
     "air jordan 1 zm air cmft 2 wmns university blue volt": {
       "none": true,
-      "at": "2026-10-13"
+      "at": "2026-10-16"
     },
     "air jordan 4 wmns canyon purple": {
       "none": true,
-      "at": "2026-10-13"
+      "at": "2026-10-16"
     },
     "air jordan 1 high og royal reimagined": {
       "title": "Jordan 1 Retro High OG Royal Reimagined",
@@ -94,7 +94,7 @@
     },
     "kobe ix elite low em protro black university-gold": {
       "none": true,
-      "at": "2026-10-13"
+      "at": "2026-10-16"
     },
     "nike ja 4 nightmare": {
       "none": true,
@@ -103,8 +103,12 @@
     "nike ja 4 ny vs ny": {
       "none": true,
       "at": "2026-10-14"
+    },
+    "ja 4 ny vs ny": {
+      "none": true,
+      "at": "2026-10-16"
     }
   },
-  "updated": "2026-10-15",
+  "updated": "2026-10-16",
   "source": "KicksDB (StockX average resale, all sizes)"
 }
