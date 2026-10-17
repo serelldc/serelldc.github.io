@@ -611,3 +611,5 @@ h2{font-size:19px}
 .sellhint{background:#FFF4D6;border-radius:12px;padding:10px 12px;font-size:13px;line-height:1.5;display:flex;flex-direction:column;gap:4px;color:#3a3220}.sellhint[hidden]{display:none}
 
 .card.heat{padding:14px;display:flex;flex-direction:column;gap:10px;background:linear-gradient(135deg,#1b0f0e,#2a1210);color:#F4F1EA;border:1px solid #5a2320}.card.heat .m,.card.heat .t{color:#F4F1EA}.card.heat .m{opacity:.75}
+
+.cgrid{display:grid;grid-template-columns:repeat(2,1fr);gap:12px}.citem{display:flex;flex-direction:column;gap:4px}.ctile{position:relative;aspect-ratio:1;border-radius:14px;overflow:hidden;background:#fff}.ctile img{width:100%;height:100%;object-fit:cover}@media(min-width:700px){.cgrid{grid-template-columns:repeat(4,1fr)}}

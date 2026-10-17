@@ -21,7 +21,7 @@
     session: null, me: null, contact: null, chatUnread: 0,
     releases: null, hot: null, photos: {},
     hotTab: 'online', marketFilter: 'all', marketQ: '', legitTab: 'open', cod: {}, codAt: {}, sizeOnly: false,
-    sell: freshSell(), newCheck: freshCheck(),
+    sell: freshSell(), newCheck: freshCheck(), newColl: null,
     replyTo: null, toast: '', modal: ''
   };
   function freshSell() { return { step: 1, photos: {}, f: { model: '', brand: '', size: '', condition: '', price: '', city: '', description: '', accept: true } }; }
@@ -177,10 +177,10 @@
   // shell
   // ------------------------------------------------------------------
   function header(r) {
-    var back = { safety: 'market', grails: 'me', l: 'market', c: 'legit', 'new-check': 'legit', sell: 'drops', login: 'drops', join: 'drops', install: 'drops', u: 'market', admin: 'me' }[r.name];
-    var titles = { safety: 'Safety', grails: 'My grails', l: 'Listing', c: 'Legit check', 'new-check': 'New check', sell: 'Sell a pair', login: 'Sign in', join: 'Join Zenkicks', install: 'Install the app', u: 'Member', admin: 'Admin panel' };
+    var back = { safety: 'market', grails: 'me', l: 'market', c: 'legit', 'new-check': 'legit', sell: 'drops', login: 'drops', join: 'drops', install: 'drops', u: 'market', admin: 'me', 'coll-add': 'me' }[r.name];
+    var titles = { safety: 'Safety', grails: 'My grails', l: 'Listing', c: 'Legit check', 'new-check': 'New check', sell: 'Sell a pair', login: 'Sign in', join: 'Join Zenkicks', install: 'Install the app', u: 'Member', admin: 'Admin panel', 'coll-add': 'Add a pair' };
     if (back) {
-      return '<header class="hd"><button class="ibtn" data-go="' + back + '" aria-label="Back">' + (r.name === 'sell' || r.name === 'new-check' || r.name === 'login' || r.name === 'join' ? I.close : I.back) + '</button><div class="hd-title">' + LOGO + esc(titles[r.name]) + '</div><span style="width:44px"></span></header>';
+      return '<header class="hd"><button class="ibtn" data-go="' + back + '" aria-label="Back">' + (r.name === 'sell' || r.name === 'new-check' || r.name === 'coll-add' || r.name === 'login' || r.name === 'join' ? I.close : I.back) + '</button><div class="hd-title">' + LOGO + esc(titles[r.name]) + '</div><span style="width:44px"></span></header>';
     }
     var me = uid()
       ? (ST.og && ST.og[uid()] ? '<button class="avatar-btn avatar-og" data-go="me" aria-label="My profile, OG #' + ST.og[uid()] + '">' + ogBadge(ST.og[uid()]) + '</button>' : '<button class="avatar-btn" data-go="me" aria-label="My profile" style="background:var(--red)">' + esc((ST.me && ST.me.username || '?')[0].toUpperCase()) + '</button>')
@@ -190,7 +190,7 @@
       '<button class="ibtn" data-go="market" aria-label="Search the market">' + I.search + '</button>' + me + '</header>';
   }
   function tabs(r) {
-    if (['l', 'c', 'sell', 'new-check', 'login', 'join', 'install', 'safety'].indexOf(r.name) > -1) return '';
+    if (['l', 'c', 'sell', 'new-check', 'coll-add', 'login', 'join', 'install', 'safety'].indexOf(r.name) > -1) return '';
     function t(v, label, icon) { var on = r.name === v; return '<button class="tab' + (on ? ' on' : '') + '" data-go="' + v + '"' + (on ? ' aria-current="page"' : '') + '>' + icon + label + '</button>'; }
     return '<nav class="tabs" aria-label="App">' + t('drops', 'Drops', I.cal) + t('hot', 'Hot', I.flame) +
       '<button class="tab sell" data-go="sell"><span class="plus">' + I.plus + '</span>Sell</button>' +
@@ -261,7 +261,7 @@
   function render(keepScroll) {
     var r = route(); var seq = ++renderSeq;
     var oldMain = app.querySelector('.main'); var top = keepScroll && oldMain ? oldMain.scrollTop : 0;
-    var bottom = (r.name === 'l' || r.name === 'c' || r.name === 'sell' || r.name === 'new-check') ? '<div id="bottombar"></div>' : tabs(r);
+    var bottom = (r.name === 'l' || r.name === 'c' || r.name === 'sell' || r.name === 'new-check' || r.name === 'coll-add') ? '<div id="bottombar"></div>' : tabs(r);
     app.setAttribute('data-view', r.name); if (/^<nav/.test(bottom)) app.setAttribute('data-nav', ''); else app.removeAttribute('data-nav');
     app.innerHTML = header(r) + setupBanner() + '<main class="main" id="main">' + (keepScroll && oldMain ? oldMain.innerHTML : skeleton()) + '</main>' + bottom;
     var view = VIEWS[r.name] || VIEWS.drops;
@@ -797,6 +797,75 @@
       '<div class="row" style="gap:12px;align-items:center"><img draggable="false" src="' + esc(releaseImg(d)) + '" alt="" style="width:96px;height:72px;object-fit:cover;border-radius:10px;background:#fff;flex-shrink:0"><div class="grow"><div class="t" style="font-size:15px;line-height:1.3">' + esc(d.name) + '</div><div class="m">' + dropPrice(d) + '</div></div></div>' +
       codBtns(k, true) + '<span class="m" style="font-size:12px">' + (voted ? 'Done for today. A new pair drops tomorrow. See what the UAE thinks above.' : 'Cop or drop? One vote a day keeps your streak alive.') + '</span></div></section>';
   }
+  // ---- Collection: pairs a member owns, optional "on feet" photo, total value, flex card ----
+  var COLL_COLS = 'id,user_id,model,size_eu,value_aed,photo_path,feet_path,hidden,created_at';
+  function freshColl() { return { f: { model: '', size: '', value: '' }, photo: null, feet: null, hide: false }; }
+  function collTotal(items) { return (items || []).reduce(function (n, x) { return n + (x.value_aed || 0); }, 0); }
+  function collImg(x) { return pub('collection-photos', x.feet_path || x.photo_path); }
+  function collLoad(userId) {
+    return sb.from('collection_items').select(COLL_COLS).eq('user_id', userId).order('created_at', { ascending: false }).limit(60).then(function (r) { return r.data || []; }, function () { return []; });
+  }
+  function collSection(items, mine) {
+    items = items || [];
+    if (!items.length && !mine) return '';
+    var total = collTotal(items), tiles = items.map(function (x) {
+      return '<div class="citem"><div class="ctile"><img src="' + esc(collImg(x)) + '" alt="' + esc(x.model) + '" loading="lazy">' + (x.feet_path ? '<span class="pill dark" style="position:absolute;left:6px;top:6px;font-size:10px">👟 On feet</span>' : '') +
+        (mine && x.hidden ? '<span class="pill" style="position:absolute;right:6px;top:6px;font-size:10px">Hidden</span>' : '') + '</div>' +
+        '<div class="t" style="font-size:13px;line-height:1.3">' + esc(x.model) + '</div><div class="m">' + [sizeLabel(x.size_eu), x.value_aed ? aed(x.value_aed) : ''].filter(Boolean).join(' · ') + '</div>' +
+        (mine ? '<div class="row" style="gap:10px"><button class="link" style="padding:2px 0;font-size:12px;color:var(--muted)" data-act="collhide" data-id="' + x.id + '" data-v="' + (x.hidden ? 0 : 1) + '">' + (x.hidden ? 'Show' : 'Hide') + '</button><button class="link" style="padding:2px 0;font-size:12px;color:var(--red)" data-act="collrm" data-id="' + x.id + '">Remove</button></div>' : '') + '</div>';
+    }).join('');
+    return '<section class="sec"><div class="between" style="align-items:center"><h2>Collection' + (items.length ? ' <span class="m" style="font-family:var(--body)">(' + items.length + ')</span>' : '') + '</h2>' + (mine ? '<button class="btn dark" style="height:36px;padding:0 14px;font-size:13px" data-go="coll-add">+ Add a pair</button>' : '') + '</div>' +
+      (total ? '<div class="card" style="padding:12px 14px;display:flex;align-items:center;gap:10px"><div class="grow"><div class="m">Collection value</div><div class="money" style="font-size:26px">' + aed(total) + '</div></div>' + (mine ? '<button class="btn red" style="height:40px;padding:0 14px;font-size:13px" data-act="collshare">' + I.share + ' Flex it</button>' : '') + '</div>' : '') +
+      (items.length ? '<div class="cgrid">' + tiles + '</div>' : '<div class="card empty" style="padding:18px"><span>Flex your grails. Add the pairs you own, with an on-feet pic if you want.</span><button class="btn red" data-go="coll-add">Add your first pair</button></div>') + '</section>';
+  }
+  VIEWS['coll-add'] = function () {
+    if (!sb) return needSb();
+    if (!uid()) return needLogin('add to your collection');
+    var C0 = ST.newColl || (ST.newColl = freshColl()), f = C0.f;
+    var slot = function (key, label, hint) {
+      var x = C0[key];
+      return '<label class="slot' + (x ? ' done' : '') + '">' + (x ? '<img src="' + x.url + '" alt="' + label + '">' : I.camera) + '<span class="cap"><b style="font-size:14px">' + (x ? '✓ ' : '') + label + '</b>' + (x ? '' : '<span class="m" style="font-size:11px">' + hint + '</span>') + '</span><input type="file" accept="image/*" data-collphoto="' + key + '" aria-label="' + label + '"></label>';
+    };
+    var html = '<div class="pad"><div class="sec" style="gap:4px"><h1>Add a pair</h1><p class="sub">Show off what you own. Your collection value is the total of the values you enter.</p></div>' +
+      '<div class="grid">' + slot('photo', 'Photo of the pair', 'Required') + slot('feet', 'On feet 👟', 'Optional: wear your grail') + '</div>' +
+      '<label class="field" for="c-model">Model<input id="c-model" data-cl="model" type="text" maxlength="80" placeholder="e.g. Jordan 4 Military Blue" value="' + esc(f.model) + '"></label>' +
+      '<div class="two"><label class="field" for="c-size">Size<select id="c-size" data-cl="size">' + sizeOptions(f.size, 'Select size') + '</select></label>' +
+      '<label class="field" for="c-value">Value (AED)<input id="c-value" data-cl="value" type="number" inputmode="numeric" min="0" placeholder="e.g. 1200" value="' + esc(f.value) + '"></label></div>' +
+      '<div id="collhint" class="sellhint" hidden></div>' +
+      '<label class="card row" for="c-hide" style="padding:12px 14px;font-size:13px;line-height:1.4"><input id="c-hide" data-cl="hide" type="checkbox"' + (C0.hide ? ' checked' : '') + ' style="width:20px;height:20px;accent-color:var(--red)"><span><b>Hide from my profile.</b> Only you can see it.</span></label>' +
+      '<p class="err" id="coll-err" role="alert"></p></div>';
+    setTimeout(collHint, 60);
+    return { html: html, bottom: '<div class="actionbar"><button class="btn red" style="flex:1;height:52px" data-act="collpost">Add to collection</button></div>' };
+  };
+  function collHint() {
+    var box = document.getElementById('collhint'); if (!box) return;
+    var m = (ST.newColl.f.model || '').trim(); if (m.length < 3) { box.hidden = true; return; }
+    loadPrices().then(function (pr) {
+      var box2 = document.getElementById('collhint'); if (!box2) return;
+      var p = pr && pr[priceKey(m)], usd = p && (p.avg_usd || p.usd);
+      if (!usd) { box2.hidden = true; return; }
+      var v = usdToAed(usd);
+      box2.innerHTML = '💰 StockX average: <b>AED ' + v.toLocaleString('en-US') + '</b> <button class="link" style="padding:0 0 0 6px" data-act="collusex" data-v="' + v + '">Use this</button>'; box2.hidden = false;
+    });
+  }
+  function collPost(btn) {
+    var C0 = ST.newColl, f = C0.f, err = document.getElementById('coll-err'); err.textContent = '';
+    if (!C0.photo) { err.textContent = 'Add a photo of the pair.'; return; }
+    if (f.model.trim().length < 2) { err.textContent = 'Enter the model name.'; return; }
+    var value = f.value === '' ? null : parseInt(f.value, 10); if (value !== null && !(value >= 0)) { err.textContent = 'Enter a valid value in AED.'; return; }
+    btn.disabled = true; btn.textContent = 'Saving…';
+    var id = (window.crypto && crypto.randomUUID) ? crypto.randomUUID() : uid() + '-' + Date.now(), up = function (x, tag) {
+      var path = uid() + '/' + id + '/' + tag + '-' + Date.now() + '.jpg';
+      return sb.storage.from('collection-photos').upload(path, x.blob, { contentType: 'image/jpeg', upsert: false }).then(function (u) { if (u.error) throw u.error; return path; });
+    };
+    Promise.all([up(C0.photo, 'photo'), C0.feet ? up(C0.feet, 'feet') : Promise.resolve(null)]).then(function (paths) {
+      return sb.from('collection_items').insert({ id: id, user_id: uid(), model: f.model.trim(), size_eu: f.size ? Number(f.size) : null, value_aed: value, photo_path: paths[0], feet_path: paths[1], hidden: !!C0.hide });
+    }).then(function (r) {
+      if (r.error) throw r.error;
+      ST.newColl = freshColl(); toast('Added to your collection'); go('me');
+    }).catch(function (e) { btn.disabled = false; btn.textContent = 'Add to collection'; fail(e); });
+  }
+
   // ---- Grails (pairs a member is hunting) ----
   function loadGrailHits(force) {
     if (!sb || !uid()) { ST.grailHits = []; return Promise.resolve([]); }
@@ -964,7 +1033,7 @@
   function pill(x, text, cx, y, bg, fg, font) { x.font = font; var w = x.measureText(text).width + 70; x.fillStyle = bg; rrect(x, cx - w / 2, y - 52, w, 80, 40); x.fill(); x.fillStyle = fg; x.textAlign = 'center'; x.fillText(text, cx, y); }
   function drawShare(kind, photo, noPhoto) {
     var W = 1080, H = 1920, cv = document.createElement('canvas'); cv.width = W; cv.height = H; var x = cv.getContext('2d');
-    cardBase(x, W, H, kind === 'invite' || kind === 'sell' || kind === 'sold');
+    cardBase(x, W, H, kind === 'invite' || kind === 'sell' || kind === 'sold' || kind === 'collection');
     if (kind === 'listing' || kind === 'sold') {
       var l = ST.shareListing, sold = kind === 'sold';
       x.fillStyle = '#fff'; rrect(x, 80, 280, 920, 920, 36); x.fill();
@@ -983,6 +1052,20 @@
         x.fillStyle = '#E52C27'; x.font = '120px Audiowide, Arial Black, sans-serif'; x.fillText(aed(l.price_aed), W / 2, y + 190);
         pill(x, 'Bid on Zenkicks  →', W / 2, 1700, '#E52C27', '#fff', '700 46px Oxanium, sans-serif');
       }
+    } else if (kind === 'collection') {
+      var items = (ST.myColl || []).filter(function (c) { return !c.hidden; }), imgs = photo || [], me0 = ST.me && ST.me.username;
+      x.textAlign = 'center'; x.fillStyle = '#E52C27'; x.font = '700 44px Oxanium, sans-serif'; x.fillText('@' + (me0 || 'member').toUpperCase() + '\u2019S', W / 2, 330);
+      x.fillStyle = '#F4F1EA'; x.font = '104px Audiowide, Arial Black, sans-serif'; x.fillText('COLLECTION', W / 2, 450);
+      var tile = 296, gap = 22, gx = (W - (3 * tile + 2 * gap)) / 2, gy = 520, n = Math.min(6, imgs.length);
+      for (var i = 0; i < 6; i++) {
+        var cx0 = gx + (i % 3) * (tile + gap), cy0 = gy + Math.floor(i / 3) * (tile + gap);
+        x.fillStyle = i < n ? '#fff' : 'rgba(255,255,255,.08)'; rrect(x, cx0, cy0, tile, tile, 26); x.fill();
+        if (i < n && imgs[i]) { x.save(); rrect(x, cx0, cy0, tile, tile, 26); x.clip(); var im = imgs[i], k0 = Math.max(tile / im.width, tile / im.height), iw = im.width * k0, ih = im.height * k0; x.drawImage(im, cx0 + (tile - iw) / 2, cy0 + (tile - ih) / 2, iw, ih); x.restore(); }
+      }
+      var tot = collTotal(items);
+      x.fillStyle = '#CFCABD'; x.font = '600 46px Oxanium, sans-serif'; x.fillText(items.length + ' PAIR' + (items.length === 1 ? '' : 'S') + (tot ? '  \u00B7  TOTAL VALUE' : ''), W / 2, 1290);
+      if (tot) { x.fillStyle = '#E52C27'; x.font = '150px Audiowide, Arial Black, sans-serif'; x.fillText(aed(tot), W / 2, 1450); }
+      pill(x, 'Flex yours on Zenkicks  \u2192', W / 2, 1700, '#E52C27', '#fff', '700 46px Oxanium, sans-serif');
     } else if (kind === 'invite') {
       var who = !ST.inviteMain && ST.me && ST.me.username;
       pill(x, who ? 'INVITED BY @' + who.toUpperCase() : 'UAE SNEAKER TAMBAYAN', W / 2, 360, '#E52C27', '#fff', '700 42px Oxanium, sans-serif');
@@ -1024,10 +1107,10 @@
     return cv;
   }
   function openShare(kind) {
-    var src = kind === 'listing' || kind === 'sold' ? (ST.shareListing && firstPhoto(ST.shareListing)) : kind === 'og' ? 'img/og-badge.webp?v=2' : (ST.shareCheck && checkPhotos(ST.shareCheck)[0]);
+    var src = kind === 'collection' ? null : kind === 'listing' || kind === 'sold' ? (ST.shareListing && firstPhoto(ST.shareListing)) : kind === 'og' ? 'img/og-badge.webp?v=2' : (ST.shareCheck && checkPhotos(ST.shareCheck)[0]);
     openModal('<div class="peek-top"><b>Share to your Story</b><button class="round" data-act="mclose" aria-label="Close">✕</button></div><div class="sharewrap"><div class="skeleton" style="height:100%"></div></div>');
     var fonts = ['64px Audiowide', '600 40px Oxanium', '700 40px Oxanium', '40px "Instrument Sans"', '100px "Russo One"'].map(function (f) { return document.fonts && document.fonts.load ? document.fonts.load(f).catch(function () {}) : null; });
-    var srcP = kind === 'invite' || kind === 'sell' ? qrCanvas(inviteLink(ST.inviteMain), 12).catch(function () { return null; }) : loadImg(src);
+    var srcP = kind === 'invite' || kind === 'sell' ? qrCanvas(inviteLink(ST.inviteMain), 12).catch(function () { return null; }) : kind === 'collection' ? Promise.all((ST.myColl || []).filter(function (x) { return !x.hidden; }).slice(0, 6).map(function (x) { return loadImg(collImg(x)); })) : loadImg(src);
     var wallP = loadImg('img/story-wall.jpg?v=52');
     Promise.all([srcP, wallP].concat(fonts)).then(function (r) {
       ST.wall = r[1] || null;
@@ -1406,16 +1489,18 @@
       sb.from('profiles').select('id,username,city,verified_level,is_checker,is_admin,is_owner,is_banned,banned_until,created_at').eq('id', r.id).maybeSingle(),
       vouchMap([r.id]),
       sb.from('vouches').select('id,kind,stars,note,created_at,from_id,from:profiles!vouches_from_id_fkey(username)').eq('to_id', r.id).order('created_at', { ascending: false }).limit(50),
-      sb.from('listings').select(LISTING_COLS).eq('seller_id', r.id).eq('status', 'active').order('created_at', { ascending: false }).limit(6)
+      sb.from('listings').select(LISTING_COLS).eq('seller_id', r.id).eq('status', 'active').order('created_at', { ascending: false }).limit(6),
+      collLoad(r.id)
     ]).then(function (a) {
       var p = a[0].data; if (!p) return '<div class="empty">' + I.user + '<b>Member not found</b><button class="btn dark" data-go="market">Back</button></div>';
-      var v = a[1][p.id] || {}; var vs = a[2].data || []; var ls = a[3].data || [];
+      var v = a[1][p.id] || {}; var vs = a[2].data || []; var ls = a[3].data || []; var coll = a[4] || []; if (p.id === uid()) ST.myColl = coll;
       var bars = [5, 4, 3, 2, 1].map(function (n) { var k = vs.filter(function (x) { return x.stars === n; }).length; var w = vs.length ? Math.round(k * 100 / vs.length) : 0; return '<div class="bar"><span style="width:28px">' + n + '★</span><div class="track"><div class="fill" style="width:' + w + '%;background:var(--red)"></div></div><span style="width:24px;text-align:right">' + k + '</span></div>'; }).join('');
       return '<div class="pad"><div class="row">' + (ST.og && ST.og[p.id] ? '<div class="avatar-og big">' + ogBadge(ST.og[p.id]) + '</div>' : '<div class="avatar" style="width:56px;height:56px;font-size:22px;background:var(--red)">' + esc((p.username || '?')[0].toUpperCase()) + '</div>') + '<div class="grow"><h1 style="font-size:22px">@' + esc(p.username) + '</h1>' + (p.is_owner || (ST.owners && ST.owners[p.id]) ? '<span class="pill founder" style="align-self:flex-start">★ Founder of Zenkicks</span>' : '') +
         '<div class="row" style="gap:6px;flex-wrap:wrap;margin-top:4px">' + (ST.og && ST.og[p.id] ? ogPill(ST.og[p.id]) : '') + trustedPill(v) +
         (p.is_banned ? '<span class="pill red">Banned</span>' : suspendedUntil(p) ? '<span class="pill red">On hold</span>' : '') + '</div><div class="m">' + esc(p.city || 'UAE') + ' · member since ' + new Date(p.created_at).toLocaleDateString('en-GB', { month: 'short', year: 'numeric' }) + '</div></div>' + verifiedPill(p.verified_level) + '</div>' +
         (ST.og && ST.og[p.id] ? '<div class="card ogshow">' + ogBadge(ST.og[p.id]) + '<div><b>OG #' + ST.og[p.id] + '</b><br><span class="m">Founding member: one of the first 100 people to join Zenkicks.</span>' + (p.id === uid() ? '<br><button class="btn sharebtn" data-act="share" data-k="og">' + I.share + ' Share to Story</button>' : '') + '</div></div>' : '') +
         '<div class="card" style="padding:14px;display:flex;flex-direction:column;gap:10px"><div class="between"><div><div class="money" style="font-size:30px">' + (v.total ? '★ ' + Number(v.avg_stars).toFixed(1) : '—') + '</div><div class="m">' + (v.total || 0) + ' vouches · ' + (v.deals_done || 0) + ' deal' + (v.deals_done === 1 ? '' : 's') + ' done · ' + (v.legit || 0) + ' from legit checks</div></div>' + ((p.is_checker || p.is_admin) ? '<span class="pill ok">✓ LC</span>' : '') + '</div>' + (v.total ? bars : '<span class="sub">No vouches yet. Members vouch after a deal or when someone helps on a legit check.</span>') + '</div>' +
+        collSection(coll, p.id === uid()) +
         (vs.length ? '<section class="sec"><h2>Vouches</h2><div class="card" style="padding:4px 14px">' + vs.map(function (x) { return '<div class="kv" style="flex-direction:column;align-items:flex-start;gap:2px"><span><b style="color:var(--red)">' + '★★★★★'.slice(0, x.stars) + '</b><span style="opacity:.25">' + '★★★★★'.slice(x.stars) + '</span> <span class="m">· ' + (x.kind === 'deal' ? 'Deal' : 'Legit check') + ' · ' + ago(x.created_at) + ' ago</span></span>' + (x.note ? '<span style="font-size:14px">' + esc(x.note) + '</span>' : '') + '<span class="m">from ' + userLink(x.from_id, x.from && x.from.username) + '</span></div>'; }).join('') + '</div></section>' : '') +
         (ls.length ? '<section class="sec"><h2>Pairs for sale</h2><div class="grid">' + ls.map(function (l) { return itemCard(l, {}); }).join('') + '</div></section>' : '') +
         (uid() && uid() !== p.id ? '<button class="link" style="align-self:flex-start;color:var(--muted)" data-act="report" data-type="user" data-id="' + p.id + '">Report this member</button>' : '') + '</div>';
@@ -1437,9 +1522,10 @@
       pushState(),
       sb.rpc('my_invites').then(function (r) { return r.data || 0; }, function () { return 0; }),
       sb.rpc('my_deals').then(function (r) { return r.data || []; }, function () { return []; }),
-      sb.from('verify_requests').select('status').eq('user_id', uid()).maybeSingle().then(function (r) { return r.data; }, function () { return null; })
+      sb.from('verify_requests').select('status').eq('user_id', uid()).maybeSingle().then(function (r) { return r.data; }, function () { return null; }),
+      collLoad(uid())
     ]).then(function (a) {
-      ST.myVouch = a[3][uid()]; var pst = a[4], invN = a[5], deals = a[6] || [], vreq = a[7];
+      ST.myVouch = a[3][uid()]; var pst = a[4], invN = a[5], deals = a[6] || [], vreq = a[7]; ST.myColl = a[8] || [];
       var ls = a[0].data || []; var bs = a[1].data || []; var reps = a[2].data;
       var cities = ['', 'Dubai', 'Sharjah', 'Abu Dhabi', 'Ajman', 'Ras Al Khaimah', 'Fujairah', 'Umm Al Quwain', 'Al Ain'];
       return '<div class="pad"><div class="row">' + (ST.og && ST.og[uid()] ? '<div class="avatar-og big">' + ogBadge(ST.og[uid()]) + '</div>' : '<div class="avatar" style="width:56px;height:56px;font-size:22px;background:var(--red)">' + esc((me.username || '?')[0].toUpperCase()) + '</div>') + '<div class="grow"><h1 style="font-size:22px">@' + esc(me.username) + '</h1><div class="m">' + esc(ST.session.user.email || ST.session.user.phone || '') + '</div></div>' + verifiedPill(me.verified_level) + '</div>' +
@@ -1456,6 +1542,7 @@
         '<label class="field" for="p-size">My sneaker size<select id="p-size">' + sizeOptions(mySize(), 'Not set') + '</select></label>' +
         '<label class="field" for="p-wa">WhatsApp (private)<input id="p-wa" type="tel" placeholder="+971 50 123 4567" value="' + esc(ST.contact && ST.contact.whatsapp || '') + '"></label>' +
         '<p class="err" id="p-err" role="alert"></p><button class="btn dark" data-act="saveprofile">Save</button></div>' +
+        collSection(ST.myColl, true) +
         '<section class="sec"><h2>My listings</h2>' + (ls.length ? '<div class="card" style="padding:4px 14px">' + ls.map(function (l) { return '<button class="kv" style="width:100%;background:none;border-left:0;border-right:0;border-top:0;text-align:left" data-go="l/' + l.id + '"><span>' + esc(l.model) + '</span><span class="m">' + aed(l.price_aed) + ' · ' + l.status + '</span></button>'; }).join('') + '</div>' : '<p class="sub">Nothing listed yet.</p>') + '</section>' +
         '<section class="sec"><h2>My bids</h2>' + (bs.length ? '<div class="card" style="padding:4px 14px">' + bs.map(function (b) { return '<button class="kv" style="width:100%;background:none;border-left:0;border-right:0;border-top:0;text-align:left" data-go="l/' + (b.listing && b.listing.id) + '"><span>' + esc(b.listing && b.listing.model) + '</span><span class="m">' + aed(b.amount_aed) + ' · ' + b.status + '</span></button>'; }).join('') + '</div>' : '<p class="sub">No bids yet.</p>') + '</section>' +
         (reps ? '<section class="sec"><h2>Open reports</h2>' + (reps.length ? '<div class="card" style="padding:4px 14px">' + reps.map(function (x) { return '<div class="kv" style="align-items:center"><span><b>' + x.target_type + '</b> · ' + esc(x.reason) + '<br><span class="tiny">' + x.target_id + '</span></span><button class="btn ghost" style="height:36px;padding:0 10px;font-size:12px" data-act="resolve" data-id="' + x.id + '">Resolve</button></div>'; }).join('') + '</div>' : '<p class="sub">No open reports.</p>') + '</section>' : '') +
@@ -2011,6 +2098,11 @@
       case 'sold': case 'remove':
         sb.from('listings').update({ status: a === 'sold' ? 'sold' : 'removed' }).eq('id', id).then(function (r) { if (r.error) return fail(r.error); toast(a === 'sold' ? 'Marked as sold. Congrats!' : 'Listing removed'); var sl = ST.shareListing; go('me'); if (a === 'sold' && sl && sl.id === id) setTimeout(function () { openShare('sold'); }, 500); });
         break;
+      case 'collpost': collPost(el); break;
+      case 'collusex': ST.newColl.f.value = v; var cv = document.getElementById('c-value'); if (cv) cv.value = v; break;
+      case 'collrm': if (!window.confirm('Remove this pair from your collection?')) break; sb.from('collection_items').delete().eq('id', id).then(function (r) { if (r.error) return fail(r.error); render(true); }); break;
+      case 'collhide': sb.from('collection_items').update({ hidden: v === '1' }).eq('id', id).then(function (r) { if (r.error) return fail(r.error); render(true); }); break;
+      case 'collshare': openShare('collection'); break;
       case 'bump':
         el.disabled = true;
         sb.rpc('bump_listing', { p_id: id }).then(function (r) {
@@ -2227,15 +2319,19 @@
     if (t.id === 'q') { ST.marketQ = t.value; clearTimeout(ST.qTimer); ST.qTimer = setTimeout(function () { var w = document.getElementById('grid-wrap'); if (!w) return; marketGrid().then(function (h) { w.innerHTML = h; }).catch(fail); }, 350); return; }
     if (t.getAttribute('data-sf')) { ST.sell.f[t.getAttribute('data-sf')] = t.type === 'checkbox' ? t.checked : t.value; if (/^(model|size)$/.test(t.getAttribute('data-sf'))) sellHintSoon(); return; }
     if (t.getAttribute('data-cf')) { ST.newCheck.f[t.getAttribute('data-cf')] = t.value; return; }
+    if (t.getAttribute('data-cl')) { var ck = t.getAttribute('data-cl'); if (!ST.newColl) ST.newColl = freshColl(); if (ck === 'hide') ST.newColl.hide = t.checked; else ST.newColl.f[ck] = t.value; if (ck === 'model') { clearTimeout(ST.collT); ST.collT = setTimeout(collHint, 400); } return; }
   });
   app.addEventListener('change', function (e) {
     var t = e.target;
     if (t.getAttribute('data-sf')) { ST.sell.f[t.getAttribute('data-sf')] = t.type === 'checkbox' ? t.checked : t.value; if (/^(model|size)$/.test(t.getAttribute('data-sf'))) sellHintSoon(); return; }
     if (t.getAttribute('data-cf')) { ST.newCheck.f[t.getAttribute('data-cf')] = t.value; return; }
+    if (t.getAttribute('data-cl')) { var ck = t.getAttribute('data-cl'); if (!ST.newColl) ST.newColl = freshColl(); if (ck === 'hide') ST.newColl.hide = t.checked; else ST.newColl.f[ck] = t.value; if (ck === 'model') { clearTimeout(ST.collT); ST.collT = setTimeout(collHint, 400); } return; }
     if (t.id === 'chatfile' && t.files && t.files[0]) {
       compress(t.files[0], 1200, 0.78).then(function (b) { chatClearImg(); CHAT.img = { blob: b, url: URL.createObjectURL(b) }; var pv = document.getElementById('chatprev'); if (pv) pv.innerHTML = '<div class="chatprev"><img src="' + CHAT.img.url + '" alt="Photo to send"><button class="chatx" data-act="chatimgx" aria-label="Remove photo">✕</button></div>'; });
       return;
     }
+    var ck2 = t.getAttribute('data-collphoto');
+    if (ck2 && t.files && t.files[0]) { compress(t.files[0], 1400, 0.82).then(function (b) { if (!ST.newColl) ST.newColl = freshColl(); ST.newColl[ck2] = { blob: b, url: URL.createObjectURL(b) }; render(true); }); return; }
     var k = t.getAttribute('data-sellphoto');
     if (k && t.files && t.files[0]) { compress(t.files[0]).then(function (b) { ST.sell.photos[k] = { blob: b, url: URL.createObjectURL(b) }; render(true); }); return; }
     if (t.getAttribute('data-checkphoto') && t.files) {
