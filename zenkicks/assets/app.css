@@ -664,3 +664,9 @@ html[data-theme="dark"] .getapp{box-shadow:0 0 12px rgba(198,244,50,.3);border-c
 
 /* wordmark */
 html[data-theme="dark"] .brand span{color:var(--neon);text-shadow:0 0 12px rgba(198,244,50,.55)}
+
+/* What's hot tabs: light text sat on a cream pill */
+html[data-theme="dark"] .seg{background:#1C1C1C;border:1px solid var(--line)}
+html[data-theme="dark"] .seg button{color:#CFCABD}
+html[data-theme="dark"] .seg button.on{background:var(--neon);color:#0D0D0D;box-shadow:var(--glow)}
+html[data-theme="dark"] :is(.rank,.hotrow .n){color:var(--neon)}
