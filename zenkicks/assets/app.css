@@ -609,3 +609,5 @@ h2{font-size:19px}
 .rpickbtn{height:64px;border-radius:16px;border:1.5px solid var(--line);background:#fff;font-size:34px;line-height:1;cursor:pointer}
 
 .sellhint{background:#FFF4D6;border-radius:12px;padding:10px 12px;font-size:13px;line-height:1.5;display:flex;flex-direction:column;gap:4px;color:#3a3220}.sellhint[hidden]{display:none}
+
+.card.heat{padding:14px;display:flex;flex-direction:column;gap:10px;background:linear-gradient(135deg,#1b0f0e,#2a1210);color:#F4F1EA;border:1px solid #5a2320}.card.heat .m,.card.heat .t{color:#F4F1EA}.card.heat .m{opacity:.75}

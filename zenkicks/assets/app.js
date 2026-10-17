@@ -409,7 +409,7 @@
   // ------------------------------------------------------------------
   // data: listings
   // ------------------------------------------------------------------
-  var LISTING_COLS = 'id,model,brand,size_eu,condition,price_aed,city,legit_checked,accept_bids,description,status,created_at,seller_id,seller:profiles!listings_seller_id_fkey(username,verified_level),photos:listing_photos(path,kind,position)';
+  var LISTING_COLS = 'id,model,brand,size_eu,condition,price_aed,city,legit_checked,accept_bids,description,status,created_at,bumped_at,seller_id,seller:profiles!listings_seller_id_fkey(username,verified_level),photos:listing_photos(path,kind,position)';
   function firstPhoto(l) {
     var ps = (l.photos || []).slice().sort(function (a, b) { var o = { side: 0, tag: 1 }; return ((o[a.kind] != null ? o[a.kind] : 5) - (o[b.kind] != null ? o[b.kind] : 5)) || a.position - b.position; });
     return ps[0] ? pub('listing-photos', ps[0].path) : '';
@@ -705,10 +705,18 @@
       '<span class="row" style="gap:6px;flex-wrap:wrap"><button class="btn red" style="height:40px;padding:0 14px;font-size:13px" data-act="dealdone" data-id="' + b.id + '">' + I.check + ' Deal done</button><button class="btn ghost" style="height:40px;padding:0 12px;font-size:13px" data-act="dealcancel" data-id="' + b.id + '" data-v="' + role + '">Fell through</button></span>';
     return '<div class="dealsteps">' + body + '<button class="link" style="align-self:flex-start;padding:0;font-size:12px;color:var(--muted)" data-act="report" data-type="user" data-id="' + otherId + '">Problem with this deal? Report ' + who + '</button></div>';
   }
+  // Bump: free, once every 3 days, moves your pair to the top of the market
+  function bumpLeft(l) { var t = l.bumped_at ? Date.parse(l.bumped_at) + 3 * 864e5 - Date.now() : 0; return t > 0 ? t : 0; }
+  function bumpBtn(l) {
+    if (l.status !== 'active') return '';
+    var left = bumpLeft(l), h = Math.ceil(left / 36e5);
+    return '<button class="btn ' + (left ? 'ghost' : 'red') + '" style="width:100%;margin-bottom:8px" data-act="bump" data-id="' + l.id + '"' + (left ? ' disabled' : '') + '>⬆ ' + (left ? 'Bumped · next bump in ' + (h >= 24 ? Math.floor(h / 24) + 'd ' + (h % 24) + 'h' : h + 'h') : 'Bump to the top (free)') + '</button>';
+  }
   function itemCard(l, stats) {
     stats = stats || {};
     return '<button class="item" data-go="l/' + l.id + '"><div class="tile" style="height:120px;background:#fff"><span class="pill white cond" style="z-index:1">' + esc(l.condition) + '</span>' +
       (l.legit_checked ? '<span class="pill dark chk" style="z-index:1">Checked</span>' : '') +
+      (l.bumped_at && Date.now() - Date.parse(l.bumped_at) < 864e5 ? '<span class="pill ok" style="z-index:1;position:absolute;left:8px;bottom:8px;font-size:10px">⬆ Bumped</span>' : '') +
       (firstPhoto(l) ? '<img src="' + esc(firstPhoto(l)) + '" alt="" loading="lazy">' : I.shoe) + '</div>' +
       '<span class="t">' + esc(l.model) + '</span><span class="m">' + (l.size_eu ? sizeLabel(l.size_eu) + ' · ' : '') + esc(l.city || 'UAE') + '</span>' + meterTag(l) +
       '<span class="between" style="align-items:center"><span class="money" style="font-size:15px">' + aed(l.price_aed) + '</span>' +
@@ -760,10 +768,35 @@
     if (prev === 1) s.c--; if (prev === -1) s.d--; if (next === 1) s.c++; if (next === -1) s.d++;
     s.mine = next; ST.cod[k] = s; ST.codAt[k] = Date.now(); paintCod(k);
     var q = next ? sb.from('drop_votes').upsert({ release_key: k, user_id: uid(), vote: next }, { onConflict: 'release_key,user_id' }) : sb.from('drop_votes').delete().eq('release_key', k).eq('user_id', uid());
-    q.then(function (r) { if (r.error) { toast('Couldn’t save your vote. Try again.'); delete ST.codAt[k]; } });
+    q.then(function (r) { if (r.error) { toast('Couldn’t save your vote. Try again.'); delete ST.codAt[k]; return; } if (next) heatCheckin(k); });
   }
   function paintCod(k) { app.querySelectorAll('.cod').forEach(function (el) { if (el.getAttribute('data-k') === k) el.outerHTML = codBtns(k, el.classList.contains('big')); }); }
 
+  // ---- Daily Heat Check: one hyped pair a day for everyone (Cop or Drop); a vote = a streak day ----
+  function heatPool() { return hypeRanked(upcoming()).filter(function (d) { return releaseImg(d); }).slice(0, 14); }
+  function heatPick() { var p = heatPool(); if (!p.length) return null; return p[Math.floor(Date.parse(dubaiToday() + 'T00:00:00Z') / 864e5) % p.length]; }
+  function heatLoad() {
+    if (!sb || !uid()) { ST.heat = null; return Promise.resolve(); }
+    if (ST.heat && Date.now() - (ST.heatAt || 0) < 60000) return Promise.resolve();
+    return sb.rpc('heat_stats').then(function (r) { var x = (r.data || [])[0]; if (x) { ST.heat = x; ST.heatAt = Date.now(); } }, function () {});
+  }
+  function heatCheckin(k) {
+    var d = heatPick(); if (!d || k !== d.name + d.date || !sb || !uid()) return;
+    sb.rpc('heat_checkin', { p_key: k }).then(function (r) {
+      var x = (r.data || [])[0]; if (!x) return;
+      var first = !(ST.heat && ST.heat.today); ST.heat = x; ST.heatAt = Date.now();
+      if (first) toast(x.streak > 1 ? '🔥 ' + x.streak + '-day Heat Check streak!' : '🔥 Heat Check done. Come back tomorrow!');
+      var el = document.getElementById('heatcard'); if (el) el.outerHTML = heatCard();
+    }, function () {});
+  }
+  function heatCard() {
+    var d = heatPick(); if (!d) return '';
+    var k = d.name + d.date, h = ST.heat || {}, voted = !!(ST.cod[k] && ST.cod[k].mine);
+    var chip = uid() ? (h.streak ? '<span class="pill ok" style="font-size:11px">🔥 ' + h.streak + '-day streak' + (h.best > h.streak ? ' · best ' + h.best : '') + '</span>' : '<span class="pill dark" style="font-size:11px">Start your streak</span>') : '<span class="pill dark" style="font-size:11px">Sign in to keep a streak</span>';
+    return '<section class="sec" id="heatcard"><div class="card heat"><div class="between" style="align-items:center"><h2 style="margin:0">🔥 Daily Heat Check</h2>' + chip + '</div>' +
+      '<div class="row" style="gap:12px;align-items:center"><img draggable="false" src="' + esc(releaseImg(d)) + '" alt="" style="width:96px;height:72px;object-fit:cover;border-radius:10px;background:#fff;flex-shrink:0"><div class="grow"><div class="t" style="font-size:15px;line-height:1.3">' + esc(d.name) + '</div><div class="m">' + dropPrice(d) + '</div></div></div>' +
+      codBtns(k, true) + '<span class="m" style="font-size:12px">' + (voted ? 'Done for today. A new pair drops tomorrow. See what the UAE thinks above.' : 'Cop or drop? One vote a day keeps your streak alive.') + '</span></div></section>';
+  }
   // ---- Grails (pairs a member is hunting) ----
   function loadGrailHits(force) {
     if (!sb || !uid()) { ST.grailHits = []; return Promise.resolve([]); }
@@ -782,7 +815,7 @@
   // newest pairs + their bid stats, kept on the phone so Home opens instantly next time
   function fetchHome() {
     if (ST.homeP) return ST.homeP; // one request at a time, even if Home redraws while it loads
-    var p = sb.from('listings').select(LISTING_COLS).eq('status', 'active').order('created_at', { ascending: false }).limit(4).then(function (r) {
+    var p = sb.from('listings').select(LISTING_COLS).eq('status', 'active').order('sort_at', { ascending: false }).limit(4).then(function (r) {
       var listings = r.data || [];
       return statsFor(listings.map(function (l) { return l.id; })).then(function (stats) {
         ST.homeCache = { t: Date.now(), listings: listings, stats: stats };
@@ -806,8 +839,8 @@
     }
     var homeData = hc ? Promise.resolve(hc) : sb ? fetchHome().catch(function () { return { listings: [], stats: {} }; }) : Promise.resolve({ listings: [], stats: {} });
     if (uid() && (!ST.grailHits || Date.now() - (ST.grailAt || 0) > 120000)) loadGrailHits().then(function () { if (route().name === 'drops' && grailNew().length && !app.querySelector('.grailbox')) render(true); });
-    return Promise.all([loadFeeds(), homeData]).then(function (a) {
-      var codKeys = homeDrops(upcoming()).concat((hypeRanked(upcoming()) || []).slice(0, 1)).map(function (d) { return d.name + d.date; });
+    return Promise.all([loadFeeds(), homeData, heatLoad()]).then(function (a) {
+      var codKeys = homeDrops(upcoming()).concat((hypeRanked(upcoming()) || []).slice(0, 1)).concat(heatPick() ? [heatPick()] : []).map(function (d) { return d.name + d.date; });
       var listings = a[1].listings || [], stats = a[1].stats || {};
       var up = upcoming(); var next = hypeRanked(up)[0]; var rem = store('rem') || {};
       var rows = homeDrops(up).map(function (d) {
@@ -824,7 +857,7 @@
       var heroHtml = heroSection(next, up.length, rem, installCard() + pendingBanner() + grailBanner());
       {
         var html = heroHtml +
-          '<div class="pad">' +
+          '<div class="pad">' + heatCard() +
           '<section class="sec"><div class="between"><h2>Release calendar</h2><span class="pill ok" style="font-size:10px">AUTO</span></div><p class="sub" style="font-size:12px">' + esc(stamp()) + ' · <span class="uaetag">UAE</span> = confirmed UAE release and price; other prices are US retail at 3.6725 · <b>Hyped drops first. Press and hold a pair for details</b></p><div class="droplist">' + rows + '</div>' + (up.length > 8 ? '<button class="link" style="align-self:center" data-act="alldrops">' + (ST.allDrops ? 'Show hyped drops only' : 'Show all ' + up.length + ' drops') + '</button>' : '') + '</section>' +
           (hot ? '<section class="sec"><div class="between"><h2>What’s hot</h2><button class="link" data-go="hot">See all</button></div><div class="scroller">' + hot + '</div></section>' : '') +
           adSlot() +
@@ -1024,7 +1057,7 @@
     });
   };
   function marketGrid() {
-    var q = sb.from('listings').select(LISTING_COLS).eq('status', 'active').order('created_at', { ascending: false }).limit(40);
+    var q = sb.from('listings').select(LISTING_COLS).eq('status', 'active').order('sort_at', { ascending: false }).limit(40);
     if (ST.marketFilter === 'new') q = q.eq('condition', 'New / DS');
     if (ST.marketFilter === 'used') q = q.neq('condition', 'New / DS');
     if (ST.marketFilter === 'checked') q = q.eq('legit_checked', true);
@@ -1070,7 +1103,7 @@
                   : '<span class="row" style="gap:6px"><button class="btn red" style="height:40px;padding:0 12px;font-size:13px" data-act="accept" data-id="' + b.id + '">Accept</button><button class="btn ghost" style="height:40px;padding:0 12px;font-size:13px" data-act="decline" data-id="' + b.id + '">Decline</button></span>') + '</div>' +
                 (b.status === 'accepted' ? dealSteps(b, 'seller', l, b.bidder_id, b.bidder && b.bidder.username) : '');
             }).join('') : '<span class="sub">No bids yet. Share your listing to get more eyes on it.</span>') +
-            '<div class="row" style="gap:8px"><button class="btn dark" style="flex:1" data-act="sold" data-id="' + l.id + '">Mark as sold</button><button class="btn ghost" style="flex:1" data-act="remove" data-id="' + l.id + '">Remove</button></div></div>';
+            bumpBtn(l) + '<div class="row" style="gap:8px"><button class="btn dark" style="flex:1" data-act="sold" data-id="' + l.id + '">Mark as sold</button><button class="btn ghost" style="flex:1" data-act="remove" data-id="' + l.id + '">Remove</button></div></div>';
         }
         var myBidPanel = '';
         if (myBid) {
@@ -1977,6 +2010,13 @@
         break;
       case 'sold': case 'remove':
         sb.from('listings').update({ status: a === 'sold' ? 'sold' : 'removed' }).eq('id', id).then(function (r) { if (r.error) return fail(r.error); toast(a === 'sold' ? 'Marked as sold. Congrats!' : 'Listing removed'); var sl = ST.shareListing; go('me'); if (a === 'sold' && sl && sl.id === id) setTimeout(function () { openShare('sold'); }, 500); });
+        break;
+      case 'bump':
+        el.disabled = true;
+        sb.rpc('bump_listing', { p_id: id }).then(function (r) {
+          if (r.error) { el.disabled = false; toast(/COOLDOWN/.test(r.error.message || '') ? 'You can bump this pair again in a few days.' : 'Couldn’t bump. Try again.'); render(true); return; }
+          ST.homeCache = null; try { localStorage.removeItem('zk_homecache'); } catch (e) {} toast('Bumped to the top ⬆'); render(true);
+        });
         break;
       case 'report': closeModal(); reportModal(el.getAttribute('data-type'), id); break;
       case 'dealdone':
