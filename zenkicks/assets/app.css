@@ -636,3 +636,17 @@ html[data-theme="dark"] .chip.on,html[data-theme="dark"] .btn.dark,html[data-the
 html[data-theme="dark"] .btn.dark:disabled{background:var(--ink3);color:var(--sand)}
 html[data-theme="dark"] :is(.note,.spamtip,.card.pendbox,.card.grailbox,.itip.warn,.cmsg.mine .ctext){background:#2A2418;border-color:#4A3E22;color:#F3F0E8}
 html[data-theme="dark"] .cd.soon{color:#0D0D0D}
+
+/* neon green accent (dark theme only; neon on cream is unreadable) */
+html[data-theme="dark"]{--neon:#C6F432}
+html[data-theme="dark"] .btn{font-family:var(--label);letter-spacing:.02em}
+html[data-theme="dark"] .btn.red:not([data-v="fake"]):not([data-act="rsend"]){background:var(--neon);color:#0D0D0D}
+html[data-theme="dark"] .tab.on{color:var(--neon)}
+html[data-theme="dark"] .tab .plus{background:var(--neon);color:#0D0D0D;box-shadow:0 0 18px rgba(198,244,50,.45)}
+html[data-theme="dark"] .round.on{background:var(--neon);color:#0D0D0D;border-color:var(--neon)}
+html[data-theme="dark"] .cd.hot{background:var(--neon)}
+html[data-theme="dark"] .ibtn.on,html[data-theme="dark"] .getapp svg{color:var(--neon)}
+html[data-theme="dark"] .brand span{color:var(--bone)}
+html[data-theme="dark"] .vstamp:not(.fake){border-color:var(--neon);color:var(--neon)}
+html[data-theme="dark"] .chip.on{box-shadow:0 0 0 1px var(--neon)}
+html[data-theme="dark"] :focus-visible{outline-color:var(--neon)}
