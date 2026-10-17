@@ -67,6 +67,7 @@
   function dubaiToday() { return new Date(Date.now() + 4 * 3600 * 1000).toISOString().slice(0, 10); }
   function dayDiff(iso) { return Math.round((Date.parse(iso + 'T00:00:00Z') - Date.parse(dubaiToday() + 'T00:00:00Z')) / 86400000); }
   function whenLabel(iso) { var n = dayDiff(iso); return n === 0 ? 'Today' : n === 1 ? 'Tomorrow' : n > 1 ? 'In ' + n + ' days' : 'Released'; }
+  function cdChip(iso) { var n = dayDiff(iso); return '<span class="cd ' + (n <= 1 ? 'hot' : n <= 7 ? 'soon' : '') + '">' + (n === 0 ? 'TODAY' : n === 1 ? 'TOMORROW' : n > 1 ? 'T-' + n + ' DAYS' : 'RELEASED') + '</span>'; }
   var MON = ['JAN', 'FEB', 'MAR', 'APR', 'MAY', 'JUN', 'JUL', 'AUG', 'SEP', 'OCT', 'NOV', 'DEC'];
   var DOW = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'];
   function norm(t) { return String(t || '').toLowerCase().replace(/[^a-z0-9]+/g, ' ').trim(); }
@@ -100,6 +101,8 @@
   var LOGO = '<svg viewBox="-112 -112 224 224" aria-hidden="true"><rect x="-112" y="-112" width="224" height="224" fill="#0D0D0D"/><g fill="#E52C27"><path d="' + Z + '"/><path d="' + Z + '" transform="rotate(180)"/></g></svg>';
   function ic(p, w) { return '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="' + (w || 2) + '" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">' + p + '</svg>'; }
   var I = {
+    sun: ic('<circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2 12h2M20 12h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"/>'),
+    moon: ic('<path d="M20 14.5A8 8 0 019.5 4 8 8 0 1020 14.5z"/>'),
     search: ic('<circle cx="11" cy="11" r="7"/><path d="M20 20l-4-4"/>'),
     google: '<svg width="18" height="18" viewBox="0 0 48 48" aria-hidden="true"><path fill="#FFC107" d="M43.6 20.5H42V20H24v8h11.3C33.7 32.7 29.2 36 24 36c-6.6 0-12-5.4-12-12s5.4-12 12-12c3.1 0 5.8 1.2 7.9 3.1l5.7-5.7C34 6.1 29.3 4 24 4 12.9 4 4 12.9 4 24s8.9 20 20 20 20-8.9 20-20c0-1.3-.1-2.4-.4-3.5z"/><path fill="#FF3D00" d="M6.3 14.7l6.6 4.8C14.7 15.1 19 12 24 12c3.1 0 5.8 1.2 7.9 3.1l5.7-5.7C34 6.1 29.3 4 24 4 16.3 4 9.7 8.3 6.3 14.7z"/><path fill="#4CAF50" d="M24 44c5.2 0 9.9-2 13.4-5.2l-6.2-5.2C29.2 35.1 26.7 36 24 36c-5.2 0-9.6-3.3-11.3-7.9l-6.5 5C9.5 39.6 16.2 44 24 44z"/><path fill="#1976D2" d="M43.6 20.5H42V20H24v8h11.3c-.8 2.2-2.2 4.2-4.1 5.6l6.2 5.2C37 39.2 44 34 44 24c0-1.3-.1-2.4-.4-3.5z"/></svg>',
     tag: ic('<path d="M3 12V4h8l10 10-8 8z"/><circle cx="7.5" cy="7.5" r="1.5"/>'),
@@ -176,6 +179,8 @@
   // ------------------------------------------------------------------
   // shell
   // ------------------------------------------------------------------
+  function curTheme() { return document.documentElement.getAttribute('data-theme') === 'light' ? 'light' : 'dark'; }
+  function setTheme(t) { document.documentElement.setAttribute('data-theme', t); store('theme', t); var m = document.querySelector('meta[name=theme-color]'); if (m) m.setAttribute('content', '#0D0D0D'); }
   function header(r) {
     var back = { safety: 'market', grails: 'me', l: 'market', c: 'legit', 'new-check': 'legit', sell: 'drops', login: 'drops', join: 'drops', install: 'drops', u: 'market', admin: 'me', 'coll-add': 'me' }[r.name];
     var titles = { safety: 'Safety', grails: 'My grails', l: 'Listing', c: 'Legit check', 'new-check': 'New check', sell: 'Sell a pair', login: 'Sign in', join: 'Join Zenkicks', install: 'Install the app', u: 'Member', admin: 'Admin panel', 'coll-add': 'Add a pair' };
@@ -187,7 +192,7 @@
       : '<button class="ibtn" data-go="login" aria-label="Sign in">' + I.user + '</button>';
     var getApp = installEnv().standalone ? '' : '<button class="getapp" data-go="install" aria-label="How to install the Zenkicks app">' + I.dl + '<span>Get app</span></button>';
     return '<header class="hd"><button class="brand" data-go="drops" aria-label="Zenkicks home">' + LOGO + '<span>ZENKICKS</span></button>' + getApp +
-      '<button class="ibtn" data-go="market" aria-label="Search the market">' + I.search + '</button>' + me + '</header>';
+      '<button class="ibtn" data-act="theme" aria-label="Switch light or dark mode">' + (curTheme() === 'dark' ? I.sun : I.moon) + '</button><button class="ibtn" data-go="market" aria-label="Search the market">' + I.search + '</button>' + me + '</header>';
   }
   function tabs(r) {
     if (['l', 'c', 'sell', 'new-check', 'coll-add', 'login', 'join', 'install', 'safety'].indexOf(r.name) > -1) return '';
@@ -916,7 +921,7 @@
         var dt = new Date(d.date + 'T00:00:00Z'); var on = !!rem[d.name + d.date]; var im = releaseImg(d);
         return '<div class="card drop" data-peek="r|' + esc(d.name + d.date) + '"><div class="date"><span>' + MON[dt.getUTCMonth()] + '</span><b>' + ('0' + dt.getUTCDate()).slice(-2) + '</b></div>' +
           (im ? '<img draggable="false" src="' + esc(im) + '" alt="" loading="lazy" style="width:64px;height:46px;object-fit:cover;border-radius:8px;flex-shrink:0;background:#fff">' : '') +
-          '<div class="grow"><div class="t" style="font-size:14px;line-height:1.3">' + esc(d.name) + '</div><div class="m">' + DOW[dt.getUTCDay()] + ' · ' + whenLabel(d.date) + ' · ' + dropPrice(d) + '</div>' + codBtns(d.name + d.date) + '</div>' +
+          '<div class="grow"><div class="t" style="font-size:14px;line-height:1.3">' + esc(d.name) + '</div><div class="m">' + DOW[dt.getUTCDay()] + ' · ' + cdChip(d.date) + ' · ' + dropPrice(d) + '</div>' + codBtns(d.name + d.date) + '</div>' +
           '<button class="round' + (on ? ' on' : '') + '" data-act="rem" data-key="' + esc(d.name + d.date) + '" aria-pressed="' + on + '" aria-label="' + (on ? 'Remove reminder for ' : 'Remind me about ') + esc(d.name) + '">' + (on ? I.check : I.bell) + '</button></div>';
       }).join('') || '<p class="sub">No upcoming drops in the feed right now.</p>';
       var hot = (ST.hot.online || []).slice(0, 5).map(function (h, i) {
@@ -1465,7 +1470,7 @@
         '<div class="sec" style="gap:6px"><h1 style="font-size:22px">' + esc(c.model) + '</h1>' + (c.question ? '<p style="margin:0;font-size:15px;line-height:1.5;white-space:pre-line">' + esc(c.question) + '</p>' : '') +
         '<div class="chips-wrap">' + (c.size ? '<span class="proof" style="background:#fff;border:1px solid var(--line)">' + esc(c.size) + '</span>' : '') + (c.price_aed ? '<span class="proof" style="background:#fff;border:1px solid var(--line)">Offered at ' + aed(c.price_aed) + '</span>' : '') + (c.found_where ? '<span class="proof" style="background:#fff;border:1px solid var(--line)">' + esc(c.found_where) + '</span>' : '') + '</div></div>' +
         (c.verdict ? '<div class="checker" style="background:' + (c.verdict === 'legit' ? 'var(--mint)' : '#F6DAD6') + '"><b style="color:' + (c.verdict === 'legit' ? 'var(--green)' : 'var(--red)') + '">Verdict: ' + c.verdict.toUpperCase() + '.</b> ' + esc(c.verdict_note || '') + '<br><button class="btn sharebtn light" data-act="share" data-k="check">' + I.share + ' Share verdict to Story</button></div>' : '') +
-        '<div class="card" style="padding:14px;display:flex;flex-direction:column;gap:10px"><b>' + (c.verdict ? 'Community vote' : 'Your vote') + '</b>' + (!c.verdict ? (me ? voteBtns : '<button class="btn dark" data-go="login">Sign in to vote</button>') : '') + ((myVote || c.verdict) ? bars : '<span class="m">Vote to see how the community voted.</span>') + '</div>' +
+        '<div class="card" style="padding:14px;display:flex;flex-direction:column;gap:10px">' + (c.verdict === 'legit' || c.verdict === 'fake' ? '<div class="vstamp ' + c.verdict + '" role="img" aria-label="Verdict: ' + c.verdict + '"><b>' + c.verdict.toUpperCase() + '</b><span>' + total + ' VOTES</span></div>' : '') + '<b>' + (c.verdict ? 'Community vote' : 'Your vote') + '</b>' + (!c.verdict ? (me ? voteBtns : '<button class="btn dark" data-go="login">Sign in to vote</button>') : '') + ((myVote || c.verdict) ? bars : '<span class="m">Vote to see how the community voted.</span>') + '</div>' +
         verdictForm +
         '<section class="sec"><h2>Comments <span class="m" style="font-family:var(--body)">(' + comments.length + ')</span></h2>' + (thread ? '<div class="card" style="padding:14px;display:flex;flex-direction:column;gap:12px">' + thread + '</div>' : '<p class="sub">No comments yet. Start the conversation.</p>') +
         '<p class="m" style="margin:0">Be respectful. Call out the pair, not the person.' + (me && c.author_id === me ? ' Tap <b>★ Vouch</b> on a comment to thank someone who helped.' : '') + '</p></section>' +
@@ -2047,6 +2052,7 @@
     switch (a) {
       case 'reload': render(); break;
       case 'alldrops': ST.allDrops = !ST.allDrops; render(true); break;
+      case 'theme': setTheme(curTheme() === 'dark' ? 'light' : 'dark'); render(true); break;
       case 'rem': toggleRem(el.getAttribute('data-key'), function () { render(true); }); break;
       case 'pushon': pushOn().then(function (res) { toast({ on: '🔔 Drop alerts on. Check your notifications.', 'ios-home': 'Add Zenkicks to your Home Screen first', unsupported: 'This browser can’t show notifications', blocked: 'Notifications are blocked in your settings', declined: 'Alerts not turned on' }[res] || 'Couldn’t turn on alerts, try again later'); render(true); }); break;
       case 'pushoff': pushOff().then(function () { toast('Drop alerts off. Reminders stay saved in the app.'); render(true); }); break;
