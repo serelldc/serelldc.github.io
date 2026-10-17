@@ -1852,13 +1852,23 @@
       var userRows = users.map(function (u) {
         var tags = (u.is_owner ? '<span class="pill founder">★ Founder</span>' : '') + (u.is_admin && !u.is_owner ? '<span class="pill dark">Admin</span>' : '') + (u.is_checker ? '<span class="pill ok">LC</span>' : '') + (u.is_banned ? '<span class="pill red">Banned</span>' : '') +
           (!u.is_banned && u.banned_until ? '<span class="pill red">On hold until ' + esc(fmtDay(new Date(u.banned_until))) + '</span>' : '') + (u.confirmed === false ? '<span class="pill sample" title="Never finished signing in (email not confirmed)">Not confirmed' + (remindedAgo(u.id) !== null ? ' · reminded ' + (remindedAgo(u.id) < 60e3 ? 'just now' : ago(new Date(Date.now() - remindedAgo(u.id)).toISOString()) + ' ago') : '') + '</span>' : '') + (u.warns ? '<span class="pill sample">' + u.warns + ' warning' + (u.warns > 1 ? 's' : '') + '</span>' : '') + (ST.og && ST.og[u.id] ? ogPill(ST.og[u.id]) : '');
-        var controls = u.is_owner ? '<span class="m">Owner. Cannot be changed.</span>' :
-          (u.confirmed === false && u.email ? '<button class="chip" style="color:#9a5b00;border-color:#d8a24a" data-act="aremind" data-id="' + u.id + '" data-v="' + esc(u.email) + '">' + (remindedAgo(u.id) !== null ? 'Remind again' : 'Send reminder') + '</button>' : '') +
-          (isOwner() ? roleBtn(u, 'admin', u.is_admin, 'Admin') : '') + roleBtn(u, 'checker', u.is_checker, 'LC') +
-          '<button class="chip' + (u.verified_level === 'id' ? ' on' : '') + '" data-act="averify" data-id="' + u.id + '" data-v="' + (u.verified_level === 'id' ? '0' : '1') + '" aria-pressed="' + (u.verified_level === 'id') + '">' + (u.verified_level === 'id' ? '✓ Verified seller' : 'Verify seller') + '</button>' +
-          (u.id === uid() ? '' : (u.is_banned ? '' : '<button class="chip" data-act="awarn" data-id="' + u.id + '" data-user="' + esc(u.username) + '">Warn</button>' +
-            (u.banned_until ? '<button class="chip" data-act="alift" data-id="' + u.id + '">Lift hold</button>' : '<button class="chip" style="color:#9a5b00;border-color:#d8a24a" data-act="asusp" data-id="' + u.id + '" data-user="' + esc(u.username) + '">Suspend</button>')) +
-          '<button class="chip" style="' + (u.is_banned ? '' : 'color:var(--red);border-color:var(--red)') + '" data-act="aban" data-id="' + u.id + '" data-user="' + esc(u.username) + '" data-on="' + u.is_banned + '">' + (u.is_banned ? 'Unban' : 'Ban') + '</button>');
+        function mi(label, attrs, danger) { return '<button class="btn ghost full" data-close="1" style="justify-content:flex-start' + (danger ? ';color:var(--red)' : '') + '" ' + attrs + '>' + label + '</button>'; }
+        var items = '';
+        if (!u.is_owner) {
+          if (u.confirmed === false && u.email) items += mi(remindedAgo(u.id) !== null ? 'Remind again' : 'Send reminder', 'data-act="aremind" data-id="' + u.id + '" data-v="' + esc(u.email) + '"');
+          if (isOwner()) items += mi(u.is_admin ? 'Remove admin' : 'Make admin', 'data-act="arole" data-id="' + u.id + '" data-v="admin" data-on="' + !!u.is_admin + '"');
+          items += mi(u.is_checker ? 'Remove LC' : 'Make LC (legit checker)', 'data-act="arole" data-id="' + u.id + '" data-v="checker" data-on="' + !!u.is_checker + '"');
+          items += mi(u.verified_level === 'id' ? 'Remove verified seller' : 'Verify seller', 'data-act="averify" data-id="' + u.id + '" data-v="' + (u.verified_level === 'id' ? '0' : '1') + '"');
+          if (u.id !== uid()) {
+            if (!u.is_banned) {
+              items += mi('Warn', 'data-act="awarn" data-id="' + u.id + '" data-user="' + esc(u.username) + '"');
+              items += u.banned_until ? mi('Lift hold', 'data-act="alift" data-id="' + u.id + '"') : mi('Suspend', 'data-act="asusp" data-id="' + u.id + '" data-user="' + esc(u.username) + '"');
+            }
+            items += mi(u.is_banned ? 'Unban' : 'Ban', 'data-act="aban" data-id="' + u.id + '" data-user="' + esc(u.username) + '" data-on="' + !!u.is_banned + '"', !u.is_banned);
+          }
+        }
+        ST.umenu = ST.umenu || {}; ST.umenu[u.id] = { name: u.username, html: items };
+        var controls = u.is_owner ? '<span class="m">Owner. Cannot be changed.</span>' : (items ? '<button class="chip" data-act="amenu" data-id="' + u.id + '" aria-label="Actions for @' + esc(u.username) + '" style="font-size:20px;font-weight:700;letter-spacing:.1em;padding:0 16px">⋯</button>' : '');
         return '<div class="kv" style="flex-direction:column;align-items:flex-start;gap:6px"><div class="row" style="gap:6px;flex-wrap:wrap">' + userLink(u.id, u.username).replace(founderPill(u.id), '') + ' ' + tags + '</div>' +
           '<span class="m">' + (u.email ? esc(u.email) + ' · ' : '') + esc(u.city || 'UAE') + ' · joined ' + ago(u.created_at) + ' ago</span><div class="chips-wrap">' + controls + '</div></div>';
       }).join('') || '<p class="sub">No members found.</p>';
@@ -2056,6 +2066,7 @@
     var el = e.target.closest('[data-go],[data-act]'); if (!el) return;
     if (el.hasAttribute('data-go')) { e.preventDefault(); closeModal(); var g = el.getAttribute('data-go'); if (g === 'sell') ST.sell = ST.sell || freshSell(); if (g === 'login' && !uid()) rememberAfter(); go(g); return; }
     var a = el.getAttribute('data-act'), v = el.getAttribute('data-v'), id = el.getAttribute('data-id');
+    if (el.hasAttribute('data-close')) closeModal();
     var on = el.getAttribute('data-on') === 'true';
     switch (a) {
       case 'reload': render(); break;
@@ -2222,6 +2233,7 @@
       case 'arole':
         sb.rpc('admin_set_role', { target: id, role: v, val: !on }).then(function (r) { if (r.error) return fail(r.error); toast((!on ? 'Made ' : 'Removed ') + v); return loadOwners().then(function () { render(true); }); });
         break;
+      case 'amenu': var um = (ST.umenu || {})[id]; if (um) openModal('<h2>@' + esc(um.name) + '</h2><div style="display:flex;flex-direction:column;gap:8px">' + um.html + '</div><button class="btn dark full" data-act="mclose">Close</button>'); break;
       case 'aban':
         if (on) { sb.rpc('admin_set_ban', { target: id, val: false, msg: null }).then(function (r) { if (r.error) return fail(r.error); toast('Unbanned'); render(true); }); break; }
         modModal('ban', id, el.getAttribute('data-user'));
