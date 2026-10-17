@@ -931,7 +931,7 @@
   function pill(x, text, cx, y, bg, fg, font) { x.font = font; var w = x.measureText(text).width + 70; x.fillStyle = bg; rrect(x, cx - w / 2, y - 52, w, 80, 40); x.fill(); x.fillStyle = fg; x.textAlign = 'center'; x.fillText(text, cx, y); }
   function drawShare(kind, photo, noPhoto) {
     var W = 1080, H = 1920, cv = document.createElement('canvas'); cv.width = W; cv.height = H; var x = cv.getContext('2d');
-    cardBase(x, W, H, kind === 'invite' || kind === 'sell');
+    cardBase(x, W, H, kind === 'invite' || kind === 'sell' || kind === 'sold');
     if (kind === 'listing' || kind === 'sold') {
       var l = ST.shareListing, sold = kind === 'sold';
       x.fillStyle = '#fff'; rrect(x, 80, 280, 920, 920, 36); x.fill();
