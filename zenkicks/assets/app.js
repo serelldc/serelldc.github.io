@@ -794,7 +794,7 @@
     var k = d.name + d.date, h = ST.heat || {}, voted = !!(ST.cod[k] && ST.cod[k].mine);
     var chip = uid() ? (h.streak ? '<span class="pill ok" style="font-size:11px">🔥 ' + h.streak + '-day streak' + (h.best > h.streak ? ' · best ' + h.best : '') + '</span>' : '<span class="pill dark" style="font-size:11px">Start your streak</span>') : '<span class="pill dark" style="font-size:11px">Sign in to keep a streak</span>';
     return '<section class="sec" id="heatcard"><div class="card heat"><div class="between" style="align-items:center"><h2 style="margin:0">🔥 Daily Heat Check</h2>' + chip + '</div>' +
-      '<div class="row" style="gap:12px;align-items:center"><img draggable="false" src="' + esc(releaseImg(d)) + '" alt="" style="width:96px;height:72px;object-fit:cover;border-radius:10px;background:#fff;flex-shrink:0"><div class="grow"><div class="t" style="font-size:15px;line-height:1.3">' + esc(d.name) + '</div><div class="m">' + dropPrice(d) + '</div></div></div>' +
+      '<button type="button" class="row heatpeek" data-act="peekopen" data-v="r|' + esc(k) + '" aria-label="Open details for ' + esc(d.name) + '"><img draggable="false" src="' + esc(releaseImg(d)) + '" alt="" style="width:96px;height:72px;object-fit:cover;border-radius:10px;background:#fff;flex-shrink:0"><div class="grow"><div class="t" style="font-size:15px;line-height:1.3">' + esc(d.name) + '</div><div class="m">' + dropPrice(d) + ' · <u>Tap for details</u></div></div></button>' +
       codBtns(k, true) + '<span class="m" style="font-size:12px">' + (voted ? 'Done for today. A new pair drops tomorrow. See what the UAE thinks above.' : 'Cop or drop? One vote a day keeps your streak alive.') + '</span></div></section>';
   }
   // ---- Collection: pairs a member owns, optional "on feet" photo, total value, flex card ----
@@ -2098,6 +2098,7 @@
       case 'sold': case 'remove':
         sb.from('listings').update({ status: a === 'sold' ? 'sold' : 'removed' }).eq('id', id).then(function (r) { if (r.error) return fail(r.error); toast(a === 'sold' ? 'Marked as sold. Congrats!' : 'Listing removed'); var sl = ST.shareListing; go('me'); if (a === 'sold' && sl && sl.id === id) setTimeout(function () { openShare('sold'); }, 500); });
         break;
+      case 'peekopen': openPeek(v); break;
       case 'collpost': collPost(el); break;
       case 'collusex': ST.newColl.f.value = v; var cv = document.getElementById('c-value'); if (cv) cv.value = v; break;
       case 'collrm': if (!window.confirm('Remove this pair from your collection?')) break; sb.from('collection_items').delete().eq('id', id).then(function (r) { if (r.error) return fail(r.error); render(true); }); break;
