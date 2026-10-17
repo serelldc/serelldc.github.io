@@ -1,15 +1,7 @@
 {
-  "updated": "2026-10-16",
+  "updated": "2026-10-17",
   "source": "SneakerFiles & Sneaker News release calendars (curated weekly); photos from KicksDB (StockX)",
   "items": [
-    {
-      "date": "2026-10-16",
-      "name": "Nike Air Foamposite Pro \"Glow in the Dark\"",
-      "brand": "Nike",
-      "retail_usd": 250,
-      "image": "https://images.stockx.com/images/Nike-Air-Foamposite-Pro-Glow-In-The-Dark.jpg?fit=fill&bg=FFFFFF&w=600&h=430&fm=webp&auto=compress&q=90&dpr=2&trim=color&updated_at=1782932273",
-      "link": "https://stockx.pvxt.net/c/4722526/1023711/9060?u=https%3A%2F%2Fstockx.com%2Fnike-air-foamposite-pro-glow-in-the-dark"
-    },
     {
       "date": "2026-10-17",
       "name": "Air Jordan 5 \"Halloween\"",
@@ -90,7 +82,7 @@
       "link": "",
       "sku": "IU8266-400",
       "colorway": "Binary Blue/Rust Pink-Sail-Steel",
-      "tried": "2026-10-15"
+      "tried": "2026-10-17"
     },
     {
       "date": "2026-10-23",
@@ -101,7 +93,7 @@
       "link": "",
       "sku": "100265460",
       "colorway": "Black/Orange-Blue",
-      "tried": "2026-10-15"
+      "tried": "2026-10-17"
     },
     {
       "date": "2026-10-23",
@@ -121,7 +113,7 @@
       "link": "",
       "sku": "IZ2457-100",
       "colorway": "Light Orewood Brown/Pine Green-Bright Crimson-Black",
-      "tried": "2026-10-15"
+      "tried": "2026-10-17"
     },
     {
       "date": "2026-10-23",
@@ -156,7 +148,7 @@
       "retail_usd": 150,
       "image": "",
       "link": "",
-      "tried": "2026-10-15"
+      "tried": "2026-10-17"
     },
     {
       "date": "2026-10-23",
@@ -205,7 +197,7 @@
       "retail_usd": 145,
       "image": "",
       "link": "",
-      "tried": "2026-10-15"
+      "tried": "2026-10-17"
     },
     {
       "date": "2026-10-23",
@@ -214,7 +206,7 @@
       "retail_usd": 130,
       "image": "",
       "link": "",
-      "tried": "2026-10-15"
+      "tried": "2026-10-17"
     },
     {
       "date": "2026-10-23",
@@ -225,7 +217,7 @@
       "link": "",
       "sku": "KJ3021",
       "colorway": "Red/Silver-Black",
-      "tried": "2026-10-15"
+      "tried": "2026-10-17"
     },
     {
       "date": "2026-10-24",
@@ -258,7 +250,7 @@
       "retail_usd": 170,
       "image": "",
       "link": "",
-      "tried": "2026-10-15"
+      "tried": "2026-10-17"
     },
     {
       "date": "2026-10-24",
@@ -311,7 +303,7 @@
       "retail_usd": 300,
       "image": "",
       "link": "",
-      "tried": "2026-10-15"
+      "tried": "2026-10-17"
     },
     {
       "date": "2026-10-24",
@@ -320,7 +312,7 @@
       "retail_usd": 300,
       "image": "",
       "link": "",
-      "tried": "2026-10-15"
+      "tried": "2026-10-17"
     },
     {
       "date": "2026-10-24",
@@ -356,7 +348,7 @@
       "retail_usd": 155,
       "image": "",
       "link": "",
-      "tried": "2026-10-15"
+      "tried": "2026-10-17"
     },
     {
       "date": "2026-10-30",
@@ -365,7 +357,7 @@
       "retail_usd": 180,
       "image": "",
       "link": "",
-      "tried": "2026-10-15"
+      "tried": "2026-10-17"
     },
     {
       "date": "2026-10-30",
@@ -503,7 +495,7 @@
       "retail_usd": 145,
       "image": "",
       "link": "",
-      "tried": "2026-10-15"
+      "tried": "2026-10-17"
     },
     {
       "date": "2026-11-07",
@@ -512,7 +504,7 @@
       "retail_usd": 240,
       "image": "",
       "link": "",
-      "tried": "2026-10-15"
+      "tried": "2026-10-17"
     },
     {
       "date": "2026-11-07",
@@ -663,7 +655,7 @@
       "retail_usd": 205,
       "image": "",
       "link": "",
-      "tried": "2026-10-08"
+      "tried": "2026-10-17"
     },
     {
       "date": "2026-11-15",
@@ -1120,6 +1112,16 @@
       "retail_usd": 355,
       "image": "",
       "link": ""
+    },
+    {
+      "date": "2026-12-26",
+      "name": "Nike KD 6 \"Christmas\"",
+      "brand": "Nike",
+      "retail_usd": 135,
+      "image": "",
+      "link": "",
+      "sku": "IQ0145-600",
+      "colorway": "Light Crimson/Metallic Gold-Green Glow"
     },
     {
       "date": "2026-12-31",
