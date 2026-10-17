@@ -684,3 +684,8 @@ html[data-theme="dark"] .hx-trust-i{color:var(--mq,var(--neon))}
 html[data-theme="dark"] .hx-trust-i::after{background:var(--mq,var(--neon));opacity:.6}
 html[data-theme="dark"] .hx-trust-i b{color:var(--mq,var(--neon));text-shadow:0 0 10px color-mix(in srgb,var(--mq,#C6F432) 55%,transparent)}
 html[data-theme="dark"] .hx-trust-i,html[data-theme="dark"] .hx-trust-i b{transition:color 1.2s ease}
+
+/* solid red boxes become neon in dark mode (the tag and the Bid. Deal. Cop. box follow the marquee colour) */
+html[data-theme="dark"] :is(.hx-tag,.hx-cop){background:var(--mq,var(--neon));color:#0D0D0D;transition:background 1.2s ease}
+html[data-theme="dark"] :is(.steps li.on i,.ji,.chatsend,.stars button.on){background:var(--neon);color:#0D0D0D;border-color:var(--neon)}
+html[data-theme="dark"] .chatsend{box-shadow:var(--glow)}
