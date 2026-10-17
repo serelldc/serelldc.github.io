@@ -932,8 +932,8 @@
   function drawShare(kind, photo, noPhoto) {
     var W = 1080, H = 1920, cv = document.createElement('canvas'); cv.width = W; cv.height = H; var x = cv.getContext('2d');
     cardBase(x, W, H, kind === 'invite' || kind === 'sell');
-    if (kind === 'listing') {
-      var l = ST.shareListing;
+    if (kind === 'listing' || kind === 'sold') {
+      var l = ST.shareListing, sold = kind === 'sold';
       x.fillStyle = '#fff'; rrect(x, 80, 280, 920, 920, 36); x.fill();
       if (photo && !noPhoto) { x.save(); rrect(x, 80, 280, 920, 920, 36); x.clip(); fitImg(x, photo, 100, 300, 880, 880); x.restore(); }
       pill(x, l.condition, 300, 380, '#0D0D0D', '#F4F1EA', '700 36px Oxanium, sans-serif');
@@ -941,8 +941,15 @@
       x.fillStyle = '#F4F1EA'; x.font = '62px Audiowide, Arial Black, sans-serif';
       var y = wrapText(x, l.model, W / 2, 1310, 920, 76, 2);
       x.fillStyle = '#CFCABD'; x.font = '600 42px Oxanium, sans-serif'; x.fillText([sizeLabel(l.size_eu), l.city || 'UAE'].filter(Boolean).join('  ·  '), W / 2, y + 30);
-      x.fillStyle = '#E52C27'; x.font = '120px Audiowide, Arial Black, sans-serif'; x.fillText(aed(l.price_aed), W / 2, y + 190);
-      pill(x, 'Bid on Zenkicks  →', W / 2, 1700, '#E52C27', '#fff', '700 46px Oxanium, sans-serif');
+      if (sold) { // big tilted SOLD stamp over the photo; no price on the card
+        x.save(); x.translate(W / 2, 740); x.rotate(-0.2); x.strokeStyle = '#E52C27'; x.lineWidth = 16; rrect(x, -300, -110, 600, 220, 28); x.fillStyle = 'rgba(13,13,13,.72)'; x.fill(); x.stroke();
+        x.fillStyle = '#E52C27'; x.font = '170px Audiowide, Arial Black, sans-serif'; x.textAlign = 'center'; x.textBaseline = 'middle'; x.fillText('SOLD', 0, 8); x.restore(); x.textAlign = 'center'; x.textBaseline = 'alphabetic';
+        x.fillStyle = '#E52C27'; x.font = '100px Audiowide, Arial Black, sans-serif'; x.fillText('SOLD on Zenkicks', W / 2, y + 130);
+        pill(x, 'List yours FREE  →', W / 2, 1700, '#E52C27', '#fff', '700 46px Oxanium, sans-serif');
+      } else {
+        x.fillStyle = '#E52C27'; x.font = '120px Audiowide, Arial Black, sans-serif'; x.fillText(aed(l.price_aed), W / 2, y + 190);
+        pill(x, 'Bid on Zenkicks  →', W / 2, 1700, '#E52C27', '#fff', '700 46px Oxanium, sans-serif');
+      }
     } else if (kind === 'invite') {
       var who = !ST.inviteMain && ST.me && ST.me.username;
       pill(x, who ? 'INVITED BY @' + who.toUpperCase() : 'UAE SNEAKER TAMBAYAN', W / 2, 360, '#E52C27', '#fff', '700 42px Oxanium, sans-serif');
@@ -984,7 +991,7 @@
     return cv;
   }
   function openShare(kind) {
-    var src = kind === 'listing' ? (ST.shareListing && firstPhoto(ST.shareListing)) : kind === 'og' ? 'img/og-badge.webp?v=2' : (ST.shareCheck && checkPhotos(ST.shareCheck)[0]);
+    var src = kind === 'listing' || kind === 'sold' ? (ST.shareListing && firstPhoto(ST.shareListing)) : kind === 'og' ? 'img/og-badge.webp?v=2' : (ST.shareCheck && checkPhotos(ST.shareCheck)[0]);
     openModal('<div class="peek-top"><b>Share to your Story</b><button class="round" data-act="mclose" aria-label="Close">✕</button></div><div class="sharewrap"><div class="skeleton" style="height:100%"></div></div>');
     var fonts = ['64px Audiowide', '600 40px Oxanium', '700 40px Oxanium', '40px "Instrument Sans"', '100px "Russo One"'].map(function (f) { return document.fonts && document.fonts.load ? document.fonts.load(f).catch(function () {}) : null; });
     var srcP = kind === 'invite' || kind === 'sell' ? qrCanvas(inviteLink(ST.inviteMain), 12).catch(function () { return null; }) : loadImg(src);
@@ -1144,11 +1151,37 @@
         '<label class="field" for="s-cond">Condition<select id="s-cond" data-sf="condition">' + ['', 'New / DS', 'Pre-owned 9/10', 'Pre-owned 8/10', 'Pre-owned 7/10 or lower'].map(function (o) { return '<option value="' + o + '"' + (f.condition === o ? ' selected' : '') + '>' + (o || 'Select condition') + '</option>'; }).join('') + '</select></label>' +
         '<div class="two"><label class="field" for="s-price">Asking (AED)<input id="s-price" data-sf="price" type="number" inputmode="numeric" min="1" placeholder="e.g. 1150" value="' + esc(f.price) + '"></label>' +
         '<label class="field" for="s-city">Emirate<select id="s-city" data-sf="city">' + ['', 'Dubai', 'Sharjah', 'Abu Dhabi', 'Ajman', 'Ras Al Khaimah', 'Fujairah', 'Umm Al Quwain', 'Al Ain'].map(function (o) { return '<option value="' + o + '"' + (f.city === o ? ' selected' : '') + '>' + (o || 'Select') + '</option>'; }).join('') + '</select></label></div>' +
+        '<div id="sellhint" class="sellhint" hidden></div>' +
         '<label class="field" for="s-desc">Notes for buyers<textarea id="s-desc" data-sf="description" maxlength="1000" placeholder="Wear, flaws, what’s included (box, laces, receipt)">' + esc(f.description) + '</textarea></label>' +
         '<label class="card row" for="s-bids" style="padding:12px 14px;font-size:13px;line-height:1.4"><input id="s-bids" data-sf="accept" type="checkbox"' + (f.accept ? ' checked' : '') + ' style="width:20px;height:20px;accent-color:var(--red)"><span><b>Accept bids.</b> Buyers can offer below your asking price.</span></label>';
     }
+    if (S.step === 3) setTimeout(sellHintSoon, 60);
     return { html: '<div class="pad"><ol class="steps" aria-label="Progress">' + steps + '</ol>' + body + '<p class="err" id="sell-err" role="alert"></p></div>', bottom: sellBar() };
   };
+  // Sell form, step 3: price hint (StockX + similar pairs here) and how many members are hunting this pair
+  var SELLHINT = { t: null, seq: 0 };
+  function sellHintSoon() { clearTimeout(SELLHINT.t); SELLHINT.t = setTimeout(sellHint, 450); }
+  function sellHint() {
+    var box = document.getElementById('sellhint'); if (!box || !sb) return;
+    var S = ST.sell, model = (S.f.model || '').trim(), size = S.f.size ? Number(S.f.size) : null, n = ++SELLHINT.seq;
+    if (model.length < 3) { box.hidden = true; box.innerHTML = ''; return; }
+    var like = '%' + model.replace(/[\\%_]/g, '\\$&') + '%';
+    Promise.all([
+      loadPrices(),
+      sb.from('listings').select('price_aed').eq('status', 'active').ilike('model', like).limit(30).then(function (r) { return r.data || []; }, function () { return []; }),
+      sb.rpc('grail_demand', { p_model: model, p_size: size }).then(function (r) { return r.error ? 0 : (r.data || 0); }, function () { return 0; })
+    ]).then(function (a) {
+      if (n !== SELLHINT.seq) return;
+      var box2 = document.getElementById('sellhint'); if (!box2) return;
+      var p = a[0] && a[0][priceKey(model)], usd = p && (p.avg_usd || p.usd), rows = [];
+      if (usd) rows.push('💰 StockX average: <b>AED ' + usdToAed(usd).toLocaleString('en-US') + '</b> (all sizes, before shipping and customs).');
+      var ps = a[1].map(function (x) { return x.price_aed; }).filter(Boolean).sort(function (x, y) { return x - y; });
+      if (ps.length) rows.push('🏷️ ' + ps.length + ' similar pair' + (ps.length > 1 ? 's' : '') + ' on Zenkicks now: <b>' + aed(ps[0]) + (ps.length > 1 && ps[ps.length - 1] !== ps[0] ? ' – ' + aed(ps[ps.length - 1]) : '') + '</b>.');
+      if (a[2] > 0) rows.push('🔥 <b>' + a[2] + ' member' + (a[2] > 1 ? 's are' : ' is') + ' hunting this pair.</b> They get an alert the moment you publish.');
+      if (!rows.length) { box2.hidden = true; box2.innerHTML = ''; return; }
+      box2.innerHTML = rows.map(function (t) { return '<div>' + t + '</div>'; }).join(''); box2.hidden = false;
+    });
+  }
   function sellBar() {
     var S = ST.sell;
     return '<div class="actionbar">' + (S.step > 1 ? '<button class="btn ghost" data-act="sback">Back</button>' : '') +
@@ -1943,7 +1976,7 @@
         });
         break;
       case 'sold': case 'remove':
-        sb.from('listings').update({ status: a === 'sold' ? 'sold' : 'removed' }).eq('id', id).then(function (r) { if (r.error) return fail(r.error); toast(a === 'sold' ? 'Marked as sold. Congrats!' : 'Listing removed'); go('me'); });
+        sb.from('listings').update({ status: a === 'sold' ? 'sold' : 'removed' }).eq('id', id).then(function (r) { if (r.error) return fail(r.error); toast(a === 'sold' ? 'Marked as sold. Congrats!' : 'Listing removed'); var sl = ST.shareListing; go('me'); if (a === 'sold' && sl && sl.id === id) setTimeout(function () { openShare('sold'); }, 500); });
         break;
       case 'report': closeModal(); reportModal(el.getAttribute('data-type'), id); break;
       case 'dealdone':
@@ -2152,12 +2185,12 @@
     var t = e.target;
     if (t.id === 'l-code') { var d = t.value.replace(/\D/g, ''); if (d !== t.value) t.value = d; if (d.length === (C.OTP_LENGTH || 6)) { var vb = app.querySelector('[data-act="emailverify"]'); if (vb && !vb.disabled) vb.click(); } return; }
     if (t.id === 'q') { ST.marketQ = t.value; clearTimeout(ST.qTimer); ST.qTimer = setTimeout(function () { var w = document.getElementById('grid-wrap'); if (!w) return; marketGrid().then(function (h) { w.innerHTML = h; }).catch(fail); }, 350); return; }
-    if (t.getAttribute('data-sf')) { ST.sell.f[t.getAttribute('data-sf')] = t.type === 'checkbox' ? t.checked : t.value; return; }
+    if (t.getAttribute('data-sf')) { ST.sell.f[t.getAttribute('data-sf')] = t.type === 'checkbox' ? t.checked : t.value; if (/^(model|size)$/.test(t.getAttribute('data-sf'))) sellHintSoon(); return; }
     if (t.getAttribute('data-cf')) { ST.newCheck.f[t.getAttribute('data-cf')] = t.value; return; }
   });
   app.addEventListener('change', function (e) {
     var t = e.target;
-    if (t.getAttribute('data-sf')) { ST.sell.f[t.getAttribute('data-sf')] = t.type === 'checkbox' ? t.checked : t.value; return; }
+    if (t.getAttribute('data-sf')) { ST.sell.f[t.getAttribute('data-sf')] = t.type === 'checkbox' ? t.checked : t.value; if (/^(model|size)$/.test(t.getAttribute('data-sf'))) sellHintSoon(); return; }
     if (t.getAttribute('data-cf')) { ST.newCheck.f[t.getAttribute('data-cf')] = t.value; return; }
     if (t.id === 'chatfile' && t.files && t.files[0]) {
       compress(t.files[0], 1200, 0.78).then(function (b) { chatClearImg(); CHAT.img = { blob: b, url: URL.createObjectURL(b) }; var pv = document.getElementById('chatprev'); if (pv) pv.innerHTML = '<div class="chatprev"><img src="' + CHAT.img.url + '" alt="Photo to send"><button class="chatx" data-act="chatimgx" aria-label="Remove photo">✕</button></div>'; });
