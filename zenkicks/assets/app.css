@@ -689,3 +689,12 @@ html[data-theme="dark"] .hx-trust-i,html[data-theme="dark"] .hx-trust-i b{transi
 html[data-theme="dark"] :is(.hx-tag,.hx-cop){background:var(--mq,var(--neon));color:#0D0D0D;transition:background 1.2s ease}
 html[data-theme="dark"] :is(.steps li.on i,.ji,.chatsend,.stars button.on){background:var(--neon);color:#0D0D0D;border-color:var(--neon)}
 html[data-theme="dark"] .chatsend{box-shadow:var(--glow)}
+
+/* every box outline is neon and follows the marquee colour (changes every 5 minutes) */
+html[data-theme="dark"]{--box:var(--mq,var(--neon))}
+html[data-theme="dark"] :is(.card,.chip,.search,.seg,.modal,.ad-slot,.cod button,.ctext,.round,.thumbstrip button,.views button,.slot,.field input,.field select,.field textarea,.getapp,.vstamp,.tile){border-color:var(--box)}
+html[data-theme="dark"] .card[data-go="new-check"]{border-color:var(--box)}
+html[data-theme="dark"] .round:not(.on){border-color:var(--box)}
+html[data-theme="dark"] .votes button[data-on="false"]{border-color:var(--box)}
+html[data-theme="dark"] :is(.date,.avatar,.steps li.on i,.ji,.stars button.on){background:var(--box);border-color:var(--box)}
+html[data-theme="dark"] .date{box-shadow:0 0 16px color-mix(in srgb,var(--box) 45%,transparent)}
