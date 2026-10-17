@@ -514,7 +514,7 @@ h2{font-size:19px}
 .getapp{flex-shrink:0;height:36px;padding:0 12px 0 10px;border-radius:999px;border:1px solid rgba(243,240,232,.28);background:transparent;color:var(--bone);font-family:var(--label);font-weight:700;font-size:12px;letter-spacing:.07em;text-transform:uppercase;display:inline-flex;align-items:center;gap:6px;white-space:nowrap}
 .getapp svg{width:16px;height:16px;color:var(--brand)}
 @media (max-width:420px){.getapp{height:34px;padding:0 10px 0 8px;font-size:11px;letter-spacing:.04em;gap:4px}.getapp svg{width:15px;height:15px}.hd{gap:6px}}
-@media (max-width:370px){.getapp span{display:none}.getapp{padding:0 8px}}
+@media (max-width:420px){.getapp span{display:none}.getapp{padding:0 8px}}
 
 /* ---- v40: UAE drops ---- */
 .uaetag{display:inline-block;font:700 10px/1 var(--label);letter-spacing:.06em;padding:3px 5px;border-radius:5px;background:var(--green);color:#fff;vertical-align:1px}
@@ -587,3 +587,24 @@ h2{font-size:19px}
 /* unread @mentions on the Chat tab */
 .tabico{position:relative;display:inline-flex}
 .tbadge{position:absolute;top:-6px;right:-11px;min-width:18px;height:18px;padding:0 5px;border-radius:999px;background:var(--red);color:#fff;font-style:normal;font-family:var(--label);font-size:11px;font-weight:700;line-height:1;display:flex;align-items:center;justify-content:center;border:2px solid var(--ink);box-sizing:border-box}
+
+/* countdown chips + verdict stamp */
+.cd{display:inline-block;font-family:var(--label);font-weight:700;font-size:10px;letter-spacing:.06em;padding:2px 7px;border-radius:6px;background:var(--sand);color:#0D0D0D}
+.cd.soon{background:#F3C14B}
+.cd.hot{background:var(--coral)}
+.vstamp{align-self:flex-start;display:flex;flex-direction:column;align-items:center;padding:8px 16px;border:3px solid var(--green);color:var(--green);border-radius:10px;transform:rotate(-5deg)}
+.vstamp.fake{border-color:var(--red);color:var(--red)}
+.vstamp b{font-family:var(--display);font-weight:400;font-size:22px;line-height:1}
+.vstamp span{font-family:var(--label);font-weight:700;font-size:10px;letter-spacing:.1em;margin-top:3px}
+
+/* dark theme (default). Header and tab bar are already dark; --bone stays the light text colour. */
+html[data-theme="dark"]{--paper:#1C1C1C;--line:#2E2E2E;--muted:#A8A396;--mint:#1F2B24;--green:#2FB67F;color-scheme:dark}
+html[data-theme="dark"] .shell,html[data-theme="dark"] .modal,html[data-theme="dark"] .checker,html[data-theme="dark"] .invlink,html[data-theme="dark"] .shell[data-view] .main{background:#121212}
+html[data-theme="dark"] .main,html[data-theme="dark"] .modal,html[data-theme="dark"] .shell{color:#F3F0E8}
+html[data-theme="dark"] :is(.chip,.round,.search,.views button,.slot,.field input,.field select,.field textarea,.votes button,.ad-slot,.stars button,.cod button,.ctext,.kbd,.label-card,.thumbstrip button){background:var(--paper);color:#F3F0E8}
+html[data-theme="dark"] .round{border-color:#F3F0E8}
+html[data-theme="dark"] .round.on{background:var(--red);color:#fff;border-color:var(--red)}
+html[data-theme="dark"] .chip.on,html[data-theme="dark"] .btn.dark,html[data-theme="dark"] .pill.dark{background:#F3F0E8;color:#0D0D0D;border-color:#F3F0E8}
+html[data-theme="dark"] .btn.dark:disabled{background:var(--ink3);color:var(--sand)}
+html[data-theme="dark"] :is(.note,.spamtip,.card.pendbox,.card.grailbox,.itip.warn,.cmsg.mine .ctext){background:#2A2418;border-color:#4A3E22;color:#F3F0E8}
+html[data-theme="dark"] .cd.soon{color:#0D0D0D}
