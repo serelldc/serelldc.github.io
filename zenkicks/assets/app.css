@@ -661,3 +661,6 @@ html[data-theme="dark"] .tab.on{text-shadow:0 0 10px rgba(198,244,50,.6)}
 html[data-theme="dark"] .chip.on{box-shadow:0 0 0 1px var(--neon),var(--glow)}
 html[data-theme="dark"] .vstamp:not(.fake){box-shadow:var(--glow),inset var(--glow);text-shadow:0 0 10px rgba(198,244,50,.6)}
 html[data-theme="dark"] .getapp{box-shadow:0 0 12px rgba(198,244,50,.3);border-color:rgba(198,244,50,.5)}
+
+/* wordmark */
+html[data-theme="dark"] .brand span{color:var(--neon);text-shadow:0 0 12px rgba(198,244,50,.55)}
