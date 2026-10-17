@@ -1637,13 +1637,14 @@
       return { html: html, after: chatStart };
     });
   };
-  // open the chat on the newest message, and keep it there while photos finish loading (until you scroll up)
-  function chatStick() { var m = document.getElementById('main'); if (m && route().name === 'chat') m.scrollTop = m.scrollHeight; }
+  // open the chat on the newest message, and keep it there while photos finish loading (until you touch or scroll)
+  // (.main has smooth scrolling, so jump instantly: a smooth animation looks like "scrolling up" and gets cancelled)
+  function chatStick() { var m = document.getElementById('main'); if (m && route().name === 'chat') { m.style.scrollBehavior = 'auto'; m.scrollTop = m.scrollHeight; } }
   function chatStart() {
     var main = document.getElementById('main'), box = document.getElementById('chatlist');
     CHAT.stick = true; chatStick();
     if (box) box.addEventListener('load', function (e) { if (CHAT.stick && e.target && e.target.tagName === 'IMG') chatStick(); }, true);
-    if (main) main.addEventListener('scroll', function () { if (main.scrollHeight - main.scrollTop - main.clientHeight > 220) CHAT.stick = false; }, { passive: true });
+    if (main) ['wheel', 'touchmove', 'keydown', 'mousedown'].forEach(function (ev) { main.addEventListener(ev, function () { CHAT.stick = false; }, { passive: true, once: true }); });
     [60, 250, 700, 1500, 3000].forEach(function (t) { setTimeout(function () { if (CHAT.stick) chatStick(); }, t); });
     setTimeout(function () { CHAT.stick = false; }, 4000);
     clearInterval(CHAT.timer); CHAT.timer = setInterval(chatPoll, 4000);
