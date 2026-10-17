@@ -707,3 +707,8 @@ html[data-theme="dark"] .tbadge{background:var(--neon);color:#0D0D0D}
 html[data-theme="dark"] .creply{border-left-color:var(--box)}
 html[data-theme="dark"] .rchip.on{background:#1C1C1C;border-color:var(--box);color:var(--box)}
 html[data-theme="dark"] .card.notice{border-left-color:var(--box)}
+
+/* "Your sneakerheadlines" + crown: neon, follows the marquee colour */
+html[data-theme="dark"] .hx-top{color:var(--box);text-shadow:0 0 10px color-mix(in srgb,var(--box) 55%,transparent)}
+html[data-theme="dark"] .hx-top .hx-crown{color:var(--box);filter:drop-shadow(0 0 6px color-mix(in srgb,var(--box) 70%,transparent))}
+html[data-theme="dark"] .hx-top i{background:var(--box);opacity:.6}
