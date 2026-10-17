@@ -698,3 +698,12 @@ html[data-theme="dark"] .round:not(.on){border-color:var(--box)}
 html[data-theme="dark"] .votes button[data-on="false"]{border-color:var(--box)}
 html[data-theme="dark"] :is(.date,.avatar,.steps li.on i,.ji,.stars button.on){background:var(--box);border-color:var(--box)}
 html[data-theme="dark"] .date{box-shadow:0 0 16px color-mix(in srgb,var(--box) 45%,transparent)}
+
+/* fresh pairs / market boxes, @mentions: neon, following the marquee colour */
+html[data-theme="dark"] :is(.item,.safety,.rchip,.sugitem,.installcard,.oghook){border:1px solid var(--box)}
+html[data-theme="dark"] .cmention{color:var(--box)}
+html[data-theme="dark"] .cmention.me{background:var(--box);color:#0D0D0D}
+html[data-theme="dark"] .tbadge{background:var(--neon);color:#0D0D0D}
+html[data-theme="dark"] .creply{border-left-color:var(--box)}
+html[data-theme="dark"] .rchip.on{background:#1C1C1C;border-color:var(--box);color:var(--box)}
+html[data-theme="dark"] .card.notice{border-left-color:var(--box)}
