@@ -179,6 +179,14 @@
   // ------------------------------------------------------------------
   // shell
   // ------------------------------------------------------------------
+  // marquee colour: one neon colour for every 5-minute slot, same for everyone
+  var NEONS = ['#C6F432', '#22E6FF', '#FF3DCB', '#FF9A1F', '#B66DFF'];
+  function tickNeon() {
+    var slot = Math.floor(Date.now() / 300000);
+    document.documentElement.style.setProperty('--mq', NEONS[slot % NEONS.length]);
+    setTimeout(tickNeon, (slot + 1) * 300000 - Date.now() + 50);
+  }
+  tickNeon();
   function curTheme() { return document.documentElement.getAttribute('data-theme') === 'light' ? 'light' : 'dark'; }
   function setTheme(t) { document.documentElement.setAttribute('data-theme', t); store('theme', t); var m = document.querySelector('meta[name=theme-color]'); if (m) m.setAttribute('content', '#0D0D0D'); }
   function header(r) {

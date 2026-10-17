@@ -677,3 +677,10 @@ html[data-theme="dark"] .card[data-go="new-check"] .round{border-color:var(--neo
 /* neon date boxes and initial circles, dark text */
 html[data-theme="dark"] :is(.date,.avatar){background:var(--neon);color:#0D0D0D}
 html[data-theme="dark"] .date{box-shadow:var(--glow)}
+
+/* marquee: dark strip, neon text that changes colour every 5 minutes */
+html[data-theme="dark"] .hx-trust{background:#0D0D0D;border-bottom-color:var(--line)}
+html[data-theme="dark"] .hx-trust-i{color:var(--mq,var(--neon))}
+html[data-theme="dark"] .hx-trust-i::after{background:var(--mq,var(--neon));opacity:.6}
+html[data-theme="dark"] .hx-trust-i b{color:var(--mq,var(--neon));text-shadow:0 0 10px color-mix(in srgb,var(--mq,#C6F432) 55%,transparent)}
+html[data-theme="dark"] .hx-trust-i,html[data-theme="dark"] .hx-trust-i b{transition:color 1.2s ease}
