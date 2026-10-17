@@ -671,3 +671,5 @@ html[data-theme="dark"] .seg button{color:#CFCABD}
 html[data-theme="dark"] .seg button.on{background:var(--neon);color:#0D0D0D;box-shadow:var(--glow)}
 html[data-theme="dark"] :is(.rank,.hotrow .n){color:var(--neon)}
 html[data-theme="dark"] :is(.guide,.kv){border-bottom-color:var(--line)}
+html[data-theme="dark"] .card[data-go="new-check"]{border-color:rgba(198,244,50,.45)}
+html[data-theme="dark"] .card[data-go="new-check"] .round{border-color:var(--neon)!important;color:var(--neon)!important;box-shadow:var(--glow)}
