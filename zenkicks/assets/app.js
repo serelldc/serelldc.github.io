@@ -180,7 +180,7 @@
   // shell
   // ------------------------------------------------------------------
   // marquee colour: one neon colour for every 5-minute slot, same for everyone
-  var NEONS = ['#C6F432', '#22E6FF', '#FF3DCB', '#FF9A1F', '#B66DFF'];
+  var NEONS = ['#C6F432', '#22E6FF', '#FF3DCB', '#FF9A1F', '#B66DFF', '#FFFFFF', '#FFF01F', '#FF2A4D'];
   function tickNeon() {
     var slot = Math.floor(Date.now() / 300000);
     document.documentElement.style.setProperty('--mq', NEONS[slot % NEONS.length]);
