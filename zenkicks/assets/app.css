@@ -741,3 +741,6 @@ html[data-theme="dark"] .hx .cod button.cop.on{background:#E8642C;border-color:#
 html[data-theme="dark"] .hx .cod button.drp.on{background:#4A90C8;border-color:#4A90C8;color:#fff}
 html[data-theme="dark"] .cod.big .codbar{background:#2E4A63}
 html[data-theme="dark"] .cod.big .codn{color:#CFCABD}
+
+/* Legit check detail: size / offered / where chips had an inline white background */
+html[data-theme="dark"] .proof{background:var(--paper)!important;color:#F3F0E8;border:1px solid var(--box)!important}
