@@ -727,3 +727,9 @@ html[data-theme="dark"] .safety{border:1px solid var(--box)!important}
 html[data-theme="dark"] .vbadge{background:#1C1C1C;color:var(--box);border:1px solid var(--box)}
 html[data-theme="dark"] .vbadge.new{background:#1C1C1C;color:#CFCABD;border-color:var(--line)}
 html[data-theme="dark"] .joinlist,html[data-theme="dark"] .joinlist.light{color:#CFCABD}
+
+/* dark mode: ghost buttons and links that set dark text inline (Add to my grails, Close, Report, Story image...) */
+html[data-theme="dark"] [style*="color:var(--ink)"]{color:#F3F0E8!important}
+html[data-theme="dark"] .btn.ghost{border-color:var(--box)}
+html[data-theme="dark"] .btn.ghost[data-act="peekgrail"]{color:var(--box)!important;box-shadow:0 0 12px color-mix(in srgb,var(--box) 35%,transparent)}
+html[data-theme="dark"] [style*="border-top:1px solid #EFEBE2"]{border-top-color:var(--line)!important}
