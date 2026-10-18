@@ -715,3 +715,15 @@ html[data-theme="dark"] .hx-top i{background:var(--box);opacity:.6}
 
 /* "Drops." and "loud.": neon, follow the marquee colour */
 html[data-theme="dark"] :is(.hx-red,.hx-scrawl u){color:var(--box);text-shadow:0 2px 0 #000,0 0 16px color-mix(in srgb,var(--box) 60%,transparent)}
+
+/* dark mode: text that was hard-coded dark on light now reads on the dark boxes */
+html[data-theme="dark"] :is(.search input,.views button.on,.storerow,.chatin,.sugitem,.rchip,.creply b,.joinlist.light b,.kbd,.cod button){color:#F3F0E8}
+html[data-theme="dark"] .chatin{background:var(--paper)}
+html[data-theme="dark"] .invlink{background:#0D0D0D;color:var(--box);border-color:var(--box)}
+html[data-theme="dark"] .ji{color:#0D0D0D}
+html[data-theme="dark"] .storerow .m{color:#CFCABD}
+html[data-theme="dark"] .oghook,html[data-theme="dark"] .ogcard{background:#2A2418;color:#F3F0E8}
+html[data-theme="dark"] .safety{border:1px solid var(--box)!important}
+html[data-theme="dark"] .vbadge{background:#1C1C1C;color:var(--box);border:1px solid var(--box)}
+html[data-theme="dark"] .vbadge.new{background:#1C1C1C;color:#CFCABD;border-color:var(--line)}
+html[data-theme="dark"] .joinlist,html[data-theme="dark"] .joinlist.light{color:#CFCABD}
