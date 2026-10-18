@@ -733,3 +733,11 @@ html[data-theme="dark"] [style*="color:var(--ink)"]{color:#F3F0E8!important}
 html[data-theme="dark"] .btn.ghost{border-color:var(--box)}
 html[data-theme="dark"] .btn.ghost[data-act="peekgrail"]{color:var(--box)!important;box-shadow:0 0 12px color-mix(in srgb,var(--box) 35%,transparent)}
 html[data-theme="dark"] [style*="border-top:1px solid #EFEBE2"]{border-top-color:var(--line)!important}
+
+/* Cop / Drop votes: selected state and the bar on dark */
+html[data-theme="dark"] .cod button.cop.on{background:#3A1D10;border-color:#FF8A4C;color:#FFB68A}
+html[data-theme="dark"] .cod button.drp.on{background:#10283A;border-color:#5BB6FF;color:#A9D8FF}
+html[data-theme="dark"] .hx .cod button.cop.on{background:#E8642C;border-color:#E8642C;color:#fff}
+html[data-theme="dark"] .hx .cod button.drp.on{background:#4A90C8;border-color:#4A90C8;color:#fff}
+html[data-theme="dark"] .cod.big .codbar{background:#2E4A63}
+html[data-theme="dark"] .cod.big .codn{color:#CFCABD}
