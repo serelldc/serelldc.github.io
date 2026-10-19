@@ -744,3 +744,9 @@ html[data-theme="dark"] .cod.big .codn{color:#CFCABD}
 
 /* Legit check detail: size / offered / where chips had an inline white background */
 html[data-theme="dark"] .proof{background:var(--paper)!important;color:#F3F0E8;border:1px solid var(--box)!important}
+
+/* lighter on phones: no glow on repeated list items or the tab icon (kept on the Sell button, wordmark and marquee) */
+html[data-theme="dark"] :is(.date,.round.on,.cd.hot,.btn.ghost[data-act="peekgrail"],.chip.on){box-shadow:none}
+html[data-theme="dark"] .tab.on svg{filter:none}
+html[data-theme="dark"] .tab.on{text-shadow:none}
+html[data-theme="dark"] .hx-trust-i,html[data-theme="dark"] .hx-trust-i b,html[data-theme="dark"] :is(.hx-tag,.hx-cop){transition:none}
