@@ -1,5 +1,5 @@
 {
-  "updated": "2026-10-18",
+  "updated": "2026-10-19",
   "source": "SneakerFiles & Sneaker News release calendars (curated weekly); photos from KicksDB (StockX)",
   "items": [
     {
@@ -691,10 +691,26 @@
       "link": "https://stockx.pvxt.net/c/4722526/1023711/9060?u=https%3A%2F%2Fstockx.com%2Fnike-air-foamposite-pro-mummy-duck-oregon-pe"
     },
     {
+      "date": "2026-11-16",
+      "name": "Nike Ja 4 \"Blur\"",
+      "brand": "Nike",
+      "retail_usd": 130,
+      "image": "",
+      "link": ""
+    },
+    {
       "date": "2026-11-17",
       "name": "Nike LeBron 24 \"Stars\"",
       "brand": "Nike",
       "retail_usd": 200,
+      "image": "",
+      "link": ""
+    },
+    {
+      "date": "2026-11-19",
+      "name": "New Balance 992 Made in USA \"Black Afterglow\"",
+      "brand": "New Balance",
+      "retail_usd": null,
       "image": "",
       "link": ""
     },
@@ -921,6 +937,14 @@
       "name": "Social Status x Air Jordan 1 Low OG",
       "brand": "Jordan",
       "retail_usd": null,
+      "image": "",
+      "link": ""
+    },
+    {
+      "date": "2026-12-01",
+      "name": "Nike Ja 4 \"Wheat\"",
+      "brand": "Nike",
+      "retail_usd": 130,
       "image": "",
       "link": ""
     },
