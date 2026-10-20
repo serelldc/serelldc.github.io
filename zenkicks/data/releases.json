@@ -1,5 +1,5 @@
 {
-  "updated": "2026-10-19",
+  "updated": "2026-10-20",
   "source": "SneakerFiles & Sneaker News release calendars (curated weekly); photos from KicksDB (StockX)",
   "items": [
     {
@@ -45,7 +45,7 @@
       "retail_usd": null,
       "image": "",
       "link": "",
-      "tried": "2026-10-18"
+      "tried": "2026-10-20"
     },
     {
       "date": "2026-10-23",
@@ -75,7 +75,7 @@
       "retail_usd": 145,
       "image": "",
       "link": "",
-      "tried": "2026-10-18"
+      "tried": "2026-10-20"
     },
     {
       "date": "2026-10-23",
@@ -94,7 +94,7 @@
       "retail_usd": 140,
       "image": "",
       "link": "",
-      "tried": "2026-10-18"
+      "tried": "2026-10-20"
     },
     {
       "date": "2026-10-23",
@@ -156,11 +156,10 @@
       "name": "Nike KD 19 \"Halloween\"",
       "brand": "Nike",
       "retail_usd": 165,
-      "image": "",
-      "link": "",
+      "image": "https://images.stockx.com/images/Nike-KD-19-Halloween.jpg?fit=fill&bg=FFFFFF&w=600&h=430&fm=webp&auto=compress&q=90&dpr=2&trim=color&updated_at=1791838928",
+      "link": "https://stockx.pvxt.net/c/4722526/1023711/9060?u=https%3A%2F%2Fstockx.com%2Fnike-kd-19-halloween",
       "sku": "IO8112-600",
-      "colorway": "Bright Crimson/Lime Ice-Stadium Green-Dark Smoke Grey",
-      "tried": "2026-10-18"
+      "colorway": "Bright Crimson/Lime Ice-Stadium Green-Dark Smoke Grey"
     },
     {
       "date": "2026-10-23",
@@ -338,7 +337,7 @@
       "retail_usd": 190,
       "image": "",
       "link": "",
-      "tried": "2026-10-18"
+      "tried": "2026-10-20"
     },
     {
       "date": "2026-10-30",
@@ -348,7 +347,7 @@
       "image": "",
       "link": "",
       "sku": "IX5103-001",
-      "tried": "2026-10-18"
+      "tried": "2026-10-20"
     },
     {
       "date": "2026-10-31",
@@ -377,7 +376,7 @@
       "link": "",
       "sku": "IQ3864-600",
       "colorway": "University Red/Bright Crimson-Cobalt Bliss-Medium Olive",
-      "tried": "2026-10-18"
+      "tried": "2026-10-20"
     },
     {
       "date": "2026-11-01",
@@ -489,7 +488,7 @@
       "retail_usd": 210,
       "image": "",
       "link": "",
-      "tried": "2026-10-18"
+      "tried": "2026-10-20"
     },
     {
       "date": "2026-11-06",
@@ -516,7 +515,7 @@
       "retail_usd": 245,
       "image": "",
       "link": "",
-      "tried": "2026-10-18"
+      "tried": "2026-10-20"
     },
     {
       "date": "2026-11-07",
@@ -543,7 +542,7 @@
       "retail_usd": 235,
       "image": "",
       "link": "",
-      "tried": "2026-10-18"
+      "tried": "2026-10-20"
     },
     {
       "date": "2026-11-11",
@@ -562,7 +561,7 @@
       "retail_usd": 235,
       "image": "",
       "link": "",
-      "tried": "2026-10-18"
+      "tried": "2026-10-20"
     },
     {
       "date": "2026-11-11",
@@ -587,7 +586,7 @@
       "retail_usd": 130,
       "image": "",
       "link": "",
-      "tried": "2026-10-18"
+      "tried": "2026-10-20"
     },
     {
       "date": "2026-11-13",
@@ -596,7 +595,7 @@
       "retail_usd": 170,
       "image": "",
       "link": "",
-      "tried": "2026-10-18"
+      "tried": "2026-10-20"
     },
     {
       "date": "2026-11-13",
@@ -631,7 +630,7 @@
       "retail_usd": 180,
       "image": "",
       "link": "",
-      "tried": "2026-10-18"
+      "tried": "2026-10-20"
     },
     {
       "date": "2026-11-14",
@@ -667,7 +666,7 @@
       "retail_usd": 155,
       "image": "",
       "link": "",
-      "tried": "2026-10-08"
+      "tried": "2026-10-20"
     },
     {
       "date": "2026-11-16",
