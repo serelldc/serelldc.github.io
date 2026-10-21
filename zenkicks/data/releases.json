@@ -3,24 +3,6 @@
   "source": "SneakerFiles & Sneaker News release calendars (curated weekly); photos from KicksDB (StockX)",
   "items": [
     {
-      "date": "2026-10-20",
-      "name": "MENACE x adidas Adistar Control 5 \"Heat Signature\"",
-      "brand": "adidas",
-      "retail_usd": 180,
-      "image": "https://images.stockx.com/images/adidas-Adistar-Control-5-Menace-Heat-Signature.jpg?fit=fill&bg=FFFFFF&w=600&h=430&fm=webp&auto=compress&q=90&dpr=2&trim=color&updated_at=1791486892",
-      "link": "https://stockx.pvxt.net/c/4722526/1023711/9060?u=https%3A%2F%2Fstockx.com%2Fadidas-adistar-control-5-menace-heat-signature",
-      "sku": "LB0086"
-    },
-    {
-      "date": "2026-10-20",
-      "name": "Reebok Angel Reese 1 \"Reese's\"",
-      "brand": "Reebok",
-      "retail_usd": 160,
-      "image": "https://images.stockx.com/images/Reebok-Angel-Reese-1-Reeses.jpg?fit=fill&bg=FFFFFF&w=600&h=430&fm=webp&auto=compress&q=90&dpr=2&trim=color&updated_at=1789759156",
-      "link": "https://stockx.pvxt.net/c/4722526/1023711/9060?u=https%3A%2F%2Fstockx.com%2Freebok-angel-reese-1-reeses",
-      "sku": "100290074"
-    },
-    {
       "date": "2026-10-21",
       "name": "Nike Air Force 1 Low Pony Hair \"Team Red\"",
       "brand": "Nike",
@@ -56,7 +38,7 @@
       "link": "",
       "sku": "IU8266-400",
       "colorway": "Binary Blue/Rust Pink-Sail-Steel",
-      "tried": "2026-10-19"
+      "tried": "2026-10-21"
     },
     {
       "date": "2026-10-23",
@@ -106,6 +88,16 @@
     },
     {
       "date": "2026-10-23",
+      "name": "Nike Air Griffey Max 1 \"Cincinnati Reds\"",
+      "brand": "Nike",
+      "retail_usd": 180,
+      "image": "https://images.stockx.com/images/Nike-Air-Griffey-Max-1-Cincinnati-Reds-Product.jpg?fit=fill&bg=FFFFFF&w=600&h=430&fm=webp&auto=compress&q=90&dpr=2&trim=color&updated_at=1788672032",
+      "link": "https://stockx.pvxt.net/c/4722526/1023711/9060?u=https%3A%2F%2Fstockx.com%2Fnike-air-griffey-max-1-cincinnati-reds",
+      "sku": "JA1091-100",
+      "colorway": "White/Varsity Red-Black"
+    },
+    {
+      "date": "2026-10-23",
       "name": "Nike Air Max Plus \"Spider Web\"",
       "brand": "Nike",
       "retail_usd": 170,
@@ -120,7 +112,7 @@
       "retail_usd": 150,
       "image": "",
       "link": "",
-      "tried": "2026-10-19"
+      "tried": "2026-10-21"
     },
     {
       "date": "2026-10-23",
@@ -168,7 +160,7 @@
       "retail_usd": 145,
       "image": "",
       "link": "",
-      "tried": "2026-10-19"
+      "tried": "2026-10-21"
     },
     {
       "date": "2026-10-23",
@@ -177,7 +169,7 @@
       "retail_usd": 130,
       "image": "",
       "link": "",
-      "tried": "2026-10-19"
+      "tried": "2026-10-21"
     },
     {
       "date": "2026-10-23",
@@ -188,7 +180,7 @@
       "link": "",
       "sku": "KJ3021",
       "colorway": "Red/Silver-Black",
-      "tried": "2026-10-19"
+      "tried": "2026-10-21"
     },
     {
       "date": "2026-10-24",
@@ -221,7 +213,7 @@
       "retail_usd": 170,
       "image": "",
       "link": "",
-      "tried": "2026-10-19"
+      "tried": "2026-10-21"
     },
     {
       "date": "2026-10-24",
@@ -274,7 +266,7 @@
       "retail_usd": 300,
       "image": "",
       "link": "",
-      "tried": "2026-10-19"
+      "tried": "2026-10-21"
     },
     {
       "date": "2026-10-24",
@@ -283,7 +275,7 @@
       "retail_usd": 300,
       "image": "",
       "link": "",
-      "tried": "2026-10-19"
+      "tried": "2026-10-21"
     },
     {
       "date": "2026-10-24",
@@ -307,8 +299,9 @@
       "name": "New Balance 992 Made in USA \"Medusa Green\"",
       "brand": "New Balance",
       "retail_usd": 200,
-      "image": "",
-      "link": ""
+      "image": "https://images.stockx.com/images/New-Balance-992-MiUSA-Medusa-Green-Cortado.jpg?fit=fill&bg=FFFFFF&w=600&h=430&fm=webp&auto=compress&q=90&dpr=2&trim=color&updated_at=1787944061",
+      "link": "https://stockx.pvxt.net/c/4722526/1023711/9060?u=https%3A%2F%2Fstockx.com%2Fnew-balance-992-miusa-medusa-green-cortado",
+      "sku": "U992BB"
     },
     {
       "date": "2026-10-30",
@@ -327,7 +320,7 @@
       "retail_usd": 155,
       "image": "",
       "link": "",
-      "tried": "2026-10-19"
+      "tried": "2026-10-21"
     },
     {
       "date": "2026-10-30",
@@ -336,7 +329,7 @@
       "retail_usd": 180,
       "image": "",
       "link": "",
-      "tried": "2026-10-19"
+      "tried": "2026-10-21"
     },
     {
       "date": "2026-10-30",
@@ -388,6 +381,16 @@
     },
     {
       "date": "2026-11-01",
+      "name": "Nike Air Max 90 \"Light Orewood Brown\"",
+      "brand": "Nike",
+      "retail_usd": 145,
+      "image": "https://images.stockx.com/images/Nike-Air-Max-90-Light-Orewood-Brown-Blue-Tint-Sail.jpg?fit=fill&bg=FFFFFF&w=600&h=430&fm=webp&auto=compress&q=90&dpr=2&trim=color&updated_at=1791925892",
+      "link": "https://stockx.pvxt.net/c/4722526/1023711/9060?u=https%3A%2F%2Fstockx.com%2Fnike-air-max-90-light-orewood-brown-blue-tint-sail",
+      "sku": "IX8056-104",
+      "colorway": "Light Orewood Brown/Blue Tint-Sail-Neutral Olive"
+    },
+    {
+      "date": "2026-11-01",
       "name": "Nike Kobe 3 Low Protro \"Black\"",
       "brand": "Nike",
       "retail_usd": 190,
@@ -408,8 +411,9 @@
       "name": "Nike Air Griffey Max 1 \"Cincinnati Reds\"",
       "brand": "Nike",
       "retail_usd": null,
-      "image": "",
-      "link": ""
+      "image": "https://images.stockx.com/images/Nike-Air-Griffey-Max-1-Cincinnati-Reds-Product.jpg?fit=fill&bg=FFFFFF&w=600&h=430&fm=webp&auto=compress&q=90&dpr=2&trim=color&updated_at=1788672032",
+      "link": "https://stockx.pvxt.net/c/4722526/1023711/9060?u=https%3A%2F%2Fstockx.com%2Fnike-air-griffey-max-1-cincinnati-reds",
+      "sku": "354912-106"
     },
     {
       "date": "2026-11-05",
@@ -436,8 +440,9 @@
       "name": "Air Jordan 1 Low Golf Spiked \"Space Jam\"",
       "brand": "Jordan",
       "retail_usd": null,
-      "image": "",
-      "link": ""
+      "image": "https://images.stockx.com/images/Air-Jordan-1-Low-Golf-Spiked-Space-Jam.jpg?fit=fill&bg=FFFFFF&w=600&h=430&fm=webp&auto=compress&q=90&dpr=2&trim=color&updated_at=1791578750",
+      "link": "https://stockx.pvxt.net/c/4722526/1023711/9060?u=https%3A%2F%2Fstockx.com%2Fair-jordan-1-low-golf-spiked-space-jam",
+      "sku": "JF1940-001"
     },
     {
       "date": "2026-11-05",
@@ -916,6 +921,16 @@
       "retail_usd": 240,
       "image": "",
       "link": ""
+    },
+    {
+      "date": "2026-11-28",
+      "name": "Nike Air Max Plus \"Cool Grey Diffused Blue\"",
+      "brand": "Nike",
+      "retail_usd": 190,
+      "image": "",
+      "link": "",
+      "sku": "IQ6605-001",
+      "colorway": "Black/Cool Grey-Diffused Blue"
     },
     {
       "date": "2026-11-28",
