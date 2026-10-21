@@ -21,8 +21,11 @@ import { discoverDrops } from './discover-drops.mjs';
 const KEY = process.env.KICKSDB_API_KEY;
 const API = 'https://api.kicks.dev/v3';
 const today = new Date(Date.now() + 4 * 3600 * 1000).toISOString().slice(0, 10); // Dubai date
-const MAX_PHOTO_LOOKUPS = 15;
-const MAX_PRICE_LOOKUPS = 8;   // deal meter: new models looked up per run
+const MAX_PHOTO_LOOKUPS = 12;
+const MAX_PRICE_LOOKUPS = 6;   // deal meter: models listed on the market, looked up per run
+const MAX_CATALOG_LOOKUPS = 5; // popular pairs (what's hot + drops in the next 2 weeks), so sell hints work for common models
+const PHOTO_WINDOW_DAYS = 21;  // StockX rarely has a photo for drops further away; skipping them saves free-plan requests
+// free plan = 1,000 requests/month; worst case per day is 12 + 1 + 6 + 5 = 24 (about 720 a month)
 const daysSince = (ymd) => (Date.parse(today) - Date.parse(ymd)) / 86400000;
 
 if (!KEY) { console.log('No KICKSDB_API_KEY set; keeping current data.'); process.exit(0); }
@@ -69,6 +72,7 @@ async function releases() {
   for (const d of file.items) if (d.image && !realImg(d.image)) { delete d.image; console.log(`  removed placeholder photo: ${d.name}`); }
   for (const d of file.items) {
     if (d.image || hasOwn(d.name) || looked >= MAX_PHOTO_LOOKUPS) continue;
+    if (-daysSince(d.date) > PHOTO_WINDOW_DAYS) continue; // too far away: look again when it is within 3 weeks
     if (d.tried && daysSince(d.tried) < 2) continue; // StockX rarely adds a photo overnight; saves free-plan requests
     looked++; d.tried = today;
     const r = await get('/stockx/products', { query: d.name, limit: '3' });
@@ -143,12 +147,17 @@ async function prices() {
   const ls = await activeListings();
   const models = new Map();
   for (const l of ls) { const k = priceKey(l.model); if (k && !models.has(k)) models.set(k, l); }
-  let looked = 0, found = 0;
-  for (const [k, l] of models) {
+  // popular pairs: current best sellers + drops in the next 2 weeks (names only, no brand field needed)
+  const catalog = new Map();
+  try { for (const h of (JSON.parse(await readFile('data/hot.json', 'utf8')).online || [])) { const k = priceKey(h.name); if (k && !models.has(k) && !catalog.has(k)) catalog.set(k, { model: h.name, brand: h.brand }); } } catch { /* no hot file */ }
+  try { for (const d of (JSON.parse(await readFile('data/releases.json', 'utf8')).items || [])) { if (-daysSince(d.date) > 14) continue; const k = priceKey(d.name); if (k && !models.has(k) && !catalog.has(k)) catalog.set(k, { model: d.name, brand: d.brand }); } } catch { /* no releases file */ }
+  let looked = 0, found = 0, lookedC = 0;
+  for (const [k, l] of [...models, ...catalog]) {
+    const isCat = !models.has(k);
     const have = file.items[k];
-    if (have && daysSince(have.at) < (have.none ? 3 : 7)) continue;
-    if (looked >= MAX_PRICE_LOOKUPS) break;
-    looked++;
+    if (have && daysSince(have.at) < (isCat ? (have.none ? 14 : 10) : (have.none ? 7 : 7))) continue;
+    if (isCat ? lookedC >= MAX_CATALOG_LOOKUPS : looked >= MAX_PRICE_LOOKUPS) continue;
+    if (isCat) lookedC++; else looked++;
     const name = clean(l.model);
     const q = l.brand && !name.toLowerCase().includes(String(l.brand).toLowerCase()) ? l.brand + ' ' + name : name;
     const r = await get('/stockx/products', { query: q, limit: '5' });
@@ -159,10 +168,10 @@ async function prices() {
     } else { file.items[k] = { none: true, at: today }; console.log(`  no StockX price: ${name}`); }
   }
   // forget models no longer for sale after a month
-  for (const k of Object.keys(file.items)) if (!models.has(k) && daysSince(file.items[k].at) > 30) delete file.items[k];
+  for (const k of Object.keys(file.items)) if (!models.has(k) && !catalog.has(k) && daysSince(file.items[k].at) > 30) delete file.items[k];
   file.updated = today; file.source = 'KicksDB (StockX average resale, all sizes)';
   await writeFile('data/prices.json', JSON.stringify(file, null, 2) + '\n');
-  console.log(`Deal meter: ${models.size} models on the market, ${found}/${looked} new prices.`);
+  console.log(`Deal meter: ${models.size} market + ${catalog.size} popular models, ${found} new prices (${looked} market + ${lookedC} popular lookups).`);
 }
 
 try { await releases(); } catch (e) { console.log('Calendar step failed:', e.message); }
