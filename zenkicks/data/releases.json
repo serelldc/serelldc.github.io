@@ -1,5 +1,5 @@
 {
-  "updated": "2026-10-20",
+  "updated": "2026-10-21",
   "source": "SneakerFiles & Sneaker News release calendars (curated weekly); photos from KicksDB (StockX)",
   "items": [
     {
@@ -303,6 +303,14 @@
       "link": "https://stockx.pvxt.net/c/4722526/1023711/9060?u=https%3A%2F%2Fstockx.com%2Fair-jordan-41-university-red"
     },
     {
+      "date": "2026-10-29",
+      "name": "New Balance 992 Made in USA \"Medusa Green\"",
+      "brand": "New Balance",
+      "retail_usd": 200,
+      "image": "",
+      "link": ""
+    },
+    {
       "date": "2026-10-30",
       "name": "Air Jordan 3 \"Fireside\"",
       "brand": "Jordan",
@@ -396,6 +404,14 @@
       "sku": "UN442SMF"
     },
     {
+      "date": "2026-11-03",
+      "name": "Nike Air Griffey Max 1 \"Cincinnati Reds\"",
+      "brand": "Nike",
+      "retail_usd": null,
+      "image": "",
+      "link": ""
+    },
+    {
       "date": "2026-11-05",
       "name": "Air Jordan 1 Low \"Lola Bunny\"",
       "brand": "Jordan",
@@ -414,6 +430,14 @@
       "link": "https://stockx.pvxt.net/c/4722526/1023711/9060?u=https%3A%2F%2Fstockx.com%2Fair-jordan-1-low-se-space-jam-magic-ball",
       "sku": "IX6375-001",
       "colorway": "Black/Action Green-Yellow Zest-Metallic Silver"
+    },
+    {
+      "date": "2026-11-05",
+      "name": "Air Jordan 1 Low Golf Spiked \"Space Jam\"",
+      "brand": "Jordan",
+      "retail_usd": null,
+      "image": "",
+      "link": ""
     },
     {
       "date": "2026-11-05",
@@ -1072,6 +1096,14 @@
       "link": "",
       "sku": "IU7852-300",
       "colorway": "Green Apple/Bright Cactus-Varsity Red-Imperial Blue"
+    },
+    {
+      "date": "2026-12-17",
+      "name": "New Balance 992 Made in USA \"Sport Green Interstellar\"",
+      "brand": "New Balance",
+      "retail_usd": null,
+      "image": "",
+      "link": ""
     },
     {
       "date": "2026-12-19",
