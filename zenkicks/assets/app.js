@@ -397,6 +397,20 @@
     return (ST.pricesP = fetch('data/prices.json?v=' + dubaiToday(), { cache: 'no-cache' }).then(function (r) { return r.ok ? r.json() : null; }).catch(function () { return null; })
       .then(function (p) { ST.prices = (p && p.items) || {}; return ST.prices; }));
   }
+  // find the StockX price for what a member typed: exact key first, else a very close match (same model numbers, 75%+ same words)
+  function pwords(t) { return String(t || '').toLowerCase().replace(/[^a-z0-9 ]/g, ' ').split(/\s+/).filter(function (w) { return w && (w.length > 2 || /^\d+$/.test(w)) && ['air', 'nike', 'the', 'and', 'retro'].indexOf(w) < 0; }); }
+  function priceFor(model) {
+    var pr = ST.prices || {}, ex = pr[priceKey(model)]; if (ex && !ex.none) return ex;
+    var w = pwords(model); if (w.length < 2) return null;
+    var nums = function (a) { return a.filter(function (x) { return /^\d+$/.test(x); }).sort().join(','); }, wn = nums(w), best = null, bs = 0;
+    Object.keys(pr).forEach(function (k) {
+      var it = pr[k]; if (!it || it.none || !(it.avg_usd || it.usd)) return;
+      var kw = pwords(k); if (kw.length < 2 || nums(kw) !== wn) return;
+      var inter = kw.filter(function (x) { return w.indexOf(x) > -1; }).length, sc = inter / (kw.length + w.length - inter);
+      if (sc >= 0.75 && sc > bs) { bs = sc; best = it; }
+    });
+    return best;
+  }
   function priceKey(s) { return String(s || '').replace(/[“”"]/g, '').replace(/\s+/g, ' ').trim().toLowerCase(); }
   function dealMeter(l) {
     var p = ST.prices && ST.prices[priceKey(l.model)];
@@ -855,7 +869,7 @@
     var m = (ST.newColl.f.model || '').trim(); if (m.length < 3) { box.hidden = true; return; }
     loadPrices().then(function (pr) {
       var box2 = document.getElementById('collhint'); if (!box2) return;
-      var p = pr && pr[priceKey(m)], usd = p && (p.avg_usd || p.usd);
+      var p = pr && priceFor(m), usd = p && (p.avg_usd || p.usd);
       if (!usd) { box2.hidden = true; return; }
       var v = usdToAed(usd);
       box2.innerHTML = '💰 StockX average: <b>AED ' + v.toLocaleString('en-US') + '</b> <button class="link" style="padding:0 0 0 6px" data-act="collusex" data-v="' + v + '">Use this</button>'; box2.hidden = false;
@@ -1302,7 +1316,7 @@
     ]).then(function (a) {
       if (n !== SELLHINT.seq) return;
       var box2 = document.getElementById('sellhint'); if (!box2) return;
-      var p = a[0] && a[0][priceKey(model)], usd = p && (p.avg_usd || p.usd), rows = [];
+      var p = a[0] && priceFor(model), usd = p && (p.avg_usd || p.usd), rows = [];
       if (usd) rows.push('💰 StockX average: <b>AED ' + usdToAed(usd).toLocaleString('en-US') + '</b> (all sizes, before shipping and customs).');
       var ps = a[1].map(function (x) { return x.price_aed; }).filter(Boolean).sort(function (x, y) { return x - y; });
       if (ps.length) rows.push('🏷️ ' + ps.length + ' similar pair' + (ps.length > 1 ? 's' : '') + ' on Zenkicks now: <b>' + aed(ps[0]) + (ps.length > 1 && ps[ps.length - 1] !== ps[0] ? ' – ' + aed(ps[ps.length - 1]) : '') + '</b>.');
