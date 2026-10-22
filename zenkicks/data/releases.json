@@ -1,16 +1,7 @@
 {
-  "updated": "2026-10-21",
+  "updated": "2026-10-22",
   "source": "SneakerFiles & Sneaker News release calendars (curated weekly); photos from KicksDB (StockX)",
   "items": [
-    {
-      "date": "2026-10-21",
-      "name": "Nike Air Force 1 Low Pony Hair \"Team Red\"",
-      "brand": "Nike",
-      "retail_usd": 140,
-      "image": "https://images.stockx.com/images/Nike-Air-Force-1-Low-Technicolor-Tale-Team-Red-Pony-Hair.jpg?fit=fill&bg=FFFFFF&w=600&h=430&fm=webp&auto=compress&q=90&dpr=2&trim=color&updated_at=1791233933",
-      "link": "https://stockx.pvxt.net/c/4722526/1023711/9060?u=https%3A%2F%2Fstockx.com%2Fnike-air-force-1-low-technicolor-tale-team-red-pony-hair",
-      "sku": "IR1940-600"
-    },
     {
       "date": "2026-10-22",
       "name": "NIGO x J-Hope x Nike Air Force 1 '01",
@@ -27,7 +18,7 @@
       "retail_usd": null,
       "image": "",
       "link": "",
-      "tried": "2026-10-20"
+      "tried": "2026-10-22"
     },
     {
       "date": "2026-10-23",
@@ -57,7 +48,7 @@
       "retail_usd": 145,
       "image": "",
       "link": "",
-      "tried": "2026-10-20"
+      "tried": "2026-10-22"
     },
     {
       "date": "2026-10-23",
@@ -76,7 +67,7 @@
       "retail_usd": 140,
       "image": "",
       "link": "",
-      "tried": "2026-10-20"
+      "tried": "2026-10-22"
     },
     {
       "date": "2026-10-23",
@@ -338,7 +329,7 @@
       "retail_usd": 190,
       "image": "",
       "link": "",
-      "tried": "2026-10-20"
+      "tried": "2026-10-22"
     },
     {
       "date": "2026-10-30",
@@ -348,7 +339,7 @@
       "image": "",
       "link": "",
       "sku": "IX5103-001",
-      "tried": "2026-10-20"
+      "tried": "2026-10-22"
     },
     {
       "date": "2026-10-31",
@@ -377,7 +368,7 @@
       "link": "",
       "sku": "IQ3864-600",
       "colorway": "University Red/Bright Crimson-Cobalt Bliss-Medium Olive",
-      "tried": "2026-10-20"
+      "tried": "2026-10-22"
     },
     {
       "date": "2026-11-01",
@@ -517,7 +508,7 @@
       "retail_usd": 210,
       "image": "",
       "link": "",
-      "tried": "2026-10-20"
+      "tried": "2026-10-22"
     },
     {
       "date": "2026-11-06",
@@ -526,7 +517,7 @@
       "retail_usd": 145,
       "image": "",
       "link": "",
-      "tried": "2026-10-19"
+      "tried": "2026-10-22"
     },
     {
       "date": "2026-11-07",
@@ -535,7 +526,7 @@
       "retail_usd": 240,
       "image": "",
       "link": "",
-      "tried": "2026-10-19"
+      "tried": "2026-10-22"
     },
     {
       "date": "2026-11-07",
@@ -544,7 +535,7 @@
       "retail_usd": 245,
       "image": "",
       "link": "",
-      "tried": "2026-10-20"
+      "tried": "2026-10-22"
     },
     {
       "date": "2026-11-07",
@@ -571,7 +562,7 @@
       "retail_usd": 235,
       "image": "",
       "link": "",
-      "tried": "2026-10-20"
+      "tried": "2026-10-22"
     },
     {
       "date": "2026-11-11",
@@ -590,7 +581,7 @@
       "retail_usd": 235,
       "image": "",
       "link": "",
-      "tried": "2026-10-20"
+      "tried": "2026-10-22"
     },
     {
       "date": "2026-11-11",
@@ -1211,6 +1202,24 @@
       "retail_usd": 215,
       "image": "",
       "link": ""
+    },
+    {
+      "date": "2026-12-31",
+      "name": "Corteiz x Nike Shox R419",
+      "brand": "Nike",
+      "retail_usd": 190,
+      "image": "",
+      "link": ""
+    },
+    {
+      "date": "2026-12-31",
+      "name": "Nike Kobe 9 EM Low Protro \"Philippines\"",
+      "brand": "Nike",
+      "retail_usd": 190,
+      "image": "",
+      "link": "",
+      "sku": "IO6262-600",
+      "colorway": "Laser Crimson/Silver-Obsidian"
     }
   ]
 }
