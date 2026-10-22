@@ -355,9 +355,17 @@
     var soon = up.filter(function (d) { return dayDiff(d.date) <= 30; });
     return (soon.length ? soon : up).slice().sort(function (a, b) { return hypeScore(b) - hypeScore(a); });
   }
+  // the hyped picks change every day (still the hottest ones): top 3 always shown, the rest rotate from the next 11, and the hero drop rotates among the top 5
+  function dayNo() { return Math.floor(Date.parse(dubaiToday() + 'T00:00:00Z') / 864e5); }
+  function dayHash(str) { var h = dayNo() * 2654435761 >>> 0; for (var i = 0; i < str.length; i++) h = (h * 31 + str.charCodeAt(i)) >>> 0; return h; }
+  function hypeFeatured(up) {
+    var r = hypeRanked(up).filter(function (d) { return releaseImg(d); }).slice(0, 5);
+    return r.length ? r[dayNo() % r.length] : hypeRanked(up)[0];
+  }
   function homeDrops(up) {
     if (ST.allDrops) return up.slice(0, 40);
-    return hypeRanked(up).slice(0, 8).sort(function (a, b) { return a.date < b.date ? -1 : a.date > b.date ? 1 : 0; });
+    var r = hypeRanked(up), top = r.slice(0, 3), rest = r.slice(3, 14).sort(function (a, b) { return dayHash(a.name + a.date) - dayHash(b.name + b.date); }).slice(0, 5);
+    return top.concat(rest).sort(function (a, b) { return a.date < b.date ? -1 : a.date > b.date ? 1 : 0; });
   }
   function priceLine(usd) { return usd ? 'AED ' + usdToAed(usd).toLocaleString('en-US') + ' <span style="opacity:.7">(US$' + usd + ')</span>' : 'Price TBA'; }
   function stamp() { return 'Updated ' + (ST.releases.updated || '—') + ' · auto-refreshes daily'; }
@@ -800,7 +808,7 @@
   function paintCod(k) { app.querySelectorAll('.cod').forEach(function (el) { if (el.getAttribute('data-k') === k) el.outerHTML = codBtns(k, el.classList.contains('big')); }); }
 
   // ---- Daily Heat Check: one hyped pair a day for everyone (Cop or Drop); a vote = a streak day ----
-  function heatPool() { return hypeRanked(upcoming()).filter(function (d) { return releaseImg(d); }).slice(0, 14); }
+  function heatPool() { var f = hypeFeatured(upcoming()), fk = f ? f.name + f.date : ''; return hypeRanked(upcoming()).filter(function (d) { return releaseImg(d) && d.name + d.date !== fk; }).slice(0, 14); }
   function heatPick() { var p = heatPool(); if (!p.length) return null; return p[Math.floor(Date.parse(dubaiToday() + 'T00:00:00Z') / 864e5) % p.length]; }
   function heatLoad() {
     if (!sb || !uid()) { ST.heat = null; return Promise.resolve(); }
@@ -936,9 +944,9 @@
     var homeData = hc ? Promise.resolve(hc) : sb ? fetchHome().catch(function () { return { listings: [], stats: {} }; }) : Promise.resolve({ listings: [], stats: {} });
     if (uid() && (!ST.grailHits || Date.now() - (ST.grailAt || 0) > 120000)) loadGrailHits().then(function () { if (route().name === 'drops' && grailNew().length && !app.querySelector('.grailbox')) render(true); });
     return Promise.all([loadFeeds(), homeData, heatLoad()]).then(function (a) {
-      var codKeys = homeDrops(upcoming()).concat((hypeRanked(upcoming()) || []).slice(0, 1)).concat(heatPick() ? [heatPick()] : []).map(function (d) { return d.name + d.date; });
+      var codKeys = homeDrops(upcoming()).concat([hypeFeatured(upcoming())]).concat(heatPick() ? [heatPick()] : []).map(function (d) { return d.name + d.date; });
       var listings = a[1].listings || [], stats = a[1].stats || {};
-      var up = upcoming(); var next = hypeRanked(up)[0]; var rem = store('rem') || {};
+      var up = upcoming(); var next = hypeFeatured(up); var rem = store('rem') || {};
       var rows = homeDrops(up).map(function (d) {
         var dt = new Date(d.date + 'T00:00:00Z'); var on = !!rem[d.name + d.date]; var im = releaseImg(d);
         return '<div class="card drop" data-peek="r|' + esc(d.name + d.date) + '"><div class="date"><span>' + MON[dt.getUTCMonth()] + '</span><b>' + ('0' + dt.getUTCDate()).slice(-2) + '</b></div>' +
