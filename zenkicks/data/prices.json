@@ -142,8 +142,43 @@
       "avg_usd": 200,
       "link": "https://stockx.pvxt.net/c/4722526/1023711/9060?u=https%3A%2F%2Fstockx.com%2Fair-jordan-4-retro-toro-bravo-2026",
       "at": "2026-10-22"
+    },
+    "jordan 8 retro chrome (2026)": {
+      "title": "Jordan 8 Retro Chrome (2026)",
+      "usd": 185,
+      "avg_usd": 237,
+      "link": "https://stockx.pvxt.net/c/4722526/1023711/9060?u=https%3A%2F%2Fstockx.com%2Fair-jordan-8-retro-chrome-2026",
+      "at": "2026-10-23"
+    },
+    "nike air force 1 low '07 white": {
+      "title": "Nike Air Force 1 Low '07 White",
+      "usd": 73,
+      "avg_usd": 116,
+      "link": "https://stockx.pvxt.net/c/4722526/1023711/9060?u=https%3A%2F%2Fstockx.com%2Fnike-air-force-1-low-white-07",
+      "at": "2026-10-23"
+    },
+    "jordan 4 retro black cat (2025)": {
+      "title": "Jordan 4 Retro Black Cat (2025)",
+      "usd": 289,
+      "avg_usd": 417,
+      "link": "https://stockx.pvxt.net/c/4722526/1023711/9060?u=https%3A%2F%2Fstockx.com%2Fair-jordan-4-retro-black-cat-2025",
+      "at": "2026-10-23"
+    },
+    "asics gel-1130 black pure silver": {
+      "title": "ASICS Gel-1130 Black Pure Silver",
+      "usd": 83,
+      "avg_usd": 91,
+      "link": "https://stockx.pvxt.net/c/4722526/1023711/9060?u=https%3A%2F%2Fstockx.com%2Fasics-gel-1130-black-pure-silver",
+      "at": "2026-10-23"
+    },
+    "nike kobe 5 protro dodgers": {
+      "title": "Nike Kobe 5 Protro Dodgers",
+      "usd": 172,
+      "avg_usd": 245,
+      "link": "https://stockx.pvxt.net/c/4722526/1023711/9060?u=https%3A%2F%2Fstockx.com%2Fnike-kobe-5-protro-dodgers",
+      "at": "2026-10-23"
     }
   },
-  "updated": "2026-10-22",
+  "updated": "2026-10-23",
   "source": "KicksDB (StockX average resale, all sizes)"
 }

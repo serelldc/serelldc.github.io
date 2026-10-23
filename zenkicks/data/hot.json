@@ -1,30 +1,30 @@
 {
-  "updated": "2026-10-22",
+  "updated": "2026-10-23",
   "source": "KicksDB (StockX best sellers)",
   "online": [
     {
       "name": "Jordan 5 Retro Halloween",
-      "why": "1,250 orders on StockX this week",
+      "why": "1,517 orders on StockX this week",
       "tag": "Resale",
       "image": "https://images.stockx.com/images/Air-Jordan-5-Retro-Halloween.jpg?fit=fill&bg=FFFFFF&w=600&h=430&fm=webp&auto=compress&q=90&dpr=2&trim=color&updated_at=1787342936",
       "link": "https://stockx.pvxt.net/c/4722526/1023711/9060?u=https%3A%2F%2Fstockx.com%2Fair-jordan-5-retro-halloween",
       "brand": "Jordan",
       "sku": "HQ7978-001",
-      "price_usd": 183
+      "price_usd": 172
     },
     {
-      "name": "Nike Caitlin 1 Midnight Fever (Women's)",
-      "why": "413 orders on StockX this week",
+      "name": "Maison Mihara Yasuhiro Hank OG Sole Canvas Low Black",
+      "why": "646 orders on StockX this week",
       "tag": "Resale",
-      "image": "https://images.stockx.com/images/Nike-Caitlin-1-Hot-Punch-Womens-2.jpg?fit=fill&bg=FFFFFF&w=600&h=430&fm=webp&auto=compress&q=90&dpr=2&trim=color&updated_at=1791401895",
-      "link": "https://stockx.pvxt.net/c/4722526/1023711/9060?u=https%3A%2F%2Fstockx.com%2Fnike-caitlin-1-hot-punch-womens",
-      "brand": "Nike",
-      "sku": "IH7423-600 / IH7421-600",
-      "price_usd": 127
+      "image": "https://images.stockx.com/images/Mihara-Yasuhiro-Hank-OG-Sole-Canvas-Low-Black-Product.jpg?fit=fill&bg=FFFFFF&w=600&h=430&fm=webp&auto=compress&q=90&dpr=2&trim=color&updated_at=1738193358",
+      "link": "https://stockx.pvxt.net/c/4722526/1023711/9060?u=https%3A%2F%2Fstockx.com%2Fmihara-yasuhiro-hank-og-sole-canvas-low-black",
+      "brand": "Maison Mihara Yasuhiro",
+      "sku": "A05FW702",
+      "price_usd": 117
     },
     {
       "name": "Jordan 9 Retro OG Space Jam (2026)",
-      "why": "495 orders on StockX this week",
+      "why": "600 orders on StockX this week",
       "tag": "Resale",
       "image": "https://images.stockx.com/images/Air-Jordan-9-Retro-OG-Space-Jam-2026-Product.jpg?fit=fill&bg=FFFFFF&w=600&h=430&fm=webp&auto=compress&q=90&dpr=2&trim=color&updated_at=1790692048",
       "link": "https://stockx.pvxt.net/c/4722526/1023711/9060?u=https%3A%2F%2Fstockx.com%2Fair-jordan-9-retro-og-space-jam-2026",
@@ -33,38 +33,38 @@
       "price_usd": 202
     },
     {
-      "name": "Maison Mihara Yasuhiro Hank OG Sole Canvas Low Black",
-      "why": "517 orders on StockX this week",
-      "tag": "Resale",
-      "image": "https://images.stockx.com/images/Mihara-Yasuhiro-Hank-OG-Sole-Canvas-Low-Black-Product.jpg?fit=fill&bg=FFFFFF&w=600&h=430&fm=webp&auto=compress&q=90&dpr=2&trim=color&updated_at=1738193358",
-      "link": "https://stockx.pvxt.net/c/4722526/1023711/9060?u=https%3A%2F%2Fstockx.com%2Fmihara-yasuhiro-hank-og-sole-canvas-low-black",
-      "brand": "Maison Mihara Yasuhiro",
-      "sku": "A05FW702",
-      "price_usd": 120
-    },
-    {
       "name": "Jordan 4 Retro Toro Bravo (2026)",
-      "why": "438 orders on StockX this week",
+      "why": "514 orders on StockX this week",
       "tag": "Resale",
       "image": "https://images.stockx.com/images/Air-Jordan-4-Retro-Toro-Bravo-2026-Product.jpg?fit=fill&bg=FFFFFF&w=600&h=430&fm=webp&auto=compress&q=90&dpr=2&trim=color&updated_at=1784232937",
       "link": "https://stockx.pvxt.net/c/4722526/1023711/9060?u=https%3A%2F%2Fstockx.com%2Fair-jordan-4-retro-toro-bravo-2026",
       "brand": "Jordan",
       "sku": "FQ8138-600",
-      "price_usd": 163
+      "price_usd": 166
+    },
+    {
+      "name": "Nike Caitlin 1 Midnight Fever (Women's)",
+      "why": "391 orders on StockX this week",
+      "tag": "Resale",
+      "image": "https://images.stockx.com/images/Nike-Caitlin-1-Hot-Punch-Womens-2.jpg?fit=fill&bg=FFFFFF&w=600&h=430&fm=webp&auto=compress&q=90&dpr=2&trim=color&updated_at=1791401895",
+      "link": "https://stockx.pvxt.net/c/4722526/1023711/9060?u=https%3A%2F%2Fstockx.com%2Fnike-caitlin-1-hot-punch-womens",
+      "brand": "Nike",
+      "sku": "IH7423-600 / IH7421-600",
+      "price_usd": 126
     },
     {
       "name": "Jordan 8 Retro Chrome (2026)",
-      "why": "405 orders on StockX this week",
+      "why": "479 orders on StockX this week",
       "tag": "Resale",
       "image": "https://images.stockx.com/images/Air-Jordan-8-Retro-Chrome-2026-Product.jpg?fit=fill&bg=FFFFFF&w=600&h=430&fm=webp&auto=compress&q=90&dpr=2&trim=color&updated_at=1788529029",
       "link": "https://stockx.pvxt.net/c/4722526/1023711/9060?u=https%3A%2F%2Fstockx.com%2Fair-jordan-8-retro-chrome-2026",
       "brand": "Jordan",
       "sku": "305381-007",
-      "price_usd": 186
+      "price_usd": 185
     },
     {
       "name": "Nike Air Force 1 Low '07 White",
-      "why": "396 orders on StockX this week",
+      "why": "458 orders on StockX this week",
       "tag": "Resale",
       "image": "https://images.stockx.com/images/Nike-Air-Force-1-Low-White-07-Product_V2.jpg?fit=fill&bg=FFFFFF&w=600&h=430&fm=webp&auto=compress&q=90&dpr=2&trim=color&updated_at=1785333173",
       "link": "https://stockx.pvxt.net/c/4722526/1023711/9060?u=https%3A%2F%2Fstockx.com%2Fnike-air-force-1-low-white-07",
@@ -73,8 +73,18 @@
       "price_usd": 73
     },
     {
+      "name": "Jordan 4 Retro Black Cat (2025)",
+      "why": "396 orders on StockX this week",
+      "tag": "Resale",
+      "image": "https://images.stockx.com/images/Air-Jordan-4-Retro-Black-Cat-2025-Product.jpg?fit=fill&bg=FFFFFF&w=600&h=430&fm=webp&auto=compress&q=90&dpr=2&trim=color&updated_at=1784238263",
+      "link": "https://stockx.pvxt.net/c/4722526/1023711/9060?u=https%3A%2F%2Fstockx.com%2Fair-jordan-4-retro-black-cat-2025",
+      "brand": "Jordan",
+      "sku": "FV5029-010",
+      "price_usd": 289
+    },
+    {
       "name": "ASICS Gel-1130 Black Pure Silver",
-      "why": "349 orders on StockX this week",
+      "why": "472 orders on StockX this week",
       "tag": "Resale",
       "image": "https://images.stockx.com/images/ASICS-Gel-1130-Black-Pure-Silver-Product.jpg?fit=fill&bg=FFFFFF&w=600&h=430&fm=webp&auto=compress&q=90&dpr=2&trim=color&updated_at=1784840409",
       "link": "https://stockx.pvxt.net/c/4722526/1023711/9060?u=https%3A%2F%2Fstockx.com%2Fasics-gel-1130-black-pure-silver",
@@ -84,23 +94,13 @@
     },
     {
       "name": "Nike Kobe 5 Protro Dodgers",
-      "why": "344 orders on StockX this week",
+      "why": "416 orders on StockX this week",
       "tag": "Resale",
       "image": "https://images.stockx.com/images/Nike-Kobe-5-Protro-Dodgers-Product.jpg?fit=fill&bg=FFFFFF&w=600&h=430&fm=webp&auto=compress&q=90&dpr=2&trim=color&updated_at=1785850157",
       "link": "https://stockx.pvxt.net/c/4722526/1023711/9060?u=https%3A%2F%2Fstockx.com%2Fnike-kobe-5-protro-dodgers",
       "brand": "Nike",
       "sku": "IO6256-400",
       "price_usd": 172
-    },
-    {
-      "name": "Jordan 4 Retro Black Cat (2025)",
-      "why": "350 orders on StockX this week",
-      "tag": "Resale",
-      "image": "https://images.stockx.com/images/Air-Jordan-4-Retro-Black-Cat-2025-Product.jpg?fit=fill&bg=FFFFFF&w=600&h=430&fm=webp&auto=compress&q=90&dpr=2&trim=color&updated_at=1784238263",
-      "link": "https://stockx.pvxt.net/c/4722526/1023711/9060?u=https%3A%2F%2Fstockx.com%2Fair-jordan-4-retro-black-cat-2025",
-      "brand": "Jordan",
-      "sku": "FV5029-010",
-      "price_usd": 289
     }
   ]
 }
