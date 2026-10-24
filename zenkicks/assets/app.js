@@ -968,12 +968,26 @@
           '<section class="sec"><div class="between"><h2>Fresh pairs</h2><button class="link" data-go="market">Shop</button></div>' +
           (listings.length ? '<div class="grid">' + listings.map(function (l) { return itemCard(l, stats[l.id]); }).join('') + '</div>' : '<div class="card empty" style="padding:20px">' + I.bag + '<span>No pairs listed yet. Be the first.</span><button class="btn red" data-go="sell">Sell a pair</button></div>') + '</section>' +
           '<button class="safety" style="border:0;text-align:left;align-items:center" data-go="legit"><span style="color:var(--coral)">' + I.shield + '</span><span class="grow" style="display:flex;flex-direction:column;gap:2px"><b style="font-size:15px;color:var(--bone)">Legit or fake?</b><span>Post photos and let the community vote</span></span><span aria-hidden="true" style="font-size:20px;color:var(--bone)">›</span></button>' +
-          installLink() + sourcesNote() + '</div>';
+          socialRow() + installLink() + sourcesNote() + '</div>';
         // Cop/Drop percentages fill in right after the page shows (no waiting on them)
         return { html: html, after: function () { codFor(codKeys).then(function () { codKeys.forEach(paintCod); }); } };
       }
     });
   };
+  // ---- "Follow Zenkicks": TikTok / YouTube / Facebook / Instagram (links live in config.js, empty = hidden) ----
+  var SOC = [
+    ['tiktok', 'TikTok', '<svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M16.6 3c.3 2.3 1.6 3.7 3.9 3.9v3.2c-1.4.1-2.7-.3-3.9-1.1v6.1c0 5.7-6.2 7.5-9.2 3.5-1.9-2.6-.7-7.1 3.6-7.5v3.3c-.4.1-.8.2-1.1.4-1.3.8-.9 2.8.5 3.1 1.4.4 2.9-.5 2.9-2.2V3h3.3z"/></svg>'],
+    ['youtube', 'YouTube', '<svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M23 7.2a3 3 0 0 0-2.1-2.1C19 4.6 12 4.6 12 4.6s-7 0-8.9.5A3 3 0 0 0 1 7.2C.5 9.1.5 12 .5 12s0 2.9.5 4.8a3 3 0 0 0 2.1 2.1c1.9.5 8.9.5 8.9.5s7 0 8.9-.5a3 3 0 0 0 2.1-2.1c.5-1.9.5-4.8.5-4.8s0-2.9-.5-4.8zM9.8 15.5v-7l6 3.5-6 3.5z"/></svg>'],
+    ['facebook', 'Facebook', '<svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M13.5 21v-8h2.7l.4-3.2h-3.1V7.8c0-.9.3-1.5 1.6-1.5h1.7V3.4c-.3 0-1.3-.1-2.4-.1-2.4 0-4.1 1.5-4.1 4.2v2.3H7.6V13h2.7v8h3.2z"/></svg>'],
+    ['instagram', 'Instagram', '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.3" cy="6.7" r="1" fill="currentColor" stroke="none"/></svg>']
+  ];
+  function socialRow() {
+    var L = C.SOCIAL || {}, items = SOC.map(function (x) {
+      var u = safeUrl(L[x[0]]); if (!u) return '';
+      return '<a class="soc" href="' + esc(u) + '" target="_blank" rel="noopener noreferrer" aria-label="Zenkicks on ' + x[1] + '">' + x[2] + '<span>' + x[1] + '</span></a>';
+    }).join('');
+    return items ? '<section class="sec social"><h2>Follow Zenkicks</h2><div class="socrow">' + items + '</div></section>' : '';
+  }
   function sourcesNote() {
     return '<p class="tiny" style="margin:0">Release data: ' + esc((ST.releases && ST.releases.source) || 'public release calendars') + '. Product images belong to their owners. Reminders send a phone notification at 8 AM (UAE) on drop day when alerts are allowed.</p>';
   }
@@ -1568,7 +1582,7 @@
         (ST.og && ST.og[uid()] ? '<div class="card ogshow">' + ogBadge(ST.og[uid()]) + '<div><b>OG #' + ST.og[uid()] + '</b><br><span class="m">You’re one of the first 100 members of Zenkicks. This badge stays on your profile forever.</span><br><button class="btn sharebtn" data-act="share" data-k="og">' + I.share + ' Share to Story</button></div></div>' : '') +
         '<button class="card between" style="padding:14px;width:100%;text-align:left;align-items:center" data-go="grails"><span><b>⭐ My grails</b><br><span class="m">Pairs you’re hunting. We alert you when one gets listed.</span></span>' + (grailNew().length ? '<span class="pill red">' + grailNew().length + ' new</span>' : '<span aria-hidden="true" style="font-size:20px">›</span>') + '</button>' +
         dealsCard(deals) + verifyCard(me, vreq) +
-        pushCard(pst) + inviteCard(invN) + installLink() +
+        pushCard(pst) + inviteCard(invN) + socialRow() + installLink() +
         '<button class="card between" style="padding:14px;width:100%;text-align:left;align-items:center" data-go="safety"><span><b>Safe meet-up guide</b><br><span class="m">Where to meet, how to check the pair, how to pay</span></span><span aria-hidden="true" style="font-size:20px">›</span></button>' +
         '<button class="card between" style="padding:14px;width:100%;text-align:left;align-items:center" data-go="u/' + uid() + '"><span><b>My vouches</b><br><span class="m">See your public profile and ratings</span></span>' + starBadge(ST.myVouch) + '</button>' +
         '<div class="card" style="padding:14px;display:flex;flex-direction:column;gap:10px"><b>Profile</b>' +
