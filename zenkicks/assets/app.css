@@ -752,3 +752,7 @@ html[data-theme="dark"] .tab.on{text-shadow:none}
 html[data-theme="dark"] .hx-trust-i,html[data-theme="dark"] .hx-trust-i b,html[data-theme="dark"] :is(.hx-tag,.hx-cop){transition:none}
 
 .socrow{display:flex;flex-wrap:wrap;gap:10px}.soc{display:inline-flex;align-items:center;gap:8px;padding:10px 14px;border-radius:999px;border:1px solid var(--line,rgba(127,127,127,.35));color:inherit;text-decoration:none;font-weight:700;font-size:14px}.soc svg{width:20px;height:20px;flex-shrink:0}.soc:active{transform:scale(.97)}
+
+/* Follow buttons: filled neon (follows the marquee colour) with dark text in dark mode; solid dark with light text in light mode */
+.soc{background:var(--ink);color:var(--bone);border-color:var(--ink)}
+html[data-theme="dark"] .soc{background:var(--mq,var(--neon));color:#0D0D0D;border-color:var(--mq,var(--neon));box-shadow:0 0 16px color-mix(in srgb,var(--mq,#C6F432) 45%,transparent);transition:background 1.2s ease,border-color 1.2s ease,box-shadow 1.2s ease}
