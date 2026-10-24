@@ -355,12 +355,13 @@
     var soon = up.filter(function (d) { return dayDiff(d.date) <= 30; });
     return (soon.length ? soon : up).slice().sort(function (a, b) { return hypeScore(b) - hypeScore(a); });
   }
-  // the hyped picks change every day (still the hottest ones): top 3 always shown, the rest rotate from the next 11, and the hero drop rotates among the top 5
+  // the hyped picks keep changing (still the hottest ones): top 3 always shown, the rest rotate every 3 hours from the next 11, and the hero drop rotates through the top 6
   function dayNo() { return Math.floor(Date.parse(dubaiToday() + 'T00:00:00Z') / 864e5); }
-  function dayHash(str) { var h = dayNo() * 2654435761 >>> 0; for (var i = 0; i < str.length; i++) h = (h * 31 + str.charCodeAt(i)) >>> 0; return h; }
+  function slotNo() { return Math.floor((Date.now() + 4 * 3600 * 1000) / (3 * 3600 * 1000)); } // changes every 3 hours (Dubai time), same for everyone
+  function dayHash(str) { var h = slotNo() * 2654435761 >>> 0; for (var i = 0; i < str.length; i++) h = (h * 31 + str.charCodeAt(i)) >>> 0; return h; }
   function hypeFeatured(up) {
-    var r = hypeRanked(up).filter(function (d) { return releaseImg(d); }).slice(0, 5);
-    return r.length ? r[dayNo() % r.length] : hypeRanked(up)[0];
+    var r = hypeRanked(up).filter(function (d) { return releaseImg(d); }).slice(0, 6);
+    return r.length ? r[slotNo() % r.length] : hypeRanked(up)[0];
   }
   function homeDrops(up) {
     if (ST.allDrops) return up.slice(0, 40);
@@ -808,7 +809,7 @@
   function paintCod(k) { app.querySelectorAll('.cod').forEach(function (el) { if (el.getAttribute('data-k') === k) el.outerHTML = codBtns(k, el.classList.contains('big')); }); }
 
   // ---- Daily Heat Check: one hyped pair a day for everyone (Cop or Drop); a vote = a streak day ----
-  function heatPool() { var f = hypeFeatured(upcoming()), fk = f ? f.name + f.date : ''; return hypeRanked(upcoming()).filter(function (d) { return releaseImg(d) && d.name + d.date !== fk; }).slice(0, 14); }
+  function heatPool() { var r = hypeRanked(upcoming()).filter(function (d) { return releaseImg(d); }), p = r.slice(6, 20); return p.length >= 3 ? p : r.slice(0, 14); } // ranks 7-20: never the same pair as the hero (the hero rotates through the top 6)
   function heatPick() { var p = heatPool(); if (!p.length) return null; return p[Math.floor(Date.parse(dubaiToday() + 'T00:00:00Z') / 864e5) % p.length]; }
   function heatLoad() {
     if (!sb || !uid()) { ST.heat = null; return Promise.resolve(); }
