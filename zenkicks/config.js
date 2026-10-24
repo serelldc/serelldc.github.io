@@ -25,5 +25,12 @@ window.ZK_CONFIG = {
 
   // Shown in the footer of the profile page
   CONTACT_EMAIL: '',
-  INSTAGRAM: ''
+  INSTAGRAM: '',
+  // Follow links shown on Home and Me (leave a link empty to hide it)
+  SOCIAL: {
+    tiktok: 'https://www.tiktok.com/@your_sneakerheadlines',
+    youtube: 'https://www.youtube.com/@serelldc',
+    facebook: '',
+    instagram: ''
+  }
 };
