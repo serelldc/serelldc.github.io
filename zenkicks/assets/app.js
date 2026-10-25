@@ -327,8 +327,9 @@
   }
   function releaseImg(item) {
     var n = norm(item.name);
-    for (var k in ST.photos) { var nk = norm(k); if (nk && (n.indexOf(nk) > -1 || nk.indexOf(n) > -1)) return ST.photos[k]; }
-    return item.image || '';
+    var u = item.image || '';
+    for (var k in ST.photos) { var nk = norm(k); if (nk && (n.indexOf(nk) > -1 || nk.indexOf(n) > -1)) { u = ST.photos[k]; break; } }
+    return u && ST.badImg && ST.badImg[u] ? '' : u; // a photo that failed to load is skipped (Heat Check then picks a pair with a working photo)
   }
   function upcoming() {
     return (ST.releases.items || []).filter(function (d) { return d.date && dayDiff(d.date) >= 0; })
@@ -2411,6 +2412,15 @@
       Promise.all(files.map(function (f) { return compress(f); })).then(function (bs) { bs.forEach(function (b) { ST.newCheck.photos.push({ blob: b, url: URL.createObjectURL(b) }); }); render(true); });
     }
   });
+  // a photo that fails to load (e.g. StockX removed it): remember it, hide the broken icon, and let the Heat Check pick a pair with a working photo
+  app.addEventListener('error', function (e) {
+    var t = e.target; if (!t || t.tagName !== 'IMG') return;
+    var u = t.getAttribute('src') || ''; if (!/^https?:/.test(u)) return;
+    ST.badImg = ST.badImg || {}; ST.badImg[u] = 1;
+    var hc = document.getElementById('heatcard');
+    if (hc && hc.contains(t)) { hc.outerHTML = heatCard(); return; }
+    t.style.visibility = 'hidden';
+  }, true);
   app.addEventListener('keydown', function (e) {
     if (e.target && (e.target.id === 'chatin' || e.target.id === 'cmt') && SUG.items.length) {
       if (e.key === 'ArrowDown' || e.key === 'ArrowUp') { e.preventDefault(); SUG.i = (SUG.i + (e.key === 'ArrowDown' ? 1 : SUG.items.length - 1)) % SUG.items.length; sugShow(); return; }
