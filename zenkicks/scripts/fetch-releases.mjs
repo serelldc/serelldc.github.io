@@ -45,6 +45,14 @@ const clean = (s) => String(s || '').replace(/\s+/g, ' ').trim();
 // bigger, sharper StockX photo than the 140px thumbnail the API returns
 const big = (u) => String(u || '').replace(/([?&])w=\d+/, '$1w=600').replace(/([?&])h=\d+/, '$1h=430');
 const words = (s) => clean(s).toLowerCase().replace(/[^a-z0-9 ]/g, ' ').split(' ').filter((w) => w.length > 2 && !['nike', 'the', 'and', 'low', 'high', 'mid', 'retro', 'womens', 'mens'].includes(w));
+// a kids (GS/PS/TD) or "Rings" version is a different pair from the adult drop, unless the drop's own name says so
+const KIDS = /\((gs|ps|td|bp)\)|\b(gs|ps|td|bp|kids|toddler|preschool|grade school)\b/i;
+function wrongVariant(wanted, found) {
+  const f = String(found || ''), w = String(wanted || '');
+  if (KIDS.test(f) && !KIDS.test(w)) return true;
+  if (/\brings?\b/i.test(f) && !/\brings?\b/i.test(w)) return true;
+  return false;
+}
 function sameShoe(wanted, found) {
   // every model number must match (stops "Jordan 14" matching an "Air Force 1"), then most key words
   const nums = (t) => (clean(t).toLowerCase().match(/\b\d+\b/g) || []).filter((n) => n.length < 4); // skip years like 2026
@@ -70,13 +78,19 @@ async function releases() {
   const hasOwn = (name) => Object.keys(own).some((k) => k.toLowerCase() === name.toLowerCase());
   let looked = 0, found = 0;
   for (const d of file.items) if (d.image && !realImg(d.image)) { delete d.image; console.log(`  removed placeholder photo: ${d.name}`); }
+  // photos saved earlier that belong to a kids/"Rings" version of the pair: clear them so the right one is looked up again
+  for (const d of file.items) {
+    if (!d.image || hasOwn(d.name)) continue;
+    const fname = decodeURIComponent(String(d.image).split('?')[0].split('/').pop() || '').replace(/[-_.]+/g, ' ');
+    if (wrongVariant(d.name, fname)) { delete d.image; delete d.tried; console.log(`  cleared wrong-version photo: ${d.name}`); }
+  }
   for (const d of file.items) {
     if (d.image || hasOwn(d.name) || looked >= MAX_PHOTO_LOOKUPS) continue;
     if (-daysSince(d.date) > PHOTO_WINDOW_DAYS) continue; // too far away: look again when it is within 3 weeks
     if (d.tried && daysSince(d.tried) < 2) continue; // StockX rarely adds a photo overnight; saves free-plan requests
     looked++; d.tried = today;
     const r = await get('/stockx/products', { query: d.name, limit: '3' });
-    const hit = r.find((p) => realImg(p.image) && sameShoe(d.name, p.title));
+    const hit = r.find((p) => realImg(p.image) && sameShoe(d.name, p.title) && !wrongVariant(d.name, p.title));
     if (hit) { delete d.tried; d.image = big(hit.image); d.link = d.link || hit.link || ''; const x = details(hit); ['brand', 'sku', 'colorway'].forEach((k) => { if (x[k] && !d[k]) d[k] = x[k]; }); found++; console.log(`  photo: ${d.name} <- ${hit.title}`); }
     else console.log(`  no StockX match yet: ${d.name}`);
   }
