@@ -1,111 +1,7 @@
 {
-  "updated": "2026-10-24",
+  "updated": "2026-10-25",
   "source": "SneakerFiles & Sneaker News release calendars (curated weekly); photos from KicksDB (StockX)",
   "items": [
-    {
-      "date": "2026-10-24",
-      "name": "Air Jordan 1 Low \"Halloween\"",
-      "brand": "Jordan",
-      "retail_usd": 125,
-      "image": "https://images.stockx.com/images/Air-Jordan-1-Low-Halloween-Fortune-Fly-GS.jpg?fit=fill&bg=FFFFFF&w=600&h=430&fm=webp&auto=compress&q=90&dpr=2&trim=color&updated_at=1728550003",
-      "link": "https://stockx.pvxt.net/c/4722526/1023711/9060?u=https%3A%2F%2Fstockx.com%2Fair-jordan-1-low-halloween-fortune-fly-gs"
-    },
-    {
-      "date": "2026-10-24",
-      "name": "Air Jordan 1 Mid \"Dia de Los Muertos\"",
-      "brand": "Jordan",
-      "retail_usd": 145,
-      "image": "https://images.stockx.com/images/Air-Jordan-1-Mid-Dia-de-los-Muertos-Product.jpg?fit=fill&bg=FFFFFF&w=600&h=430&fm=webp&auto=compress&q=90&dpr=2&trim=color&updated_at=1738193358",
-      "link": "https://stockx.pvxt.net/c/4722526/1023711/9060?u=https%3A%2F%2Fstockx.com%2Fair-jordan-1-mid-dia-de-los-muertos"
-    },
-    {
-      "date": "2026-10-24",
-      "name": "Air Jordan 12 \"Fireside\"",
-      "brand": "Jordan",
-      "retail_usd": 215,
-      "image": "https://images.stockx.com/images/Air-Jordan-12-Retro-Fireside.jpg?fit=fill&bg=FFFFFF&w=600&h=430&fm=webp&auto=compress&q=90&dpr=2&trim=color&updated_at=1789064481",
-      "link": "https://stockx.pvxt.net/c/4722526/1023711/9060?u=https%3A%2F%2Fstockx.com%2Fair-jordan-12-retro-fireside"
-    },
-    {
-      "date": "2026-10-24",
-      "name": "Jason Williams x SLAM x Nike Zoom Hyperflight \"Platinum\"",
-      "brand": "Nike",
-      "retail_usd": 170,
-      "image": "",
-      "link": "",
-      "tried": "2026-10-23"
-    },
-    {
-      "date": "2026-10-24",
-      "name": "Nike Air Diamond Turf 2 \"White Black\"",
-      "brand": "Nike",
-      "retail_usd": 170,
-      "image": "https://images.stockx.com/images/Nike-Air-Diamond-Turf-2-White-Black.jpg?fit=fill&bg=FFFFFF&w=600&h=430&fm=webp&auto=compress&q=90&dpr=2&trim=color&updated_at=1790106900",
-      "link": "https://stockx.pvxt.net/c/4722526/1023711/9060?u=https%3A%2F%2Fstockx.com%2Fnike-air-diamond-turf-2-white-black",
-      "sku": "HQ2631-100"
-    },
-    {
-      "date": "2026-10-24",
-      "name": "Nike Air Force 1 Low \"Ghostface Black\"",
-      "brand": "Nike",
-      "retail_usd": 125,
-      "image": "https://images.stockx.com/images/Nike-Air-Force-1-Low-Scream-Ghostface-Black.jpg?fit=fill&bg=FFFFFF&w=600&h=430&fm=webp&auto=compress&q=90&dpr=2&trim=color&updated_at=1790191292",
-      "link": "https://stockx.pvxt.net/c/4722526/1023711/9060?u=https%3A%2F%2Fstockx.com%2Fnike-air-force-1-low-scream-ghostface-black",
-      "sku": "IZ1207-010"
-    },
-    {
-      "date": "2026-10-24",
-      "name": "Nike Air Force 1 Low \"Ghostface\"",
-      "brand": "Nike",
-      "retail_usd": 125,
-      "image": "https://images.stockx.com/images/Nike-Air-Force-1-Low-Scream-Ghostface-Product.jpg?fit=fill&bg=FFFFFF&w=600&h=430&fm=webp&auto=compress&q=90&dpr=2&trim=color&updated_at=1787583978",
-      "link": "https://stockx.pvxt.net/c/4722526/1023711/9060?u=https%3A%2F%2Fstockx.com%2Fnike-air-force-1-low-scream-ghostface"
-    },
-    {
-      "date": "2026-10-24",
-      "name": "Nike Air Max 95 \"Reverse Blue Spark\"",
-      "brand": "Nike",
-      "retail_usd": 190,
-      "image": "https://images.stockx.com/images/Nike-Air-Max-95-Premium-Big-Bubble-Reverse-Blue-Spark.jpg?fit=fill&bg=FFFFFF&w=600&h=430&fm=webp&auto=compress&q=90&dpr=2&trim=color&updated_at=1790795044",
-      "link": "https://stockx.pvxt.net/c/4722526/1023711/9060?u=https%3A%2F%2Fstockx.com%2Fnike-air-max-95-premium-big-bubble-reverse-blue-spark",
-      "sku": "JA0980-060"
-    },
-    {
-      "date": "2026-10-24",
-      "name": "Nike Ja 4 \"Radar\"",
-      "brand": "Nike",
-      "retail_usd": 140,
-      "image": "https://images.stockx.com/images/Nike-Ja-4-Radar.jpg?fit=fill&bg=FFFFFF&w=600&h=430&fm=webp&auto=compress&q=90&dpr=2&trim=color&updated_at=1786133505",
-      "link": "https://stockx.pvxt.net/c/4722526/1023711/9060?u=https%3A%2F%2Fstockx.com%2Fnike-ja-4-radar",
-      "sku": "JA9745-400"
-    },
-    {
-      "date": "2026-10-24",
-      "name": "Pharrell Williams x adidas Adistar Jellyfish \"Onix\"",
-      "brand": "adidas",
-      "retail_usd": 300,
-      "image": "",
-      "link": "",
-      "tried": "2026-10-23"
-    },
-    {
-      "date": "2026-10-24",
-      "name": "Pharrell Williams x adidas Adistar Jellyfish \"Red Core Black\"",
-      "brand": "adidas",
-      "retail_usd": 300,
-      "image": "",
-      "link": "",
-      "tried": "2026-10-23"
-    },
-    {
-      "date": "2026-10-24",
-      "name": "Vans Old Skool 36 Pearlized \"Red\"",
-      "brand": "Vans",
-      "retail_usd": 130,
-      "image": "https://images.stockx.com/images/Vans-LX-Old-Skool-36-Pearlized-Pack-Red.jpg?fit=fill&bg=FFFFFF&w=600&h=430&fm=webp&auto=compress&q=90&dpr=2&trim=color&updated_at=1787683428",
-      "link": "https://stockx.pvxt.net/c/4722526/1023711/9060?u=https%3A%2F%2Fstockx.com%2Fvans-lx-old-skool-36-pearlized-pack-red",
-      "sku": "VN000E8VIZQ"
-    },
     {
       "date": "2026-10-25",
       "name": "Air Jordan 41 \"University Red\"",
@@ -113,6 +9,15 @@
       "retail_usd": 205,
       "image": "https://images.stockx.com/images/Air-Jordan-41-University-Red.jpg?fit=fill&bg=FFFFFF&w=600&h=430&fm=webp&auto=compress&q=90&dpr=2&trim=color&updated_at=1787257167",
       "link": "https://stockx.pvxt.net/c/4722526/1023711/9060?u=https%3A%2F%2Fstockx.com%2Fair-jordan-41-university-red"
+    },
+    {
+      "date": "2026-10-26",
+      "name": "Nike Air Force 1 Low \"University Pack\"",
+      "brand": "Nike",
+      "retail_usd": 125,
+      "image": "",
+      "link": "",
+      "tried": "2026-10-25"
     },
     {
       "date": "2026-10-29",
@@ -140,7 +45,7 @@
       "retail_usd": 155,
       "image": "",
       "link": "",
-      "tried": "2026-10-23"
+      "tried": "2026-10-25"
     },
     {
       "date": "2026-10-30",
@@ -149,7 +54,7 @@
       "retail_usd": 180,
       "image": "",
       "link": "",
-      "tried": "2026-10-23"
+      "tried": "2026-10-25"
     },
     {
       "date": "2026-10-30",
@@ -190,6 +95,17 @@
     },
     {
       "date": "2026-10-31",
+      "name": "Nike Ja 4 \"Radar\" (Heat Check)",
+      "brand": "Nike",
+      "retail_usd": 140,
+      "image": "",
+      "link": "",
+      "sku": "JA9745-400",
+      "colorway": "Obsidian/Total Orange-Laser Orange-Black-Racer Blue-Cobalt Bliss",
+      "tried": "2026-10-25"
+    },
+    {
+      "date": "2026-10-31",
       "name": "Nike Ja 4 High \"Zombie\"",
       "brand": "Nike",
       "retail_usd": 180,
@@ -208,6 +124,16 @@
       "link": "https://stockx.pvxt.net/c/4722526/1023711/9060?u=https%3A%2F%2Fstockx.com%2Fnike-air-max-90-light-orewood-brown-blue-tint-sail",
       "sku": "IX8056-104",
       "colorway": "Light Orewood Brown/Blue Tint-Sail-Neutral Olive"
+    },
+    {
+      "date": "2026-11-01",
+      "name": "Nike Air Max 95 Premium \"Blue Tint\"",
+      "brand": "Nike",
+      "retail_usd": 200,
+      "image": "https://images.stockx.com/images/Nike-Air-Max-95-OG-Big-Bubble-Blue-Tint-Womens-Product.jpg?fit=fill&bg=FFFFFF&w=600&h=430&fm=webp&auto=compress&q=90&dpr=2&trim=color&updated_at=1787000049",
+      "link": "https://stockx.pvxt.net/c/4722526/1023711/9060?u=https%3A%2F%2Fstockx.com%2Fnike-air-max-95-og-big-bubble-blue-tint-womens",
+      "sku": "IX8045-101",
+      "colorway": "Off-White/Blue Tint-Football Blue-Blue Chill"
     },
     {
       "date": "2026-11-01",
@@ -435,7 +361,7 @@
       "retail_usd": 130,
       "image": "",
       "link": "",
-      "tried": "2026-10-23"
+      "tried": "2026-10-25"
     },
     {
       "date": "2026-11-13",
@@ -444,7 +370,7 @@
       "retail_usd": 170,
       "image": "",
       "link": "",
-      "tried": "2026-10-23"
+      "tried": "2026-10-25"
     },
     {
       "date": "2026-11-13",
@@ -506,7 +432,7 @@
       "retail_usd": 205,
       "image": "",
       "link": "",
-      "tried": "2026-10-19"
+      "tried": "2026-10-25"
     },
     {
       "date": "2026-11-15",
@@ -515,7 +441,7 @@
       "retail_usd": 155,
       "image": "",
       "link": "",
-      "tried": "2026-10-20"
+      "tried": "2026-10-25"
     },
     {
       "date": "2026-11-16",

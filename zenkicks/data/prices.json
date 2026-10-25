@@ -51,10 +51,10 @@
     },
     "nike zoom field jaxx travis scott leche blue": {
       "title": "Nike Zoom Field Jaxx Travis Scott Leche Blue",
-      "usd": 70,
-      "avg_usd": 136,
+      "usd": 72,
+      "avg_usd": 129,
       "link": "https://stockx.pvxt.net/c/4722526/1023711/9060?u=https%3A%2F%2Fstockx.com%2Fnike-zoom-field-jaxx-travis-scott-leche-blue",
-      "at": "2026-10-18"
+      "at": "2026-10-25"
     },
     "air jordan 1 zm air cmft 2 wmns university blue volt": {
       "none": true,
@@ -66,17 +66,17 @@
     },
     "air jordan 1 high og royal reimagined": {
       "title": "Jordan 1 Retro High OG Royal Reimagined",
-      "usd": 85,
+      "usd": 86,
       "avg_usd": 148,
       "link": "https://stockx.pvxt.net/c/4722526/1023711/9060?u=https%3A%2F%2Fstockx.com%2Fair-jordan-1-retro-high-og-royal-reimagined",
-      "at": "2026-10-18"
+      "at": "2026-10-25"
     },
     "air jordan 1 low bred toe": {
       "title": "Jordan 1 Low Bred Toe",
-      "usd": 68,
-      "avg_usd": 122,
+      "usd": 69,
+      "avg_usd": 120,
       "link": "https://stockx.pvxt.net/c/4722526/1023711/9060?u=https%3A%2F%2Fstockx.com%2Fair-jordan-1-low-bred-toe",
-      "at": "2026-10-18"
+      "at": "2026-10-25"
     },
     "reebok question pump chalk": {
       "title": "Reebok Question Pump Pump Universe",
@@ -212,8 +212,37 @@
       "avg_usd": 216,
       "link": "https://stockx.pvxt.net/c/4722526/1023711/9060?u=https%3A%2F%2Fstockx.com%2Fair-jordan-12-retro-fireside",
       "at": "2026-10-24"
+    },
+    "air jordan 41 university red": {
+      "title": "Jordan 41 University Red",
+      "usd": 297,
+      "avg_usd": 363,
+      "link": "https://stockx.pvxt.net/c/4722526/1023711/9060?u=https%3A%2F%2Fstockx.com%2Fair-jordan-41-university-red",
+      "at": "2026-10-25"
+    },
+    "nike air force 1 low university pack": {
+      "none": true,
+      "at": "2026-10-25"
+    },
+    "new balance 992 made in usa medusa green": {
+      "title": "New Balance 992 MiUSA Medusa Green Cortado",
+      "usd": 199,
+      "avg_usd": 509,
+      "link": "https://stockx.pvxt.net/c/4722526/1023711/9060?u=https%3A%2F%2Fstockx.com%2Fnew-balance-992-miusa-medusa-green-cortado",
+      "at": "2026-10-25"
+    },
+    "air jordan 3 fireside": {
+      "title": "Jordan 3 Retro Fireside (Women's)",
+      "usd": 124,
+      "avg_usd": 215,
+      "link": "https://stockx.pvxt.net/c/4722526/1023711/9060?u=https%3A%2F%2Fstockx.com%2Fair-jordan-3-retro-fireside-womens",
+      "at": "2026-10-25"
+    },
+    "nike book 2 oogie boogie": {
+      "none": true,
+      "at": "2026-10-25"
     }
   },
-  "updated": "2026-10-24",
+  "updated": "2026-10-25",
   "source": "KicksDB (StockX average resale, all sizes)"
 }
