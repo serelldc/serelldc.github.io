@@ -78,6 +78,18 @@ async function releases() {
   const hasOwn = (name) => Object.keys(own).some((k) => k.toLowerCase() === name.toLowerCase());
   let looked = 0, found = 0;
   for (const d of file.items) if (d.image && !realImg(d.image)) { delete d.image; console.log(`  removed placeholder photo: ${d.name}`); }
+  // photos can disappear from StockX's CDN (404): check each photo about once a week and clear dead ones so the pair is looked up again
+  let checkedImgs = 0;
+  for (const d of file.items) {
+    if (!d.image || hasOwn(d.name) || checkedImgs >= 25) continue;
+    if (d.ic && daysSince(d.ic) < 7) continue;
+    checkedImgs++;
+    try {
+      const r = await fetch(d.image, { method: 'HEAD', headers: { 'User-Agent': 'ZenkicksBot/1.0 (+https://serelldc.github.io/zenkicks/)' } });
+      if (r.status === 404 || r.status === 410) { delete d.image; delete d.tried; delete d.ic; console.log(`  photo link is dead, will look again: ${d.name}`); }
+      else d.ic = today;
+    } catch { /* network hiccup: leave it for next time */ }
+  }
   // photos saved earlier that belong to a kids/"Rings" version of the pair: clear them so the right one is looked up again
   for (const d of file.items) {
     if (!d.image || hasOwn(d.name)) continue;
