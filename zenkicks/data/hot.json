@@ -1,106 +1,91 @@
 {
-  "updated": "2026-10-25",
+  "updated": "2026-10-26",
   "source": "KicksDB (StockX best sellers)",
   "online": [
     {
-      "name": "Jordan 5 Retro Halloween",
-      "why": "843 orders on StockX this week",
+      "name": "Nike Vapor 12 White Volt Energy Black",
+      "why": "#1 best seller on StockX",
       "tag": "Resale",
-      "image": "https://images.stockx.com/images/Air-Jordan-5-Retro-Halloween.jpg?fit=fill&bg=FFFFFF&w=600&h=430&fm=webp&auto=compress&q=90&dpr=2&trim=color&updated_at=1787342936",
-      "link": "https://stockx.pvxt.net/c/4722526/1023711/9060?u=https%3A%2F%2Fstockx.com%2Fair-jordan-5-retro-halloween",
-      "brand": "Jordan",
-      "sku": "HQ7978-001",
-      "price_usd": 179
-    },
-    {
-      "name": "Maison Mihara Yasuhiro Hank OG Sole Canvas Low Black",
-      "why": "498 orders on StockX this week",
-      "tag": "Resale",
-      "image": "https://images.stockx.com/images/Mihara-Yasuhiro-Hank-OG-Sole-Canvas-Low-Black-Product.jpg?fit=fill&bg=FFFFFF&w=600&h=430&fm=webp&auto=compress&q=90&dpr=2&trim=color&updated_at=1738193358",
-      "link": "https://stockx.pvxt.net/c/4722526/1023711/9060?u=https%3A%2F%2Fstockx.com%2Fmihara-yasuhiro-hank-og-sole-canvas-low-black",
-      "brand": "Maison Mihara Yasuhiro",
-      "sku": "A05FW702",
-      "price_usd": 113
-    },
-    {
-      "name": "Jordan 9 Retro OG Space Jam (2026)",
-      "why": "395 orders on StockX this week",
-      "tag": "Resale",
-      "image": "https://images.stockx.com/images/Air-Jordan-9-Retro-OG-Space-Jam-2026-Product.jpg?fit=fill&bg=FFFFFF&w=600&h=430&fm=webp&auto=compress&q=90&dpr=2&trim=color&updated_at=1790692048",
-      "link": "https://stockx.pvxt.net/c/4722526/1023711/9060?u=https%3A%2F%2Fstockx.com%2Fair-jordan-9-retro-og-space-jam-2026",
-      "brand": "Jordan",
-      "sku": "IX6179-100",
-      "price_usd": 201
-    },
-    {
-      "name": "Nike Air Force 1 Low '01 NIGO x J-Hope",
-      "why": "421 orders on StockX this week",
-      "tag": "Resale",
-      "image": "https://images.stockx.com/images/Nike-Air-Force-1-Low-01-NIGO-x-J-Hope.jpg?fit=fill&bg=FFFFFF&w=600&h=430&fm=webp&auto=compress&q=90&dpr=2&trim=color&updated_at=1791492831",
-      "link": "https://stockx.pvxt.net/c/4722526/1023711/9060?u=https%3A%2F%2Fstockx.com%2Fnike-air-force-1-low-01-nigo-x-j-hope",
+      "image": "https://images.stockx.com/images/Nike-Vapor-12-White-Volt-Energy-Black.jpg?fit=fill&bg=FFFFFF&w=600&h=430&fm=webp&auto=compress&q=90&dpr=2&trim=color&updated_at=1792461579",
+      "link": "https://stockx.pvxt.net/c/4722526/1023711/9060?u=https%3A%2F%2Fstockx.com%2Fnike-vapor-12-white-volt-energy-black",
       "brand": "Nike",
-      "sku": "IO8766-800",
-      "price_usd": 159
+      "sku": "FV5552-125"
     },
     {
-      "name": "Jordan 4 Retro Toro Bravo (2026)",
-      "why": "340 orders on StockX this week",
+      "name": "Novesta Star Master Mono Military",
+      "why": "#2 best seller on StockX",
       "tag": "Resale",
-      "image": "https://images.stockx.com/images/Air-Jordan-4-Retro-Toro-Bravo-2026-Product.jpg?fit=fill&bg=FFFFFF&w=600&h=430&fm=webp&auto=compress&q=90&dpr=2&trim=color&updated_at=1784232937",
-      "link": "https://stockx.pvxt.net/c/4722526/1023711/9060?u=https%3A%2F%2Fstockx.com%2Fair-jordan-4-retro-toro-bravo-2026",
-      "brand": "Jordan",
-      "sku": "FQ8138-600",
-      "price_usd": 164
+      "image": "https://images.stockx.com/images/01a142bc-7491-7a26-a0b8-54fb30432f1e?fit=fill&bg=FFFFFF&w=600&h=430&fm=webp&auto=compress&q=90&dpr=2&trim=color&updated_at=1792434483",
+      "link": "https://stockx.pvxt.net/c/4722526/1023711/9060?u=https%3A%2F%2Fstockx.com%2Fnovesta-star-master-mono-military",
+      "brand": "Novesta",
+      "sku": "N572077-42Y42Y556"
     },
     {
-      "name": "ASICS Gel-1130 Black Pure Silver",
-      "why": "357 orders on StockX this week",
+      "name": "Nike Air Max Invigor Dark Grey Metallic Silver",
+      "why": "#3 best seller on StockX",
       "tag": "Resale",
-      "image": "https://images.stockx.com/images/ASICS-Gel-1130-Black-Pure-Silver-Product.jpg?fit=fill&bg=FFFFFF&w=600&h=430&fm=webp&auto=compress&q=90&dpr=2&trim=color&updated_at=1784840409",
-      "link": "https://stockx.pvxt.net/c/4722526/1023711/9060?u=https%3A%2F%2Fstockx.com%2Fasics-gel-1130-black-pure-silver",
-      "brand": "ASICS",
-      "sku": "1201A906-001",
-      "price_usd": 87
-    },
-    {
-      "name": "Jordan 8 Retro Chrome (2026)",
-      "why": "356 orders on StockX this week",
-      "tag": "Resale",
-      "image": "https://images.stockx.com/images/Air-Jordan-8-Retro-Chrome-2026-Product.jpg?fit=fill&bg=FFFFFF&w=600&h=430&fm=webp&auto=compress&q=90&dpr=2&trim=color&updated_at=1788529029",
-      "link": "https://stockx.pvxt.net/c/4722526/1023711/9060?u=https%3A%2F%2Fstockx.com%2Fair-jordan-8-retro-chrome-2026",
-      "brand": "Jordan",
-      "sku": "305381-007",
-      "price_usd": 187
-    },
-    {
-      "name": "Nike Air Force 1 Low '07 White",
-      "why": "331 orders on StockX this week",
-      "tag": "Resale",
-      "image": "https://images.stockx.com/images/Nike-Air-Force-1-Low-White-07-Product_V2.jpg?fit=fill&bg=FFFFFF&w=600&h=430&fm=webp&auto=compress&q=90&dpr=2&trim=color&updated_at=1785333173",
-      "link": "https://stockx.pvxt.net/c/4722526/1023711/9060?u=https%3A%2F%2Fstockx.com%2Fnike-air-force-1-low-white-07",
+      "image": "https://images.stockx.com/images/01a14349-d8ba-7b0c-b1c2-38b57239db02?fit=fill&bg=FFFFFF&w=600&h=430&fm=webp&auto=compress&q=90&dpr=2&trim=color&updated_at=1792425861",
+      "link": "https://stockx.pvxt.net/c/4722526/1023711/9060?u=https%3A%2F%2Fstockx.com%2Fnike-air-max-invigor-dark-grey-metallic-silver",
       "brand": "Nike",
-      "sku": "315122-111/CW2288-111",
-      "price_usd": 74
+      "sku": "749866-005"
     },
     {
-      "name": "Nike Kobe 5 Protro Dodgers",
-      "why": "306 orders on StockX this week",
+      "name": "Cloudtilt Arc Sneakers",
+      "why": "#4 best seller on StockX",
       "tag": "Resale",
-      "image": "https://images.stockx.com/images/Nike-Kobe-5-Protro-Dodgers-Product.jpg?fit=fill&bg=FFFFFF&w=600&h=430&fm=webp&auto=compress&q=90&dpr=2&trim=color&updated_at=1785850157",
-      "link": "https://stockx.pvxt.net/c/4722526/1023711/9060?u=https%3A%2F%2Fstockx.com%2Fnike-kobe-5-protro-dodgers",
-      "brand": "Nike",
-      "sku": "IO6256-400",
-      "price_usd": 172
+      "image": "https://images.stockx.com/images/01a143da-026e-7a99-b582-5c138977334f?fit=fill&bg=FFFFFF&w=600&h=430&fm=webp&auto=compress&q=90&dpr=2&trim=color&updated_at=1792427119",
+      "link": "https://stockx.pvxt.net/c/4722526/1023711/9060?u=https%3A%2F%2Fstockx.com%2Fcloudtilt-arc-sneakers",
+      "brand": "On"
     },
     {
-      "name": "adidas Gazelle Indoor Bad Bunny Solar Gold",
-      "why": "242 orders on StockX this week",
+      "name": "Nike Kyrie 7",
+      "why": "#5 best seller on StockX",
       "tag": "Resale",
-      "image": "https://images.stockx.com/images/adidas-Gazelle-Indoor-Bad-Bunny-Solar-Gold-3.jpg?fit=fill&bg=FFFFFF&w=600&h=430&fm=webp&auto=compress&q=90&dpr=2&trim=color&updated_at=1791830717",
-      "link": "https://stockx.pvxt.net/c/4722526/1023711/9060?u=https%3A%2F%2Fstockx.com%2Fadidas-gazelle-indoor-bad-bunny-solar-gold",
-      "brand": "adidas",
-      "sku": "KI2592",
-      "price_usd": 81
+      "image": "https://images.stockx.com/images/01a14539-d3d3-7e30-b9bd-b37c3a141dea?fit=fill&bg=FFFFFF&w=600&h=430&fm=webp&auto=compress&q=90&dpr=2&trim=color&updated_at=1792432652",
+      "link": "https://stockx.pvxt.net/c/4722526/1023711/9060?u=https%3A%2F%2Fstockx.com%2Fnike-kyrie-7",
+      "brand": "Nike"
+    },
+    {
+      "name": "Amiri Bone Runner Low Tan Brown",
+      "why": "#6 best seller on StockX",
+      "tag": "Resale",
+      "image": "https://images.stockx.com/images/01a14558-7be2-7e66-ac3b-c6c714744130?fit=fill&bg=FFFFFF&w=600&h=430&fm=webp&auto=compress&q=90&dpr=2&trim=color&updated_at=1792434570",
+      "link": "https://stockx.pvxt.net/c/4722526/1023711/9060?u=https%3A%2F%2Fstockx.com%2Famiri-bone-runner-low-tan-brown",
+      "brand": "AMIRI"
+    },
+    {
+      "name": "Air Jordan 4 RM",
+      "why": "#7 best seller on StockX",
+      "tag": "Resale",
+      "image": "https://images.stockx.com/images/01a1585a-60ad-7da9-839b-da5687a9273e?fit=fill&bg=FFFFFF&w=600&h=430&fm=webp&auto=compress&q=90&dpr=2&trim=color&updated_at=1792508581",
+      "link": "https://stockx.pvxt.net/c/4722526/1023711/9060?u=https%3A%2F%2Fstockx.com%2Fair-air-jordan-4-rm",
+      "brand": "Jordan",
+      "sku": "FQ7938-100"
+    },
+    {
+      "name": "OFF-WHITE Low Vulcanized Canvas Sneakers",
+      "why": "#8 best seller on StockX",
+      "tag": "Resale",
+      "image": "https://images.stockx.com/images/01a148b2-2435-72cb-8b3b-ec63e771a3e9?fit=fill&bg=FFFFFF&w=600&h=430&fm=webp&auto=compress&q=90&dpr=2&trim=color&updated_at=1792425042",
+      "link": "https://stockx.pvxt.net/c/4722526/1023711/9060?u=https%3A%2F%2Fstockx.com%2Foff-white-low-vulcanized-canvas-sneakers",
+      "brand": "OFF-WHITE"
+    },
+    {
+      "name": "Nike Court Vision Low Black Light Blue",
+      "why": "#9 best seller on StockX",
+      "tag": "Resale",
+      "image": "https://images.stockx.com/images/01a148c0-c1fd-73ed-8b85-d84cb6262ac5?fit=fill&bg=FFFFFF&w=600&h=430&fm=webp&auto=compress&q=90&dpr=2&trim=color&updated_at=1792433449",
+      "link": "https://stockx.pvxt.net/c/4722526/1023711/9060?u=https%3A%2F%2Fstockx.com%2Fnike-court-vision-low-black-light-blue",
+      "brand": "Nike"
+    },
+    {
+      "name": "Diadora Magic Basket Low Icona White Malibu Blue",
+      "why": "#10 best seller on StockX",
+      "tag": "Resale",
+      "image": "https://images.stockx.com/images/01a14a62-aec2-7b5d-a1bb-2ca6ea7e5d2a?fit=fill&bg=FFFFFF&w=600&h=430&fm=webp&auto=compress&q=90&dpr=2&trim=color&updated_at=1792425982",
+      "link": "https://stockx.pvxt.net/c/4722526/1023711/9060?u=https%3A%2F%2Fstockx.com%2Fdiadora-magic-basket-low-icona-white-malibu-blue",
+      "brand": "Diadora",
+      "sku": "c8087"
     }
   ]
 }
