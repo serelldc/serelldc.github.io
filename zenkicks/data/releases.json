@@ -1,5 +1,5 @@
 {
-  "updated": "2026-10-25",
+  "updated": "2026-10-26",
   "source": "SneakerFiles & Sneaker News release calendars (curated weekly); photos from KicksDB (StockX)",
   "items": [
     {
@@ -64,6 +64,22 @@
       "image": "",
       "link": "",
       "tried": "2026-10-24"
+    },
+    {
+      "date": "2026-10-30",
+      "name": "Nike Kobe AD Protro \"Mamba Eterno\"",
+      "brand": "Nike",
+      "retail_usd": 155,
+      "image": "",
+      "link": ""
+    },
+    {
+      "date": "2026-10-30",
+      "name": "Nike Kobe Dunk Low Protro \"Mamba Eterno\"",
+      "brand": "Nike",
+      "retail_usd": 130,
+      "image": "",
+      "link": ""
     },
     {
       "date": "2026-10-30",
