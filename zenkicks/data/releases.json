@@ -1,15 +1,16 @@
 {
-  "updated": "2026-10-26",
+  "updated": "2026-10-27",
   "source": "SneakerFiles & Sneaker News release calendars (curated weekly); photos from KicksDB (StockX)",
   "items": [
     {
-      "date": "2026-10-26",
-      "name": "Nike Air Force 1 Low \"University Pack\"",
+      "date": "2026-10-27",
+      "name": "Nocturnal x Nike SB Air Force 1 Low",
       "brand": "Nike",
-      "retail_usd": 125,
-      "image": "",
-      "link": "",
-      "tried": "2026-10-25"
+      "retail_usd": 120,
+      "image": "https://images.stockx.com/images/Nike-SB-Air-Force-1-Low-City-Pack-Nocturnal-Shop-Special-Box.jpg?fit=fill&bg=FFFFFF&w=600&h=430&fm=webp&auto=compress&q=90&dpr=2&trim=color&updated_at=1792549154",
+      "link": "https://stockx.pvxt.net/c/4722526/1023711/9060?u=https%3A%2F%2Fstockx.com%2Fnike-sb-air-force-1-low-city-pack-nocturnal-shop-special-box",
+      "sku": "IV6099-003",
+      "colorway": "Cool Grey/Court Green-Black-Court Green"
     },
     {
       "date": "2026-10-29",
@@ -39,7 +40,17 @@
       "retail_usd": 155,
       "image": "",
       "link": "",
-      "tried": "2026-10-25"
+      "tried": "2026-10-27"
+    },
+    {
+      "date": "2026-10-30",
+      "name": "Nike Caitlin 1 \"Halloween\"",
+      "brand": "Nike",
+      "retail_usd": 150,
+      "image": "https://images.stockx.com/images/Nike-Caitlin-1-Halloween-Womens.jpg?fit=fill&bg=FFFFFF&w=600&h=430&fm=webp&auto=compress&q=90&dpr=2&trim=color&updated_at=1792617452",
+      "link": "https://stockx.pvxt.net/c/4722526/1023711/9060?u=https%3A%2F%2Fstockx.com%2Fnike-caitlin-1-halloween-womens",
+      "sku": "JA4290-001",
+      "colorway": "Black/Ghost Green-Mint Foam-Racer Blue"
     },
     {
       "date": "2026-10-30",
@@ -48,7 +59,17 @@
       "retail_usd": 180,
       "image": "",
       "link": "",
-      "tried": "2026-10-25"
+      "tried": "2026-10-27"
+    },
+    {
+      "date": "2026-10-30",
+      "name": "Nike KD 19 \"Halloween\"",
+      "brand": "Nike",
+      "retail_usd": 165,
+      "image": "https://images.stockx.com/images/Nike-KD-19-Halloween.jpg?fit=fill&bg=FFFFFF&w=600&h=430&fm=webp&auto=compress&q=90&dpr=2&trim=color&updated_at=1791838928",
+      "link": "https://stockx.pvxt.net/c/4722526/1023711/9060?u=https%3A%2F%2Fstockx.com%2Fnike-kd-19-halloween",
+      "sku": "IO8112-600",
+      "colorway": "Bright Crimson/Lime Ice-Stadium Green-Dark Smoke Grey"
     },
     {
       "date": "2026-10-30",
@@ -57,7 +78,8 @@
       "retail_usd": 190,
       "image": "https://images.stockx.com/images/Nike-Kobe-3-Low-Protro-Mamba-Eterno-3.jpg?fit=fill&bg=FFFFFF&w=600&h=430&fm=webp&auto=compress&q=90&dpr=2&trim=color&updated_at=1792696383",
       "link": "https://stockx.pvxt.net/c/4722526/1023711/9060?u=https%3A%2F%2Fstockx.com%2Fnike-kobe-3-low-protro-mamba-eterno",
-      "sku": "IO6260-800"
+      "sku": "IO6260-800",
+      "ic": "2026-10-27"
     },
     {
       "date": "2026-10-30",
@@ -66,7 +88,8 @@
       "retail_usd": 155,
       "image": "https://images.stockx.com/images/Nike-Kobe-3-Low-Protro-Mamba-Eterno-3.jpg?fit=fill&bg=FFFFFF&w=600&h=430&fm=webp&auto=compress&q=90&dpr=2&trim=color&updated_at=1792696383",
       "link": "https://stockx.pvxt.net/c/4722526/1023711/9060?u=https%3A%2F%2Fstockx.com%2Fnike-kobe-3-low-protro-mamba-eterno",
-      "sku": "IO6260-800"
+      "sku": "IO6260-800",
+      "ic": "2026-10-27"
     },
     {
       "date": "2026-10-30",
@@ -75,7 +98,8 @@
       "retail_usd": 130,
       "image": "https://images.stockx.com/images/Nike-Dunk-Low-Protro-Kobe-Bryant-Mamba-Eterno.jpg?fit=fill&bg=FFFFFF&w=600&h=430&fm=webp&auto=compress&q=90&dpr=2&trim=color&updated_at=1792616292",
       "link": "https://stockx.pvxt.net/c/4722526/1023711/9060?u=https%3A%2F%2Fstockx.com%2Fnike-dunk-low-protro-kobe-bryant-mamba-eterno",
-      "sku": "IQ3922-001"
+      "sku": "IQ3922-001",
+      "ic": "2026-10-27"
     },
     {
       "date": "2026-10-30",
@@ -116,7 +140,7 @@
       "link": "",
       "sku": "JA9745-400",
       "colorway": "Obsidian/Total Orange-Laser Orange-Black-Racer Blue-Cobalt Bliss",
-      "tried": "2026-10-25"
+      "tried": "2026-10-27"
     },
     {
       "date": "2026-10-31",
@@ -199,7 +223,8 @@
       "link": "https://stockx.pvxt.net/c/4722526/1023711/9060?u=https%3A%2F%2Fstockx.com%2Fair-jordan-1-low-se-space-jam-magic-ball",
       "sku": "IX6375-001",
       "colorway": "Black/Action Green-Yellow Zest-Metallic Silver",
-      "image": "https://images.stockx.com/images/Air-Jordan-1-Low-SE-Space-Jam-Magic-Ball-2.jpg?fit=fill&bg=FFFFFF&w=600&h=430&fm=webp&auto=compress&q=90&dpr=2&trim=color&updated_at=1792680396"
+      "image": "https://images.stockx.com/images/Air-Jordan-1-Low-SE-Space-Jam-Magic-Ball-2.jpg?fit=fill&bg=FFFFFF&w=600&h=430&fm=webp&auto=compress&q=90&dpr=2&trim=color&updated_at=1792680396",
+      "ic": "2026-10-27"
     },
     {
       "date": "2026-11-05",
@@ -277,6 +302,16 @@
     },
     {
       "date": "2026-11-05",
+      "name": "Nike Air Foamposite Pro \"FSU\"",
+      "brand": "Nike",
+      "retail_usd": 250,
+      "image": "https://images.stockx.com/images/Nike-Air-Foamposite-Pro-College-Football-Pack-FSU.jpg?fit=fill&bg=FFFFFF&w=600&h=430&fm=webp&auto=compress&q=90&dpr=2&trim=color&updated_at=1790108033",
+      "link": "https://stockx.pvxt.net/c/4722526/1023711/9060?u=https%3A%2F%2Fstockx.com%2Fnike-air-foamposite-pro-college-football-pack-fsu",
+      "sku": "IX2095-600",
+      "colorway": "Team Maroon/White"
+    },
+    {
+      "date": "2026-11-05",
       "name": "Nike Air Max Foamdome \"Eggplant\" (2026)",
       "brand": "Nike",
       "retail_usd": 265,
@@ -301,6 +336,27 @@
       "image": "",
       "link": "",
       "tried": "2026-10-26"
+    },
+    {
+      "date": "2026-11-06",
+      "name": "One Block Down x Nike Air Max 95 Lux \"Black\"",
+      "brand": "Nike",
+      "retail_usd": 200,
+      "image": "",
+      "link": "",
+      "sku": "IM0704-001",
+      "colorway": "Black/Gym Green",
+      "tried": "2026-10-27"
+    },
+    {
+      "date": "2026-11-06",
+      "name": "Union LA x Nike Dunk Low \"Bamboo\"",
+      "brand": "Nike",
+      "retail_usd": 135,
+      "image": "",
+      "link": "",
+      "sku": "IF7380-200",
+      "colorway": "Bamboo/University Gold-Light Cream"
     },
     {
       "date": "2026-11-07",
@@ -347,7 +403,7 @@
       "retail_usd": 235,
       "image": "",
       "link": "",
-      "tried": "2026-10-24"
+      "tried": "2026-10-27"
     },
     {
       "date": "2026-11-11",
@@ -367,7 +423,7 @@
       "retail_usd": 235,
       "image": "",
       "link": "",
-      "tried": "2026-10-24"
+      "tried": "2026-10-27"
     },
     {
       "date": "2026-11-11",
@@ -394,7 +450,7 @@
       "retail_usd": 130,
       "image": "",
       "link": "",
-      "tried": "2026-10-25"
+      "tried": "2026-10-27"
     },
     {
       "date": "2026-11-13",
@@ -403,7 +459,7 @@
       "retail_usd": 170,
       "image": "",
       "link": "",
-      "tried": "2026-10-25"
+      "tried": "2026-10-27"
     },
     {
       "date": "2026-11-13",
@@ -415,12 +471,21 @@
       "ic": "2026-10-26"
     },
     {
+      "date": "2026-11-13",
+      "name": "Nike KD 19 \"Aunt Pearl\"",
+      "brand": "Nike",
+      "retail_usd": 170,
+      "image": "",
+      "link": "",
+      "sku": "IO8111-600",
+      "colorway": "Foam Pink/Stadium Green-Metallic Summit White"
+    },
+    {
       "date": "2026-11-14",
       "name": "Air Jordan 11 \"Green Screen\"",
       "brand": "Jordan",
       "retail_usd": 255,
       "link": "https://stockx.pvxt.net/c/4722526/1023711/9060?u=https%3A%2F%2Fstockx.com%2Fair-jordan-11-retro-green-screen-monstars",
-      "image": "https://images.stockx.com/images/Air-Jordan-11-Retro-Green-Screen-Monstars.jpg?fit=fill&bg=FFFFFF&w=600&h=430&fm=webp&auto=compress&q=90&dpr=2&trim=color&updated_at=1791233933",
       "sku": "IQ5700-900"
     },
     {
@@ -430,7 +495,8 @@
       "retail_usd": 240,
       "image": "https://images.stockx.com/images/Air-Jordan-9-Retro-Boot-NRG-Black-Iridescent.jpg?fit=fill&bg=FFFFFF&w=600&h=430&fm=webp&auto=compress&q=90&dpr=2&trim=color&updated_at=1791314346",
       "link": "https://stockx.pvxt.net/c/4722526/1023711/9060?u=https%3A%2F%2Fstockx.com%2Fair-jordan-9-retro-boot-nrg-black-iridescent",
-      "sku": "IX8455-060"
+      "sku": "IX8455-060",
+      "ic": "2026-10-27"
     },
     {
       "date": "2026-11-14",
@@ -448,7 +514,8 @@
       "retail_usd": 140,
       "image": "https://images.stockx.com/images/Nike-Caitlin-1-Racer-Blue-Pink-Womens.jpg?fit=fill&bg=FFFFFF&w=600&h=430&fm=webp&auto=compress&q=90&dpr=2&trim=color&updated_at=1790713034",
       "link": "https://stockx.pvxt.net/c/4722526/1023711/9060?u=https%3A%2F%2Fstockx.com%2Fnike-caitlin-1-racer-blue-pink-womens",
-      "sku": "JF3474-400"
+      "sku": "JF3474-400",
+      "ic": "2026-10-27"
     },
     {
       "date": "2026-11-14",
@@ -457,7 +524,8 @@
       "retail_usd": 170,
       "image": "https://images.stockx.com/images/Nike-Zoom-Hyperflight-Green-Apple.jpg?fit=fill&bg=FFFFFF&w=600&h=430&fm=webp&auto=compress&q=90&dpr=2&trim=color&updated_at=1790190167",
       "link": "https://stockx.pvxt.net/c/4722526/1023711/9060?u=https%3A%2F%2Fstockx.com%2Fnike-zoom-hyperflight-green-apple",
-      "sku": "IZ1481-300"
+      "sku": "IZ1481-300",
+      "ic": "2026-10-27"
     },
     {
       "date": "2026-11-15",
@@ -467,6 +535,16 @@
       "image": "",
       "link": "",
       "tried": "2026-10-25"
+    },
+    {
+      "date": "2026-11-15",
+      "name": "Nike Air Max 90 \"Batman\"",
+      "brand": "Nike",
+      "retail_usd": 140,
+      "image": "",
+      "link": "",
+      "sku": "IM9616-002",
+      "colorway": "Black/Chrome Yellow"
     },
     {
       "date": "2026-11-15",
@@ -494,7 +572,8 @@
       "brand": "Nike",
       "retail_usd": 240,
       "image": "https://images.stockx.com/images/Nike-Air-Foamposite-Pro-Mummy-Duck-Oregon-PE.jpg?fit=fill&bg=FFFFFF&w=600&h=430&fm=webp&auto=compress&q=90&dpr=2&trim=color&updated_at=1759179882",
-      "link": "https://stockx.pvxt.net/c/4722526/1023711/9060?u=https%3A%2F%2Fstockx.com%2Fnike-air-foamposite-pro-mummy-duck-oregon-pe"
+      "link": "https://stockx.pvxt.net/c/4722526/1023711/9060?u=https%3A%2F%2Fstockx.com%2Fnike-air-foamposite-pro-mummy-duck-oregon-pe",
+      "ic": "2026-10-27"
     },
     {
       "date": "2026-11-16",
@@ -522,6 +601,16 @@
     },
     {
       "date": "2026-11-19",
+      "name": "Nike Ja 4 \"Code Red\"",
+      "brand": "Nike",
+      "retail_usd": 130,
+      "image": "",
+      "link": "",
+      "sku": "IM4135-603",
+      "colorway": "Bright Crimson/Black-Cobalt Bliss"
+    },
+    {
+      "date": "2026-11-19",
       "name": "Vans Old Skool 36 Pearlized \"Navy\"",
       "brand": "Vans",
       "retail_usd": 130,
@@ -535,7 +624,8 @@
       "retail_usd": 190,
       "image": "https://images.stockx.com/images/Nike-Air-Max-95-ACG-Mowabb.jpg?fit=fill&bg=FFFFFF&w=600&h=430&fm=webp&auto=compress&q=90&dpr=2&trim=color&updated_at=1771470738",
       "link": "https://stockx.pvxt.net/c/4722526/1023711/9060?u=https%3A%2F%2Fstockx.com%2Fair-max-95-acg-mowabb",
-      "sku": "307255-251"
+      "sku": "307255-251",
+      "ic": "2026-10-27"
     },
     {
       "date": "2026-11-20",
@@ -544,7 +634,8 @@
       "retail_usd": 145,
       "image": "https://images.stockx.com/images/Nike-Book-2-Be-Legendary.jpg?fit=fill&bg=FFFFFF&w=600&h=430&fm=webp&auto=compress&q=90&dpr=2&trim=color&updated_at=1788971656",
       "link": "https://stockx.pvxt.net/c/4722526/1023711/9060?u=https%3A%2F%2Fstockx.com%2Fnike-book-2-be-legendary",
-      "sku": "FZ7013-501"
+      "sku": "FZ7013-501",
+      "ic": "2026-10-27"
     },
     {
       "date": "2026-11-20",
@@ -561,7 +652,8 @@
       "retail_usd": 215,
       "image": "https://images.stockx.com/images/Air-Jordan-3-Retro-Not-Nice.jpg?fit=fill&bg=FFFFFF&w=600&h=430&fm=webp&auto=compress&q=90&dpr=2&trim=color&updated_at=1784748181",
       "link": "https://stockx.pvxt.net/c/4722526/1023711/9060?u=https%3A%2F%2Fstockx.com%2Fair-jordan-3-retro-not-nice",
-      "sku": "IF4396-001"
+      "sku": "IF4396-001",
+      "ic": "2026-10-27"
     },
     {
       "date": "2026-11-21",
@@ -580,7 +672,8 @@
       "image": "https://images.stockx.com/images/Air-Jordan-Tatum-5-Sunset.jpg?fit=fill&bg=FFFFFF&w=600&h=430&fm=webp&auto=compress&q=90&dpr=2&trim=color&updated_at=1790969934",
       "link": "https://stockx.pvxt.net/c/4722526/1023711/9060?u=https%3A%2F%2Fstockx.com%2Fair-jordan-tatum-5-sunset",
       "sku": "IO1746-002",
-      "colorway": "Black/Clementine-Amarillo-Infrared 23"
+      "colorway": "Black/Clementine-Amarillo-Infrared 23",
+      "ic": "2026-10-27"
     },
     {
       "date": "2026-11-21",
@@ -765,6 +858,16 @@
       "retail_usd": null,
       "image": "",
       "link": ""
+    },
+    {
+      "date": "2026-11-30",
+      "name": "Well Off Forever x Nike Air DT Proto 92",
+      "brand": "Nike",
+      "retail_usd": 180,
+      "image": "",
+      "link": "",
+      "sku": "JF7593-100",
+      "colorway": "White/Metallic Gold-Off Noir"
     },
     {
       "date": "2026-12-01",
@@ -1019,6 +1122,16 @@
       "link": "",
       "sku": "IO6262-600",
       "colorway": "Laser Crimson/Silver-Obsidian"
+    },
+    {
+      "date": "2027-01-05",
+      "name": "Nike Caitlin 1 \"3x Black\"",
+      "brand": "Nike",
+      "retail_usd": 140,
+      "image": "",
+      "link": "",
+      "sku": "IH7423-001",
+      "colorway": "Black/Metallic Silver-Racer Blue"
     }
   ]
 }

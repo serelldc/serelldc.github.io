@@ -47,7 +47,7 @@
     },
     "j 1 low travis scott shy pink": {
       "none": true,
-      "at": "2026-10-19"
+      "at": "2026-10-27"
     },
     "nike zoom field jaxx travis scott leche blue": {
       "title": "Nike Zoom Field Jaxx Travis Scott Leche Blue",
@@ -87,10 +87,10 @@
     },
     "kobe protro college navy": {
       "title": "Nike Kobe 8 Protro College Navy",
-      "usd": 177,
-      "avg_usd": 309,
+      "usd": 172,
+      "avg_usd": 305,
       "link": "https://stockx.pvxt.net/c/4722526/1023711/9060?u=https%3A%2F%2Fstockx.com%2Fnike-kobe-8-protro-college-navy",
-      "at": "2026-10-20"
+      "at": "2026-10-27"
     },
     "kobe ix elite low em protro black university-gold": {
       "none": true,
@@ -98,7 +98,7 @@
     },
     "nike ja 4 nightmare": {
       "none": true,
-      "at": "2026-10-20"
+      "at": "2026-10-27"
     },
     "nike ja 4 ny vs ny": {
       "none": true,
@@ -264,8 +264,37 @@
     "nike kyrie 7": {
       "none": true,
       "at": "2026-10-26"
+    },
+    "jordan 12 retro fireside": {
+      "title": "Jordan 12 Retro Fireside",
+      "usd": 152,
+      "avg_usd": 196,
+      "link": "https://stockx.pvxt.net/c/4722526/1023711/9060?u=https%3A%2F%2Fstockx.com%2Fair-jordan-12-retro-fireside",
+      "at": "2026-10-27"
+    },
+    "nocturnal x nike sb air force 1 low": {
+      "title": "Nike SB Air Force 1 Low City Pack Nocturnal Shop",
+      "usd": 225,
+      "avg_usd": 562,
+      "link": "https://stockx.pvxt.net/c/4722526/1023711/9060?u=https%3A%2F%2Fstockx.com%2Fnike-sb-air-force-1-low-city-pack-nocturnal-shop",
+      "at": "2026-10-27"
+    },
+    "nike caitlin 1 halloween": {
+      "title": "Nike Caitlin 1 Halloween (Women's)",
+      "usd": 770,
+      "avg_usd": 973,
+      "link": "https://stockx.pvxt.net/c/4722526/1023711/9060?u=https%3A%2F%2Fstockx.com%2Fnike-caitlin-1-halloween-womens",
+      "at": "2026-10-27"
+    },
+    "nike ja 4 high university red": {
+      "none": true,
+      "at": "2026-10-27"
+    },
+    "nike kd 19 halloween": {
+      "none": true,
+      "at": "2026-10-27"
     }
   },
-  "updated": "2026-10-26",
+  "updated": "2026-10-27",
   "source": "KicksDB (StockX average resale, all sizes)"
 }
