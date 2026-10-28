@@ -9,19 +9,19 @@
     },
     "jordan 4": {
       "none": true,
-      "at": "2026-10-21"
+      "at": "2026-10-28"
     },
     "aj1 retro mid cut gum red": {
       "none": true,
-      "at": "2026-10-21"
+      "at": "2026-10-28"
     },
     "kobe": {
       "none": true,
-      "at": "2026-10-21"
+      "at": "2026-10-28"
     },
     "nike gianni's": {
       "none": true,
-      "at": "2026-10-21"
+      "at": "2026-10-28"
     },
     "jordan 1 high og true blue": {
       "title": "Jordan 1 Retro High OG True Blue",
@@ -32,7 +32,7 @@
     },
     "rebook question": {
       "none": true,
-      "at": "2026-10-21"
+      "at": "2026-10-28"
     },
     "j 1 low concord": {
       "none": true,
@@ -293,8 +293,37 @@
     "nike kd 19 halloween": {
       "none": true,
       "at": "2026-10-27"
+    },
+    "converse shai 001 lace up flare": {
+      "none": true,
+      "at": "2026-10-28"
+    },
+    "kobe bryant x nike air force 1 low mamba eterno": {
+      "none": true,
+      "at": "2026-10-28"
+    },
+    "nike kobe 3 low protro mamba eterno": {
+      "title": "Nike Kobe 3 Low Protro Mamba Eterno",
+      "usd": 192,
+      "avg_usd": 262,
+      "link": "https://stockx.pvxt.net/c/4722526/1023711/9060?u=https%3A%2F%2Fstockx.com%2Fnike-kobe-3-low-protro-mamba-eterno",
+      "at": "2026-10-28"
+    },
+    "nike kobe ad protro mamba eterno": {
+      "title": "Nike Kobe 3 Low Protro Mamba Eterno",
+      "usd": 192,
+      "avg_usd": 262,
+      "link": "https://stockx.pvxt.net/c/4722526/1023711/9060?u=https%3A%2F%2Fstockx.com%2Fnike-kobe-3-low-protro-mamba-eterno",
+      "at": "2026-10-28"
+    },
+    "nike kobe dunk low protro mamba eterno": {
+      "title": "Nike Dunk Low Protro Kobe Bryant Mamba Eterno",
+      "usd": 194,
+      "avg_usd": 207,
+      "link": "https://stockx.pvxt.net/c/4722526/1023711/9060?u=https%3A%2F%2Fstockx.com%2Fnike-dunk-low-protro-kobe-bryant-mamba-eterno",
+      "at": "2026-10-28"
     }
   },
-  "updated": "2026-10-27",
+  "updated": "2026-10-28",
   "source": "KicksDB (StockX average resale, all sizes)"
 }

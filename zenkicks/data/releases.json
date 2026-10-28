@@ -3,14 +3,15 @@
   "source": "SneakerFiles & Sneaker News release calendars (curated weekly); photos from KicksDB (StockX)",
   "items": [
     {
-      "date": "2026-10-27",
-      "name": "Nocturnal x Nike SB Air Force 1 Low",
-      "brand": "Nike",
+      "date": "2026-10-29",
+      "name": "Converse SHAI 001 Lace Up \"Flare\"",
+      "brand": "Converse",
       "retail_usd": 120,
-      "image": "https://images.stockx.com/images/Nike-SB-Air-Force-1-Low-City-Pack-Nocturnal-Shop-Special-Box.jpg?fit=fill&bg=FFFFFF&w=600&h=430&fm=webp&auto=compress&q=90&dpr=2&trim=color&updated_at=1792549154",
-      "link": "https://stockx.pvxt.net/c/4722526/1023711/9060?u=https%3A%2F%2Fstockx.com%2Fnike-sb-air-force-1-low-city-pack-nocturnal-shop-special-box",
-      "sku": "IV6099-003",
-      "colorway": "Cool Grey/Court Green-Black-Court Green"
+      "image": "",
+      "link": "",
+      "sku": "A23933C-832",
+      "colorway": "Sun Glow/White",
+      "tried": "2026-10-28"
     },
     {
       "date": "2026-10-29",
@@ -39,7 +40,8 @@
       "brand": "Nike",
       "retail_usd": 125,
       "image": "",
-      "link": ""
+      "link": "",
+      "tried": "2026-10-28"
     },
     {
       "date": "2026-10-30",
@@ -58,7 +60,8 @@
       "image": "https://images.stockx.com/images/Nike-Caitlin-1-Halloween-Womens.jpg?fit=fill&bg=FFFFFF&w=600&h=430&fm=webp&auto=compress&q=90&dpr=2&trim=color&updated_at=1792617452",
       "link": "https://stockx.pvxt.net/c/4722526/1023711/9060?u=https%3A%2F%2Fstockx.com%2Fnike-caitlin-1-halloween-womens",
       "sku": "JA4290-001",
-      "colorway": "Black/Ghost Green-Mint Foam-Racer Blue"
+      "colorway": "Black/Ghost Green-Mint Foam-Racer Blue",
+      "ic": "2026-10-28"
     },
     {
       "date": "2026-10-30",
@@ -77,7 +80,8 @@
       "image": "https://images.stockx.com/images/Nike-KD-19-Halloween.jpg?fit=fill&bg=FFFFFF&w=600&h=430&fm=webp&auto=compress&q=90&dpr=2&trim=color&updated_at=1791838928",
       "link": "https://stockx.pvxt.net/c/4722526/1023711/9060?u=https%3A%2F%2Fstockx.com%2Fnike-kd-19-halloween",
       "sku": "IO8112-600",
-      "colorway": "Bright Crimson/Lime Ice-Stadium Green-Dark Smoke Grey"
+      "colorway": "Bright Crimson/Lime Ice-Stadium Green-Dark Smoke Grey",
+      "ic": "2026-10-28"
     },
     {
       "date": "2026-10-30",
@@ -117,7 +121,7 @@
       "image": "",
       "link": "",
       "sku": "IX5103-001",
-      "tried": "2026-10-26"
+      "tried": "2026-10-28"
     },
     {
       "date": "2026-10-31",
@@ -159,7 +163,7 @@
       "link": "",
       "sku": "IQ3864-600",
       "colorway": "University Red/Bright Crimson-Cobalt Bliss-Medium Olive",
-      "tried": "2026-10-26"
+      "tried": "2026-10-28"
     },
     {
       "date": "2026-11-01",
@@ -316,7 +320,18 @@
       "image": "https://images.stockx.com/images/Nike-Air-Foamposite-Pro-College-Football-Pack-FSU.jpg?fit=fill&bg=FFFFFF&w=600&h=430&fm=webp&auto=compress&q=90&dpr=2&trim=color&updated_at=1790108033",
       "link": "https://stockx.pvxt.net/c/4722526/1023711/9060?u=https%3A%2F%2Fstockx.com%2Fnike-air-foamposite-pro-college-football-pack-fsu",
       "sku": "IX2095-600",
-      "colorway": "Team Maroon/White"
+      "colorway": "Team Maroon/White",
+      "ic": "2026-10-28"
+    },
+    {
+      "date": "2026-11-05",
+      "name": "Nike Air Max 95 GORE-TEX \"Campfire Orange\"",
+      "brand": "Nike",
+      "retail_usd": 220,
+      "image": "https://images.stockx.com/images/Nike-Air-Max-95-Gore-Tex-Big-Bubble-Light-Bone-Campfire-Orange.jpg?fit=fill&bg=FFFFFF&w=600&h=430&fm=webp&auto=compress&q=90&dpr=2&trim=color&updated_at=1791232202",
+      "link": "https://stockx.pvxt.net/c/4722526/1023711/9060?u=https%3A%2F%2Fstockx.com%2Fnike-air-max-95-gore-tex-big-bubble-light-bone-campfire-orange",
+      "sku": "IO1877-001",
+      "colorway": "Light Bone/Black-Metallic Pewter-Campfire Orange"
     },
     {
       "date": "2026-11-05",
@@ -334,7 +349,7 @@
       "retail_usd": 210,
       "image": "",
       "link": "",
-      "tried": "2026-10-26"
+      "tried": "2026-10-28"
     },
     {
       "date": "2026-11-06",
@@ -343,7 +358,7 @@
       "retail_usd": 145,
       "image": "",
       "link": "",
-      "tried": "2026-10-26"
+      "tried": "2026-10-28"
     },
     {
       "date": "2026-11-06",
@@ -373,7 +388,7 @@
       "retail_usd": 240,
       "image": "",
       "link": "",
-      "tried": "2026-10-26"
+      "tried": "2026-10-28"
     },
     {
       "date": "2026-11-07",
@@ -382,7 +397,7 @@
       "retail_usd": 245,
       "image": "",
       "link": "",
-      "tried": "2026-10-26"
+      "tried": "2026-10-28"
     },
     {
       "date": "2026-11-07",
@@ -391,7 +406,7 @@
       "retail_usd": 215,
       "link": "https://stockx.pvxt.net/c/4722526/1023711/9060?u=https%3A%2F%2Fstockx.com%2Fair-jordan-6-rings-white-infrared-23-black-gs",
       "ic": "2026-10-26",
-      "tried": "2026-10-26"
+      "tried": "2026-10-28"
     },
     {
       "date": "2026-11-07",
@@ -483,8 +498,8 @@
       "name": "Nike KD 19 \"Aunt Pearl\"",
       "brand": "Nike",
       "retail_usd": 170,
-      "image": "",
-      "link": "",
+      "image": "https://images.stockx.com/images/Nike-KD-19-Aunt-Pearl.jpg?fit=fill&bg=FFFFFF&w=600&h=430&fm=webp&auto=compress&q=90&dpr=2&trim=color&updated_at=1792701918",
+      "link": "https://stockx.pvxt.net/c/4722526/1023711/9060?u=https%3A%2F%2Fstockx.com%2Fnike-kd-19-aunt-pearl",
       "sku": "IO8111-600",
       "colorway": "Foam Pink/Stadium Green-Metallic Summit White"
     },
@@ -494,7 +509,8 @@
       "brand": "Jordan",
       "retail_usd": 255,
       "link": "https://stockx.pvxt.net/c/4722526/1023711/9060?u=https%3A%2F%2Fstockx.com%2Fair-jordan-11-retro-green-screen-monstars",
-      "sku": "IQ5700-900"
+      "sku": "IQ5700-900",
+      "image": "https://images.stockx.com/images/Air-Jordan-11-Retro-Green-Screen-Monstars-2.jpg?fit=fill&bg=FFFFFF&w=600&h=430&fm=webp&auto=compress&q=90&dpr=2&trim=color&updated_at=1792680555"
     },
     {
       "date": "2026-11-14",
