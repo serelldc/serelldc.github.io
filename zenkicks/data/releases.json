@@ -1,5 +1,5 @@
 {
-  "updated": "2026-10-27",
+  "updated": "2026-10-28",
   "source": "SneakerFiles & Sneaker News release calendars (curated weekly); photos from KicksDB (StockX)",
   "items": [
     {
@@ -32,6 +32,14 @@
       "sku": "CK9246-200",
       "colorway": "Velvet Brown/Pearl White-Gum Dark Brown",
       "ic": "2026-10-26"
+    },
+    {
+      "date": "2026-10-30",
+      "name": "Kobe Bryant x Nike Air Force 1 Low \"Mamba Eterno\"",
+      "brand": "Nike",
+      "retail_usd": 125,
+      "image": "",
+      "link": ""
     },
     {
       "date": "2026-10-30",
