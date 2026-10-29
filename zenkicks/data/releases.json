@@ -1,5 +1,5 @@
 {
-  "updated": "2026-10-28",
+  "updated": "2026-10-29",
   "source": "SneakerFiles & Sneaker News release calendars (curated weekly); photos from KicksDB (StockX)",
   "items": [
     {
@@ -50,7 +50,7 @@
       "retail_usd": 155,
       "image": "",
       "link": "",
-      "tried": "2026-10-27"
+      "tried": "2026-10-29"
     },
     {
       "date": "2026-10-30",
@@ -70,7 +70,7 @@
       "retail_usd": 180,
       "image": "",
       "link": "",
-      "tried": "2026-10-27"
+      "tried": "2026-10-29"
     },
     {
       "date": "2026-10-30",
@@ -152,7 +152,7 @@
       "link": "",
       "sku": "JA9745-400",
       "colorway": "Obsidian/Total Orange-Laser Orange-Black-Racer Blue-Cobalt Bliss",
-      "tried": "2026-10-27"
+      "tried": "2026-10-29"
     },
     {
       "date": "2026-10-31",
@@ -215,6 +215,27 @@
       "link": "https://stockx.pvxt.net/c/4722526/1023711/9060?u=https%3A%2F%2Fstockx.com%2Fnike-air-griffey-max-1-cincinnati-reds",
       "sku": "354912-106",
       "ic": "2026-10-26"
+    },
+    {
+      "date": "2026-11-03",
+      "name": "Nike Giannis Freak 8 \"Camo\"",
+      "brand": "Nike",
+      "retail_usd": 120,
+      "image": "",
+      "link": "",
+      "sku": "IV4379-200",
+      "colorway": "Medium Olive/Velvet Brown-Oil Green-Volt",
+      "tried": "2026-10-29"
+    },
+    {
+      "date": "2026-11-04",
+      "name": "Nike Blazy \"Tie-Dye\"",
+      "brand": "Nike",
+      "retail_usd": 105,
+      "image": "https://images.stockx.com/images/Nike-Blazy-Tie-Dye-Dark-Sulfur-Sail.jpg?fit=fill&bg=FFFFFF&w=600&h=430&fm=webp&auto=compress&q=90&dpr=2&trim=color&updated_at=1790969913",
+      "link": "https://stockx.pvxt.net/c/4722526/1023711/9060?u=https%3A%2F%2Fstockx.com%2Fnike-blazy-tie-dye-dark-sulfur-sail",
+      "sku": "IV7023-700",
+      "colorway": "Dark Sulfur/Sail-Multi-Color"
     },
     {
       "date": "2026-11-05",
@@ -328,10 +349,10 @@
       "name": "Nike Air Max 95 GORE-TEX \"Campfire Orange\"",
       "brand": "Nike",
       "retail_usd": 220,
-      "image": "https://images.stockx.com/images/Nike-Air-Max-95-Gore-Tex-Big-Bubble-Light-Bone-Campfire-Orange.jpg?fit=fill&bg=FFFFFF&w=600&h=430&fm=webp&auto=compress&q=90&dpr=2&trim=color&updated_at=1791232202",
       "link": "https://stockx.pvxt.net/c/4722526/1023711/9060?u=https%3A%2F%2Fstockx.com%2Fnike-air-max-95-gore-tex-big-bubble-light-bone-campfire-orange",
       "sku": "IO1877-001",
-      "colorway": "Light Bone/Black-Metallic Pewter-Campfire Orange"
+      "colorway": "Light Bone/Black-Metallic Pewter-Campfire Orange",
+      "image": "https://images.stockx.com/images/Nike-Air-Max-95-Gore-Tex-Big-Bubble-Light-Bone-Campfire-Orange.jpg?fit=fill&bg=FFFFFF&w=600&h=430&fm=webp&auto=compress&q=90&dpr=2&trim=color&updated_at=1791232202"
     },
     {
       "date": "2026-11-05",
@@ -353,6 +374,16 @@
     },
     {
       "date": "2026-11-06",
+      "name": "Nike Air Max Joga Bonito \"Camo\"",
+      "brand": "Nike",
+      "retail_usd": 180,
+      "image": "https://images.stockx.com/images/Nike-Air-Max-90-Duck-Camo-Volt-Product.jpg?fit=fill&bg=FFFFFF&w=600&h=430&fm=webp&auto=compress&q=90&dpr=2&trim=color&updated_at=1771519795",
+      "link": "https://stockx.pvxt.net/c/4722526/1023711/9060?u=https%3A%2F%2Fstockx.com%2Fnike-air-max-90-duck-camo-volt",
+      "sku": "IQ0217-900",
+      "colorway": "Multi-Color/Safety Orange-Black"
+    },
+    {
+      "date": "2026-11-06",
       "name": "Nike Book 2 \"Desert Night\"",
       "brand": "Nike",
       "retail_usd": 145,
@@ -369,7 +400,7 @@
       "link": "",
       "sku": "IM0704-001",
       "colorway": "Black/Gym Green",
-      "tried": "2026-10-27"
+      "tried": "2026-10-29"
     },
     {
       "date": "2026-11-06",
@@ -420,13 +451,23 @@
       "ic": "2026-10-26"
     },
     {
+      "date": "2026-11-10",
+      "name": "Nike Mind 002 Flyknit \"Dark Smoke Grey\"",
+      "brand": "Nike",
+      "retail_usd": 145,
+      "image": "https://images.stockx.com/images/Nike-Mind-002-Flyknit-Black-Dark-Smoke-Grey.jpg?fit=fill&bg=FFFFFF&w=600&h=430&fm=webp&auto=compress&q=90&dpr=2&trim=color&updated_at=1790970001",
+      "link": "https://stockx.pvxt.net/c/4722526/1023711/9060?u=https%3A%2F%2Fstockx.com%2Fnike-mind-002-flyknit-black-dark-smoke-grey",
+      "sku": "IR2176-002",
+      "colorway": "Black/Anthracite-Dark Smoke Grey"
+    },
+    {
       "date": "2026-11-11",
       "name": "Air Jordan 11 \"Light British Tan\"",
       "brand": "Jordan",
       "retail_usd": 235,
       "image": "",
       "link": "",
-      "tried": "2026-10-27"
+      "tried": "2026-10-29"
     },
     {
       "date": "2026-11-11",
@@ -446,7 +487,7 @@
       "retail_usd": 235,
       "image": "",
       "link": "",
-      "tried": "2026-10-27"
+      "tried": "2026-10-29"
     },
     {
       "date": "2026-11-11",
@@ -473,7 +514,7 @@
       "retail_usd": 130,
       "image": "",
       "link": "",
-      "tried": "2026-10-27"
+      "tried": "2026-10-29"
     },
     {
       "date": "2026-11-13",
@@ -501,7 +542,8 @@
       "image": "https://images.stockx.com/images/Nike-KD-19-Aunt-Pearl.jpg?fit=fill&bg=FFFFFF&w=600&h=430&fm=webp&auto=compress&q=90&dpr=2&trim=color&updated_at=1792701918",
       "link": "https://stockx.pvxt.net/c/4722526/1023711/9060?u=https%3A%2F%2Fstockx.com%2Fnike-kd-19-aunt-pearl",
       "sku": "IO8111-600",
-      "colorway": "Foam Pink/Stadium Green-Metallic Summit White"
+      "colorway": "Foam Pink/Stadium Green-Metallic Summit White",
+      "ic": "2026-10-29"
     },
     {
       "date": "2026-11-14",
@@ -510,7 +552,8 @@
       "retail_usd": 255,
       "link": "https://stockx.pvxt.net/c/4722526/1023711/9060?u=https%3A%2F%2Fstockx.com%2Fair-jordan-11-retro-green-screen-monstars",
       "sku": "IQ5700-900",
-      "image": "https://images.stockx.com/images/Air-Jordan-11-Retro-Green-Screen-Monstars-2.jpg?fit=fill&bg=FFFFFF&w=600&h=430&fm=webp&auto=compress&q=90&dpr=2&trim=color&updated_at=1792680555"
+      "image": "https://images.stockx.com/images/Air-Jordan-11-Retro-Green-Screen-Monstars-2.jpg?fit=fill&bg=FFFFFF&w=600&h=430&fm=webp&auto=compress&q=90&dpr=2&trim=color&updated_at=1792680555",
+      "ic": "2026-10-29"
     },
     {
       "date": "2026-11-14",
