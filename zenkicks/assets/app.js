@@ -321,8 +321,11 @@
     return (ST.feedsP = Promise.all([j('data/releases.json'), j('data/hot.json'), j('data/photos.json')]).then(function (a) {
       ST.releases = a[0] || { items: [] }; ST.hot = a[1] || { online: [] }; ST.photos = a[2] || {};
       // Show only pairs that have a real photo; others appear once KicksDB or data/photos.json gives them one.
-      ST.releases.items = (ST.releases.items || []).filter(function (d) { return !!releaseImg(d); });
-      ST.hot.online = (ST.hot.online || []).filter(function (h) { return !!releaseImg(h); });
+      // Hyped pairs stay on the calendar even before StockX has a photo (shown with a placeholder); other pairs appear once they have one.
+      ST.releases.items = (ST.releases.items || []).filter(function (d) { return !!releaseImg(d) || isHyped(d); });
+      // What's hot: best sellers that sneakerheads actually chase (not everyday staples), with a photo
+      var hotAll = (ST.hot.online || []).filter(function (h) { return !!releaseImg(h); }), hotHy = hotAll.filter(isHyped);
+      ST.hot.online = hotHy.length >= 3 ? hotHy : hotAll;
     }));
   }
   function releaseImg(item) {
@@ -336,10 +339,12 @@
       .sort(function (a, b) { return a.date < b.date ? -1 : a.date > b.date ? 1 : 0; });
   }
   // hype ranking: what sneakerheads actually want (on the What's hot list, big collabs, Jordan / Dunk / Kobe...)
-  var HYPE_WORDS = [
-    [/travis scott|off.?white|fragment|sacai|supreme|union|a ma mani|salehe|jacquemus|eminem|st[uü]ssy|yeezy|chicago|bred\b|kobe|patta|undefeated|concepts|j balvin|nocta|drake/i, 45],
-    [/air jordan (1|3|4|5|6|11|12|13)\b|jordan (1|3|4|5|6|11|12|13)\b|\bdunk\b|air max (1|90|95|97)\b|new balance (99\d|55\d|2002r|1906|9060)|\bog\b|retro/i, 22]
-  ];
+  // What sneakerheads actually wait for: big collabs and signature names (A), and the classic models people line up for (B).
+  // Keep in sync with HYPE_A / HYPE_B in scripts/fetch-releases.mjs
+  var HYPE_A = /travis scott|off.?white|fragment|sacai|supreme|union|a ma mani|salehe|jacquemus|eminem|st[uü]ssy|yeezy|chicago|\bbred\b|kobe|mamba|patta|undefeated|concepts|j balvin|nocta|drake|lost (and|&) found|nigo|j-?hope|\bbape\b|a bathing ape|corteiz|\bkith\b|aim[eé] leon dore|cactus jack|dior|tiffany|middle east|dubai|emirates|\buae\b/i;
+  var HYPE_B = /\b(air )?jordan (1|3|4|5|6|8|9|11|12|13|14)\b|\bdunk\b|air max (1|90|95|97)\b|new balance (99\d|55\d|2002r|1906|9060)\b/i;
+  var HYPE_WORDS = [[HYPE_A, 45], [HYPE_B, 22], [/space jam/i, 15], [/\bog\b|retro/i, 10]];
+  function isHyped(d) { var n = String(d && d.name || ''); if (/\b(gs|ps|td|kids?|toddler|infant)\b/i.test(n)) return false; return HYPE_A.test(n) || HYPE_B.test(n); }
   function hypeScore(d) {
     var n = norm(d.name), s = 0, hot = (ST.hot && ST.hot.online) || [];
     for (var i = 0; i < hot.length; i++) { var hn = norm(hot[i].name); if (hn && (n.indexOf(hn) > -1 || hn.indexOf(n) > -1)) { s += 100; break; } }
@@ -353,8 +358,8 @@
   }
   // upcoming drops, hottest first (only the next 30 days so a far-off hyped pair doesn't hide this week)
   function hypeRanked(up) {
-    var soon = up.filter(function (d) { return dayDiff(d.date) <= 30; });
-    return (soon.length ? soon : up).slice().sort(function (a, b) { return hypeScore(b) - hypeScore(a); });
+    var soon = up.filter(function (d) { return dayDiff(d.date) <= 30; }), hy = soon.filter(isHyped);
+    return (hy.length >= 3 ? hy : soon.length ? soon : up).slice().sort(function (a, b) { return hypeScore(b) - hypeScore(a); });
   }
   // the hyped picks keep changing (still the hottest ones): top 3 always shown, the rest rotate every 3 hours from the next 11, and the hero drop rotates through the top 6
   function dayNo() { return Math.floor(Date.parse(dubaiToday() + 'T00:00:00Z') / 864e5); }
@@ -365,7 +370,7 @@
     return r.length ? r[slotNo() % r.length] : hypeRanked(up)[0];
   }
   function homeDrops(up) {
-    if (ST.allDrops) return up.slice(0, 40);
+    if (ST.allDrops) return (ST.moreDrops ? up : up.filter(isHyped)).slice(0, 40);
     var r = hypeRanked(up), top = r.slice(0, 3), rest = r.slice(3, 14).sort(function (a, b) { return dayHash(a.name + a.date) - dayHash(b.name + b.date); }).slice(0, 5);
     return top.concat(rest).sort(function (a, b) { return a.date < b.date ? -1 : a.date > b.date ? 1 : 0; });
   }
@@ -952,7 +957,7 @@
       var rows = homeDrops(up).map(function (d) {
         var dt = new Date(d.date + 'T00:00:00Z'); var on = !!rem[d.name + d.date]; var im = releaseImg(d);
         return '<div class="card drop" data-peek="r|' + esc(d.name + d.date) + '"><div class="date"><span>' + MON[dt.getUTCMonth()] + '</span><b>' + ('0' + dt.getUTCDate()).slice(-2) + '</b></div>' +
-          (im ? '<img draggable="false" src="' + esc(im) + '" alt="" loading="lazy" style="width:64px;height:46px;object-fit:cover;border-radius:8px;flex-shrink:0;background:#fff">' : '') +
+          (im ? '<img draggable="false" src="' + esc(im) + '" alt="" loading="lazy" style="width:64px;height:46px;object-fit:cover;border-radius:8px;flex-shrink:0;background:#fff">' : '<span class="noimg" aria-hidden="true">' + I.shoe + '</span>') +
           '<div class="grow"><div class="t" style="font-size:14px;line-height:1.3">' + esc(d.name) + '</div><div class="m">' + DOW[dt.getUTCDay()] + ' · ' + cdChip(d.date) + ' · ' + dropPrice(d) + '</div>' + codBtns(d.name + d.date) + '</div>' +
           '<button class="round' + (on ? ' on' : '') + '" data-act="rem" data-key="' + esc(d.name + d.date) + '" aria-pressed="' + on + '" aria-label="' + (on ? 'Remove reminder for ' : 'Remind me about ') + esc(d.name) + '">' + (on ? I.check : I.bell) + '</button></div>';
       }).join('') || '<p class="sub">No upcoming drops in the feed right now.</p>';
@@ -964,7 +969,7 @@
       {
         var html = heroHtml +
           '<div class="pad">' + heatCard() +
-          '<section class="sec"><div class="between"><h2>Release calendar</h2><span class="pill ok" style="font-size:10px">AUTO</span></div><p class="sub" style="font-size:12px">' + esc(stamp()) + ' · <span class="uaetag">UAE</span> = confirmed UAE release and price; other prices are US retail at 3.6725 · <b>Hyped drops first. Press and hold a pair for details</b></p><div class="droplist">' + rows + '</div>' + (up.length > 8 ? '<button class="link" style="align-self:center" data-act="alldrops">' + (ST.allDrops ? 'Show hyped drops only' : 'Show all ' + up.length + ' drops') + '</button>' : '') + '</section>' +
+          '<section class="sec"><div class="between"><h2>Release calendar</h2><span class="pill ok" style="font-size:10px">AUTO</span></div><p class="sub" style="font-size:12px">' + esc(stamp()) + ' · <span class="uaetag">UAE</span> = confirmed UAE release and price; other prices are US retail at 3.6725 · <b>The drops sneakerheads are waiting for. Press and hold a pair for details</b></p><div class="droplist">' + rows + '</div>' + (up.filter(isHyped).length > 8 ? '<button class="link" style="align-self:center" data-act="alldrops">' + (ST.allDrops ? 'Show top hyped picks only' : 'Show all ' + up.filter(isHyped).length + ' hyped drops') + '</button>' : '') + (ST.allDrops && up.length > up.filter(isHyped).length ? '<button class="link" style="align-self:center;color:var(--muted)" data-act="moredrops">' + (ST.moreDrops ? 'Hide other releases' : 'Also show other releases (' + (up.length - up.filter(isHyped).length) + ')') + '</button>' : '') + '</section>' +
           (hot ? '<section class="sec"><div class="between"><h2>What’s hot</h2><button class="link" data-go="hot">See all</button></div><div class="scroller">' + hot + '</div></section>' : '') +
           adSlot() +
           '<section class="sec"><div class="between"><h2>Fresh pairs</h2><button class="link" data-go="market">Shop</button></div>' +
@@ -1090,7 +1095,7 @@
   VIEWS.hot = function () {
     return loadFeeds().then(function () {
       var seg = '<div class="seg" role="tablist" aria-label="Hot source"><button role="tab" class="' + (ST.hotTab === 'online' ? 'on' : '') + '" aria-selected="' + (ST.hotTab === 'online') + '" data-act="hottab" data-v="online">Online buzz</button><button role="tab" class="' + (ST.hotTab === 'market' ? 'on' : '') + '" aria-selected="' + (ST.hotTab === 'market') + '" data-act="hottab" data-v="market">On Zenkicks</button></div>';
-      var head = '<div class="sec" style="gap:4px"><div class="row"><h1>What’s hot</h1><span class="pill ok" style="font-size:10px">AUTO</span></div><p class="sub">' + (ST.hotTab === 'online' ? 'Most-traded and most-hyped pairs right now, refreshed daily. Hyped drops first. Press and hold a pair for details.' : 'Live from the Zenkicks market: bids and watchlist saves in the last 7 days.') + '</p></div>';
+      var head = '<div class="sec" style="gap:4px"><div class="row"><h1>What’s hot</h1><span class="pill ok" style="font-size:10px">AUTO</span></div><p class="sub">' + (ST.hotTab === 'online' ? 'Most-traded and most-hyped pairs right now, refreshed daily. The drops sneakerheads are waiting for. Press and hold a pair for details.' : 'Live from the Zenkicks market: bids and watchlist saves in the last 7 days.') + '</p></div>';
       if (ST.hotTab === 'online') {
         var list = (ST.hot.online || []).map(function (h, n) {
           var im = releaseImg(h);
@@ -2201,7 +2206,8 @@
     var on = el.getAttribute('data-on') === 'true';
     switch (a) {
       case 'reload': render(); break;
-      case 'alldrops': ST.allDrops = !ST.allDrops; render(true); break;
+      case 'alldrops': ST.allDrops = !ST.allDrops; if (!ST.allDrops) ST.moreDrops = false; render(true); break;
+      case 'moredrops': ST.moreDrops = !ST.moreDrops; render(true); break;
       case 'theme': setTheme(curTheme() === 'dark' ? 'light' : 'dark'); render(true); break;
       case 'rem': toggleRem(el.getAttribute('data-key'), function () { render(true); }); break;
       case 'pushon': pushOn().then(function (res) { toast({ on: '🔔 Drop alerts on. Check your notifications.', 'ios-home': 'Add Zenkicks to your Home Screen first', unsupported: 'This browser can’t show notifications', blocked: 'Notifications are blocked in your settings', declined: 'Alerts not turned on' }[res] || 'Couldn’t turn on alerts, try again later'); render(true); }); break;
