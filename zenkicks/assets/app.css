@@ -756,3 +756,7 @@ html[data-theme="dark"] .hx-trust-i,html[data-theme="dark"] .hx-trust-i b,html[d
 /* Follow buttons: filled neon (follows the marquee colour) with dark text in dark mode; solid dark with light text in light mode */
 .soc{background:var(--ink);color:var(--bone);border-color:var(--ink)}
 html[data-theme="dark"] .soc{background:var(--mq,var(--neon));color:#0D0D0D;border-color:var(--mq,var(--neon));box-shadow:0 0 16px color-mix(in srgb,var(--mq,#C6F432) 45%,transparent);transition:background 1.2s ease,border-color 1.2s ease,box-shadow 1.2s ease}
+
+/* UAE Hub + landed cost */
+.hubgrid{display:grid;grid-template-columns:1fr 1fr;gap:10px}.hubcard{display:flex;flex-direction:column;align-items:flex-start;gap:4px;text-align:left;padding:14px;cursor:pointer;color:inherit;font:inherit}.hubcard b{font-size:15px}.hubic{font-size:24px;line-height:1}
+.hublist{display:flex;flex-direction:column;gap:10px}.hubitem{padding:12px 14px;display:flex;flex-direction:column;gap:6px}

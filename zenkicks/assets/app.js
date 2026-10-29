@@ -190,8 +190,8 @@
   function curTheme() { return document.documentElement.getAttribute('data-theme') === 'light' ? 'light' : 'dark'; }
   function setTheme(t) { document.documentElement.setAttribute('data-theme', t); store('theme', t); var m = document.querySelector('meta[name=theme-color]'); if (m) m.setAttribute('content', '#0D0D0D'); }
   function header(r) {
-    var back = { safety: 'market', grails: 'me', l: 'market', c: 'legit', 'new-check': 'legit', sell: 'drops', login: 'drops', join: 'drops', install: 'drops', u: 'market', admin: 'me', 'coll-add': 'me' }[r.name];
-    var titles = { safety: 'Safety', grails: 'My grails', l: 'Listing', c: 'Legit check', 'new-check': 'New check', sell: 'Sell a pair', login: 'Sign in', join: 'Join Zenkicks', install: 'Install the app', u: 'Member', admin: 'Admin panel', 'coll-add': 'Add a pair' };
+    var back = { safety: 'market', grails: 'me', l: 'market', c: 'legit', 'new-check': 'legit', sell: 'drops', login: 'drops', join: 'drops', install: 'drops', u: 'market', admin: 'me', 'coll-add': 'me', landed: 'drops', uae: 'drops' }[r.name];
+    var titles = { safety: 'Safety', grails: 'My grails', l: 'Listing', c: 'Legit check', 'new-check': 'New check', sell: 'Sell a pair', login: 'Sign in', join: 'Join Zenkicks', install: 'Install the app', u: 'Member', admin: 'Admin panel', 'coll-add': 'Add a pair', landed: 'Landed cost', uae: 'UAE Hub' };
     if (back) {
       return '<header class="hd"><button class="ibtn" data-go="' + back + '" aria-label="Back">' + (r.name === 'sell' || r.name === 'new-check' || r.name === 'coll-add' || r.name === 'login' || r.name === 'join' ? I.close : I.back) + '</button><div class="hd-title">' + LOGO + esc(titles[r.name]) + '</div><span style="width:44px"></span></header>';
     }
@@ -970,12 +970,105 @@
           '<section class="sec"><div class="between"><h2>Fresh pairs</h2><button class="link" data-go="market">Shop</button></div>' +
           (listings.length ? '<div class="grid">' + listings.map(function (l) { return itemCard(l, stats[l.id]); }).join('') + '</div>' : '<div class="card empty" style="padding:20px">' + I.bag + '<span>No pairs listed yet. Be the first.</span><button class="btn red" data-go="sell">Sell a pair</button></div>') + '</section>' +
           '<button class="safety" style="border:0;text-align:left;align-items:center" data-go="legit"><span style="color:var(--coral)">' + I.shield + '</span><span class="grow" style="display:flex;flex-direction:column;gap:2px"><b style="font-size:15px;color:var(--bone)">Legit or fake?</b><span>Post photos and let the community vote</span></span><span aria-hidden="true" style="font-size:20px;color:var(--bone)">›</span></button>' +
-          socialRow() + installLink() + sourcesNote() + '</div>';
+          hubCards() + socialRow() + installLink() + sourcesNote() + '</div>';
         // Cop/Drop percentages fill in right after the page shows (no waiting on them)
         return { html: html, after: function () { codFor(codKeys).then(function () { codKeys.forEach(paintCod); }); } };
       }
     });
   };
+  // ---- UAE Hub (community stock reports, meet-up spots, events) + landed cost calculator ----
+  var HUB_STORES = ['Nike SNKRS / Nike UAE', 'Foot Locker', 'Level Shoes', 'Sun & Sand Sports', 'Jordan Dubai Mall', 'Other store'];
+  var HUB_EMIRATES = ['Dubai', 'Sharjah', 'Abu Dhabi', 'Ajman', 'Ras Al Khaimah', 'Fujairah', 'Umm Al Quwain', 'Al Ain'];
+  var STOCK_ST = { in_stock: ['✅ In stock', 'ok'], sold_out: ['❌ Sold out', 'red'], raffle: ['🎟 Raffle open', 'dark'] };
+  function hubOpts(list, sel, first) { return (first ? '<option value="">' + first + '</option>' : '') + list.map(function (o) { return '<option' + (o === sel ? ' selected' : '') + '>' + esc(o) + '</option>'; }).join(''); }
+  function hubBad(t) { return /(https?:|www\.|([0-9][ +-]?){9,})/i.test(t || ''); } // no links or phone numbers in free text
+  function hubCards() {
+    return '<section class="sec"><div class="hubgrid">' +
+      '<button class="card hubcard" data-go="uae"><span class="hubic">🇦🇪</span><b>UAE Hub</b><span class="m">Stock reports · meet-up spots · events</span></button>' +
+      '<button class="card hubcard" data-go="landed"><span class="hubic">🧮</span><b>Landed cost</b><span class="m">Real AED price with customs and VAT</span></button></div></section>';
+  }
+  VIEWS.landed = function () {
+    var L = ST.landed = ST.landed || { price: '', ship: '', local: '', duty: true };
+    return { html: '<div class="pad"><div class="sec" style="gap:4px"><h1>Landed cost</h1><p class="sub">Buying from StockX, GOAT or a US store? See what the pair really costs in AED after shipping, customs and VAT.</p></div>' +
+      '<div class="two"><label class="field" for="lc-price">Pair price (US$)<input id="lc-price" data-lc="price" type="number" inputmode="decimal" min="0" placeholder="e.g. 220" value="' + esc(L.price) + '"></label>' +
+      '<label class="field" for="lc-ship">Shipping to UAE (US$)<input id="lc-ship" data-lc="ship" type="number" inputmode="decimal" min="0" placeholder="your courier quote" value="' + esc(L.ship) + '"></label></div>' +
+      '<label class="field" for="lc-local">UAE price to compare (AED, optional)<input id="lc-local" data-lc="local" type="number" inputmode="numeric" min="0" placeholder="e.g. 950" value="' + esc(L.local) + '"></label>' +
+      '<label class="card row" for="lc-duty" style="padding:12px 14px;font-size:13px;line-height:1.4"><input id="lc-duty" data-lc="duty" type="checkbox"' + (L.duty ? ' checked' : '') + ' style="width:20px;height:20px;accent-color:var(--red)"><span><b>Add 5% customs duty.</b> Turn it off if your courier says the parcel is under the duty-free limit.</span></label>' +
+      '<div id="landres"></div>' +
+      '<p class="m" style="margin:0;font-size:12px;line-height:1.5">Estimate only. Dubai Customs charges 5% duty on the item plus shipping, then 5% VAT on top (about 10.25% in total). Couriers can add their own clearance fee, and the duty-free limit can differ by courier, so check your courier’s quote. Rate used: US$1 = AED 3.6725.</p></div>', after: landCalc };
+  };
+  function landCalc() {
+    var box = document.getElementById('landres'); if (!box) return;
+    var L = ST.landed || {}, p = parseFloat(L.price) || 0, sh = parseFloat(L.ship) || 0, loc = parseFloat(L.local) || 0, R = 3.6725;
+    if (!(p > 0)) { box.innerHTML = '<div class="card" style="padding:14px"><span class="m">Enter the pair price to see the total in AED.</span></div>'; return; }
+    var cif = p + sh, duty = L.duty ? cif * 0.05 : 0, vat = (cif + duty) * 0.05, tot = cif + duty + vat, totA = Math.round(tot * R);
+    var row = function (l, u) { return '<div class="kv"><span class="m">' + l + '</span><span class="pv">' + aed(Math.round(u * R)) + '</span></div>'; };
+    var cmp = '';
+    if (loc > 0) { var d = Math.round(loc - totA); cmp = '<div class="note" role="status"><span>' + (Math.abs(d) < 25 ? 'Importing costs <b>about the same</b> as the UAE price.' : d > 0 ? 'Importing is about <b>' + aed(d) + ' cheaper</b> than the UAE price.' : 'Buying in the UAE is about <b>' + aed(-d) + ' cheaper</b> than importing.') + '</span></div>'; }
+    box.innerHTML = '<div class="card" style="padding:4px 14px">' + row('Pair', p) + row('Shipping', sh) + (L.duty ? row('Customs duty (5%)', duty) : '') + row('VAT (5%)', vat) +
+      '<div class="kv"><b>Total landed cost</b><span class="pv money" style="font-size:24px">' + aed(totA) + '</span></div></div>' + cmp;
+  }
+
+  VIEWS.uae = function () {
+    if (!sb) return needSb();
+    var tab = ST.hubTab || 'stock', me = uid();
+    var seg = '<div class="seg" role="tablist" aria-label="UAE Hub">' + [['stock', 'Stock'], ['spots', 'Meet-up spots'], ['events', 'Events']].map(function (t) { return '<button role="tab" class="' + (tab === t[0] ? 'on' : '') + '" aria-selected="' + (tab === t[0]) + '" data-act="hubtab" data-v="' + t[0] + '">' + t[1] + '</button>'; }).join('') + '</div>';
+    var sub = { stock: 'Spotted a pair at a UAE store, or a raffle is open? Tell the community. Reports stay for 14 days.', spots: 'Public places members use to meet up, voted by the community. Always check the <button class="link" style="padding:0" data-go="safety">safety tips</button> too.', events: 'Sneaker events, pop-ups, store openings and meet-ups in the UAE, added by members.' }[tab];
+    var head = '<div class="sec" style="gap:4px"><h1>🇦🇪 UAE Hub</h1><p class="sub">' + sub + '</p></div>';
+    var del = function (t, id, own, type) { return own || isStaff() ? '<button class="link" style="padding:2px 0;font-size:12px;color:var(--muted)" data-act="hubdel" data-t="' + t + '" data-id="' + id + '">Delete</button>' : '<button class="link" style="padding:2px 0;font-size:12px;color:var(--muted)" data-act="report" data-type="' + type + '" data-id="' + id + '">Report</button>'; };
+    var empty = function (msg) { return '<div class="card empty" style="padding:18px"><span>' + msg + '</span></div>'; };
+    var by = function (uid2, a, at) { return '<span class="m">by ' + userLink(uid2, a && a.username) + ' · ' + ago(at) + ' ago</span>'; };
+    var body;
+    if (tab === 'spots') {
+      body = sb.from('meetup_spots').select('id,user_id,name,emirate,area,note,created_at,author:profiles!meetup_spots_user_id_fkey(username),votes:meetup_votes(user_id)').order('created_at', { ascending: false }).limit(80).then(function (r) {
+        if (r.error) throw r.error;
+        var rows = (r.data || []).sort(function (a, b) { return (b.votes || []).length - (a.votes || []).length; });
+        return '<button class="btn red" style="width:100%" data-act="spotform">+ Suggest a spot</button>' + (rows.length ? rows.map(function (s) {
+          var v = s.votes || [], mine = v.some(function (x) { return x.user_id === me; });
+          return '<div class="card hubitem"><div class="between"><b>' + esc(s.name) + '</b><span class="pill dark" style="font-size:11px">' + esc(s.emirate) + '</span></div>' + (s.area ? '<div class="m">' + esc(s.area) + '</div>' : '') + (s.note ? '<div style="font-size:14px">' + esc(s.note) + '</div>' : '') +
+            '<div class="between" style="align-items:center"><button class="chip' + (mine ? ' on' : '') + '" data-act="spotvote" data-id="' + s.id + '" data-on="' + mine + '" aria-pressed="' + mine + '">👍 Safe · ' + v.length + '</button>' + del('meetup_spots', s.id, s.user_id === me, 'spot') + '</div>' + by(s.user_id, s.author, s.created_at) + '</div>';
+        }).join('') : empty('No spots yet. Suggest a busy public place you trust, like a mall entrance with security.'));
+      });
+    } else if (tab === 'events') {
+      body = sb.from('uae_events').select('id,user_id,title,event_date,place,emirate,link,note,created_at,author:profiles!uae_events_user_id_fkey(username)').order('event_date', { ascending: true }).limit(60).then(function (r) {
+        if (r.error) throw r.error;
+        var rows = r.data || [];
+        return '<button class="btn red" style="width:100%" data-act="eventform">+ Add an event</button>' + (rows.length ? rows.map(function (e) {
+          var dt = new Date(e.event_date + 'T00:00:00Z'), lk = safeUrl(e.link);
+          return '<div class="card hubitem" style="flex-direction:row;gap:12px;align-items:flex-start"><div class="date"><span>' + MON[dt.getUTCMonth()] + '</span><b>' + ('0' + dt.getUTCDate()).slice(-2) + '</b></div><div class="grow" style="display:flex;flex-direction:column;gap:6px"><b>' + esc(e.title) + '</b>' +
+            ((e.place || e.emirate) ? '<div class="m">' + esc([e.place, e.emirate].filter(Boolean).join(' · ')) + '</div>' : '') + (e.note ? '<div style="font-size:14px">' + esc(e.note) + '</div>' : '') +
+            (lk ? '<a class="link" style="padding:0;align-self:flex-start" href="' + esc(lk) + '" target="_blank" rel="noopener noreferrer">More info ›</a>' : '') +
+            '<div class="between" style="align-items:center">' + by(e.user_id, e.author, e.created_at) + del('uae_events', e.id, e.user_id === me, 'event') + '</div></div></div>';
+        }).join('') : empty('No upcoming events yet. Know one? Add it for the community.'));
+      });
+    } else {
+      body = sb.from('stock_reports').select('id,user_id,model,store,place,size,status,note,created_at,author:profiles!stock_reports_user_id_fkey(username)').order('created_at', { ascending: false }).limit(60).then(function (r) {
+        if (r.error) throw r.error;
+        var rows = r.data || [];
+        return '<button class="btn red" style="width:100%" data-act="stockform">+ Report stock</button>' + (rows.length ? rows.map(function (s) {
+          var st = STOCK_ST[s.status] || ['', 'dark'];
+          return '<div class="card hubitem"><div class="between" style="align-items:flex-start;gap:8px"><b>' + esc(s.model) + '</b><span class="pill ' + st[1] + '" style="font-size:11px;white-space:nowrap">' + st[0] + '</span></div>' +
+            '<div class="m">' + esc([s.store, s.place, s.size ? 'Size ' + s.size : ''].filter(Boolean).join(' · ')) + '</div>' + (s.note ? '<div style="font-size:14px">' + esc(s.note) + '</div>' : '') +
+            '<div class="between" style="align-items:center">' + by(s.user_id, s.author, s.created_at) + del('stock_reports', s.id, s.user_id === me, 'stock') + '</div></div>';
+        }).join('') : empty('No reports in the last 14 days. Spotted a pair in a store? Be the first to report.'));
+      });
+    }
+    return body.then(function (h) { return '<div class="pad">' + head + seg + '<div class="hublist">' + h + '</div></div>'; });
+  };
+  function hubForm(title, fields, act) {
+    return '<h2>' + title + '</h2>' + fields + '<p class="err" id="hub-err" role="alert"></p><div class="row"><button class="btn ghost" style="flex:1" data-act="mclose">Cancel</button><button class="btn red" style="flex:1" data-act="' + act + '">Post</button></div>';
+  }
+  function hubGate() { if (!requireLogin()) return false; if (isBlocked()) { toast('Your account is on hold, so you can’t post right now.'); return false; } return true; }
+  function hubVal(id) { var e = document.getElementById(id); return e ? String(e.value || '').trim() : ''; }
+  function hubFail(msg) { var e = document.getElementById('hub-err'); if (e) e.textContent = msg; }
+  function hubInsert(btn, table, row, okMsg) {
+    btn.disabled = true;
+    sb.from(table).insert(row).then(function (r) {
+      btn.disabled = false;
+      if (r.error) { hubFail(/Daily limit/i.test(r.error.message || '') ? r.error.message : 'Couldn’t post. Check the details and try again.'); return; }
+      closeModal(); toast(okMsg); render(true);
+    });
+  }
   // ---- "Follow Zenkicks": TikTok / YouTube / Facebook / Instagram (links live in config.js, empty = hidden) ----
   var SOC = [
     ['tiktok', 'TikTok', '<svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M16.6 3c.3 2.3 1.6 3.7 3.9 3.9v3.2c-1.4.1-2.7-.3-3.9-1.1v6.1c0 5.7-6.2 7.5-9.2 3.5-1.9-2.6-.7-7.1 3.6-7.5v3.3c-.4.1-.8.2-1.1.4-1.3.8-.9 2.8.5 3.1 1.4.4 2.9-.5 2.9-2.2V3h3.3z"/></svg>'],
@@ -2170,6 +2263,35 @@
         sb.from('listings').update({ status: a === 'sold' ? 'sold' : 'removed' }).eq('id', id).then(function (r) { if (r.error) return fail(r.error); toast(a === 'sold' ? 'Marked as sold. Congrats!' : 'Listing removed'); var sl = ST.shareListing; go('me'); if (a === 'sold' && sl && sl.id === id) setTimeout(function () { openShare('sold'); }, 500); });
         break;
       case 'peekopen': openPeek(v); break;
+      case 'hubtab': ST.hubTab = v; render(true); break;
+      case 'stockform': if (!hubGate()) break; openModal(hubForm('Report stock', '<label class="field" for="hs-model">Pair<input id="hs-model" type="text" maxlength="80" placeholder="e.g. Jordan 4 Military Blue"></label><div class="two"><label class="field" for="hs-store">Store<select id="hs-store">' + hubOpts(HUB_STORES, '') + '</select></label><label class="field" for="hs-status">Status<select id="hs-status"><option value="in_stock">In stock</option><option value="sold_out">Sold out</option><option value="raffle">Raffle open</option></select></label></div><div class="two"><label class="field" for="hs-place">Mall or branch (optional)<input id="hs-place" type="text" maxlength="60" placeholder="e.g. Mall of the Emirates"></label><label class="field" for="hs-size">Size (optional)<input id="hs-size" type="text" maxlength="12" placeholder="e.g. EU 42"></label></div><label class="field" for="hs-note">Note (optional)<input id="hs-note" type="text" maxlength="200" placeholder="e.g. last pairs, raffle ends Friday"></label>', 'stockpost')); break;
+      case 'stockpost': (function () {
+        var m = hubVal('hs-model'), pl = hubVal('hs-place'), sz = hubVal('hs-size'), nt = hubVal('hs-note');
+        if (m.length < 2) return hubFail('Enter the pair name.');
+        if (hubBad(pl + ' ' + nt + ' ' + sz)) return hubFail('No links or phone numbers, please.');
+        hubInsert(el, 'stock_reports', { user_id: uid(), model: m, store: hubVal('hs-store'), status: hubVal('hs-status'), place: pl || null, size: sz || null, note: nt || null }, 'Thanks! Stock report posted');
+      })(); break;
+      case 'spotform': if (!hubGate()) break; openModal(hubForm('Suggest a meet-up spot', '<label class="field" for="hp-name">Place<input id="hp-name" type="text" maxlength="80" placeholder="e.g. City Centre Deira, main entrance"></label><div class="two"><label class="field" for="hp-em">Emirate<select id="hp-em">' + hubOpts(HUB_EMIRATES, '') + '</select></label><label class="field" for="hp-area">Area (optional)<input id="hp-area" type="text" maxlength="60" placeholder="e.g. Deira"></label></div><label class="field" for="hp-note">Why it’s a good spot (optional)<input id="hp-note" type="text" maxlength="200" placeholder="e.g. busy, security at the entrance"></label>', 'spotpost')); break;
+      case 'spotpost': (function () {
+        var n = hubVal('hp-name'), ar = hubVal('hp-area'), nt = hubVal('hp-note');
+        if (n.length < 3) return hubFail('Enter the place name.');
+        if (hubBad(n + ' ' + ar + ' ' + nt)) return hubFail('No links or phone numbers, please.');
+        hubInsert(el, 'meetup_spots', { user_id: uid(), name: n, emirate: hubVal('hp-em'), area: ar || null, note: nt || null }, 'Spot added. Thanks!');
+      })(); break;
+      case 'spotvote': if (!requireLogin()) break; (function () {
+        var on = el.getAttribute('data-on') === 'true', q = on ? sb.from('meetup_votes').delete().eq('spot_id', id).eq('user_id', uid()) : sb.from('meetup_votes').insert({ spot_id: id, user_id: uid() });
+        q.then(function (r) { if (r.error) return toast('Couldn’t save your vote'); render(true); });
+      })(); break;
+      case 'eventform': if (!hubGate()) break; openModal(hubForm('Add an event', '<label class="field" for="he-title">Event name<input id="he-title" type="text" maxlength="100" placeholder="e.g. Sneaker meet-up at ..."></label><div class="two"><label class="field" for="he-date">Date<input id="he-date" type="date" min="' + dubaiToday() + '"></label><label class="field" for="he-em">Emirate (optional)<select id="he-em">' + hubOpts(HUB_EMIRATES, '', 'Select') + '</select></label></div><label class="field" for="he-place">Place (optional)<input id="he-place" type="text" maxlength="80" placeholder="e.g. Dubai Design District"></label><label class="field" for="he-link">Official link (optional, https)<input id="he-link" type="url" maxlength="300" placeholder="https://"></label><label class="field" for="he-note">Note (optional)<input id="he-note" type="text" maxlength="200" placeholder="e.g. free entry"></label>', 'eventpost')); break;
+      case 'eventpost': (function () {
+        var t = hubVal('he-title'), d = hubVal('he-date'), pl = hubVal('he-place'), lk = hubVal('he-link'), nt = hubVal('he-note');
+        if (t.length < 3) return hubFail('Enter the event name.');
+        if (!d || d < dubaiToday()) return hubFail('Pick a date that is today or later.');
+        if (lk && !safeUrl(lk)) return hubFail('The link must start with https://');
+        if (hubBad(t + ' ' + pl + ' ' + nt)) return hubFail('No phone numbers or links in the text, please. Use the link box for an official page.');
+        hubInsert(el, 'uae_events', { user_id: uid(), title: t, event_date: d, place: pl || null, emirate: hubVal('he-em') || null, link: lk || null, note: nt || null }, 'Event added. Thanks!');
+      })(); break;
+      case 'hubdel': if (!window.confirm('Delete this?')) break; sb.from(el.getAttribute('data-t')).delete().eq('id', id).then(function (r) { if (r.error) return fail(r.error); render(true); }); break;
       case 'collpost': collPost(el); break;
       case 'collusex': ST.newColl.f.value = v; var cv = document.getElementById('c-value'); if (cv) cv.value = v; break;
       case 'collrm': if (!window.confirm('Remove this pair from your collection?')) break; sb.from('collection_items').delete().eq('id', id).then(function (r) { if (r.error) return fail(r.error); render(true); }); break;
@@ -2392,12 +2514,14 @@
     if (t.id === 'q') { ST.marketQ = t.value; clearTimeout(ST.qTimer); ST.qTimer = setTimeout(function () { var w = document.getElementById('grid-wrap'); if (!w) return; marketGrid().then(function (h) { w.innerHTML = h; }).catch(fail); }, 350); return; }
     if (t.getAttribute('data-sf')) { ST.sell.f[t.getAttribute('data-sf')] = t.type === 'checkbox' ? t.checked : t.value; if (/^(model|size)$/.test(t.getAttribute('data-sf'))) sellHintSoon(); return; }
     if (t.getAttribute('data-cf')) { ST.newCheck.f[t.getAttribute('data-cf')] = t.value; return; }
+    if (t.getAttribute('data-lc')) { var lk = t.getAttribute('data-lc'); ST.landed = ST.landed || { price: '', ship: '', local: '', duty: true }; ST.landed[lk] = lk === 'duty' ? t.checked : t.value; landCalc(); return; }
     if (t.getAttribute('data-cl')) { var ck = t.getAttribute('data-cl'); if (!ST.newColl) ST.newColl = freshColl(); if (ck === 'hide') ST.newColl.hide = t.checked; else ST.newColl.f[ck] = t.value; if (ck === 'model') { clearTimeout(ST.collT); ST.collT = setTimeout(collHint, 400); } return; }
   });
   app.addEventListener('change', function (e) {
     var t = e.target;
     if (t.getAttribute('data-sf')) { ST.sell.f[t.getAttribute('data-sf')] = t.type === 'checkbox' ? t.checked : t.value; if (/^(model|size)$/.test(t.getAttribute('data-sf'))) sellHintSoon(); return; }
     if (t.getAttribute('data-cf')) { ST.newCheck.f[t.getAttribute('data-cf')] = t.value; return; }
+    if (t.getAttribute('data-lc')) { var lk = t.getAttribute('data-lc'); ST.landed = ST.landed || { price: '', ship: '', local: '', duty: true }; ST.landed[lk] = lk === 'duty' ? t.checked : t.value; landCalc(); return; }
     if (t.getAttribute('data-cl')) { var ck = t.getAttribute('data-cl'); if (!ST.newColl) ST.newColl = freshColl(); if (ck === 'hide') ST.newColl.hide = t.checked; else ST.newColl.f[ck] = t.value; if (ck === 'model') { clearTimeout(ST.collT); ST.collT = setTimeout(collHint, 400); } return; }
     if (t.id === 'chatfile' && t.files && t.files[0]) {
       compress(t.files[0], 1200, 0.78).then(function (b) { chatClearImg(); CHAT.img = { blob: b, url: URL.createObjectURL(b) }; var pv = document.getElementById('chatprev'); if (pv) pv.innerHTML = '<div class="chatprev"><img src="' + CHAT.img.url + '" alt="Photo to send"><button class="chatx" data-act="chatimgx" aria-label="Remove photo">✕</button></div>'; });
