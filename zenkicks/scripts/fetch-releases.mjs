@@ -96,7 +96,8 @@ async function releases() {
     const fname = decodeURIComponent(String(d.image).split('?')[0].split('/').pop() || '').replace(/[-_.]+/g, ' ');
     if (wrongVariant(d.name, fname)) { delete d.image; delete d.tried; console.log(`  cleared wrong-version photo: ${d.name}`); }
   }
-  for (const d of file.items) {
+  // the pairs people actually wait for get the daily photo lookups first
+  for (const d of [...file.items].sort((a, b) => Number(isHyped(b.name)) - Number(isHyped(a.name)))) {
     if (d.image || hasOwn(d.name) || looked >= MAX_PHOTO_LOOKUPS) continue;
     if (-daysSince(d.date) > PHOTO_WINDOW_DAYS) continue; // too far away: look again when it is within 3 weeks
     if (d.tried && daysSince(d.tried) < 2) continue; // StockX rarely adds a photo overnight; saves free-plan requests
@@ -110,6 +111,11 @@ async function releases() {
   await writeFile('data/releases.json', JSON.stringify(file, null, 2) + '\n');
   console.log(`Calendar: ${file.items.length} upcoming (${removed} past removed), ${found}/${looked} new photos.`);
 }
+
+// What sneakerheads actually wait for. Keep in sync with HYPE_A / HYPE_B in assets/app.js
+const HYPE_A = /travis scott|off.?white|fragment|sacai|supreme|union|a ma mani|salehe|jacquemus|eminem|st[uü]ssy|yeezy|chicago|\bbred\b|kobe|mamba|patta|undefeated|concepts|j balvin|nocta|drake|lost (and|&) found|nigo|j-?hope|\bbape\b|a bathing ape|corteiz|\bkith\b|aim[eé] leon dore|cactus jack|dior|tiffany|middle east|dubai|emirates|\buae\b/i;
+const HYPE_B = /\b(air )?jordan (1|3|4|5|6|8|9|11|12|13|14)\b|\bdunk\b|air max (1|90|95|97)\b|new balance (99\d|55\d|2002r|1906|9060)\b/i;
+const isHyped = (name) => { const n = String(name || ''); if (/\b(gs|ps|td|kids?|toddler|infant)\b/i.test(n)) return false; return HYPE_A.test(n) || HYPE_B.test(n); };
 
 // StockX files slides, clogs and boots under "sneakers" too; What's hot shows real sneakers only
 const NOT_SNEAKER = /\b(slides?|clogs?|crocs|boots?|timberland|sandals?|slippers?|mules?|flip[- ]?flops?|ugg|birkenstock|foam ?runner|ys-?0\d|adilette|benassi|offcourt|victori one)\b/i;
@@ -132,7 +138,10 @@ function details(p) {
 
 async function hot() {
   const r = await get('/stockx/products', { filters: 'product_type = "sneakers"', limit: '40' });
-  const online = r.filter((p) => p.title && realImg(p.image) && !NOT_SNEAKER.test(p.title)).slice(0, 10).map((p, i) => ({
+  // best sellers that sneakerheads chase (not everyday staples like AF1 White); if too few qualify, fall back to all best sellers
+  const real = r.filter((p) => p.title && realImg(p.image) && !NOT_SNEAKER.test(p.title));
+  const hyped = real.filter((p) => isHyped(p.title));
+  const online = (hyped.length >= 6 ? hyped : real).slice(0, 10).map((p, i) => ({
     name: clean(p.title),
     why: Number(p.weekly_orders) ? `${Number(p.weekly_orders).toLocaleString('en-US')} orders on StockX this week` : `#${i + 1} best seller on StockX`,
     tag: 'Resale',
@@ -176,7 +185,7 @@ async function prices() {
   // popular pairs: current best sellers + drops in the next 2 weeks (names only, no brand field needed)
   const catalog = new Map();
   try { for (const h of (JSON.parse(await readFile('data/hot.json', 'utf8')).online || [])) { const k = priceKey(h.name); if (k && !models.has(k) && !catalog.has(k)) catalog.set(k, { model: h.name, brand: h.brand }); } } catch { /* no hot file */ }
-  try { for (const d of (JSON.parse(await readFile('data/releases.json', 'utf8')).items || [])) { if (-daysSince(d.date) > 14) continue; const k = priceKey(d.name); if (k && !models.has(k) && !catalog.has(k)) catalog.set(k, { model: d.name, brand: d.brand }); } } catch { /* no releases file */ }
+  try { for (const d of (JSON.parse(await readFile('data/releases.json', 'utf8')).items || [])) { if (-daysSince(d.date) > 14 || !isHyped(d.name)) continue; const k = priceKey(d.name); if (k && !models.has(k) && !catalog.has(k)) catalog.set(k, { model: d.name, brand: d.brand }); } } catch { /* no releases file */ }
   let looked = 0, found = 0, lookedC = 0;
   for (const [k, l] of [...models, ...catalog]) {
     const isCat = !models.has(k);
