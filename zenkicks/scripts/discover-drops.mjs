@@ -37,7 +37,10 @@ export function parseSneakerFiles(html) {
     const retail = prices.length === 1 ? Math.round(parseFloat(prices[0].replace(/[^0-9.]/g, ''))) : null;
     const sku = tidy((a.match(/Style Code:\s*([^<]*)</i) || [])[1] || '');
     const colorway = tidy((a.match(/Color:\s*([^<]*)</i) || [])[1] || '');
-    out.push({ date, name, retail_usd: retail > 0 && retail < 2000 ? retail : null, sku, colorway });
+    // the article's own preview photo (lazy-loaded ones keep the real address in data-src); full size = without the -300x213 suffix
+    const im = (a.match(/<img\b[^>]*?\bdata-src="(https:\/\/www\.sneakerfiles\.com\/wp-content\/uploads\/[^"]+?)"/) || a.match(/<img\b[^>]*?\bsrc="(https:\/\/www\.sneakerfiles\.com\/wp-content\/uploads\/[^"]+?)"/) || [])[1] || '';
+    const photo = im.replace(/-\d+x\d+(\.(?:jpe?g|png|webp))$/i, '$1');
+    out.push({ date, name, retail_usd: retail > 0 && retail < 2000 ? retail : null, sku, colorway, photo });
   }
   return out;
 }
@@ -84,6 +87,24 @@ export function pickNew(found, existing, today) {
   return picked;
 }
 
+// pairs with no photo yet get SneakerFiles' preview photo (flag sf:1 = temporary; a StockX photo replaces it later)
+export function fillPhotos(items, found) {
+  let n = 0;
+  for (const d of items) {
+    if (d.image) continue;
+    // strict on purpose: same style code, or EVERY word of the drop's name (colourway included) is in the article's name; a wrong colour is worse than no photo
+    const wd = words(d.name);
+    const f = found.find((x) => {
+      if (!x.photo || dayDiff(x.date, d.date) > 10 || NOT_WANTED.test(x.name) && !NOT_WANTED.test(d.name)) return false;
+      if (d.sku && x.sku && d.sku.toLowerCase() === x.sku.toLowerCase()) return true;
+      const wx = new Set(words(x.name));
+      return wd.length >= 2 && wd.every((w) => wx.has(w)) && sameShoe(d.name, x.name);
+    });
+    if (f) { d.image = f.photo; d.sf = 1; n++; }
+  }
+  return n;
+}
+
 // fetches the page and appends new drops to `items` (the calendar array). Returns how many were added.
 export async function discoverDrops(items, today, fetchImpl = fetch) {
   const res = await fetchImpl(PAGE, { headers: { 'User-Agent': UA, Accept: 'text/html' } });
@@ -93,6 +114,8 @@ export async function discoverDrops(items, today, fetchImpl = fetch) {
   if (found.length < 20) throw new Error('page looked different (' + found.length + ' drops parsed); skipped');
   const fresh = pickNew(found, items, today);
   items.push(...fresh);
+  const withPhoto = fillPhotos(items, found);
+  discoverDrops.photos = withPhoto;
   items.sort((a, b) => (a.date < b.date ? -1 : a.date > b.date ? 1 : a.name < b.name ? -1 : a.name > b.name ? 1 : 0));
   return fresh.length;
 }

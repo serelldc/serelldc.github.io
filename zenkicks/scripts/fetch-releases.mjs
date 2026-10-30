@@ -71,7 +71,7 @@ async function releases() {
   file.items = (file.items || []).filter((d) => d.date && d.date >= today);
   const removed = before - file.items.length;
   // new drops from SneakerFiles are only ADDED (existing items are never changed); if the page fails, nothing happens
-  try { const n = await discoverDrops(file.items, today); console.log(`New drops from SneakerFiles: ${n}`); }
+  try { const n = await discoverDrops(file.items, today); console.log(`New drops from SneakerFiles: ${n}, preview photos filled: ${discoverDrops.photos}`); }
   catch (e) { console.log('SneakerFiles discovery skipped:', e.message); }
   let own = {};
   try { own = JSON.parse(await readFile('data/photos.json', 'utf8')); } catch { /* no own photos */ }
@@ -81,30 +81,30 @@ async function releases() {
   // photos can disappear from StockX's CDN (404): check each photo about once a week and clear dead ones so the pair is looked up again
   let checkedImgs = 0;
   for (const d of file.items) {
-    if (!d.image || hasOwn(d.name) || checkedImgs >= 25) continue;
+    if (!d.image || hasOwn(d.name) || checkedImgs >= 25) continue;  // (SneakerFiles photos are checked too)
     if (d.ic && daysSince(d.ic) < 7) continue;
     checkedImgs++;
     try {
       const r = await fetch(d.image, { method: 'HEAD', headers: { 'User-Agent': 'ZenkicksBot/1.0 (+https://serelldc.github.io/zenkicks/)' } });
-      if (r.status === 404 || r.status === 410) { delete d.image; delete d.tried; delete d.ic; console.log(`  photo link is dead, will look again: ${d.name}`); }
+      if (r.status === 404 || r.status === 410) { delete d.image; delete d.sf; delete d.tried; delete d.ic; console.log(`  photo link is dead, will look again: ${d.name}`); }
       else d.ic = today;
     } catch { /* network hiccup: leave it for next time */ }
   }
   // photos saved earlier that belong to a kids/"Rings" version of the pair: clear them so the right one is looked up again
   for (const d of file.items) {
-    if (!d.image || hasOwn(d.name)) continue;
+    if (!d.image || d.sf || hasOwn(d.name)) continue;
     const fname = decodeURIComponent(String(d.image).split('?')[0].split('/').pop() || '').replace(/[-_.]+/g, ' ');
     if (wrongVariant(d.name, fname)) { delete d.image; delete d.tried; console.log(`  cleared wrong-version photo: ${d.name}`); }
   }
   // the pairs people actually wait for get the daily photo lookups first
   for (const d of [...file.items].sort((a, b) => Number(isHyped(b.name)) - Number(isHyped(a.name)))) {
-    if (d.image || hasOwn(d.name) || looked >= MAX_PHOTO_LOOKUPS) continue;
+    if ((d.image && !d.sf) || hasOwn(d.name) || looked >= MAX_PHOTO_LOOKUPS) continue;
     if (-daysSince(d.date) > PHOTO_WINDOW_DAYS) continue; // too far away: look again when it is within 3 weeks
     if (d.tried && daysSince(d.tried) < 2) continue; // StockX rarely adds a photo overnight; saves free-plan requests
     looked++; d.tried = today;
     const r = await get('/stockx/products', { query: d.name, limit: '3' });
     const hit = r.find((p) => realImg(p.image) && sameShoe(d.name, p.title) && !wrongVariant(d.name, p.title));
-    if (hit) { delete d.tried; d.image = big(hit.image); d.link = d.link || hit.link || ''; const x = details(hit); ['brand', 'sku', 'colorway'].forEach((k) => { if (x[k] && !d[k]) d[k] = x[k]; }); found++; console.log(`  photo: ${d.name} <- ${hit.title}`); }
+    if (hit) { delete d.tried; delete d.sf; d.image = big(hit.image); d.link = d.link || hit.link || ''; const x = details(hit); ['brand', 'sku', 'colorway'].forEach((k) => { if (x[k] && !d[k]) d[k] = x[k]; }); found++; console.log(`  photo: ${d.name} <- ${hit.title}`); }
     else console.log(`  no StockX match yet: ${d.name}`);
   }
   file.updated = today;
