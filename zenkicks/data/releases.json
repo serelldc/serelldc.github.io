@@ -530,7 +530,7 @@
       "retail_usd": 170,
       "image": "https://www.sneakerfiles.com/wp-content/uploads/2026/09/nike-air-diamond-turf-2-patent-black-red-II7066-001.jpg",
       "link": "",
-      "tried": "2026-10-27",
+      "tried": "2026-10-30",
       "sf": 1,
       "ic": "2026-10-30"
     },
@@ -581,7 +581,7 @@
       "retail_usd": 180,
       "image": "https://www.sneakerfiles.com/wp-content/uploads/2026/09/cactus-plant-flea-market-cpfm-nike-flea-1-barley-IU5238-700.jpg",
       "link": "",
-      "tried": "2026-10-24",
+      "tried": "2026-10-30",
       "sf": 1,
       "ic": "2026-10-30"
     },
@@ -612,7 +612,7 @@
       "retail_usd": 205,
       "image": "",
       "link": "",
-      "tried": "2026-10-25"
+      "tried": "2026-10-30"
     },
     {
       "date": "2026-11-15",
@@ -632,7 +632,7 @@
       "retail_usd": 155,
       "image": "https://www.sneakerfiles.com/wp-content/uploads/2026/08/playa-society-nike-a-two-dark-russet-terra-blush-IX6704-200.jpg",
       "link": "",
-      "tried": "2026-10-25",
+      "tried": "2026-10-30",
       "sf": 1,
       "ic": "2026-10-30"
     },
@@ -664,7 +664,8 @@
       "brand": "Nike",
       "retail_usd": 130,
       "image": "",
-      "link": ""
+      "link": "",
+      "tried": "2026-10-30"
     },
     {
       "date": "2026-11-17",
@@ -674,7 +675,8 @@
       "image": "https://www.sneakerfiles.com/wp-content/uploads/2026/10/nike-lebron-24-stars-IO8204-400.jpg",
       "link": "",
       "sf": 1,
-      "ic": "2026-10-30"
+      "ic": "2026-10-30",
+      "tried": "2026-10-30"
     },
     {
       "date": "2026-11-19",
@@ -683,18 +685,18 @@
       "retail_usd": null,
       "image": "https://images.stockx.com/images/New-Balance-992-MiUSA-Black-Afterglow-Navy.jpg?fit=fill&bg=FFFFFF&w=600&h=430&fm=webp&auto=compress&q=90&dpr=2&trim=color&updated_at=1787943999",
       "link": "https://stockx.pvxt.net/c/4722526/1023711/9060?u=https%3A%2F%2Fstockx.com%2Fnew-balance-992-miusa-black-afterglow-navy",
-      "sku": "U992LB"
+      "sku": "U992LB",
+      "ic": "2026-10-30"
     },
     {
       "date": "2026-11-19",
       "name": "Nike Ja 4 \"Code Red\"",
       "brand": "Nike",
       "retail_usd": 130,
-      "image": "https://www.sneakerfiles.com/wp-content/uploads/2026/10/nike-ja-4-code-red-IM4135-603.jpg",
-      "link": "",
+      "image": "https://images.stockx.com/images/Nike-Ja-4-Code-Red.jpg?fit=fill&bg=FFFFFF&w=600&h=430&fm=webp&auto=compress&q=90&dpr=2&trim=color&updated_at=1792701918",
+      "link": "https://stockx.pvxt.net/c/4722526/1023711/9060?u=https%3A%2F%2Fstockx.com%2Fnike-ja-4-code-red",
       "sku": "IM4135-603",
       "colorway": "Bright Crimson/Black-Cobalt Bliss",
-      "sf": 1,
       "ic": "2026-10-30"
     },
     {
@@ -702,8 +704,9 @@
       "name": "Vans Old Skool 36 Pearlized \"Navy\"",
       "brand": "Vans",
       "retail_usd": 130,
-      "image": "",
-      "link": ""
+      "image": "https://images.stockx.com/images/Vans-LX-Old-Skool-36-Pearlized-Pack-Black-Navy-Product.jpg?fit=fill&bg=FFFFFF&w=600&h=430&fm=webp&auto=compress&q=90&dpr=2&trim=color&updated_at=1774382125",
+      "link": "https://stockx.pvxt.net/c/4722526/1023711/9060?u=https%3A%2F%2Fstockx.com%2Fvans-lx-old-skool-36-pearlized-pack-black-navy",
+      "sku": "VN000E8VYA6"
     },
     {
       "date": "2026-11-20",
@@ -731,7 +734,8 @@
       "brand": "adidas",
       "retail_usd": 130,
       "image": "",
-      "link": ""
+      "link": "",
+      "tried": "2026-10-30"
     },
     {
       "date": "2026-11-21",
@@ -796,7 +800,8 @@
       "link": "",
       "sku": "IO8233-500",
       "colorway": "Purple Stardust/Black",
-      "sf": 1
+      "sf": 1,
+      "ic": "2026-10-30"
     },
     {
       "date": "2026-11-21",
@@ -805,7 +810,8 @@
       "retail_usd": 190,
       "image": "https://www.sneakerfiles.com/wp-content/uploads/2026/10/nike-hyperflight-safari-IZ2573-010.jpg",
       "link": "",
-      "sf": 1
+      "sf": 1,
+      "ic": "2026-10-30"
     },
     {
       "date": "2026-11-21",
@@ -822,7 +828,8 @@
       "retail_usd": 125,
       "image": "https://www.sneakerfiles.com/wp-content/uploads/2026/05/oregon-ducks-nike-air-force-1-low-orchard-stealth-2026.jpg",
       "link": "",
-      "sf": 1
+      "sf": 1,
+      "ic": "2026-10-30"
     },
     {
       "date": "2026-11-21",
@@ -831,7 +838,8 @@
       "retail_usd": null,
       "image": "https://www.sneakerfiles.com/wp-content/uploads/2026/09/unheardof-adidas-adistar-control-5-doggy-runner.jpg",
       "link": "",
-      "sf": 1
+      "sf": 1,
+      "ic": "2026-10-30"
     },
     {
       "date": "2026-11-21",
@@ -842,7 +850,8 @@
       "link": "",
       "sku": "JA7805-302",
       "colorway": "Pine Green/Light Crimson-Grey Fog-White",
-      "sf": 1
+      "sf": 1,
+      "ic": "2026-10-30"
     },
     {
       "date": "2026-11-27",
@@ -851,7 +860,8 @@
       "retail_usd": 230,
       "image": "https://www.sneakerfiles.com/wp-content/uploads/2026/04/air-jordan-4-bred-2026-IX8180-001.jpg",
       "link": "",
-      "sf": 1
+      "sf": 1,
+      "ic": "2026-10-30"
     },
     {
       "date": "2026-11-27",
@@ -860,7 +870,8 @@
       "retail_usd": 240,
       "image": "https://www.sneakerfiles.com/wp-content/uploads/2026/02/nike-air-foamposite-pro-dr-doom-2026-HF0794-003.jpg",
       "link": "",
-      "sf": 1
+      "sf": 1,
+      "ic": "2026-10-30"
     },
     {
       "date": "2026-11-27",
@@ -879,7 +890,8 @@
       "link": "",
       "sku": "IR1965-002",
       "colorway": "Black/Concord",
-      "sf": 1
+      "sf": 1,
+      "ic": "2026-10-30"
     },
     {
       "date": "2026-11-28",
@@ -888,7 +900,8 @@
       "retail_usd": 190,
       "image": "https://www.sneakerfiles.com/wp-content/uploads/2026/10/carhartt-wip-nike-air-max-goadome-low-2026.jpg",
       "link": "",
-      "sf": 1
+      "sf": 1,
+      "ic": "2026-10-30"
     },
     {
       "date": "2026-11-28",
@@ -899,7 +912,8 @@
       "link": "",
       "sku": "IX8456-479",
       "colorway": "Cobalt Blue/Anthracite-Vast Grey-Varsity Maize",
-      "sf": 1
+      "sf": 1,
+      "ic": "2026-10-30"
     },
     {
       "date": "2026-11-28",
@@ -918,7 +932,8 @@
       "link": "",
       "sku": "IQ6605-001",
       "colorway": "Black/Cool Grey-Diffused Blue",
-      "sf": 1
+      "sf": 1,
+      "ic": "2026-10-30"
     },
     {
       "date": "2026-11-28",
@@ -929,7 +944,8 @@
       "link": "",
       "sku": "IH7423-700",
       "colorway": "Yellow Zest/Racer Blue-Soft Yellow",
-      "sf": 1
+      "sf": 1,
+      "ic": "2026-10-30"
     },
     {
       "date": "2026-11-28",
@@ -938,7 +954,8 @@
       "retail_usd": null,
       "image": "https://www.sneakerfiles.com/wp-content/uploads/2026/01/nike-kd-6-aunt-pearl-2026.jpg",
       "link": "",
-      "sf": 1
+      "sf": 1,
+      "ic": "2026-10-30"
     },
     {
       "date": "2026-11-28",
@@ -949,7 +966,8 @@
       "link": "",
       "sku": "IQ0431-300",
       "colorway": "Black Spruce/Metallic Gold-Black-Bright Ceramic",
-      "sf": 1
+      "sf": 1,
+      "ic": "2026-10-30"
     },
     {
       "date": "2026-11-28",
@@ -958,7 +976,8 @@
       "retail_usd": null,
       "image": "https://www.sneakerfiles.com/wp-content/uploads/2026/10/slam-jam-nike-air-max-97-2026.jpg",
       "link": "",
-      "sf": 1
+      "sf": 1,
+      "ic": "2026-10-30"
     },
     {
       "date": "2026-11-28",
@@ -967,7 +986,8 @@
       "retail_usd": null,
       "image": "https://www.sneakerfiles.com/wp-content/uploads/2026/02/social-status-air-jordan-1-low-og-2026.jpg",
       "link": "",
-      "sf": 1
+      "sf": 1,
+      "ic": "2026-10-30"
     },
     {
       "date": "2026-11-30",
@@ -978,7 +998,8 @@
       "link": "",
       "sku": "JF7593-100",
       "colorway": "White/Metallic Gold-Off Noir",
-      "sf": 1
+      "sf": 1,
+      "ic": "2026-10-30"
     },
     {
       "date": "2026-12-01",
@@ -997,7 +1018,8 @@
       "link": "",
       "sku": "IO8201-700",
       "colorway": "Tour Yellow/Midnight Navy-White-Metallic Gold",
-      "sf": 1
+      "sf": 1,
+      "ic": "2026-10-30"
     },
     {
       "date": "2026-12-03",
@@ -1008,7 +1030,8 @@
       "link": "",
       "sku": "IQ5365-001",
       "colorway": "Black/White",
-      "sf": 1
+      "sf": 1,
+      "ic": "2026-10-30"
     },
     {
       "date": "2026-12-05",
@@ -1017,7 +1040,8 @@
       "retail_usd": null,
       "image": "https://www.sneakerfiles.com/wp-content/uploads/2026/02/air-jordan-10-sacramento-HJ6779-002-2026.jpg",
       "link": "",
-      "sf": 1
+      "sf": 1,
+      "ic": "2026-10-30"
     },
     {
       "date": "2026-12-05",
@@ -1046,7 +1070,8 @@
       "link": "",
       "sku": "KK2888",
       "colorway": "Dark Brown/Frozen Green",
-      "sf": 1
+      "sf": 1,
+      "ic": "2026-10-30"
     },
     {
       "date": "2026-12-05",
@@ -1055,7 +1080,8 @@
       "retail_usd": null,
       "image": "https://www.sneakerfiles.com/wp-content/uploads/2026/08/solefly-air-jordan-5-IU0734-001.jpg",
       "link": "",
-      "sf": 1
+      "sf": 1,
+      "ic": "2026-10-30"
     },
     {
       "date": "2026-12-11",
@@ -1074,7 +1100,8 @@
       "retail_usd": 150,
       "image": "https://www.sneakerfiles.com/wp-content/uploads/2026/08/jaide-air-jordan-1-low-og-2026-1.jpg",
       "link": "",
-      "sf": 1
+      "sf": 1,
+      "ic": "2026-10-30"
     },
     {
       "date": "2026-12-11",
