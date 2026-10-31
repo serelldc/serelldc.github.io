@@ -2,10 +2,10 @@
   "items": {
     "jordan 11 gratitude": {
       "title": "Jordan 11 Retro DMP Gratitude (2023)",
-      "usd": 210,
-      "avg_usd": 333,
+      "usd": 213,
+      "avg_usd": 323,
       "link": "https://stockx.pvxt.net/c/4722526/1023711/9060?u=https%3A%2F%2Fstockx.com%2Fair-jordan-11-retro-dmp-defining-moments-2023",
-      "at": "2026-10-24"
+      "at": "2026-10-31"
     },
     "jordan 4": {
       "none": true,
@@ -25,10 +25,10 @@
     },
     "jordan 1 high og true blue": {
       "title": "Jordan 1 Retro High OG True Blue",
-      "usd": 60,
-      "avg_usd": 161,
+      "usd": 45,
+      "avg_usd": 156,
       "link": "https://stockx.pvxt.net/c/4722526/1023711/9060?u=https%3A%2F%2Fstockx.com%2Fair-jordan-1-retro-high-og-true-blue",
-      "at": "2026-10-24"
+      "at": "2026-10-31"
     },
     "rebook question": {
       "none": true,
@@ -40,10 +40,10 @@
     },
     "jordan 1 defiant og high": {
       "title": "Jordan 1 Retro High OG Defiant Couture",
-      "usd": 115,
-      "avg_usd": 241,
+      "usd": 111,
+      "avg_usd": 201,
       "link": "https://stockx.pvxt.net/c/4722526/1023711/9060?u=https%3A%2F%2Fstockx.com%2Fair-jordan-1-retro-high-og-defiant-couture",
-      "at": "2026-10-24"
+      "at": "2026-10-31"
     },
     "j 1 low travis scott shy pink": {
       "none": true,
@@ -418,8 +418,37 @@
       "avg_usd": 174,
       "link": "https://stockx.pvxt.net/c/4722526/1023711/9060?u=https%3A%2F%2Fstockx.com%2Fair-jordan-1-mid-space-jam",
       "at": "2026-10-30"
+    },
+    "nike air force 1 low supreme white": {
+      "title": "Nike Air Force 1 Low Supreme White",
+      "usd": 103,
+      "avg_usd": 129,
+      "link": "https://stockx.pvxt.net/c/4722526/1023711/9060?u=https%3A%2F%2Fstockx.com%2Fnike-air-force-1-low-supreme-box-logo-white",
+      "at": "2026-10-31"
+    },
+    "nike air max 95 gore-tex campfire orange": {
+      "title": "Nike Air Max 95 Gore-Tex Big Bubble Light Bone Campfire Orange",
+      "usd": 156,
+      "avg_usd": 238,
+      "link": "https://stockx.pvxt.net/c/4722526/1023711/9060?u=https%3A%2F%2Fstockx.com%2Fnike-air-max-95-gore-tex-big-bubble-light-bone-campfire-orange",
+      "at": "2026-10-31"
+    },
+    "one block down x nike air max 95 lux black": {
+      "none": true,
+      "at": "2026-10-31"
+    },
+    "union la x nike dunk low bamboo": {
+      "title": "Nike Dunk Low Retro Union Bamboo University Gold",
+      "usd": 219,
+      "avg_usd": 291,
+      "link": "https://stockx.pvxt.net/c/4722526/1023711/9060?u=https%3A%2F%2Fstockx.com%2Fnike-dunk-low-retro-union-bamboo-university-gold",
+      "at": "2026-10-31"
+    },
+    "air jordan 6 white infrared (2026)": {
+      "none": true,
+      "at": "2026-10-31"
     }
   },
-  "updated": "2026-10-30",
+  "updated": "2026-10-31",
   "source": "KicksDB (StockX average resale, all sizes)"
 }

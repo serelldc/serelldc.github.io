@@ -1,113 +1,7 @@
 {
-  "updated": "2026-10-30",
+  "updated": "2026-10-31",
   "source": "SneakerFiles & Sneaker News release calendars (curated weekly); photos from KicksDB (StockX)",
   "items": [
-    {
-      "date": "2026-10-30",
-      "name": "Air Jordan 3 \"Fireside\"",
-      "brand": "Jordan",
-      "retail_usd": 205,
-      "image": "https://images.stockx.com/images/Air-Jordan-3-Retro-Fireside-Womens-2.jpg?fit=fill&bg=FFFFFF&w=600&h=430&fm=webp&auto=compress&q=90&dpr=2&trim=color&updated_at=1790958887",
-      "link": "https://stockx.pvxt.net/c/4722526/1023711/9060?u=https%3A%2F%2Fstockx.com%2Fair-jordan-3-retro-fireside-womens",
-      "sku": "CK9246-200",
-      "colorway": "Velvet Brown/Pearl White-Gum Dark Brown",
-      "ic": "2026-10-26"
-    },
-    {
-      "date": "2026-10-30",
-      "name": "Kobe Bryant x Nike Air Force 1 Low \"Mamba Eterno\"",
-      "brand": "Nike",
-      "retail_usd": 125,
-      "image": "https://www.sneakerfiles.com/wp-content/uploads/2026/10/kobe-bryant-nike-air-force-1-low-mamba-eterno-IB0018-014.jpg",
-      "link": "",
-      "tried": "2026-10-30",
-      "sf": 1,
-      "ic": "2026-10-30"
-    },
-    {
-      "date": "2026-10-30",
-      "name": "Nike Book 2 \"Oogie Boogie\"",
-      "brand": "Nike",
-      "retail_usd": 155,
-      "image": "https://www.sneakerfiles.com/wp-content/uploads/2026/09/nike-book-2-halloween-oogie-boogie-IO7942-001-release-info.jpg",
-      "link": "",
-      "tried": "2026-10-29",
-      "sf": 1,
-      "ic": "2026-10-30"
-    },
-    {
-      "date": "2026-10-30",
-      "name": "Nike Caitlin 1 \"Halloween\"",
-      "brand": "Nike",
-      "retail_usd": 150,
-      "image": "https://images.stockx.com/images/Nike-Caitlin-1-Halloween-Womens.jpg?fit=fill&bg=FFFFFF&w=600&h=430&fm=webp&auto=compress&q=90&dpr=2&trim=color&updated_at=1792617452",
-      "link": "https://stockx.pvxt.net/c/4722526/1023711/9060?u=https%3A%2F%2Fstockx.com%2Fnike-caitlin-1-halloween-womens",
-      "sku": "JA4290-001",
-      "colorway": "Black/Ghost Green-Mint Foam-Racer Blue",
-      "ic": "2026-10-28"
-    },
-    {
-      "date": "2026-10-30",
-      "name": "Nike Ja 4 High \"University Red\"",
-      "brand": "Nike",
-      "retail_usd": 180,
-      "image": "",
-      "link": "",
-      "tried": "2026-10-29"
-    },
-    {
-      "date": "2026-10-30",
-      "name": "Nike KD 19 \"Halloween\"",
-      "brand": "Nike",
-      "retail_usd": 165,
-      "image": "https://images.stockx.com/images/Nike-KD-19-Halloween.jpg?fit=fill&bg=FFFFFF&w=600&h=430&fm=webp&auto=compress&q=90&dpr=2&trim=color&updated_at=1791838928",
-      "link": "https://stockx.pvxt.net/c/4722526/1023711/9060?u=https%3A%2F%2Fstockx.com%2Fnike-kd-19-halloween",
-      "sku": "IO8112-600",
-      "colorway": "Bright Crimson/Lime Ice-Stadium Green-Dark Smoke Grey",
-      "ic": "2026-10-28"
-    },
-    {
-      "date": "2026-10-30",
-      "name": "Nike Kobe 3 Low Protro \"Mamba Eterno\"",
-      "brand": "Nike",
-      "retail_usd": 190,
-      "image": "https://images.stockx.com/images/Nike-Kobe-3-Low-Protro-Mamba-Eterno-3.jpg?fit=fill&bg=FFFFFF&w=600&h=430&fm=webp&auto=compress&q=90&dpr=2&trim=color&updated_at=1792696383",
-      "link": "https://stockx.pvxt.net/c/4722526/1023711/9060?u=https%3A%2F%2Fstockx.com%2Fnike-kobe-3-low-protro-mamba-eterno",
-      "sku": "IO6260-800",
-      "ic": "2026-10-27"
-    },
-    {
-      "date": "2026-10-30",
-      "name": "Nike Kobe AD Protro \"Mamba Eterno\"",
-      "brand": "Nike",
-      "retail_usd": 155,
-      "image": "https://images.stockx.com/images/Nike-Kobe-3-Low-Protro-Mamba-Eterno-3.jpg?fit=fill&bg=FFFFFF&w=600&h=430&fm=webp&auto=compress&q=90&dpr=2&trim=color&updated_at=1792696383",
-      "link": "https://stockx.pvxt.net/c/4722526/1023711/9060?u=https%3A%2F%2Fstockx.com%2Fnike-kobe-3-low-protro-mamba-eterno",
-      "sku": "IO6260-800",
-      "ic": "2026-10-27"
-    },
-    {
-      "date": "2026-10-30",
-      "name": "Nike Kobe Dunk Low Protro \"Mamba Eterno\"",
-      "brand": "Nike",
-      "retail_usd": 130,
-      "image": "https://images.stockx.com/images/Nike-Dunk-Low-Protro-Kobe-Bryant-Mamba-Eterno.jpg?fit=fill&bg=FFFFFF&w=600&h=430&fm=webp&auto=compress&q=90&dpr=2&trim=color&updated_at=1792616292",
-      "link": "https://stockx.pvxt.net/c/4722526/1023711/9060?u=https%3A%2F%2Fstockx.com%2Fnike-dunk-low-protro-kobe-bryant-mamba-eterno",
-      "sku": "IQ3922-001",
-      "ic": "2026-10-27"
-    },
-    {
-      "date": "2026-10-30",
-      "name": "Nike LeBron 24 \"Storm Drain\"",
-      "brand": "Nike",
-      "retail_usd": 200,
-      "image": "https://www.sneakerfiles.com/wp-content/uploads/2026/10/nike-lebron-24-storm-drain-pennywise-IX5103-001.jpg",
-      "link": "",
-      "sku": "IX5103-001",
-      "tried": "2026-10-30",
-      "sf": 1,
-      "ic": "2026-10-30"
-    },
     {
       "date": "2026-10-31",
       "name": "Air Jordan 14 \"Forest Green\"",
@@ -137,7 +31,7 @@
       "link": "",
       "sku": "JA9745-400",
       "colorway": "Obsidian/Total Orange-Laser Orange-Black-Racer Blue-Cobalt Bliss",
-      "tried": "2026-10-29",
+      "tried": "2026-10-31",
       "sf": 1,
       "ic": "2026-10-30"
     },
@@ -214,7 +108,7 @@
       "link": "",
       "sku": "IV4379-200",
       "colorway": "Medium Olive/Velvet Brown-Oil Green-Volt",
-      "tried": "2026-10-29",
+      "tried": "2026-10-31",
       "sf": 1,
       "ic": "2026-10-30"
     },
@@ -397,7 +291,7 @@
       "link": "",
       "sku": "IM0704-001",
       "colorway": "Black/Gym Green",
-      "tried": "2026-10-29",
+      "tried": "2026-10-31",
       "sf": 1,
       "ic": "2026-10-30"
     },
@@ -474,7 +368,7 @@
       "retail_usd": 235,
       "image": "",
       "link": "",
-      "tried": "2026-10-29"
+      "tried": "2026-10-31"
     },
     {
       "date": "2026-11-11",
@@ -494,7 +388,7 @@
       "retail_usd": 235,
       "image": "",
       "link": "",
-      "tried": "2026-10-29"
+      "tried": "2026-10-31"
     },
     {
       "date": "2026-11-11",
@@ -521,7 +415,7 @@
       "retail_usd": 130,
       "image": "",
       "link": "",
-      "tried": "2026-10-29"
+      "tried": "2026-10-31"
     },
     {
       "date": "2026-11-13",
@@ -706,7 +600,8 @@
       "retail_usd": 130,
       "image": "https://images.stockx.com/images/Vans-LX-Old-Skool-36-Pearlized-Pack-Black-Navy-Product.jpg?fit=fill&bg=FFFFFF&w=600&h=430&fm=webp&auto=compress&q=90&dpr=2&trim=color&updated_at=1774382125",
       "link": "https://stockx.pvxt.net/c/4722526/1023711/9060?u=https%3A%2F%2Fstockx.com%2Fvans-lx-old-skool-36-pearlized-pack-black-navy",
-      "sku": "VN000E8VYA6"
+      "sku": "VN000E8VYA6",
+      "ic": "2026-10-31"
     },
     {
       "date": "2026-11-20",
@@ -754,7 +649,7 @@
       "retail_usd": 215,
       "image": "https://www.sneakerfiles.com/wp-content/uploads/2026/07/air-jordan-3-santa-chimney-poster-IF4396-601.jpg",
       "link": "",
-      "tried": "2026-10-09",
+      "tried": "2026-10-31",
       "sf": 1,
       "ic": "2026-10-30"
     },
@@ -774,11 +669,10 @@
       "name": "Jordan Triangle \"Paolo Banchero\"",
       "brand": "Jordan",
       "retail_usd": 150,
-      "image": "https://www.sneakerfiles.com/wp-content/uploads/2026/10/jordan-triangle-pe-paolo-banchero-IQ5570-300.jpg",
-      "link": "",
+      "image": "https://images.stockx.com/images/Air-Jordan-Triangle-Paolo-Banchero-Halloween.jpg?fit=fill&bg=FFFFFF&w=600&h=430&fm=webp&auto=compress&q=90&dpr=2&trim=color&updated_at=1791399161",
+      "link": "https://stockx.pvxt.net/c/4722526/1023711/9060?u=https%3A%2F%2Fstockx.com%2Fair-jordan-triangle-paolo-banchero-halloween",
       "sku": "IQ5570-300",
       "colorway": "Rage Green/Barely Volt-Black-Habanero Red",
-      "sf": 1,
       "ic": "2026-10-30"
     },
     {
@@ -786,21 +680,20 @@
       "name": "Nike Caitlin 1 \"Snow White\"",
       "brand": "Nike",
       "retail_usd": 140,
-      "image": "https://www.sneakerfiles.com/wp-content/uploads/2026/07/nike-caitlin-1-snow-white-IH7423-100.jpg",
-      "link": "",
-      "sf": 1,
-      "ic": "2026-10-30"
+      "image": "https://images.stockx.com/images/Nike-Caitlin-1-Snow-White-Womens.jpg?fit=fill&bg=FFFFFF&w=600&h=430&fm=webp&auto=compress&q=90&dpr=2&trim=color&updated_at=1784235386",
+      "link": "https://stockx.pvxt.net/c/4722526/1023711/9060?u=https%3A%2F%2Fstockx.com%2Fnike-caitlin-1-snow-white-womens",
+      "ic": "2026-10-30",
+      "sku": "IH7423-100"
     },
     {
       "date": "2026-11-21",
       "name": "Nike Kobe AD Protro \"Purple Stardust\" 2026",
       "brand": "Nike",
       "retail_usd": 155,
-      "image": "https://www.sneakerfiles.com/wp-content/uploads/2026/08/nike-kobe-ad-protro-purple-stardust-black-IO8233-500.jpg",
-      "link": "",
+      "image": "https://images.stockx.com/images/Nike-Kobe-A-D-Protro-Purple-Stardust.jpg?fit=fill&bg=FFFFFF&w=600&h=430&fm=webp&auto=compress&q=90&dpr=2&trim=color&updated_at=1790907796",
+      "link": "https://stockx.pvxt.net/c/4722526/1023711/9060?u=https%3A%2F%2Fstockx.com%2Fnike-kobe-a-d-protro-purple-stardust",
       "sku": "IO8233-500",
       "colorway": "Purple Stardust/Black",
-      "sf": 1,
       "ic": "2026-10-30"
     },
     {
@@ -808,10 +701,10 @@
       "name": "Nike Zoom Hyperflight \"Safari\"",
       "brand": "Nike",
       "retail_usd": 190,
-      "image": "https://www.sneakerfiles.com/wp-content/uploads/2026/10/nike-hyperflight-safari-IZ2573-010.jpg",
-      "link": "",
-      "sf": 1,
-      "ic": "2026-10-30"
+      "image": "https://images.stockx.com/images/Nike-Zoom-Hyperflight-Safari.jpg?fit=fill&bg=FFFFFF&w=600&h=430&fm=webp&auto=compress&q=90&dpr=2&trim=color&updated_at=1791925921",
+      "link": "https://stockx.pvxt.net/c/4722526/1023711/9060?u=https%3A%2F%2Fstockx.com%2Fnike-zoom-hyperflight-safari",
+      "ic": "2026-10-30",
+      "sku": "IZ2573-010"
     },
     {
       "date": "2026-11-21",
@@ -1110,7 +1003,8 @@
       "retail_usd": null,
       "image": "https://www.sneakerfiles.com/wp-content/uploads/2026/10/jalen-brunson-nike-kobe-3-low-arancia-total-orange-JA7845-800.jpg",
       "link": "",
-      "sf": 1
+      "sf": 1,
+      "ic": "2026-10-31"
     },
     {
       "date": "2026-12-11",
@@ -1121,7 +1015,8 @@
       "link": "",
       "sku": "AA3963-002",
       "colorway": "Black/Metallic Gold-Black",
-      "sf": 1
+      "sf": 1,
+      "ic": "2026-10-31"
     },
     {
       "date": "2026-12-12",
@@ -1132,7 +1027,8 @@
       "link": "",
       "sku": "IQ8497-900",
       "colorway": "Multi-Color/Midnight Navy",
-      "sf": 1
+      "sf": 1,
+      "ic": "2026-10-31"
     },
     {
       "date": "2026-12-12",
@@ -1141,7 +1037,8 @@
       "retail_usd": null,
       "image": "https://www.sneakerfiles.com/wp-content/uploads/2026/08/air-jordan-11-space-jam-2026-CT8012-900-release-info.jpg",
       "link": "",
-      "sf": 1
+      "sf": 1,
+      "ic": "2026-10-31"
     },
     {
       "date": "2026-12-12",
@@ -1152,7 +1049,8 @@
       "link": "",
       "sku": "IU7852-300",
       "colorway": "Green Apple/Bright Cactus-Varsity Red-Imperial Blue",
-      "sf": 1
+      "sf": 1,
+      "ic": "2026-10-31"
     },
     {
       "date": "2026-12-17",
@@ -1171,7 +1069,8 @@
       "link": "",
       "sku": "HV0823-001",
       "colorway": "Black/White-Rust Pink",
-      "sf": 1
+      "sf": 1,
+      "ic": "2026-10-31"
     },
     {
       "date": "2026-12-19",
@@ -1182,7 +1081,8 @@
       "link": "",
       "sku": "IV5289-001",
       "colorway": "Photon Dust/University Gold",
-      "sf": 1
+      "sf": 1,
+      "ic": "2026-10-31"
     },
     {
       "date": "2026-12-19",
@@ -1193,7 +1093,8 @@
       "link": "",
       "sku": "JA3823-463",
       "colorway": "Royal Blue/Black-White",
-      "sf": 1
+      "sf": 1,
+      "ic": "2026-10-31"
     },
     {
       "date": "2026-12-19",
@@ -1204,7 +1105,8 @@
       "link": "",
       "sku": "FZ5590-004",
       "colorway": "Black/Black-Black",
-      "sf": 1
+      "sf": 1,
+      "ic": "2026-10-31"
     },
     {
       "date": "2026-12-21",
@@ -1215,7 +1117,8 @@
       "link": "",
       "sku": "IH7423-601",
       "colorway": "University Red/White-University Gold-Black-Metallic Silver-Racer Blue",
-      "sf": 1
+      "sf": 1,
+      "ic": "2026-10-31"
     },
     {
       "date": "2026-12-24",
@@ -1224,7 +1127,8 @@
       "retail_usd": 215,
       "image": "https://www.sneakerfiles.com/wp-content/uploads/2026/05/air-jordan-8-knicks-IX8479-010.jpg",
       "link": "",
-      "sf": 1
+      "sf": 1,
+      "ic": "2026-10-31"
     },
     {
       "date": "2026-12-25",
@@ -1233,7 +1137,8 @@
       "retail_usd": 190,
       "image": "https://www.sneakerfiles.com/wp-content/uploads/2026/07/nike-kobe-6-protro-coals-IO6261-001-1.jpg",
       "link": "",
-      "sf": 1
+      "sf": 1,
+      "ic": "2026-10-31"
     },
     {
       "date": "2026-12-26",
@@ -1242,7 +1147,8 @@
       "retail_usd": 355,
       "image": "https://www.sneakerfiles.com/wp-content/uploads/2026/02/air-jordan-4-bin-23-JA3588-200-release-info.jpg",
       "link": "",
-      "sf": 1
+      "sf": 1,
+      "ic": "2026-10-31"
     },
     {
       "date": "2026-12-26",
@@ -1253,7 +1159,8 @@
       "link": "",
       "sku": "IQ0145-600",
       "colorway": "Light Crimson/Metallic Gold-Green Glow",
-      "sf": 1
+      "sf": 1,
+      "ic": "2026-10-31"
     },
     {
       "date": "2026-12-31",
@@ -1262,7 +1169,8 @@
       "retail_usd": 215,
       "image": "https://www.sneakerfiles.com/wp-content/uploads/2026/01/air-jordan-3-middle-east-IX6986-047.jpg",
       "link": "",
-      "sf": 1
+      "sf": 1,
+      "ic": "2026-10-31"
     },
     {
       "date": "2026-12-31",
@@ -1271,7 +1179,8 @@
       "retail_usd": 190,
       "image": "https://www.sneakerfiles.com/wp-content/uploads/2026/10/corteiz-nike-shox-r419-pack-2026.jpg",
       "link": "",
-      "sf": 1
+      "sf": 1,
+      "ic": "2026-10-31"
     },
     {
       "date": "2026-12-31",
@@ -1282,7 +1191,8 @@
       "link": "",
       "sku": "IO6262-600",
       "colorway": "Laser Crimson/Silver-Obsidian",
-      "sf": 1
+      "sf": 1,
+      "ic": "2026-10-31"
     },
     {
       "date": "2027-01-05",
@@ -1293,7 +1203,8 @@
       "link": "",
       "sku": "IH7423-001",
       "colorway": "Black/Metallic Silver-Racer Blue",
-      "sf": 1
+      "sf": 1,
+      "ic": "2026-10-31"
     }
   ]
 }
