@@ -1,53 +1,7 @@
 {
-  "updated": "2026-10-31",
+  "updated": "2026-11-01",
   "source": "SneakerFiles & Sneaker News release calendars (curated weekly); photos from KicksDB (StockX)",
   "items": [
-    {
-      "date": "2026-10-31",
-      "name": "Air Jordan 14 \"Forest Green\"",
-      "brand": "Jordan",
-      "retail_usd": 215,
-      "image": "https://images.stockx.com/images/air-jordan-14-retro-white-forest-green-2026.jpg?fit=fill&bg=FFFFFF&w=600&h=430&fm=webp&auto=compress&q=90&dpr=2&trim=color&updated_at=1787345035",
-      "link": "https://stockx.pvxt.net/c/4722526/1023711/9060?u=https%3A%2F%2Fstockx.com%2Fair-jordan-14-retro-white-forest-green-2026",
-      "ic": "2026-10-26"
-    },
-    {
-      "date": "2026-10-31",
-      "name": "Air Jordan 4 \"Light Army\"",
-      "brand": "Jordan",
-      "retail_usd": 220,
-      "image": "https://images.stockx.com/images/Air-Jordan-4-Retro-Light-Army.jpg?fit=fill&bg=FFFFFF&w=600&h=430&fm=webp&auto=compress&q=90&dpr=2&trim=color&updated_at=1787342946",
-      "link": "https://stockx.pvxt.net/c/4722526/1023711/9060?u=https%3A%2F%2Fstockx.com%2Fair-jordan-4-retro-light-army",
-      "sku": "JA5911-320",
-      "colorway": "Light Army/Light Silver-Cargo Khaki-Phantom",
-      "ic": "2026-10-26"
-    },
-    {
-      "date": "2026-10-31",
-      "name": "Nike Ja 4 \"Radar\" (Heat Check)",
-      "brand": "Nike",
-      "retail_usd": 140,
-      "image": "https://www.sneakerfiles.com/wp-content/uploads/2026/08/nike-ja-4-radar-heat-check-JA9745-400.jpg",
-      "link": "",
-      "sku": "JA9745-400",
-      "colorway": "Obsidian/Total Orange-Laser Orange-Black-Racer Blue-Cobalt Bliss",
-      "tried": "2026-10-31",
-      "sf": 1,
-      "ic": "2026-10-30"
-    },
-    {
-      "date": "2026-10-31",
-      "name": "Nike Ja 4 High \"Zombie\"",
-      "brand": "Nike",
-      "retail_usd": 180,
-      "image": "https://www.sneakerfiles.com/wp-content/uploads/2026/09/nike-ja-4-high-halloween-zombie-IQ3864-600.jpg",
-      "link": "",
-      "sku": "IQ3864-600",
-      "colorway": "University Red/Bright Crimson-Cobalt Bliss-Medium Olive",
-      "tried": "2026-10-30",
-      "sf": 1,
-      "ic": "2026-10-30"
-    },
     {
       "date": "2026-11-01",
       "name": "Nike Air Max 90 \"Light Orewood Brown\"",
@@ -256,7 +210,7 @@
       "retail_usd": 210,
       "image": "https://www.sneakerfiles.com/wp-content/uploads/2026/09/victor-wembanyama-nike-gt-cut-4-statue-of-liberty-IW0737-300.jpg",
       "link": "",
-      "tried": "2026-10-30",
+      "tried": "2026-11-01",
       "sf": 1,
       "ic": "2026-10-30"
     },
@@ -278,7 +232,7 @@
       "retail_usd": 145,
       "image": "https://www.sneakerfiles.com/wp-content/uploads/2026/09/nike-book-2-desert-night-iridescent-FZ7013-003.jpg",
       "link": "",
-      "tried": "2026-10-30",
+      "tried": "2026-11-01",
       "sf": 1,
       "ic": "2026-10-30"
     },
@@ -313,7 +267,7 @@
       "retail_usd": 240,
       "image": "https://www.sneakerfiles.com/wp-content/uploads/2026/06/air-jordan-15-snakeskin-black-pack-IZ2585-001.jpg",
       "link": "",
-      "tried": "2026-10-30",
+      "tried": "2026-11-01",
       "sf": 1,
       "ic": "2026-10-30"
     },
@@ -324,7 +278,7 @@
       "retail_usd": 245,
       "image": "https://www.sneakerfiles.com/wp-content/uploads/2026/09/air-jordan-17-low-black-pack-IZ2638-001-4.jpg",
       "link": "",
-      "tried": "2026-10-30",
+      "tried": "2026-11-01",
       "sf": 1,
       "ic": "2026-10-30"
     },
@@ -335,7 +289,7 @@
       "retail_usd": 215,
       "link": "https://stockx.pvxt.net/c/4722526/1023711/9060?u=https%3A%2F%2Fstockx.com%2Fair-jordan-6-rings-white-infrared-23-black-gs",
       "ic": "2026-10-26",
-      "tried": "2026-10-30",
+      "tried": "2026-11-01",
       "image": "https://www.sneakerfiles.com/wp-content/uploads/2026/10/air-jordan-6-white-infrared-CT8529-105-release-info-2026.jpg",
       "sf": 1
     },
@@ -424,7 +378,7 @@
       "retail_usd": 170,
       "image": "https://www.sneakerfiles.com/wp-content/uploads/2026/09/nike-air-diamond-turf-2-patent-black-red-II7066-001.jpg",
       "link": "",
-      "tried": "2026-10-30",
+      "tried": "2026-11-01",
       "sf": 1,
       "ic": "2026-10-30"
     },
@@ -475,7 +429,7 @@
       "retail_usd": 180,
       "image": "https://www.sneakerfiles.com/wp-content/uploads/2026/09/cactus-plant-flea-market-cpfm-nike-flea-1-barley-IU5238-700.jpg",
       "link": "",
-      "tried": "2026-10-30",
+      "tried": "2026-11-01",
       "sf": 1,
       "ic": "2026-10-30"
     },
@@ -506,7 +460,7 @@
       "retail_usd": 205,
       "image": "",
       "link": "",
-      "tried": "2026-10-30"
+      "tried": "2026-11-01"
     },
     {
       "date": "2026-11-15",
@@ -526,7 +480,7 @@
       "retail_usd": 155,
       "image": "https://www.sneakerfiles.com/wp-content/uploads/2026/08/playa-society-nike-a-two-dark-russet-terra-blush-IX6704-200.jpg",
       "link": "",
-      "tried": "2026-10-30",
+      "tried": "2026-11-01",
       "sf": 1,
       "ic": "2026-10-30"
     },
@@ -539,7 +493,7 @@
       "link": "",
       "sku": "IQ5700-900",
       "colorway": "Multi-Color/Gym Green-Lucky Green-Orange",
-      "tried": "2026-10-30",
+      "tried": "2026-11-01",
       "sf": 1,
       "ic": "2026-10-30"
     },
@@ -559,7 +513,7 @@
       "retail_usd": 130,
       "image": "",
       "link": "",
-      "tried": "2026-10-30"
+      "tried": "2026-11-01"
     },
     {
       "date": "2026-11-17",
