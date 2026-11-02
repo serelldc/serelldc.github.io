@@ -36,7 +36,7 @@
     },
     "j 1 low concord": {
       "none": true,
-      "at": "2026-10-26"
+      "at": "2026-11-02"
     },
     "jordan 1 defiant og high": {
       "title": "Jordan 1 Retro High OG Defiant Couture",
@@ -58,11 +58,11 @@
     },
     "air jordan 1 zm air cmft 2 wmns university blue volt": {
       "none": true,
-      "at": "2026-10-26"
+      "at": "2026-11-02"
     },
     "air jordan 4 wmns canyon purple": {
       "none": true,
-      "at": "2026-10-26"
+      "at": "2026-11-02"
     },
     "air jordan 1 high og royal reimagined": {
       "title": "Jordan 1 Retro High OG Royal Reimagined",
@@ -79,11 +79,11 @@
       "at": "2026-11-01"
     },
     "reebok question pump chalk": {
-      "title": "Reebok Question Pump Pump Universe",
-      "usd": 165,
-      "avg_usd": 278,
-      "link": "https://stockx.pvxt.net/c/4722526/1023711/9060?u=https%3A%2F%2Fstockx.com%2Freebok-question-pump-pump-universe",
-      "at": "2026-10-26"
+      "title": "Reebok Question Pump Pump Omni Lite",
+      "usd": 85,
+      "avg_usd": 188,
+      "link": "https://stockx.pvxt.net/c/4722526/1023711/9060?u=https%3A%2F%2Fstockx.com%2Freebok-question-pump-pump-omni-lite",
+      "at": "2026-11-02"
     },
     "kobe protro college navy": {
       "title": "Nike Kobe 8 Protro College Navy",
@@ -94,7 +94,7 @@
     },
     "kobe ix elite low em protro black university-gold": {
       "none": true,
-      "at": "2026-10-26"
+      "at": "2026-11-02"
     },
     "nike ja 4 nightmare": {
       "none": true,
@@ -106,7 +106,7 @@
     },
     "ja 4 ny vs ny": {
       "none": true,
-      "at": "2026-10-26"
+      "at": "2026-11-02"
     },
     "jordan 5 retro halloween": {
       "title": "Jordan 5 Retro Halloween",
@@ -458,8 +458,28 @@
       "avg_usd": 295,
       "link": "https://stockx.pvxt.net/c/4722526/1023711/9060?u=https%3A%2F%2Fstockx.com%2Fair-jordan-11-retro-space-jam-magic-ball-womens",
       "at": "2026-11-01"
+    },
+    "gucci logo sneakers": {
+      "none": true,
+      "at": "2026-11-02"
+    },
+    "fendi flow steel blue / navy": {
+      "none": true,
+      "at": "2026-11-02"
+    },
+    "alexander mcqueen oversized sneaker black white": {
+      "none": true,
+      "at": "2026-11-02"
+    },
+    "dr. martens reeder crazy horse leather utility shoes dark brown": {
+      "none": true,
+      "at": "2026-11-02"
+    },
+    "asics hypersync cream concrete": {
+      "none": true,
+      "at": "2026-11-02"
     }
   },
-  "updated": "2026-11-01",
+  "updated": "2026-11-02",
   "source": "KicksDB (StockX average resale, all sizes)"
 }
