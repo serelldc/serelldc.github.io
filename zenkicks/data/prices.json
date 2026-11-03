@@ -47,7 +47,7 @@
     },
     "j 1 low travis scott shy pink": {
       "none": true,
-      "at": "2026-10-27"
+      "at": "2026-11-03"
     },
     "nike zoom field jaxx travis scott leche blue": {
       "title": "Nike Zoom Field Jaxx Travis Scott Leche Blue",
@@ -88,9 +88,9 @@
     "kobe protro college navy": {
       "title": "Nike Kobe 8 Protro College Navy",
       "usd": 172,
-      "avg_usd": 305,
+      "avg_usd": 316,
       "link": "https://stockx.pvxt.net/c/4722526/1023711/9060?u=https%3A%2F%2Fstockx.com%2Fnike-kobe-8-protro-college-navy",
-      "at": "2026-10-27"
+      "at": "2026-11-03"
     },
     "kobe ix elite low em protro black university-gold": {
       "none": true,
@@ -98,7 +98,7 @@
     },
     "nike ja 4 nightmare": {
       "none": true,
-      "at": "2026-10-27"
+      "at": "2026-11-03"
     },
     "nike ja 4 ny vs ny": {
       "none": true,
@@ -145,10 +145,10 @@
     },
     "jordan 8 retro chrome (2026)": {
       "title": "Jordan 8 Retro Chrome (2026)",
-      "usd": 185,
-      "avg_usd": 237,
+      "usd": 180,
+      "avg_usd": 232,
       "link": "https://stockx.pvxt.net/c/4722526/1023711/9060?u=https%3A%2F%2Fstockx.com%2Fair-jordan-8-retro-chrome-2026",
-      "at": "2026-10-23"
+      "at": "2026-11-03"
     },
     "nike air force 1 low '07 white": {
       "title": "Nike Air Force 1 Low '07 White",
@@ -173,10 +173,10 @@
     },
     "nike kobe 5 protro dodgers": {
       "title": "Nike Kobe 5 Protro Dodgers",
-      "usd": 172,
-      "avg_usd": 245,
+      "usd": 177,
+      "avg_usd": 251,
       "link": "https://stockx.pvxt.net/c/4722526/1023711/9060?u=https%3A%2F%2Fstockx.com%2Fnike-kobe-5-protro-dodgers",
-      "at": "2026-10-23"
+      "at": "2026-11-03"
     },
     "nike air force 1 low '01 nigo x j-hope": {
       "title": "Nike Air Force 1 Low '01 NIGO x J-Hope",
@@ -478,8 +478,26 @@
     "asics hypersync cream concrete": {
       "none": true,
       "at": "2026-11-02"
+    },
+    "jordan 6 retro infrared white (2026)": {
+      "title": "Jordan 6 Retro Infrared White (2026)",
+      "usd": 167,
+      "avg_usd": 231,
+      "link": "https://stockx.pvxt.net/c/4722526/1023711/9060?u=https%3A%2F%2Fstockx.com%2Fair-jordan-6-retro-infrared-white-2026",
+      "at": "2026-11-03"
+    },
+    "new balance 9060 triple black": {
+      "title": "New Balance 9060 Triple Black",
+      "usd": 83,
+      "avg_usd": 117,
+      "link": "https://stockx.pvxt.net/c/4722526/1023711/9060?u=https%3A%2F%2Fstockx.com%2Fnew-balance-9060-triple-black",
+      "at": "2026-11-03"
+    },
+    "nike sb dunk low champagne": {
+      "none": true,
+      "at": "2026-11-03"
     }
   },
-  "updated": "2026-11-02",
+  "updated": "2026-11-03",
   "source": "KicksDB (StockX average resale, all sizes)"
 }

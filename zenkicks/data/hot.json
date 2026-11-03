@@ -1,93 +1,106 @@
 {
-  "updated": "2026-11-02",
+  "updated": "2026-11-03",
   "source": "KicksDB (StockX best sellers)",
   "online": [
     {
-      "name": "Gucci Logo Sneakers",
-      "why": "#1 best seller on StockX",
+      "name": "Jordan 14 Retro White Forest Green (2026)",
+      "why": "997 orders on StockX this week",
       "tag": "Resale",
-      "image": "https://images.stockx.com/images/01a171c0-a4ce-7b92-b8b9-3761593f0e32?fit=fill&bg=FFFFFF&w=600&h=430&fm=webp&auto=compress&q=90&dpr=2&trim=color&updated_at=1793032612",
-      "link": "https://stockx.pvxt.net/c/4722526/1023711/9060?u=https%3A%2F%2Fstockx.com%2Fgucci-logo-sneakers",
-      "brand": "Gucci",
-      "sku": "798919 2SH00 9522"
+      "image": "https://images.stockx.com/images/air-jordan-14-retro-white-forest-green-2026.jpg?fit=fill&bg=FFFFFF&w=600&h=430&fm=webp&auto=compress&q=90&dpr=2&trim=color&updated_at=1787345035",
+      "link": "https://stockx.pvxt.net/c/4722526/1023711/9060?u=https%3A%2F%2Fstockx.com%2Fair-jordan-14-retro-white-forest-green-2026",
+      "brand": "Jordan",
+      "sku": "487471-300",
+      "price_usd": 161
     },
     {
-      "name": "Fendi Flow Steel Blue / Navy",
-      "why": "#2 best seller on StockX",
+      "name": "Jordan 8 Retro Chrome (2026)",
+      "why": "489 orders on StockX this week",
       "tag": "Resale",
-      "image": "https://images.stockx.com/images/01a1748b-bb8d-785c-bb0d-bc8e58af1786?fit=fill&bg=FFFFFF&w=600&h=430&fm=webp&auto=compress&q=90&dpr=2&trim=color&updated_at=1792956920",
-      "link": "https://stockx.pvxt.net/c/4722526/1023711/9060?u=https%3A%2F%2Fstockx.com%2Ffendi-flow-steel-blue-navy",
-      "brand": "Fendi"
+      "image": "https://images.stockx.com/images/Air-Jordan-8-Retro-Chrome-2026-Product.jpg?fit=fill&bg=FFFFFF&w=600&h=430&fm=webp&auto=compress&q=90&dpr=2&trim=color&updated_at=1788529029",
+      "link": "https://stockx.pvxt.net/c/4722526/1023711/9060?u=https%3A%2F%2Fstockx.com%2Fair-jordan-8-retro-chrome-2026",
+      "brand": "Jordan",
+      "sku": "305381-007",
+      "price_usd": 180
     },
     {
-      "name": "Alexander McQueen Oversized Sneaker Black White",
-      "why": "#3 best seller on StockX",
+      "name": "Jordan 5 Retro Halloween",
+      "why": "435 orders on StockX this week",
       "tag": "Resale",
-      "image": "https://images.stockx.com/images/01a176e0-d545-700a-a1d1-20d8d0a51e68?fit=fill&bg=FFFFFF&w=600&h=430&fm=webp&auto=compress&q=90&dpr=2&trim=color&updated_at=1793028367",
-      "link": "https://stockx.pvxt.net/c/4722526/1023711/9060?u=https%3A%2F%2Fstockx.com%2Falexander-mcqueen-oversized-sneaker-black-white-uinrjun1udpuy4kc5xa3t",
-      "brand": "Alexander McQueen",
-      "sku": "553680"
+      "image": "https://images.stockx.com/images/Air-Jordan-5-Retro-Halloween.jpg?fit=fill&bg=FFFFFF&w=600&h=430&fm=webp&auto=compress&q=90&dpr=2&trim=color&updated_at=1787342936",
+      "link": "https://stockx.pvxt.net/c/4722526/1023711/9060?u=https%3A%2F%2Fstockx.com%2Fair-jordan-5-retro-halloween",
+      "brand": "Jordan",
+      "sku": "HQ7978-001",
+      "price_usd": 180
     },
     {
-      "name": "Dr. Martens Reeder Crazy Horse Leather Utility Shoes Dark Brown",
-      "why": "#4 best seller on StockX",
+      "name": "Jordan 12 Retro Fireside",
+      "why": "368 orders on StockX this week",
       "tag": "Resale",
-      "image": "https://images.stockx.com/images/Dr-Martens-Reeder-Crazy-Horse-Leather-Utility-Shoes-Dark-Brown.jpg?fit=fill&bg=FFFFFF&w=600&h=430&fm=webp&auto=compress&q=90&dpr=2&trim=color&updated_at=1793000400",
-      "link": "https://stockx.pvxt.net/c/4722526/1023711/9060?u=https%3A%2F%2Fstockx.com%2Fdr-martens-reeder-crazy-horse-leather-utility-shoes-dark-brown",
-      "brand": "Dr. Martens",
-      "sku": "27103207"
+      "image": "https://images.stockx.com/images/Air-Jordan-12-Retro-Fireside.jpg?fit=fill&bg=FFFFFF&w=600&h=430&fm=webp&auto=compress&q=90&dpr=2&trim=color&updated_at=1792704294",
+      "link": "https://stockx.pvxt.net/c/4722526/1023711/9060?u=https%3A%2F%2Fstockx.com%2Fair-jordan-12-retro-fireside",
+      "brand": "Jordan",
+      "sku": "CT8013-105",
+      "price_usd": 153
     },
     {
-      "name": "ASICS Hypersync Cream Concrete",
-      "why": "#5 best seller on StockX",
+      "name": "Jordan 6 Retro Infrared White (2026)",
+      "why": "328 orders on StockX this week",
       "tag": "Resale",
-      "image": "https://images.stockx.com/images/ASICS-Hypersync-Cream-Concrete.jpg?fit=fill&bg=FFFFFF&w=600&h=430&fm=webp&auto=compress&q=90&dpr=2&trim=color&updated_at=1793000403",
-      "link": "https://stockx.pvxt.net/c/4722526/1023711/9060?u=https%3A%2F%2Fstockx.com%2Fasics-hypersync-cream-concrete",
-      "brand": "ASICS",
-      "sku": "1203B376-100"
+      "image": "https://images.stockx.com/images/Air-Jordan-6-Retro-Infrared-White-2026.jpg?fit=fill&bg=FFFFFF&w=600&h=430&fm=webp&auto=compress&q=90&dpr=2&trim=color&updated_at=1792704197",
+      "link": "https://stockx.pvxt.net/c/4722526/1023711/9060?u=https%3A%2F%2Fstockx.com%2Fair-jordan-6-retro-infrared-white-2026",
+      "brand": "Jordan",
+      "sku": "CT8529-105",
+      "price_usd": 167
     },
     {
-      "name": "ASICS Superblast 3 White Orange Glow",
-      "why": "1 orders on StockX this week",
+      "name": "Jordan 3 Retro True Blue (2026)",
+      "why": "295 orders on StockX this week",
       "tag": "Resale",
-      "image": "https://images.stockx.com/images/ASICS-Superblast-3-White-Orange-Glow.jpg?fit=fill&bg=FFFFFF&w=600&h=430&fm=webp&auto=compress&q=90&dpr=2&trim=color&updated_at=1793000402",
-      "link": "https://stockx.pvxt.net/c/4722526/1023711/9060?u=https%3A%2F%2Fstockx.com%2Fasics-superblast-3-white-orange-glow",
-      "brand": "ASICS",
-      "sku": "1013A177-101"
+      "image": "https://images.stockx.com/images/Air-Jordan-3-Retro-True-Blue-2026-Product.jpg?fit=fill&bg=FFFFFF&w=600&h=430&fm=webp&auto=compress&q=90&dpr=2&trim=color&updated_at=1787951358",
+      "link": "https://stockx.pvxt.net/c/4722526/1023711/9060?u=https%3A%2F%2Fstockx.com%2Fair-jordan-3-retro-true-blue-2026",
+      "brand": "Jordan",
+      "sku": "IF4396-104",
+      "price_usd": 162
     },
     {
-      "name": "ASICS Superblast 3 50th Anniversary White Prussian Blue",
-      "why": "#7 best seller on StockX",
+      "name": "Jordan 4 Retro Toro Bravo (2026)",
+      "why": "222 orders on StockX this week",
       "tag": "Resale",
-      "image": "https://images.stockx.com/images/ASICS-Superblast-3-50th-Anniversary-White-Prussian-Blue.jpg?fit=fill&bg=FFFFFF&w=600&h=430&fm=webp&auto=compress&q=90&dpr=2&trim=color&updated_at=1793046952",
-      "link": "https://stockx.pvxt.net/c/4722526/1023711/9060?u=https%3A%2F%2Fstockx.com%2Fasics-superblast-3-50th-anniversary-white-prussian-blue",
-      "brand": "ASICS",
-      "sku": "1013A226-100"
+      "image": "https://images.stockx.com/images/Air-Jordan-4-Retro-Toro-Bravo-2026-Product.jpg?fit=fill&bg=FFFFFF&w=600&h=430&fm=webp&auto=compress&q=90&dpr=2&trim=color&updated_at=1784232937",
+      "link": "https://stockx.pvxt.net/c/4722526/1023711/9060?u=https%3A%2F%2Fstockx.com%2Fair-jordan-4-retro-toro-bravo-2026",
+      "brand": "Jordan",
+      "sku": "FQ8138-600",
+      "price_usd": 160
     },
     {
-      "name": "Converse Chuck Taylor All Star Madison Mid White (Women's)",
-      "why": "#8 best seller on StockX",
+      "name": "Nike Kobe 5 Protro Dodgers",
+      "why": "213 orders on StockX this week",
       "tag": "Resale",
-      "image": "https://images.stockx.com/images/Converse-Chuck-Taylor-All-Star-Madison-Mid-White-Womens.jpg?fit=fill&bg=FFFFFF&w=600&h=430&fm=webp&auto=compress&q=90&dpr=2&trim=color&updated_at=1793046943",
-      "link": "https://stockx.pvxt.net/c/4722526/1023711/9060?u=https%3A%2F%2Fstockx.com%2Fconverse-chuck-taylor-all-star-madison-mid-white-womens",
-      "brand": "Converse",
-      "sku": "563511C / 563511F"
+      "image": "https://images.stockx.com/images/Nike-Kobe-5-Protro-Dodgers-Product.jpg?fit=fill&bg=FFFFFF&w=600&h=430&fm=webp&auto=compress&q=90&dpr=2&trim=color&updated_at=1785850157",
+      "link": "https://stockx.pvxt.net/c/4722526/1023711/9060?u=https%3A%2F%2Fstockx.com%2Fnike-kobe-5-protro-dodgers",
+      "brand": "Nike",
+      "sku": "IO6256-400",
+      "price_usd": 177
     },
     {
-      "name": "Gucci Ultrapace Mid Black Grey",
-      "why": "#9 best seller on StockX",
+      "name": "New Balance 9060 Triple Black",
+      "why": "239 orders on StockX this week",
       "tag": "Resale",
-      "image": "https://images.stockx.com/images/01a17a72-3ee2-7ca2-9881-adbcf865cf3d?fit=fill&bg=FFFFFF&w=600&h=430&fm=webp&auto=compress&q=90&dpr=2&trim=color&updated_at=1793055855",
-      "link": "https://stockx.pvxt.net/c/4722526/1023711/9060?u=https%3A%2F%2Fstockx.com%2Fgucci-ultrapace-mid-black-grey",
-      "brand": "Gucci"
+      "image": "https://images.stockx.com/images/New-Balance-9060-Triple-Black-Product.jpg?fit=fill&bg=FFFFFF&w=600&h=430&fm=webp&auto=compress&q=90&dpr=2&trim=color&updated_at=1784247815",
+      "link": "https://stockx.pvxt.net/c/4722526/1023711/9060?u=https%3A%2F%2Fstockx.com%2Fnew-balance-9060-triple-black",
+      "brand": "New Balance",
+      "sku": "U9060BPM",
+      "price_usd": 83
     },
     {
-      "name": "HOKA Mach X 3",
-      "why": "#10 best seller on StockX",
+      "name": "Jordan 9 Retro OG Space Jam (2026)",
+      "why": "199 orders on StockX this week",
       "tag": "Resale",
-      "image": "https://images.stockx.com/images/01a17bc1-0ed8-79e6-bf92-72ce8006877f?fit=fill&bg=FFFFFF&w=600&h=430&fm=webp&auto=compress&q=90&dpr=2&trim=color&updated_at=1793077672",
-      "link": "https://stockx.pvxt.net/c/4722526/1023711/9060?u=https%3A%2F%2Fstockx.com%2Fhoka-mach-x-3",
-      "brand": "Hoka"
+      "image": "https://images.stockx.com/images/Air-Jordan-9-Retro-OG-Space-Jam-2026-Product.jpg?fit=fill&bg=FFFFFF&w=600&h=430&fm=webp&auto=compress&q=90&dpr=2&trim=color&updated_at=1790692048",
+      "link": "https://stockx.pvxt.net/c/4722526/1023711/9060?u=https%3A%2F%2Fstockx.com%2Fair-jordan-9-retro-og-space-jam-2026",
+      "brand": "Jordan",
+      "sku": "IX6179-100",
+      "price_usd": 203
     }
   ]
 }

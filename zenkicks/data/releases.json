@@ -1,17 +1,7 @@
 {
-  "updated": "2026-11-02",
+  "updated": "2026-11-03",
   "source": "SneakerFiles & Sneaker News release calendars (curated weekly); photos from KicksDB (StockX)",
   "items": [
-    {
-      "date": "2026-11-02",
-      "name": "New Balance Numeric 442",
-      "brand": "New Balance",
-      "retail_usd": 125,
-      "image": "https://images.stockx.com/images/New-Balance-Numeric-442-Heron-Blue-White.jpg?fit=fill&bg=FFFFFF&w=600&h=430&fm=webp&auto=compress&q=90&dpr=2&trim=color&updated_at=1783021383",
-      "link": "https://stockx.pvxt.net/c/4722526/1023711/9060?u=https%3A%2F%2Fstockx.com%2Fnew-balance-numeric-442-heron-blue-white",
-      "sku": "UN442SMF",
-      "ic": "2026-11-02"
-    },
     {
       "date": "2026-11-03",
       "name": "Nike Air Griffey Max 1 \"Cincinnati Reds\"",
@@ -66,7 +56,7 @@
       "sku": "IX6375-001",
       "colorway": "Black/Action Green-Yellow Zest-Metallic Silver",
       "image": "https://images.stockx.com/images/Air-Jordan-1-Low-SE-Space-Jam-Magic-Ball-2.jpg?fit=fill&bg=FFFFFF&w=600&h=430&fm=webp&auto=compress&q=90&dpr=2&trim=color&updated_at=1792680396",
-      "ic": "2026-10-27"
+      "ic": "2026-11-03"
     },
     {
       "date": "2026-11-05",
@@ -179,7 +169,7 @@
       "retail_usd": 210,
       "image": "https://www.sneakerfiles.com/wp-content/uploads/2026/09/victor-wembanyama-nike-gt-cut-4-statue-of-liberty-IW0737-300.jpg",
       "link": "",
-      "tried": "2026-11-01",
+      "tried": "2026-11-03",
       "sf": 1,
       "ic": "2026-10-30"
     },
@@ -212,7 +202,7 @@
       "retail_usd": 145,
       "image": "https://www.sneakerfiles.com/wp-content/uploads/2026/09/nike-book-2-desert-night-iridescent-FZ7013-003.jpg",
       "link": "",
-      "tried": "2026-11-01",
+      "tried": "2026-11-03",
       "sf": 1,
       "ic": "2026-10-30"
     },
@@ -260,7 +250,7 @@
       "retail_usd": 240,
       "image": "https://www.sneakerfiles.com/wp-content/uploads/2026/06/air-jordan-15-snakeskin-black-pack-IZ2585-001.jpg",
       "link": "",
-      "tried": "2026-11-01",
+      "tried": "2026-11-03",
       "sf": 1,
       "ic": "2026-10-30"
     },
@@ -271,7 +261,7 @@
       "retail_usd": 245,
       "image": "https://www.sneakerfiles.com/wp-content/uploads/2026/09/air-jordan-17-low-black-pack-IZ2638-001-4.jpg",
       "link": "",
-      "tried": "2026-11-01",
+      "tried": "2026-11-03",
       "sf": 1,
       "ic": "2026-10-30"
     },
@@ -282,7 +272,7 @@
       "retail_usd": 215,
       "link": "https://stockx.pvxt.net/c/4722526/1023711/9060?u=https%3A%2F%2Fstockx.com%2Fair-jordan-6-rings-white-infrared-23-black-gs",
       "ic": "2026-11-02",
-      "tried": "2026-11-01",
+      "tried": "2026-11-03",
       "image": "https://www.sneakerfiles.com/wp-content/uploads/2026/10/air-jordan-6-white-infrared-CT8529-105-release-info-2026.jpg",
       "sf": 1
     },
@@ -371,7 +361,7 @@
       "retail_usd": 170,
       "image": "https://www.sneakerfiles.com/wp-content/uploads/2026/09/nike-air-diamond-turf-2-patent-black-red-II7066-001.jpg",
       "link": "",
-      "tried": "2026-11-01",
+      "tried": "2026-11-03",
       "sf": 1,
       "ic": "2026-10-30"
     },
@@ -413,7 +403,7 @@
       "image": "https://images.stockx.com/images/Air-Jordan-9-Retro-Boot-NRG-Black-Iridescent.jpg?fit=fill&bg=FFFFFF&w=600&h=430&fm=webp&auto=compress&q=90&dpr=2&trim=color&updated_at=1791314346",
       "link": "https://stockx.pvxt.net/c/4722526/1023711/9060?u=https%3A%2F%2Fstockx.com%2Fair-jordan-9-retro-boot-nrg-black-iridescent",
       "sku": "IX8455-060",
-      "ic": "2026-10-27"
+      "ic": "2026-11-03"
     },
     {
       "date": "2026-11-14",
@@ -422,7 +412,7 @@
       "retail_usd": 180,
       "image": "https://www.sneakerfiles.com/wp-content/uploads/2026/09/cactus-plant-flea-market-cpfm-nike-flea-1-barley-IU5238-700.jpg",
       "link": "",
-      "tried": "2026-11-01",
+      "tried": "2026-11-03",
       "sf": 1,
       "ic": "2026-10-30"
     },
@@ -434,7 +424,7 @@
       "image": "https://images.stockx.com/images/Nike-Caitlin-1-Racer-Blue-Pink-Womens.jpg?fit=fill&bg=FFFFFF&w=600&h=430&fm=webp&auto=compress&q=90&dpr=2&trim=color&updated_at=1790713034",
       "link": "https://stockx.pvxt.net/c/4722526/1023711/9060?u=https%3A%2F%2Fstockx.com%2Fnike-caitlin-1-racer-blue-pink-womens",
       "sku": "JF3474-400",
-      "ic": "2026-10-27"
+      "ic": "2026-11-03"
     },
     {
       "date": "2026-11-14",
@@ -444,7 +434,7 @@
       "image": "https://images.stockx.com/images/Nike-Zoom-Hyperflight-Green-Apple.jpg?fit=fill&bg=FFFFFF&w=600&h=430&fm=webp&auto=compress&q=90&dpr=2&trim=color&updated_at=1790190167",
       "link": "https://stockx.pvxt.net/c/4722526/1023711/9060?u=https%3A%2F%2Fstockx.com%2Fnike-zoom-hyperflight-green-apple",
       "sku": "IZ1481-300",
-      "ic": "2026-10-27"
+      "ic": "2026-11-03"
     },
     {
       "date": "2026-11-15",
@@ -453,7 +443,7 @@
       "retail_usd": 205,
       "image": "",
       "link": "",
-      "tried": "2026-11-01"
+      "tried": "2026-11-03"
     },
     {
       "date": "2026-11-15",
@@ -473,7 +463,7 @@
       "retail_usd": 155,
       "image": "https://www.sneakerfiles.com/wp-content/uploads/2026/08/playa-society-nike-a-two-dark-russet-terra-blush-IX6704-200.jpg",
       "link": "",
-      "tried": "2026-11-01",
+      "tried": "2026-11-03",
       "sf": 1,
       "ic": "2026-10-30"
     },
@@ -486,7 +476,7 @@
       "link": "",
       "sku": "IQ5700-900",
       "colorway": "Multi-Color/Gym Green-Lucky Green-Orange",
-      "tried": "2026-11-01",
+      "tried": "2026-11-03",
       "sf": 1,
       "ic": "2026-10-30"
     },
@@ -497,7 +487,7 @@
       "retail_usd": 240,
       "image": "https://images.stockx.com/images/Nike-Air-Foamposite-Pro-Mummy-Duck-Oregon-PE.jpg?fit=fill&bg=FFFFFF&w=600&h=430&fm=webp&auto=compress&q=90&dpr=2&trim=color&updated_at=1759179882",
       "link": "https://stockx.pvxt.net/c/4722526/1023711/9060?u=https%3A%2F%2Fstockx.com%2Fnike-air-foamposite-pro-mummy-duck-oregon-pe",
-      "ic": "2026-10-27"
+      "ic": "2026-11-03"
     },
     {
       "date": "2026-11-16",
@@ -506,7 +496,7 @@
       "retail_usd": 130,
       "image": "",
       "link": "",
-      "tried": "2026-11-01"
+      "tried": "2026-11-03"
     },
     {
       "date": "2026-11-17",
@@ -569,7 +559,7 @@
       "image": "https://images.stockx.com/images/Nike-Air-Max-95-ACG-Mowabb.jpg?fit=fill&bg=FFFFFF&w=600&h=430&fm=webp&auto=compress&q=90&dpr=2&trim=color&updated_at=1771470738",
       "link": "https://stockx.pvxt.net/c/4722526/1023711/9060?u=https%3A%2F%2Fstockx.com%2Fair-max-95-acg-mowabb",
       "sku": "307255-251",
-      "ic": "2026-10-27"
+      "ic": "2026-11-03"
     },
     {
       "date": "2026-11-20",
@@ -579,7 +569,7 @@
       "image": "https://images.stockx.com/images/Nike-Book-2-Be-Legendary.jpg?fit=fill&bg=FFFFFF&w=600&h=430&fm=webp&auto=compress&q=90&dpr=2&trim=color&updated_at=1788971656",
       "link": "https://stockx.pvxt.net/c/4722526/1023711/9060?u=https%3A%2F%2Fstockx.com%2Fnike-book-2-be-legendary",
       "sku": "FZ7013-501",
-      "ic": "2026-10-27"
+      "ic": "2026-11-03"
     },
     {
       "date": "2026-11-20",
@@ -598,7 +588,7 @@
       "image": "https://images.stockx.com/images/Air-Jordan-3-Retro-Not-Nice.jpg?fit=fill&bg=FFFFFF&w=600&h=430&fm=webp&auto=compress&q=90&dpr=2&trim=color&updated_at=1784748181",
       "link": "https://stockx.pvxt.net/c/4722526/1023711/9060?u=https%3A%2F%2Fstockx.com%2Fair-jordan-3-retro-not-nice",
       "sku": "IF4396-001",
-      "ic": "2026-10-27"
+      "ic": "2026-11-03"
     },
     {
       "date": "2026-11-21",
@@ -620,7 +610,7 @@
       "link": "https://stockx.pvxt.net/c/4722526/1023711/9060?u=https%3A%2F%2Fstockx.com%2Fair-jordan-tatum-5-sunset",
       "sku": "IO1746-002",
       "colorway": "Black/Clementine-Amarillo-Infrared 23",
-      "ic": "2026-10-27"
+      "ic": "2026-11-03"
     },
     {
       "date": "2026-11-21",
@@ -1017,6 +1007,18 @@
       "retail_usd": null,
       "image": "",
       "link": ""
+    },
+    {
+      "date": "2026-12-18",
+      "name": "Lil Yachty x Nike Us Force 1 Mid \"Red Blue\"",
+      "brand": "Nike",
+      "retail_usd": 140,
+      "image": "https://www.sneakerfiles.com/wp-content/uploads/2026/11/lil-yachty-concrete-boys-nike-us-force-1-mid-red-blue-2026.jpg",
+      "link": "",
+      "sku": "IW9834-600",
+      "colorway": "Team Scarlet/Deep Royal Blue",
+      "sf": 1,
+      "ic": "2026-11-03"
     },
     {
       "date": "2026-12-19",
