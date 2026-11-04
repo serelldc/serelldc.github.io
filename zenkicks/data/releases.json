@@ -1,5 +1,5 @@
 {
-  "updated": "2026-11-03",
+  "updated": "2026-11-04",
   "source": "SneakerFiles & Sneaker News release calendars (curated weekly); photos from KicksDB (StockX)",
   "items": [
     {
@@ -1179,6 +1179,14 @@
       "ic": "2026-10-31"
     },
     {
+      "date": "2027-01-02",
+      "name": "Air Jordan 8 \"Hornets\"",
+      "brand": "Jordan",
+      "retail_usd": null,
+      "image": "",
+      "link": ""
+    },
+    {
       "date": "2027-01-05",
       "name": "Nike Caitlin 1 \"3x Black\"",
       "brand": "Nike",
@@ -1189,6 +1197,30 @@
       "colorway": "Black/Metallic Silver-Racer Blue",
       "sf": 1,
       "ic": "2026-10-31"
+    },
+    {
+      "date": "2027-01-15",
+      "name": "Air Jordan 4 \"Spotlight\"",
+      "brand": "Jordan",
+      "retail_usd": 220,
+      "image": "",
+      "link": ""
+    },
+    {
+      "date": "2027-01-16",
+      "name": "Air Jordan 3 \"Utility\"",
+      "brand": "Jordan",
+      "retail_usd": 215,
+      "image": "",
+      "link": ""
+    },
+    {
+      "date": "2027-01-30",
+      "name": "Air Jordan 4 \"Musik\"",
+      "brand": "Jordan",
+      "retail_usd": 230,
+      "image": "",
+      "link": ""
     }
   ]
 }
