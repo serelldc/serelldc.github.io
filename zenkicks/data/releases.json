@@ -3,29 +3,6 @@
   "source": "SneakerFiles & Sneaker News release calendars (curated weekly); photos from KicksDB (StockX)",
   "items": [
     {
-      "date": "2026-11-03",
-      "name": "Nike Air Griffey Max 1 \"Cincinnati Reds\"",
-      "brand": "Nike",
-      "retail_usd": null,
-      "image": "https://images.stockx.com/images/Nike-Air-Griffey-Max-1-Cincinnati-Reds-Product.jpg?fit=fill&bg=FFFFFF&w=600&h=430&fm=webp&auto=compress&q=90&dpr=2&trim=color&updated_at=1788672032",
-      "link": "https://stockx.pvxt.net/c/4722526/1023711/9060?u=https%3A%2F%2Fstockx.com%2Fnike-air-griffey-max-1-cincinnati-reds",
-      "sku": "354912-106",
-      "ic": "2026-11-02"
-    },
-    {
-      "date": "2026-11-03",
-      "name": "Nike Giannis Freak 8 \"Camo\"",
-      "brand": "Nike",
-      "retail_usd": 120,
-      "image": "https://www.sneakerfiles.com/wp-content/uploads/2026/10/nike-giannis-freak-8-camo-IV4379-200.jpg",
-      "link": "",
-      "sku": "IV4379-200",
-      "colorway": "Medium Olive/Velvet Brown-Oil Green-Volt",
-      "tried": "2026-11-02",
-      "sf": 1,
-      "ic": "2026-10-30"
-    },
-    {
       "date": "2026-11-04",
       "name": "Nike Blazy \"Tie-Dye\"",
       "brand": "Nike",
@@ -141,7 +118,7 @@
       "link": "https://stockx.pvxt.net/c/4722526/1023711/9060?u=https%3A%2F%2Fstockx.com%2Fnike-air-foamposite-pro-college-football-pack-fsu",
       "sku": "IX2095-600",
       "colorway": "Team Maroon/White",
-      "ic": "2026-10-28"
+      "ic": "2026-11-04"
     },
     {
       "date": "2026-11-05",
@@ -217,7 +194,7 @@
       "colorway": "Black Spruce/Metallic Gold-Black-Bright Ceramic",
       "sf": 1,
       "ic": "2026-11-02",
-      "tried": "2026-11-02"
+      "tried": "2026-11-04"
     },
     {
       "date": "2026-11-06",
@@ -228,7 +205,7 @@
       "link": "",
       "sku": "IM0704-001",
       "colorway": "Black/Gym Green",
-      "tried": "2026-11-02",
+      "tried": "2026-11-04",
       "sf": 1,
       "ic": "2026-10-30"
     },
@@ -305,7 +282,7 @@
       "retail_usd": 235,
       "image": "",
       "link": "",
-      "tried": "2026-11-02"
+      "tried": "2026-11-04"
     },
     {
       "date": "2026-11-11",
@@ -325,7 +302,7 @@
       "retail_usd": 235,
       "image": "",
       "link": "",
-      "tried": "2026-11-02"
+      "tried": "2026-11-04"
     },
     {
       "date": "2026-11-11",
@@ -352,7 +329,7 @@
       "retail_usd": 130,
       "image": "",
       "link": "",
-      "tried": "2026-11-02"
+      "tried": "2026-11-04"
     },
     {
       "date": "2026-11-13",
@@ -507,7 +484,7 @@
       "link": "",
       "sf": 1,
       "ic": "2026-10-30",
-      "tried": "2026-11-02"
+      "tried": "2026-11-04"
     },
     {
       "date": "2026-11-19",
@@ -518,7 +495,7 @@
       "link": "",
       "sf": 1,
       "ic": "2026-11-02",
-      "tried": "2026-11-02"
+      "tried": "2026-11-04"
     },
     {
       "date": "2026-11-19",
@@ -578,7 +555,7 @@
       "retail_usd": 130,
       "image": "",
       "link": "",
-      "tried": "2026-11-02"
+      "tried": "2026-11-04"
     },
     {
       "date": "2026-11-21",
@@ -597,7 +574,7 @@
       "retail_usd": 215,
       "image": "https://www.sneakerfiles.com/wp-content/uploads/2026/07/air-jordan-3-santa-chimney-poster-IF4396-601.jpg",
       "link": "",
-      "tried": "2026-11-02",
+      "tried": "2026-11-04",
       "sf": 1,
       "ic": "2026-10-30"
     },
@@ -660,7 +637,8 @@
       "brand": "Nike",
       "retail_usd": 230,
       "image": "",
-      "link": ""
+      "link": "",
+      "tried": "2026-11-04"
     },
     {
       "date": "2026-11-21",
@@ -670,7 +648,8 @@
       "image": "https://www.sneakerfiles.com/wp-content/uploads/2026/05/oregon-ducks-nike-air-force-1-low-orchard-stealth-2026.jpg",
       "link": "",
       "sf": 1,
-      "ic": "2026-10-30"
+      "ic": "2026-10-30",
+      "tried": "2026-11-04"
     },
     {
       "date": "2026-11-21",
@@ -1183,8 +1162,10 @@
       "name": "Air Jordan 8 \"Hornets\"",
       "brand": "Jordan",
       "retail_usd": null,
-      "image": "",
-      "link": ""
+      "image": "https://www.sneakerfiles.com/wp-content/uploads/2026/08/air-jordan-8-hornets-2027-JF9225-001.jpg",
+      "link": "",
+      "sf": 1,
+      "ic": "2026-11-04"
     },
     {
       "date": "2027-01-05",
@@ -1203,24 +1184,30 @@
       "name": "Air Jordan 4 \"Spotlight\"",
       "brand": "Jordan",
       "retail_usd": 220,
-      "image": "",
-      "link": ""
+      "image": "https://www.sneakerfiles.com/wp-content/uploads/2026/05/air-jordan-4-spotlight-black-silver-HV0823-002-2027.jpg",
+      "link": "",
+      "sf": 1,
+      "ic": "2026-11-04"
     },
     {
       "date": "2027-01-16",
       "name": "Air Jordan 3 \"Utility\"",
       "brand": "Jordan",
       "retail_usd": 215,
-      "image": "",
-      "link": ""
+      "image": "https://www.sneakerfiles.com/wp-content/uploads/2026/09/air-jordan-3-utility-black-fire-red-IX0198-001.jpg",
+      "link": "",
+      "sf": 1,
+      "ic": "2026-11-04"
     },
     {
       "date": "2027-01-30",
       "name": "Air Jordan 4 \"Musik\"",
       "brand": "Jordan",
       "retail_usd": 230,
-      "image": "",
-      "link": ""
+      "image": "https://www.sneakerfiles.com/wp-content/uploads/2026/06/air-jordan-4-musik-packaging-box.jpg",
+      "link": "",
+      "sf": 1,
+      "ic": "2026-11-04"
     }
   ]
 }
