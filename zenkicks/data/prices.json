@@ -528,8 +528,34 @@
       "avg_usd": 253,
       "link": "https://stockx.pvxt.net/c/4722526/1023711/9060?u=https%3A%2F%2Fstockx.com%2Fair-jordan-9-retro-boot-nrg-black-iridescent",
       "at": "2026-11-04"
+    },
+    "jordan 13 retro flint (2026)": {
+      "title": "Jordan 13 Retro Flint (2026)",
+      "usd": 129,
+      "avg_usd": 171,
+      "link": "https://stockx.pvxt.net/c/4722526/1023711/9060?u=https%3A%2F%2Fstockx.com%2Fair-jordan-13-retro-flint-2026",
+      "at": "2026-11-05"
+    },
+    "nike air max 90 batman": {
+      "title": "Nike Air Max 90 Batman",
+      "usd": 390,
+      "avg_usd": 693,
+      "link": "https://stockx.pvxt.net/c/4722526/1023711/9060?u=https%3A%2F%2Fstockx.com%2Fnike-air-max-90-batman",
+      "at": "2026-11-05"
+    },
+    "air jordan 11 space jam galaxy": {
+      "none": true,
+      "at": "2026-11-05"
+    },
+    "nike kobe 9 em low protro philippines": {
+      "none": true,
+      "at": "2026-11-05"
+    },
+    "cactus jack x rockstar games x nike air force 1 low gta 6 pack": {
+      "none": true,
+      "at": "2026-11-05"
     }
   },
-  "updated": "2026-11-04",
+  "updated": "2026-11-05",
   "source": "KicksDB (StockX average resale, all sizes)"
 }

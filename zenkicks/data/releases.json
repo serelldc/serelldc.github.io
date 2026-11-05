@@ -1,18 +1,7 @@
 {
-  "updated": "2026-11-04",
+  "updated": "2026-11-05",
   "source": "SneakerFiles & Sneaker News release calendars (curated weekly); photos from KicksDB (StockX)",
   "items": [
-    {
-      "date": "2026-11-04",
-      "name": "Nike Blazy \"Tie-Dye\"",
-      "brand": "Nike",
-      "retail_usd": 105,
-      "image": "https://images.stockx.com/images/Nike-Blazy-Tie-Dye-Dark-Sulfur-Sail.jpg?fit=fill&bg=FFFFFF&w=600&h=430&fm=webp&auto=compress&q=90&dpr=2&trim=color&updated_at=1790969913",
-      "link": "https://stockx.pvxt.net/c/4722526/1023711/9060?u=https%3A%2F%2Fstockx.com%2Fnike-blazy-tie-dye-dark-sulfur-sail",
-      "sku": "IV7023-700",
-      "colorway": "Dark Sulfur/Sail-Multi-Color",
-      "ic": "2026-10-30"
-    },
     {
       "date": "2026-11-05",
       "name": "Air Jordan 1 Low \"Lola Bunny\"",
@@ -146,7 +135,7 @@
       "retail_usd": 210,
       "image": "https://www.sneakerfiles.com/wp-content/uploads/2026/09/victor-wembanyama-nike-gt-cut-4-statue-of-liberty-IW0737-300.jpg",
       "link": "",
-      "tried": "2026-11-03",
+      "tried": "2026-11-05",
       "sf": 1,
       "ic": "2026-10-30"
     },
@@ -179,7 +168,7 @@
       "retail_usd": 145,
       "image": "https://www.sneakerfiles.com/wp-content/uploads/2026/09/nike-book-2-desert-night-iridescent-FZ7013-003.jpg",
       "link": "",
-      "tried": "2026-11-03",
+      "tried": "2026-11-05",
       "sf": 1,
       "ic": "2026-10-30"
     },
@@ -221,13 +210,26 @@
       "sf": 1
     },
     {
+      "date": "2026-11-06",
+      "name": "adidas Anthony Edwards 3 \"With Love\"",
+      "brand": "adidas",
+      "retail_usd": 130,
+      "image": "https://www.sneakerfiles.com/wp-content/uploads/2026/11/adidas-anthony-edwards-3-with-love-KH8540.jpg",
+      "link": "",
+      "sku": "KH8540",
+      "colorway": "Coral Fusion/Acid Orange-Beam Green",
+      "sf": 1,
+      "ic": "2026-11-05",
+      "tried": "2026-11-05"
+    },
+    {
       "date": "2026-11-07",
       "name": "Air Jordan 15 \"Snakeskin\"",
       "brand": "Jordan",
       "retail_usd": 240,
       "image": "https://www.sneakerfiles.com/wp-content/uploads/2026/06/air-jordan-15-snakeskin-black-pack-IZ2585-001.jpg",
       "link": "",
-      "tried": "2026-11-03",
+      "tried": "2026-11-05",
       "sf": 1,
       "ic": "2026-10-30"
     },
@@ -238,7 +240,7 @@
       "retail_usd": 245,
       "image": "https://www.sneakerfiles.com/wp-content/uploads/2026/09/air-jordan-17-low-black-pack-IZ2638-001-4.jpg",
       "link": "",
-      "tried": "2026-11-03",
+      "tried": "2026-11-05",
       "sf": 1,
       "ic": "2026-10-30"
     },
@@ -249,7 +251,7 @@
       "retail_usd": 215,
       "link": "https://stockx.pvxt.net/c/4722526/1023711/9060?u=https%3A%2F%2Fstockx.com%2Fair-jordan-6-rings-white-infrared-23-black-gs",
       "ic": "2026-11-02",
-      "tried": "2026-11-03",
+      "tried": "2026-11-05",
       "image": "https://www.sneakerfiles.com/wp-content/uploads/2026/10/air-jordan-6-white-infrared-CT8529-105-release-info-2026.jpg",
       "sf": 1
     },
@@ -274,6 +276,16 @@
       "sku": "IR2176-002",
       "colorway": "Black/Anthracite-Dark Smoke Grey",
       "ic": "2026-10-30"
+    },
+    {
+      "date": "2026-11-10",
+      "name": "Reebok Question Mid Recoded",
+      "brand": "Reebok",
+      "retail_usd": 170,
+      "image": "https://images.stockx.com/images/Reebok-Question-Mid-Green-Toe-Product.jpg?fit=fill&bg=FFFFFF&w=600&h=430&fm=webp&auto=compress&q=90&dpr=2&trim=color&updated_at=1738193358",
+      "link": "https://stockx.pvxt.net/c/4722526/1023711/9060?u=https%3A%2F%2Fstockx.com%2Freebok-question-mid-green-toe",
+      "ic": "2026-11-05",
+      "sku": "ID6690"
     },
     {
       "date": "2026-11-11",
@@ -338,7 +350,7 @@
       "retail_usd": 170,
       "image": "https://www.sneakerfiles.com/wp-content/uploads/2026/09/nike-air-diamond-turf-2-patent-black-red-II7066-001.jpg",
       "link": "",
-      "tried": "2026-11-03",
+      "tried": "2026-11-05",
       "sf": 1,
       "ic": "2026-10-30"
     },
@@ -360,7 +372,7 @@
       "link": "https://stockx.pvxt.net/c/4722526/1023711/9060?u=https%3A%2F%2Fstockx.com%2Fnike-kd-19-aunt-pearl",
       "sku": "IO8111-600",
       "colorway": "Foam Pink/Stadium Green-Metallic Summit White",
-      "ic": "2026-10-29"
+      "ic": "2026-11-05"
     },
     {
       "date": "2026-11-14",
@@ -370,7 +382,7 @@
       "link": "https://stockx.pvxt.net/c/4722526/1023711/9060?u=https%3A%2F%2Fstockx.com%2Fair-jordan-11-retro-green-screen-monstars",
       "sku": "IQ5700-900",
       "image": "https://images.stockx.com/images/Air-Jordan-11-Retro-Green-Screen-Monstars-2.jpg?fit=fill&bg=FFFFFF&w=600&h=430&fm=webp&auto=compress&q=90&dpr=2&trim=color&updated_at=1792680555",
-      "ic": "2026-10-29"
+      "ic": "2026-11-05"
     },
     {
       "date": "2026-11-14",
@@ -389,7 +401,7 @@
       "retail_usd": 180,
       "image": "https://www.sneakerfiles.com/wp-content/uploads/2026/09/cactus-plant-flea-market-cpfm-nike-flea-1-barley-IU5238-700.jpg",
       "link": "",
-      "tried": "2026-11-03",
+      "tried": "2026-11-05",
       "sf": 1,
       "ic": "2026-10-30"
     },
@@ -453,7 +465,7 @@
       "link": "",
       "sku": "IQ5700-900",
       "colorway": "Multi-Color/Gym Green-Lucky Green-Orange",
-      "tried": "2026-11-03",
+      "tried": "2026-11-05",
       "sf": 1,
       "ic": "2026-10-30"
     },
@@ -485,6 +497,19 @@
       "sf": 1,
       "ic": "2026-10-30",
       "tried": "2026-11-04"
+    },
+    {
+      "date": "2026-11-18",
+      "name": "Nike Kobe 9 EM Low Protro \"Philippines\"",
+      "brand": "Nike",
+      "retail_usd": 200,
+      "image": "https://www.sneakerfiles.com/wp-content/uploads/2026/01/nike-kobe-9-em-low-protro-philippines-IO6262-600-2026.jpg",
+      "link": "",
+      "sku": "IO6262-600",
+      "colorway": "Laser Crimson/Silver-Obsidian",
+      "sf": 1,
+      "ic": "2026-11-05",
+      "tried": "2026-11-05"
     },
     {
       "date": "2026-11-19",
@@ -978,6 +1003,18 @@
       "colorway": "Green Apple/Bright Cactus-Varsity Red-Imperial Blue",
       "sf": 1,
       "ic": "2026-10-31"
+    },
+    {
+      "date": "2026-12-14",
+      "name": "Reebok G-Unit G6 \"White Green\"",
+      "brand": "Reebok",
+      "retail_usd": 130,
+      "image": "https://www.sneakerfiles.com/wp-content/uploads/2026/11/reebok-g-unit-g6-white-green-100301694.jpg",
+      "link": "",
+      "sku": "100301694",
+      "colorway": "White/Green",
+      "sf": 1,
+      "ic": "2026-11-05"
     },
     {
       "date": "2026-12-17",
