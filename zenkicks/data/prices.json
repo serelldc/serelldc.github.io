@@ -267,10 +267,10 @@
     },
     "jordan 12 retro fireside": {
       "title": "Jordan 12 Retro Fireside",
-      "usd": 152,
-      "avg_usd": 196,
+      "usd": 148,
+      "avg_usd": 203,
       "link": "https://stockx.pvxt.net/c/4722526/1023711/9060?u=https%3A%2F%2Fstockx.com%2Fair-jordan-12-retro-fireside",
-      "at": "2026-10-27"
+      "at": "2026-11-06"
     },
     "nocturnal x nike sb air force 1 low": {
       "title": "Nike SB Air Force 1 Low City Pack Nocturnal Shop",
@@ -554,8 +554,26 @@
     "cactus jack x rockstar games x nike air force 1 low gta 6 pack": {
       "none": true,
       "at": "2026-11-05"
+    },
+    "nike kobe 8 protro mambacurial (2026)": {
+      "title": "Nike Kobe 8 Protro Mambacurial (2026)",
+      "usd": 147,
+      "avg_usd": 214,
+      "link": "https://stockx.pvxt.net/c/4722526/1023711/9060?u=https%3A%2F%2Fstockx.com%2Fnike-kobe-8-protro-mambacurial",
+      "at": "2026-11-06"
+    },
+    "new balance 992 made in usa black afterglow": {
+      "title": "New Balance 992 MiUSA Black Afterglow Navy",
+      "usd": 276,
+      "avg_usd": 330,
+      "link": "https://stockx.pvxt.net/c/4722526/1023711/9060?u=https%3A%2F%2Fstockx.com%2Fnew-balance-992-miusa-black-afterglow-navy",
+      "at": "2026-11-06"
+    },
+    "nike air max 95 acg": {
+      "none": true,
+      "at": "2026-11-06"
     }
   },
-  "updated": "2026-11-05",
+  "updated": "2026-11-06",
   "source": "KicksDB (StockX average resale, all sizes)"
 }
