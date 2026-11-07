@@ -2,10 +2,10 @@
   "items": {
     "jordan 11 gratitude": {
       "title": "Jordan 11 Retro DMP Gratitude (2023)",
-      "usd": 213,
-      "avg_usd": 323,
+      "usd": 211,
+      "avg_usd": 312,
       "link": "https://stockx.pvxt.net/c/4722526/1023711/9060?u=https%3A%2F%2Fstockx.com%2Fair-jordan-11-retro-dmp-defining-moments-2023",
-      "at": "2026-10-31"
+      "at": "2026-11-07"
     },
     "jordan 4": {
       "none": true,
@@ -25,10 +25,10 @@
     },
     "jordan 1 high og true blue": {
       "title": "Jordan 1 Retro High OG True Blue",
-      "usd": 45,
-      "avg_usd": 156,
+      "usd": 43,
+      "avg_usd": 157,
       "link": "https://stockx.pvxt.net/c/4722526/1023711/9060?u=https%3A%2F%2Fstockx.com%2Fair-jordan-1-retro-high-og-true-blue",
-      "at": "2026-10-31"
+      "at": "2026-11-07"
     },
     "rebook question": {
       "none": true,
@@ -41,9 +41,9 @@
     "jordan 1 defiant og high": {
       "title": "Jordan 1 Retro High OG Defiant Couture",
       "usd": 111,
-      "avg_usd": 201,
+      "avg_usd": 229,
       "link": "https://stockx.pvxt.net/c/4722526/1023711/9060?u=https%3A%2F%2Fstockx.com%2Fair-jordan-1-retro-high-og-defiant-couture",
-      "at": "2026-10-31"
+      "at": "2026-11-07"
     },
     "j 1 low travis scott shy pink": {
       "none": true,
@@ -572,8 +572,33 @@
     "nike air max 95 acg": {
       "none": true,
       "at": "2026-11-06"
+    },
+    "nike air force 1 low supreme black": {
+      "title": "Nike Air Force 1 Low Supreme Black",
+      "usd": 106,
+      "avg_usd": 138,
+      "link": "https://stockx.pvxt.net/c/4722526/1023711/9060?u=https%3A%2F%2Fstockx.com%2Fnike-air-force-1-low-supreme-box-logo-black",
+      "at": "2026-11-07"
+    },
+    "air jordan 3 not nice": {
+      "title": "Jordan 3 Retro Not Nice",
+      "usd": 190,
+      "avg_usd": 292,
+      "link": "https://stockx.pvxt.net/c/4722526/1023711/9060?u=https%3A%2F%2Fstockx.com%2Fair-jordan-3-retro-not-nice",
+      "at": "2026-11-07"
+    },
+    "air jordan 3 santa": {
+      "none": true,
+      "at": "2026-11-07"
+    },
+    "nike kobe ad protro purple stardust 2026": {
+      "title": "Nike Kobe A.D. Protro Purple Stardust",
+      "usd": 124,
+      "avg_usd": 187,
+      "link": "https://stockx.pvxt.net/c/4722526/1023711/9060?u=https%3A%2F%2Fstockx.com%2Fnike-kobe-a-d-protro-purple-stardust",
+      "at": "2026-11-07"
     }
   },
-  "updated": "2026-11-06",
+  "updated": "2026-11-07",
   "source": "KicksDB (StockX average resale, all sizes)"
 }
