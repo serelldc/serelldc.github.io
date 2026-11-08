@@ -1,64 +1,7 @@
 {
-  "updated": "2026-11-07",
+  "updated": "2026-11-08",
   "source": "SneakerFiles & Sneaker News release calendars (curated weekly); photos from KicksDB (StockX)",
   "items": [
-    {
-      "date": "2026-11-07",
-      "name": "Air Jordan 15 \"Snakeskin\"",
-      "brand": "Jordan",
-      "retail_usd": 240,
-      "image": "https://www.sneakerfiles.com/wp-content/uploads/2026/06/air-jordan-15-snakeskin-black-pack-IZ2585-001.jpg",
-      "link": "",
-      "tried": "2026-11-07",
-      "sf": 1,
-      "ic": "2026-11-06"
-    },
-    {
-      "date": "2026-11-07",
-      "name": "Air Jordan 17 Low \"Black Pack\"",
-      "brand": "Jordan",
-      "retail_usd": 245,
-      "image": "https://www.sneakerfiles.com/wp-content/uploads/2026/09/air-jordan-17-low-black-pack-IZ2638-001-4.jpg",
-      "link": "",
-      "tried": "2026-11-07",
-      "sf": 1,
-      "ic": "2026-11-06"
-    },
-    {
-      "date": "2026-11-07",
-      "name": "Air Jordan 6 \"White Infrared\" (2026)",
-      "brand": "Jordan",
-      "retail_usd": 215,
-      "link": "https://stockx.pvxt.net/c/4722526/1023711/9060?u=https%3A%2F%2Fstockx.com%2Fair-jordan-6-rings-white-infrared-23-black-gs",
-      "ic": "2026-11-02",
-      "tried": "2026-11-07",
-      "image": "https://www.sneakerfiles.com/wp-content/uploads/2026/10/air-jordan-6-white-infrared-CT8529-105-release-info-2026.jpg",
-      "sf": 1
-    },
-    {
-      "date": "2026-11-07",
-      "name": "Nike Air Force 1 Low \"N7\"",
-      "brand": "Nike",
-      "retail_usd": null,
-      "image": "https://images.stockx.com/images/Nike-Air-Force-1-Low-N7-Product.jpg?fit=fill&bg=FFFFFF&w=600&h=430&fm=webp&auto=compress&q=90&dpr=2&trim=color&updated_at=1738193358",
-      "link": "https://stockx.pvxt.net/c/4722526/1023711/9060?u=https%3A%2F%2Fstockx.com%2Fnike-air-force-1-low-n7",
-      "sku": "IV6302-300",
-      "colorway": "Oasis Teal/Sand Drift-Sundial-Mesa Orange",
-      "ic": "2026-11-02"
-    },
-    {
-      "date": "2026-11-07",
-      "name": "Nike GT Cut 4 \"N7\"",
-      "brand": "Nike",
-      "retail_usd": 210,
-      "image": "https://www.sneakerfiles.com/wp-content/uploads/2026/11/nike-gt-cut-4-n7-IV5677-300.jpg",
-      "link": "",
-      "sku": "IV5677-300",
-      "colorway": "Oasis Teal/Anthracite-Laser Orange-Black",
-      "sf": 1,
-      "ic": "2026-11-06",
-      "tried": "2026-11-06"
-    },
     {
       "date": "2026-11-10",
       "name": "Nike Mind 002 Flyknit \"Dark Smoke Grey\"",
@@ -87,7 +30,7 @@
       "retail_usd": 235,
       "image": "",
       "link": "",
-      "tried": "2026-11-06"
+      "tried": "2026-11-08"
     },
     {
       "date": "2026-11-11",
@@ -107,7 +50,7 @@
       "retail_usd": 235,
       "image": "",
       "link": "",
-      "tried": "2026-11-06"
+      "tried": "2026-11-08"
     },
     {
       "date": "2026-11-11",
@@ -134,7 +77,7 @@
       "retail_usd": 130,
       "image": "",
       "link": "",
-      "tried": "2026-11-06"
+      "tried": "2026-11-08"
     },
     {
       "date": "2026-11-13",
@@ -167,7 +110,7 @@
       "colorway": "Volt/Cobalt Bliss-Black",
       "sf": 1,
       "ic": "2026-11-06",
-      "tried": "2026-11-06"
+      "tried": "2026-11-08"
     },
     {
       "date": "2026-11-13",
@@ -179,6 +122,19 @@
       "sku": "IO8111-600",
       "colorway": "Foam Pink/Stadium Green-Metallic Summit White",
       "ic": "2026-11-05"
+    },
+    {
+      "date": "2026-11-13",
+      "name": "Nike SB Air Force 1 Low \"Navy Black\"",
+      "brand": "Nike",
+      "retail_usd": 120,
+      "image": "https://www.sneakerfiles.com/wp-content/uploads/2026/11/nike-sb-air-force-1-navy-black-HM8517-400.jpg",
+      "link": "",
+      "sku": "HM8517-400",
+      "colorway": "Navy/Black",
+      "sf": 1,
+      "ic": "2026-11-08",
+      "tried": "2026-11-08"
     },
     {
       "date": "2026-11-14",
@@ -238,7 +194,7 @@
       "retail_usd": 205,
       "image": "",
       "link": "",
-      "tried": "2026-11-06"
+      "tried": "2026-11-08"
     },
     {
       "date": "2026-11-15",
@@ -258,7 +214,7 @@
       "retail_usd": 155,
       "image": "https://www.sneakerfiles.com/wp-content/uploads/2026/08/playa-society-nike-a-two-dark-russet-terra-blush-IX6704-200.jpg",
       "link": "",
-      "tried": "2026-11-06",
+      "tried": "2026-11-08",
       "sf": 1,
       "ic": "2026-11-06"
     },
@@ -298,11 +254,10 @@
       "name": "Nike Caitlin 1 \"Cave Stone\"",
       "brand": "Nike",
       "retail_usd": 140,
-      "image": "https://www.sneakerfiles.com/wp-content/uploads/2026/11/nike-caitlin-1-cave-stone-IH7423-101.jpg",
-      "link": "",
+      "image": "https://images.stockx.com/images/Nike-Caitlin-1-Cave-Stone-Womens.jpg?fit=fill&bg=FFFFFF&w=600&h=430&fm=webp&auto=compress&q=90&dpr=2&trim=color&updated_at=1789417504",
+      "link": "https://stockx.pvxt.net/c/4722526/1023711/9060?u=https%3A%2F%2Fstockx.com%2Fnike-caitlin-1-cave-stone-womens",
       "sku": "IH7423-101",
       "colorway": "Light Orewood Brown/Cave Stone",
-      "sf": 1,
       "ic": "2026-11-07"
     },
     {
@@ -310,11 +265,10 @@
       "name": "Nike KD 6 \"Texas\"",
       "brand": "Nike",
       "retail_usd": 135,
-      "image": "https://www.sneakerfiles.com/wp-content/uploads/2026/09/nike-kd-6-texas-JF6986-001-2026.jpg",
-      "link": "",
+      "image": "https://images.stockx.com/images/Nike-KD-6-Texas-Black-Galaxy-Halloween.jpg?fit=fill&bg=FFFFFF&w=600&h=430&fm=webp&auto=compress&q=90&dpr=2&trim=color&updated_at=1790581385",
+      "link": "https://stockx.pvxt.net/c/4722526/1023711/9060?u=https%3A%2F%2Fstockx.com%2Fkd-6-texas",
       "sku": "JF6986-001",
       "colorway": "Black/Green Glow-Urban Orange-Football Grey",
-      "sf": 1,
       "ic": "2026-11-06"
     },
     {
@@ -326,7 +280,7 @@
       "link": "",
       "sf": 1,
       "ic": "2026-11-06",
-      "tried": "2026-11-04"
+      "tried": "2026-11-08"
     },
     {
       "date": "2026-11-18",
@@ -350,7 +304,7 @@
       "link": "",
       "sf": 1,
       "ic": "2026-11-02",
-      "tried": "2026-11-06"
+      "tried": "2026-11-08"
     },
     {
       "date": "2026-11-19",
@@ -429,7 +383,7 @@
       "retail_usd": 215,
       "image": "https://www.sneakerfiles.com/wp-content/uploads/2026/07/air-jordan-3-santa-chimney-poster-IF4396-601.jpg",
       "link": "",
-      "tried": "2026-11-06",
+      "tried": "2026-11-08",
       "sf": 1,
       "ic": "2026-11-06"
     },
@@ -845,7 +799,7 @@
       "image": "https://www.sneakerfiles.com/wp-content/uploads/2026/10/jalen-brunson-nike-kobe-3-low-arancia-total-orange-JA7845-800.jpg",
       "link": "",
       "sf": 1,
-      "ic": "2026-10-31"
+      "ic": "2026-11-08"
     },
     {
       "date": "2026-12-11",
@@ -857,7 +811,7 @@
       "sku": "AA3963-002",
       "colorway": "Black/Metallic Gold-Black",
       "sf": 1,
-      "ic": "2026-10-31"
+      "ic": "2026-11-08"
     },
     {
       "date": "2026-12-12",
@@ -869,7 +823,7 @@
       "sku": "IQ8497-900",
       "colorway": "Multi-Color/Midnight Navy",
       "sf": 1,
-      "ic": "2026-10-31"
+      "ic": "2026-11-08"
     },
     {
       "date": "2026-12-12",
@@ -879,7 +833,7 @@
       "image": "https://www.sneakerfiles.com/wp-content/uploads/2026/08/air-jordan-11-space-jam-2026-CT8012-900-release-info.jpg",
       "link": "",
       "sf": 1,
-      "ic": "2026-10-31"
+      "ic": "2026-11-08"
     },
     {
       "date": "2026-12-12",
@@ -891,7 +845,7 @@
       "sku": "IU7852-300",
       "colorway": "Green Apple/Bright Cactus-Varsity Red-Imperial Blue",
       "sf": 1,
-      "ic": "2026-10-31"
+      "ic": "2026-11-08"
     },
     {
       "date": "2026-12-14",
@@ -922,7 +876,8 @@
       "link": "",
       "sku": "IU5238-500",
       "colorway": "Cave Purple/Dark Raisin-Purple Dynasty",
-      "sf": 1
+      "sf": 1,
+      "ic": "2026-11-08"
     },
     {
       "date": "2026-12-18",
@@ -946,7 +901,7 @@
       "sku": "HV0823-001",
       "colorway": "Black/White-Rust Pink",
       "sf": 1,
-      "ic": "2026-10-31"
+      "ic": "2026-11-08"
     },
     {
       "date": "2026-12-19",
@@ -970,7 +925,7 @@
       "sku": "IV5289-001",
       "colorway": "Photon Dust/University Gold",
       "sf": 1,
-      "ic": "2026-10-31"
+      "ic": "2026-11-08"
     },
     {
       "date": "2026-12-19",
@@ -982,7 +937,7 @@
       "sku": "JA3823-463",
       "colorway": "Royal Blue/Black-White",
       "sf": 1,
-      "ic": "2026-10-31"
+      "ic": "2026-11-08"
     },
     {
       "date": "2026-12-19",
@@ -994,7 +949,7 @@
       "sku": "FZ5590-004",
       "colorway": "Black/Black-Black",
       "sf": 1,
-      "ic": "2026-10-31"
+      "ic": "2026-11-08"
     },
     {
       "date": "2026-12-19",
@@ -1018,7 +973,7 @@
       "sku": "IH7423-601",
       "colorway": "University Red/White-University Gold-Black-Metallic Silver-Racer Blue",
       "sf": 1,
-      "ic": "2026-10-31"
+      "ic": "2026-11-08"
     },
     {
       "date": "2026-12-23",
@@ -1029,7 +984,8 @@
       "link": "",
       "sku": "IX8627-010",
       "colorway": "Black/Sail-Anthracite",
-      "sf": 1
+      "sf": 1,
+      "ic": "2026-11-08"
     },
     {
       "date": "2026-12-24",
@@ -1039,7 +995,7 @@
       "image": "https://www.sneakerfiles.com/wp-content/uploads/2026/05/air-jordan-8-knicks-IX8479-010.jpg",
       "link": "",
       "sf": 1,
-      "ic": "2026-10-31"
+      "ic": "2026-11-08"
     },
     {
       "date": "2026-12-25",
@@ -1049,7 +1005,7 @@
       "image": "https://www.sneakerfiles.com/wp-content/uploads/2026/07/nike-kobe-6-protro-coals-IO6261-001-1.jpg",
       "link": "",
       "sf": 1,
-      "ic": "2026-10-31"
+      "ic": "2026-11-08"
     },
     {
       "date": "2026-12-26",
@@ -1059,7 +1015,7 @@
       "image": "https://www.sneakerfiles.com/wp-content/uploads/2026/02/air-jordan-4-bin-23-JA3588-200-release-info.jpg",
       "link": "",
       "sf": 1,
-      "ic": "2026-10-31"
+      "ic": "2026-11-08"
     },
     {
       "date": "2026-12-26",
@@ -1071,7 +1027,7 @@
       "sku": "IQ0145-600",
       "colorway": "Light Crimson/Metallic Gold-Green Glow",
       "sf": 1,
-      "ic": "2026-10-31"
+      "ic": "2026-11-08"
     },
     {
       "date": "2026-12-31",
@@ -1081,7 +1037,7 @@
       "image": "https://www.sneakerfiles.com/wp-content/uploads/2026/01/air-jordan-3-middle-east-IX6986-047.jpg",
       "link": "",
       "sf": 1,
-      "ic": "2026-10-31"
+      "ic": "2026-11-08"
     },
     {
       "date": "2026-12-31",
@@ -1091,7 +1047,7 @@
       "image": "https://www.sneakerfiles.com/wp-content/uploads/2026/10/corteiz-nike-shox-r419-pack-2026.jpg",
       "link": "",
       "sf": 1,
-      "ic": "2026-10-31"
+      "ic": "2026-11-08"
     },
     {
       "date": "2026-12-31",
@@ -1103,7 +1059,7 @@
       "sku": "IO6262-600",
       "colorway": "Laser Crimson/Silver-Obsidian",
       "sf": 1,
-      "ic": "2026-10-31"
+      "ic": "2026-11-08"
     },
     {
       "date": "2027-01-02",
@@ -1125,7 +1081,7 @@
       "sku": "IH7423-001",
       "colorway": "Black/Metallic Silver-Racer Blue",
       "sf": 1,
-      "ic": "2026-10-31"
+      "ic": "2026-11-08"
     },
     {
       "date": "2027-01-15",
@@ -1145,7 +1101,8 @@
       "image": "https://www.sneakerfiles.com/wp-content/uploads/2026/04/air-jordan-14-chartreuse-2027.jpg",
       "link": "",
       "sku": "IX0206-001",
-      "sf": 1
+      "sf": 1,
+      "ic": "2026-11-08"
     },
     {
       "date": "2027-01-16",
@@ -1166,7 +1123,8 @@
       "link": "",
       "sku": "IH7423-301",
       "colorway": "Emerald Rise/Varsity Maize-Dusty Cactus-Midnight Navy-Metallic Silver",
-      "sf": 1
+      "sf": 1,
+      "ic": "2026-11-08"
     },
     {
       "date": "2027-01-16",
@@ -1175,7 +1133,8 @@
       "retail_usd": null,
       "image": "https://www.sneakerfiles.com/wp-content/uploads/2026/10/nike-doernbecher-freestyle-22-collection-2027.jpg",
       "link": "",
-      "sf": 1
+      "sf": 1,
+      "ic": "2026-11-08"
     },
     {
       "date": "2027-01-16",
@@ -1186,7 +1145,8 @@
       "link": "",
       "sku": "JF1792-300",
       "colorway": "Pine Green/Stealth-Vast Grey",
-      "sf": 1
+      "sf": 1,
+      "ic": "2026-11-08"
     },
     {
       "date": "2027-01-30",
