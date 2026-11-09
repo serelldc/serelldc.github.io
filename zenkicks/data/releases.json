@@ -1,5 +1,5 @@
 {
-  "updated": "2026-11-08",
+  "updated": "2026-11-09",
   "source": "SneakerFiles & Sneaker News release calendars (curated weekly); photos from KicksDB (StockX)",
   "items": [
     {
@@ -137,6 +137,14 @@
       "tried": "2026-11-08"
     },
     {
+      "date": "2026-11-13",
+      "name": "Union x Nike Dunk Low \"Fatigue\"",
+      "brand": "Nike",
+      "retail_usd": 130,
+      "image": "",
+      "link": ""
+    },
+    {
       "date": "2026-11-14",
       "name": "Air Jordan 11 \"Green Screen\"",
       "brand": "Jordan",
@@ -239,6 +247,14 @@
       "image": "https://images.stockx.com/images/Nike-Air-Foamposite-Pro-Mummy-Duck-Oregon-PE.jpg?fit=fill&bg=FFFFFF&w=600&h=430&fm=webp&auto=compress&q=90&dpr=2&trim=color&updated_at=1759179882",
       "link": "https://stockx.pvxt.net/c/4722526/1023711/9060?u=https%3A%2F%2Fstockx.com%2Fnike-air-foamposite-pro-mummy-duck-oregon-pe",
       "ic": "2026-11-03"
+    },
+    {
+      "date": "2026-11-16",
+      "name": "Nike Air Max 9500",
+      "brand": "Nike",
+      "retail_usd": 160,
+      "image": "",
+      "link": ""
     },
     {
       "date": "2026-11-16",
@@ -814,6 +830,14 @@
       "ic": "2026-11-08"
     },
     {
+      "date": "2026-12-11",
+      "name": "adidas Crazy Energy \"Wagner Brothers\" PE",
+      "brand": "adidas",
+      "retail_usd": 110,
+      "image": "",
+      "link": ""
+    },
+    {
       "date": "2026-12-12",
       "name": "APB x Nike Dunk Low \"Midnight Navy\"",
       "brand": "Nike",
@@ -1147,6 +1171,30 @@
       "colorway": "Pine Green/Stealth-Vast Grey",
       "sf": 1,
       "ic": "2026-11-08"
+    },
+    {
+      "date": "2027-01-19",
+      "name": "Nike Kobe 10 Low Protro \"Blackout\"",
+      "brand": "Nike",
+      "retail_usd": 190,
+      "image": "",
+      "link": ""
+    },
+    {
+      "date": "2027-01-23",
+      "name": "Air Jordan 12 \"Obsidian\"",
+      "brand": "Jordan",
+      "retail_usd": 215,
+      "image": "",
+      "link": ""
+    },
+    {
+      "date": "2027-01-23",
+      "name": "MoMA x Air Jordan 1 High OG",
+      "brand": "Jordan",
+      "retail_usd": 205,
+      "image": "",
+      "link": ""
     },
     {
       "date": "2027-01-30",
