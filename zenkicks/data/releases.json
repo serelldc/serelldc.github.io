@@ -41,7 +41,7 @@
       "link": "https://stockx.pvxt.net/c/4722526/1023711/9060?u=https%3A%2F%2Fstockx.com%2Fair-jordan-11-retro-space-jam-magic-ball-womens",
       "sku": "IZ1800-200",
       "colorway": "Light British Tan/Off Noir-Metallic Silver",
-      "ic": "2026-11-02"
+      "ic": "2026-11-09"
     },
     {
       "date": "2026-11-11",
@@ -59,7 +59,7 @@
       "retail_usd": 200,
       "image": "https://images.stockx.com/images/Nike-Kobe-8-Protro-Shanghai-Fireworks-2026.jpg?fit=fill&bg=FFFFFF&w=600&h=430&fm=webp&auto=compress&q=90&dpr=2&trim=color&updated_at=1790130441",
       "link": "https://stockx.pvxt.net/c/4722526/1023711/9060?u=https%3A%2F%2Fstockx.com%2Fnike-kobe-8-protro-shanghai-fireworks-2026",
-      "ic": "2026-11-02"
+      "ic": "2026-11-09"
     },
     {
       "date": "2026-11-12",
@@ -68,7 +68,7 @@
       "retail_usd": 170,
       "image": "https://images.stockx.com/images/nike-air-bakin-varsity-royal-2026.jpg?fit=fill&bg=FFFFFF&w=600&h=430&fm=webp&auto=compress&q=90&dpr=2&trim=color&updated_at=1789070561",
       "link": "https://stockx.pvxt.net/c/4722526/1023711/9060?u=https%3A%2F%2Fstockx.com%2Fnike-air-bakin-varsity-royal-2026",
-      "ic": "2026-11-02"
+      "ic": "2026-11-09"
     },
     {
       "date": "2026-11-12",
@@ -86,7 +86,7 @@
       "retail_usd": 170,
       "image": "https://www.sneakerfiles.com/wp-content/uploads/2026/09/nike-air-diamond-turf-2-patent-black-red-II7066-001.jpg",
       "link": "",
-      "tried": "2026-11-07",
+      "tried": "2026-11-09",
       "sf": 1,
       "ic": "2026-11-06"
     },
@@ -97,7 +97,7 @@
       "retail_usd": 240,
       "image": "https://images.stockx.com/images/Nike-Air-Foamposite-One-Mummy.jpg?fit=fill&bg=FFFFFF&w=600&h=430&fm=webp&auto=compress&q=90&dpr=2&trim=color&updated_at=1788294611",
       "link": "https://stockx.pvxt.net/c/4722526/1023711/9060?u=https%3A%2F%2Fstockx.com%2Fnike-air-foamposite-one-mummy",
-      "ic": "2026-11-02"
+      "ic": "2026-11-09"
     },
     {
       "date": "2026-11-13",
@@ -141,8 +141,9 @@
       "name": "Union x Nike Dunk Low \"Fatigue\"",
       "brand": "Nike",
       "retail_usd": 130,
-      "image": "",
-      "link": ""
+      "image": "https://images.stockx.com/images/Nike-Dunk-Low-Retro-Union-Bamboo-University-Gold.jpg?fit=fill&bg=FFFFFF&w=600&h=430&fm=webp&auto=compress&q=90&dpr=2&trim=color&updated_at=1792704196",
+      "link": "https://stockx.pvxt.net/c/4722526/1023711/9060?u=https%3A%2F%2Fstockx.com%2Fnike-dunk-low-retro-union-bamboo-university-gold",
+      "sku": "IF7380-200"
     },
     {
       "date": "2026-11-14",
@@ -171,7 +172,7 @@
       "retail_usd": 180,
       "image": "https://www.sneakerfiles.com/wp-content/uploads/2026/09/cactus-plant-flea-market-cpfm-nike-flea-1-barley-IU5238-700.jpg",
       "link": "",
-      "tried": "2026-11-07",
+      "tried": "2026-11-09",
       "sf": 1,
       "ic": "2026-11-06"
     },
@@ -235,7 +236,7 @@
       "link": "",
       "sku": "IQ5700-900",
       "colorway": "Multi-Color/Gym Green-Lucky Green-Orange",
-      "tried": "2026-11-07",
+      "tried": "2026-11-09",
       "sf": 1,
       "ic": "2026-11-06"
     },
@@ -253,17 +254,18 @@
       "name": "Nike Air Max 9500",
       "brand": "Nike",
       "retail_usd": 160,
-      "image": "",
-      "link": ""
+      "image": "https://images.stockx.com/images/Nike-Air-Max-95000-Black-Volt-Product.jpg?fit=fill&bg=FFFFFF&w=600&h=430&fm=webp&auto=compress&q=90&dpr=2&trim=color&updated_at=1789611920",
+      "link": "https://stockx.pvxt.net/c/4722526/1023711/9060?u=https%3A%2F%2Fstockx.com%2Fnike-air-max-95000-black-volt",
+      "sku": "IR1113-001"
     },
     {
       "date": "2026-11-16",
       "name": "Nike Ja 4 \"Blur\"",
       "brand": "Nike",
       "retail_usd": 130,
-      "image": "",
-      "link": "",
-      "tried": "2026-11-07"
+      "image": "https://images.stockx.com/images/Nike-Ja-4-Blur.jpg?fit=fill&bg=FFFFFF&w=600&h=430&fm=webp&auto=compress&q=90&dpr=2&trim=color&updated_at=1793739597",
+      "link": "https://stockx.pvxt.net/c/4722526/1023711/9060?u=https%3A%2F%2Fstockx.com%2Fnike-ja-4-blur",
+      "sku": "IM4135-501"
     },
     {
       "date": "2026-11-17",
@@ -309,7 +311,7 @@
       "colorway": "Laser Crimson/Silver-Obsidian",
       "sf": 1,
       "ic": "2026-11-05",
-      "tried": "2026-11-07"
+      "tried": "2026-11-09"
     },
     {
       "date": "2026-11-19",
@@ -319,7 +321,7 @@
       "image": "https://www.sneakerfiles.com/wp-content/uploads/2026/11/travis-scott-cactus-jack-rockstar-games-nike-air-force-1-low-gta-6-black-pink.jpg",
       "link": "",
       "sf": 1,
-      "ic": "2026-11-02",
+      "ic": "2026-11-09",
       "tried": "2026-11-08"
     },
     {
@@ -380,7 +382,7 @@
       "retail_usd": 130,
       "image": "",
       "link": "",
-      "tried": "2026-11-04"
+      "tried": "2026-11-09"
     },
     {
       "date": "2026-11-21",
@@ -463,7 +465,7 @@
       "retail_usd": 230,
       "image": "",
       "link": "",
-      "tried": "2026-11-04"
+      "tried": "2026-11-09"
     },
     {
       "date": "2026-11-21",
@@ -559,7 +561,7 @@
       "colorway": "Cobalt Blue/Anthracite-Vast Grey-Varsity Maize",
       "sf": 1,
       "ic": "2026-11-07",
-      "tried": "2026-11-07"
+      "tried": "2026-11-09"
     },
     {
       "date": "2026-11-28",
@@ -623,7 +625,7 @@
       "link": "",
       "sf": 1,
       "ic": "2026-11-07",
-      "tried": "2026-11-07"
+      "tried": "2026-11-09"
     },
     {
       "date": "2026-11-28",
@@ -634,7 +636,7 @@
       "link": "",
       "sf": 1,
       "ic": "2026-11-07",
-      "tried": "2026-11-07"
+      "tried": "2026-11-09"
     },
     {
       "date": "2026-11-29",
@@ -937,7 +939,7 @@
       "sku": "JJ7564-200",
       "colorway": "Flax/Gum Medium Brown-University Gold-Pine Green",
       "sf": 1,
-      "ic": "2026-11-02"
+      "ic": "2026-11-09"
     },
     {
       "date": "2026-12-19",
@@ -985,7 +987,7 @@
       "sku": "IV7127-700",
       "colorway": "Dynamic Yellow/Field Purple",
       "sf": 1,
-      "ic": "2026-11-02"
+      "ic": "2026-11-09"
     },
     {
       "date": "2026-12-21",
@@ -1185,8 +1187,10 @@
       "name": "Air Jordan 12 \"Obsidian\"",
       "brand": "Jordan",
       "retail_usd": 215,
-      "image": "",
-      "link": ""
+      "image": "https://www.sneakerfiles.com/wp-content/uploads/2026/04/air-jordan-12-obsidian-CT8013-401-2027-release-info.jpg",
+      "link": "",
+      "sf": 1,
+      "ic": "2026-11-09"
     },
     {
       "date": "2027-01-23",
