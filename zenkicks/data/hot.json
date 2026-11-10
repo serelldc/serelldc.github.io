@@ -1,26 +1,26 @@
 {
-  "updated": "2026-11-09",
+  "updated": "2026-11-10",
   "source": "KicksDB (StockX best sellers)",
   "online": [
     {
       "name": "Jordan 6 Retro Infrared White (2026)",
-      "why": "1,283 orders on StockX this week",
+      "why": "1,280 orders on StockX this week",
       "tag": "Resale",
       "image": "https://images.stockx.com/images/Air-Jordan-6-Retro-Infrared-White-2026.jpg?fit=fill&bg=FFFFFF&w=600&h=430&fm=webp&auto=compress&q=90&dpr=2&trim=color&updated_at=1792704197",
       "link": "https://stockx.pvxt.net/c/4722526/1023711/9060?u=https%3A%2F%2Fstockx.com%2Fair-jordan-6-retro-infrared-white-2026",
       "brand": "Jordan",
       "sku": "CT8529-105",
-      "price_usd": 157
+      "price_usd": 148
     },
     {
       "name": "Jordan 4 Retro Toro Bravo (2026)",
-      "why": "530 orders on StockX this week",
+      "why": "486 orders on StockX this week",
       "tag": "Resale",
       "image": "https://images.stockx.com/images/Air-Jordan-4-Retro-Toro-Bravo-2026-Product.jpg?fit=fill&bg=FFFFFF&w=600&h=430&fm=webp&auto=compress&q=90&dpr=2&trim=color&updated_at=1784232937",
       "link": "https://stockx.pvxt.net/c/4722526/1023711/9060?u=https%3A%2F%2Fstockx.com%2Fair-jordan-4-retro-toro-bravo-2026",
       "brand": "Jordan",
       "sku": "FQ8138-600",
-      "price_usd": 152
+      "price_usd": 156
     },
     {
       "name": "Jordan 8 Retro Chrome (2026)",
@@ -30,17 +30,17 @@
       "link": "https://stockx.pvxt.net/c/4722526/1023711/9060?u=https%3A%2F%2Fstockx.com%2Fair-jordan-8-retro-chrome-2026",
       "brand": "Jordan",
       "sku": "305381-007",
-      "price_usd": 189
+      "price_usd": 191
     },
     {
       "name": "Nike Air Force 1 Low Supreme Black",
-      "why": "486 orders on StockX this week",
+      "why": "442 orders on StockX this week",
       "tag": "Resale",
       "image": "https://images.stockx.com/images/Nike-Air-Force-1-Low-Supreme-Box-Logo-Black-Product.jpg?fit=fill&bg=FFFFFF&w=600&h=430&fm=webp&auto=compress&q=90&dpr=2&trim=color&updated_at=1786427715",
       "link": "https://stockx.pvxt.net/c/4722526/1023711/9060?u=https%3A%2F%2Fstockx.com%2Fnike-air-force-1-low-supreme-box-logo-black",
       "brand": "Nike",
       "sku": "CU9225-001",
-      "price_usd": 102
+      "price_usd": 111
     },
     {
       "name": "Jordan 5 Retro Halloween",
@@ -50,7 +50,7 @@
       "link": "https://stockx.pvxt.net/c/4722526/1023711/9060?u=https%3A%2F%2Fstockx.com%2Fair-jordan-5-retro-halloween",
       "brand": "Jordan",
       "sku": "HQ7978-001",
-      "price_usd": 182
+      "price_usd": 168
     },
     {
       "name": "Jordan 14 Retro White Forest Green (2026)",
@@ -60,37 +60,37 @@
       "link": "https://stockx.pvxt.net/c/4722526/1023711/9060?u=https%3A%2F%2Fstockx.com%2Fair-jordan-14-retro-white-forest-green-2026",
       "brand": "Jordan",
       "sku": "487471-300",
-      "price_usd": 151
+      "price_usd": 147
     },
     {
       "name": "Jordan 4 Retro Black Cat (2025)",
-      "why": "375 orders on StockX this week",
+      "why": "362 orders on StockX this week",
       "tag": "Resale",
       "image": "https://images.stockx.com/images/Air-Jordan-4-Retro-Black-Cat-2025-Product.jpg?fit=fill&bg=FFFFFF&w=600&h=430&fm=webp&auto=compress&q=90&dpr=2&trim=color&updated_at=1784238263",
       "link": "https://stockx.pvxt.net/c/4722526/1023711/9060?u=https%3A%2F%2Fstockx.com%2Fair-jordan-4-retro-black-cat-2025",
       "brand": "Jordan",
       "sku": "FV5029-010",
-      "price_usd": 279
+      "price_usd": 276
     },
     {
       "name": "Nike Air Force 1 Low Supreme White",
-      "why": "373 orders on StockX this week",
+      "why": "355 orders on StockX this week",
       "tag": "Resale",
       "image": "https://images.stockx.com/images/Nike-Air-Force-1-Low-Supreme-Box-Logo-White-Product.jpg?fit=fill&bg=FFFFFF&w=600&h=430&fm=webp&auto=compress&q=90&dpr=2&trim=color&updated_at=1785008707",
       "link": "https://stockx.pvxt.net/c/4722526/1023711/9060?u=https%3A%2F%2Fstockx.com%2Fnike-air-force-1-low-supreme-box-logo-white",
       "brand": "Nike",
       "sku": "CU9225-100",
-      "price_usd": 98
+      "price_usd": 100
     },
     {
       "name": "Jordan 9 Retro OG Space Jam (2026)",
-      "why": "360 orders on StockX this week",
+      "why": "352 orders on StockX this week",
       "tag": "Resale",
       "image": "https://images.stockx.com/images/Air-Jordan-9-Retro-OG-Space-Jam-2026-Product.jpg?fit=fill&bg=FFFFFF&w=600&h=430&fm=webp&auto=compress&q=90&dpr=2&trim=color&updated_at=1790692048",
       "link": "https://stockx.pvxt.net/c/4722526/1023711/9060?u=https%3A%2F%2Fstockx.com%2Fair-jordan-9-retro-og-space-jam-2026",
       "brand": "Jordan",
       "sku": "IX6179-100",
-      "price_usd": 201
+      "price_usd": 200
     },
     {
       "name": "Nike Kobe 5 Protro Dodgers",
