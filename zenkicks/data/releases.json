@@ -1,5 +1,5 @@
 {
-  "updated": "2026-11-10",
+  "updated": "2026-11-11",
   "source": "SneakerFiles & Sneaker News release calendars (curated weekly); photos from KicksDB (StockX)",
   "items": [
     {
@@ -78,6 +78,14 @@
       "image": "",
       "link": "",
       "tried": "2026-11-10"
+    },
+    {
+      "date": "2026-11-13",
+      "name": "Chris Brickley x PUMA All-Pro NITRO 2 \"Race 2 Evolve\"",
+      "brand": "PUMA",
+      "retail_usd": 140,
+      "image": "",
+      "link": ""
     },
     {
       "date": "2026-11-13",
@@ -383,6 +391,14 @@
       "link": "https://stockx.pvxt.net/c/4722526/1023711/9060?u=https%3A%2F%2Fstockx.com%2Fnike-book-2-be-legendary",
       "sku": "FZ7013-501",
       "ic": "2026-11-10"
+    },
+    {
+      "date": "2026-11-20",
+      "name": "Story mfg. x ASICS GEL-TRANSCEND FJ \"Trees Are Poems\"",
+      "brand": "ASICS",
+      "retail_usd": 180,
+      "image": "",
+      "link": ""
     },
     {
       "date": "2026-11-20",
@@ -702,6 +718,14 @@
       "ic": "2026-11-07"
     },
     {
+      "date": "2026-12-01",
+      "name": "adidas Believe That 1 \"White Core Black Pure Ruby\"",
+      "brand": "adidas",
+      "retail_usd": null,
+      "image": "",
+      "link": ""
+    },
+    {
       "date": "2026-12-03",
       "name": "Nike Air Bakin \"Black White\"",
       "brand": "Nike",
@@ -867,6 +891,14 @@
       "name": "adidas Crazy Energy \"Wagner Brothers\" PE",
       "brand": "adidas",
       "retail_usd": 110,
+      "image": "",
+      "link": ""
+    },
+    {
+      "date": "2026-12-11",
+      "name": "adidas Harden Vol. 11 \"Lucid Blue\"",
+      "brand": "adidas",
+      "retail_usd": 160,
       "image": "",
       "link": ""
     },
