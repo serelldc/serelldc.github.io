@@ -1,45 +1,7 @@
 {
-  "updated": "2026-11-11",
+  "updated": "2026-11-12",
   "source": "SneakerFiles & Sneaker News release calendars (curated weekly); photos from KicksDB (StockX)",
   "items": [
-    {
-      "date": "2026-11-11",
-      "name": "Air Jordan 11 \"Light British Tan\"",
-      "brand": "Jordan",
-      "retail_usd": 235,
-      "image": "",
-      "link": "",
-      "tried": "2026-11-10"
-    },
-    {
-      "date": "2026-11-11",
-      "name": "Air Jordan 11 \"Magic Ball\"",
-      "brand": "Jordan",
-      "retail_usd": 235,
-      "image": "https://images.stockx.com/images/Air-Jordan-11-Retro-Space-Jam-Magic-Ball-Womens.jpg?fit=fill&bg=FFFFFF&w=600&h=430&fm=webp&auto=compress&q=90&dpr=2&trim=color&updated_at=1791233930",
-      "link": "https://stockx.pvxt.net/c/4722526/1023711/9060?u=https%3A%2F%2Fstockx.com%2Fair-jordan-11-retro-space-jam-magic-ball-womens",
-      "sku": "IZ1800-200",
-      "colorway": "Light British Tan/Off Noir-Metallic Silver",
-      "ic": "2026-11-09"
-    },
-    {
-      "date": "2026-11-11",
-      "name": "Air Jordan 11 Women's \"Lapis\"",
-      "brand": "Jordan",
-      "retail_usd": 235,
-      "image": "",
-      "link": "",
-      "tried": "2026-11-10"
-    },
-    {
-      "date": "2026-11-11",
-      "name": "Nike Kobe 8 Protro \"Shanghai Fireworks\"",
-      "brand": "Nike",
-      "retail_usd": 200,
-      "image": "https://images.stockx.com/images/Nike-Kobe-8-Protro-Shanghai-Fireworks-2026.jpg?fit=fill&bg=FFFFFF&w=600&h=430&fm=webp&auto=compress&q=90&dpr=2&trim=color&updated_at=1790130441",
-      "link": "https://stockx.pvxt.net/c/4722526/1023711/9060?u=https%3A%2F%2Fstockx.com%2Fnike-kobe-8-protro-shanghai-fireworks-2026",
-      "ic": "2026-11-09"
-    },
     {
       "date": "2026-11-12",
       "name": "Nike Air Bakin \"Varsity Royal\" (2026)",
@@ -56,7 +18,7 @@
       "retail_usd": 130,
       "image": "",
       "link": "",
-      "tried": "2026-11-10"
+      "tried": "2026-11-12"
     },
     {
       "date": "2026-11-13",
@@ -65,7 +27,8 @@
       "retail_usd": 140,
       "image": "https://images.stockx.com/images/Puma-All-Pro-Nitro-2-Chris-Brickley-Race-2-Evolve.jpg?fit=fill&bg=FFFFFF&w=600&h=430&fm=webp&auto=compress&q=90&dpr=2&trim=color&updated_at=1791486906",
       "link": "https://stockx.pvxt.net/c/4722526/1023711/9060?u=https%3A%2F%2Fstockx.com%2Fpuma-all-pro-nitro-2-chris-brickley-race-2-evolve",
-      "sku": "314147-01"
+      "sku": "314147-01",
+      "ic": "2026-11-12"
     },
     {
       "date": "2026-11-13",
@@ -118,7 +81,7 @@
       "link": "https://stockx.pvxt.net/c/4722526/1023711/9060?u=https%3A%2F%2Fstockx.com%2Fnike-kd-19-aunt-pearl",
       "sku": "IO8111-600",
       "colorway": "Foam Pink/Stadium Green-Metallic Summit White",
-      "ic": "2026-11-05"
+      "ic": "2026-11-12"
     },
     {
       "date": "2026-11-13",
@@ -149,7 +112,7 @@
       "link": "https://stockx.pvxt.net/c/4722526/1023711/9060?u=https%3A%2F%2Fstockx.com%2Fair-jordan-11-retro-green-screen-monstars",
       "sku": "IQ5700-900",
       "image": "https://images.stockx.com/images/Air-Jordan-11-Retro-Green-Screen-Monstars-2.jpg?fit=fill&bg=FFFFFF&w=600&h=430&fm=webp&auto=compress&q=90&dpr=2&trim=color&updated_at=1792680555",
-      "ic": "2026-11-05"
+      "ic": "2026-11-12"
     },
     {
       "date": "2026-11-14",
@@ -171,6 +134,19 @@
       "tried": "2026-11-11",
       "sf": 1,
       "ic": "2026-11-06"
+    },
+    {
+      "date": "2026-11-14",
+      "name": "MEDICOM TOY x Nike Air Force 1 \"BE@RBRICK\"",
+      "brand": "Nike",
+      "retail_usd": null,
+      "image": "https://www.sneakerfiles.com/wp-content/uploads/2026/11/medicom-toy-nike-air-force-1-low-2026-release-info.jpg",
+      "link": "",
+      "sku": "IR1940-101",
+      "colorway": "Sail/White-Pale Yellow",
+      "sf": 1,
+      "ic": "2026-11-12",
+      "tried": "2026-11-12"
     },
     {
       "date": "2026-11-14",
@@ -199,7 +175,7 @@
       "retail_usd": 205,
       "image": "",
       "link": "",
-      "tried": "2026-11-10"
+      "tried": "2026-11-12"
     },
     {
       "date": "2026-11-15",
@@ -306,7 +282,7 @@
       "sku": "IO6262-600",
       "colorway": "Laser Crimson/Silver-Obsidian",
       "sf": 1,
-      "ic": "2026-11-05",
+      "ic": "2026-11-12",
       "tried": "2026-11-11"
     },
     {
@@ -318,7 +294,7 @@
       "link": "",
       "sf": 1,
       "ic": "2026-11-09",
-      "tried": "2026-11-10"
+      "tried": "2026-11-12"
     },
     {
       "date": "2026-11-19",
@@ -400,7 +376,7 @@
       "retail_usd": 130,
       "image": "",
       "link": "",
-      "tried": "2026-11-09"
+      "tried": "2026-11-12"
     },
     {
       "date": "2026-11-21",
@@ -418,7 +394,7 @@
       "retail_usd": 215,
       "image": "https://www.sneakerfiles.com/wp-content/uploads/2026/07/air-jordan-3-santa-chimney-poster-IF4396-601.jpg",
       "link": "",
-      "tried": "2026-11-10",
+      "tried": "2026-11-12",
       "sf": 1,
       "ic": "2026-11-06"
     },
@@ -482,7 +458,7 @@
       "retail_usd": 230,
       "image": "",
       "link": "",
-      "tried": "2026-11-09"
+      "tried": "2026-11-12"
     },
     {
       "date": "2026-11-21",
@@ -493,7 +469,7 @@
       "link": "",
       "sf": 1,
       "ic": "2026-11-06",
-      "tried": "2026-11-04"
+      "tried": "2026-11-12"
     },
     {
       "date": "2026-11-21",
@@ -503,7 +479,8 @@
       "image": "https://www.sneakerfiles.com/wp-content/uploads/2026/09/unheardof-adidas-adistar-control-5-doggy-runner.jpg",
       "link": "",
       "sf": 1,
-      "ic": "2026-11-06"
+      "ic": "2026-11-06",
+      "tried": "2026-11-12"
     },
     {
       "date": "2026-11-21",
@@ -515,7 +492,19 @@
       "sku": "JA7805-302",
       "colorway": "Pine Green/Light Crimson-Grey Fog-White",
       "sf": 1,
-      "ic": "2026-11-06"
+      "ic": "2026-11-06",
+      "tried": "2026-11-12"
+    },
+    {
+      "date": "2026-11-22",
+      "name": "Nike Kobe AD Protro \"Ruthless Precision\"",
+      "brand": "Nike",
+      "retail_usd": 155,
+      "image": "https://images.stockx.com/images/Nike-Kobe-A-D-Protro-Ruthless-Precision.jpg?fit=fill&bg=FFFFFF&w=600&h=430&fm=webp&auto=compress&q=90&dpr=2&trim=color&updated_at=1793914470",
+      "link": "https://stockx.pvxt.net/c/4722526/1023711/9060?u=https%3A%2F%2Fstockx.com%2Fnike-kobe-a-d-protro-ruthless-precision",
+      "sku": "IO8233-001",
+      "colorway": "Cool Grey/White-Black",
+      "ic": "2026-11-12"
     },
     {
       "date": "2026-11-26",
@@ -931,6 +920,18 @@
     },
     {
       "date": "2026-12-14",
+      "name": "Nike LeBron 24 \"Purple Aura\"",
+      "brand": "Nike",
+      "retail_usd": 200,
+      "image": "https://www.sneakerfiles.com/wp-content/uploads/2026/11/nike-lebron-24-purple-aura-IO8201-500.jpg",
+      "link": "",
+      "sku": "IO8201-500",
+      "colorway": "Purple Aura/Amarillo-Valor Blue-Black",
+      "sf": 1,
+      "ic": "2026-11-12"
+    },
+    {
+      "date": "2026-12-14",
       "name": "Reebok G-Unit G6 \"White Green\"",
       "brand": "Reebok",
       "retail_usd": 130,
@@ -939,7 +940,7 @@
       "sku": "100301694",
       "colorway": "White/Green",
       "sf": 1,
-      "ic": "2026-11-05"
+      "ic": "2026-11-12"
     },
     {
       "date": "2026-12-17",
@@ -1044,6 +1045,30 @@
       "colorway": "Dynamic Yellow/Field Purple",
       "sf": 1,
       "ic": "2026-11-09"
+    },
+    {
+      "date": "2026-12-19",
+      "name": "Nike Kobe Air Force 1 Low \"Coals\"",
+      "brand": "Nike",
+      "retail_usd": 150,
+      "image": "https://www.sneakerfiles.com/wp-content/uploads/2026/11/nike-kobe-air-force-1-low-coals-IV4920-001.jpg",
+      "link": "",
+      "sku": "IV4920-001",
+      "colorway": "Black/Multi-Color",
+      "sf": 1,
+      "ic": "2026-11-12"
+    },
+    {
+      "date": "2026-12-19",
+      "name": "adidas Anthony Edwards 3 \"Ant-Man\"",
+      "brand": "adidas",
+      "retail_usd": 130,
+      "image": "https://www.sneakerfiles.com/wp-content/uploads/2026/11/adidas-anthony-edwards-ae-3-ant-man-HP4712.jpg",
+      "link": "",
+      "sku": "HP4712",
+      "colorway": "Black/White-Red",
+      "sf": 1,
+      "ic": "2026-11-12"
     },
     {
       "date": "2026-12-21",

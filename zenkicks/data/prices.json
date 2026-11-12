@@ -604,8 +604,33 @@
       "avg_usd": 241,
       "link": "https://stockx.pvxt.net/c/4722526/1023711/9060?u=https%3A%2F%2Fstockx.com%2Fnike-dunk-low-retro-union-bamboo-university-gold",
       "at": "2026-11-09"
+    },
+    "jordan 11 retro green screen monstars": {
+      "title": "Jordan 11 Retro Green Screen Monstars",
+      "usd": 242,
+      "avg_usd": 325,
+      "link": "https://stockx.pvxt.net/c/4722526/1023711/9060?u=https%3A%2F%2Fstockx.com%2Fair-jordan-11-retro-green-screen-monstars",
+      "at": "2026-11-12"
+    },
+    "jordan 11 retro space jam magic ball (women's)": {
+      "title": "Jordan 11 Retro Space Jam Magic Ball (Women's)",
+      "usd": 163,
+      "avg_usd": 246,
+      "link": "https://stockx.pvxt.net/c/4722526/1023711/9060?u=https%3A%2F%2Fstockx.com%2Fair-jordan-11-retro-space-jam-magic-ball-womens",
+      "at": "2026-11-12"
+    },
+    "nike kobe ad protro ruthless precision": {
+      "title": "Nike Kobe A.D. Protro Ruthless Precision",
+      "usd": 266,
+      "avg_usd": 404,
+      "link": "https://stockx.pvxt.net/c/4722526/1023711/9060?u=https%3A%2F%2Fstockx.com%2Fnike-kobe-a-d-protro-ruthless-precision",
+      "at": "2026-11-12"
+    },
+    "ducks of a feather x nike sb dunk low the zoo": {
+      "none": true,
+      "at": "2026-11-12"
     }
   },
-  "updated": "2026-11-11",
+  "updated": "2026-11-12",
   "source": "KicksDB (StockX average resale, all sizes)"
 }
