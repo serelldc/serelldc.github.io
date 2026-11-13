@@ -145,10 +145,10 @@
     },
     "jordan 8 retro chrome (2026)": {
       "title": "Jordan 8 Retro Chrome (2026)",
-      "usd": 180,
-      "avg_usd": 232,
+      "usd": 194,
+      "avg_usd": 239,
       "link": "https://stockx.pvxt.net/c/4722526/1023711/9060?u=https%3A%2F%2Fstockx.com%2Fair-jordan-8-retro-chrome-2026",
-      "at": "2026-11-03"
+      "at": "2026-11-13"
     },
     "nike air force 1 low '07 white": {
       "title": "Nike Air Force 1 Low '07 White",
@@ -481,10 +481,10 @@
     },
     "jordan 6 retro infrared white (2026)": {
       "title": "Jordan 6 Retro Infrared White (2026)",
-      "usd": 167,
-      "avg_usd": 231,
+      "usd": 142,
+      "avg_usd": 164,
       "link": "https://stockx.pvxt.net/c/4722526/1023711/9060?u=https%3A%2F%2Fstockx.com%2Fair-jordan-6-retro-infrared-white-2026",
-      "at": "2026-11-03"
+      "at": "2026-11-13"
     },
     "new balance 9060 triple black": {
       "title": "New Balance 9060 Triple Black",
@@ -629,8 +629,15 @@
     "ducks of a feather x nike sb dunk low the zoo": {
       "none": true,
       "at": "2026-11-12"
+    },
+    "air jordan 4 bred (2026)": {
+      "title": "Jordan 4 Retro OG Bred (2026)",
+      "usd": 290,
+      "avg_usd": 340,
+      "link": "https://stockx.pvxt.net/c/4722526/1023711/9060?u=https%3A%2F%2Fstockx.com%2Fair-jordan-4-retro-og-bred-2026",
+      "at": "2026-11-13"
     }
   },
-  "updated": "2026-11-12",
+  "updated": "2026-11-13",
   "source": "KicksDB (StockX average resale, all sizes)"
 }

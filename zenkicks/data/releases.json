@@ -1,25 +1,7 @@
 {
-  "updated": "2026-11-12",
+  "updated": "2026-11-13",
   "source": "SneakerFiles & Sneaker News release calendars (curated weekly); photos from KicksDB (StockX)",
   "items": [
-    {
-      "date": "2026-11-12",
-      "name": "Nike Air Bakin \"Varsity Royal\" (2026)",
-      "brand": "Nike",
-      "retail_usd": 170,
-      "image": "https://images.stockx.com/images/nike-air-bakin-varsity-royal-2026.jpg?fit=fill&bg=FFFFFF&w=600&h=430&fm=webp&auto=compress&q=90&dpr=2&trim=color&updated_at=1789070561",
-      "link": "https://stockx.pvxt.net/c/4722526/1023711/9060?u=https%3A%2F%2Fstockx.com%2Fnike-air-bakin-varsity-royal-2026",
-      "ic": "2026-11-09"
-    },
-    {
-      "date": "2026-11-12",
-      "name": "Vans Old Skool 36 Pearlized \"Lime Pop\"",
-      "brand": "Vans",
-      "retail_usd": 130,
-      "image": "",
-      "link": "",
-      "tried": "2026-11-12"
-    },
     {
       "date": "2026-11-13",
       "name": "Chris Brickley x PUMA All-Pro NITRO 2 \"Race 2 Evolve\"",
@@ -37,9 +19,9 @@
       "retail_usd": 170,
       "image": "https://www.sneakerfiles.com/wp-content/uploads/2026/09/nike-air-diamond-turf-2-patent-black-red-II7066-001.jpg",
       "link": "",
-      "tried": "2026-11-11",
+      "tried": "2026-11-13",
       "sf": 1,
-      "ic": "2026-11-06"
+      "ic": "2026-11-13"
     },
     {
       "date": "2026-11-13",
@@ -70,7 +52,7 @@
       "link": "https://stockx.pvxt.net/c/4722526/1023711/9060?u=https%3A%2F%2Fstockx.com%2Fnike-ja-4-unseen",
       "sku": "IM4135-700",
       "colorway": "Volt/Cobalt Bliss-Black",
-      "ic": "2026-11-06"
+      "ic": "2026-11-13"
     },
     {
       "date": "2026-11-13",
@@ -131,9 +113,9 @@
       "retail_usd": 180,
       "image": "https://www.sneakerfiles.com/wp-content/uploads/2026/09/cactus-plant-flea-market-cpfm-nike-flea-1-barley-IU5238-700.jpg",
       "link": "",
-      "tried": "2026-11-11",
+      "tried": "2026-11-13",
       "sf": 1,
-      "ic": "2026-11-06"
+      "ic": "2026-11-13"
     },
     {
       "date": "2026-11-14",
@@ -186,7 +168,7 @@
       "link": "https://stockx.pvxt.net/c/4722526/1023711/9060?u=https%3A%2F%2Fstockx.com%2Fnike-air-max-90-batman",
       "sku": "IM9616-002",
       "colorway": "Black/Chrome Yellow",
-      "ic": "2026-11-06"
+      "ic": "2026-11-13"
     },
     {
       "date": "2026-11-15",
@@ -195,7 +177,7 @@
       "retail_usd": 155,
       "image": "https://images.stockx.com/images/Nike-Aja-Wilson-ATwo-Playa-Society-Dark-Russet-Womens.jpg?fit=fill&bg=FFFFFF&w=600&h=430&fm=webp&auto=compress&q=90&dpr=2&trim=color&updated_at=1793914470",
       "link": "https://stockx.pvxt.net/c/4722526/1023711/9060?u=https%3A%2F%2Fstockx.com%2Fnike-aja-wilson-atwo-playa-society-dark-russet-womens",
-      "ic": "2026-11-06",
+      "ic": "2026-11-13",
       "sku": "IX6704-200"
     },
     {
@@ -207,9 +189,9 @@
       "link": "",
       "sku": "IQ5700-900",
       "colorway": "Multi-Color/Gym Green-Lucky Green-Orange",
-      "tried": "2026-11-11",
+      "tried": "2026-11-13",
       "sf": 1,
-      "ic": "2026-11-06"
+      "ic": "2026-11-13"
     },
     {
       "date": "2026-11-16",
@@ -260,7 +242,7 @@
       "link": "https://stockx.pvxt.net/c/4722526/1023711/9060?u=https%3A%2F%2Fstockx.com%2Fkd-6-texas",
       "sku": "JF6986-001",
       "colorway": "Black/Green Glow-Urban Orange-Football Grey",
-      "ic": "2026-11-06"
+      "ic": "2026-11-13"
     },
     {
       "date": "2026-11-17",
@@ -269,7 +251,7 @@
       "retail_usd": 200,
       "image": "https://images.stockx.com/images/Nike-LeBron-24-Stars.jpg?fit=fill&bg=FFFFFF&w=600&h=430&fm=webp&auto=compress&q=90&dpr=2&trim=color&updated_at=1793134331",
       "link": "https://stockx.pvxt.net/c/4722526/1023711/9060?u=https%3A%2F%2Fstockx.com%2Fnike-lebron-24-stars",
-      "ic": "2026-11-06",
+      "ic": "2026-11-13",
       "sku": "IO8204-400 / IO8203-400"
     },
     {
@@ -283,7 +265,7 @@
       "colorway": "Laser Crimson/Silver-Obsidian",
       "sf": 1,
       "ic": "2026-11-12",
-      "tried": "2026-11-11"
+      "tried": "2026-11-13"
     },
     {
       "date": "2026-11-19",
@@ -304,7 +286,7 @@
       "image": "https://images.stockx.com/images/New-Balance-992-MiUSA-Black-Afterglow-Navy.jpg?fit=fill&bg=FFFFFF&w=600&h=430&fm=webp&auto=compress&q=90&dpr=2&trim=color&updated_at=1787943999",
       "link": "https://stockx.pvxt.net/c/4722526/1023711/9060?u=https%3A%2F%2Fstockx.com%2Fnew-balance-992-miusa-black-afterglow-navy",
       "sku": "U992LB",
-      "ic": "2026-11-06"
+      "ic": "2026-11-13"
     },
     {
       "date": "2026-11-19",
@@ -315,7 +297,7 @@
       "link": "https://stockx.pvxt.net/c/4722526/1023711/9060?u=https%3A%2F%2Fstockx.com%2Fnike-ja-4-code-red",
       "sku": "IM4135-603",
       "colorway": "Bright Crimson/Black-Cobalt Bliss",
-      "ic": "2026-11-06"
+      "ic": "2026-11-13"
     },
     {
       "date": "2026-11-19",
@@ -338,7 +320,7 @@
       "colorway": "Atomic Violet/Voltage Purple-White",
       "sf": 1,
       "ic": "2026-11-10",
-      "tried": "2026-11-11"
+      "tried": "2026-11-13"
     },
     {
       "date": "2026-11-20",
@@ -367,7 +349,7 @@
       "retail_usd": 180,
       "image": "",
       "link": "",
-      "tried": "2026-11-11"
+      "tried": "2026-11-13"
     },
     {
       "date": "2026-11-20",
@@ -396,7 +378,7 @@
       "link": "",
       "tried": "2026-11-12",
       "sf": 1,
-      "ic": "2026-11-06"
+      "ic": "2026-11-13"
     },
     {
       "date": "2026-11-21",
@@ -418,7 +400,7 @@
       "link": "https://stockx.pvxt.net/c/4722526/1023711/9060?u=https%3A%2F%2Fstockx.com%2Fair-jordan-triangle-paolo-banchero-halloween",
       "sku": "IQ5570-300",
       "colorway": "Rage Green/Barely Volt-Black-Habanero Red",
-      "ic": "2026-11-06"
+      "ic": "2026-11-13"
     },
     {
       "date": "2026-11-21",
@@ -427,7 +409,7 @@
       "retail_usd": 140,
       "image": "https://images.stockx.com/images/Nike-Caitlin-1-Snow-White-Womens.jpg?fit=fill&bg=FFFFFF&w=600&h=430&fm=webp&auto=compress&q=90&dpr=2&trim=color&updated_at=1784235386",
       "link": "https://stockx.pvxt.net/c/4722526/1023711/9060?u=https%3A%2F%2Fstockx.com%2Fnike-caitlin-1-snow-white-womens",
-      "ic": "2026-11-06",
+      "ic": "2026-11-13",
       "sku": "IH7423-100"
     },
     {
@@ -439,7 +421,7 @@
       "link": "https://stockx.pvxt.net/c/4722526/1023711/9060?u=https%3A%2F%2Fstockx.com%2Fnike-kobe-a-d-protro-purple-stardust",
       "sku": "IO8233-500",
       "colorway": "Purple Stardust/Black",
-      "ic": "2026-11-06"
+      "ic": "2026-11-13"
     },
     {
       "date": "2026-11-21",
@@ -448,7 +430,7 @@
       "retail_usd": 190,
       "image": "https://images.stockx.com/images/Nike-Zoom-Hyperflight-Safari.jpg?fit=fill&bg=FFFFFF&w=600&h=430&fm=webp&auto=compress&q=90&dpr=2&trim=color&updated_at=1791925921",
       "link": "https://stockx.pvxt.net/c/4722526/1023711/9060?u=https%3A%2F%2Fstockx.com%2Fnike-zoom-hyperflight-safari",
-      "ic": "2026-11-06",
+      "ic": "2026-11-13",
       "sku": "IZ2573-010"
     },
     {
@@ -468,7 +450,7 @@
       "image": "https://www.sneakerfiles.com/wp-content/uploads/2026/05/oregon-ducks-nike-air-force-1-low-orchard-stealth-2026.jpg",
       "link": "",
       "sf": 1,
-      "ic": "2026-11-06",
+      "ic": "2026-11-13",
       "tried": "2026-11-12"
     },
     {
@@ -479,7 +461,7 @@
       "image": "https://www.sneakerfiles.com/wp-content/uploads/2026/09/unheardof-adidas-adistar-control-5-doggy-runner.jpg",
       "link": "",
       "sf": 1,
-      "ic": "2026-11-06",
+      "ic": "2026-11-13",
       "tried": "2026-11-12"
     },
     {
@@ -492,7 +474,7 @@
       "sku": "JA7805-302",
       "colorway": "Pine Green/Light Crimson-Grey Fog-White",
       "sf": 1,
-      "ic": "2026-11-06",
+      "ic": "2026-11-13",
       "tried": "2026-11-12"
     },
     {
@@ -532,18 +514,19 @@
       "name": "Nike Air Foamposite Pro \"Dr. Doom\"",
       "brand": "Nike",
       "retail_usd": 240,
-      "image": "https://www.sneakerfiles.com/wp-content/uploads/2026/02/nike-air-foamposite-pro-dr-doom-2026-HF0794-003.jpg",
-      "link": "",
-      "sf": 1,
-      "ic": "2026-11-07"
+      "image": "https://images.stockx.com/images/Air-Foamposite-Pro-Dr-Doom-2016-Product_V2.jpg?fit=fill&bg=FFFFFF&w=600&h=430&fm=webp&auto=compress&q=90&dpr=2&trim=color&updated_at=1786151269",
+      "link": "https://stockx.pvxt.net/c/4722526/1023711/9060?u=https%3A%2F%2Fstockx.com%2Fair-foamposite-pro-dr-doom-2016",
+      "ic": "2026-11-07",
+      "sku": "624041-006"
     },
     {
       "date": "2026-11-27",
       "name": "Vans Old Skool 36 Pearlized \"Black\"",
       "brand": "Vans",
       "retail_usd": 130,
-      "image": "",
-      "link": ""
+      "image": "https://images.stockx.com/images/Vans-LX-Old-Skool-36-Pearlized-Pack-Black-Navy-Product.jpg?fit=fill&bg=FFFFFF&w=600&h=430&fm=webp&auto=compress&q=90&dpr=2&trim=color&updated_at=1774382125",
+      "link": "https://stockx.pvxt.net/c/4722526/1023711/9060?u=https%3A%2F%2Fstockx.com%2Fvans-lx-old-skool-36-pearlized-pack-black-navy",
+      "sku": "VN000E8VYA6"
     },
     {
       "date": "2026-11-28",
@@ -578,7 +561,7 @@
       "colorway": "Cobalt Blue/Anthracite-Vast Grey-Varsity Maize",
       "sf": 1,
       "ic": "2026-11-07",
-      "tried": "2026-11-11"
+      "tried": "2026-11-13"
     },
     {
       "date": "2026-11-28",
@@ -642,7 +625,7 @@
       "link": "",
       "sf": 1,
       "ic": "2026-11-07",
-      "tried": "2026-11-11"
+      "tried": "2026-11-13"
     },
     {
       "date": "2026-11-28",
@@ -653,7 +636,7 @@
       "link": "",
       "sf": 1,
       "ic": "2026-11-07",
-      "tried": "2026-11-11"
+      "tried": "2026-11-13"
     },
     {
       "date": "2026-11-29",
