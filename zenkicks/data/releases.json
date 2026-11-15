@@ -1,71 +1,7 @@
 {
-  "updated": "2026-11-14",
+  "updated": "2026-11-15",
   "source": "SneakerFiles & Sneaker News release calendars (curated weekly); photos from KicksDB (StockX)",
   "items": [
-    {
-      "date": "2026-11-14",
-      "name": "Air Jordan 11 \"Green Screen\"",
-      "brand": "Jordan",
-      "retail_usd": 255,
-      "link": "https://stockx.pvxt.net/c/4722526/1023711/9060?u=https%3A%2F%2Fstockx.com%2Fair-jordan-11-retro-green-screen-monstars",
-      "sku": "IQ5700-900",
-      "image": "https://images.stockx.com/images/Air-Jordan-11-Retro-Green-Screen-Monstars-2.jpg?fit=fill&bg=FFFFFF&w=600&h=430&fm=webp&auto=compress&q=90&dpr=2&trim=color&updated_at=1792680555",
-      "ic": "2026-11-12"
-    },
-    {
-      "date": "2026-11-14",
-      "name": "Air Jordan 9 Boot \"Iridescent\"",
-      "brand": "Jordan",
-      "retail_usd": 240,
-      "image": "https://images.stockx.com/images/Air-Jordan-9-Retro-Boot-NRG-Black-Iridescent.jpg?fit=fill&bg=FFFFFF&w=600&h=430&fm=webp&auto=compress&q=90&dpr=2&trim=color&updated_at=1791314346",
-      "link": "https://stockx.pvxt.net/c/4722526/1023711/9060?u=https%3A%2F%2Fstockx.com%2Fair-jordan-9-retro-boot-nrg-black-iridescent",
-      "sku": "IX8455-060",
-      "ic": "2026-11-10"
-    },
-    {
-      "date": "2026-11-14",
-      "name": "CPFM x Nike Flea 1 \"Barely\"",
-      "brand": "Nike",
-      "retail_usd": 180,
-      "image": "https://www.sneakerfiles.com/wp-content/uploads/2026/09/cactus-plant-flea-market-cpfm-nike-flea-1-barley-IU5238-700.jpg",
-      "link": "",
-      "tried": "2026-11-13",
-      "sf": 1,
-      "ic": "2026-11-13"
-    },
-    {
-      "date": "2026-11-14",
-      "name": "MEDICOM TOY x Nike Air Force 1 \"BE@RBRICK\"",
-      "brand": "Nike",
-      "retail_usd": null,
-      "image": "https://www.sneakerfiles.com/wp-content/uploads/2026/11/medicom-toy-nike-air-force-1-low-2026-release-info.jpg",
-      "link": "",
-      "sku": "IR1940-101",
-      "colorway": "Sail/White-Pale Yellow",
-      "sf": 1,
-      "ic": "2026-11-12",
-      "tried": "2026-11-14"
-    },
-    {
-      "date": "2026-11-14",
-      "name": "Nike Caitlin 1 \"Racer Blue Pink\"",
-      "brand": "Nike",
-      "retail_usd": 140,
-      "image": "https://images.stockx.com/images/Nike-Caitlin-1-Racer-Blue-Pink-Womens.jpg?fit=fill&bg=FFFFFF&w=600&h=430&fm=webp&auto=compress&q=90&dpr=2&trim=color&updated_at=1790713034",
-      "link": "https://stockx.pvxt.net/c/4722526/1023711/9060?u=https%3A%2F%2Fstockx.com%2Fnike-caitlin-1-racer-blue-pink-womens",
-      "sku": "JF3474-400",
-      "ic": "2026-11-10"
-    },
-    {
-      "date": "2026-11-14",
-      "name": "Nike Zoom Hyperflight \"Green Apple\"",
-      "brand": "Nike",
-      "retail_usd": 170,
-      "image": "https://images.stockx.com/images/Nike-Zoom-Hyperflight-Green-Apple.jpg?fit=fill&bg=FFFFFF&w=600&h=430&fm=webp&auto=compress&q=90&dpr=2&trim=color&updated_at=1790190167",
-      "link": "https://stockx.pvxt.net/c/4722526/1023711/9060?u=https%3A%2F%2Fstockx.com%2Fnike-zoom-hyperflight-green-apple",
-      "sku": "IZ1481-300",
-      "ic": "2026-11-10"
-    },
     {
       "date": "2026-11-15",
       "name": "Air Jordan 41 \"Wolf Grey\"",
@@ -105,7 +41,7 @@
       "link": "",
       "sku": "IQ5700-900",
       "colorway": "Multi-Color/Gym Green-Lucky Green-Orange",
-      "tried": "2026-11-13",
+      "tried": "2026-11-15",
       "sf": 1,
       "ic": "2026-11-13"
     },
@@ -181,7 +117,7 @@
       "colorway": "Laser Crimson/Silver-Obsidian",
       "sf": 1,
       "ic": "2026-11-12",
-      "tried": "2026-11-13"
+      "tried": "2026-11-15"
     },
     {
       "date": "2026-11-19",
@@ -236,7 +172,7 @@
       "colorway": "Atomic Violet/Voltage Purple-White",
       "sf": 1,
       "ic": "2026-11-10",
-      "tried": "2026-11-13"
+      "tried": "2026-11-15"
     },
     {
       "date": "2026-11-20",
@@ -265,7 +201,7 @@
       "retail_usd": 180,
       "image": "",
       "link": "",
-      "tried": "2026-11-13"
+      "tried": "2026-11-15"
     },
     {
       "date": "2026-11-20",
@@ -391,7 +327,7 @@
       "colorway": "Pine Green/Light Crimson-Grey Fog-White",
       "sf": 1,
       "ic": "2026-11-13",
-      "tried": "2026-11-12"
+      "tried": "2026-11-15"
     },
     {
       "date": "2026-11-22",
@@ -450,11 +386,10 @@
       "name": "Air Jordan 41 \"Amethyst\"",
       "brand": "Jordan",
       "retail_usd": 205,
-      "image": "https://www.sneakerfiles.com/wp-content/uploads/2026/10/air-jordan-41-amethyst-IR1965-002.jpg",
-      "link": "",
+      "image": "https://images.stockx.com/images/Air-Jordan-41-PF-Amethyst.jpg?fit=fill&bg=FFFFFF&w=600&h=430&fm=webp&auto=compress&q=90&dpr=2&trim=color&updated_at=1792702040",
+      "link": "https://stockx.pvxt.net/c/4722526/1023711/9060?u=https%3A%2F%2Fstockx.com%2Fair-jordan-41-pf-amethyst",
       "sku": "IR1965-002",
       "colorway": "Black/Concord",
-      "sf": 1,
       "ic": "2026-11-14"
     },
     {
@@ -465,7 +400,8 @@
       "image": "https://www.sneakerfiles.com/wp-content/uploads/2026/10/carhartt-wip-nike-air-max-goadome-low-2026.jpg",
       "link": "",
       "sf": 1,
-      "ic": "2026-11-14"
+      "ic": "2026-11-14",
+      "tried": "2026-11-15"
     },
     {
       "date": "2026-11-28",
@@ -478,15 +414,16 @@
       "colorway": "Cobalt Blue/Anthracite-Vast Grey-Varsity Maize",
       "sf": 1,
       "ic": "2026-11-14",
-      "tried": "2026-11-13"
+      "tried": "2026-11-15"
     },
     {
       "date": "2026-11-28",
       "name": "Nike Air Foamposite Pro \"FSU\"",
       "brand": "Nike",
       "retail_usd": 240,
-      "image": "",
-      "link": ""
+      "image": "https://images.stockx.com/images/Nike-Air-Foamposite-Pro-College-Football-Pack-FSU.jpg?fit=fill&bg=FFFFFF&w=600&h=430&fm=webp&auto=compress&q=90&dpr=2&trim=color&updated_at=1790108033",
+      "link": "https://stockx.pvxt.net/c/4722526/1023711/9060?u=https%3A%2F%2Fstockx.com%2Fnike-air-foamposite-pro-college-football-pack-fsu",
+      "sku": "IX2095-600"
     },
     {
       "date": "2026-11-28",
@@ -542,7 +479,7 @@
       "link": "",
       "sf": 1,
       "ic": "2026-11-14",
-      "tried": "2026-11-13"
+      "tried": "2026-11-15"
     },
     {
       "date": "2026-11-28",
@@ -553,7 +490,7 @@
       "link": "",
       "sf": 1,
       "ic": "2026-11-14",
-      "tried": "2026-11-13"
+      "tried": "2026-11-15"
     },
     {
       "date": "2026-11-29",
@@ -672,7 +609,8 @@
       "image": "https://images.stockx.com/images/Nike-Kobe-A-D-Protro-Laser-Orange.jpg?fit=fill&bg=FFFFFF&w=600&h=430&fm=webp&auto=compress&q=90&dpr=2&trim=color&updated_at=1791578784",
       "link": "https://stockx.pvxt.net/c/4722526/1023711/9060?u=https%3A%2F%2Fstockx.com%2Fnike-kobe-a-d-protro-laser-orange",
       "sku": "IO8233-800",
-      "colorway": "Laser Orange/Safety Orange"
+      "colorway": "Laser Orange/Safety Orange",
+      "ic": "2026-11-15"
     },
     {
       "date": "2026-12-05",
@@ -726,7 +664,7 @@
       "image": "https://www.sneakerfiles.com/wp-content/uploads/2026/09/unheardof-adidas-adistar-control-5-doggy-runner.jpg",
       "link": "",
       "sf": 1,
-      "ic": "2026-11-07"
+      "ic": "2026-11-15"
     },
     {
       "date": "2026-12-11",
@@ -746,7 +684,7 @@
       "image": "https://www.sneakerfiles.com/wp-content/uploads/2026/08/jaide-air-jordan-1-low-og-2026-1.jpg",
       "link": "",
       "sf": 1,
-      "ic": "2026-11-07"
+      "ic": "2026-11-15"
     },
     {
       "date": "2026-12-11",
@@ -756,7 +694,7 @@
       "image": "https://www.sneakerfiles.com/wp-content/uploads/2026/10/jalen-brunson-nike-kobe-3-low-arancia-total-orange-JA7845-800.jpg",
       "link": "",
       "sf": 1,
-      "ic": "2026-11-08"
+      "ic": "2026-11-15"
     },
     {
       "date": "2026-12-11",
@@ -768,7 +706,7 @@
       "sku": "AA3963-002",
       "colorway": "Black/Metallic Gold-Black",
       "sf": 1,
-      "ic": "2026-11-08"
+      "ic": "2026-11-15"
     },
     {
       "date": "2026-12-11",
@@ -796,7 +734,7 @@
       "sku": "IQ8497-900",
       "colorway": "Multi-Color/Midnight Navy",
       "sf": 1,
-      "ic": "2026-11-08"
+      "ic": "2026-11-15"
     },
     {
       "date": "2026-12-12",
@@ -806,7 +744,7 @@
       "image": "https://www.sneakerfiles.com/wp-content/uploads/2026/08/air-jordan-11-space-jam-2026-CT8012-900-release-info.jpg",
       "link": "",
       "sf": 1,
-      "ic": "2026-11-08"
+      "ic": "2026-11-15"
     },
     {
       "date": "2026-12-12",
@@ -818,7 +756,7 @@
       "sku": "IU7852-300",
       "colorway": "Green Apple/Bright Cactus-Varsity Red-Imperial Blue",
       "sf": 1,
-      "ic": "2026-11-08"
+      "ic": "2026-11-15"
     },
     {
       "date": "2026-12-14",
@@ -862,7 +800,7 @@
       "sku": "IU5238-500",
       "colorway": "Cave Purple/Dark Raisin-Purple Dynasty",
       "sf": 1,
-      "ic": "2026-11-08"
+      "ic": "2026-11-15"
     },
     {
       "date": "2026-12-18",
@@ -886,7 +824,7 @@
       "sku": "HV0823-001",
       "colorway": "Black/White-Rust Pink",
       "sf": 1,
-      "ic": "2026-11-08"
+      "ic": "2026-11-15"
     },
     {
       "date": "2026-12-19",
@@ -910,7 +848,7 @@
       "sku": "IV5289-001",
       "colorway": "Photon Dust/University Gold",
       "sf": 1,
-      "ic": "2026-11-08"
+      "ic": "2026-11-15"
     },
     {
       "date": "2026-12-19",
@@ -922,7 +860,7 @@
       "sku": "JA3823-463",
       "colorway": "Royal Blue/Black-White",
       "sf": 1,
-      "ic": "2026-11-08"
+      "ic": "2026-11-15"
     },
     {
       "date": "2026-12-19",
@@ -934,7 +872,7 @@
       "sku": "FZ5590-004",
       "colorway": "Black/Black-Black",
       "sf": 1,
-      "ic": "2026-11-08"
+      "ic": "2026-11-15"
     },
     {
       "date": "2026-12-19",
@@ -982,7 +920,7 @@
       "sku": "IH7423-601",
       "colorway": "University Red/White-University Gold-Black-Metallic Silver-Racer Blue",
       "sf": 1,
-      "ic": "2026-11-08"
+      "ic": "2026-11-15"
     },
     {
       "date": "2026-12-23",
@@ -994,7 +932,7 @@
       "sku": "IX8627-010",
       "colorway": "Black/Sail-Anthracite",
       "sf": 1,
-      "ic": "2026-11-08"
+      "ic": "2026-11-15"
     },
     {
       "date": "2026-12-24",
@@ -1004,7 +942,7 @@
       "image": "https://www.sneakerfiles.com/wp-content/uploads/2026/05/air-jordan-8-knicks-IX8479-010.jpg",
       "link": "",
       "sf": 1,
-      "ic": "2026-11-08"
+      "ic": "2026-11-15"
     },
     {
       "date": "2026-12-25",
@@ -1014,7 +952,7 @@
       "image": "https://www.sneakerfiles.com/wp-content/uploads/2026/07/nike-kobe-6-protro-coals-IO6261-001-1.jpg",
       "link": "",
       "sf": 1,
-      "ic": "2026-11-08"
+      "ic": "2026-11-15"
     },
     {
       "date": "2026-12-26",
@@ -1024,7 +962,7 @@
       "image": "https://www.sneakerfiles.com/wp-content/uploads/2026/02/air-jordan-4-bin-23-JA3588-200-release-info.jpg",
       "link": "",
       "sf": 1,
-      "ic": "2026-11-08"
+      "ic": "2026-11-15"
     },
     {
       "date": "2026-12-26",
@@ -1048,7 +986,7 @@
       "sku": "IQ0145-600",
       "colorway": "Light Crimson/Metallic Gold-Green Glow",
       "sf": 1,
-      "ic": "2026-11-08"
+      "ic": "2026-11-15"
     },
     {
       "date": "2026-12-31",
@@ -1058,7 +996,7 @@
       "image": "https://www.sneakerfiles.com/wp-content/uploads/2026/01/air-jordan-3-middle-east-IX6986-047.jpg",
       "link": "",
       "sf": 1,
-      "ic": "2026-11-08"
+      "ic": "2026-11-15"
     },
     {
       "date": "2026-12-31",
@@ -1068,7 +1006,7 @@
       "image": "https://www.sneakerfiles.com/wp-content/uploads/2026/10/corteiz-nike-shox-r419-pack-2026.jpg",
       "link": "",
       "sf": 1,
-      "ic": "2026-11-08"
+      "ic": "2026-11-15"
     },
     {
       "date": "2026-12-31",
@@ -1080,7 +1018,7 @@
       "sku": "IO6262-600",
       "colorway": "Laser Crimson/Silver-Obsidian",
       "sf": 1,
-      "ic": "2026-11-08"
+      "ic": "2026-11-15"
     },
     {
       "date": "2027-01-02",
@@ -1102,7 +1040,7 @@
       "sku": "IH7423-001",
       "colorway": "Black/Metallic Silver-Racer Blue",
       "sf": 1,
-      "ic": "2026-11-08"
+      "ic": "2026-11-15"
     },
     {
       "date": "2027-01-15",
@@ -1123,7 +1061,7 @@
       "link": "",
       "sku": "IX0206-001",
       "sf": 1,
-      "ic": "2026-11-08"
+      "ic": "2026-11-15"
     },
     {
       "date": "2027-01-16",

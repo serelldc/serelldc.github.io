@@ -51,10 +51,10 @@
     },
     "nike zoom field jaxx travis scott leche blue": {
       "title": "Nike Zoom Field Jaxx Travis Scott Leche Blue",
-      "usd": 89,
-      "avg_usd": 133,
+      "usd": 103,
+      "avg_usd": 129,
       "link": "https://stockx.pvxt.net/c/4722526/1023711/9060?u=https%3A%2F%2Fstockx.com%2Fnike-zoom-field-jaxx-travis-scott-leche-blue",
-      "at": "2026-11-08"
+      "at": "2026-11-15"
     },
     "air jordan 1 zm air cmft 2 wmns university blue volt": {
       "none": true,
@@ -66,17 +66,17 @@
     },
     "air jordan 1 high og royal reimagined": {
       "title": "Jordan 1 Retro High OG Royal Reimagined",
-      "usd": 73,
-      "avg_usd": 151,
+      "usd": 74,
+      "avg_usd": 150,
       "link": "https://stockx.pvxt.net/c/4722526/1023711/9060?u=https%3A%2F%2Fstockx.com%2Fair-jordan-1-retro-high-og-royal-reimagined",
-      "at": "2026-11-08"
+      "at": "2026-11-15"
     },
     "air jordan 1 low bred toe": {
       "title": "Jordan 1 Low Bred Toe",
-      "usd": 65,
-      "avg_usd": 126,
+      "usd": 64,
+      "avg_usd": 124,
       "link": "https://stockx.pvxt.net/c/4722526/1023711/9060?u=https%3A%2F%2Fstockx.com%2Fair-jordan-1-low-bred-toe",
-      "at": "2026-11-08"
+      "at": "2026-11-15"
     },
     "reebok question pump chalk": {
       "title": "Reebok Question Pump Pump Omni Lite",
@@ -534,10 +534,10 @@
     },
     "nike air max 90 batman": {
       "title": "Nike Air Max 90 Batman",
-      "usd": 390,
-      "avg_usd": 693,
+      "usd": 347,
+      "avg_usd": 624,
       "link": "https://stockx.pvxt.net/c/4722526/1023711/9060?u=https%3A%2F%2Fstockx.com%2Fnike-air-max-90-batman",
-      "at": "2026-11-05"
+      "at": "2026-11-15"
     },
     "air jordan 11 space jam galaxy": {
       "none": true,
@@ -647,8 +647,16 @@
     "nike sb dunk low green patent": {
       "none": true,
       "at": "2026-11-14"
+    },
+    "slam jam x nike air max 97": {
+      "none": true,
+      "at": "2026-11-15"
+    },
+    "social status x air jordan 1 low og": {
+      "none": true,
+      "at": "2026-11-15"
     }
   },
-  "updated": "2026-11-14",
+  "updated": "2026-11-15",
   "source": "KicksDB (StockX average resale, all sizes)"
 }
