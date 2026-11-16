@@ -1,5 +1,5 @@
 {
-  "updated": "2026-11-15",
+  "updated": "2026-11-16",
   "source": "SneakerFiles & Sneaker News release calendars (curated weekly); photos from KicksDB (StockX)",
   "items": [
     {
@@ -989,6 +989,14 @@
       "ic": "2026-11-15"
     },
     {
+      "date": "2026-12-26",
+      "name": "Supreme x Martine Rose x Nike Dunk Low",
+      "brand": "Nike",
+      "retail_usd": null,
+      "image": "",
+      "link": ""
+    },
+    {
       "date": "2026-12-31",
       "name": "Air Jordan 3 \"Middle East\"",
       "brand": "Jordan",
@@ -1007,6 +1015,14 @@
       "link": "",
       "sf": 1,
       "ic": "2026-11-15"
+    },
+    {
+      "date": "2026-12-31",
+      "name": "Nike Air Bakin \"Varsity Royal\"",
+      "brand": "Nike",
+      "retail_usd": null,
+      "image": "",
+      "link": ""
     },
     {
       "date": "2026-12-31",
