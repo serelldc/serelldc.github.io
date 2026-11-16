@@ -3,36 +3,6 @@
   "source": "SneakerFiles & Sneaker News release calendars (curated weekly); photos from KicksDB (StockX)",
   "items": [
     {
-      "date": "2026-11-15",
-      "name": "Air Jordan 41 \"Wolf Grey\"",
-      "brand": "Jordan",
-      "retail_usd": 205,
-      "image": "",
-      "link": "",
-      "tried": "2026-11-14"
-    },
-    {
-      "date": "2026-11-15",
-      "name": "Nike Air Max 90 \"Batman\"",
-      "brand": "Nike",
-      "retail_usd": 140,
-      "image": "https://images.stockx.com/images/Nike-Air-Max-90-Batman-Product.jpg?fit=fill&bg=FFFFFF&w=600&h=430&fm=webp&auto=compress&q=90&dpr=2&trim=color&updated_at=1738193358",
-      "link": "https://stockx.pvxt.net/c/4722526/1023711/9060?u=https%3A%2F%2Fstockx.com%2Fnike-air-max-90-batman",
-      "sku": "IM9616-002",
-      "colorway": "Black/Chrome Yellow",
-      "ic": "2026-11-13"
-    },
-    {
-      "date": "2026-11-15",
-      "name": "Playa Society x Nike A'Two",
-      "brand": "Nike",
-      "retail_usd": 155,
-      "image": "https://images.stockx.com/images/Nike-Aja-Wilson-ATwo-Playa-Society-Dark-Russet-Womens.jpg?fit=fill&bg=FFFFFF&w=600&h=430&fm=webp&auto=compress&q=90&dpr=2&trim=color&updated_at=1793914470",
-      "link": "https://stockx.pvxt.net/c/4722526/1023711/9060?u=https%3A%2F%2Fstockx.com%2Fnike-aja-wilson-atwo-playa-society-dark-russet-womens",
-      "ic": "2026-11-13",
-      "sku": "IX6704-200"
-    },
-    {
       "date": "2026-11-16",
       "name": "Air Jordan 11 \"Space Jam Galaxy\"",
       "brand": "Jordan",
@@ -127,8 +97,8 @@
       "image": "https://www.sneakerfiles.com/wp-content/uploads/2026/11/travis-scott-cactus-jack-rockstar-games-nike-air-force-1-low-gta-6-black-pink.jpg",
       "link": "",
       "sf": 1,
-      "ic": "2026-11-09",
-      "tried": "2026-11-14"
+      "ic": "2026-11-16",
+      "tried": "2026-11-16"
     },
     {
       "date": "2026-11-19",
@@ -210,7 +180,7 @@
       "retail_usd": 130,
       "image": "",
       "link": "",
-      "tried": "2026-11-14"
+      "tried": "2026-11-16"
     },
     {
       "date": "2026-11-21",
@@ -219,7 +189,7 @@
       "retail_usd": 215,
       "link": "https://stockx.pvxt.net/c/4722526/1023711/9060?u=https%3A%2F%2Fstockx.com%2Fair-jordan-3-retro-not-nice",
       "sku": "IF4396-001",
-      "image": "https://images.stockx.com/images/Air-Jordan-3-Retro-Not-Nice.jpg?fit=fill&bg=FFFFFF&w=600&h=430&fm=webp&auto=compress&q=90&dpr=2&trim=color&updated_at=1784748181"
+      "image": "https://images.stockx.com/images/Air-Jordan-3-Retro-Not-Nice-2.jpg?fit=fill&bg=FFFFFF&w=600&h=430&fm=webp&auto=compress&q=90&dpr=2&trim=color&updated_at=1794254426"
     },
     {
       "date": "2026-11-21",
@@ -228,7 +198,7 @@
       "retail_usd": 215,
       "image": "https://www.sneakerfiles.com/wp-content/uploads/2026/07/air-jordan-3-santa-chimney-poster-IF4396-601.jpg",
       "link": "",
-      "tried": "2026-11-14",
+      "tried": "2026-11-16",
       "sf": 1,
       "ic": "2026-11-13"
     },
@@ -292,7 +262,7 @@
       "retail_usd": 230,
       "image": "",
       "link": "",
-      "tried": "2026-11-14"
+      "tried": "2026-11-16"
     },
     {
       "date": "2026-11-21",
@@ -303,7 +273,7 @@
       "link": "",
       "sf": 1,
       "ic": "2026-11-13",
-      "tried": "2026-11-14"
+      "tried": "2026-11-16"
     },
     {
       "date": "2026-11-21",
@@ -314,7 +284,7 @@
       "link": "",
       "sf": 1,
       "ic": "2026-11-13",
-      "tried": "2026-11-14"
+      "tried": "2026-11-16"
     },
     {
       "date": "2026-11-21",
@@ -423,7 +393,8 @@
       "retail_usd": 240,
       "image": "https://images.stockx.com/images/Nike-Air-Foamposite-Pro-College-Football-Pack-FSU.jpg?fit=fill&bg=FFFFFF&w=600&h=430&fm=webp&auto=compress&q=90&dpr=2&trim=color&updated_at=1790108033",
       "link": "https://stockx.pvxt.net/c/4722526/1023711/9060?u=https%3A%2F%2Fstockx.com%2Fnike-air-foamposite-pro-college-football-pack-fsu",
-      "sku": "IX2095-600"
+      "sku": "IX2095-600",
+      "ic": "2026-11-16"
     },
     {
       "date": "2026-11-28",
@@ -435,18 +406,18 @@
       "sku": "IQ6605-001",
       "colorway": "Black/Cool Grey-Diffused Blue",
       "sf": 1,
-      "ic": "2026-11-14"
+      "ic": "2026-11-14",
+      "tried": "2026-11-16"
     },
     {
       "date": "2026-11-28",
       "name": "Nike Caitlin 1 \"Warning Code\"",
       "brand": "Nike",
       "retail_usd": 140,
-      "image": "https://www.sneakerfiles.com/wp-content/uploads/2026/07/nike-caitlin-1-warning-code-IH7423-700.jpg",
-      "link": "",
+      "image": "https://images.stockx.com/images/Nike-Caitlin-1-Yellow-Zest-Womens-2.jpg?fit=fill&bg=FFFFFF&w=600&h=430&fm=webp&auto=compress&q=90&dpr=2&trim=color&updated_at=1790961855",
+      "link": "https://stockx.pvxt.net/c/4722526/1023711/9060?u=https%3A%2F%2Fstockx.com%2Fnike-caitlin-1-yellow-zest-womens",
       "sku": "IH7423-700",
       "colorway": "Yellow Zest/Racer Blue-Soft Yellow",
-      "sf": 1,
       "ic": "2026-11-14"
     },
     {
@@ -454,10 +425,10 @@
       "name": "Nike KD 6 \"Aunt Pearl\" 2026",
       "brand": "Nike",
       "retail_usd": null,
-      "image": "https://www.sneakerfiles.com/wp-content/uploads/2026/01/nike-kd-6-aunt-pearl-2026.jpg",
-      "link": "",
-      "sf": 1,
-      "ic": "2026-11-14"
+      "image": "https://images.stockx.com/images/Nike-KD-6-Aunt-Pearl-Product.jpg?fit=fill&bg=FFFFFF&w=600&h=430&fm=webp&auto=compress&q=90&dpr=2&trim=color&updated_at=1787520112",
+      "link": "https://stockx.pvxt.net/c/4722526/1023711/9060?u=https%3A%2F%2Fstockx.com%2Fkd-6-aunt-pearl",
+      "ic": "2026-11-14",
+      "sku": "618216-600"
     },
     {
       "date": "2026-11-28",
@@ -641,7 +612,7 @@
       "link": "",
       "sf": 1,
       "ic": "2026-11-14",
-      "tried": "2026-11-14"
+      "tried": "2026-11-16"
     },
     {
       "date": "2026-12-05",
@@ -654,7 +625,7 @@
       "colorway": "Neutral Grey/French Blue-Chile Red",
       "sf": 1,
       "ic": "2026-11-10",
-      "tried": "2026-11-14"
+      "tried": "2026-11-16"
     },
     {
       "date": "2026-12-05",
@@ -836,7 +807,7 @@
       "sku": "JJ7564-200",
       "colorway": "Flax/Gum Medium Brown-University Gold-Pine Green",
       "sf": 1,
-      "ic": "2026-11-09"
+      "ic": "2026-11-16"
     },
     {
       "date": "2026-12-19",
@@ -884,7 +855,7 @@
       "sku": "IV7127-700",
       "colorway": "Dynamic Yellow/Field Purple",
       "sf": 1,
-      "ic": "2026-11-09"
+      "ic": "2026-11-16"
     },
     {
       "date": "2026-12-19",
@@ -1099,7 +1070,7 @@
       "sku": "IH7423-301",
       "colorway": "Emerald Rise/Varsity Maize-Dusty Cactus-Midnight Navy-Metallic Silver",
       "sf": 1,
-      "ic": "2026-11-08"
+      "ic": "2026-11-16"
     },
     {
       "date": "2027-01-16",
@@ -1109,7 +1080,7 @@
       "image": "https://www.sneakerfiles.com/wp-content/uploads/2026/10/nike-doernbecher-freestyle-22-collection-2027.jpg",
       "link": "",
       "sf": 1,
-      "ic": "2026-11-08"
+      "ic": "2026-11-16"
     },
     {
       "date": "2027-01-16",
@@ -1121,7 +1092,7 @@
       "sku": "JF1792-300",
       "colorway": "Pine Green/Stealth-Vast Grey",
       "sf": 1,
-      "ic": "2026-11-08"
+      "ic": "2026-11-16"
     },
     {
       "date": "2027-01-19",
@@ -1139,7 +1110,7 @@
       "image": "https://www.sneakerfiles.com/wp-content/uploads/2026/04/air-jordan-12-obsidian-CT8013-401-2027-release-info.jpg",
       "link": "",
       "sf": 1,
-      "ic": "2026-11-09"
+      "ic": "2026-11-16"
     },
     {
       "date": "2027-01-23",
