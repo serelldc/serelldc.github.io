@@ -1,49 +1,7 @@
 {
-  "updated": "2026-11-16",
+  "updated": "2026-11-17",
   "source": "SneakerFiles & Sneaker News release calendars (curated weekly); photos from KicksDB (StockX)",
   "items": [
-    {
-      "date": "2026-11-16",
-      "name": "Air Jordan 11 \"Space Jam Galaxy\"",
-      "brand": "Jordan",
-      "retail_usd": 255,
-      "image": "https://www.sneakerfiles.com/wp-content/uploads/2026/09/air-jordan-11-green-screen-space-jam-IQ5700-900-release-info.jpg",
-      "link": "",
-      "sku": "IQ5700-900",
-      "colorway": "Multi-Color/Gym Green-Lucky Green-Orange",
-      "tried": "2026-11-15",
-      "sf": 1,
-      "ic": "2026-11-13"
-    },
-    {
-      "date": "2026-11-16",
-      "name": "Nike Air Foamposite Pro \"Mummy Duck\"",
-      "brand": "Nike",
-      "retail_usd": 240,
-      "image": "https://images.stockx.com/images/Nike-Air-Foamposite-Pro-Mummy-Duck-Oregon-PE.jpg?fit=fill&bg=FFFFFF&w=600&h=430&fm=webp&auto=compress&q=90&dpr=2&trim=color&updated_at=1759179882",
-      "link": "https://stockx.pvxt.net/c/4722526/1023711/9060?u=https%3A%2F%2Fstockx.com%2Fnike-air-foamposite-pro-mummy-duck-oregon-pe",
-      "ic": "2026-11-10"
-    },
-    {
-      "date": "2026-11-16",
-      "name": "Nike Air Max 9500",
-      "brand": "Nike",
-      "retail_usd": 160,
-      "image": "https://images.stockx.com/images/Nike-Air-Max-95000-Black-Volt-Product.jpg?fit=fill&bg=FFFFFF&w=600&h=430&fm=webp&auto=compress&q=90&dpr=2&trim=color&updated_at=1789611920",
-      "link": "https://stockx.pvxt.net/c/4722526/1023711/9060?u=https%3A%2F%2Fstockx.com%2Fnike-air-max-95000-black-volt",
-      "sku": "IR1113-001",
-      "ic": "2026-11-10"
-    },
-    {
-      "date": "2026-11-16",
-      "name": "Nike Ja 4 \"Blur\"",
-      "brand": "Nike",
-      "retail_usd": 130,
-      "image": "https://images.stockx.com/images/Nike-Ja-4-Blur.jpg?fit=fill&bg=FFFFFF&w=600&h=430&fm=webp&auto=compress&q=90&dpr=2&trim=color&updated_at=1793739597",
-      "link": "https://stockx.pvxt.net/c/4722526/1023711/9060?u=https%3A%2F%2Fstockx.com%2Fnike-ja-4-blur",
-      "sku": "IM4135-501",
-      "ic": "2026-11-10"
-    },
     {
       "date": "2026-11-17",
       "name": "Nike Caitlin 1 \"Cave Stone\"",
@@ -81,13 +39,11 @@
       "name": "Nike Kobe 9 EM Low Protro \"Philippines\"",
       "brand": "Nike",
       "retail_usd": 200,
-      "image": "https://www.sneakerfiles.com/wp-content/uploads/2026/01/nike-kobe-9-em-low-protro-philippines-IO6262-600-2026.jpg",
-      "link": "",
+      "image": "https://images.stockx.com/images/Nike-Kobe-9-EM-Low-Protro-Philippines-2026.jpg?fit=fill&bg=FFFFFF&w=600&h=430&fm=webp&auto=compress&q=90&dpr=2&trim=color&updated_at=1794346635",
+      "link": "https://stockx.pvxt.net/c/4722526/1023711/9060?u=https%3A%2F%2Fstockx.com%2Fnike-kobe-9-em-low-protro-philippines-2026",
       "sku": "IO6262-600",
       "colorway": "Laser Crimson/Silver-Obsidian",
-      "sf": 1,
-      "ic": "2026-11-12",
-      "tried": "2026-11-15"
+      "ic": "2026-11-12"
     },
     {
       "date": "2026-11-19",
@@ -141,8 +97,8 @@
       "sku": "IR1940-500",
       "colorway": "Atomic Violet/Voltage Purple-White",
       "sf": 1,
-      "ic": "2026-11-10",
-      "tried": "2026-11-15"
+      "ic": "2026-11-17",
+      "tried": "2026-11-17"
     },
     {
       "date": "2026-11-20",
@@ -152,7 +108,7 @@
       "image": "https://images.stockx.com/images/Nike-Air-Max-95-ACG-Mowabb.jpg?fit=fill&bg=FFFFFF&w=600&h=430&fm=webp&auto=compress&q=90&dpr=2&trim=color&updated_at=1771470738",
       "link": "https://stockx.pvxt.net/c/4722526/1023711/9060?u=https%3A%2F%2Fstockx.com%2Fair-max-95-acg-mowabb",
       "sku": "307255-251",
-      "ic": "2026-11-10"
+      "ic": "2026-11-17"
     },
     {
       "date": "2026-11-20",
@@ -162,7 +118,7 @@
       "image": "https://images.stockx.com/images/Nike-Book-2-Be-Legendary.jpg?fit=fill&bg=FFFFFF&w=600&h=430&fm=webp&auto=compress&q=90&dpr=2&trim=color&updated_at=1788971656",
       "link": "https://stockx.pvxt.net/c/4722526/1023711/9060?u=https%3A%2F%2Fstockx.com%2Fnike-book-2-be-legendary",
       "sku": "FZ7013-501",
-      "ic": "2026-11-10"
+      "ic": "2026-11-17"
     },
     {
       "date": "2026-11-20",
@@ -171,7 +127,7 @@
       "retail_usd": 180,
       "image": "",
       "link": "",
-      "tried": "2026-11-15"
+      "tried": "2026-11-17"
     },
     {
       "date": "2026-11-20",
@@ -189,7 +145,8 @@
       "retail_usd": 215,
       "link": "https://stockx.pvxt.net/c/4722526/1023711/9060?u=https%3A%2F%2Fstockx.com%2Fair-jordan-3-retro-not-nice",
       "sku": "IF4396-001",
-      "image": "https://images.stockx.com/images/Air-Jordan-3-Retro-Not-Nice-2.jpg?fit=fill&bg=FFFFFF&w=600&h=430&fm=webp&auto=compress&q=90&dpr=2&trim=color&updated_at=1794254426"
+      "image": "https://images.stockx.com/images/Air-Jordan-3-Retro-Not-Nice-2.jpg?fit=fill&bg=FFFFFF&w=600&h=430&fm=webp&auto=compress&q=90&dpr=2&trim=color&updated_at=1794254426",
+      "ic": "2026-11-17"
     },
     {
       "date": "2026-11-21",
@@ -211,7 +168,7 @@
       "link": "https://stockx.pvxt.net/c/4722526/1023711/9060?u=https%3A%2F%2Fstockx.com%2Fair-jordan-tatum-5-sunset",
       "sku": "IO1746-002",
       "colorway": "Black/Clementine-Amarillo-Infrared 23",
-      "ic": "2026-11-10"
+      "ic": "2026-11-17"
     },
     {
       "date": "2026-11-21",
@@ -297,7 +254,7 @@
       "colorway": "Pine Green/Light Crimson-Grey Fog-White",
       "sf": 1,
       "ic": "2026-11-13",
-      "tried": "2026-11-15"
+      "tried": "2026-11-17"
     },
     {
       "date": "2026-11-22",
@@ -311,6 +268,17 @@
       "ic": "2026-11-12"
     },
     {
+      "date": "2026-11-24",
+      "name": "Nike Ja 4 \"Blur\"",
+      "brand": "Nike",
+      "retail_usd": 130,
+      "image": "https://images.stockx.com/images/Nike-Ja-4-Blur.jpg?fit=fill&bg=FFFFFF&w=600&h=430&fm=webp&auto=compress&q=90&dpr=2&trim=color&updated_at=1793739597",
+      "link": "https://stockx.pvxt.net/c/4722526/1023711/9060?u=https%3A%2F%2Fstockx.com%2Fnike-ja-4-blur",
+      "sku": "IM4135-501",
+      "colorway": "Monarch Purple/Black-Bright Crimson-Atomic Pink",
+      "ic": "2026-11-17"
+    },
+    {
       "date": "2026-11-26",
       "name": "Ducks of a Feather x Nike SB Dunk Low \"The Zoo\"",
       "brand": "Nike",
@@ -319,7 +287,7 @@
       "link": "https://stockx.pvxt.net/c/4722526/1023711/9060?u=https%3A%2F%2Fstockx.com%2Fnike-sb-dunk-low-ducks-of-a-feather-oregon-ducks-the-zoo",
       "sku": "JJ7565-300",
       "colorway": "Tomatillo/Gum Medium Brown-Gym Green-Gorge Green",
-      "ic": "2026-11-10"
+      "ic": "2026-11-17"
     },
     {
       "date": "2026-11-27",
@@ -371,7 +339,7 @@
       "link": "",
       "sf": 1,
       "ic": "2026-11-14",
-      "tried": "2026-11-15"
+      "tried": "2026-11-17"
     },
     {
       "date": "2026-11-28",
@@ -384,7 +352,7 @@
       "colorway": "Cobalt Blue/Anthracite-Vast Grey-Varsity Maize",
       "sf": 1,
       "ic": "2026-11-14",
-      "tried": "2026-11-15"
+      "tried": "2026-11-17"
     },
     {
       "date": "2026-11-28",
@@ -450,7 +418,7 @@
       "link": "",
       "sf": 1,
       "ic": "2026-11-14",
-      "tried": "2026-11-15"
+      "tried": "2026-11-17"
     },
     {
       "date": "2026-11-28",
@@ -461,18 +429,17 @@
       "link": "",
       "sf": 1,
       "ic": "2026-11-14",
-      "tried": "2026-11-15"
+      "tried": "2026-11-17"
     },
     {
       "date": "2026-11-29",
       "name": "HOMERUN NYC x Nike Air Trainer SC Low",
       "brand": "Nike",
       "retail_usd": 120,
-      "image": "https://www.sneakerfiles.com/wp-content/uploads/2026/11/homerun-nike-air-trainer-sc-low-IV5571-001-1.jpg",
-      "link": "",
+      "image": "https://images.stockx.com/images/Nike-Air-Max-Plus-homerun-NYC.jpg?fit=fill&bg=FFFFFF&w=600&h=430&fm=webp&auto=compress&q=90&dpr=2&trim=color&updated_at=1763675306",
+      "link": "https://stockx.pvxt.net/c/4722526/1023711/9060?u=https%3A%2F%2Fstockx.com%2Fnike-air-max-plus-homerun-nyc",
       "sku": "IV5571-001",
       "colorway": "Black/Base Grey",
-      "sf": 1,
       "ic": "2026-11-14"
     },
     {
@@ -480,11 +447,10 @@
       "name": "Well Off Forever x Nike Air DT Proto 92",
       "brand": "Nike",
       "retail_usd": 180,
-      "image": "https://www.sneakerfiles.com/wp-content/uploads/2026/10/well-off-forever-nike-air-dt-proto-92-JF7593-100.jpg",
-      "link": "",
+      "image": "https://images.stockx.com/images/Nike-Air-Diamond-Turf-Proto-92-Well-Off-Forever.jpg?fit=fill&bg=FFFFFF&w=600&h=430&fm=webp&auto=compress&q=90&dpr=2&trim=color&updated_at=1792701907",
+      "link": "https://stockx.pvxt.net/c/4722526/1023711/9060?u=https%3A%2F%2Fstockx.com%2Fnike-air-diamond-turf-proto-92-well-off-forever",
       "sku": "JF7593-100",
       "colorway": "White/Metallic Gold-Off Noir",
-      "sf": 1,
       "ic": "2026-11-14"
     },
     {
@@ -493,7 +459,8 @@
       "brand": "Nike",
       "retail_usd": 130,
       "image": "",
-      "link": ""
+      "link": "",
+      "tried": "2026-11-17"
     },
     {
       "date": "2026-12-01",
@@ -624,7 +591,7 @@
       "sku": "IW1290-001",
       "colorway": "Neutral Grey/French Blue-Chile Red",
       "sf": 1,
-      "ic": "2026-11-10",
+      "ic": "2026-11-17",
       "tried": "2026-11-16"
     },
     {
@@ -783,7 +750,7 @@
       "sku": "IW9834-600",
       "colorway": "Team Scarlet/Deep Royal Blue",
       "sf": 1,
-      "ic": "2026-11-10"
+      "ic": "2026-11-17"
     },
     {
       "date": "2026-12-19",
