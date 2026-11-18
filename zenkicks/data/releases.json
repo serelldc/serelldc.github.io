@@ -3,38 +3,6 @@
   "source": "SneakerFiles & Sneaker News release calendars (curated weekly); photos from KicksDB (StockX)",
   "items": [
     {
-      "date": "2026-11-17",
-      "name": "Nike Caitlin 1 \"Cave Stone\"",
-      "brand": "Nike",
-      "retail_usd": 140,
-      "image": "https://images.stockx.com/images/Nike-Caitlin-1-Cave-Stone-Womens.jpg?fit=fill&bg=FFFFFF&w=600&h=430&fm=webp&auto=compress&q=90&dpr=2&trim=color&updated_at=1789417504",
-      "link": "https://stockx.pvxt.net/c/4722526/1023711/9060?u=https%3A%2F%2Fstockx.com%2Fnike-caitlin-1-cave-stone-womens",
-      "sku": "IH7423-101",
-      "colorway": "Light Orewood Brown/Cave Stone",
-      "ic": "2026-11-14"
-    },
-    {
-      "date": "2026-11-17",
-      "name": "Nike KD 6 \"Texas\"",
-      "brand": "Nike",
-      "retail_usd": 135,
-      "image": "https://images.stockx.com/images/Nike-KD-6-Texas-Black-Galaxy-Halloween.jpg?fit=fill&bg=FFFFFF&w=600&h=430&fm=webp&auto=compress&q=90&dpr=2&trim=color&updated_at=1790581385",
-      "link": "https://stockx.pvxt.net/c/4722526/1023711/9060?u=https%3A%2F%2Fstockx.com%2Fkd-6-texas",
-      "sku": "JF6986-001",
-      "colorway": "Black/Green Glow-Urban Orange-Football Grey",
-      "ic": "2026-11-13"
-    },
-    {
-      "date": "2026-11-17",
-      "name": "Nike LeBron 24 \"Stars\"",
-      "brand": "Nike",
-      "retail_usd": 200,
-      "image": "https://images.stockx.com/images/Nike-LeBron-24-Stars.jpg?fit=fill&bg=FFFFFF&w=600&h=430&fm=webp&auto=compress&q=90&dpr=2&trim=color&updated_at=1793134331",
-      "link": "https://stockx.pvxt.net/c/4722526/1023711/9060?u=https%3A%2F%2Fstockx.com%2Fnike-lebron-24-stars",
-      "ic": "2026-11-13",
-      "sku": "IO8204-400 / IO8203-400"
-    },
-    {
       "date": "2026-11-18",
       "name": "Nike Kobe 9 EM Low Protro \"Philippines\"",
       "brand": "Nike",
@@ -54,7 +22,7 @@
       "link": "",
       "sf": 1,
       "ic": "2026-11-16",
-      "tried": "2026-11-16"
+      "tried": "2026-11-18"
     },
     {
       "date": "2026-11-19",
@@ -136,7 +104,7 @@
       "retail_usd": 130,
       "image": "",
       "link": "",
-      "tried": "2026-11-16"
+      "tried": "2026-11-18"
     },
     {
       "date": "2026-11-21",
@@ -155,7 +123,7 @@
       "retail_usd": 215,
       "image": "https://www.sneakerfiles.com/wp-content/uploads/2026/07/air-jordan-3-santa-chimney-poster-IF4396-601.jpg",
       "link": "",
-      "tried": "2026-11-16",
+      "tried": "2026-11-18",
       "sf": 1,
       "ic": "2026-11-13"
     },
@@ -219,7 +187,7 @@
       "retail_usd": 230,
       "image": "",
       "link": "",
-      "tried": "2026-11-16"
+      "tried": "2026-11-18"
     },
     {
       "date": "2026-11-21",
@@ -230,7 +198,7 @@
       "link": "",
       "sf": 1,
       "ic": "2026-11-13",
-      "tried": "2026-11-16"
+      "tried": "2026-11-18"
     },
     {
       "date": "2026-11-21",
@@ -241,7 +209,7 @@
       "link": "",
       "sf": 1,
       "ic": "2026-11-13",
-      "tried": "2026-11-16"
+      "tried": "2026-11-18"
     },
     {
       "date": "2026-11-21",
@@ -375,7 +343,7 @@
       "colorway": "Black/Cool Grey-Diffused Blue",
       "sf": 1,
       "ic": "2026-11-14",
-      "tried": "2026-11-16"
+      "tried": "2026-11-18"
     },
     {
       "date": "2026-11-28",
@@ -472,7 +440,8 @@
       "sku": "IO8201-700",
       "colorway": "Tour Yellow/Midnight Navy-White-Metallic Gold",
       "sf": 1,
-      "ic": "2026-11-14"
+      "ic": "2026-11-14",
+      "tried": "2026-11-18"
     },
     {
       "date": "2026-12-01",
@@ -480,18 +449,18 @@
       "brand": "adidas",
       "retail_usd": null,
       "image": "",
-      "link": ""
+      "link": "",
+      "tried": "2026-11-18"
     },
     {
       "date": "2026-12-03",
       "name": "Nike Air Bakin \"Black White\"",
       "brand": "Nike",
       "retail_usd": 170,
-      "image": "https://www.sneakerfiles.com/wp-content/uploads/2026/07/nike-air-bakin-black-white-IQ5365-001.jpg",
-      "link": "",
+      "image": "https://images.stockx.com/images/Nike-Air-Presto-Black-White-W-Product.jpg?fit=fill&bg=FFFFFF&w=600&h=430&fm=webp&auto=compress&q=90&dpr=2&trim=color&updated_at=1771469878",
+      "link": "https://stockx.pvxt.net/c/4722526/1023711/9060?u=https%3A%2F%2Fstockx.com%2Fnike-air-presto-black-white-w",
       "sku": "IQ5365-001",
       "colorway": "Black/White",
-      "sf": 1,
       "ic": "2026-11-14"
     },
     {
@@ -595,7 +564,7 @@
       "link": "",
       "sf": 1,
       "ic": "2026-11-14",
-      "tried": "2026-11-16"
+      "tried": "2026-11-18"
     },
     {
       "date": "2026-12-05",
@@ -608,7 +577,7 @@
       "colorway": "Neutral Grey/French Blue-Chile Red",
       "sf": 1,
       "ic": "2026-11-17",
-      "tried": "2026-11-16"
+      "tried": "2026-11-18"
     },
     {
       "date": "2026-12-05",
@@ -928,7 +897,7 @@
       "sku": "IZ2537-300",
       "colorway": "Electric Green/Metallic Silver-Black-Bright Crimson",
       "sf": 1,
-      "ic": "2026-11-11"
+      "ic": "2026-11-18"
     },
     {
       "date": "2026-12-26",
@@ -998,7 +967,7 @@
       "image": "https://www.sneakerfiles.com/wp-content/uploads/2026/08/air-jordan-8-hornets-2027-JF9225-001.jpg",
       "link": "",
       "sf": 1,
-      "ic": "2026-11-11"
+      "ic": "2026-11-18"
     },
     {
       "date": "2027-01-05",
@@ -1020,7 +989,7 @@
       "image": "https://www.sneakerfiles.com/wp-content/uploads/2026/05/air-jordan-4-spotlight-black-silver-HV0823-002-2027.jpg",
       "link": "",
       "sf": 1,
-      "ic": "2026-11-11"
+      "ic": "2026-11-18"
     },
     {
       "date": "2027-01-16",
@@ -1041,7 +1010,7 @@
       "image": "https://www.sneakerfiles.com/wp-content/uploads/2026/09/air-jordan-3-utility-black-fire-red-IX0198-001.jpg",
       "link": "",
       "sf": 1,
-      "ic": "2026-11-11"
+      "ic": "2026-11-18"
     },
     {
       "date": "2027-01-16",
@@ -1119,7 +1088,7 @@
       "image": "https://www.sneakerfiles.com/wp-content/uploads/2026/06/air-jordan-4-musik-packaging-box.jpg",
       "link": "",
       "sf": 1,
-      "ic": "2026-11-11"
+      "ic": "2026-11-18"
     }
   ]
 }
