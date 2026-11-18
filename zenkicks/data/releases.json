@@ -1,5 +1,5 @@
 {
-  "updated": "2026-11-17",
+  "updated": "2026-11-18",
   "source": "SneakerFiles & Sneaker News release calendars (curated weekly); photos from KicksDB (StockX)",
   "items": [
     {
@@ -496,6 +496,14 @@
     },
     {
       "date": "2026-12-04",
+      "name": "New Balance Maxey v1 \"White/Light Blue\"",
+      "brand": "New Balance",
+      "retail_usd": 120,
+      "image": "",
+      "link": ""
+    },
+    {
+      "date": "2026-12-04",
       "name": "Nike Book 2 \"Christmas\"",
       "brand": "Nike",
       "retail_usd": 155,
@@ -528,6 +536,14 @@
       "colorway": "Bright Crimson/Black-Electric Green",
       "sf": 1,
       "ic": "2026-11-14"
+    },
+    {
+      "date": "2026-12-04",
+      "name": "adidas ZX 8000 \"Made In Germany\"",
+      "brand": "adidas",
+      "retail_usd": 230,
+      "image": "",
+      "link": ""
     },
     {
       "date": "2026-12-05",
@@ -1060,6 +1076,14 @@
       "colorway": "Pine Green/Stealth-Vast Grey",
       "sf": 1,
       "ic": "2026-11-16"
+    },
+    {
+      "date": "2027-01-17",
+      "name": "Nike Air Tech Challenge II \"White/Light Liquid Lime\"",
+      "brand": "Nike",
+      "retail_usd": 155,
+      "image": "",
+      "link": ""
     },
     {
       "date": "2027-01-19",
