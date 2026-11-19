@@ -1,18 +1,7 @@
 {
-  "updated": "2026-11-18",
+  "updated": "2026-11-19",
   "source": "SneakerFiles & Sneaker News release calendars (curated weekly); photos from KicksDB (StockX)",
   "items": [
-    {
-      "date": "2026-11-18",
-      "name": "Nike Kobe 9 EM Low Protro \"Philippines\"",
-      "brand": "Nike",
-      "retail_usd": 200,
-      "image": "https://images.stockx.com/images/Nike-Kobe-9-EM-Low-Protro-Philippines-2026.jpg?fit=fill&bg=FFFFFF&w=600&h=430&fm=webp&auto=compress&q=90&dpr=2&trim=color&updated_at=1794346635",
-      "link": "https://stockx.pvxt.net/c/4722526/1023711/9060?u=https%3A%2F%2Fstockx.com%2Fnike-kobe-9-em-low-protro-philippines-2026",
-      "sku": "IO6262-600",
-      "colorway": "Laser Crimson/Silver-Obsidian",
-      "ic": "2026-11-12"
-    },
     {
       "date": "2026-11-19",
       "name": "Cactus Jack x Rockstar Games x Nike Air Force 1 Low \"GTA 6\" Pack",
@@ -66,7 +55,7 @@
       "colorway": "Atomic Violet/Voltage Purple-White",
       "sf": 1,
       "ic": "2026-11-17",
-      "tried": "2026-11-17"
+      "tried": "2026-11-19"
     },
     {
       "date": "2026-11-20",
@@ -95,7 +84,7 @@
       "retail_usd": 180,
       "image": "",
       "link": "",
-      "tried": "2026-11-17"
+      "tried": "2026-11-19"
     },
     {
       "date": "2026-11-20",
@@ -202,6 +191,17 @@
     },
     {
       "date": "2026-11-21",
+      "name": "Travis Scott x Nike Air Force 1 Low GTA 6 \"Black\"",
+      "brand": "Nike",
+      "retail_usd": 130,
+      "image": "https://images.stockx.com/images/Nike-Air-Force-1-Low-Travis-Scott-x-Rockstar-Games-GTA-6-White-Fire-Pink.jpg?fit=fill&bg=FFFFFF&w=600&h=430&fm=webp&auto=compress&q=90&dpr=2&trim=color&updated_at=1795038352",
+      "link": "https://stockx.pvxt.net/c/4722526/1023711/9060?u=https%3A%2F%2Fstockx.com%2Fnike-air-force-1-low-travis-scott-x-rockstar-games-gta-6-white-fire-pink",
+      "sku": "JJ7604-001",
+      "colorway": "Black/Fire Pink",
+      "ic": "2026-11-19"
+    },
+    {
+      "date": "2026-11-21",
       "name": "UNheardof x adidas Adistar Control 5 \"Doggy Runner\"",
       "brand": "adidas",
       "retail_usd": null,
@@ -222,7 +222,7 @@
       "colorway": "Pine Green/Light Crimson-Grey Fog-White",
       "sf": 1,
       "ic": "2026-11-13",
-      "tried": "2026-11-17"
+      "tried": "2026-11-19"
     },
     {
       "date": "2026-11-22",
@@ -233,7 +233,7 @@
       "link": "https://stockx.pvxt.net/c/4722526/1023711/9060?u=https%3A%2F%2Fstockx.com%2Fnike-kobe-a-d-protro-ruthless-precision",
       "sku": "IO8233-001",
       "colorway": "Cool Grey/White-Black",
-      "ic": "2026-11-12"
+      "ic": "2026-11-19"
     },
     {
       "date": "2026-11-24",
@@ -279,6 +279,19 @@
     },
     {
       "date": "2026-11-27",
+      "name": "Nike KD 19 \"Lightning\"",
+      "brand": "Nike",
+      "retail_usd": 155,
+      "image": "https://www.sneakerfiles.com/wp-content/uploads/2026/11/nike-kd-19-lightning-lagoon-pulse-JA0780-100.jpg",
+      "link": "",
+      "sku": "JA0780-100",
+      "colorway": "White/Lagoon Pulse-Stadium Green-Metallic Silver",
+      "sf": 1,
+      "ic": "2026-11-19",
+      "tried": "2026-11-19"
+    },
+    {
+      "date": "2026-11-27",
       "name": "Vans Old Skool 36 Pearlized \"Black\"",
       "brand": "Vans",
       "retail_usd": 130,
@@ -307,7 +320,7 @@
       "link": "",
       "sf": 1,
       "ic": "2026-11-14",
-      "tried": "2026-11-17"
+      "tried": "2026-11-19"
     },
     {
       "date": "2026-11-28",
@@ -320,7 +333,7 @@
       "colorway": "Cobalt Blue/Anthracite-Vast Grey-Varsity Maize",
       "sf": 1,
       "ic": "2026-11-14",
-      "tried": "2026-11-17"
+      "tried": "2026-11-19"
     },
     {
       "date": "2026-11-28",
@@ -386,7 +399,7 @@
       "link": "",
       "sf": 1,
       "ic": "2026-11-14",
-      "tried": "2026-11-17"
+      "tried": "2026-11-19"
     },
     {
       "date": "2026-11-28",
@@ -397,7 +410,7 @@
       "link": "",
       "sf": 1,
       "ic": "2026-11-14",
-      "tried": "2026-11-17"
+      "tried": "2026-11-19"
     },
     {
       "date": "2026-11-29",
@@ -428,7 +441,7 @@
       "retail_usd": 130,
       "image": "",
       "link": "",
-      "tried": "2026-11-17"
+      "tried": "2026-11-19"
     },
     {
       "date": "2026-12-01",
@@ -451,6 +464,17 @@
       "image": "",
       "link": "",
       "tried": "2026-11-18"
+    },
+    {
+      "date": "2026-12-03",
+      "name": "Jordan Tatum 5 \"Sunset\"",
+      "brand": "Jordan",
+      "retail_usd": 135,
+      "image": "https://images.stockx.com/images/Air-Jordan-Tatum-5-Sunset.jpg?fit=fill&bg=FFFFFF&w=600&h=430&fm=webp&auto=compress&q=90&dpr=2&trim=color&updated_at=1790969934",
+      "link": "https://stockx.pvxt.net/c/4722526/1023711/9060?u=https%3A%2F%2Fstockx.com%2Fair-jordan-tatum-5-sunset",
+      "sku": "IO1746-002",
+      "colorway": "Black/Clementine-Amarillo-Infrared 23",
+      "ic": "2026-11-19"
     },
     {
       "date": "2026-12-03",
@@ -590,6 +614,19 @@
       "ic": "2026-11-15"
     },
     {
+      "date": "2026-12-10",
+      "name": "Nike Kobe 10 Protro \"Duke\" PE",
+      "brand": "Nike",
+      "retail_usd": 190,
+      "image": "https://www.sneakerfiles.com/wp-content/uploads/2026/11/nike-kobe-10-protro-duke-pe-JW6581-001.jpg",
+      "link": "",
+      "sku": "JW6581-001",
+      "colorway": "Black/White-Game Royal",
+      "sf": 1,
+      "ic": "2026-11-19",
+      "tried": "2026-11-19"
+    },
+    {
       "date": "2026-12-11",
       "name": "Free The Youth x Air Jordan 3",
       "brand": "Jordan",
@@ -691,7 +728,7 @@
       "sku": "IO8201-500",
       "colorway": "Purple Aura/Amarillo-Valor Blue-Black",
       "sf": 1,
-      "ic": "2026-11-12"
+      "ic": "2026-11-19"
     },
     {
       "date": "2026-12-14",
@@ -703,7 +740,7 @@
       "sku": "100301694",
       "colorway": "White/Green",
       "sf": 1,
-      "ic": "2026-11-12"
+      "ic": "2026-11-19"
     },
     {
       "date": "2026-12-17",
@@ -736,6 +773,18 @@
       "colorway": "Team Scarlet/Deep Royal Blue",
       "sf": 1,
       "ic": "2026-11-17"
+    },
+    {
+      "date": "2026-12-18",
+      "name": "Nike Air Foamposite Pro \"Dr. Doom\"",
+      "brand": "Nike",
+      "retail_usd": 240,
+      "image": "https://www.sneakerfiles.com/wp-content/uploads/2026/02/nike-air-foamposite-pro-dr-doom-2026-HF0794-003.jpg",
+      "link": "",
+      "sku": "HF0794-003",
+      "colorway": "Black/White",
+      "sf": 1,
+      "ic": "2026-11-19"
     },
     {
       "date": "2026-12-19",
@@ -819,7 +868,7 @@
       "sku": "IV4920-001",
       "colorway": "Black/Multi-Color",
       "sf": 1,
-      "ic": "2026-11-12"
+      "ic": "2026-11-19"
     },
     {
       "date": "2026-12-19",
@@ -831,7 +880,7 @@
       "sku": "HP4712",
       "colorway": "Black/White-Red",
       "sf": 1,
-      "ic": "2026-11-12"
+      "ic": "2026-11-19"
     },
     {
       "date": "2026-12-21",
@@ -889,6 +938,18 @@
     },
     {
       "date": "2026-12-26",
+      "name": "Jordan Tatum 5 \"Fierce Pink\"",
+      "brand": "Jordan",
+      "retail_usd": 135,
+      "image": "https://www.sneakerfiles.com/wp-content/uploads/2026/11/jordan-tatum-5-fierce-pink-IO1746-600.jpg",
+      "link": "",
+      "sku": "IO1746-600",
+      "colorway": "Fierce Pink/Neo Pink-Pink Pow",
+      "sf": 1,
+      "ic": "2026-11-19"
+    },
+    {
+      "date": "2026-12-26",
       "name": "Nike Ja 4 High \"Christmas\"",
       "brand": "Nike",
       "retail_usd": 180,
@@ -910,6 +971,18 @@
       "colorway": "Light Crimson/Metallic Gold-Green Glow",
       "sf": 1,
       "ic": "2026-11-15"
+    },
+    {
+      "date": "2026-12-26",
+      "name": "Social Status x Air Jordan 1 Low OG \"Sashiko\"",
+      "brand": "Jordan",
+      "retail_usd": 155,
+      "image": "https://www.sneakerfiles.com/wp-content/uploads/2026/09/social-status-air-jordan-1-low-og-sashiko-IU4982-600.jpg",
+      "link": "",
+      "sku": "IU4982-600",
+      "colorway": "Varsity Red/Sail-Game Royal-Black",
+      "sf": 1,
+      "ic": "2026-11-19"
     },
     {
       "date": "2026-12-26",
