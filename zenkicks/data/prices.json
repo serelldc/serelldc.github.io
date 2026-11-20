@@ -417,10 +417,10 @@
     },
     "nike air force 1 low supreme white": {
       "title": "Nike Air Force 1 Low Supreme White",
-      "usd": 100,
-      "avg_usd": 127,
+      "usd": 104,
+      "avg_usd": 130,
       "link": "https://stockx.pvxt.net/c/4722526/1023711/9060?u=https%3A%2F%2Fstockx.com%2Fnike-air-force-1-low-supreme-box-logo-white",
-      "at": "2026-11-10"
+      "at": "2026-11-20"
     },
     "nike air max 95 gore-tex campfire orange": {
       "title": "Nike Air Max 95 Gore-Tex Big Bubble Light Bone Campfire Orange",
@@ -567,7 +567,7 @@
     },
     "nike air max 95 acg": {
       "none": true,
-      "at": "2026-11-06"
+      "at": "2026-11-20"
     },
     "nike air force 1 low supreme black": {
       "title": "Nike Air Force 1 Low Supreme Black",
@@ -669,8 +669,15 @@
       "avg_usd": 939,
       "link": "https://stockx.pvxt.net/c/4722526/1023711/9060?u=https%3A%2F%2Fstockx.com%2Fnike-air-force-1-low-travis-scott-x-rockstar-games-gta-6-white-fire-pink",
       "at": "2026-11-19"
+    },
+    "jordan 4 retro og bred (2026)": {
+      "title": "Jordan 4 Retro OG Bred (2026)",
+      "usd": 240,
+      "avg_usd": 356,
+      "link": "https://stockx.pvxt.net/c/4722526/1023711/9060?u=https%3A%2F%2Fstockx.com%2Fair-jordan-4-retro-og-bred-2026",
+      "at": "2026-11-20"
     }
   },
-  "updated": "2026-11-19",
+  "updated": "2026-11-20",
   "source": "KicksDB (StockX average resale, all sizes)"
 }

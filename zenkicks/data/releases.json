@@ -1,48 +1,19 @@
 {
-  "updated": "2026-11-19",
+  "updated": "2026-11-20",
   "source": "SneakerFiles & Sneaker News release calendars (curated weekly); photos from KicksDB (StockX)",
   "items": [
     {
-      "date": "2026-11-19",
-      "name": "Cactus Jack x Rockstar Games x Nike Air Force 1 Low \"GTA 6\" Pack",
+      "date": "2026-11-20",
+      "name": "Nike Air DT Max 96 Low \"Shedeur Sanders\" PE",
       "brand": "Nike",
-      "retail_usd": 130,
-      "image": "https://www.sneakerfiles.com/wp-content/uploads/2026/11/travis-scott-cactus-jack-rockstar-games-nike-air-force-1-low-gta-6-black-pink.jpg",
+      "retail_usd": 170,
+      "image": "https://www.sneakerfiles.com/wp-content/uploads/2026/11/shedeur-sanders-nike-air-dt-max-96-low-particle-pink-IZ5081-600.jpg",
       "link": "",
+      "sku": "IZ5081-600",
+      "colorway": "Particle Pink-Metallic Red Bronze-Pure Platinum-Metallic Silver",
       "sf": 1,
-      "ic": "2026-11-16",
-      "tried": "2026-11-18"
-    },
-    {
-      "date": "2026-11-19",
-      "name": "New Balance 992 Made in USA \"Black Afterglow\"",
-      "brand": "New Balance",
-      "retail_usd": null,
-      "image": "https://images.stockx.com/images/New-Balance-992-MiUSA-Black-Afterglow-Navy.jpg?fit=fill&bg=FFFFFF&w=600&h=430&fm=webp&auto=compress&q=90&dpr=2&trim=color&updated_at=1787943999",
-      "link": "https://stockx.pvxt.net/c/4722526/1023711/9060?u=https%3A%2F%2Fstockx.com%2Fnew-balance-992-miusa-black-afterglow-navy",
-      "sku": "U992LB",
-      "ic": "2026-11-13"
-    },
-    {
-      "date": "2026-11-19",
-      "name": "Nike Ja 4 \"Code Red\"",
-      "brand": "Nike",
-      "retail_usd": 130,
-      "image": "https://images.stockx.com/images/Nike-Ja-4-Code-Red.jpg?fit=fill&bg=FFFFFF&w=600&h=430&fm=webp&auto=compress&q=90&dpr=2&trim=color&updated_at=1792701918",
-      "link": "https://stockx.pvxt.net/c/4722526/1023711/9060?u=https%3A%2F%2Fstockx.com%2Fnike-ja-4-code-red",
-      "sku": "IM4135-603",
-      "colorway": "Bright Crimson/Black-Cobalt Bliss",
-      "ic": "2026-11-13"
-    },
-    {
-      "date": "2026-11-19",
-      "name": "Vans Old Skool 36 Pearlized \"Navy\"",
-      "brand": "Vans",
-      "retail_usd": 130,
-      "image": "https://images.stockx.com/images/Vans-LX-Old-Skool-36-Pearlized-Pack-Black-Navy-Product.jpg?fit=fill&bg=FFFFFF&w=600&h=430&fm=webp&auto=compress&q=90&dpr=2&trim=color&updated_at=1774382125",
-      "link": "https://stockx.pvxt.net/c/4722526/1023711/9060?u=https%3A%2F%2Fstockx.com%2Fvans-lx-old-skool-36-pearlized-pack-black-navy",
-      "sku": "VN000E8VYA6",
-      "ic": "2026-11-14"
+      "ic": "2026-11-20",
+      "tried": "2026-11-20"
     },
     {
       "date": "2026-11-20",
@@ -93,7 +64,7 @@
       "retail_usd": 130,
       "image": "",
       "link": "",
-      "tried": "2026-11-18"
+      "tried": "2026-11-20"
     },
     {
       "date": "2026-11-21",
@@ -112,9 +83,20 @@
       "retail_usd": 215,
       "image": "https://www.sneakerfiles.com/wp-content/uploads/2026/07/air-jordan-3-santa-chimney-poster-IF4396-601.jpg",
       "link": "",
-      "tried": "2026-11-18",
+      "tried": "2026-11-20",
       "sf": 1,
-      "ic": "2026-11-13"
+      "ic": "2026-11-20"
+    },
+    {
+      "date": "2026-11-21",
+      "name": "Cactus Jack x Rockstar Games x Nike Air Force 1 Low \"GTA 6\" Pack",
+      "brand": "Nike",
+      "retail_usd": 130,
+      "image": "https://www.sneakerfiles.com/wp-content/uploads/2026/11/travis-scott-nike-air-force-1-gta-6-colorways-2026.jpg",
+      "link": "",
+      "sf": 1,
+      "ic": "2026-11-20",
+      "tried": "2026-11-20"
     },
     {
       "date": "2026-11-21",
@@ -136,7 +118,7 @@
       "link": "https://stockx.pvxt.net/c/4722526/1023711/9060?u=https%3A%2F%2Fstockx.com%2Fair-jordan-triangle-paolo-banchero-halloween",
       "sku": "IQ5570-300",
       "colorway": "Rage Green/Barely Volt-Black-Habanero Red",
-      "ic": "2026-11-13"
+      "ic": "2026-11-20"
     },
     {
       "date": "2026-11-21",
@@ -145,7 +127,7 @@
       "retail_usd": 140,
       "image": "https://images.stockx.com/images/Nike-Caitlin-1-Snow-White-Womens.jpg?fit=fill&bg=FFFFFF&w=600&h=430&fm=webp&auto=compress&q=90&dpr=2&trim=color&updated_at=1784235386",
       "link": "https://stockx.pvxt.net/c/4722526/1023711/9060?u=https%3A%2F%2Fstockx.com%2Fnike-caitlin-1-snow-white-womens",
-      "ic": "2026-11-13",
+      "ic": "2026-11-20",
       "sku": "IH7423-100"
     },
     {
@@ -157,7 +139,7 @@
       "link": "https://stockx.pvxt.net/c/4722526/1023711/9060?u=https%3A%2F%2Fstockx.com%2Fnike-kobe-a-d-protro-purple-stardust",
       "sku": "IO8233-500",
       "colorway": "Purple Stardust/Black",
-      "ic": "2026-11-13"
+      "ic": "2026-11-20"
     },
     {
       "date": "2026-11-21",
@@ -166,7 +148,7 @@
       "retail_usd": 190,
       "image": "https://images.stockx.com/images/Nike-Zoom-Hyperflight-Safari.jpg?fit=fill&bg=FFFFFF&w=600&h=430&fm=webp&auto=compress&q=90&dpr=2&trim=color&updated_at=1791925921",
       "link": "https://stockx.pvxt.net/c/4722526/1023711/9060?u=https%3A%2F%2Fstockx.com%2Fnike-zoom-hyperflight-safari",
-      "ic": "2026-11-13",
+      "ic": "2026-11-20",
       "sku": "IZ2573-010"
     },
     {
@@ -176,7 +158,7 @@
       "retail_usd": 230,
       "image": "",
       "link": "",
-      "tried": "2026-11-18"
+      "tried": "2026-11-20"
     },
     {
       "date": "2026-11-21",
@@ -186,8 +168,8 @@
       "image": "https://www.sneakerfiles.com/wp-content/uploads/2026/05/oregon-ducks-nike-air-force-1-low-orchard-stealth-2026.jpg",
       "link": "",
       "sf": 1,
-      "ic": "2026-11-13",
-      "tried": "2026-11-18"
+      "ic": "2026-11-20",
+      "tried": "2026-11-20"
     },
     {
       "date": "2026-11-21",
@@ -208,8 +190,8 @@
       "image": "https://www.sneakerfiles.com/wp-content/uploads/2026/09/unheardof-adidas-adistar-control-5-doggy-runner.jpg",
       "link": "",
       "sf": 1,
-      "ic": "2026-11-13",
-      "tried": "2026-11-18"
+      "ic": "2026-11-20",
+      "tried": "2026-11-20"
     },
     {
       "date": "2026-11-21",
@@ -221,7 +203,7 @@
       "sku": "JA7805-302",
       "colorway": "Pine Green/Light Crimson-Grey Fog-White",
       "sf": 1,
-      "ic": "2026-11-13",
+      "ic": "2026-11-20",
       "tried": "2026-11-19"
     },
     {
@@ -588,7 +570,7 @@
       "link": "",
       "sf": 1,
       "ic": "2026-11-14",
-      "tried": "2026-11-18"
+      "tried": "2026-11-20"
     },
     {
       "date": "2026-12-05",
@@ -601,7 +583,7 @@
       "colorway": "Neutral Grey/French Blue-Chile Red",
       "sf": 1,
       "ic": "2026-11-17",
-      "tried": "2026-11-18"
+      "tried": "2026-11-20"
     },
     {
       "date": "2026-12-05",
@@ -634,7 +616,8 @@
       "image": "",
       "link": "",
       "sku": "IU0737-001",
-      "colorway": "Black/Black-Pink Prime-Clear Jade"
+      "colorway": "Black/Black-Pink Prime-Clear Jade",
+      "tried": "2026-11-20"
     },
     {
       "date": "2026-12-11",
@@ -644,17 +627,18 @@
       "image": "https://www.sneakerfiles.com/wp-content/uploads/2026/08/jaide-air-jordan-1-low-og-2026-1.jpg",
       "link": "",
       "sf": 1,
-      "ic": "2026-11-15"
+      "ic": "2026-11-15",
+      "tried": "2026-11-20"
     },
     {
       "date": "2026-12-11",
       "name": "Jalen Brunson x Nike Kobe 3 Low Protro \"Arancia\"",
       "brand": "Nike",
       "retail_usd": null,
-      "image": "https://www.sneakerfiles.com/wp-content/uploads/2026/10/jalen-brunson-nike-kobe-3-low-arancia-total-orange-JA7845-800.jpg",
-      "link": "",
-      "sf": 1,
-      "ic": "2026-11-15"
+      "image": "https://images.stockx.com/images/Nike-Kobe-3-Low-Protro-Arancia-Jalen-Brunson-PE.jpg?fit=fill&bg=FFFFFF&w=600&h=430&fm=webp&auto=compress&q=90&dpr=2&trim=color&updated_at=1792696457",
+      "link": "https://stockx.pvxt.net/c/4722526/1023711/9060?u=https%3A%2F%2Fstockx.com%2Fnike-kobe-3-low-protro-arancia-jalen-brunson-pe",
+      "ic": "2026-11-15",
+      "sku": "JA7845-800"
     },
     {
       "date": "2026-12-11",
