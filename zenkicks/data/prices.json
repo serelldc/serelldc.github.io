@@ -2,10 +2,10 @@
   "items": {
     "jordan 11 gratitude": {
       "title": "Jordan 11 Retro DMP Gratitude (2023)",
-      "usd": 209,
-      "avg_usd": 310,
+      "usd": 217,
+      "avg_usd": 313,
       "link": "https://stockx.pvxt.net/c/4722526/1023711/9060?u=https%3A%2F%2Fstockx.com%2Fair-jordan-11-retro-dmp-defining-moments-2023",
-      "at": "2026-11-14"
+      "at": "2026-11-21"
     },
     "jordan 4": {
       "none": true,
@@ -25,10 +25,10 @@
     },
     "jordan 1 high og true blue": {
       "title": "Jordan 1 Retro High OG True Blue",
-      "usd": 43,
-      "avg_usd": 148,
+      "usd": 41,
+      "avg_usd": 151,
       "link": "https://stockx.pvxt.net/c/4722526/1023711/9060?u=https%3A%2F%2Fstockx.com%2Fair-jordan-1-retro-high-og-true-blue",
-      "at": "2026-11-14"
+      "at": "2026-11-21"
     },
     "rebook question": {
       "none": true,
@@ -41,9 +41,9 @@
     "jordan 1 defiant og high": {
       "title": "Jordan 1 Retro High OG Defiant Couture",
       "usd": 111,
-      "avg_usd": 228,
+      "avg_usd": 220,
       "link": "https://stockx.pvxt.net/c/4722526/1023711/9060?u=https%3A%2F%2Fstockx.com%2Fair-jordan-1-retro-high-og-defiant-couture",
-      "at": "2026-11-14"
+      "at": "2026-11-21"
     },
     "j 1 low travis scott shy pink": {
       "none": true,
@@ -120,10 +120,10 @@
     },
     "jordan 9 retro og space jam (2026)": {
       "title": "Jordan 9 Retro OG Space Jam (2026)",
-      "usd": 200,
-      "avg_usd": 292,
+      "usd": 195,
+      "avg_usd": 257,
       "link": "https://stockx.pvxt.net/c/4722526/1023711/9060?u=https%3A%2F%2Fstockx.com%2Fair-jordan-9-retro-og-space-jam-2026",
-      "at": "2026-11-11"
+      "at": "2026-11-21"
     },
     "maison mihara yasuhiro hank og sole canvas low black": {
       "title": "Maison Mihara Yasuhiro Hank OG Sole Canvas Low Black",
@@ -134,10 +134,10 @@
     },
     "jordan 4 retro toro bravo (2026)": {
       "title": "Jordan 4 Retro Toro Bravo (2026)",
-      "usd": 157,
-      "avg_usd": 188,
+      "usd": 158,
+      "avg_usd": 201,
       "link": "https://stockx.pvxt.net/c/4722526/1023711/9060?u=https%3A%2F%2Fstockx.com%2Fair-jordan-4-retro-toro-bravo-2026",
-      "at": "2026-11-11"
+      "at": "2026-11-21"
     },
     "jordan 8 retro chrome (2026)": {
       "title": "Jordan 8 Retro Chrome (2026)",
@@ -585,7 +585,7 @@
     },
     "air jordan 3 santa": {
       "none": true,
-      "at": "2026-11-07"
+      "at": "2026-11-21"
     },
     "nike kobe ad protro purple stardust 2026": {
       "title": "Nike Kobe A.D. Protro Purple Stardust",
@@ -676,8 +676,19 @@
       "avg_usd": 356,
       "link": "https://stockx.pvxt.net/c/4722526/1023711/9060?u=https%3A%2F%2Fstockx.com%2Fair-jordan-4-retro-og-bred-2026",
       "at": "2026-11-20"
+    },
+    "kyle wilson x nike sb air max 95": {
+      "none": true,
+      "at": "2026-11-21"
+    },
+    "nike kobe ad protro laser orange": {
+      "title": "Nike Kobe A.D. Protro Laser Orange",
+      "usd": 125,
+      "avg_usd": 177,
+      "link": "https://stockx.pvxt.net/c/4722526/1023711/9060?u=https%3A%2F%2Fstockx.com%2Fnike-kobe-a-d-protro-laser-orange",
+      "at": "2026-11-21"
     }
   },
-  "updated": "2026-11-20",
+  "updated": "2026-11-21",
   "source": "KicksDB (StockX average resale, all sizes)"
 }
