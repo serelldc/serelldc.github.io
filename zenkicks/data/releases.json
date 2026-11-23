@@ -3,17 +3,6 @@
   "source": "SneakerFiles & Sneaker News release calendars (curated weekly); photos from KicksDB (StockX)",
   "items": [
     {
-      "date": "2026-11-22",
-      "name": "Nike Kobe AD Protro \"Ruthless Precision\"",
-      "brand": "Nike",
-      "retail_usd": 155,
-      "image": "https://images.stockx.com/images/Nike-Kobe-A-D-Protro-Ruthless-Precision.jpg?fit=fill&bg=FFFFFF&w=600&h=430&fm=webp&auto=compress&q=90&dpr=2&trim=color&updated_at=1793914470",
-      "link": "https://stockx.pvxt.net/c/4722526/1023711/9060?u=https%3A%2F%2Fstockx.com%2Fnike-kobe-a-d-protro-ruthless-precision",
-      "sku": "IO8233-001",
-      "colorway": "Cool Grey/White-Black",
-      "ic": "2026-11-19"
-    },
-    {
       "date": "2026-11-24",
       "name": "Nike Caitlin 1 \"Snow White\"",
       "brand": "Nike",
@@ -53,7 +42,7 @@
       "retail_usd": 230,
       "link": "https://stockx.pvxt.net/c/4722526/1023711/9060?u=https%3A%2F%2Fstockx.com%2Fair-jordan-4-retro-og-bred-2026",
       "sku": "IX8180-001",
-      "image": "https://images.stockx.com/images/air-jordan-4-retro-og-bred-2026.jpg?fit=fill&bg=FFFFFF&w=600&h=430&fm=webp&auto=compress&q=90&dpr=2&trim=color&updated_at=1791400762"
+      "image": "https://images.stockx.com/images/Air-Jordan-4-Retro-OG-Bred-2026.jpg?fit=fill&bg=FFFFFF&w=600&h=430&fm=webp&auto=compress&q=90&dpr=2&trim=color&updated_at=1794932479"
     },
     {
       "date": "2026-11-27",
@@ -70,13 +59,11 @@
       "name": "Nike KD 19 \"Lightning\"",
       "brand": "Nike",
       "retail_usd": 155,
-      "image": "https://www.sneakerfiles.com/wp-content/uploads/2026/11/nike-kd-19-lightning-lagoon-pulse-JA0780-100.jpg",
-      "link": "",
+      "image": "https://images.stockx.com/images/Nike-KD-19-Lightning.jpg?fit=fill&bg=FFFFFF&w=600&h=430&fm=webp&auto=compress&q=90&dpr=2&trim=color&updated_at=1794866014",
+      "link": "https://stockx.pvxt.net/c/4722526/1023711/9060?u=https%3A%2F%2Fstockx.com%2Fnike-kd-19-lightning",
       "sku": "JA0780-100",
       "colorway": "White/Lagoon Pulse-Stadium Green-Metallic Silver",
-      "sf": 1,
-      "ic": "2026-11-19",
-      "tried": "2026-11-21"
+      "ic": "2026-11-19"
     },
     {
       "date": "2026-11-27",
@@ -108,7 +95,7 @@
       "link": "",
       "sf": 1,
       "ic": "2026-11-21",
-      "tried": "2026-11-21"
+      "tried": "2026-11-23"
     },
     {
       "date": "2026-11-28",
@@ -132,7 +119,7 @@
       "colorway": "Cobalt Blue/Anthracite-Vast Grey-Varsity Maize",
       "sf": 1,
       "ic": "2026-11-21",
-      "tried": "2026-11-21"
+      "tried": "2026-11-23"
     },
     {
       "date": "2026-11-28",
@@ -145,7 +132,7 @@
       "colorway": "Black/Stadium Green-Light Lemon Twist-Varsity Maize",
       "sf": 1,
       "ic": "2026-11-21",
-      "tried": "2026-11-21"
+      "tried": "2026-11-23"
     },
     {
       "date": "2026-11-28",
@@ -155,7 +142,7 @@
       "image": "https://images.stockx.com/images/Nike-Air-Foamposite-Pro-College-Football-Pack-FSU.jpg?fit=fill&bg=FFFFFF&w=600&h=430&fm=webp&auto=compress&q=90&dpr=2&trim=color&updated_at=1790108033",
       "link": "https://stockx.pvxt.net/c/4722526/1023711/9060?u=https%3A%2F%2Fstockx.com%2Fnike-air-foamposite-pro-college-football-pack-fsu",
       "sku": "IX2095-600",
-      "ic": "2026-11-16"
+      "ic": "2026-11-23"
     },
     {
       "date": "2026-11-28",
@@ -168,7 +155,7 @@
       "colorway": "Black/Cool Grey-Diffused Blue",
       "sf": 1,
       "ic": "2026-11-21",
-      "tried": "2026-11-21"
+      "tried": "2026-11-23"
     },
     {
       "date": "2026-11-28",
@@ -211,7 +198,7 @@
       "link": "",
       "sf": 1,
       "ic": "2026-11-21",
-      "tried": "2026-11-21"
+      "tried": "2026-11-23"
     },
     {
       "date": "2026-11-28",
@@ -222,7 +209,7 @@
       "link": "",
       "sf": 1,
       "ic": "2026-11-21",
-      "tried": "2026-11-21"
+      "tried": "2026-11-23"
     },
     {
       "date": "2026-11-28",
@@ -264,8 +251,9 @@
       "name": "New Balance 991v2 Made in UK \"Plum\"",
       "brand": "New Balance",
       "retail_usd": 250,
-      "image": "",
-      "link": ""
+      "image": "https://images.stockx.com/images/New-Balance-991v2-MiUK-Grounded-depths-Black-Plum.jpg?fit=fill&bg=FFFFFF&w=600&h=430&fm=webp&auto=compress&q=90&dpr=2&trim=color&updated_at=1795037595",
+      "link": "https://stockx.pvxt.net/c/4722526/1023711/9060?u=https%3A%2F%2Fstockx.com%2Fnew-balance-991v2-miuk-grounded-depths-black-plum",
+      "sku": "U991WP2"
     },
     {
       "date": "2026-12-01",
@@ -327,18 +315,18 @@
       "retail_usd": 120,
       "image": "https://images.stockx.com/images/New-Balance-574-Grey-White-Light-Blue-Gum-Product.jpg?fit=fill&bg=FFFFFF&w=600&h=430&fm=webp&auto=compress&q=90&dpr=2&trim=color&updated_at=1738193358",
       "link": "https://stockx.pvxt.net/c/4722526/1023711/9060?u=https%3A%2F%2Fstockx.com%2Fnew-balance-574-grey-white-light-blue-gum",
-      "sku": "U574SG2"
+      "sku": "U574SG2",
+      "ic": "2026-11-23"
     },
     {
       "date": "2026-12-04",
       "name": "Nike Book 2 \"Christmas\"",
       "brand": "Nike",
       "retail_usd": 155,
-      "image": "https://www.sneakerfiles.com/wp-content/uploads/2026/11/nike-book-2-christmas-IO7943-600.jpg",
-      "link": "",
+      "image": "https://images.stockx.com/images/Nike-Book-2-Christmas.jpg?fit=fill&bg=FFFFFF&w=600&h=430&fm=webp&auto=compress&q=90&dpr=2&trim=color&updated_at=1794493787",
+      "link": "https://stockx.pvxt.net/c/4722526/1023711/9060?u=https%3A%2F%2Fstockx.com%2Fnike-book-2-christmas",
       "sku": "IO7943-600",
       "colorway": "Bright Crimson/Black-Electric Green",
-      "sf": 1,
       "ic": "2026-11-21"
     },
     {
@@ -346,10 +334,9 @@
       "name": "Nike LeBron 24 \"Christmas\"",
       "brand": "Nike",
       "retail_usd": 200,
-      "image": "https://www.sneakerfiles.com/wp-content/uploads/2026/11/nike-lebron-24-christmas-IO8205-300.jpg",
-      "link": "",
+      "image": "https://images.stockx.com/images/Nike-LeBron-24-Christmas.jpg?fit=fill&bg=FFFFFF&w=600&h=430&fm=webp&auto=compress&q=90&dpr=2&trim=color&updated_at=1793913182",
+      "link": "https://stockx.pvxt.net/c/4722526/1023711/9060?u=https%3A%2F%2Fstockx.com%2Fnike-lebron-24-christmas",
       "sku": "IO8205-300",
-      "sf": 1,
       "ic": "2026-11-21"
     },
     {
@@ -452,13 +439,11 @@
       "name": "Nike Kobe 10 Protro \"Duke\" PE",
       "brand": "Nike",
       "retail_usd": 190,
-      "image": "https://www.sneakerfiles.com/wp-content/uploads/2026/11/nike-kobe-10-protro-duke-pe-JW6581-001.jpg",
-      "link": "",
+      "image": "https://images.stockx.com/images/Nike-Kobe-10-Protro-Low-Duke-Blue-Devils.jpg?fit=fill&bg=FFFFFF&w=600&h=430&fm=webp&auto=compress&q=90&dpr=2&trim=color&updated_at=1795119679",
+      "link": "https://stockx.pvxt.net/c/4722526/1023711/9060?u=https%3A%2F%2Fstockx.com%2Fnike-kobe-10-protro-low-duke-blue-devils",
       "sku": "JW6581-001",
       "colorway": "Black/White-Game Royal",
-      "sf": 1,
-      "ic": "2026-11-19",
-      "tried": "2026-11-21"
+      "ic": "2026-11-19"
     },
     {
       "date": "2026-12-11",
@@ -643,7 +628,7 @@
       "sku": "JJ7564-200",
       "colorway": "Flax/Gum Medium Brown-University Gold-Pine Green",
       "sf": 1,
-      "ic": "2026-11-16"
+      "ic": "2026-11-23"
     },
     {
       "date": "2026-12-19",
@@ -691,7 +676,7 @@
       "sku": "IV7127-700",
       "colorway": "Dynamic Yellow/Field Purple",
       "sf": 1,
-      "ic": "2026-11-16"
+      "ic": "2026-11-23"
     },
     {
       "date": "2026-12-19",
@@ -865,7 +850,7 @@
       "sku": "IO6262-600",
       "colorway": "Laser Crimson/Silver-Obsidian",
       "sf": 1,
-      "ic": "2026-11-15"
+      "ic": "2026-11-23"
     },
     {
       "date": "2027-01-02",
@@ -887,7 +872,7 @@
       "sku": "IH7423-001",
       "colorway": "Black/Metallic Silver-Racer Blue",
       "sf": 1,
-      "ic": "2026-11-15"
+      "ic": "2026-11-23"
     },
     {
       "date": "2027-01-15",
@@ -908,7 +893,7 @@
       "link": "",
       "sku": "IX0206-001",
       "sf": 1,
-      "ic": "2026-11-15"
+      "ic": "2026-11-23"
     },
     {
       "date": "2027-01-16",
@@ -930,7 +915,7 @@
       "sku": "IH7423-301",
       "colorway": "Emerald Rise/Varsity Maize-Dusty Cactus-Midnight Navy-Metallic Silver",
       "sf": 1,
-      "ic": "2026-11-16"
+      "ic": "2026-11-23"
     },
     {
       "date": "2027-01-16",
@@ -940,7 +925,7 @@
       "image": "https://www.sneakerfiles.com/wp-content/uploads/2026/10/nike-doernbecher-freestyle-22-collection-2027.jpg",
       "link": "",
       "sf": 1,
-      "ic": "2026-11-16"
+      "ic": "2026-11-23"
     },
     {
       "date": "2027-01-16",
@@ -952,7 +937,7 @@
       "sku": "JF1792-300",
       "colorway": "Pine Green/Stealth-Vast Grey",
       "sf": 1,
-      "ic": "2026-11-16"
+      "ic": "2026-11-23"
     },
     {
       "date": "2027-01-17",
@@ -978,7 +963,7 @@
       "image": "https://www.sneakerfiles.com/wp-content/uploads/2026/04/air-jordan-12-obsidian-CT8013-401-2027-release-info.jpg",
       "link": "",
       "sf": 1,
-      "ic": "2026-11-16"
+      "ic": "2026-11-23"
     },
     {
       "date": "2027-01-23",
