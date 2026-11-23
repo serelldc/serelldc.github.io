@@ -1,5 +1,5 @@
 {
-  "updated": "2026-11-22",
+  "updated": "2026-11-23",
   "source": "SneakerFiles & Sneaker News release calendars (curated weekly); photos from KicksDB (StockX)",
   "items": [
     {
@@ -258,6 +258,14 @@
       "sku": "JF7593-100",
       "colorway": "White/Metallic Gold-Off Noir",
       "ic": "2026-11-21"
+    },
+    {
+      "date": "2026-12-01",
+      "name": "New Balance 991v2 Made in UK \"Plum\"",
+      "brand": "New Balance",
+      "retail_usd": 250,
+      "image": "",
+      "link": ""
     },
     {
       "date": "2026-12-01",
