@@ -1,5 +1,5 @@
 {
-  "updated": "2026-11-23",
+  "updated": "2026-11-24",
   "source": "SneakerFiles & Sneaker News release calendars (curated weekly); photos from KicksDB (StockX)",
   "items": [
     {
@@ -22,7 +22,7 @@
       "link": "https://stockx.pvxt.net/c/4722526/1023711/9060?u=https%3A%2F%2Fstockx.com%2Fnike-ja-4-blur",
       "sku": "IM4135-501",
       "colorway": "Monarch Purple/Black-Bright Crimson-Atomic Pink",
-      "ic": "2026-11-17"
+      "ic": "2026-11-24"
     },
     {
       "date": "2026-11-26",
@@ -33,7 +33,7 @@
       "link": "https://stockx.pvxt.net/c/4722526/1023711/9060?u=https%3A%2F%2Fstockx.com%2Fnike-sb-dunk-low-ducks-of-a-feather-oregon-ducks-the-zoo",
       "sku": "JJ7565-300",
       "colorway": "Tomatillo/Gum Medium Brown-Gym Green-Gorge Green",
-      "ic": "2026-11-17"
+      "ic": "2026-11-24"
     },
     {
       "date": "2026-11-27",
@@ -42,7 +42,8 @@
       "retail_usd": 230,
       "link": "https://stockx.pvxt.net/c/4722526/1023711/9060?u=https%3A%2F%2Fstockx.com%2Fair-jordan-4-retro-og-bred-2026",
       "sku": "IX8180-001",
-      "image": "https://images.stockx.com/images/Air-Jordan-4-Retro-OG-Bred-2026.jpg?fit=fill&bg=FFFFFF&w=600&h=430&fm=webp&auto=compress&q=90&dpr=2&trim=color&updated_at=1794932479"
+      "image": "https://images.stockx.com/images/Air-Jordan-4-Retro-OG-Bred-2026.jpg?fit=fill&bg=FFFFFF&w=600&h=430&fm=webp&auto=compress&q=90&dpr=2&trim=color&updated_at=1794932479",
+      "ic": "2026-11-24"
     },
     {
       "date": "2026-11-27",
@@ -222,7 +223,7 @@
       "colorway": "Black/Light Crimson",
       "sf": 1,
       "ic": "2026-11-22",
-      "tried": "2026-11-22"
+      "tried": "2026-11-24"
     },
     {
       "date": "2026-11-29",
@@ -253,7 +254,8 @@
       "retail_usd": 250,
       "image": "https://images.stockx.com/images/New-Balance-991v2-MiUK-Grounded-depths-Black-Plum.jpg?fit=fill&bg=FFFFFF&w=600&h=430&fm=webp&auto=compress&q=90&dpr=2&trim=color&updated_at=1795037595",
       "link": "https://stockx.pvxt.net/c/4722526/1023711/9060?u=https%3A%2F%2Fstockx.com%2Fnew-balance-991v2-miuk-grounded-depths-black-plum",
-      "sku": "U991WP2"
+      "sku": "U991WP2",
+      "ic": "2026-11-24"
     },
     {
       "date": "2026-12-01",
@@ -262,20 +264,18 @@
       "retail_usd": 130,
       "image": "",
       "link": "",
-      "tried": "2026-11-22"
+      "tried": "2026-11-24"
     },
     {
       "date": "2026-12-01",
       "name": "Nike LeBron 24 \"Chosen 1s\"",
       "brand": "Nike",
       "retail_usd": 200,
-      "image": "https://www.sneakerfiles.com/wp-content/uploads/2026/09/nike-lebron-24-yellow-chosen-1s-IO8201-700.jpg",
-      "link": "",
+      "image": "https://images.stockx.com/images/Nike-LeBron-24-Chosen-1s.jpg?fit=fill&bg=FFFFFF&w=600&h=430&fm=webp&auto=compress&q=90&dpr=2&trim=color&updated_at=1795123396",
+      "link": "https://stockx.pvxt.net/c/4722526/1023711/9060?u=https%3A%2F%2Fstockx.com%2Fnike-lebron-24-chosen-1s",
       "sku": "IO8201-700",
       "colorway": "Tour Yellow/Midnight Navy-White-Metallic Gold",
-      "sf": 1,
-      "ic": "2026-11-21",
-      "tried": "2026-11-22"
+      "ic": "2026-11-21"
     },
     {
       "date": "2026-12-01",
@@ -284,7 +284,7 @@
       "retail_usd": null,
       "image": "",
       "link": "",
-      "tried": "2026-11-22"
+      "tried": "2026-11-24"
     },
     {
       "date": "2026-12-03",
@@ -344,11 +344,10 @@
       "name": "Nike Sabrina 4 \"Christmas\"",
       "brand": "Nike",
       "retail_usd": 155,
-      "image": "https://www.sneakerfiles.com/wp-content/uploads/2026/11/nike-sabrina-4-christmas-IQ0849-600.jpg",
-      "link": "",
+      "image": "https://images.stockx.com/images/Nike-Sabrina-4-Christmas-Womens.jpg?fit=fill&bg=FFFFFF&w=600&h=430&fm=webp&auto=compress&q=90&dpr=2&trim=color&updated_at=1794589485",
+      "link": "https://stockx.pvxt.net/c/4722526/1023711/9060?u=https%3A%2F%2Fstockx.com%2Fnike-sabrina-4-christmas-womens",
       "sku": "IQ0849-600",
       "colorway": "Bright Crimson/Black-Electric Green",
-      "sf": 1,
       "ic": "2026-11-21"
     },
     {
@@ -356,18 +355,19 @@
       "name": "adidas ZX 8000 \"Made In Germany\"",
       "brand": "adidas",
       "retail_usd": 230,
-      "image": "",
-      "link": ""
+      "image": "https://images.stockx.com/images/adidas-ZX-8000-Made-in-Germany-Off-White-Pink-Court-Green.jpg?fit=fill&bg=FFFFFF&w=600&h=430&fm=webp&auto=compress&q=90&dpr=2&trim=color&updated_at=1782762854",
+      "link": "https://stockx.pvxt.net/c/4722526/1023711/9060?u=https%3A%2F%2Fstockx.com%2Fadidas-zx-8000-made-in-germany-off-white-pink-court-green",
+      "sku": "KI4726"
     },
     {
       "date": "2026-12-05",
       "name": "Air Jordan 10 \"Sacramento\"",
       "brand": "Jordan",
       "retail_usd": null,
-      "image": "https://www.sneakerfiles.com/wp-content/uploads/2026/02/air-jordan-10-sacramento-HJ6779-002-2026.jpg",
-      "link": "",
-      "sf": 1,
-      "ic": "2026-11-21"
+      "image": "https://images.stockx.com/images/Air-Jordan-10-Retro-Sacramento-2026.jpg?fit=fill&bg=FFFFFF&w=600&h=430&fm=webp&auto=compress&q=90&dpr=2&trim=color&updated_at=1793222415",
+      "link": "https://stockx.pvxt.net/c/4722526/1023711/9060?u=https%3A%2F%2Fstockx.com%2Fair-jordan-10-retro-sacramento-2026",
+      "ic": "2026-11-21",
+      "sku": "HJ6779-002"
     },
     {
       "date": "2026-12-05",
@@ -385,8 +385,9 @@
       "name": "Pharrell Williams x adidas Adistar Jellyfish \"Auburn Timber\"",
       "brand": "adidas",
       "retail_usd": 300,
-      "image": "",
-      "link": ""
+      "image": "https://images.stockx.com/images/adidas-Adistar-Jellyfish-Pharrell-Williams-Auburn-Timber.jpg?fit=fill&bg=FFFFFF&w=600&h=430&fm=webp&auto=compress&q=90&dpr=2&trim=color&updated_at=1783369319",
+      "link": "https://stockx.pvxt.net/c/4722526/1023711/9060?u=https%3A%2F%2Fstockx.com%2Fadidas-adistar-jellyfish-pharrell-williams-auburn-timber",
+      "sku": "KK2889"
     },
     {
       "date": "2026-12-05",
@@ -409,7 +410,7 @@
       "link": "",
       "sf": 1,
       "ic": "2026-11-21",
-      "tried": "2026-11-22"
+      "tried": "2026-11-24"
     },
     {
       "date": "2026-12-05",
@@ -421,8 +422,8 @@
       "sku": "IW1290-001",
       "colorway": "Neutral Grey/French Blue-Chile Red",
       "sf": 1,
-      "ic": "2026-11-17",
-      "tried": "2026-11-22"
+      "ic": "2026-11-24",
+      "tried": "2026-11-24"
     },
     {
       "date": "2026-12-05",
@@ -454,7 +455,7 @@
       "link": "",
       "sku": "IU0737-001",
       "colorway": "Black/Black-Pink Prime-Clear Jade",
-      "tried": "2026-11-22"
+      "tried": "2026-11-24"
     },
     {
       "date": "2026-12-11",
@@ -465,7 +466,7 @@
       "link": "",
       "sf": 1,
       "ic": "2026-11-22",
-      "tried": "2026-11-22"
+      "tried": "2026-11-24"
     },
     {
       "date": "2026-12-11",
@@ -592,7 +593,7 @@
       "sku": "IW9834-600",
       "colorway": "Team Scarlet/Deep Royal Blue",
       "sf": 1,
-      "ic": "2026-11-17"
+      "ic": "2026-11-24"
     },
     {
       "date": "2026-12-18",

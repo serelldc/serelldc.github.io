@@ -36,7 +36,7 @@
     },
     "j 1 low concord": {
       "none": true,
-      "at": "2026-11-16"
+      "at": "2026-11-24"
     },
     "jordan 1 defiant og high": {
       "title": "Jordan 1 Retro High OG Defiant Couture",
@@ -47,7 +47,7 @@
     },
     "j 1 low travis scott shy pink": {
       "none": true,
-      "at": "2026-11-17"
+      "at": "2026-11-24"
     },
     "nike zoom field jaxx travis scott leche blue": {
       "title": "Nike Zoom Field Jaxx Travis Scott Leche Blue",
@@ -58,11 +58,11 @@
     },
     "air jordan 1 zm air cmft 2 wmns university blue volt": {
       "none": true,
-      "at": "2026-11-16"
+      "at": "2026-11-24"
     },
     "air jordan 4 wmns canyon purple": {
       "none": true,
-      "at": "2026-11-16"
+      "at": "2026-11-24"
     },
     "air jordan 1 high og royal reimagined": {
       "title": "Jordan 1 Retro High OG Royal Reimagined",
@@ -87,10 +87,10 @@
     },
     "kobe protro college navy": {
       "title": "Nike Kobe 8 Protro College Navy",
-      "usd": 148,
-      "avg_usd": 316,
+      "usd": 159,
+      "avg_usd": 324,
       "link": "https://stockx.pvxt.net/c/4722526/1023711/9060?u=https%3A%2F%2Fstockx.com%2Fnike-kobe-8-protro-college-navy",
-      "at": "2026-11-17"
+      "at": "2026-11-24"
     },
     "kobe ix elite low em protro black university-gold": {
       "none": true,
@@ -98,7 +98,7 @@
     },
     "nike ja 4 nightmare": {
       "none": true,
-      "at": "2026-11-17"
+      "at": "2026-11-24"
     },
     "ja 4 ny vs ny": {
       "none": true,
@@ -145,41 +145,6 @@
       "avg_usd": 251,
       "link": "https://stockx.pvxt.net/c/4722526/1023711/9060?u=https%3A%2F%2Fstockx.com%2Fnike-kobe-5-protro-dodgers",
       "at": "2026-11-03"
-    },
-    "nike air force 1 low '01 nigo x j-hope": {
-      "title": "Nike Air Force 1 Low '01 NIGO x J-Hope",
-      "usd": 176,
-      "avg_usd": 271,
-      "link": "https://stockx.pvxt.net/c/4722526/1023711/9060?u=https%3A%2F%2Fstockx.com%2Fnike-air-force-1-low-01-nigo-x-j-hope",
-      "at": "2026-10-24"
-    },
-    "adidas gazelle indoor bad bunny solar gold": {
-      "title": "adidas Gazelle Indoor Bad Bunny Solar Gold",
-      "usd": 79,
-      "avg_usd": 113,
-      "link": "https://stockx.pvxt.net/c/4722526/1023711/9060?u=https%3A%2F%2Fstockx.com%2Fadidas-gazelle-indoor-bad-bunny-solar-gold",
-      "at": "2026-10-24"
-    },
-    "air jordan 1 low halloween": {
-      "title": "Jordan 1 Low SE Halloween",
-      "usd": 54,
-      "avg_usd": 216,
-      "link": "https://stockx.pvxt.net/c/4722526/1023711/9060?u=https%3A%2F%2Fstockx.com%2Fair-jordan-1-low-se-halloween",
-      "at": "2026-10-24"
-    },
-    "air jordan 1 mid dia de los muertos": {
-      "title": "Jordan 1 Mid Dia de los Muertos",
-      "usd": 74,
-      "avg_usd": 168,
-      "link": "https://stockx.pvxt.net/c/4722526/1023711/9060?u=https%3A%2F%2Fstockx.com%2Fair-jordan-1-mid-dia-de-los-muertos",
-      "at": "2026-10-24"
-    },
-    "air jordan 12 fireside": {
-      "title": "Jordan 12 Retro Fireside",
-      "usd": 166,
-      "avg_usd": 216,
-      "link": "https://stockx.pvxt.net/c/4722526/1023711/9060?u=https%3A%2F%2Fstockx.com%2Fair-jordan-12-retro-fireside",
-      "at": "2026-10-24"
     },
     "air jordan 41 university red": {
       "title": "Jordan 41 University Red",
@@ -711,6 +676,6 @@
       "at": "2026-11-23"
     }
   },
-  "updated": "2026-11-23",
+  "updated": "2026-11-24",
   "source": "KicksDB (StockX average resale, all sizes)"
 }
