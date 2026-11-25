@@ -1,5 +1,5 @@
 {
-  "updated": "2026-11-24",
+  "updated": "2026-11-25",
   "source": "SneakerFiles & Sneaker News release calendars (curated weekly); photos from KicksDB (StockX)",
   "items": [
     {
@@ -953,6 +953,14 @@
       "name": "Nike Kobe 10 Low Protro \"Blackout\"",
       "brand": "Nike",
       "retail_usd": 190,
+      "image": "",
+      "link": ""
+    },
+    {
+      "date": "2027-01-20",
+      "name": "NOCTA x Nike Air Modmax \"Pink Spell\"",
+      "brand": "Nike",
+      "retail_usd": 180,
       "image": "",
       "link": ""
     },
