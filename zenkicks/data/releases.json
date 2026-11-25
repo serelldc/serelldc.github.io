@@ -3,28 +3,6 @@
   "source": "SneakerFiles & Sneaker News release calendars (curated weekly); photos from KicksDB (StockX)",
   "items": [
     {
-      "date": "2026-11-24",
-      "name": "Nike Caitlin 1 \"Snow White\"",
-      "brand": "Nike",
-      "retail_usd": 140,
-      "image": "https://images.stockx.com/images/Nike-Caitlin-1-Snow-White-Womens.jpg?fit=fill&bg=FFFFFF&w=600&h=430&fm=webp&auto=compress&q=90&dpr=2&trim=color&updated_at=1784235386",
-      "link": "https://stockx.pvxt.net/c/4722526/1023711/9060?u=https%3A%2F%2Fstockx.com%2Fnike-caitlin-1-snow-white-womens",
-      "sku": "IH7423-100",
-      "colorway": "White/Racer Blue",
-      "ic": "2026-11-22"
-    },
-    {
-      "date": "2026-11-24",
-      "name": "Nike Ja 4 \"Blur\"",
-      "brand": "Nike",
-      "retail_usd": 130,
-      "image": "https://images.stockx.com/images/Nike-Ja-4-Blur.jpg?fit=fill&bg=FFFFFF&w=600&h=430&fm=webp&auto=compress&q=90&dpr=2&trim=color&updated_at=1793739597",
-      "link": "https://stockx.pvxt.net/c/4722526/1023711/9060?u=https%3A%2F%2Fstockx.com%2Fnike-ja-4-blur",
-      "sku": "IM4135-501",
-      "colorway": "Monarch Purple/Black-Bright Crimson-Atomic Pink",
-      "ic": "2026-11-24"
-    },
-    {
       "date": "2026-11-26",
       "name": "Ducks of a Feather x Nike SB Dunk Low \"The Zoo\"",
       "brand": "Nike",
@@ -96,7 +74,7 @@
       "link": "",
       "sf": 1,
       "ic": "2026-11-21",
-      "tried": "2026-11-23"
+      "tried": "2026-11-25"
     },
     {
       "date": "2026-11-28",
@@ -120,7 +98,7 @@
       "colorway": "Cobalt Blue/Anthracite-Vast Grey-Varsity Maize",
       "sf": 1,
       "ic": "2026-11-21",
-      "tried": "2026-11-23"
+      "tried": "2026-11-25"
     },
     {
       "date": "2026-11-28",
@@ -133,7 +111,7 @@
       "colorway": "Black/Stadium Green-Light Lemon Twist-Varsity Maize",
       "sf": 1,
       "ic": "2026-11-21",
-      "tried": "2026-11-23"
+      "tried": "2026-11-25"
     },
     {
       "date": "2026-11-28",
@@ -156,7 +134,7 @@
       "colorway": "Black/Cool Grey-Diffused Blue",
       "sf": 1,
       "ic": "2026-11-21",
-      "tried": "2026-11-23"
+      "tried": "2026-11-25"
     },
     {
       "date": "2026-11-28",
@@ -199,7 +177,7 @@
       "link": "",
       "sf": 1,
       "ic": "2026-11-21",
-      "tried": "2026-11-23"
+      "tried": "2026-11-25"
     },
     {
       "date": "2026-11-28",
@@ -210,7 +188,7 @@
       "link": "",
       "sf": 1,
       "ic": "2026-11-21",
-      "tried": "2026-11-23"
+      "tried": "2026-11-25"
     },
     {
       "date": "2026-11-28",
@@ -357,7 +335,8 @@
       "retail_usd": 230,
       "image": "https://images.stockx.com/images/adidas-ZX-8000-Made-in-Germany-Off-White-Pink-Court-Green.jpg?fit=fill&bg=FFFFFF&w=600&h=430&fm=webp&auto=compress&q=90&dpr=2&trim=color&updated_at=1782762854",
       "link": "https://stockx.pvxt.net/c/4722526/1023711/9060?u=https%3A%2F%2Fstockx.com%2Fadidas-zx-8000-made-in-germany-off-white-pink-court-green",
-      "sku": "KI4726"
+      "sku": "KI4726",
+      "ic": "2026-11-25"
     },
     {
       "date": "2026-12-05",
@@ -387,7 +366,8 @@
       "retail_usd": 300,
       "image": "https://images.stockx.com/images/adidas-Adistar-Jellyfish-Pharrell-Williams-Auburn-Timber.jpg?fit=fill&bg=FFFFFF&w=600&h=430&fm=webp&auto=compress&q=90&dpr=2&trim=color&updated_at=1783369319",
       "link": "https://stockx.pvxt.net/c/4722526/1023711/9060?u=https%3A%2F%2Fstockx.com%2Fadidas-adistar-jellyfish-pharrell-williams-auburn-timber",
-      "sku": "KK2889"
+      "sku": "KK2889",
+      "ic": "2026-11-25"
     },
     {
       "date": "2026-12-05",
@@ -399,7 +379,8 @@
       "sku": "KK2888",
       "colorway": "Dark Brown/Frozen Green",
       "sf": 1,
-      "ic": "2026-11-21"
+      "ic": "2026-11-21",
+      "tried": "2026-11-25"
     },
     {
       "date": "2026-12-05",
@@ -430,10 +411,10 @@
       "name": "UNheardof x adidas Adistar Control 5 \"Doggy Runner\"",
       "brand": "adidas",
       "retail_usd": null,
-      "image": "https://www.sneakerfiles.com/wp-content/uploads/2026/09/unheardof-adidas-adistar-control-5-doggy-runner.jpg",
-      "link": "",
-      "sf": 1,
-      "ic": "2026-11-22"
+      "image": "https://images.stockx.com/images/adidas-Adistar-Control-5-Unheardof-Doggy-Runner-Otto.jpg?fit=fill&bg=FFFFFF&w=600&h=430&fm=webp&auto=compress&q=90&dpr=2&trim=color&updated_at=1794949287",
+      "link": "https://stockx.pvxt.net/c/4722526/1023711/9060?u=https%3A%2F%2Fstockx.com%2Fadidas-adistar-control-5-unheardof-doggy-runner-otto",
+      "ic": "2026-11-22",
+      "sku": "LA8971"
     },
     {
       "date": "2026-12-10",
@@ -483,11 +464,10 @@
       "name": "Nike Air Foamposite One \"Floral\" 2026",
       "brand": "Nike",
       "retail_usd": 240,
-      "image": "https://www.sneakerfiles.com/wp-content/uploads/2026/02/nike-air-foamposite-one-floral-2026-AA3963-002.jpg",
-      "link": "",
+      "image": "https://images.stockx.com/images/Nike-Air-Foamposite-One-Floral-Product.jpg?fit=fill&bg=FFFFFF&w=600&h=430&fm=webp&auto=compress&q=90&dpr=2&trim=color&updated_at=1787066360",
+      "link": "https://stockx.pvxt.net/c/4722526/1023711/9060?u=https%3A%2F%2Fstockx.com%2Fnike-air-foamposite-one-floral",
       "sku": "AA3963-002",
       "colorway": "Black/Metallic Gold-Black",
-      "sf": 1,
       "ic": "2026-11-22"
     },
     {
@@ -496,15 +476,17 @@
       "brand": "adidas",
       "retail_usd": 110,
       "image": "",
-      "link": ""
+      "link": "",
+      "tried": "2026-11-25"
     },
     {
       "date": "2026-12-11",
       "name": "adidas Harden Vol. 11 \"Lucid Blue\"",
       "brand": "adidas",
       "retail_usd": 160,
-      "image": "",
-      "link": ""
+      "image": "https://images.stockx.com/images/adidas-Harden-Vol-11-Lucid-Blue-White.jpg?fit=fill&bg=FFFFFF&w=600&h=430&fm=webp&auto=compress&q=90&dpr=2&trim=color&updated_at=1794603627",
+      "link": "https://stockx.pvxt.net/c/4722526/1023711/9060?u=https%3A%2F%2Fstockx.com%2Fadidas-harden-vol-11-lucid-blue-white",
+      "sku": "HQ5398"
     },
     {
       "date": "2026-12-12",
@@ -537,7 +519,8 @@
       "sku": "IU7852-300",
       "colorway": "Green Apple/Bright Cactus-Varsity Red-Imperial Blue",
       "sf": 1,
-      "ic": "2026-11-22"
+      "ic": "2026-11-22",
+      "tried": "2026-11-25"
     },
     {
       "date": "2026-12-14",
@@ -779,7 +762,7 @@
       "sku": "IZ2537-300",
       "colorway": "Electric Green/Metallic Silver-Black-Bright Crimson",
       "sf": 1,
-      "ic": "2026-11-18"
+      "ic": "2026-11-25"
     },
     {
       "date": "2026-12-26",
@@ -861,7 +844,7 @@
       "image": "https://www.sneakerfiles.com/wp-content/uploads/2026/08/air-jordan-8-hornets-2027-JF9225-001.jpg",
       "link": "",
       "sf": 1,
-      "ic": "2026-11-18"
+      "ic": "2026-11-25"
     },
     {
       "date": "2027-01-05",
@@ -883,7 +866,7 @@
       "image": "https://www.sneakerfiles.com/wp-content/uploads/2026/05/air-jordan-4-spotlight-black-silver-HV0823-002-2027.jpg",
       "link": "",
       "sf": 1,
-      "ic": "2026-11-18"
+      "ic": "2026-11-25"
     },
     {
       "date": "2027-01-16",
@@ -904,7 +887,7 @@
       "image": "https://www.sneakerfiles.com/wp-content/uploads/2026/09/air-jordan-3-utility-black-fire-red-IX0198-001.jpg",
       "link": "",
       "sf": 1,
-      "ic": "2026-11-18"
+      "ic": "2026-11-25"
     },
     {
       "date": "2027-01-16",
@@ -990,7 +973,7 @@
       "image": "https://www.sneakerfiles.com/wp-content/uploads/2026/06/air-jordan-4-musik-packaging-box.jpg",
       "link": "",
       "sf": 1,
-      "ic": "2026-11-18"
+      "ic": "2026-11-25"
     }
   ]
 }

@@ -9,19 +9,19 @@
     },
     "jordan 4": {
       "none": true,
-      "at": "2026-11-18"
+      "at": "2026-11-25"
     },
     "aj1 retro mid cut gum red": {
       "none": true,
-      "at": "2026-11-18"
+      "at": "2026-11-25"
     },
     "kobe": {
       "none": true,
-      "at": "2026-11-18"
+      "at": "2026-11-25"
     },
     "nike gianni's": {
       "none": true,
-      "at": "2026-11-18"
+      "at": "2026-11-25"
     },
     "jordan 1 high og true blue": {
       "title": "Jordan 1 Retro High OG True Blue",
@@ -32,7 +32,7 @@
     },
     "rebook question": {
       "none": true,
-      "at": "2026-11-18"
+      "at": "2026-11-25"
     },
     "j 1 low concord": {
       "none": true,
@@ -145,35 +145,6 @@
       "avg_usd": 251,
       "link": "https://stockx.pvxt.net/c/4722526/1023711/9060?u=https%3A%2F%2Fstockx.com%2Fnike-kobe-5-protro-dodgers",
       "at": "2026-11-03"
-    },
-    "air jordan 41 university red": {
-      "title": "Jordan 41 University Red",
-      "usd": 297,
-      "avg_usd": 363,
-      "link": "https://stockx.pvxt.net/c/4722526/1023711/9060?u=https%3A%2F%2Fstockx.com%2Fair-jordan-41-university-red",
-      "at": "2026-10-25"
-    },
-    "nike air force 1 low university pack": {
-      "none": true,
-      "at": "2026-10-25"
-    },
-    "new balance 992 made in usa medusa green": {
-      "title": "New Balance 992 MiUSA Medusa Green Cortado",
-      "usd": 199,
-      "avg_usd": 509,
-      "link": "https://stockx.pvxt.net/c/4722526/1023711/9060?u=https%3A%2F%2Fstockx.com%2Fnew-balance-992-miusa-medusa-green-cortado",
-      "at": "2026-10-25"
-    },
-    "air jordan 3 fireside": {
-      "title": "Jordan 3 Retro Fireside (Women's)",
-      "usd": 124,
-      "avg_usd": 215,
-      "link": "https://stockx.pvxt.net/c/4722526/1023711/9060?u=https%3A%2F%2Fstockx.com%2Fair-jordan-3-retro-fireside-womens",
-      "at": "2026-10-25"
-    },
-    "nike book 2 oogie boogie": {
-      "none": true,
-      "at": "2026-10-25"
     },
     "nike vapor 12 white volt energy black": {
       "none": true,
@@ -432,10 +403,10 @@
     },
     "jordan 5 retro black university blue (2026)": {
       "title": "Jordan 5 Retro Black University Blue (2026)",
-      "usd": 203,
+      "usd": 199,
       "avg_usd": 250,
       "link": "https://stockx.pvxt.net/c/4722526/1023711/9060?u=https%3A%2F%2Fstockx.com%2Fair-jordan-5-retro-black-university-blue-2026",
-      "at": "2026-11-04"
+      "at": "2026-11-25"
     },
     "air jordan 11 women's lapis": {
       "none": true,
@@ -676,6 +647,6 @@
       "at": "2026-11-23"
     }
   },
-  "updated": "2026-11-24",
+  "updated": "2026-11-25",
   "source": "KicksDB (StockX average resale, all sizes)"
 }
