@@ -1,5 +1,5 @@
 {
-  "updated": "2026-11-25",
+  "updated": "2026-11-26",
   "source": "SneakerFiles & Sneaker News release calendars (curated weekly); photos from KicksDB (StockX)",
   "items": [
     {
@@ -819,6 +819,14 @@
     {
       "date": "2026-12-31",
       "name": "Nike Air Bakin \"Varsity Royal\"",
+      "brand": "Nike",
+      "retail_usd": null,
+      "image": "",
+      "link": ""
+    },
+    {
+      "date": "2026-12-31",
+      "name": "Nike Air Max 1000 \"Black Carbon\"",
       "brand": "Nike",
       "retail_usd": null,
       "image": "",
