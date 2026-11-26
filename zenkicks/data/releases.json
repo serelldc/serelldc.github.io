@@ -42,7 +42,7 @@
       "link": "https://stockx.pvxt.net/c/4722526/1023711/9060?u=https%3A%2F%2Fstockx.com%2Fnike-kd-19-lightning",
       "sku": "JA0780-100",
       "colorway": "White/Lagoon Pulse-Stadium Green-Metallic Silver",
-      "ic": "2026-11-19"
+      "ic": "2026-11-26"
     },
     {
       "date": "2026-11-27",
@@ -201,7 +201,7 @@
       "colorway": "Black/Light Crimson",
       "sf": 1,
       "ic": "2026-11-22",
-      "tried": "2026-11-24"
+      "tried": "2026-11-26"
     },
     {
       "date": "2026-11-29",
@@ -242,7 +242,7 @@
       "retail_usd": 130,
       "image": "",
       "link": "",
-      "tried": "2026-11-24"
+      "tried": "2026-11-26"
     },
     {
       "date": "2026-12-01",
@@ -262,7 +262,7 @@
       "retail_usd": null,
       "image": "",
       "link": "",
-      "tried": "2026-11-24"
+      "tried": "2026-11-26"
     },
     {
       "date": "2026-12-03",
@@ -273,7 +273,7 @@
       "link": "https://stockx.pvxt.net/c/4722526/1023711/9060?u=https%3A%2F%2Fstockx.com%2Fair-jordan-tatum-5-sunset",
       "sku": "IO1746-002",
       "colorway": "Black/Clementine-Amarillo-Infrared 23",
-      "ic": "2026-11-19"
+      "ic": "2026-11-26"
     },
     {
       "date": "2026-12-03",
@@ -391,7 +391,7 @@
       "link": "",
       "sf": 1,
       "ic": "2026-11-21",
-      "tried": "2026-11-24"
+      "tried": "2026-11-26"
     },
     {
       "date": "2026-12-05",
@@ -404,7 +404,7 @@
       "colorway": "Neutral Grey/French Blue-Chile Red",
       "sf": 1,
       "ic": "2026-11-24",
-      "tried": "2026-11-24"
+      "tried": "2026-11-26"
     },
     {
       "date": "2026-12-05",
@@ -425,7 +425,7 @@
       "link": "https://stockx.pvxt.net/c/4722526/1023711/9060?u=https%3A%2F%2Fstockx.com%2Fnike-kobe-10-protro-low-duke-blue-devils",
       "sku": "JW6581-001",
       "colorway": "Black/White-Game Royal",
-      "ic": "2026-11-19"
+      "ic": "2026-11-26"
     },
     {
       "date": "2026-12-11",
@@ -436,7 +436,7 @@
       "link": "",
       "sku": "IU0737-001",
       "colorway": "Black/Black-Pink Prime-Clear Jade",
-      "tried": "2026-11-24"
+      "tried": "2026-11-26"
     },
     {
       "date": "2026-12-11",
@@ -447,7 +447,7 @@
       "link": "",
       "sf": 1,
       "ic": "2026-11-22",
-      "tried": "2026-11-24"
+      "tried": "2026-11-26"
     },
     {
       "date": "2026-12-11",
@@ -486,7 +486,8 @@
       "retail_usd": 160,
       "image": "https://images.stockx.com/images/adidas-Harden-Vol-11-Lucid-Blue-White.jpg?fit=fill&bg=FFFFFF&w=600&h=430&fm=webp&auto=compress&q=90&dpr=2&trim=color&updated_at=1794603627",
       "link": "https://stockx.pvxt.net/c/4722526/1023711/9060?u=https%3A%2F%2Fstockx.com%2Fadidas-harden-vol-11-lucid-blue-white",
-      "sku": "HQ5398"
+      "sku": "HQ5398",
+      "ic": "2026-11-26"
     },
     {
       "date": "2026-12-12",
@@ -532,19 +533,19 @@
       "sku": "IO8201-500",
       "colorway": "Purple Aura/Amarillo-Valor Blue-Black",
       "sf": 1,
-      "ic": "2026-11-19"
+      "ic": "2026-11-26",
+      "tried": "2026-11-26"
     },
     {
       "date": "2026-12-14",
       "name": "Reebok G-Unit G6 \"White Green\"",
       "brand": "Reebok",
       "retail_usd": 130,
-      "image": "https://www.sneakerfiles.com/wp-content/uploads/2026/11/reebok-g-unit-g6-white-green-100301694.jpg",
-      "link": "",
+      "image": "https://images.stockx.com/images/Reebok-G-Unit-G6-White-Green.jpg?fit=fill&bg=FFFFFF&w=600&h=430&fm=webp&auto=compress&q=90&dpr=2&trim=color&updated_at=1793305530",
+      "link": "https://stockx.pvxt.net/c/4722526/1023711/9060?u=https%3A%2F%2Fstockx.com%2Freebok-g-unit-g6-white-green",
       "sku": "100301694",
       "colorway": "White/Green",
-      "sf": 1,
-      "ic": "2026-11-19"
+      "ic": "2026-11-26"
     },
     {
       "date": "2026-12-17",
@@ -552,7 +553,8 @@
       "brand": "New Balance",
       "retail_usd": null,
       "image": "",
-      "link": ""
+      "link": "",
+      "tried": "2026-11-26"
     },
     {
       "date": "2026-12-18",
@@ -588,7 +590,7 @@
       "sku": "HF0794-003",
       "colorway": "Black/White",
       "sf": 1,
-      "ic": "2026-11-19"
+      "ic": "2026-11-26"
     },
     {
       "date": "2026-12-19",
@@ -672,7 +674,7 @@
       "sku": "IV4920-001",
       "colorway": "Black/Multi-Color",
       "sf": 1,
-      "ic": "2026-11-19"
+      "ic": "2026-11-26"
     },
     {
       "date": "2026-12-19",
@@ -684,7 +686,7 @@
       "sku": "HP4712",
       "colorway": "Black/White-Red",
       "sf": 1,
-      "ic": "2026-11-19"
+      "ic": "2026-11-26"
     },
     {
       "date": "2026-12-21",
@@ -750,7 +752,7 @@
       "sku": "IO1746-600",
       "colorway": "Fierce Pink/Neo Pink-Pink Pow",
       "sf": 1,
-      "ic": "2026-11-19"
+      "ic": "2026-11-26"
     },
     {
       "date": "2026-12-26",
@@ -786,7 +788,7 @@
       "sku": "IU4982-600",
       "colorway": "Varsity Red/Sail-Game Royal-Black",
       "sf": 1,
-      "ic": "2026-11-19"
+      "ic": "2026-11-26"
     },
     {
       "date": "2026-12-26",
@@ -982,6 +984,17 @@
       "link": "",
       "sf": 1,
       "ic": "2026-11-25"
+    },
+    {
+      "date": "2027-02-04",
+      "name": "Nike GT Flight \"Black Chrome\"",
+      "brand": "Nike",
+      "retail_usd": 180,
+      "image": "https://www.sneakerfiles.com/wp-content/uploads/2026/07/nike-gt-flight-black-chrome.jpg",
+      "link": "",
+      "sku": "IO7926-002",
+      "sf": 1,
+      "ic": "2026-11-26"
     }
   ]
 }

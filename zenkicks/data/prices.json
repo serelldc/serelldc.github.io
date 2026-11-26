@@ -146,29 +146,6 @@
       "link": "https://stockx.pvxt.net/c/4722526/1023711/9060?u=https%3A%2F%2Fstockx.com%2Fnike-kobe-5-protro-dodgers",
       "at": "2026-11-03"
     },
-    "nike vapor 12 white volt energy black": {
-      "none": true,
-      "at": "2026-10-26"
-    },
-    "novesta star master mono military": {
-      "title": "Novesta Star Master Mono Beige",
-      "usd": 88,
-      "avg_usd": 88,
-      "link": "https://stockx.pvxt.net/c/4722526/1023711/9060?u=https%3A%2F%2Fstockx.com%2Fnovesta-star-master-mono-beige",
-      "at": "2026-10-26"
-    },
-    "nike air max invigor dark grey metallic silver": {
-      "none": true,
-      "at": "2026-10-26"
-    },
-    "cloudtilt arc sneakers": {
-      "none": true,
-      "at": "2026-10-26"
-    },
-    "nike kyrie 7": {
-      "none": true,
-      "at": "2026-10-26"
-    },
     "jordan 12 retro fireside": {
       "title": "Jordan 12 Retro Fireside",
       "usd": 148,
@@ -531,8 +508,11 @@
       "at": "2026-11-22"
     },
     "ducks of a feather x nike sb dunk low the zoo": {
-      "none": true,
-      "at": "2026-11-12"
+      "title": "Nike SB Dunk Low Ducks of a Feather Oregon Ducks The Zoo",
+      "usd": 308,
+      "avg_usd": 533,
+      "link": "https://stockx.pvxt.net/c/4722526/1023711/9060?u=https%3A%2F%2Fstockx.com%2Fnike-sb-dunk-low-ducks-of-a-feather-oregon-ducks-the-zoo",
+      "at": "2026-11-26"
     },
     "air jordan 4 bred (2026)": {
       "title": "Jordan 4 Retro OG Bred (2026)",
@@ -645,8 +625,12 @@
       "avg_usd": 216,
       "link": "https://stockx.pvxt.net/c/4722526/1023711/9060?u=https%3A%2F%2Fstockx.com%2Fair-jordan-3-retro-not-nice",
       "at": "2026-11-23"
+    },
+    "nike kobe 10 protro duke pe": {
+      "none": true,
+      "at": "2026-11-26"
     }
   },
-  "updated": "2026-11-25",
+  "updated": "2026-11-26",
   "source": "KicksDB (StockX average resale, all sizes)"
 }
