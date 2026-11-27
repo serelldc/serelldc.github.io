@@ -153,28 +153,6 @@
       "link": "https://stockx.pvxt.net/c/4722526/1023711/9060?u=https%3A%2F%2Fstockx.com%2Fair-jordan-12-retro-fireside",
       "at": "2026-11-06"
     },
-    "nocturnal x nike sb air force 1 low": {
-      "title": "Nike SB Air Force 1 Low City Pack Nocturnal Shop",
-      "usd": 225,
-      "avg_usd": 562,
-      "link": "https://stockx.pvxt.net/c/4722526/1023711/9060?u=https%3A%2F%2Fstockx.com%2Fnike-sb-air-force-1-low-city-pack-nocturnal-shop",
-      "at": "2026-10-27"
-    },
-    "nike caitlin 1 halloween": {
-      "title": "Nike Caitlin 1 Halloween (Women's)",
-      "usd": 770,
-      "avg_usd": 973,
-      "link": "https://stockx.pvxt.net/c/4722526/1023711/9060?u=https%3A%2F%2Fstockx.com%2Fnike-caitlin-1-halloween-womens",
-      "at": "2026-10-27"
-    },
-    "nike ja 4 high university red": {
-      "none": true,
-      "at": "2026-10-27"
-    },
-    "nike kd 19 halloween": {
-      "none": true,
-      "at": "2026-10-27"
-    },
     "converse shai 001 lace up flare": {
       "none": true,
       "at": "2026-10-28"
@@ -456,10 +434,10 @@
     },
     "nike air force 1 low supreme black": {
       "title": "Nike Air Force 1 Low Supreme Black",
-      "usd": 117,
-      "avg_usd": 141,
+      "usd": 114,
+      "avg_usd": 149,
       "link": "https://stockx.pvxt.net/c/4722526/1023711/9060?u=https%3A%2F%2Fstockx.com%2Fnike-air-force-1-low-supreme-box-logo-black",
-      "at": "2026-11-17"
+      "at": "2026-11-27"
     },
     "air jordan 3 not nice": {
       "title": "Jordan 3 Retro Not Nice",
@@ -629,8 +607,23 @@
     "nike kobe 10 protro duke pe": {
       "none": true,
       "at": "2026-11-26"
+    },
+    "free the youth x air jordan 3": {
+      "none": true,
+      "at": "2026-11-27"
+    },
+    "jaide x air jordan 1 low og": {
+      "none": true,
+      "at": "2026-11-27"
+    },
+    "jalen brunson x nike kobe 3 low protro arancia": {
+      "title": "Nike Kobe 3 Low Protro Arancia Jalen Brunson PE",
+      "usd": 196,
+      "avg_usd": 267,
+      "link": "https://stockx.pvxt.net/c/4722526/1023711/9060?u=https%3A%2F%2Fstockx.com%2Fnike-kobe-3-low-protro-arancia-jalen-brunson-pe",
+      "at": "2026-11-27"
     }
   },
-  "updated": "2026-11-26",
+  "updated": "2026-11-27",
   "source": "KicksDB (StockX average resale, all sizes)"
 }

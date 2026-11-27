@@ -1,18 +1,7 @@
 {
-  "updated": "2026-11-26",
+  "updated": "2026-11-27",
   "source": "SneakerFiles & Sneaker News release calendars (curated weekly); photos from KicksDB (StockX)",
   "items": [
-    {
-      "date": "2026-11-26",
-      "name": "Ducks of a Feather x Nike SB Dunk Low \"The Zoo\"",
-      "brand": "Nike",
-      "retail_usd": 140,
-      "image": "https://images.stockx.com/images/Nike-SB-Dunk-Low-Ducks-of-a-Feather-Oregon-Ducks-The-Zoo.jpg?fit=fill&bg=FFFFFF&w=600&h=430&fm=webp&auto=compress&q=90&dpr=2&trim=color&updated_at=1793305438",
-      "link": "https://stockx.pvxt.net/c/4722526/1023711/9060?u=https%3A%2F%2Fstockx.com%2Fnike-sb-dunk-low-ducks-of-a-feather-oregon-ducks-the-zoo",
-      "sku": "JJ7565-300",
-      "colorway": "Tomatillo/Gum Medium Brown-Gym Green-Gorge Green",
-      "ic": "2026-11-24"
-    },
     {
       "date": "2026-11-27",
       "name": "Air Jordan 4 \"Bred\" (2026)",
@@ -74,7 +63,7 @@
       "link": "",
       "sf": 1,
       "ic": "2026-11-21",
-      "tried": "2026-11-25"
+      "tried": "2026-11-27"
     },
     {
       "date": "2026-11-28",
@@ -98,7 +87,7 @@
       "colorway": "Cobalt Blue/Anthracite-Vast Grey-Varsity Maize",
       "sf": 1,
       "ic": "2026-11-21",
-      "tried": "2026-11-25"
+      "tried": "2026-11-27"
     },
     {
       "date": "2026-11-28",
@@ -111,7 +100,7 @@
       "colorway": "Black/Stadium Green-Light Lemon Twist-Varsity Maize",
       "sf": 1,
       "ic": "2026-11-21",
-      "tried": "2026-11-25"
+      "tried": "2026-11-27"
     },
     {
       "date": "2026-11-28",
@@ -134,7 +123,7 @@
       "colorway": "Black/Cool Grey-Diffused Blue",
       "sf": 1,
       "ic": "2026-11-21",
-      "tried": "2026-11-25"
+      "tried": "2026-11-27"
     },
     {
       "date": "2026-11-28",
@@ -177,7 +166,7 @@
       "link": "",
       "sf": 1,
       "ic": "2026-11-21",
-      "tried": "2026-11-25"
+      "tried": "2026-11-27"
     },
     {
       "date": "2026-11-28",
@@ -188,7 +177,7 @@
       "link": "",
       "sf": 1,
       "ic": "2026-11-21",
-      "tried": "2026-11-25"
+      "tried": "2026-11-27"
     },
     {
       "date": "2026-11-28",
@@ -380,7 +369,7 @@
       "colorway": "Dark Brown/Frozen Green",
       "sf": 1,
       "ic": "2026-11-21",
-      "tried": "2026-11-25"
+      "tried": "2026-11-27"
     },
     {
       "date": "2026-12-05",
@@ -477,7 +466,7 @@
       "retail_usd": 110,
       "image": "",
       "link": "",
-      "tried": "2026-11-25"
+      "tried": "2026-11-27"
     },
     {
       "date": "2026-12-11",
@@ -521,7 +510,7 @@
       "colorway": "Green Apple/Bright Cactus-Varsity Red-Imperial Blue",
       "sf": 1,
       "ic": "2026-11-22",
-      "tried": "2026-11-25"
+      "tried": "2026-11-27"
     },
     {
       "date": "2026-12-14",
@@ -566,7 +555,8 @@
       "sku": "IU5238-500",
       "colorway": "Cave Purple/Dark Raisin-Purple Dynasty",
       "sf": 1,
-      "ic": "2026-11-22"
+      "ic": "2026-11-22",
+      "tried": "2026-11-27"
     },
     {
       "date": "2026-12-18",
@@ -578,18 +568,18 @@
       "sku": "IW9834-600",
       "colorway": "Team Scarlet/Deep Royal Blue",
       "sf": 1,
-      "ic": "2026-11-24"
+      "ic": "2026-11-24",
+      "tried": "2026-11-27"
     },
     {
       "date": "2026-12-18",
       "name": "Nike Air Foamposite Pro \"Dr. Doom\"",
       "brand": "Nike",
       "retail_usd": 240,
-      "image": "https://www.sneakerfiles.com/wp-content/uploads/2026/02/nike-air-foamposite-pro-dr-doom-2026-HF0794-003.jpg",
-      "link": "",
+      "image": "https://images.stockx.com/images/Air-Foamposite-Pro-Dr-Doom-2016-Product_V2.jpg?fit=fill&bg=FFFFFF&w=600&h=430&fm=webp&auto=compress&q=90&dpr=2&trim=color&updated_at=1786151269",
+      "link": "https://stockx.pvxt.net/c/4722526/1023711/9060?u=https%3A%2F%2Fstockx.com%2Fair-foamposite-pro-dr-doom-2016",
       "sku": "HF0794-003",
       "colorway": "Black/White",
-      "sf": 1,
       "ic": "2026-11-26"
     },
     {
@@ -995,6 +985,18 @@
       "sku": "IO7926-002",
       "sf": 1,
       "ic": "2026-11-26"
+    },
+    {
+      "date": "2027-02-05",
+      "name": "Nike Air Zoom Generation \"Gloria James\" PE 2027",
+      "brand": "Nike",
+      "retail_usd": 190,
+      "image": "https://www.sneakerfiles.com/wp-content/uploads/2026/11/nike-air-zoom-generation-gloria-james-pe-2027.jpg",
+      "link": "",
+      "sku": "JA6289-100",
+      "colorway": "White/Metallic Silver-Real Pink",
+      "sf": 1,
+      "ic": "2026-11-27"
     }
   ]
 }
